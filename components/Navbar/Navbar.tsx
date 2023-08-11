@@ -23,15 +23,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
-const NavbarLogo = styled('img')({
-  display: { xs: 'block', sm: 'none' },
-  height: '2.7rem',
-  marginRight: '1rem',
-  // Add more styles as needed
-  '@media (max-width: 1170px)': {
-    display: 'none',
-  },
-});
+
 
 
 const drawerWidth = 280;
@@ -97,7 +89,7 @@ const navItems = [
 
 ];
 
-function DrawerAppBar(props) {
+function DrawerAppBar(props: any) {
   const { drawerWindow } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   //const history = useHistory();
@@ -119,7 +111,7 @@ function DrawerAppBar(props) {
 
 
   // Function to toggle the menu item's open/close state
-  const handleMenuItemToggle = (label, event) => {
+  const handleMenuItemToggle = (label: any, event: any) => {
     event.stopPropagation();
     setOpenItem((prevOpenItem) => (prevOpenItem === label ? null : label));
   };
@@ -243,7 +235,6 @@ function DrawerAppBar(props) {
           <Image onClick={handleLogoClick}
             //style={{ maxWidth: '120px', height: 'auto', cursor: 'pointer' }}
             src={LogoImg}
-            objectFit='responsive'
             alt="logo" />
         </Box>
         <Box sx={{

@@ -1,10 +1,10 @@
-import HomeHeader from "../homeHeader/Navbar";
+import Navbar from "../Navbar/Navbar";
 import Footer from "../footer/Footer";
 
 const Layout = ({ children }: JSX.ElementChildrenAttribute) => {
   return (
     <>
-      <HomeHeader />
+      <Navbar />
       {children}
       <Footer />
     </>

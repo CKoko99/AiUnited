@@ -1,6 +1,19 @@
 import { Box, Button, Typography } from "@mui/material";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
+interface CTAContentProps {
+    title: string;
+    text: string;
+    img: StaticImageData;
+    cta1?: {
+        link: string;
+        text: string;
+    };
+    cta2?: {
+        link: string;
+        text: string;
+    };
+}
 const styles = {
     root: {
         width: "80%",
@@ -18,7 +31,7 @@ const styles = {
     }
 }
 
-export default function CTAContent(props) {
+export default function CTAContent(props: CTAContentProps) {
     return <>
         <Box sx={{ ...styles.root }}>
             <Typography variant="h4" component="h4" sx={{ textAlign: "center", margin: "1rem 0" }}>
@@ -26,7 +39,6 @@ export default function CTAContent(props) {
             </Typography>
             <Box sx={{ ...styles.image }}>
                 <Image src={props.img} alt={props.title}
-                    objectFit='responsive'
                 />
             </Box>
             <Typography variant="h5" component="h5" sx={{ textAlign: "center", margin: "1rem 0" }}>
@@ -45,6 +57,7 @@ export default function CTAContent(props) {
                     variant="contained"
                     color="secondary"
                     href={props.cta2.link}
+                    sx={{ "&:hover": { fontWeight: "bold" } }}
                 >
                     {props.cta2.text}
                 </Button>}

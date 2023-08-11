@@ -1,5 +1,5 @@
 import { Box, Typography, Button } from "@mui/material";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import theme from "../../../providers/theme";
 
 
@@ -10,7 +10,7 @@ interface BannerProps {
         link: string;
         text: string;
     };
-    image?: string;
+    image?: StaticImageData;
 }
 const styles = {
     root: {
@@ -88,7 +88,7 @@ export default function Banner(props: BannerProps) {
                 sx={{ ...styles.imageContainer }}
             >
                 {props.image && <Image
-                    objectFit='responsive'
+
                     src={props?.image} alt={props.title} />}
                 <Typography sx={{
                     display: "none",

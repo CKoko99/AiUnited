@@ -1,10 +1,6 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import HomeDescription from "../components/homeDescription";
-import HomeUrls from "../components/homeUrls";
 import HeadComponent from "../components/Head";
-import Banner from "../components/Content/Hero/Banner.tsx";
+import Banner from "../components/Content/Hero/Banner";
 import BannerImage from "../public/assets/images/home/Umbrella.png";
 import FlexDiagram from "../components/Content/FlexDigrams/CompaniesDiagram";
 import partnerImg1 from "../public/assets/images/home/partners/progressive.png";
@@ -12,8 +8,8 @@ import partnerImg2 from "../public/assets/images/home/partners/alinsco.png";
 import partnerImg3 from "../public/assets/images/home/partners/appllo.png";
 import partnerImg4 from "../public/assets/images/home/partners/bluefire.png";
 import partnerImg5 from "../public/assets/images/home/partners/falcon.png";
-import ContentSplit from "../components/Content/ContentSplit.tsx";
-import QuotesDiagram from "../components/Content/FlexDigrams/QuotesDiagram.tsx";
+import ContentSplit from "../components/Content/ContentSplit";
+import QuotesDiagram from "../components/Content/FlexDigrams/QuotesDiagram";
 import autoQuoteImg from "../public/assets/images/home/quotes/auto.png";
 import homeQuoteImg from "../public/assets/images/home/quotes/home.png";
 import motorcycleQuoteImg from "../public/assets/images/home/quotes/motorcycle.png";
