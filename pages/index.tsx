@@ -19,6 +19,7 @@ import mexicoQuoteImg from "../public/assets/images/home/quotes/mexico.png";
 import suretyQuoteImg from "../public/assets/images/home/quotes/surety.png";
 import CTAContent from '../components/Content/CTAContent';
 import representativeImg from "../public/assets/images/home/quotes/representative.png";
+import HomeReview from '../components/Content/Reviews/CloudReview';
 
 const bannerContent = {
   title: "Simplify Your Coverage and Save Money Today",
@@ -94,6 +95,19 @@ const callQuoteContent = {
     link: "/about/contact"
   }
 }
+const reviewContent = {
+  title: "See What Our Customers Are Saying about Ai United",
+  content: {
+    name: "Jacob B",
+    review: `I'd been shopping around for a better auto insurance rate with little success. Bethany saved me almost 1 $100 per month with the same coverage! 
+    I'm ver pleased with my policy and I recommend Ai United to all my friends and family!`
+  },
+  cta: {
+    text: "Read More Reviews",
+    link: "/about/reviews"
+  },
+  img: representativeImg
+}
 
 const Home: NextPage = () => {
   return (
@@ -108,7 +122,7 @@ const Home: NextPage = () => {
         <CTAContent {...callQuoteContent} />
 
       </ContentSplit>
-
+      <HomeReview {...reviewContent} />
     </>
 
   )

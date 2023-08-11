@@ -19,7 +19,7 @@ const styles = {
         display: "flex",
         flexWrap: "wrap",
         flexDirection: "row",
-        justifyContent: "center",
+        justifyContent: "space-around",
     },
     image: {
         width: '90%',
@@ -33,10 +33,10 @@ const styles = {
             xs: "100%", sm: "100%", md: "50%", lg: "50%",
         },
         minWidth: {
-            xs: "33%", sm: "25%", md: "33%", lg: "33%",
+            xs: "33%", sm: "30%", md: "30%", lg: "30%",
         },
         maxWidth: {
-            xs: "33%", sm: "30%", md: "40%", lg: "40%",
+            xs: "33%", sm: "30%", md: "30%", lg: "30%",
         },
         cursor: "pointer",
         margin: 0,
@@ -65,7 +65,7 @@ export default function Diagram(props: DiagramProps) {
                             >
                                 <Box sx={{ ...styles.image }}>
                                     <Image src={item.img} alt={item.title}
-                                        objectFit='responsive'
+
                                     />
                                 </Box>
                                 {item.title && (
@@ -79,7 +79,7 @@ export default function Diagram(props: DiagramProps) {
                                             whiteSpace: "pre-line",
                                         }}
                                     >
-                                        {item.title.split(' ').map((word, index) => (
+                                        {item.title.split(' ').map((word: string, index: any) => (
                                             <React.Fragment key={index}>
                                                 {word}
                                                 <br />

@@ -54,7 +54,6 @@ export default function FlexDiagram(props: FlexDiagramProps) {
                         >
                             <Box sx={{ ...styles.image }}>
                                 <Image src={item.img} alt={item.title}
-                                    objectFit='responsive'
                                 />
                             </Box>
                             {item.title && <Typography variant="h5" component="h5" sx={{ textAlign: "center", fontWeight: "bold", margin: "1rem 0" }}>
