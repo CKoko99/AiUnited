@@ -1,5 +1,10 @@
 import { Typography, Box, Divider } from "@mui/material";
 
+interface componentProps {
+    title: string;
+    children: any;
+}
+
 const styles = {
     root: {
         width: "95%",
@@ -24,7 +29,7 @@ const styles = {
         margin: "1rem 0",
     },
 }
-export default function ContentSplit({ title, children }) {
+export default function ContentSplit({ title, children }: componentProps) {
     return <>
         <Box sx={{ ...styles.root }}>
 

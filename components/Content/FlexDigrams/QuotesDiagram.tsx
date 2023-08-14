@@ -27,6 +27,10 @@ const styles = {
         padding: "0 .25rem",
         display: "flex",
         justifyContent: "center",
+        "&:hover": {
+            cursor: "pointer",
+            width: "100%",
+        },
     },
     contentItem: {
         width: {
@@ -59,9 +63,9 @@ export default function Diagram(props: DiagramProps) {
                     return (
                         <Link
                             href={item.link}
-
+                            key={index}
                         >
-                            <Box key={index} sx={{ ...styles.contentItem }}
+                            <Box sx={{ ...styles.contentItem }}
                             >
                                 <Box sx={{ ...styles.image }}>
                                     <Image src={item.img} alt={item.title}

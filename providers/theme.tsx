@@ -26,6 +26,12 @@ let theme = createTheme({
             fontWeight: 'bold',
           },
         },
+        containedSecondary: {
+          '&:hover': {
+
+            fontWeight: 'bold',
+          },
+        },
       },
     },
   },

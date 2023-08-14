@@ -21,10 +21,14 @@ import CTAContent from '../components/Content/CTAContent';
 import representativeImg from "../public/assets/images/home/quotes/representative.png";
 import HomeReview from '../components/Content/Reviews/CloudReview';
 import ReviewImg from "../public/assets/images/home/reviews/review.png";
+import Card from '../components/Content/Cards/Cards';
+import PoliciesImg from "../public/assets/images/home/about/policies.png";
+import AboutImg from "../public/assets/images/home/about/about.png";
+import CareersImg from "../public/assets/images/home/about/careers.png";
 
 const bannerContent = {
   title: "Simplify Your Coverage and Save Money Today",
-  subtitle: "Your One-Stop Insurance Desitnation: Fast, Easy, and Affordable Coverages for All Your Needs",
+  subtitle: "Your One-Stop Insurance Destination: Fast, Easy, and Affordable Coverages for All Your Needs",
   ctaButton: {
     text: "Get a Quote!",
     link: "/quote"
@@ -32,7 +36,7 @@ const bannerContent = {
   image: BannerImage
 }
 const partnerCompanies = {
-  title: "We shop for the best deals to save you time and money",
+  title: "We Shop For the Best Deals to Save You Time and Money",
   content: [
     {
       img: partnerImg1,
@@ -100,8 +104,8 @@ const reviewContent = {
   title: "See What Our Customers Are Saying about Ai United",
   content: {
     name: "Jacob B",
-    review: `I'd been shopping around for a better auto insurance rate with little success. Bethany saved me almost 1 $100 per month with the same coverage! 
-    I'm ver pleased with my policy and I recommend Ai United to all my friends and family!`
+    review: `I'd been shopping around for a better auto insurance rate with little success. Bethany saved me almost $100 per month with the same coverage! 
+    I'm very pleased with my policy and I recommend Ai United to all my friends and family!`
   },
   cta: {
     text: "Read More Reviews",
@@ -109,7 +113,27 @@ const reviewContent = {
   },
   img: ReviewImg
 }
-
+const aboutContent = {
+  title: "Learn More",
+  subtitle: "Insights, Information, and Beyond",
+  content: [
+    {
+      title: "Our Policies",
+      img: PoliciesImg,
+      link: "/about/policies"
+    },
+    {
+      title: "About Us",
+      img: AboutImg,
+      link: "/about"
+    },
+    {
+      title: "Careers",
+      img: CareersImg,
+      link: "/about/careers"
+    }
+  ]
+}
 const Home: NextPage = () => {
   return (
     <>
@@ -124,6 +148,7 @@ const Home: NextPage = () => {
 
       </ContentSplit>
       <HomeReview {...reviewContent} />
+      <Card {...aboutContent} />
     </>
 
   )
