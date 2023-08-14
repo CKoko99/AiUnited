@@ -20,6 +20,7 @@ import suretyQuoteImg from "../public/assets/images/home/quotes/surety.png";
 import CTAContent from '../components/Content/CTAContent';
 import representativeImg from "../public/assets/images/home/quotes/representative.png";
 import HomeReview from '../components/Content/Reviews/CloudReview';
+import ReviewImg from "../public/assets/images/home/reviews/review.png";
 
 const bannerContent = {
   title: "Simplify Your Coverage and Save Money Today",
@@ -106,7 +107,7 @@ const reviewContent = {
     text: "Read More Reviews",
     link: "/about/reviews"
   },
-  img: representativeImg
+  img: ReviewImg
 }
 
 const Home: NextPage = () => {

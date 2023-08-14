@@ -15,66 +15,81 @@ const styles = {
     root: {
         backgroundColor: theme.palette.primary.light,
         padding: ".5rem 0",
+        margin: "1rem auto"
     },
     review: {
         width: {
-            xs: "85%", md: "80%"
+            xs: "85%", md: "90%"
         },
         display: "flex",
         flexDirection: {
             xs: "column", md: "row"
         },
         margin: "auto",
+        alignItems: "center",
     },
     title: {
         color: "white",
-        textAlign: "center", fontWeight: "bold", margin: "1rem 0"
+        textAlign: "center", fontWeight: "bold",
+        width: "80%",
+        margin: "1rem auto",
     },
     image: {
         width: {
-            xs: "100%", md: "50%"
-        }
+            xs: "80%", sm: "70%", md: "40%", lg: "40%",
+        },
+        margin: "auto",
     },
     chat: {
         width: {
-            xs: "100%", md: "100%"
+            xs: "100%", md: "40%"
         },
+        margin: "1rem auto",
+        borderRadius: "15px",
         backgroundColor: "white",
-        padding: "1rem",
+        padding: "1.5rem",
         textAlign: "center",
     },
     content: {},
     name: {},
-    cloud: {
-
-        width: "90%",
-        margin: "auto",
-        display: "inline-block",
-        borderRadius: "15px",
-        background: "white",
-        padding: "2rem",
-        position: "relative",
-        "::before": {
-            right: "1rem",
-            clipPath: "polygon(0 0, 75% 0, 100% 100%)",
-            top: "calc(100% - 2px)",
-
-            position: "absolute",
-        }
+    reviewSection: {
+        paddingLeft: '16px',
+        fontStyle: 'italic',
+        marginTop: '1rem',
+        display: "block",
     },
-    smallCloud: {
-
+    reviewBefore: {
+        display: " block",
+        paddingLeft: "10px",
+        content: '"\u0081"',
+        fontSize: "80px",
+        position: "absolute",
+        left: "-20px",
+        top: "-20px",
+        color: "#7a7a7a",
     },
+    quoteMark: {
+        display: 'block',
+        padding: '10px',
+        content: '"\u201C"', // Unicode character for opening double quote
+        fontSize: '80px',
+        position: 'absolute',
+        left: '-20px',
+        top: '-20px',
+        color: '#7a7a7a',
+    },
+    reviewText: {
+        marginTop: { xs: "-3rem", sm: "-3.5rem", md: "-4rem" }
+    },
+    author: {
+        marginTop: '8px',
+        textAlign: 'right',
+    },
+    ctaButton: {
+        margin: "1rem auto",
+    }
 }
-const SpeechBubble = ({ children }) => {
 
-    return (
-        <Box sx={{ ...styles.cloud }}>
-
-            {children}
-        </Box>
-    );
-};
 
 
 export default function HomeReview(props: any) {
@@ -94,8 +109,9 @@ export default function HomeReview(props: any) {
                     >
                         <Image src={props.img} alt={props.title} />
                     </Box>
-                    <SpeechBubble pbottom aright>
-
+                    <Box
+                        sx={{ ...styles.chat }}
+                    >
                         {props.content &&
 
                             <Box
@@ -103,28 +119,36 @@ export default function HomeReview(props: any) {
                                     ...styles.content
                                 }}
                             >
-                                <Typography variant="body1"
-                                    sx={{ ...styles.review }}
+                                <Box
+                                    sx={{ ...styles.reviewSection, textAlign: "left" }}
                                 >
-                                    {props.content.review}
-                                </Typography>
-                                <Typography variant="body1"
-                                    sx={{ ...styles.name }}
+                                    <Typography variant="h1"
+                                        sx={{ marginLeft: "-2rem" }}
+                                    >"</Typography>
+                                    <Typography variant="body1"
+                                        sx={{ ...styles.reviewText }}
+                                    >
+                                        {props.content.review}
+                                    </Typography>
 
-                                >
-                                    {props.content.name}
-                                </Typography>
+
+                                    <Typography variant="body1"
+                                        sx={{ ...styles.author }}
+                                    >
+                                        - {props.content.name}
+                                    </Typography>
+                                </Box>
                             </Box>
                         }
-                        {props.cta && <Button variant="contained" color="secondary"
+                        {props.cta && <Button sx={{ ...styles.ctaButton }} variant="contained" color="secondary"
                             href={props.cta.link}
                         >
                             {props.cta.text}
                         </Button>}
-                    </SpeechBubble>
+                    </Box>
 
                 </Box>
-            </Box>
+            </Box >
         </>
     )
 }

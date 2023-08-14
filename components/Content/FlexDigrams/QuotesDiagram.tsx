@@ -33,10 +33,10 @@ const styles = {
             xs: "100%", sm: "100%", md: "50%", lg: "50%",
         },
         minWidth: {
-            xs: "33%", sm: "30%", md: "30%", lg: "30%",
+            xs: "33%", sm: "26%", md: "26%", lg: "26%",
         },
         maxWidth: {
-            xs: "33%", sm: "30%", md: "30%", lg: "30%",
+            xs: "33%", sm: "26%", md: "26%", lg: "26%",
         },
         cursor: "pointer",
         margin: 0,

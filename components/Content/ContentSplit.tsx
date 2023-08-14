@@ -1,9 +1,9 @@
 import { Typography, Box, Divider } from "@mui/material";
 
-const style = {
+const styles = {
     root: {
         width: "95%",
-        margin: "auto",
+        margin: "1rem auto",
     },
     split: {
         display: "flex",
@@ -26,13 +26,13 @@ const style = {
 }
 export default function ContentSplit({ title, children }) {
     return <>
-        <Box sx={{ ...style.root }}>
+        <Box sx={{ ...styles.root }}>
 
             <Typography variant="h4" component="h4" sx={{ textAlign: "center", fontWeight: "bold", margin: "1rem 0" }}>
                 {title}
             </Typography>
-            {children && <Box sx={{ ...style.split }}>
-                {children[0] && <Box sx={{ ...style.contentSection }}>
+            {children && <Box sx={{ ...styles.split }}>
+                {children[0] && <Box sx={{ ...styles.contentSection }}>
                     {children[0]}
                 </Box>}
                 <Box
@@ -54,7 +54,7 @@ export default function ContentSplit({ title, children }) {
                 >
                     <Divider sx={{ borderColor: "black" }} orientation="horizontal" flexItem />
                 </Box>
-                {children[1] && <Box sx={{ ...style.contentSection }}>
+                {children[1] && <Box sx={{ ...styles.contentSection }}>
                     {children[1]}
                 </Box>}
             </Box>}
