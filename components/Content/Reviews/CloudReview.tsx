@@ -47,7 +47,7 @@ const styles = {
         margin: "1rem auto",
         borderRadius: "15px",
         backgroundColor: "white",
-        padding: "1.5rem",
+        padding: " 0 1.5rem 1.5rem 1.5rem",
         textAlign: "center",
     },
     content: {},
@@ -125,14 +125,14 @@ export default function HomeReview(props: any) {
                                     <Typography variant="h1"
                                         sx={{ marginLeft: "-2rem" }}
                                     >"</Typography>
-                                    <Typography variant="body1"
+                                    <Typography variant="h6"
                                         sx={{ ...styles.reviewText }}
                                     >
                                         {props.content.review}
                                     </Typography>
 
 
-                                    <Typography variant="body1"
+                                    <Typography variant="h6"
                                         sx={{ ...styles.author }}
                                     >
                                         - {props.content.name}
