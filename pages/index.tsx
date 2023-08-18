@@ -145,7 +145,6 @@ const Home: NextPage = () => {
       >
         <QuotesDiagram {...onlineQuotesContent} />
         <CTAContent {...callQuoteContent} />
-
       </ContentSplit>
       <HomeReview {...reviewContent} />
       <Card {...aboutContent} />

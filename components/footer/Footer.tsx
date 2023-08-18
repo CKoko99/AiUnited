@@ -60,10 +60,14 @@ const classes = {
     flexDirection: "column"
   },
   section1: {
-    display: "flex", minWidth: "60%", justifyContent: "space-between"
+    display: "flex", justifyContent: "space-between"
+    , flexDirection: { xs: "column", sm: "row" },
+    alignItems: "center",
+
   },
   section2: {
     display: "flex", flexDirection: "row",
+    flexWrap: "wrap",
   },
   logoImg: {
     maxWidth: '16rem', // Set the maximum width for the image
@@ -74,7 +78,7 @@ const classes = {
     marginTop: "-.5rem"
   },
   section1content: {
-    textAlign: "right",
+    textAlign: { xs: "center", sm: "right" },
   },
   socialIcon: {
     fontSize: "2.5rem",
@@ -83,6 +87,7 @@ const classes = {
     cursor: "pointer",
     fontWeight: "600",
     marginRight: ".3rem",
+    whiteSpace: "nowrap"
   },
   section3: {
     display: "flex",
@@ -91,6 +96,7 @@ const classes = {
   },
   section3content: {
     display: "flex",
+    flexWrap: "wrap",
   },
   copyright: {
     marginTop: "1rem",
