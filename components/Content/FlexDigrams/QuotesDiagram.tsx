@@ -21,12 +21,14 @@ const styles = {
         flexDirection: "row",
         justifyContent: "space-around",
     },
+
     image: {
         width: '90%',
         margin: "auto",
         padding: "0 .25rem",
         display: "flex",
         justifyContent: "center",
+        alignItems: "center",
         "&:hover": {
             cursor: "pointer",
             width: "100%",
@@ -69,7 +71,6 @@ export default function Diagram(props: DiagramProps) {
                             >
                                 <Box sx={{ ...styles.image }}>
                                     <Image src={item.img} alt={item.title}
-
                                     />
                                 </Box>
                                 {item.title && (

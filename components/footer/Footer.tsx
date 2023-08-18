@@ -1,13 +1,48 @@
 import { Box, } from "@mui/material";
 import { Typography } from "@mui/material";
+import PATHCONSTANTS from '../../constants/sitemap';
 
 
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import Link from "next/link";
+import LogoImg from '../../public/assets/images/ai-logo-white.png';
+import Image from "next/image";
+
+const section2content = [
+  {
+    title: "Find an Agent",
+    link: PATHCONSTANTS.LOCATIONS.INDEX
+  },
+  {
+    title: "Contact Us",
+    link: PATHCONSTANTS.ABOUT.CONTACT
+  },
+  {
+    title: "About Us",
+    link: PATHCONSTANTS.ABOUT.INDEX
+  },
+  {
+    title: "Careers",
+    link: PATHCONSTANTS.ABOUT.CAREERS
+  }
+]
+const section3content = {
+  title: "Ai United Insurance Products",
+  links: [
+    { text: "Auto Insurance", link: PATHCONSTANTS.PRODUCTS.AUTO },
+    { text: "Motorcycle Insurance", link: PATHCONSTANTS.PRODUCTS.MOTORCYCLE },
+    { text: "Home Insurance", link: PATHCONSTANTS.PRODUCTS.HOME },
+    { text: "Renters Insurance", link: PATHCONSTANTS.PRODUCTS.RENTER },
+    { text: "Mexico Insruance", link: PATHCONSTANTS.PRODUCTS.MEXICO },
+    { text: "SR-22", link: PATHCONSTANTS.PRODUCTS.SR22 },
+    { text: "Surety Bonds", link: PATHCONSTANTS.PRODUCTS.SURETY },
+  ]
+}
 
 const classes = {
-  footer: {
+  root: {
     backgroundColor: "#0E76BC",
     color: "white",
     padding: "1rem",
@@ -15,59 +50,130 @@ const classes = {
     fontSize: "1.5rem",
     marginTop: "3rem",
     "& a": { color: "white" },
+  },
+  footer: {
+    display: "flex",
+    width: {
+      xs: "95%", sm: "95%", md: "90%", lg: "90%",
+    },
+    margin: "auto",
+    flexDirection: "column"
+  },
+  section1: {
+    display: "flex", minWidth: "60%", justifyContent: "space-between"
+  },
+  section2: {
+    display: "flex", flexDirection: "row",
+  },
+  logoImg: {
+    maxWidth: '16rem', // Set the maximum width for the image
+    minHeight: '5rem',   // Automatically adjust height to maintain aspect ratio
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    marginTop: "-.5rem"
+  },
+  section1content: {
+    textAlign: "right",
+  },
+  socialIcon: {
+    fontSize: "2.5rem",
+  },
+  link: {
+    cursor: "pointer",
+    fontWeight: "600",
+    marginRight: ".3rem",
+  },
+  section3: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+  },
+  section3content: {
+    display: "flex",
+  },
+  copyright: {
+    marginTop: "1rem",
   }
 }
+
 export default function Footer() {
   return (
-    <Box sx={{ ...classes.footer }}
+    <Box sx={{ ...classes.root }}
     >
       <Box sx={{
-        display: "flex", justifyContent: "space-between",
-
-        width: {
-          xs: "95%",
-          sm: "95%",
-          md: "85%",
-          lg: "85%",
-        },
-        margin: "0 auto",
-
-        flexDirection: { xs: "column-reverse", sm: "column-reverse", md: "row" },
+        ...classes.footer
       }}>
-        <Box sx={{ textAlign: "left", padding: "1rem" }}>
-          <Typography variant="h5">Support</Typography>
-          <Typography variant="h6"> HR Extension Number 1303</Typography>
-          <Typography variant="h6"> Underwriting extension number: 141 option 2</Typography>
-          <Typography variant="h6"> Agent support extension number: 141 option 1</Typography>
-          <Typography variant="h6"> Sweep extension number: 1300</Typography>
-          <Typography variant="h6"> Operations extension number: 1016</Typography>
-        </Box>
-        <Box sx={{ padding: "1rem", textAlign: { xs: "left", sm: "left", md: "right" } }}>
-          <Typography variant="h5">Find Us</Typography>
-          <Box>
-            <a href="https://www.linkedin.com/company/ai-united-insurance"
-              target="_blank" rel="noopener noreferrer"
-            >
-              <LinkedInIcon sx={{ fontSize: "3rem" }} />
-            </a>
-            <a href="https://twitter.com/aiunited?lang=en"
-              target="_blank" rel="noopener noreferrer"
-            >
-
-              <TwitterIcon sx={{ fontSize: "3rem" }} />
-            </a>
-            <a href="https://www.facebook.com/AiUnitedInsurance/"
-              target="_blank" rel="noopener noreferrer"
-            >
-              <FacebookIcon sx={{ fontSize: "3rem" }} />
-            </a>
+        <Box sx={{ ...classes.section1 }}>
+          <Box sx={{ ...classes.logoImg }}>
+            <Image src={LogoImg} alt="Ai United Insurance Logo" />
           </Box>
-          <a target="_blank" rel="noopener noreferrer" href="https://www.AiUnited.com">
-            <Typography variant="h6"> www.AiUnited.com</Typography>
-          </a>
+          <Box
+            sx={{ ...classes.section1content }}
+          >
+            <Box>
+              {`(555)-555-5555`}
+            </Box>
+            <Box
+            >
+              <a
+                href="https://www.linkedin.com/company/ai-united-insurance"
+                target="_blank" rel="noopener noreferrer"
+              >
+                <LinkedInIcon
+                  sx={{ ...classes.socialIcon }}
+                />
+              </a>
+              <a href="https://twitter.com/aiunited?lang=en"
+                target="_blank" rel="noopener noreferrer"
+              >
+                <TwitterIcon
+                  sx={{ ...classes.socialIcon }}
+                />
+              </a>
+              <a href="https://twitter.com/aiunited?lang=en"
+                target="_blank" rel="noopener noreferrer"
+              >
+                <FacebookIcon
+                  sx={{ ...classes.socialIcon }}
+                />
+              </a>
+            </Box>
+          </Box>
         </Box>
-      </Box>
-      <Typography variant="h6">Copyright © 2023 Ai United Insurance. All Rights Reserved.</Typography>
+        <Box sx={{ ...classes.section2 }}>
+          {section2content.map((item, index) => {
+            return <Box key={index}
+            >
+              <Link href={item.link}>
+                <Typography variant="body1" sx={{ ...classes.link }}>
+                  {item.title} {index !== section2content.length - 1 && "|"}
+                </Typography>
+              </Link>
+            </Box>
+          })}
+        </Box>
+        <Box sx={{ ...classes.section3 }}>
+          <Typography variant="body1">
+            {section3content.title}
+          </Typography>
+          <Box sx={{ ...classes.section3content }}>
+            {section3content.links.map((item, index) => {
+              return <Box key={index}
+              >
+                <Link href={item.link}>
+                  <Typography variant="body1" sx={{ ...classes.link }}>
+                    {item.text} {index !== section3content.links.length - 1 && "|"}
+                  </Typography>
+                </Link>
+              </Box>
+            })}
+          </Box>
+        </Box>
+        <Box sx={{ ...classes.copyright }}>
+          <Typography variant="h6">Copyright © 2023 Ai United Insurance. All Rights Reserved.</Typography>
+        </Box>
+      </Box >
     </Box >
   )
 }

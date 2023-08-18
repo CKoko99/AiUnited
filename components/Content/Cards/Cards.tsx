@@ -30,8 +30,8 @@ const styles = {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        padding: "1rem",
-        margin: "1rem auto"
+        padding: { xs: "0rem", md: "1rem" },
+        margin: "1rem auto",
     },
     card: {
         border: "1px solid black",
@@ -55,7 +55,10 @@ const styles = {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        minHeight: { xs: "13rem", sm: "10rem", md: "13rem", }
+        height: { xs: "13rem", sm: "16rem", md: "12rem", lg: "15rem" },
+        overflow: "hidden",
+        borderBottom: "1px solid black"
+
     }
 }
 export default function Card(props: CardProps) {
@@ -84,7 +87,7 @@ export default function Card(props: CardProps) {
                                     <Image src={item.img} alt={item.title} />
                                 </Box>
                             </Link>
-                            <Link href={`/about/${item.link}`}>
+                            <Link href={`${item.link}`}>
                                 <Box
                                     sx={{ ...styles.cardTitle }}
                                 >
