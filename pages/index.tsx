@@ -119,17 +119,26 @@ const aboutContent = {
   content: [
     {
       title: "Our Policies",
-      img: PoliciesImg,
+      img: {
+        src: PoliciesImg,
+        alt: "Policies"
+      },
       link: "/about/policies"
     },
     {
       title: "About Us",
-      img: AboutImg,
+      img: {
+        src: AboutImg,
+        alt: "About"
+      },
       link: "/about"
     },
     {
       title: "Careers",
-      img: CareersImg,
+      img: {
+        src: CareersImg,
+        alt: "Careers"
+      },
       link: "/about/careers"
     }
   ]

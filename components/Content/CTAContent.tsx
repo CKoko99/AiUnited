@@ -20,6 +20,8 @@ const styles = {
         margin: "auto",
     },
     image: {
+        position: "relative",
+        minHeight: "20rem",
         width: '90%',
         margin: "auto",
     },
@@ -28,6 +30,11 @@ const styles = {
         justifyContent: "space-around",
         margin: "1rem 0",
         flexDirection: "row",
+        transition: "all .2s ease-in-out",
+        "&:hover": {
+            // fontWeight: "bold",
+            translate: "scale(1.1)",
+        }
     }
 }
 
@@ -38,7 +45,9 @@ export default function CTAContent(props: CTAContentProps) {
                 {props.title}
             </Typography>
             <Box sx={{ ...styles.image }}>
-                <Image src={props.img} alt={props.title}
+                <Image
+                    fill style={{ objectFit: "contain" }}
+                    src={props.img} alt={props.title}
                 />
             </Box>
             <Typography variant="h5" component="h5" sx={{ textAlign: "center", margin: "1rem 0" }}>
@@ -57,7 +66,7 @@ export default function CTAContent(props: CTAContentProps) {
                     variant="contained"
                     color="secondary"
                     href={props.cta2.link}
-                    sx={{ "&:hover": { fontWeight: "bold" } }}
+                    sx={{}}
                 >
                     {props.cta2.text}
                 </Button>}

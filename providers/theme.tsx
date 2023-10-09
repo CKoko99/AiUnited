@@ -20,6 +20,7 @@ let theme = createTheme({
         outlinedSecondary: {
           color: 'black',
           borderColor: 'black',
+          transition: 'font-weight 0.3s',
           '&:hover': {
             borderColor: 'black',
             color: 'black',
@@ -27,6 +28,7 @@ let theme = createTheme({
           },
         },
         containedSecondary: {
+          transition: 'font-weight 0.3s',
           '&:hover': {
 
             fontWeight: 'bold',

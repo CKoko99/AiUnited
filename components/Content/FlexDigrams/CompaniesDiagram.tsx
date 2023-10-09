@@ -20,11 +20,14 @@ const styles = {
         justifyContent: "center",
     },
     image: {
+        position: "relative",
         width: '90%',
         margin: "auto",
         padding: "1rem",
         display: "flex",
         justifyContent: "center",
+        minHeight: "4rem",
+        minWidth: "10rem",
     },
     contentItem: {
         width: {
@@ -53,7 +56,9 @@ export default function FlexDiagram(props: FlexDiagramProps) {
                         <Box key={index} sx={{ ...styles.contentItem }}
                         >
                             <Box sx={{ ...styles.image }}>
-                                <Image src={item.img} alt={item.title}
+                                <Image fill
+                                    style={{ objectFit: "contain" }}
+                                    src={item.img} alt={item.title}
                                 />
                             </Box>
                             {item.title && <Typography variant="h5" component="h5" sx={{ textAlign: "center", fontWeight: "bold", margin: "1rem 0" }}>

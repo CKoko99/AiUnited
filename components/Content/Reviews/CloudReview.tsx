@@ -35,6 +35,8 @@ const styles = {
         margin: "1rem auto",
     },
     image: {
+        position: "relative",
+        minHeight: { xs: "20rem", md: "25rem" },
         width: {
             xs: "80%", sm: "70%", md: "40%", lg: "40%",
         },
@@ -107,7 +109,9 @@ export default function HomeReview(props: any) {
                     <Box
                         sx={{ ...styles.image }}
                     >
-                        <Image src={props.img} alt={props.title} />
+                        <Image
+                            fill style={{ objectFit: "contain" }}
+                            src={props.img} alt={props.title} />
                     </Box>
                     <Box
                         sx={{ ...styles.chat }}

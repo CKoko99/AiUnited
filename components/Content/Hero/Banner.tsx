@@ -16,7 +16,7 @@ const styles = {
     root: {
         display: "flex",
         width: {
-            xs: "95%", sm: "90%", md: "85%", lg: "80%",
+            xs: "95%", sm: "90%", md: "85%", lg: "90%",
         },
         flexDirection: {
             xs: "column", sm: "column", md: "row", lg: "row",
@@ -54,9 +54,11 @@ const styles = {
         }
     },
     imageContainer: {
+        position: "relative",
         width: {
             xs: "100%", sm: "100%", md: "55%", lg: "55%",
         },
+        minHeight: "20rem",
         padding: "1rem",
         display: "flex", justifyContent: "center", alignItems: "center",
         flexDirection: "column",
@@ -88,7 +90,8 @@ export default function Banner(props: BannerProps) {
                 sx={{ ...styles.imageContainer }}
             >
                 {props.image && <Image
-
+                    fill
+                    style={{ objectFit: "contain" }}
                     src={props?.image} alt={props.title} />}
                 <Typography sx={{
                     display: "none",

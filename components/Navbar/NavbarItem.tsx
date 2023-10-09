@@ -97,7 +97,7 @@ function SimpleMenu(props) {
                                     onMouseLeave: handleCloseHover,
                                     style: { pointerEvents: "auto" },
                                 }}
-                                getContentAnchorEl={null}
+
                                 anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
 
                                 style={{
@@ -108,7 +108,7 @@ function SimpleMenu(props) {
                                 }}
                             >
                                 {props.item.menuItems.map((item, index) => (
-                                    <Link href={item.link} style={{ color: "inherit", textDecoration: "none" }}
+                                    <Link href={item.link || ""} style={{ color: "inherit", textDecoration: "none" }}
                                     >
 
                                         <MenuItem

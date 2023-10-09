@@ -48,7 +48,6 @@ const classes = {
     padding: "1rem",
     textAlign: "center",
     fontSize: "1.5rem",
-    marginTop: "3rem",
     "& a": { color: "white" },
   },
   footer: {
@@ -70,7 +69,8 @@ const classes = {
     flexWrap: "wrap",
   },
   logoImg: {
-    maxWidth: '16rem', // Set the maximum width for the image
+    position: "relative",
+    minWidth: '16rem',    // Set the minimum width of the image
     minHeight: '5rem',   // Automatically adjust height to maintain aspect ratio
     cursor: 'pointer',
     display: 'flex',
@@ -112,7 +112,9 @@ export default function Footer() {
       }}>
         <Box sx={{ ...classes.section1 }}>
           <Box sx={{ ...classes.logoImg }}>
-            <Image src={LogoImg} alt="Ai United Insurance Logo" />
+            <Image
+              fill style={{ objectFit: "contain" }}
+              src={LogoImg} alt="Ai United Insurance Logo" />
           </Box>
           <Box
             sx={{ ...classes.section1content }}

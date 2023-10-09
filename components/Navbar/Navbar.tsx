@@ -22,6 +22,7 @@ import { useState } from 'react';
 import Link from 'next/link'
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import PATHCONSTANTS from '../../constants/sitemap';
 
 
 
@@ -30,54 +31,54 @@ const drawerWidth = 280;
 const navItems = [
   {
     label: 'Get a Quote',
-    link: '/quote',
+    link: PATHCONSTANTS.QUOTES.INDEX,
     menuItems: [
-      { title: "Auto Insurance", link: "/qoute/auto-insurance" },
-      { title: "Motorcycle Insurance", link: "/qoute/motorcycle-insurance" },
-      { title: "Mexico Insurance", link: "/qoute/mexico-insurance" },
-      { title: "Home Insurance", link: "/qoute/home-insurance" },
-      { title: "Renters Insurance", link: "/qoute/renters-insurance" },
-      { title: "SR-22 Insurance", link: "/qoute/sr-22-insurance" },
-      { title: "Surety Bonds", link: "/qoute/surety-bonds" },
-      { title: "General Liability", link: "/qoute/general-liability" },
+      { title: "Auto Insurance", link: PATHCONSTANTS.QUOTES.AUTO },
+      { title: "Motorcycle Insurance", link: PATHCONSTANTS.QUOTES.MOTORCYCLE },
+      { title: "Mexico Insurance", link: PATHCONSTANTS.QUOTES.MEXICO },
+      { title: "Home Insurance", link: PATHCONSTANTS.QUOTES.HOME },
+      { title: "Renters Insurance", link: PATHCONSTANTS.QUOTES.RENTER },
+      { title: "SR-22 Insurance", link: PATHCONSTANTS.QUOTES.SR22 },
+      { title: "Surety Bonds", link: PATHCONSTANTS.QUOTES.SURETY },
+      { title: "General Liability", link: PATHCONSTANTS.QUOTES.LIABILITY },
     ],
     bold: true
   },
   {
     label: 'Our Products',
-    link: '/products',
+    link: PATHCONSTANTS.PRODUCTS.INDEX,
     menuItems: [
-      { title: "Auto Insurance", link: "/limited-lines/auto-insurance" },
-      { title: "Motorcycle Insurance", link: "/limited-lines/motorcycle-insurance" },
-      { title: "Mexico Insurance", link: "/limited-lines/mexico-insurance" },
-      { title: "Home Insurance", link: "/limited-lines/home-insurance" },
-      { title: "Renters Insurance", link: "/limited-lines/renters-insurance" },
-      { title: "SR-22 Insurance", link: "/limited-lines/sr-22-insurance" },
-      { title: "Surety Bonds", link: "/limited-lines/surety-bonds" },
+      { title: "Auto Insurance", link: PATHCONSTANTS.PRODUCTS.AUTO },
+      { title: "Motorcycle Insurance", link: PATHCONSTANTS.PRODUCTS.MOTORCYCLE },
+      { title: "Mexico Insurance", link: PATHCONSTANTS.PRODUCTS.MEXICO },
+      { title: "Home Insurance", link: PATHCONSTANTS.PRODUCTS.HOME },
+      { title: "Renters Insurance", link: PATHCONSTANTS.PRODUCTS.RENTER },
+      { title: "SR-22 Insurance", link: PATHCONSTANTS.PRODUCTS.SR22 },
+      { title: "Surety Bonds", link: PATHCONSTANTS.PRODUCTS.SURETY },
     ]
   },
   {
     label: 'Find a Store',
-    link: '/locations',
+    link: PATHCONSTANTS.LOCATIONS.INDEX,
     menuItems: [
-      { title: "All Locations", link: "/locations" },
-      { title: "Austin", link: "/locations/austin" },
-      { title: "Houston", link: "/locations/houston" },
-      { title: "San Antonio", link: "/locations/san-antonio" },
-      { title: "Corpus Christi", link: "/locations/corpus-christi" },
-      { title: "Dallas/ Fort Worth", link: "/locations/dallas-fort-worth" },
-      { title: "Victoria", link: "/locations/victoria" },
+      { title: "All Locations", link: PATHCONSTANTS.LOCATIONS.INDEX },
+      { title: "Austin", link: PATHCONSTANTS.LOCATIONS.AUSTIN },
+      { title: "Houston", link: PATHCONSTANTS.LOCATIONS.HOUSTON },
+      { title: "San Antonio", link: PATHCONSTANTS.LOCATIONS.SAN_ANTONIO },
+      { title: "Corpus Christi", link: PATHCONSTANTS.LOCATIONS.CORPUS_CHRISTI },
+      { title: "Dallas/ Fort Worth", link: PATHCONSTANTS.LOCATIONS.DALLAS },
+      { title: "Victoria", link: PATHCONSTANTS.LOCATIONS.VICTORIA },
     ]
 
   },
   {
     label: 'About Us',
-    link: '/about',
+    link: PATHCONSTANTS.ABOUT.INDEX,
     menuItems: [
-      { title: "Contact Us", link: "/about/contact" },
-      { title: "Available Jobs", link: "/about/jobs" },
-      { title: "Now Hiring", link: "/about/now-hiring" },
-      { title: "Reviews", link: "/about/reviews" },
+      { title: "Contact Us", link: PATHCONSTANTS.ABOUT.CONTACT },
+      { title: "Available Jobs", link: PATHCONSTANTS.ABOUT.CAREERS },
+      //  { title: "Now Hiring", link: "/about/now-hiring" },
+      { title: "Reviews", link: PATHCONSTANTS.ABOUT.REVIEWS },
       { title: "Facebook", link: "/about/facebook" },
     ]
   },
@@ -202,7 +203,9 @@ function DrawerAppBar(props: any) {
 
       <Box sx={{
         display: 'flex',
-        width: { xs: "92%", sm: "95%", md: "90%", lg: "80%" }, flexDirection: "row", justifyContent: "space-between", alignItems: "center",
+        width: { xs: "92%", sm: "95%", md: "90%", lg: "80%" },
+        maxWidth: "1800px",
+        flexDirection: "row", justifyContent: "space-between", alignItems: "center",
         margin: "auto"
       }}>
 
@@ -224,18 +227,21 @@ function DrawerAppBar(props: any) {
         </IconButton>
         <Box
           sx={{
-            maxWidth: '14rem', // Set the maximum width for the image
+            minWidth: '12rem', // Set the maximum width for the image
             minHeight: '5rem',   // Automatically adjust height to maintain aspect ratio
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
+            position: 'relative',
+
           }}
         >
-
           <Image onClick={handleLogoClick}
             //style={{ maxWidth: '120px', height: 'auto', cursor: 'pointer' }}
+            fill
+            style={{ objectFit: 'contain' }}
             src={LogoImg}
-            alt="logo" />
+            alt="Statewide Insurance" />
         </Box>
         <Box sx={{
           "@media (min-width: 880px)": {

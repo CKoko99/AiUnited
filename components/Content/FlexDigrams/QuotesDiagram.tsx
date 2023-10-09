@@ -23,33 +23,32 @@ const styles = {
     },
 
     image: {
-        width: '90%',
+        position: "relative",
+        minHeight: { xs: "4.5rem", sm: "7rem", md: "5.9rem", lg: "8rem" },
+        maxHeight: { xs: "5.5rem", sm: "7rem", md: "5.9rem", lg: "8rem" },
+        minWidth: { xs: "4.5rem", sm: "7rem", md: "5.9rem", lg: "8rem" },
         margin: "auto",
-        padding: "0 .25rem",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        //scale on hover
+        transition: "all .3s ease-in-out",
         "&:hover": {
             cursor: "pointer",
-            width: "100%",
+            transform: "scale(1.1)",
         },
+        height: "100%"
     },
     contentItem: {
-        width: {
-            xs: "100%", sm: "100%", md: "50%", lg: "50%",
-        },
-        minWidth: {
-            xs: "33%", sm: "26%", md: "26%", lg: "26%",
-        },
-        maxWidth: {
-            xs: "33%", sm: "26%", md: "26%", lg: "26%",
-        },
+
+        padding: "0 1rem",
         cursor: "pointer",
         margin: 0,
         flex: 1,
         display: "flex",
         alignItems: "center",
         flexDirection: "column",
+    },
+    contentLink: {
+        maxWidth: "33%",
+        minWidth: "24%",
     }
 }
 export default function Diagram(props: DiagramProps) {
@@ -66,17 +65,21 @@ export default function Diagram(props: DiagramProps) {
                         <Link
                             href={item.link}
                             key={index}
+                            style={{ ...styles.contentLink }}
                         >
                             <Box sx={{ ...styles.contentItem }}
                             >
                                 <Box sx={{ ...styles.image }}>
-                                    <Image src={item.img} alt={item.title}
+                                    <Image
+                                        fill
+                                        style={{ objectFit: "contain" }}
+                                        src={item.img} alt={item.title}
                                     />
                                 </Box>
                                 {item.title && (
                                     <Typography
-                                        variant="h5"
-                                        component="h5"
+                                        variant="subtitle1"
+
                                         sx={{
                                             textAlign: "center",
                                             fontWeight: "bold",

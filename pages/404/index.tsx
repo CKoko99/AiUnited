@@ -6,11 +6,11 @@ import { useRouter } from 'next/router';
 const Page404 = () => {
   const router = useRouter()
 
-  useEffect(()=> {
-    setTimeout(()=> {
+  useEffect(() => {
+    setTimeout(() => {
       router.push('/')
     }, 10000)
-  },[])
+  }, [])
 
   return (
     <div className={styles.container404}>
@@ -20,7 +20,7 @@ const Page404 = () => {
         If you want to return home page
       </p>
       <Link href={'/'} >
-        <a className={styles.button404}>Click here</a>
+        Click here
       </Link>
       <p> If you do not click the return home page button page will redirect you to home page in 10 seconds</p>
     </div>

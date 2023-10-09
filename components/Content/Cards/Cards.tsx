@@ -1,17 +1,25 @@
 import { Box, Typography } from "@mui/material";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+
 
 interface CardProps {
-    title: string;
-    subtitle: string;
-    content: any;
+    title?: string;
+    subtitle?: string;
+    content?: {
+        img: {
+            src: StaticImageData;
+            alt: string;
+        },
+        title: string;
+        link: string;
+    }[]
 }
 const styles = {
     root: {
         width: {
-            xs: "90%", sm: "85%", md: "85%", lg: "80%",
+            xs: "90%", sm: "85%", md: "90%", lg: "85%",
         },
         margin: "1rem auto",
     },
@@ -24,6 +32,7 @@ const styles = {
     },
     title: {
         fontWeight: "bold",
+
     },
     cardTitle: {
         textAlign: "center",
@@ -43,7 +52,10 @@ const styles = {
         "&:hover": {
             cursor: "pointer",
             fontWeight: "bold",
-        }
+        },
+        minWidth: "200px",
+        transition: 'font-weight 0.3s', // Add opacity transition
+
     },
     cards: {
         display: "flex",
@@ -55,14 +67,61 @@ const styles = {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: { xs: "13rem", sm: "16rem", md: "12rem", lg: "15rem" },
+        height: { xs: "15rem", sm: "16rem", md: "13rem", lg: "15rem" },
+        minHeight: "100%",
+        minWidth: "13rem",
+        maxWidth: { md: "13rem", lg: "15rem" },
         overflow: "hidden",
-        borderBottom: "1px solid black"
-
-    }
+        borderBottom: "1px solid black",
+        position: "relative",
+    },
+    imageColor: {
+        opacity: 0,
+        width: "100%",
+        height: "100%",
+        position: "absolute",
+        top: 0, left: 0,
+        backgroundColor: "primary.main",
+        transition: 'opacity 0.5s', // Add opacity transition
+    },
+    imageHover: {
+        opacity: .2,
+        //transform: 'opacity 0.3s',
+    },
 }
-export default function Card(props: CardProps) {
-    console.log(props.content)
+function Card(props) {
+    const [hovered, setHovered] = useState(false)
+    return <Box sx={{ ...styles.card }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+    >
+        <Link href={`${props.link}`}>
+            <Box sx={{
+                ...styles.cardImage
+            }}>
+                <Box
+                    sx={hovered ? { ...styles.imageColor, ...styles.imageHover } : { ...styles.imageColor }}
+                ></Box>
+                <Image style={{ objectFit: "cover" }}  {...props.img} />
+            </Box>
+        </Link >
+        <Link href={`${props.link}`}>
+            <Box
+                sx={{ ...styles.cardTitle }}
+            >
+                <Typography
+                    variant="h6"
+                    style={{
+                        fontWeight: "inherit"
+                    }}
+                >
+                    {props.title}
+                </Typography>
+            </Box>
+        </Link>
+    </Box >
+}
+export default function Cards(props: CardProps) {
     return (<>
         <Box
             sx={{ ...styles.root }}
@@ -70,38 +129,16 @@ export default function Card(props: CardProps) {
             <Box sx={{ ...styles.cardContent }} >
 
                 <Box sx={{ ...styles.titles }}>
-                    <Typography variant="h4" component="h4" sx={{ ...styles.title }} >
+                    <Typography variant="h4" sx={{ ...styles.title }} >
                         {props.title}
                     </Typography>
-                    <Typography variant="h6" component="h6" >
+                    <Typography variant="h6">
                         {props.subtitle}
                     </Typography>
                 </Box>
                 <Box sx={{ ...styles.cards }}>
                     {props.content?.map((item: any, index: number) => {
-                        return <Box key={index} sx={{ ...styles.card }}>
-                            <Link href={`${item.link}`}>
-                                <Box sx={{
-                                    ...styles.cardImage
-                                }}>
-                                    <Image src={item.img} alt={item.title} />
-                                </Box>
-                            </Link>
-                            <Link href={`${item.link}`}>
-                                <Box
-                                    sx={{ ...styles.cardTitle }}
-                                >
-                                    <Typography
-                                        variant="h6"
-                                        style={{
-                                            fontWeight: "inherit"
-                                        }}
-                                    >
-                                        {item.title}
-                                    </Typography>
-                                </Box>
-                            </Link>
-                        </Box>
+                        return <Card key={index} {...item} />
                     })
                     }
                 </Box>
