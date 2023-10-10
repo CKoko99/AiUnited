@@ -127,15 +127,16 @@ export default function HomeReview(props: any) {
                                     sx={{ ...styles.reviewSection, textAlign: "left" }}
                                 >
                                     <Typography variant="h1"
-                                        sx={{ marginLeft: "-2rem" }}
+                                        sx={{
+                                            marginLeft: "-2rem",
+                                            marginBottom: "1rem",
+                                        }}
                                     >"</Typography>
                                     <Typography variant="h6"
                                         sx={{ ...styles.reviewText }}
                                     >
                                         {props.content.review}
                                     </Typography>
-
-
                                     <Typography variant="h6"
                                         sx={{ ...styles.author }}
                                     >

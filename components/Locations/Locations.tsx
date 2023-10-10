@@ -1,7 +1,7 @@
 import { Box, Button, TextField, Typography } from '@mui/material';
-import { useLoadScript, GoogleMap, MarkerF, InfoWindowF as InfoWindow } from '@react-google-maps/api';
+import { useLoadScript, GoogleMap, MarkerF, InfoWindowF as InfoWindow, Libraries } from '@react-google-maps/api';
 import { StandaloneSearchBox } from '@react-google-maps/api';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import markerimg from '../../public/assets/images/locations/Ai-United-Google-Drop-Pin.png'
 import AILogo from '../../public/assets/images/ai-logo-blue.jpeg'
 import Image from 'next/image';
@@ -10,17 +10,20 @@ import PhonelinkRingIcon from '@mui/icons-material/PhonelinkRing';
 import PlaceIcon from '@mui/icons-material/Place';
 import { Place } from '@mui/icons-material';
 import { time } from 'console';
+import { CustomFonts } from '../../providers/theme';
 
 const styles = {
     textfield: {
         margin: "1rem 0"
     }
 }
+const libraries: Libraries = ["places"]; // Specify the "places" library in the Libraries type
+
 export default function (props) {
     const [mapCenter, setMapCenter] = useState(props.center);
     const [selectedMarker, setSelectedMarker] = useState(null);
     const [locations, setLocations] = useState(props.locations)
-    const [maxLocations, setMaxLocations] = useState(6)
+    const [maxLocations, setMaxLocations] = useState(5)
     useEffect(() => {
         //use pythagorean theorem to find distance between center and each location
         //then sort by distance
@@ -49,7 +52,8 @@ export default function (props) {
 
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: "AIzaSyCrUnVz0ALmMnoOxirpPMX0EkQuNegEvk0",
-        libraries: ['places'], // Add the "places" library here
+
+        libraries  // Add the "places" library here
 
     });
     const searchBox = useRef(null);
@@ -73,7 +77,7 @@ export default function (props) {
         <Box
             sx={{ maxWidth: "970px", margin: "auto", padding: "1rem 0" }}
         >
-            <Typography variant="h2" component="h2" sx={{ textAlign: "center", margin: "1rem 0" }}> Find A Store </Typography>
+            <Typography fontFamily={CustomFonts.Gustavo} variant="h2" component="h2" sx={{ textAlign: "center", margin: "1rem 0" }}> Find A Store </Typography>
             <Typography variant='h6' sx={{ textAlign: "center", margin: "1rem auto", width: "80%" }}>
                 Visit one of over 80 stores located across Texas to speak with our representatives and get insured today!  </Typography>
             <Box
@@ -99,7 +103,7 @@ export default function (props) {
                         </StandaloneSearchBox>
                         <GoogleMap
                             options={mapOptions}
-                            zoom={10}
+                            zoom={props.zoom || 10}
 
                             center={mapCenter}
                             mapTypeId={google.maps.MapTypeId.ROADMAP}
@@ -122,7 +126,7 @@ export default function (props) {
                                 >
                                     <InfoWindow
 
-                                        position={selectedMarker.position}
+                                        position={...selectedMarker.position}
                                         onCloseClick={() => setSelectedMarker(null)} // Handle close event to hide InfoWindow
                                     >
                                         <Box>
@@ -144,6 +148,9 @@ export default function (props) {
                         </GoogleMap>
                     </>
                 }
+                <Typography variant='h4' sx={{ textAlign: "center", margin: "1.5rem auto 0", width: "80%" }}>
+                    Locations Near You
+                </Typography>
                 <Box
                     sx={{
                         display: "flex", justifyContent: "space-around",
@@ -151,9 +158,9 @@ export default function (props) {
                         flexWrap: "wrap", gap: "1rem"
                     }}
                 >
-                    {locations.map((location: object, index: number) => {
-                        if (index > maxLocations) return
-                        return <Box
+                    {locations.map((location, index: number) => {
+                        if (index > maxLocations) return <React.Fragment key={index}></React.Fragment>
+                        return <Box key={index}
                             onMouseEnter={() => setSelectedMarker(location)}
                             onMouseLeave={() => setSelectedMarker(null)}
                             onClick={() => {
@@ -178,7 +185,7 @@ export default function (props) {
                             <Typography variant='body2'>{location.city}, {location.state} {location.zip}</Typography>
                             <Typography
                                 sx={{
-                                    backgroundColor: "secondary.main", padding: ".1rem .25rem",
+                                    backgroundColor: "secondary.main", padding: ".1rem .25rem", margin: ".15rem 0",
                                     fontWeight: 500, maxWidth: "fit-content"
                                 }}
                                 variant='body2'>{location.distance} miles</Typography>
