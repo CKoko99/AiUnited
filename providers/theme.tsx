@@ -1,5 +1,9 @@
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 import { yellow } from '@mui/material/colors';
+import GustavoFont from '../public/assets/fonts/Gustavo/GustavoFont'
+import PoppinsFont from '../public/assets/fonts/Poppins/PoppinsFont'
+
+
 let theme = createTheme({
   palette: {
     primary: {
@@ -13,7 +17,17 @@ let theme = createTheme({
     }
 
   },
-
+  typography: {
+    fontFamily: [PoppinsFont].join(','),
+    h1: {
+      fontFamily: [GustavoFont].join(','),
+      lineHeight: "1.1",
+    },
+    h2: {
+      fontFamily: [GustavoFont].join(','),
+      lineHeight: "1.1",
+    },
+  },
   components: {
     MuiButton: {
       styleOverrides: {
@@ -40,5 +54,8 @@ let theme = createTheme({
 
 });
 theme = responsiveFontSizes(theme);
-
+export const CustomFonts = {
+  Gustavo: GustavoFont,
+  Poppins: PoppinsFont,
+}
 export default theme;
