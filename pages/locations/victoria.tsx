@@ -1,5 +1,5 @@
 import Locations from "../../components/Locations/Locations"
-const center = { lat: 29.4252, lng: -98.4946, }
+const center = { lat: 28.8, lng: -97, }
 
 export async function getServerSideProps() {
     try {
