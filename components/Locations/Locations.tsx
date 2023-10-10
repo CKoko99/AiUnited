@@ -6,34 +6,11 @@ import markerimg from '../../public/assets/images/locations/Ai-United-Google-Dro
 import AILogo from '../../public/assets/images/ai-logo-blue.jpeg'
 import Image from 'next/image';
 import Link from 'next/link';
-const stores = [
-    {
-        zip: 77011,
-        position: {
-            lat: 29.7433,
-            lng: -95.3085,
-        },
-        position2: {
-            lat: 29.7833,
-            lng: -95.3085,
-        },
-        name: "Ai United Insurance",
-        address1: "9415 N Interstate Hwy 35",
-        address3: "Austin, Tx 78753",
-        phone: "(512) 834-1234",
-    },
-    {
-        zip: 77012,
-        position: {
-            lat: 29.719,
-            lng: -95.2743,
-        },
-        name: "Houston",
-        address1: "9415 N Interstate Hwy 35",
-        address3: "Austin, Tx 78753",
-        phone: "(512) 834-1234",
-    }
-]
+import PhonelinkRingIcon from '@mui/icons-material/PhonelinkRing';
+import PlaceIcon from '@mui/icons-material/Place';
+import { Place } from '@mui/icons-material';
+import { time } from 'console';
+
 const styles = {
     textfield: {
         margin: "1rem 0"
@@ -43,13 +20,18 @@ export default function (props) {
     const [mapCenter, setMapCenter] = useState(props.center);
     const [selectedMarker, setSelectedMarker] = useState(null);
     const [locations, setLocations] = useState(props.locations)
-    const [maxLocations, setMaxLocations] = useState(12)
+    const [maxLocations, setMaxLocations] = useState(6)
     useEffect(() => {
         //use pythagorean theorem to find distance between center and each location
         //then sort by distance
         let newLocations = [...locations]
         newLocations.forEach(location => {
-            location.distance = Math.sqrt(Math.pow(location.position.lat - mapCenter.lat, 2) + Math.pow(location.position.lng - mapCenter.lng, 2))
+            let distance = Math.sqrt(Math.pow(location.position.lat - mapCenter.lat, 2) + Math.pow(location.position.lng - mapCenter.lng, 2))
+            //convert distance to miles
+            distance = distance * 69
+            //to 2 decimal places
+            distance = Math.round(distance * 100) / 100
+            location.distance = distance
         })
         newLocations.sort((a, b) => {
             return a.distance - b.distance
@@ -83,7 +65,6 @@ export default function (props) {
             lat: selectedLocation.lat(),
             lng: selectedLocation.lng(),
         };
-        console.log(newCenter);
         setMapCenter(newCenter);
         //  map.panTo(newCenter);
     }
@@ -140,6 +121,7 @@ export default function (props) {
                                     sx={{ bottom: "3rem" }}
                                 >
                                     <InfoWindow
+
                                         position={selectedMarker.position}
                                         onCloseClick={() => setSelectedMarker(null)} // Handle close event to hide InfoWindow
                                     >
@@ -152,6 +134,7 @@ export default function (props) {
                                             <Typography variant='body2'>{selectedMarker.address}</Typography>
                                             <Typography variant='body2'>{selectedMarker.address2}</Typography>
                                             <Typography variant='body2'>{selectedMarker.city} {selectedMarker.state} {selectedMarker.zip}</Typography>
+                                            <Typography variant='body2'>{selectedMarker.distance}</Typography>
                                             <Typography variant='body2'>{selectedMarker.phone}</Typography>
                                         </Box>
                                     </InfoWindow>
@@ -173,24 +156,57 @@ export default function (props) {
                         return <Box
                             onMouseEnter={() => setSelectedMarker(location)}
                             onMouseLeave={() => setSelectedMarker(null)}
+                            onClick={() => {
+
+                                window.scrollTo({
+                                    top: 200,
+                                    behavior: "smooth"
+                                })
+                                setTimeout(() => {
+                                    setSelectedMarker(location)
+                                }, 800)
+                            }}
                             sx={{
-                                minWidth: "290px", flex: "1", maxWidth: "350px",
-                                backgroundColor: "#d5d5d5", padding: "1rem"
+                                minWidth: "290px", flex: "1", maxWidth: { xs: "350px", lg: "290px" },
+                                backgroundColor: "#d5d5d5", padding: "1rem",
+                                display: "flex", flexDirection: "column", justifyContent: "space-between",
+                                border: "1px solid #d5d5d5", ":hover": { border: "1px solid black" },
                             }}>
                             <Typography fontWeight={"bold"} variant='subtitle1'>Ai United Insurance</Typography>
                             <Typography variant='body2'>{location.address}</Typography>
                             <Typography variant='body2'>{location.address2}</Typography>
                             <Typography variant='body2'>{location.city}, {location.state} {location.zip}</Typography>
-                            <Link href={`tel:${location.phone}`}>
-                                <Typography variant='body2'>{location.phone}</Typography>
+                            <Typography
+                                sx={{
+                                    backgroundColor: "secondary.main", padding: ".1rem .25rem",
+                                    fontWeight: 500, maxWidth: "fit-content"
+                                }}
+                                variant='body2'>{location.distance} miles</Typography>
+                            <Link
+                                onClick={(e) => e.stopPropagation()}
+                                style={{ display: "flex", alignItems: "center" }} href={`tel:${location.phone}`}>
+                                <PhonelinkRingIcon sx={{ color: "black", fontSize: "1rem", marginRight: ".25rem" }} />
+                                <Typography fontWeight={600} variant='body2'>{location.phone}</Typography>
                             </Link>
+
+
+                            <Button
+                                variant='contained'
+                                color='primary'
+                                sx={{ marginTop: "1rem" }}
+                                onClick={(e) => e.stopPropagation()}
+                                href={`/locations/${location.id}`}
+                            >More Information</Button>
                         </Box>
+
                     })}
                 </Box>
                 <Box
                     sx={{ display: "flex", justifyContent: "center" }}
                 >
-                    {locations.length > maxLocations && <Button variant="contained" onClick={() => setMaxLocations(maxLocations + 12)}>Load More</Button>
+                    {locations.length > maxLocations && <Button variant="contained"
+                        color="secondary"
+                        onClick={() => setMaxLocations(maxLocations + 6)}>Load More</Button>
                     }</Box>
             </Box>
         </Box >
