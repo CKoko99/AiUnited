@@ -97,6 +97,7 @@ function SimpleMenu(props) {
                                     onMouseLeave: handleCloseHover,
                                     style: { pointerEvents: "auto" },
                                 }}
+                                disableScrollLock={true}
 
                                 anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
 

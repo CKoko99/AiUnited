@@ -43,7 +43,7 @@ const styles = {
         margin: "1rem auto",
     },
     card: {
-        border: "1px solid black",
+        border: "2px solid #a8a8a8",
         flex: 1,
         margin: "1rem",
         display: "flex",
@@ -52,9 +52,10 @@ const styles = {
         "&:hover": {
             cursor: "pointer",
             fontWeight: "bold",
+            border: "2px solid #6e6e6e",
         },
-        minWidth: "200px",
-        transition: 'font-weight 0.3s', // Add opacity transition
+        minWidth: { xs: "205px", lg: "250px" },
+        transition: 'font-weight 0.3s, border 0.3s', // Add opacity transition
 
     },
     cards: {
@@ -63,24 +64,32 @@ const styles = {
             xs: "column", sm: "column", md: "row", lg: "row",
         }
     },
+    topSection: {
+        height: { xs: "15rem", sm: "13rem", md: "13rem", lg: "15rem" },
+        borderBottom: "1px solid black",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "relative",
+    },
     cardImage: {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: { xs: "15rem", sm: "16rem", md: "13rem", lg: "15rem" },
-        minHeight: "100%",
-        minWidth: "13rem",
-        maxWidth: { md: "13rem", lg: "15rem" },
+        height: { xs: "15rem", sm: "16rem", md: "13rem", lg: "12rem" },
+        maxHeight: "100%",
+        width: { xs: "100%", sm: "50%", md: "100%" },
+        // maxWidth: { md: "13rem", lg: "15rem" },
         overflow: "hidden",
-        borderBottom: "1px solid black",
         position: "relative",
     },
     imageColor: {
         opacity: 0,
-        width: "100%",
-        height: "100%",
+        minWidth: "100%",
+        minHeight: "100%",
         position: "absolute",
         top: 0, left: 0,
+        zIndex: 2,
         backgroundColor: "primary.main",
         transition: 'opacity 0.5s', // Add opacity transition
     },
@@ -92,17 +101,23 @@ const styles = {
 function Card(props) {
     const [hovered, setHovered] = useState(false)
     return <Box sx={{ ...styles.card }}
-        onMouseEnter={() => setHovered(true)}
+        onMouseEnter={() => {
+            setHovered(true)
+        }}
         onMouseLeave={() => setHovered(false)}
     >
         <Link href={`${props.link}`}>
-            <Box sx={{
-                ...styles.cardImage
-            }}>
+            <Box
+                sx={{ ...styles.topSection }}
+            >
                 <Box
                     sx={hovered ? { ...styles.imageColor, ...styles.imageHover } : { ...styles.imageColor }}
                 ></Box>
-                <Image style={{ objectFit: "cover" }}  {...props.img} />
+                <Box sx={{
+                    ...styles.cardImage
+                }}>
+                    <Image fill style={{ objectFit: "cover", zIndex: "1" }}  {...props.img} />
+                </Box>
             </Box>
         </Link >
         <Link href={`${props.link}`}>
