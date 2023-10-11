@@ -16,6 +16,8 @@ import wellingtonImg from '../../public/assets/images/payments/wellingtoninsgrou
 import { Box, Button, FormControl, Modal, TextField, Typography } from '@mui/material'
 import Image from 'next/image'
 import { useState } from 'react'
+import { StaticImageData } from 'next/image';
+
 const providers = [
     {
         title: "American Access Casualty Company",
@@ -143,15 +145,16 @@ function Providers(props) {
         </Box>
     </Link >
 }
+interface ModalContent {
+    title: string,
+    link: string,
+    img: StaticImageData
+}
 export default function () {
     const [paymentInput, setPaymentInput] = useState("")
     const [error, setError] = useState(false)
     const [openModal, setOpenModal] = useState(false)
-    const [modalContent, setModalContent] = useState({
-        title: "",
-        link: "",
-        img: null
-    })
+    const [modalContent, setModalContent] = useState<ModalContent | null>(null)
     function handleKeySearch() {
         //loop through providers and check if any of the keys match the start of the input
         //if they do, redirect to that link
@@ -228,18 +231,18 @@ export default function () {
             >
                 <Box sx={{ ...styles.modal, textAlign: "center" }}>
                     <Typography variant="h5">
-                        Continue to {modalContent.title} to make a payment
+                        Continue to {modalContent?.title} to make a payment
                     </Typography>
                     <Box
                         sx={{
                             position: "relative", height: "7rem", width: "15rem", margin: "auto"
                         }}
                     >
-                        <Image fill style={{ objectFit: "contain" }} src={modalContent.img} alt={modalContent.title} />
+                        {modalContent?.img && <Image fill style={{ objectFit: "contain" }} src={modalContent.img} alt={modalContent.title} />}
                     </Box>
                     <Button variant="contained" color="secondary"
                         style={{ width: "10rem", margin: "auto" }}
-                        onClick={() => window.open(modalContent.link, "_blank")}
+                        onClick={() => window.open(modalContent?.link, "_blank")}
                     >Continue</Button>
                 </Box>
             </Modal>}
