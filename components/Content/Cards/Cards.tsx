@@ -21,7 +21,8 @@ const styles = {
         width: {
             xs: "90%", sm: "85%", md: "90%", lg: "85%",
         },
-        margin: "1rem auto",
+        padding: "1rem 0",
+        margin: "0 auto",
     },
     cardContent: {
         display: { xs: "block", sm: "block", md: "flex", lg: "flex", },
