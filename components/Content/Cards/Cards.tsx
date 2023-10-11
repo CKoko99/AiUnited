@@ -116,7 +116,7 @@ function Card(props) {
                 <Box sx={{
                     ...styles.cardImage
                 }}>
-                    <Image fill style={{ objectFit: "cover", zIndex: "1" }}  {...props.img} />
+                    <Image fill style={{ objectFit: "contain", zIndex: "1" }}  {...props.img} />
                 </Box>
             </Box>
         </Link >
