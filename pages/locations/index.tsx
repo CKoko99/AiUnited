@@ -1,4 +1,7 @@
 import Locations from "../../components/Locations/Locations"
+
+
+
 export async function getServerSideProps() {
     try {
         const res = await fetch(`${process.env.BACKEND}/locations/aiunited`)
