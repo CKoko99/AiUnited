@@ -145,24 +145,36 @@ function Providers(props) {
 }
 export default function () {
     const [paymentInput, setPaymentInput] = useState("")
+    const [error, setError] = useState(false)
     const [openModal, setOpenModal] = useState(false)
-    const [modalContent, setModalContent] = useState({})
+    const [modalContent, setModalContent] = useState({
+        title: "",
+        link: "",
+        img: null
+    })
     function handleKeySearch() {
         //loop through providers and check if any of the keys match the start of the input
         //if they do, redirect to that link
         let found = false
+        setError(false)
         providers.forEach((item) => {
             item.keys.forEach((key) => {
                 if (paymentInput.startsWith(key)) {
                     setOpenModal(true)
-                    setModalContent(item)
+                    setModalContent({
+                        title: item.title,
+                        link: item.link,
+                        img: item.img
+                    })
                     found = true
                 }
             })
         })
         if (!found) {
-            alert("No provider found")
+            setError(true)
         }
+
+
     }
     const providersContent = <Box sx={{
         display: "flex",
@@ -186,7 +198,7 @@ export default function () {
             }}
         >
             <Typography variant="h2">Make a Payment</Typography>
-            <Typography variant="subtitle1">Enter your policy number below to make a payment</Typography>
+            <Typography variant="h5">Enter your policy number below to make a payment</Typography>
             <FormControl
                 sx={{ display: "flex", flexDirection: "row", }}
 
@@ -194,6 +206,8 @@ export default function () {
                 <TextField label="Policy Number" variant="outlined"
                     value={paymentInput}
                     onChange={(e) => setPaymentInput(e.target.value)}
+                    error={error}
+                    helperText={error && "Enter a Valid Policy Number"}
                 />
                 <Button variant="contained" color="secondary"
                     onClick={handleKeySearch}
