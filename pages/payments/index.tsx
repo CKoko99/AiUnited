@@ -193,7 +193,7 @@ export default function () {
     return <>
         <Box
             sx={{
-                width: "90%", maxWidth: "1000px", margin: "2rem auto", textAlign: "center",
+                width: "90%", maxWidth: "1000px", margin: "auto", padding: "2rem 0", textAlign: "center",
                 display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2rem"
             }}
         >
@@ -208,9 +208,15 @@ export default function () {
                     onChange={(e) => setPaymentInput(e.target.value)}
                     error={error}
                     helperText={error && "Enter a Valid Policy Number"}
+                    style={{
+                        width: "12rem",
+                        backgroundColor: "white"
+                    }}
                 />
                 <Button variant="contained" color="secondary"
                     onClick={handleKeySearch}
+                    sx={{ width: "10rem", minHeight: "3.5rem" }}
+
                 >Make a Payment</Button>
             </FormControl>
             {openModal && <Modal
