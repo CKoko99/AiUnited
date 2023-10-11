@@ -11,8 +11,21 @@ const styles = {
         margin: "1rem 0"
     }
 }
+interface Marker {
+    position: {
+        lat: number;
+        lng: number;
+    }
+    address?: string;
+    address2?: string;
+    city?: string;
+    state?: string;
+    zip?: string;
+    distance?: string;
+    phone?: string;
+}
 export default function (props) {
-    const [selectedMarker, setSelectedMarker] = useState(null);
+    const [selectedMarker, setSelectedMarker] = useState<Marker | null>(null);
 
     const mapOptions = useMemo<google.maps.MapOptions>(
         () => ({

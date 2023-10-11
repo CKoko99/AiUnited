@@ -18,10 +18,22 @@ const styles = {
     }
 }
 const libraries: Libraries = ["places"]; // Specify the "places" library in the Libraries type
-
+interface Marker {
+    position: {
+        lat: number;
+        lng: number;
+    }
+    address?: string;
+    address2?: string;
+    city?: string;
+    state?: string;
+    zip?: string;
+    distance?: string;
+    phone?: string;
+}
 export default function (props) {
     const [mapCenter, setMapCenter] = useState(props.center);
-    const [selectedMarker, setSelectedMarker] = useState(null);
+    const [selectedMarker, setSelectedMarker] = useState<Marker | null>(null);
     const [locations, setLocations] = useState(props.locations)
     const [maxLocations, setMaxLocations] = useState(5)
     useEffect(() => {
@@ -56,21 +68,23 @@ export default function (props) {
         libraries  // Add the "places" library here
 
     });
-    const searchBox = useRef(null);
+    const searchBox = useRef<google.maps.places.SearchBox | null>(null);
 
     function handlePlacesChanged() {
+        if (!searchBox.current) return;
 
         const places = searchBox.current.getPlaces();
-        if (!places) return;
+        if (!places || places.length === 0) return;
 
         // Update the map's center based on the selected location
-        const selectedLocation = places[0].geometry.location;
+        const selectedLocation = places[0].geometry?.location;
+        if (!selectedLocation) return;
+
         const newCenter = {
             lat: selectedLocation.lat(),
             lng: selectedLocation.lng(),
         };
         setMapCenter(newCenter);
-        //  map.panTo(newCenter);
     }
 
     return <>
@@ -119,14 +133,13 @@ export default function (props) {
                                 />
                             }
                             )}
-
                             {selectedMarker && (
                                 <Box
                                     sx={{ bottom: "3rem" }}
                                 >
                                     <InfoWindow
 
-                                        position={...selectedMarker.position}
+                                        position={(selectedMarker as any)?.position}
                                         onCloseClick={() => setSelectedMarker(null)} // Handle close event to hide InfoWindow
                                     >
                                         <Box>
