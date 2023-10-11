@@ -1,11 +1,18 @@
 import { Box, Typography, Button } from "@mui/material";
 import Image, { StaticImageData } from "next/image";
 import theme from "../../../providers/theme";
-
+import { useRouter } from "next/router";
+import { Lang } from "../../locale/LocaleSwitcher";
 
 interface BannerProps {
-    title: string;
-    subtitle: string;
+    title: {
+        en: string;
+        es: string;
+    };
+    subtitle: {
+        en: string;
+        es: string;
+    };
     ctaButton?: {
         link: string;
         text: string;
@@ -66,6 +73,9 @@ const styles = {
 }
 
 export default function Banner(props: BannerProps) {
+    const router = useRouter()
+    const { locale } = router
+    const currentLang = Lang[locale ?? 'en']
 
     return (<>
         <Box sx={{ ...styles.root }}>
@@ -74,11 +84,11 @@ export default function Banner(props: BannerProps) {
                     ...styles.textSection,
                 }}
             >
-                <Typography variant="h2" fontWeight="bold" gutterBottom>{props.title}</Typography>
+                <Typography variant="h2" fontWeight="bold" gutterBottom>{props.title[currentLang]}</Typography>
 
                 <Typography sx={{
 
-                }} variant="h4" gutterBottom>{props.subtitle}</Typography>
+                }} variant="h4" gutterBottom>{props.subtitle[currentLang]}</Typography>
 
                 {props.ctaButton && (
                     <Button href={props.ctaButton.link} sx={{ ...styles.ctaButton }} variant="contained">
@@ -92,10 +102,10 @@ export default function Banner(props: BannerProps) {
                 {props.image && <Image
                     fill
                     style={{ objectFit: "contain" }}
-                    src={props?.image} alt={props.title} />}
+                    src={props?.image} alt={props.title[currentLang]} />}
                 <Typography sx={{
                     display: "none",
-                }} variant="h4" gutterBottom>{props.subtitle}</Typography>
+                }} variant="h4" gutterBottom>{props.subtitle[currentLang]}</Typography>
             </Box>
         </Box >
     </>)
