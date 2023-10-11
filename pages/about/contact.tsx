@@ -1,18 +1,7 @@
-import Link from "next/link";
-
-const Contact = () => {
+import JotFormEmbed from 'react-jotform-embed';
+export default function () {
   return (
-    <div>
-      <h1> Contact form </h1>
-      <Link href="/">
-        <a>
-          <h2>Home &rarr;</h2>
-          <p>Home</p>
-        </a>
-      </Link>
-    </div>
+    <JotFormEmbed src="https://form.jotform.com/80783795128166" />
 
   )
 }
-
-export default Contact;
