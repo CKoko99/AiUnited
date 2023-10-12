@@ -220,11 +220,33 @@ const navItems = [
     },
     link: PATHCONSTANTS.ABOUT.INDEX,
     menuItems: [
-      { title: "Contact Us", link: PATHCONSTANTS.ABOUT.CONTACT, es: "Contáctenos" },
-      { title: "Careers", link: PATHCONSTANTS.ABOUT.CAREERS, es: "Carreras" },
-      { title: "Reviews", link: PATHCONSTANTS.ABOUT.REVIEWS, es: "Opiniones" },
-      { title: "Facebook", link: "/about/facebook" },
+      {
+        title: {
+          en: "Contact Us",
+          es: "Contáctenos"
+        },
+        link: PATHCONSTANTS.ABOUT.CONTACT
+      },
+      {
+        title: {
+          en: "Careers",
+          es: "Carreras"
+        },
+        link: PATHCONSTANTS.ABOUT.CAREERS
+      },
+      {
+        title: {
+          en: "Reviews",
+          es: "Opiniones"
+        },
+        link: PATHCONSTANTS.ABOUT.REVIEWS
+      },
+      {
+        title: { en: "Facebook", es: "Facebook" },
+        link: "/about/facebook"
+      },
     ]
+
   },
   {
     label: {
