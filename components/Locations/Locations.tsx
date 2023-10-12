@@ -36,6 +36,8 @@ export default function (props) {
     const [selectedMarker, setSelectedMarker] = useState<Marker | null>(null);
     const [locations, setLocations] = useState(props.locations)
     const [maxLocations, setMaxLocations] = useState(5)
+    const googleMapRef = useRef(null)
+    console.log(googleMapRef)
     useEffect(() => {
         //use pythagorean theorem to find distance between center and each location
         //then sort by distance
@@ -62,7 +64,7 @@ export default function (props) {
         []
     );
 
-    const { isLoaded } = useLoadScript({
+    const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: "AIzaSyCrUnVz0ALmMnoOxirpPMX0EkQuNegEvk0",
 
         libraries  // Add the "places" library here
@@ -98,7 +100,7 @@ export default function (props) {
                 sx={{ margin: "1rem 2rem" }}
             >
 
-                {isLoaded &&
+                {(isLoaded && !loadError) &&
                     <>
                         <StandaloneSearchBox
                             onLoad={(ref) => (searchBox.current = ref)}
@@ -118,7 +120,10 @@ export default function (props) {
                         <GoogleMap
                             options={mapOptions}
                             zoom={props.zoom || 10}
-
+                            onLoad={(map) => {
+                                console.log('Map Type:', map.data);
+                            }}
+                            ref={googleMapRef}
                             center={mapCenter}
                             mapTypeId={google.maps.MapTypeId.ROADMAP}
                             mapContainerStyle={{ width: '100%', height: '500px' }}
@@ -133,7 +138,7 @@ export default function (props) {
                                 />
                             }
                             )}
-                            {selectedMarker && (
+                            {(selectedMarker && !loadError) && (
                                 <Box
                                     sx={{ bottom: "3rem" }}
                                 >
@@ -174,7 +179,12 @@ export default function (props) {
                     {locations.map((location, index: number) => {
                         if (index > maxLocations) return <React.Fragment key={index}></React.Fragment>
                         return <Box key={index}
-                            onMouseEnter={() => setSelectedMarker(location)}
+                            onMouseEnter={() => {
+                                console.log(isLoaded)
+                                if (!loadError) {
+                                    setSelectedMarker(location)
+                                }
+                            }}
                             onMouseLeave={() => setSelectedMarker(null)}
                             onClick={() => {
 

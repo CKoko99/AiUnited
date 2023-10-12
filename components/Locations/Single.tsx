@@ -45,7 +45,7 @@ export default function (props) {
         []
     );
 
-    const { isLoaded } = useLoadScript({
+    const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: "AIzaSyCrUnVz0ALmMnoOxirpPMX0EkQuNegEvk0",
         libraries: ['places'], // Add the "places" library here
 
@@ -58,7 +58,7 @@ export default function (props) {
             <Box
                 sx={{ margin: "1rem 2rem" }}
             >
-                {isLoaded &&
+                {(isLoaded && !loadError) &&
                     <>
                         <GoogleMap
                             options={mapOptions}
@@ -74,7 +74,7 @@ export default function (props) {
                                 icon={markerimg.src}
                                 onClick={() => setSelectedMarker(props.location)} // Handle click event to show InfoWindow
                             />
-                            {selectedMarker && (
+                            {(selectedMarker && !loadError) && (
                                 <Box
                                     sx={{ bottom: "3rem" }}
                                 >
