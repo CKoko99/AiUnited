@@ -1,7 +1,61 @@
 import JotFormEmbed from 'react-jotform-embed';
+import SimpleForm from '../../components/Forms/Simple/Simple';
+
+const formContent = {
+  title: {
+    en: "Contact Us",
+    es: "Contáctenos",
+  },
+  subtitle: {
+    en: "Please fill out the form below and we will get back to you as soon as possible.",
+    es: "Por favor complete el formulario a continuación y nos pondremos en contacto con usted lo antes posible."
+  },
+  questions: [
+    {
+      title: {
+        en: "First Name",
+        es: "Nombre",
+      },
+      type: "input",
+      required: true,
+    },
+    {
+      title: { en: "Last Name", es: "Apellido" },
+      type: "input",
+    },
+    {
+      title: {
+        en: "Phone Number",
+        es: "Número de teléfono",
+      },
+      type: "input",
+      required: true,
+    },
+    {
+      title: {
+        en: "Email",
+        es: "Correo electrónico",
+      },
+      type: "input",
+      required: true,
+    },
+    {
+      title: {
+        en: "Message",
+        es: "Mensaje",
+      },
+      type: "textarea",
+      required: true,
+      fullWidth: true,
+    },
+  ],
+};
 export default function () {
   return (
-    <JotFormEmbed src="https://form.jotform.com/80783795128166" />
+    <>
+      <SimpleForm {...formContent} />
+      <JotFormEmbed src="https://form.jotform.com/80783795128166" />
+    </>
 
   )
 }
