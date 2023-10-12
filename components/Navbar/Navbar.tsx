@@ -23,6 +23,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import PATHCONSTANTS from '../../constants/sitemap';
+import { Lang } from '../locale/LocaleSwitcher';
 
 
 
@@ -30,60 +31,206 @@ import PATHCONSTANTS from '../../constants/sitemap';
 const drawerWidth = 280;
 const navItems = [
   {
-    label: 'Get a Quote',
+    label: {
+      en: "Get a Quote",
+      es: "Obtenga una cotización"
+    },
     link: PATHCONSTANTS.QUOTES.INDEX,
     menuItems: [
-      { title: "Auto Insurance", link: PATHCONSTANTS.QUOTES.AUTO },
-      { title: "Motorcycle Insurance", link: PATHCONSTANTS.QUOTES.MOTORCYCLE },
-      { title: "Mexico Insurance", link: PATHCONSTANTS.QUOTES.MEXICO },
-      { title: "Home Insurance", link: PATHCONSTANTS.QUOTES.HOME },
-      { title: "Renters Insurance", link: PATHCONSTANTS.QUOTES.RENTER },
-      { title: "SR-22 Insurance", link: PATHCONSTANTS.QUOTES.SR22 },
-      { title: "Surety Bonds", link: PATHCONSTANTS.QUOTES.SURETY },
-      { title: "General Liability", link: PATHCONSTANTS.QUOTES.LIABILITY },
+      {
+        title: {
+          en: "Auto Insurance",
+          es: "Seguro de Auto"
+        },
+        link: PATHCONSTANTS.QUOTES.AUTO
+      },
+      {
+        title: {
+          en: "Motorcycle Insurance",
+          es: "Seguro de Motocicleta"
+        },
+        link: PATHCONSTANTS.QUOTES.MOTORCYCLE
+      },
+      {
+        title: {
+          en: "Mexico Insurance",
+          es: "Seguro de México"
+        },
+        link: PATHCONSTANTS.QUOTES.MEXICO
+      },
+      {
+        title: {
+          en: "Home Insurance",
+          es: "Seguro de Hogar"
+        },
+        link: PATHCONSTANTS.QUOTES.HOME
+      },
+      {
+        title: {
+          en: "Renters Insurance",
+          es: "Seguro de Inquilinos"
+        },
+        link: PATHCONSTANTS.QUOTES.RENTER
+      },
+      {
+        title: {
+          en: "SR-22 Insurance",
+          es: "Seguro SR-22"
+        },
+        link: PATHCONSTANTS.QUOTES.SR22
+      },
+      {
+        title: {
+          en: "Surety Bonds",
+          es: "Fianzas de Fidelidad"
+        },
+        link: PATHCONSTANTS.QUOTES.SURETY
+      },
+      {
+        title: {
+          en: "General Liability",
+          es: "Responsabilidad Civil General"
+        },
+        link: PATHCONSTANTS.QUOTES.LIABILITY
+      },
     ],
     bold: true
   },
   {
-    label: 'Our Products',
+    label: {
+      en: "Our Products",
+      es: "Nuestros Productos"
+    },
     link: PATHCONSTANTS.PRODUCTS.INDEX,
     menuItems: [
-      { title: "Auto Insurance", link: PATHCONSTANTS.PRODUCTS.AUTO },
-      { title: "Motorcycle Insurance", link: PATHCONSTANTS.PRODUCTS.MOTORCYCLE },
-      { title: "Mexico Insurance", link: PATHCONSTANTS.PRODUCTS.MEXICO },
-      { title: "Home Insurance", link: PATHCONSTANTS.PRODUCTS.HOME },
-      { title: "Renters Insurance", link: PATHCONSTANTS.PRODUCTS.RENTER },
-      { title: "SR-22 Insurance", link: PATHCONSTANTS.PRODUCTS.SR22 },
-      { title: "Surety Bonds", link: PATHCONSTANTS.PRODUCTS.SURETY },
+      {
+        title: {
+          en: "Auto Insurance",
+          es: "Seguro de Auto"
+        },
+        link: PATHCONSTANTS.PRODUCTS.AUTO
+      },
+      {
+        title: {
+          en: "Motorcycle Insurance",
+          es: "Seguro de Motocicleta"
+        },
+        link: PATHCONSTANTS.PRODUCTS.MOTORCYCLE
+      },
+      {
+        title: {
+          en: "Mexico Insurance",
+          es: "Seguro de México"
+        },
+        link: PATHCONSTANTS.PRODUCTS.MEXICO
+      },
+      {
+        title: {
+          en: "Home Insurance",
+          es: "Seguro de Hogar"
+        },
+        link: PATHCONSTANTS.PRODUCTS.HOME
+      },
+      {
+        title: {
+          en: "Renters Insurance",
+          es: "Seguro de Inquilinos"
+        },
+        link: PATHCONSTANTS.PRODUCTS.RENTER
+      },
+      {
+        title: {
+          en: "SR-22 Insurance",
+          es: "Seguro SR-22"
+        },
+        link: PATHCONSTANTS.PRODUCTS.SR22
+      },
+      {
+        title: {
+          en: "Surety Bonds",
+          es: "Fianzas de Fidelidad"
+        },
+        link: PATHCONSTANTS.PRODUCTS.SURETY
+      },
     ]
   },
   {
-    label: 'Find a Store',
+    label: {
+      en: "Find a Store",
+      es: "Encuentre una Tienda"
+    },
     link: PATHCONSTANTS.LOCATIONS.INDEX,
     menuItems: [
-      { title: "All Locations", link: PATHCONSTANTS.LOCATIONS.INDEX },
-      { title: "Austin", link: PATHCONSTANTS.LOCATIONS.AUSTIN },
-      { title: "Houston", link: PATHCONSTANTS.LOCATIONS.HOUSTON },
-      { title: "San Antonio", link: PATHCONSTANTS.LOCATIONS.SAN_ANTONIO },
-      { title: "Corpus Christi", link: PATHCONSTANTS.LOCATIONS.CORPUS_CHRISTI },
-      { title: "Dallas/ Fort Worth", link: PATHCONSTANTS.LOCATIONS.DALLAS },
-      { title: "Victoria", link: PATHCONSTANTS.LOCATIONS.VICTORIA },
+      {
+        title: {
+          en: "All Locations",
+          es: "Todas las Ubicaciones"
+        },
+        link: PATHCONSTANTS.LOCATIONS.INDEX
+      },
+      {
+        title: {
+          en: "Austin",
+          es: "Austin"
+        },
+        link: PATHCONSTANTS.LOCATIONS.AUSTIN
+      },
+      {
+        title: {
+          en: "Houston",
+          es: "Houston"
+        },
+        link: PATHCONSTANTS.LOCATIONS.HOUSTON
+      },
+      {
+        title: {
+          en: "San Antonio",
+          es: "San Antonio"
+        },
+        link: PATHCONSTANTS.LOCATIONS.SAN_ANTONIO
+      },
+      {
+        title: {
+          en: "Corpus Christi",
+          es: "Corpus Christi"
+        },
+        link: PATHCONSTANTS.LOCATIONS.CORPUS_CHRISTI
+      },
+      {
+        title: {
+          en: "Dallas/ Fort Worth",
+          es: "Dallas/ Fort Worth"
+        },
+        link: PATHCONSTANTS.LOCATIONS.DALLAS
+      },
+      {
+        title: {
+          en: "Victoria",
+          es: "Victoria"
+        },
+        link: PATHCONSTANTS.LOCATIONS.VICTORIA
+      },
     ]
 
   },
   {
-    label: 'About Us',
+    label: {
+      en: "About Us",
+      es: "Acerca de Nosotros"
+    },
     link: PATHCONSTANTS.ABOUT.INDEX,
     menuItems: [
-      { title: "Contact Us", link: PATHCONSTANTS.ABOUT.CONTACT },
-      { title: "Available Jobs", link: PATHCONSTANTS.ABOUT.CAREERS },
-      //  { title: "Now Hiring", link: "/about/now-hiring" },
-      { title: "Reviews", link: PATHCONSTANTS.ABOUT.REVIEWS },
+      { title: "Contact Us", link: PATHCONSTANTS.ABOUT.CONTACT, es: "Contáctenos" },
+      { title: "Careers", link: PATHCONSTANTS.ABOUT.CAREERS, es: "Carreras" },
+      { title: "Reviews", link: PATHCONSTANTS.ABOUT.REVIEWS, es: "Opiniones" },
       { title: "Facebook", link: "/about/facebook" },
     ]
   },
   {
-    label: 'Payments',
+    label: {
+      en: "Payments",
+      es: "Pagos"
+    },
     link: '/payments',
     menuItems: []
   },
@@ -95,6 +242,8 @@ function DrawerAppBar(props: any) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   //const history = useHistory();
   const router = useRouter();
+  const { locale } = router
+  const currentLang = Lang[locale ?? 'en']
 
   const [openItem, setOpenItem] = useState(null);
 
@@ -123,9 +272,9 @@ function DrawerAppBar(props: any) {
       </Typography>
       <Divider />
       <List sx={{ textAlign: "left" }}>
-        {navItems.map((item) => (
+        {navItems.map((item, index) => (
           item.menuItems.length === 0 ? (
-            <Link key={item.label} href={item.link} style={{ color: "inherit", textDecoration: "none" }}>
+            <Link key={index} href={item.link} style={{ color: "inherit", textDecoration: "none" }}>
               <ListItem disablePadding>
                 <ListItemButton
                   sx={{ textAlign: "center" }}
@@ -136,7 +285,7 @@ function DrawerAppBar(props: any) {
                       <Typography
                         style={{ display: "flex", fontWeight: "700" }}
                       >
-                        {item.label}
+                        {item.label[currentLang]}
                       </Typography>
                     }
                   />
@@ -144,7 +293,7 @@ function DrawerAppBar(props: any) {
               </ListItem>
             </Link>
           ) : (
-            <React.Fragment key={item.label}>
+            <React.Fragment key={index}>
               <ListItem disablePadding>
                 <ListItemButton
                   sx={{ textAlign: "center" }}
@@ -155,7 +304,7 @@ function DrawerAppBar(props: any) {
                       <Typography
                         style={{ display: "flex", fontWeight: "700" }}
                       >
-                        {item.label} {item.menuItems.length > 0 ? openItem === item.label ? <ExpandLessIcon /> : <ExpandMoreIcon /> : ""}
+                        {item.label[currentLang]} {item.menuItems.length > 0 ? openItem === item.label ? <ExpandLessIcon /> : <ExpandMoreIcon /> : ""}
                       </Typography>
                     }
                   />
@@ -164,13 +313,13 @@ function DrawerAppBar(props: any) {
               <Collapse in={openItem === item.label} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   {item.menuItems.map((menu) => (
-                    <Link key={menu.title} href={menu.link} style={{ color: "inherit", textDecoration: "none" }}>
+                    <Link key={menu.title[currentLang]} href={menu.link} style={{ color: "inherit", textDecoration: "none" }}>
                       <ListItem >
                         <ListItemText
                           primary={
                             <Typography>
                               •{" "}
-                              {menu.title}
+                              {menu.title[currentLang]}
                             </Typography>
                           }
                         />

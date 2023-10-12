@@ -160,12 +160,12 @@ export default function Cards(props: CardProps) {
 
                 <Box sx={{ ...styles.titles }}>
 
-                    {props.title && <Typography variant="h4" sx={{ ...styles.title }} >
-                        {props.title[currentLang]}
-                    </Typography>}
-                    {props.subtitle && <Typography variant="h6">
-                        {props.subtitle[currentLang]}
-                    </Typography>}
+                    <Typography variant="h4" sx={{ ...styles.title }} >
+                        {props.title && props.title[currentLang]}
+                    </Typography>
+                    <Typography variant="h6">
+                        {props.subtitle && props.subtitle[currentLang]}
+                    </Typography>
                 </Box>
                 <Box sx={{ ...styles.cards }}>
                     {props.content?.map((item: any, index: number) => {

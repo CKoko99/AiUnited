@@ -7,6 +7,8 @@ import { Transition } from "react-transition-group";
 import { CssBaseline, Typography } from "@mui/material";
 import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { Lang } from "../locale/LocaleSwitcher";
 
 const defaultStyle = {
     transition: "opacity 300ms ease-in-out",
@@ -21,6 +23,9 @@ const transitionStyles = {
 };
 
 function SimpleMenu(props) {
+    const router = useRouter();
+    const { locale } = router
+    const currentLang = Lang[locale ?? 'en']
     let currentlyHovering = false;
     //const history = useHistory();
 
@@ -76,9 +81,12 @@ function SimpleMenu(props) {
             >
                 <Link href={props.item.link} style={{ color: "inherit", textDecoration: "none" }}>
                     <Typography variant="h6"
-                        style={{ fontSize: "1.1rem", fontWeight: props.item.bold ? "bold" : "normal" }}
+                        style={{
+                            fontSize: "1.1rem", fontWeight: props.item.bold ? "bold" : "normal",
+                            maxWidth: "9rem"
+                        }}
                     >
-                        {props.item.label}
+                        {props.item.label[currentLang]}
                     </Typography>
                 </Link>
                 {props.item.menuItems?.length > 0 ? <KeyboardArrowDownSharpIcon /> : ""}
@@ -121,7 +129,7 @@ function SimpleMenu(props) {
                                                 color: "black",
                                             }}
                                         >
-                                            {item.title}
+                                            {item.title[currentLang]}
                                         </MenuItem>
                                     </Link>
                                 ))}

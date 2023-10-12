@@ -9,36 +9,81 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import Link from "next/link";
 import LogoImg from '../../public/assets/images/ai-logo-white.png';
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { Lang } from "../locale/LocaleSwitcher";
 
 const section2content = [
   {
-    title: "Find an Agent",
+    title: {
+      en: "Find an Agent",
+      es: "Encuentra un agente"
+    },
     link: PATHCONSTANTS.LOCATIONS.INDEX
   },
   {
-    title: "Contact Us",
+    title: {
+      en: "Make a Payment",
+      es: "Hacer un pago"
+    },
     link: PATHCONSTANTS.ABOUT.CONTACT
   },
   {
-    title: "About Us",
+    title: {
+      en: "About us",
+      es: "Sobre nosotros"
+    },
     link: PATHCONSTANTS.ABOUT.INDEX
   },
   {
-    title: "Careers",
+    title: {
+      en: "Careers",
+      es: "Carreras"
+    },
     link: PATHCONSTANTS.ABOUT.CAREERS
   }
 ]
 const section3content = {
-  title: "Ai United Insurance Products",
+  title: {
+    en: "Ai United Insurance Products",
+    es: "Productos de seguros de Ai United"
+  },
   links: [
-    { text: "Auto Insurance", link: PATHCONSTANTS.PRODUCTS.AUTO },
-    { text: "Motorcycle Insurance", link: PATHCONSTANTS.PRODUCTS.MOTORCYCLE },
-    { text: "Home Insurance", link: PATHCONSTANTS.PRODUCTS.HOME },
-    { text: "Renters Insurance", link: PATHCONSTANTS.PRODUCTS.RENTER },
-    { text: "Mexico Insruance", link: PATHCONSTANTS.PRODUCTS.MEXICO },
-    { text: "SR-22", link: PATHCONSTANTS.PRODUCTS.SR22 },
-    { text: "Surety Bonds", link: PATHCONSTANTS.PRODUCTS.SURETY },
+    {
+      text: {
+        en: "Auto Insurance",
+        es: "Seguro de auto"
+      }
+      , link: PATHCONSTANTS.PRODUCTS.AUTO
+    },
+    {
+      text: { en: "Motorcycle Insurance", es: "Seguro de motocicleta" },
+      link: PATHCONSTANTS.PRODUCTS.MOTORCYCLE
+    },
+    {
+      text: { en: "Home Insurance", es: "Seguro de casa" },
+      link: PATHCONSTANTS.PRODUCTS.HOME
+    },
+    {
+      text: { en: "Renters Insurance", es: "Seguro de inquilinos" },
+      link: PATHCONSTANTS.PRODUCTS.RENTER
+    },
+    {
+      text: { en: "Mexico Insruance", es: "Seguro de México" },
+      link: PATHCONSTANTS.PRODUCTS.MEXICO
+    },
+    {
+      text: { en: "SR-22", es: "SR-22" },
+      link: PATHCONSTANTS.PRODUCTS.SR22
+    },
+    {
+      text: { en: "Surety Bonds", es: "Fianzas de garantía" },
+      link: PATHCONSTANTS.PRODUCTS.SURETY
+    },
   ]
+}
+const copyright = {
+  en: "© 2023 Ai United Insurance. All Rights Reserved.",
+  es: "© 2023 Ai United Insurance. Todos los derechos reservados."
 }
 
 const classes = {
@@ -104,6 +149,9 @@ const classes = {
 }
 
 export default function Footer() {
+  const router = useRouter();
+  const { locale } = router
+  const currentLang = Lang[locale ?? 'en']
   return (
     <Box sx={{ ...classes.root }}
     >
@@ -155,7 +203,7 @@ export default function Footer() {
             >
               <Link href={item.link}>
                 <Typography variant="body1" sx={{ ...classes.link }}>
-                  {item.title} {index !== section2content.length - 1 && "|"}
+                  {item.title[currentLang]} {index !== section2content.length - 1 && "|"}
                 </Typography>
               </Link>
             </Box>
@@ -163,7 +211,7 @@ export default function Footer() {
         </Box>
         <Box sx={{ ...classes.section3 }}>
           <Typography variant="body1">
-            {section3content.title}
+            {section3content.title[currentLang]}
           </Typography>
           <Box sx={{ ...classes.section3content }}>
             {section3content.links.map((item, index) => {
@@ -171,7 +219,7 @@ export default function Footer() {
               >
                 <Link href={item.link}>
                   <Typography variant="body1" sx={{ ...classes.link }}>
-                    {item.text} {index !== section3content.links.length - 1 && "|"}
+                    {item.text[currentLang]} {index !== section3content.links.length - 1 && "|"}
                   </Typography>
                 </Link>
               </Box>
@@ -179,7 +227,7 @@ export default function Footer() {
           </Box>
         </Box>
         <Box sx={{ ...classes.copyright }}>
-          <Typography variant="h6">Copyright © 2023 Ai United Insurance. All Rights Reserved.</Typography>
+          <Typography variant="h6">{copyright[currentLang]}</Typography>
         </Box>
       </Box >
     </Box >
