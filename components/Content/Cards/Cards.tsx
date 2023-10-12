@@ -38,6 +38,7 @@ const styles = {
     },
     titles: {
         textAlign: { xs: "center", md: "left", },
+        minWidth: { lg: "17rem", },
     },
     title: {
         fontWeight: "bold",
