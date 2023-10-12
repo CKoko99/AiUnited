@@ -1,14 +1,22 @@
 import Image, { StaticImageData } from "next/image";
 import { Box, Typography, Button } from "@mui/material";
 import theme from "../../../providers/theme";
+import { useRouter } from "next/router";
+import { Lang } from "../../locale/LocaleSwitcher";
 interface HomeReviewProps {
     title: string;
-    img: StaticImageData;
     content: {
         name: string;
         review: string;
     },
-    cta: string;
+    img: {
+        src: StaticImageData;
+        alt: string;
+    };
+    cta: {
+        text: { [lang: string]: string; }
+        link: string;
+    }
 }
 
 const styles = {
@@ -95,13 +103,17 @@ const styles = {
 
 
 export default function HomeReview(props: any) {
+    const router = useRouter()
+    const { locale } = router
+    const currentLang = Lang[locale ?? 'en']
+
     return (
         <>
             <Box
                 sx={{ ...styles.root }}
             >
                 <Typography variant="h4" component="h4" sx={{ ...styles.title }}>
-                    {props.title}
+                    {props.title[currentLang]}
                 </Typography>
                 <Box
                     sx={{ ...styles.review }}
@@ -111,7 +123,7 @@ export default function HomeReview(props: any) {
                     >
                         <Image
                             fill style={{ objectFit: "contain" }}
-                            src={props.img} alt={props.title} />
+                            {...props.img} />
                     </Box>
                     <Box
                         sx={{ ...styles.chat }}
@@ -135,12 +147,12 @@ export default function HomeReview(props: any) {
                                     <Typography variant="h6"
                                         sx={{ ...styles.reviewText }}
                                     >
-                                        {props.content.review}
+                                        {props.content.review[currentLang]}
                                     </Typography>
                                     <Typography variant="h6"
                                         sx={{ ...styles.author }}
                                     >
-                                        - {props.content.name}
+                                        - {props.content.name[currentLang]}
                                     </Typography>
                                 </Box>
                             </Box>
@@ -148,7 +160,7 @@ export default function HomeReview(props: any) {
                         {props.cta && <Button sx={{ ...styles.ctaButton }} variant="contained" color="secondary"
                             href={props.cta.link}
                         >
-                            {props.cta.text}
+                            {props.cta.text[currentLang]}
                         </Button>}
                     </Box>
 

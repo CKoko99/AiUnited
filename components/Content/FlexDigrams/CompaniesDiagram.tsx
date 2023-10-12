@@ -1,10 +1,20 @@
 import { Typography, Box } from "@mui/material";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
+import { useRouter } from "next/router";
+import { Lang } from "../../locale/LocaleSwitcher";
 
 //menu content prop will be an array of objects with title and img
 interface FlexDiagramProps {
-    title: string;
-    content: any;
+    title: {
+        [lang: string]: string;
+    }
+    content: {
+        img: {
+            src: StaticImageData;
+            alt: string;
+        };
+        title?: string;
+    }[];
 }
 const styles = {
     root: {
@@ -43,10 +53,13 @@ const styles = {
     }
 }
 export default function FlexDiagram(props: FlexDiagramProps) {
+    const router = useRouter()
+    const { locale } = router
+    const currentLang = Lang[locale ?? 'en']
     return (<>
         <Box sx={{ ...styles.root }}>
             <Typography variant="h4" component="h4" sx={{ textAlign: "center", fontWeight: "bold", margin: "1rem 0" }}>
-                {props.title}
+                {props.title[currentLang]}
             </Typography>
             <Box
                 sx={{ ...styles.diagram }}
@@ -58,7 +71,7 @@ export default function FlexDiagram(props: FlexDiagramProps) {
                             <Box sx={{ ...styles.image }}>
                                 <Image fill
                                     style={{ objectFit: "contain" }}
-                                    src={item.img} alt={item.title}
+                                    {...item.img}
                                 />
                             </Box>
                             {item.title && <Typography variant="h5" component="h5" sx={{ textAlign: "center", fontWeight: "bold", margin: "1rem 0" }}>

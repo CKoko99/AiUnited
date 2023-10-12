@@ -1,18 +1,26 @@
 import { Box, Typography } from "@mui/material";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { Lang } from "../../locale/LocaleSwitcher";
 
 
 interface CardProps {
-    title?: string;
-    subtitle?: string;
+    title?: {
+        [lang: string]: string;
+    }
+    subtitle?: {
+        [lang: string]: string;
+    }
     content?: {
         img: {
             src: StaticImageData;
             alt: string;
         },
-        title: string;
+        title: {
+            [lang: string]: string;
+        }
         link: string;
     }[]
 }
@@ -100,6 +108,9 @@ const styles = {
     },
 }
 function Card(props) {
+    const router = useRouter()
+    const { locale } = router
+    const currentLang = Lang[locale ?? 'en']
     const [hovered, setHovered] = useState(false)
     return <Box sx={{ ...styles.card }}
         onMouseEnter={() => {
@@ -131,13 +142,16 @@ function Card(props) {
                         fontWeight: "inherit"
                     }}
                 >
-                    {props.title}
+                    {props.title[currentLang]}
                 </Typography>
             </Box>
         </Link>
     </Box >
 }
 export default function Cards(props: CardProps) {
+    const router = useRouter()
+    const { locale } = router
+    const currentLang = Lang[locale ?? 'en']
     return (<>
         <Box
             sx={{ ...styles.root }}
@@ -145,12 +159,13 @@ export default function Cards(props: CardProps) {
             <Box sx={{ ...styles.cardContent }} >
 
                 <Box sx={{ ...styles.titles }}>
-                    <Typography variant="h4" sx={{ ...styles.title }} >
-                        {props.title}
-                    </Typography>
-                    <Typography variant="h6">
-                        {props.subtitle}
-                    </Typography>
+
+                    {props.title && <Typography variant="h4" sx={{ ...styles.title }} >
+                        {props.title[currentLang]}
+                    </Typography>}
+                    {props.subtitle && <Typography variant="h6">
+                        {props.subtitle[currentLang]}
+                    </Typography>}
                 </Box>
                 <Box sx={{ ...styles.cards }}>
                     {props.content?.map((item: any, index: number) => {

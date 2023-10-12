@@ -38,9 +38,9 @@ export default function LocaleSwitcher() {
         (locale) => locale !== activeLocale
     )
     const [open, setOpen] = React.useState(false);
-    const anchorRef = React.useRef<HTMLButtonElement>(null);
+    const anchorRef = React.useRef < HTMLButtonElement > (null);
     const [hovering, setHovering] = useState(false)
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const [anchorEl, setAnchorEl] = React.useState < null | HTMLElement > (null);
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
@@ -97,12 +97,11 @@ export default function LocaleSwitcher() {
                     }}
 
                 >
-                    {locales?.map((locale, index) => {
+                    {locales?.map((locale) => {
                         const { pathname, query, asPath } = router
                         return (
                             <MenuItem
                                 onClick={handleClose}
-                                key={index}
                             >
                                 <Link
                                     key={locale}

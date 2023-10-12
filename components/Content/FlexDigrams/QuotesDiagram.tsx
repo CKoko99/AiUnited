@@ -1,12 +1,25 @@
 import { Typography, Box } from "@mui/material";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
+import { Lang } from "../../locale/LocaleSwitcher";
 
 //menu content prop will be an array of objects with title and img
 interface DiagramProps {
-    title: string;
-    content: any;
+    title: {
+        [lang: string]: string;
+    }
+    content: {
+        img: {
+            src: StaticImageData;
+            alt: string;
+        }
+        title?: {
+            [lang: string]: string;
+        };
+        link: string;
+    }[];
 }
 const styles = {
     root: {
@@ -52,10 +65,14 @@ const styles = {
     }
 }
 export default function Diagram(props: DiagramProps) {
+    const router = useRouter()
+    const { locale } = router
+    const currentLang = Lang[locale ?? 'en']
+
     return (<>
         <Box sx={{ ...styles.root }}>
             <Typography variant="h4" component="h4" sx={{ textAlign: "center", margin: "1rem 0" }}>
-                {props.title}
+                {props.title[currentLang]}
             </Typography>
             <Box
                 sx={{ ...styles.diagram }}
@@ -73,7 +90,7 @@ export default function Diagram(props: DiagramProps) {
                                     <Image
                                         fill
                                         style={{ objectFit: "contain" }}
-                                        src={item.img} alt={item.title}
+                                        {...item.img}
                                     />
                                 </Box>
                                 {item.title && (
@@ -87,7 +104,7 @@ export default function Diagram(props: DiagramProps) {
                                             whiteSpace: "pre-line",
                                         }}
                                     >
-                                        {item.title.split(' ').map((word: string, index: any) => (
+                                        {item.title[currentLang]?.split(' ').map((word: string, index: any) => (
                                             <React.Fragment key={index}>
                                                 {word}
                                                 <br />

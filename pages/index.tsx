@@ -37,95 +37,211 @@ const bannerContent = {
         es: "Su destino de seguros de ventanilla única: coberturas rápidas, fáciles y asequibles para todas sus necesidades"
     },
     ctaButton: {
-        text: "Get a Quote!",
+        text: {
+            en: "Get a Quote!",
+            es: "¡Obtenga una cotización!"
+        },
         link: "/quote"
     },
-    image: BannerImage
+    image: {
+        src: BannerImage,
+        alt: "Umbrella"
+    }
 }
 const partnerCompanies = {
-    title: "We Shop For the Best Deals to Save You Time and Money",
+    title: {
+        en: "We Shop For the Best Deals to Save You Time and Money",
+        es: "Buscamos las mejores ofertas para ahorrarle tiempo y dinero"
+    },
     content: [
         {
-            img: partnerImg1,
+            img: {
+                src: partnerImg1,
+                alt: "Progressive"
+            },
         },
-        { img: partnerImg2 },
-        { img: partnerImg3 },
-        { img: partnerImg4 },
-        { img: partnerImg5 },
+        {
+            img: {
+                src: partnerImg2,
+                alt: "Alinsco"
+            },
+        },
+        {
+            img: {
+                src: partnerImg3,
+                alt: "Appllo"
+
+            },
+        },
+        {
+            img: {
+                src: partnerImg4,
+                alt: "Bluefire"
+            }
+        },
+        {
+            img: {
+                src: partnerImg5,
+                alt: "Falcon"
+            }
+        },
     ]
 }
 const onlineQuotesContent = {
-    title: "Shop Online",
+    title: {
+        en: "Shop Online",
+        es: "Comprar en línea"
+    },
     content: [
         {
-            img: autoQuoteImg,
-            title: "Auto Insurance",
+            img: {
+                src: autoQuoteImg,
+                alt: "Auto Insurance"
+            },
+            title: {
+                en: "Auto Insurance",
+                es: "Seguro de auto"
+            },
             link: "/quote/auto"
         },
         {
-            img: homeQuoteImg,
-            title: "Home Insurance",
+            img: {
+                src: homeQuoteImg,
+                alt: "Home Insurance"
+            },
+            title: {
+                en: "Home Insurance",
+                es: "Seguro de casa"
+            },
             link: "/quote/home"
         },
         {
-            img: motorcycleQuoteImg,
-            title: "Motorcycle Insurance",
+            img: {
+                src: motorcycleQuoteImg,
+                alt: "Motorcycle Insurance"
+            },
+            title: {
+                en: "Motorcycle Insurance",
+                es: "Seguro de motocicleta"
+            },
             link: "/quote/motorcycle"
         },
         {
-            img: sr22QuoteImg,
-            title: "SR-22 Insurance",
+            img: {
+                src: sr22QuoteImg,
+                alt: "SR-22 Insurance"
+            },
+            title: {
+                en: "SR-22 Insurance",
+                es: "Seguro SR-22"
+            },
             link: "/quote/sr22"
         },
         {
-            img: rentersQuoteImg,
-            title: "Renters Insurance",
+            img: {
+                src: rentersQuoteImg,
+                alt: "Renters Insurance"
+            },
+            title: {
+                en: "Renters Insurance",
+                es: "Seguro de inquilinos"
+            },
             link: "/quote/renters"
         },
         {
-            img: mexicoQuoteImg,
-            title: "Mexico Insurance",
+            img: {
+                src: mexicoQuoteImg,
+                alt: "Mexico Insurance"
+            },
+            title: {
+                en: "Mexico Insurance",
+                es: "Seguro de México"
+            },
             link: "/quote/mexico"
         },
         {
-            img: suretyQuoteImg,
-            title: "Surety Bonds",
+            img: {
+                src: suretyQuoteImg,
+                alt: "Surety Bonds"
+            },
+            title: {
+                en: "Surety Bonds",
+                es: "Fianzas"
+            },
             link: "/quote/surety"
         },
     ]
 }
 const callQuoteContent = {
-    title: "Contact a Representative",
-    img: representativeImg,
-    text: "Whether You Give Us a Call or Request a Quote Online, Our Experts Are Here to Provide You With Excellent Assistance.",
+    title: {
+        en: "Contact a Representative",
+        es: "Contacta a un representante"
+    },
+    img: {
+        src: representativeImg,
+        alt: "Representative"
+    },
+    text: {
+        en: "Whether You Give Us a Call or Request a Quote Online, Our Experts Are Here to Provide You With Excellent Assistance.",
+        es: "Ya sea que nos llame o solicite una cotización en línea, nuestros expertos están aquí para brindarle una excelente asistencia."
+    },
     cta1: {
-        text: "(555)-555-5555",
+        text: { en: "(555)-555-5555", es: "(555)-555-5555" },
         link: "tel:5555555555"
     },
     cta2: {
-        text: "Get in Touch!",
+        text: {
+            en: "Get in Touch!",
+            es: "Ponerse en contacto!"
+        },
         link: "/about/contact"
     }
 }
 const reviewContent = {
-    title: "See What Our Customers Are Saying about Ai United",
+    title: {
+        en: "See What Our Customers Are Saying about Ai United",
+        es: "Vea lo que nuestros clientes dicen sobre Ai United"
+    },
     content: {
-        name: "Jacob B",
-        review: `I'd been shopping around for a better auto insurance rate with little success. Bethany saved me almost $100 per month with the same coverage! 
-    I'm very pleased with my policy and I recommend Ai United to all my friends and family!`
+        name: {
+            en: "Jacob B",
+            es: "Jacob B"
+        },
+        review: {
+            en: `I'd been shopping around for a better auto insurance rate with little success. Bethany saved me almost $100 per month with the same coverage!
+    I'm very pleased with my policy and I recommend Ai United to all my friends and family!`,
+            es: `Había estado buscando una mejor tarifa de seguro de auto sin mucho éxito. ¡Bethany me ahorró casi $ 100 por mes con la misma cobertura!
+    Estoy muy contento con mi póliza y recomiendo Ai United a todos mis amigos y familiares!`
+        },
     },
     cta: {
-        text: "Read More Reviews",
+        text: {
+            en: "Read More Reviews",
+            es: "Leer más reseñas"
+        },
         link: "/about/reviews"
     },
-    img: ReviewImg
+    img: {
+        src: ReviewImg,
+        alt: "Review"
+    }
 }
 const aboutContent = {
-    title: "Learn More",
-    subtitle: "Insights, Information, and Beyond",
+    title: {
+        en: "Learn More",
+        es: "Aprende más"
+    },
+    subtitle: {
+        en: "Insights, Information, and Beyond",
+        es: "Información y más"
+    },
     content: [
         {
-            title: "Our Policies",
+            title: {
+                en: "Our Policies",
+                es: "Nuestras políticas"
+            },
+
             img: {
                 src: PoliciesImg,
                 alt: "Policies"
@@ -133,7 +249,10 @@ const aboutContent = {
             link: "/about/policies"
         },
         {
-            title: "About Us",
+            title: {
+                en: "About Us",
+                es: "Sobre nosotros"
+            },
             img: {
                 src: AboutImg,
                 alt: "About"
@@ -141,7 +260,10 @@ const aboutContent = {
             link: "/about"
         },
         {
-            title: "Careers",
+            title: {
+                en: "Careers",
+                es: "Carreras"
+            },
             img: {
                 src: CareersImg,
                 alt: "Careers"
@@ -157,7 +279,7 @@ export default function () {
             <Banner {...bannerContent} />
             <FlexDiagram {...partnerCompanies} />
             <ContentSplit
-                title="Get a Free Quote in Minutes!"
+                title={{ en: "Get a Free Quote in Minutes!", es: "¡Obtenga una cotización gratuita en minutos!" }}
             >
                 <QuotesDiagram {...onlineQuotesContent} />
                 <CTAContent {...callQuoteContent} />

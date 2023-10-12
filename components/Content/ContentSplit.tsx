@@ -1,7 +1,11 @@
 import { Typography, Box, Divider } from "@mui/material";
+import { useRouter } from "next/router";
+import { Lang } from "../locale/LocaleSwitcher";
 
 interface componentProps {
-    title: string;
+    title: {
+        [lang: string]: string;
+    }
     children: any;
 }
 
@@ -30,11 +34,14 @@ const styles = {
     },
 }
 export default function ContentSplit({ title, children }: componentProps) {
+    const router = useRouter()
+    const { locale } = router
+    const currentLang = Lang[locale ?? 'en']
     return <>
         <Box sx={{ ...styles.root }}>
 
             <Typography variant="h4" component="h4" sx={{ textAlign: "center", fontWeight: "bold", margin: "1rem 0" }}>
-                {title}
+                {title[currentLang]}
             </Typography>
             {children && <Box sx={{ ...styles.split }}>
                 {children[0] && <Box sx={{ ...styles.contentSection }}>

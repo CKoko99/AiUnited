@@ -3,21 +3,25 @@ import Image, { StaticImageData } from "next/image";
 import theme from "../../../providers/theme";
 import { useRouter } from "next/router";
 import { Lang } from "../../locale/LocaleSwitcher";
+import Link from "next/link";
 
 interface BannerProps {
     title: {
-        en: string;
-        es: string;
+        [lang: string]: string;
     };
     subtitle: {
-        en: string;
-        es: string;
+        [lang: string]: string;
     };
     ctaButton?: {
         link: string;
-        text: string;
+        text: {
+            [lang: string]: string;
+        };
     };
-    image?: StaticImageData;
+    image?: {
+        src: StaticImageData;
+        alt: string;
+    }
 }
 const styles = {
     root: {
@@ -91,8 +95,10 @@ export default function Banner(props: BannerProps) {
                 }} variant="h4" gutterBottom>{props.subtitle[currentLang]}</Typography>
 
                 {props.ctaButton && (
-                    <Button href={props.ctaButton.link} sx={{ ...styles.ctaButton }} variant="contained">
-                        {props.ctaButton.text}
+                    <Button sx={{ ...styles.ctaButton }} variant="contained">
+                        <Link href={props.ctaButton.link}  >
+                            {props.ctaButton.text[currentLang]}
+                        </Link>
                     </Button>
                 )}
             </Box>
@@ -102,7 +108,7 @@ export default function Banner(props: BannerProps) {
                 {props.image && <Image
                     fill
                     style={{ objectFit: "contain" }}
-                    src={props?.image} alt={props.title[currentLang]} />}
+                    {...props.image} />}
                 <Typography sx={{
                     display: "none",
                 }} variant="h4" gutterBottom>{props.subtitle[currentLang]}</Typography>
