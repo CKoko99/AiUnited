@@ -29,7 +29,7 @@ interface CTAContentProps {
 }
 const styles = {
     root: {
-        width: "80%",
+        width: { xs: "90%", md: "80%" },
         margin: "auto",
     },
     image: {
@@ -42,6 +42,7 @@ const styles = {
         display: "flex",
         justifyContent: "space-around",
         margin: "1rem 0",
+        //  gap: "1rem",
         flexDirection: "row",
         transition: "all .2s ease-in-out",
         "&:hover": {
@@ -74,6 +75,7 @@ export default function CTAContent(props: CTAContentProps) {
                     variant="outlined"
                     color="secondary"
                     href={props.cta1.link}
+                    sx={{ textAlign: "center" }}
                 >
                     {props.cta1.text[currentLang]}
                 </Button>}
@@ -81,7 +83,7 @@ export default function CTAContent(props: CTAContentProps) {
                     variant="contained"
                     color="secondary"
                     href={props.cta2.link}
-                    sx={{}}
+                    sx={{ textAlign: "center" }}
                 >
                     {props.cta2.text[currentLang]}
                 </Button>}
