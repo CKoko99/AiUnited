@@ -16,6 +16,7 @@ export default function (props) {
         const newArray = [...validArray]
         newArray[index] = valid
         setValidArray(newArray)
+
     }
     useEffect(() => {
         //check if all values in array are true
@@ -41,7 +42,7 @@ export default function (props) {
                         color: "white"
                     }}
                 >
-                    <Typography variant="h1">{props.title[currentLang]}</Typography>
+                    <Typography variant="h2">{props.title[currentLang]}</Typography>
                     <Typography variant="h5">{props.subtitle[currentLang]}</Typography>
                 </Box>
                 <Box
@@ -56,7 +57,7 @@ export default function (props) {
 
                     <Box
                         sx={{
-                            display: "flex", flexDirection: { xs: "column", md: "row" }, flexWrap: "wrap", gap: "1rem",
+                            display: "flex", flexDirection: { xs: "column", md: "row" }, flexWrap: "wrap", gap: "1.2rem",
                             justifyContent: "space-between", margin: "auto",
                             padding: "1rem"
                         }}

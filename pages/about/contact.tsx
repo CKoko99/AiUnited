@@ -48,7 +48,7 @@ const formContent = {
         es: "Mensaje",
       },
       largeText: true,
-      type: "textarea",
+      type: "input",
       required: true,
       fullWidth: true,
     },

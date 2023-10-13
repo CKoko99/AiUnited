@@ -2,137 +2,156 @@ import JotFormEmbed from 'react-jotform-embed';
 import SimpleForm from '../../components/Forms/Simple/Simple';
 
 const formContent = {
-    title: "Motorcycle Insurance Quote",
+    title: { en: "Motorcycle Insurance Quote", es: "Cotización de seguro de motocicleta" },
+    subtitle: { en: "Start a free motorcycle insurance quote to see the savings", es: `Comience una cotización gratuita de seguro de motocicleta para ver los ahorros` },
     questions: [
         {
-            title: "Full Name",
-            type: "group",
-            questions: [
-                {
-                    title: "First Name",
-                    type: "short-text"
-                },
-                {
-                    title: "Last Name",
-                    type: "short-text"
-                }
-            ]
+            title: { en: "First Name", es: "Nombre" },
+            type: "input",
+            required: true
         },
         {
-            title: "Phone Number",
-            type: "phone"
+            title: { en: "Last Name", es: "Apellido" },
+            type: "input",
+            required: true,
         },
         {
-            title: "Email",
-            type: "email"
+            title: {
+                en: "Phone Number",
+                es: "Número de teléfono",
+            },
+            validation: "phone",
+            type: "input",
+            required: true,
         },
         {
-            title: "Address",
-            type: "list",
-            questions: [
-                {
-                    title: "Street Address",
-                    type: "short-text"
-                },
-                {
-                    title: "Street Address Line 2",
-                    type: "short-text"
-                },
-                {
-                    title: "City",
-                    type: "short-text"
-                },
-                {
-                    title: "State",
-                    type: "short-text"
-                },
-                {
-                    title: "Zip Code",
-                    type: "short-text"
-                }
-            ]
+            title: {
+                en: "Email",
+                es: "Correo electrónico",
+            },
+            validation: "email",
+            type: "input",
+            required: true,
         },
         {
-            title: "Do you currently have motorcycle insurance?",
+            title: {
+                en: "Street Address",
+                es: "Dirección",
+            },
+            type: "input",
+            required: true,
+            fullWidth: true,
+        },
+        {
+            title: {
+                en: "Street Address 2",
+                es: "Dirección 2",
+            },
+            //fullWidth: true,
+            type: "input",
+        },
+        {
+            title: {
+                en: "City",
+                es: "Ciudad",
+            },
+            type: "input",
+            required: true,
+        },
+        {
+            title: {
+                en: "State/ Province",
+                es: "Estado / Provincia",
+            },
+            type: "input",
+            required: true,
+        },
+        {
+            title: {
+                en: "Zip Code",
+                es: "Código postal",
+            },
+            type: "input",
+            required: true,
+            validation: "zip",
+        },
+        {
+            title: {
+                en: "Do you currently have motorcycle insurance?",
+                es: "¿Actualmente tiene seguro de motocicleta?",
+            },
             type: "radio",
+            required: true,
+            fullWidth: true,
             answers: [
-                {
-                    title: "Yes",
-                    value: "yes"
-                },
-                {
-                    title: "No",
-                    value: "no"
-                }
-            ]
+                { en: "Yes", es: "Sí" },
+                { en: "No", es: "No" },
+            ],
         },
         {
-            title: "Vehicle Identification Number (VIN)",
-            type: "short-text"
+            title: {
+                en: "Vehicle Identification Number (VIN)",
+                es: "Número de identificación del vehículo (VIN)",
+            },
+            type: "input",
+            required: true,
+
         },
         {
-            title: "Gender",
+            title: {
+                en: "Gender",
+                es: "Género",
+            },
             type: "radio",
+            required: true,
+            fullWidth: true,
             answers: [
-                {
-                    title: "Yes",
-                    value: "yes"
-                },
-                {
-                    title: "No",
-                    value: "no"
-                }
+                { en: "Male", es: "Masculino" },
+                { en: "Female", es: "Femenino" },
             ]
         },
         {
-            title: "Maritial Status",
-            type: "dropdown",
+            title: {
+                en: "Marital Status",
+                es: "Estado civil",
+            },
+            type: "select",
+            fullWidth: true,
+            required: true,
             answers: [
-                {
-                    title: "Single",
-                    value: "single"
-                },
-                {
-                    title: "Married",
-                    value: "married"
-                },
-                {
-                    title: "Divorced",
-                    value: "divorced"
-                },
-                {
-                    title: "Widowed",
-                    value: "widowed"
-                },
-                {
-                    title: "Separated",
-                    value: "Separated"
-                }
+                { en: "Single", es: "Soltero" },
+                { en: "Married", es: "Casado" },
+                { en: "Divorced", es: "Divorciado" },
+                { en: "Widowed", es: "Viudo" },
+                { en: "Separated", es: "Separado" },
             ]
         },
         {
-            title: "Date of Birth",
-            type: "date"
+            title: {
+                en: "Date of Birth",
+                es: "Fecha de nacimiento",
+            },
+            type: "date",
+            required: true,
         },
         {
-            title: "Any incidents in the last 3 years?",
+            title: {
+                en: "Any accidents or violations in the past 3 years?",
+                es: "¿Algun accidente o violación en los últimos 3 años?",
+            },
             type: "radio",
+            fullWidth: true,
+            required: true,
             answers: [
-                {
-                    title: "Yes",
-                    value: "yes"
-                },
-                {
-                    title: "No",
-                    value: "no"
-                }
+                { en: "Yes", es: "Sí" },
+                { en: "No", es: "No" },
             ]
-        },
+        }
     ]
 }
 export default function () {
     return <>
-
+        <SimpleForm {...formContent} />
         <JotFormEmbed src="https://form.jotform.com/82874216328159" />
     </>
 }

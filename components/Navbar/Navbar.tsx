@@ -368,10 +368,10 @@ function DrawerAppBar(props: any) {
   return (<>
     <Box
       sx={{
-        bgcolor: "primary.main"
+        bgcolor: "primary.main",
+        zIndex: 1000,
       }}
     >
-
       <Box sx={{
         display: 'flex',
         width: { xs: "92%", sm: "95%", md: "90%", lg: "80%" },
