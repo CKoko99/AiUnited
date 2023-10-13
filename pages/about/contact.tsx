@@ -22,12 +22,14 @@ const formContent = {
     {
       title: { en: "Last Name", es: "Apellido" },
       type: "input",
+      required: true,
     },
     {
       title: {
         en: "Phone Number",
         es: "Número de teléfono",
       },
+      validation: "phone",
       type: "input",
       required: true,
     },
@@ -36,6 +38,7 @@ const formContent = {
         en: "Email",
         es: "Correo electrónico",
       },
+      validation: "email",
       type: "input",
       required: true,
     },
@@ -44,6 +47,7 @@ const formContent = {
         en: "Message",
         es: "Mensaje",
       },
+      largeText: true,
       type: "textarea",
       required: true,
       fullWidth: true,
