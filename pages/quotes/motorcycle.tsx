@@ -132,7 +132,7 @@ const formContent = {
 }
 export default function () {
     return <>
-        <SimpleForm />
+
         <JotFormEmbed src="https://form.jotform.com/82874216328159" />
     </>
 }
