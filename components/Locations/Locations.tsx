@@ -79,6 +79,14 @@ export default function (props) {
             disableDefaultUI: true,
             clickableIcons: true,
             // scrollwheel: false,
+            styles: [
+                //remove icons and labels
+                {
+                    featureType: "poi",
+                    elementType: "labels",
+                    stylers: [{ visibility: "off" }]
+                }
+            ]
         }),
         []
     );
