@@ -5,6 +5,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import markerimg from '../../public/assets/images/locations/Ai-United-Google-Drop-Pin.png'
 import AILogo from '../../public/assets/images/ai-logo-blue.jpeg'
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { Lang } from '../locale/LocaleSwitcher';
 
 const styles = {
     textfield: {
@@ -24,7 +26,9 @@ interface Marker {
     distance?: string;
     phone?: string;
 }
+
 export default function (props) {
+
     const [selectedMarker, setSelectedMarker] = useState<Marker | null>(null);
 
     const mapOptions = useMemo<google.maps.MapOptions>(

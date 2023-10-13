@@ -11,6 +11,8 @@ import PlaceIcon from '@mui/icons-material/Place';
 import { Place } from '@mui/icons-material';
 import { time } from 'console';
 import { CustomFonts } from '../../providers/theme';
+import { useRouter } from 'next/router';
+import { Lang } from '../locale/LocaleSwitcher';
 
 const styles = {
     textfield: {
@@ -31,7 +33,24 @@ interface Marker {
     distance?: string;
     phone?: string;
 }
+const LocationText = {
+    title: {
+        en: "Find A Store",
+        es: "Encuentra una tienda"
+    },
+    subtitle: {
+        en: "Visit one of over 80 stores located across Texas to speak with our representatives and get insured today!",
+        es: "Visite una de las más de 80 tiendas ubicadas en Texas para hablar con nuestros representantes y obtener un seguro hoy mismo!"
+    },
+    near: {
+        "en": "Locations Near You",
+        "es": "Ubicaciones cerca de ti"
+    }
+}
 export default function (props) {
+    const router = useRouter()
+    const { locale } = router
+    const currentLang = Lang[locale ?? 'en']
     const [mapCenter, setMapCenter] = useState(props.center);
     const [selectedMarker, setSelectedMarker] = useState<Marker | null>(null);
     const [locations, setLocations] = useState(props.locations)
@@ -93,9 +112,9 @@ export default function (props) {
         <Box
             sx={{ maxWidth: "970px", margin: "auto", padding: "1rem 0" }}
         >
-            <Typography fontFamily={CustomFonts.Gustavo} variant="h2" component="h2" sx={{ textAlign: "center", margin: "1rem 0" }}> Find A Store </Typography>
+            <Typography fontFamily={CustomFonts.Gustavo} variant="h2" component="h2" sx={{ textAlign: "center", margin: "1rem 0" }}>{LocationText.title[currentLang]} </Typography>
             <Typography variant='h6' sx={{ textAlign: "center", margin: "1rem auto", width: "80%" }}>
-                Visit one of over 80 stores located across Texas to speak with our representatives and get insured today!  </Typography>
+                {LocationText.subtitle[currentLang]}</Typography>
             <Box
                 sx={{ margin: "1rem 2rem" }}
             >
@@ -167,7 +186,7 @@ export default function (props) {
                     </>
                 }
                 <Typography variant='h4' sx={{ textAlign: "center", margin: "1.5rem auto 0", width: "80%" }}>
-                    Locations Near You
+                    {LocationText.near[currentLang]}
                 </Typography>
                 <Box
                     sx={{
