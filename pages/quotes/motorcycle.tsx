@@ -132,6 +132,7 @@ const formContent = {
                 es: "Fecha de nacimiento",
             },
             type: "date",
+            fullWidth: true,
             required: true,
         },
         {

@@ -1,8 +1,8 @@
 import { Box, FormControl, TextField, Input, Typography, RadioGroup, Radio, FormControlLabel, Select, MenuItem, InputLabel, FormHelperText } from "@mui/material"
 import { useRouter } from "next/router"
 import { Lang } from "../../locale/LocaleSwitcher"
-import { useEffect, useState } from "react"
-import { DateField, DatePicker, LocalizationProvider } from "@mui/x-date-pickers"
+import { useEffect, useMemo, useState } from "react"
+import { DateField, DatePicker, DateValidationError, LocalizationProvider } from "@mui/x-date-pickers"
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs, { Dayjs } from 'dayjs';
 
@@ -22,6 +22,10 @@ const validationText = {
     select: {
         en: "Please select an option.",
         es: "Por favor seleccione una opción.",
+    },
+    date: {
+        en: "Please enter a valid date.",
+        es: "Por favor ingrese una fecha válida.",
     }
 }
 const selectLabel = {
@@ -250,17 +254,80 @@ function SelectQuestion(props) {
 }
 
 function DateQuestion(props) {
-    const [value, setValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
+    const [value, setValue] = useState<Dayjs | null>(null);
+    const [error, setError] = useState("");
+
+    const [check, setCheck] = useState(false)
+    const maxDate = dayjs()
+
+
+    useEffect(() => {
+
+        //check if value is a valid date
+        if (check) {
+            if (value) {
+                const date = `${value.month() + 1}-${value.date()}-${value.year()}`
+                //check if date is less than max date
+                if (dayjs(date).isBefore(maxDate) && dayjs(date).isAfter("01-01-1900")) {
+                    props.setValid(props.index, true)
+                    setError("")
+                } else {
+                    props.setValid(props.index, false)
+                    setError(validationText.date[props.lang])
+                }
+            } else {
+                props.setValid(props.index, false)
+                setError(validationText.date[props.lang])
+            }
+        }
+    }, [value, check])
     return (<>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DateField
-                label={props.title[props.lang]}
-                value={value}
-                onChange={(newValue) => {
-                    setValue(newValue)
+        <Box
+            sx={{
+                width: props.fullWidth ? "100%" : { xs: "100%", md: "48.5%" },
+                display: "flex", flexDirection: props.fullWidth ? { xs: "column", md: 'row' } : "column",
+                justifyContent: "space-between", alignItems: "center"
+            }}
+        >
+            <Box
+                sx={{ width: props.fullWidth ? { xs: "100%", md: '50%' } : "100%" }}
+            >
+
+                <Typography variant="h6">
+                    {props.title[props.lang]}
+                </Typography>
+            </Box>
+            <Box
+                sx={{
+                    display: "flex", gap: "2rem", justifyContent: "space-around",
+                    width: props.fullWidth ? { xs: "100%", md: '48.5%' } : "100%"
                 }}
-            />
-        </LocalizationProvider>
+            >
+
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DateField
+                        sx={{ width: "100%" }}
+                        label={"Date"}
+                        value={value}
+                        helperText={error}
+                        onChange={(newValue) => {
+                            setValue(newValue)
+                        }}
+                        onBlur={() => { setCheck(true) }}
+
+                        slotProps={{
+                            textField: {
+                                helperText: error.length > 0 ? error : null,
+                                error: error.length > 0,
+                            },
+                        }}
+
+                    />
+
+
+                </LocalizationProvider>
+            </Box>
+        </Box>
     </>)
 }
 
