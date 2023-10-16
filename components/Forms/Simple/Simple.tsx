@@ -16,7 +16,7 @@ export default function (props) {
         const newArray = [...validArray]
         newArray[index] = valid
         setValidArray(newArray)
-
+        console.log(newArray)
     }
     useEffect(() => {
         //check if all values in array are true

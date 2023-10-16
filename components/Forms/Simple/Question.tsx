@@ -2,6 +2,9 @@ import { Box, FormControl, TextField, Input, Typography, RadioGroup, Radio, Form
 import { useRouter } from "next/router"
 import { Lang } from "../../locale/LocaleSwitcher"
 import { useEffect, useState } from "react"
+import { DateField, DatePicker, LocalizationProvider } from "@mui/x-date-pickers"
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import dayjs, { Dayjs } from 'dayjs';
 
 const validationText = {
     email: {
@@ -35,6 +38,7 @@ function InputQuestion(props) {
     const [onceFocused, setOnceFocused] = useState(false)
     const [valid, setValid] = useState(false)
     const [error, setError] = useState("")
+
     useEffect(() => {
         if (!props.validation && !props.required) {
             setValid(true)
@@ -48,18 +52,15 @@ function InputQuestion(props) {
         if (!props.validation || props.validation === 'email') {
             setValue(e.target.value)
         }
-        if (props.validation === 'number') {
-            //filter out non-numeric characters
-            const filtered = e.target.value.replace(/\D/g, '')
-            setValue(filtered)
-        }
-        if (props.validation === 'phone') {
+        if (props.validation === 'number' || props.validation === 'phone' || props.validation === 'zip') {
             //filter out non-numeric characters
             const filtered = e.target.value.replace(/\D/g, '')
             setValue(filtered)
         }
     }
+
     function checkValidation() {
+
         if (props.required) {
             const valid = value.length > 0
             setOnceValid(valid)
@@ -72,6 +73,7 @@ function InputQuestion(props) {
         } else {
             setValid(true)
         }
+
         if (props.validation === 'email') {
             //check to see if it's a valid email
             //includes @ before a . and at least 1 character before and after
@@ -84,9 +86,21 @@ function InputQuestion(props) {
                 setError("")
             }
         }
+
         if (props.validation === 'phone') {
             //check if 10 characters
             const valid = value.length === 10
+            setOnceValid(valid)
+            setValid(valid)
+            if (!valid) {
+                setError(validationText.phone[currentLang])
+            } else {
+                setError("")
+            }
+        }
+
+        if (props.validation === 'zip') {
+            const valid = value.length === 5
             setOnceValid(valid)
             setValid(valid)
             if (!valid) {
@@ -234,6 +248,22 @@ function SelectQuestion(props) {
         </Box >
     </>
 }
+
+function DateQuestion(props) {
+    const [value, setValue] = useState<Dayjs | null>(dayjs('2022-04-17'));
+    return (<>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DateField
+                label={props.title[props.lang]}
+                value={value}
+                onChange={(newValue) => {
+                    setValue(newValue)
+                }}
+            />
+        </LocalizationProvider>
+    </>)
+}
+
 export default function (props) {
     const router = useRouter()
     const { locale } = router
@@ -241,5 +271,6 @@ export default function (props) {
     return <>{props.type.toLowerCase() == "input" && <InputQuestion  {...props} title={props.title[currentLang]} />}
         {props.type == "radio" && <RadioQuestion lang={currentLang}  {...props} title={props.title[currentLang]} />}
         {props.type.toLowerCase() === "select" && <SelectQuestion lang={currentLang} {...props} title={props.title[currentLang]} />}
+        {props.type === "date" && <DateQuestion {...props} lang={currentLang} />}
     </>
 }
