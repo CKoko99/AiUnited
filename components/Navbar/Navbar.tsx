@@ -334,8 +334,8 @@ function DrawerAppBar(props: any) {
               </ListItem>
               <Collapse in={openItem === item.label} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  {item.menuItems.map((menu) => (
-                    <Link key={menu.title[currentLang]} href={menu.link} style={{ color: "inherit", textDecoration: "none" }}>
+                  {item.menuItems.map((menu, itemIndex) => (
+                    <Link key={itemIndex} href={menu.link} style={{ color: "inherit", textDecoration: "none" }}>
                       <ListItem >
                         <ListItemText
                           primary={

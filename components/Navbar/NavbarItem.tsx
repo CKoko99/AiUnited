@@ -118,10 +118,10 @@ function SimpleMenu(props) {
                             >
                                 {props.item.menuItems.map((item, index) => (
                                     <Link href={item.link || ""} style={{ color: "inherit", textDecoration: "none" }}
+                                        key={index}
                                     >
 
                                         <MenuItem
-                                            key={index}
                                             onClick={() => {
                                                 handleMenuClick(item.link);
                                             }}
