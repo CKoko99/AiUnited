@@ -47,11 +47,14 @@ function InputQuestion(props) {
         if (!props.validation && !props.required) {
             setValid(true)
             props.setValid(props.index, true)
+            props.setAnswer(props.index, "")
         }
     }, [])
     useEffect(() => {
         props.setValid(props.index, valid)
-    }, [valid])
+        props.setAnswer(props.index, value)
+
+    }, [valid, value])
     function setValueHandler(e) {
         if (!props.validation || props.validation === 'email') {
             setValue(e.target.value)
@@ -145,6 +148,7 @@ function RadioQuestion(props) {
 
             setValid(true)
             props.setValid(props.index, true)
+            props.setAnswer(props.index, value)
         }
     }, [value])
     return <>
@@ -197,6 +201,8 @@ function SelectQuestion(props) {
             setValid(true)
             setValidOnce(true)
             props.setValid(props.index, true)
+            props.setAnswer(props.index, value)
+
         } else {
             setValid(false)
             props.setValid(props.index, false)
@@ -270,6 +276,7 @@ function DateQuestion(props) {
                 //check if date is less than max date
                 if (dayjs(date).isBefore(maxDate) && dayjs(date).isAfter("01-01-1900")) {
                     props.setValid(props.index, true)
+                    props.setAnswer(props.index, date)
                     setError("")
                 } else {
                     props.setValid(props.index, false)

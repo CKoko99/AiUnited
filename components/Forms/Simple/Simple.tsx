@@ -12,17 +12,60 @@ export default function (props) {
     //fill array with false values for each question 
     const [validArray, setValidArray] = useState(Array(props.questions.length).fill(false))
     const [valid, setValid] = useState(false)
+    const [answersArray, setAnswersArray] = useState(Array(props.questions.length).fill(null))
     function setIndexValid(index, valid) {
         const newArray = [...validArray]
         newArray[index] = valid
         setValidArray(newArray)
-        console.log(newArray)
+
     }
+
+    function setIndexAnswer(index, answer) {
+        const newArray = [...answersArray]
+        newArray[index] = answer
+        setAnswersArray(newArray)
+    }
+
     useEffect(() => {
         //check if all values in array are true
         const valid = validArray.every((value) => value)
         setValid(valid)
     }, [validArray])
+
+    async function handleSubmit() {
+        //send answers to backend
+        console.log(answersArray)
+        const timestamp = new Date().toLocaleString();
+
+        //prepare data to be sent to google sheet
+        //Numbering system to make sure the data is in the correct order
+        const formData = new FormData();
+        formData.append("1 Timestamp", timestamp);
+
+        for (let i = 0; i < answersArray.length; i++) {
+            formData.append(`${2 + i} ${i + 1} ${props.questions[i].title.en}`, answersArray[i]);
+        }
+        formData.append("SheetTitle", props.title.en);
+        formData.append("Spreadsheet", "AiUnited");
+        console.log(process.env.NEXT_PUBLIC_BACKEND)
+        fetch(`${process.env.NEXT_PUBLIC_BACKEND}/forms`, {
+
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(
+                [...formData.entries(),]
+            ),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
     return <>
         <Box
             sx={{
@@ -63,14 +106,14 @@ export default function (props) {
                         }}
                     >
                         {props.questions.map((question, index) => {
-                            return <Question index={index} setValid={setIndexValid} key={index} {...question} />
+                            return <Question index={index} setAnswer={setIndexAnswer} setValid={setIndexValid} key={index} {...question} />
                         })}
                     </Box>
                     <Box
                         sx={{ padding: "1rem" }}
                     >
 
-                        <Button disabled={!valid} variant="contained" color="secondary">Submit</Button>
+                        <Button onClick={handleSubmit} disabled={!valid} variant="contained" color="secondary">Submit</Button>
                     </Box>
                 </Box>
             </Box >
