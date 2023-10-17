@@ -8,6 +8,7 @@ const formContent = {
     subtitle: { en: "Start a free surety bond quote to see the savings", es: `Comience una cotización gratuita de seguro de fianza para ver los ahorros` },
     questions: [
         {
+            subGroup: { en: "Personal Information", es: "Información personal" },
             title: { en: "First Name", es: "Nombre" },
             type: "input",
             required: true,
@@ -31,6 +32,7 @@ const formContent = {
         },
 
         {
+            subGroup: { en: "Address", es: "Dirección" },
             title: { en: "Street Address", es: "Dirección" },
             type: "input",
             required: true,

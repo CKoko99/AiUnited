@@ -8,6 +8,7 @@ const formContent = {
     subtitle: { en: "Start a free renters insurance quote to see the savings", es: `Comience una cotización gratuita de seguro de inquilinos para ver los ahorros` },
     questions: [
         {
+            subGroup: { en: "Personal Information", es: "Información personal" },
             title: { en: "First Name", es: "Nombre" },
             type: "input",
             required: true,
@@ -29,8 +30,8 @@ const formContent = {
             required: true,
             validation: "phone",
         },
-
         {
+            subGroup: { en: "Address", es: "Dirección" },
             title: { en: "Street Address", es: "Dirección" },
             type: "input",
             required: true,
@@ -61,8 +62,8 @@ const formContent = {
             type: "radio",
             required: true,
             answers: [
-                { en: "yes", es: "Sí" },
-                { en: "no", es: "No" },
+                { en: "Male", es: "Masculino" },
+                { en: "Female", es: "Femenino" },
             ],
             fullWidth: true,
 
@@ -89,11 +90,13 @@ const formContent = {
         },
         {
             title: { en: "How much personal property", es: "¿Cuánta propiedad personal?" },
+            outsideLabel: true,
             type: "input",
             required: true,
         },
         {
             title: { en: "How much Liability?", es: "¿Cuánta responsabilidad?" },
+            outsideLabel: true,
             type: "input",
             required: true,
         },
@@ -102,8 +105,8 @@ const formContent = {
             type: "radio",
             required: true,
             answers: [
-                { en: "yes", es: "Sí" },
-                { en: "no", es: "No" },
+                { en: "Yes", es: "Sí" },
+                { en: "No", es: "No" },
             ],
             fullWidth: true,
 
@@ -113,8 +116,8 @@ const formContent = {
             type: "radio",
             required: true,
             answers: [
-                { en: "yes", es: "Sí" },
-                { en: "no", es: "No" },
+                { en: "Yes", es: "Sí" },
+                { en: "No", es: "No" },
             ],
             fullWidth: true,
 

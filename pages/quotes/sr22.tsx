@@ -8,6 +8,7 @@ const formContent = {
     subtitle: { en: "Start a free SR-22 insurance quote to see the savings", es: `Comience una cotización gratuita de seguro SR-22 para ver los ahorros` },
     questions: [
         {
+            subGroup: { en: "Personal Information", es: "Información personal" },
             title: { en: "First Name", es: "Nombre" },
             type: "input",
             required: true,
@@ -31,6 +32,7 @@ const formContent = {
         },
 
         {
+            subGroup: { en: "Address", es: "Dirección" },
             title: { en: "Street Address", es: "Dirección" },
             type: "input",
             required: true,
@@ -60,23 +62,26 @@ const formContent = {
             title: { en: "Do you currently have insurance?", es: "¿Tiene actualmente seguro?" },
             type: "radio",
             required: true,
+            fullWidth: true,
             answers: [
-                { en: "yes", es: "Sí" },
-                { en: "no", es: "No" },
+                { en: "Yes", es: "Sí" },
+                { en: "No", es: "No" },
             ],
         },
         {
             title: { en: "Vehicle Identification Number (VIN)", es: "Número de identificación del vehículo (VIN)" },
             type: "input",
             required: true,
+            outsideLabel: true,
+            label: { en: "Input VIN", es: "Introducir VIN" },
         },
         {
             title: { en: "Gender", es: "Género" },
             type: "radio",
             required: true,
             answers: [
-                { en: "yes", es: "Sí" },
-                { en: "no", es: "No" },
+                { en: "Male", es: "Masculino" },
+                { en: "Female", es: "Femenino" },
             ],
             fullWidth: true,
 
