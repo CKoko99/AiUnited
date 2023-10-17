@@ -7,7 +7,8 @@ steps:
         "docker pull gcr.io/insurance-hub-397016/aiunited:$SHORT_SHA || exit 0",
       ]
   - name: "gcr.io/cloud-builders/docker"
-    args: ["build", "-t", "gcr.io/insurance-hub-397016/aiunited:$latest", "."]
+    args:
+      ["build", "-t", "gcr.io/insurance-hub-397016/aiunited:$SHORT_SHA", "."]
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "gcr.io/insurance-hub-397016/aiunited:$SHORT_SHA"]
   - name: "gcr.io/cloud-builders/gcloud"
