@@ -6,6 +6,7 @@ const formContent = {
     subtitle: { en: "Start a free motorcycle insurance quote to see the savings", es: `Comience una cotización gratuita de seguro de motocicleta para ver los ahorros` },
     questions: [
         {
+            subGroup: { en: "Personal Information", es: "Información personal" },
             title: { en: "First Name", es: "Nombre" },
             type: "input",
             required: true
@@ -34,6 +35,7 @@ const formContent = {
             required: true,
         },
         {
+            subGroup: { en: "Address", es: "Dirección" },
             title: {
                 en: "Street Address",
                 es: "Dirección",
@@ -95,7 +97,11 @@ const formContent = {
             },
             type: "input",
             required: true,
-
+            outsideLabel: true,
+            label: {
+                en: "Input VIN",
+                es: "Ingrese VIN",
+            }
         },
         {
             title: {

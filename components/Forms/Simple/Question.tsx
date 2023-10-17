@@ -120,22 +120,34 @@ function InputQuestion(props) {
     return <>
         <Box
             sx={{
-                width: props.fullWidth ? "100%" : { xs: "100%", md: "48.5%" }
+                width: (props.fullWidth || props.outsideLabel) ? "100%" : { xs: "100%", md: "48.5%" },
+                display: "flex", alignItems: "center",
             }}
         >
-            <FormControl fullWidth>
-                <TextField
-                    multiline={props.largeText}
-                    rows={props.largeText ? 6 : 1}
-                    error={error.length > 0}
-                    value={value}
-                    helperText={error}
-                    onChange={(e) => setValueHandler(e)}
-                    label={props.title}
-                    onFocus={() => setOnceFocused(true)}
-                    onBlur={() => checkValidation()}
-                />
-            </FormControl>
+            {props.outsideLabel &&
+                <Box
+                    sx={{ width: "50%" }}
+                >
+                    <Typography variant="h6">{props.title}</Typography>
+                </Box>
+            }
+            <Box
+                sx={{ width: props.outsideLabel ? "50%" : "100%" }}
+            >
+                <FormControl fullWidth>
+                    <TextField
+                        multiline={props.largeText}
+                        rows={props.largeText ? 6 : 1}
+                        error={error.length > 0}
+                        value={value}
+                        helperText={error}
+                        onChange={(e) => setValueHandler(e)}
+                        label={props.label ? props.label[currentLang] : props.title}
+                        onFocus={() => setOnceFocused(true)}
+                        onBlur={() => checkValidation()}
+                    />
+                </FormControl>
+            </Box>
         </Box>
     </>
 }
@@ -342,7 +354,16 @@ export default function (props) {
     const router = useRouter()
     const { locale } = router
     const currentLang = Lang[locale ?? 'en']
-    return <>{props.type.toLowerCase() == "input" && <InputQuestion  {...props} title={props.title[currentLang]} />}
+    return <>
+        {props.subGroup && <Box
+            sx={{
+                minWidth: "100%",
+            }}
+        >
+            <Typography textAlign={"left"} variant="h5">{props.subGroup[currentLang]}</Typography>
+        </Box>
+        }
+        {props.type.toLowerCase() == "input" && <InputQuestion  {...props} title={props.title[currentLang]} />}
         {props.type == "radio" && <RadioQuestion lang={currentLang}  {...props} title={props.title[currentLang]} />}
         {props.type.toLowerCase() === "select" && <SelectQuestion lang={currentLang} {...props} title={props.title[currentLang]} />}
         {props.type === "date" && <DateQuestion {...props} lang={currentLang} />}
