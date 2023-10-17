@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react"
 import { DateField, DatePicker, DateValidationError, LocalizationProvider } from "@mui/x-date-pickers"
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs, { Dayjs } from 'dayjs';
+import { CustomFonts } from "../../../providers/theme"
 
 const validationText = {
     email: {
@@ -121,18 +122,19 @@ function InputQuestion(props) {
         <Box
             sx={{
                 width: (props.fullWidth || props.outsideLabel) ? "100%" : { xs: "100%", md: "48.5%" },
-                display: "flex", alignItems: "center", justifyContent: "space-between"
+                display: "flex", alignItems: "center", justifyContent: "space-between",
+                flexDirection: { xs: "column", md: "row" },
             }}
         >
             {props.outsideLabel &&
                 <Box
-                    sx={{ width: "50%" }}
+                    sx={{ width: { xs: "100%", md: "50%" } }}
                 >
                     <Typography variant="h6">{props.title}</Typography>
                 </Box>
             }
             <Box
-                sx={{ width: props.outsideLabel ? "48.5%" : "100%" }}
+                sx={{ width: props.outsideLabel ? { xs: "100%", md: "48.5%" } : "100%" }}
             >
                 <FormControl fullWidth>
                     <TextField
@@ -358,9 +360,10 @@ export default function (props) {
         {props.subGroup && <Box
             sx={{
                 minWidth: "100%",
+                paddingLeft: ".5rem",
             }}
         >
-            <Typography textAlign={"left"} variant="h5">{props.subGroup[currentLang]}</Typography>
+            <Typography fontWeight={"600"} textAlign={"left"} variant="h5">{props.subGroup[currentLang]}:</Typography>
         </Box>
         }
         {props.type.toLowerCase() == "input" && <InputQuestion  {...props} title={props.title[currentLang]} />}
