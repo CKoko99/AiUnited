@@ -22,3 +22,4 @@ steps:
         "--platform=managed",
         "--image=gcr.io/insurance-hub-397016/aiunited:$SHORT_SHA",
       ]
+images: ["gcr.io/insurance-hub-397016/aiunited:latest"]
