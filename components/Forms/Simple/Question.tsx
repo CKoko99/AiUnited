@@ -121,7 +121,7 @@ function InputQuestion(props) {
         <Box
             sx={{
                 width: (props.fullWidth || props.outsideLabel) ? "100%" : { xs: "100%", md: "48.5%" },
-                display: "flex", alignItems: "center",
+                display: "flex", alignItems: "center", justifyContent: "space-between"
             }}
         >
             {props.outsideLabel &&
@@ -132,7 +132,7 @@ function InputQuestion(props) {
                 </Box>
             }
             <Box
-                sx={{ width: props.outsideLabel ? "50%" : "100%" }}
+                sx={{ width: props.outsideLabel ? "48.5%" : "100%" }}
             >
                 <FormControl fullWidth>
                     <TextField
