@@ -1,5 +1,12 @@
 steps:
   - name: "gcr.io/cloud-builders/docker"
+    entrypoint: "bash"
+    args:
+      [
+        "-c",
+        "docker pull gcr.io/insurance-hub-397016/aiunited:latest || exit 0",
+      ]
+  - name: "gcr.io/cloud-builders/docker"
     args:
       ["build", "-t", "gcr.io/insurance-hub-397016/aiunited:$SHORT_SHA", "."]
   - name: "gcr.io/cloud-builders/docker"
