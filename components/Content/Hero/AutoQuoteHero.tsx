@@ -125,6 +125,16 @@ export default function (props) {
                             color="secondary"
                             value={inputValue}
                             onChange={(e) => handleValueChange(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key !== "Enter") {
+                                    return
+                                }
+                                if (isValid) {
+                                    window.open(alinskoLink, "_blank")
+                                } else {
+                                    setErrorText("Please enter a valid zipcode")
+                                }
+                            }}
                             error={!isValid}
                             helperText={errorText}
                             style={{
