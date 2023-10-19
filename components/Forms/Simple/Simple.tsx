@@ -68,6 +68,7 @@ export default function (props) {
     }
     return <>
         <Box
+            id={props.id}
             sx={{
                 margin: " auto", textAlign: "center",
 
