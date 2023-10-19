@@ -13,11 +13,14 @@ export default function (props) {
             display: "flex", flexDirection: { xs: "column", md: "row" },
             justifyContent: "space-between",
             width: { xs: "95%", md: "100%" }, margin: "auto",
-            padding: "1rem"
+            padding: "1rem", gap: "1rem"
         }}
     >
         <Box
-            sx={{ position: "relative", height: "50vh", width: { xs: "100%", md: "49%" } }}
+            sx={{
+                position: "relative", height: { xs: "20rem", md: "25rem" },
+                width: { xs: "100%", md: "49%" },
+            }}
         >
             <Image {...props.img} fill style={{ objectFit: "contain" }} />
         </Box>

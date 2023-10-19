@@ -51,7 +51,7 @@ export default function (props) {
                     sx={{
                         ...styles.card,
                         minHeight: "19rem",
-                        padding: "1rem"
+                        padding: { xs: "1rem", md: "1rem 2.5rem" },
                     }}
                 >
                     <Typography textAlign={"center"} fontFamily={CustomFonts.Gustavo} variant="h4">{props.largeHorizontalCard.title[currentLang]}</Typography>
@@ -78,13 +78,15 @@ export default function (props) {
                         })}
 
                         {props.smallCard1.CTA &&
-                            <Button variant={props.smallCard1.CTA.type == "primary" ? "contained" : "outlined"}
-                                color={props.smallCard1.CTA.type == "primary" ? "primary" : "secondary"}
+                            <Link href={props.smallCard1.CTA.link}
+                                scroll={props.smallCard1.CTA.link.includes("#") ? false : true}
                             >
-                                <Link href={props.smallCard1.CTA.link}>
+                                <Button variant={props.smallCard1.CTA.type == "primary" ? "contained" : "outlined"}
+                                    color={props.smallCard1.CTA.type == "primary" ? "primary" : "secondary"}
+                                >
                                     {props.smallCard1.CTA.text[currentLang]}
-                                </Link>
-                            </Button>
+                                </Button>
+                            </Link>
                         }
                     </Box>
                     <Box
@@ -97,13 +99,15 @@ export default function (props) {
                             return <Typography textAlign={"center"} key={index} variant="h5">{paragraph}</Typography>
                         })}
                         {props.smallCard2.CTA &&
-                            <Button variant={props.smallCard2.CTA.type == "primary" ? "contained" : "outlined"}
-                                color={props.smallCard2.CTA.type == "primary" ? "primary" : "secondary"}
+                            <Link href={props.smallCard2.CTA.link}
+                                scroll={props.smallCard2.CTA.link.includes("#") ? false : true}
                             >
-                                <Link href={props.smallCard2.CTA.link}>
+                                <Button variant={props.smallCard2.CTA.type == "primary" ? "contained" : "outlined"}
+                                    color={props.smallCard2.CTA.type == "primary" ? "primary" : "secondary"}
+                                >
                                     {props.smallCard2.CTA.text[currentLang]}
-                                </Link>
-                            </Button>
+                                </Button>
+                            </Link>
                         }
                     </Box>
                 </Box>
@@ -121,7 +125,7 @@ export default function (props) {
                 <Box
                     sx={{
                         position: "relative",
-                        width: "90%", height: "18rem",
+                        width: "90%", height: { xs: "12rem", sm: "15rem", md: "18rem" },
                         margin: "auto"
                     }}
                 >
