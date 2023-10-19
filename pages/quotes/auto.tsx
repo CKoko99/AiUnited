@@ -6,6 +6,8 @@ import americaImg from '../../public/assets/images/quotes/auto/america.png'
 import PATHCONSTANTS from '../../constants/sitemap';
 import MainGrid from '../../components/Content/Grids/MainGrid';
 import CarImg1 from "../../public/assets/images/quotes/auto/car1.png";
+import CarImg2 from "../../public/assets/images/quotes/auto/car2.png";
+import TwoColumn from '../../components/Content/Grids/TwoColumn';
 const heroContent = {
     title: "Auto Insurance",
     subtitle: "We’ve partnered with Alinsko to provide quick and easy Auto Insurance coverage",
@@ -95,10 +97,34 @@ const contentSection2 = {
         },
     }
 }
+const contentSection3 = {
+    title: {
+        en: "Tailored Coverage to Meet Your Needs",
+        es: "Cobertura a Medida Para Satisfacer Sus Necesidades"
+    },
+    body: {
+        en: [
+            `At Ai United, we understand that every driver is unique. That's why we offer a variety of auto insurance coverages to match your needs.`,
+            `• Liability Insurance`,
+            `• Collision Insurance`,
+            `• Comprehensive Insurance`,
+            `• And More`
+        ],
+        es: [
+            `En Ai United, entendemos que cada conductor es único. Es por eso que ofrecemos una variedad de coberturas de seguro de auto para satisfacer sus necesidades.`,
+            `• Seguro de Responsabilidad Civil`,
+            `• Seguro de Colisión`,
+            `• Seguro Integral`,
+            `• Y Más`
+        ],
+    },
+    img: { src: CarImg2, alt: "car" },
+}
 export default function () {
     return <>
         <AutoQuoteHero {...heroContent} />
         <NumbersSection {...slideData} menuContent={slideData.menuContent} />
         <MainGrid {...contentSection2} />
+        <TwoColumn {...contentSection3} />
     </>
 }
