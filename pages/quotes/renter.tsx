@@ -1,7 +1,98 @@
+import MainGrid from '../../components/Content/Grids/MainGrid';
+import TwoColumn from '../../components/Content/Grids/TwoColumn';
+import VerticalBanner from '../../components/Content/Hero/VerticalBanner';
 import SimpleForm from '../../components/Forms/Simple/Simple';
+import PATHCONSTANTS from '../../constants/sitemap';
+import RentersImg1 from "../../public/assets/images/quotes/renters/renter1.png";
+import RentersImg2 from "../../public/assets/images/quotes/renters/renter2.png";
+import RentersImg3 from "../../public/assets/images/quotes/renters/renter3.png";
 
+const bannerContent = {
+    title: {
+        en: "Get Renters Insurance Today",
+        es: "Obtenga Seguro De Inquilinos Hoy"
+    },
+    subtitle: {
+        en: `Protect yourself and your valuables by getting low cost rentetrs insurance that will cover the content of an apartment or home that you'll be renting.`,
+        es: `Protéjase a sí mismo y a sus objetos de valor obteniendo un seguro de inquilinos de bajo costo que cubrirá el contenido de un apartamento o casa que alquilará.`
+    },
+    CTA: {
+        color: "secondary",
+        text: {
+            en: "Get a Quote",
+            es: "Obtener una cotización"
+        },
+        link: `${PATHCONSTANTS.QUOTES.RENTER}#renter-quote`
+    },
+    img: {
+        src: RentersImg1,
+        alt: "renters"
+    }
+}
 
+const contentSection2 = {
+    largeHorizontalCard: {
+        title: {
+            en: "Why you need renters insurance",
+            es: `Por qué necesita un seguro de inquilinos`
+        },
+        body: {
+            en: [`Many landlords through America require tenants to purchase rental insurance`,
+                `The good news is that we can help you find an affordable policy at the comfort of your home`],
+            es: [`Muchos propietarios en Estados Unidos requieren que los inquilinos compren un seguro de alquiler`,
+                `La buena noticia es que podemos ayudarlo a encontrar una póliza asequible desde la comodidad de su hogar`]
+        },
+    },
+    largeVerticalCard: {
+        body: {
+            en: [`Join the thousands of Texans who switch to Ai United Insurance`],
+            es: [`Únase a los miles de tejanos que cambian a Ai United Insurance`]
+        },
+        img: { src: RentersImg2, alt: "apartment" }
+    },
+    smallCard1: {
+        body: {
+            en: [`Visit one of our offices located throughout Texas`],
+            es: [`Visite una de nuestras oficinas ubicadas en todo Texas`]
+        },
+        CTA: {
+            type: "secondary",
+            text: { en: "Find a Store", es: "Encuentra una tienda" },
+            link: PATHCONSTANTS.LOCATIONS.INDEX
+        },
+    },
+    smallCard2: {
+        body: {
+            en: ['Get a free quote today from the comfort of your home'],
+            es: ['Obtenga una cotización gratuita hoy desde la comodidad de su hogar']
+        },
+        CTA: {
+            type: "primary",
+            text: { en: "Get A Quote", es: "Obtener Una Cotización" },
+            link: `#renter-quote`
+        },
+    }
+}
+const contentSection3 = {
+    title: {
+        en: "What does renters insurance cover?",
+        es: "¿Qué cubre el seguro de inquilinos?"
+    },
+    body: {
+        en: [
+            `Renters insurance is an insurance policy that can cover theft, water backup damages, certain natural disasters, bodily injuries and more in a rented property.`,
+            `If you rent an apartment, home or even a dorm, renters insurance is recommended for protecting your space and belongings in the event of a covered accident.`,
+        ],
+
+        es: [
+            `El seguro de inquilinos es una póliza de seguro que puede cubrir el robo, los daños por respaldo de agua, ciertos desastres naturales, lesiones corporales y más en una propiedad alquilada.`,
+            `Si alquila un apartamento, una casa o incluso un dormitorio, se recomienda un seguro de inquilinos para proteger su espacio y pertenencias en caso de un accidente cubierto.`,
+        ],
+    },
+    img: { src: RentersImg3, alt: "Home" },
+}
 const formContent = {
+    id: "renter-quote",
     title: {
         en: "Renters Insurance Quote", es: "Cotización de seguro de inquilinos"
     },
@@ -133,6 +224,9 @@ const formContent = {
 }
 export default function () {
     return <>
+        <VerticalBanner {...bannerContent} />
+        <MainGrid {...contentSection2} />
+        <TwoColumn {...contentSection3} />
         <SimpleForm {...formContent} />
     </>
 }
