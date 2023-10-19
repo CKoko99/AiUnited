@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { forwardRef, useEffect, useState } from "react";
 import { CustomFonts } from "../../../providers/theme";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 interface NumbersSectionProps {
     title: string;
     menuContent: {
@@ -20,6 +20,10 @@ interface SectionItemProps {
     afterNumber: string;
     afterNumberGap: boolean;
     body: string;
+    img?: {
+        src: StaticImageData;
+        alt: string;
+    }
 }
 //forward ref
 function returnRandomTime(number) {
