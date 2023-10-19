@@ -83,11 +83,14 @@ const SectionItem = forwardRef((props: SectionItemProps, ref) => {
 
             }}
         >
-            <Box
-                sx={{ position: "relative", minHeight: "6rem", minWidth: "5rem" }}
-            >
-                <Image fill style={{ objectFit: "contain" }} src={props.img.src} alt={props.img.alt} />
-            </Box>
+            {props.img &&
+
+                <Box
+                    sx={{ position: "relative", minHeight: "6rem", minWidth: "5rem" }}
+                >
+                    <Image fill style={{ objectFit: "contain" }} src={props.img.src} alt={props.img.alt} />
+                </Box>
+            }
             <Box
                 sx={{
                     display: "flex", flexDirection: "column", alignItems: "flex-start",
