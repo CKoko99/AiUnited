@@ -127,7 +127,7 @@ export default function NumbersSection(props) {
     return (<>
         <Box
             sx={{
-                padding: "2rem 0", textAlign: "center",
+                padding: "1rem 0", textAlign: "center",
                 height: "fit-content",
                 position: "relative",
             }}
@@ -149,7 +149,7 @@ export default function NumbersSection(props) {
                 sx={{
                     display: "flex", flexDirection: { xs: "column", md: "row" }, alignItems: "center",
                     justifyContent: "space-around",
-                    margin: "1rem auto", gap: { xs: "3rem", md: "" },
+                    margin: "1rem auto", gap: { xs: "1.5rem", md: "" },
                     width: {
                         md: "95%", lg: "75%", xl: "75%"
                     },
