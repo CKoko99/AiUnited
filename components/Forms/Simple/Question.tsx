@@ -284,23 +284,41 @@ function DateQuestion(props) {
     useEffect(() => {
 
         //check if value is a valid date
-        if (check) {
-            if (value) {
-                const date = `${value.month() + 1}-${value.date()}-${value.year()}`
-                //check if date is less than max date
-                if (dayjs(date).isBefore(maxDate) && dayjs(date).isAfter("01-01-1900")) {
-                    props.setValid(props.index, true)
-                    props.setAnswer(props.index, date)
-                    setError("")
-                } else {
-                    props.setValid(props.index, false)
-                    setError(validationText.date[props.lang])
-                }
+        if (!check) {
+            return
+        }
+        if (value) {
+            let numMonth = value.month() + 1
+            let numDate = value.date()
+            let stringMonth
+            let stringDate
+            if (numMonth < 10) {
+                stringMonth = "0" + numMonth
+            } else {
+                stringMonth = numMonth
+            }
+            if (numDate < 10) {
+                stringDate = "0" + numDate
+            } else {
+                stringDate = numDate
+            }
+            //const date = `${stringMonth}-${stringDate}-${value.year()}`
+            const date = `${value.year()}-${stringMonth}-${stringDate}`
+            //check if date is less than max date
+            if (dayjs(date).isBefore(maxDate) && dayjs(date).isAfter("1900-01-01")) {
+                props.setValid(props.index, true)
+                props.setAnswer(props.index, date)
+                setError("")
             } else {
                 props.setValid(props.index, false)
+                //setError(`${date} ${dayjs(date)} `)
                 setError(validationText.date[props.lang])
             }
+        } else {
+            props.setValid(props.index, false)
+            setError(validationText.date[props.lang])
         }
+
     }, [value, check])
     return (<>
         <Box
