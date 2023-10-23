@@ -8,15 +8,21 @@ import CarImg1 from "../../public/assets/images/quotes/auto/car1.png";
 import CarImg2 from "../../public/assets/images/quotes/auto/car2.png";
 import TwoColumn from '../../components/Content/Grids/TwoColumn';
 const heroContent = {
-    title: "Auto Insurance",
-    subtitle: "We’ve partnered with Alinsko to provide quick and easy Auto Insurance coverage",
+    title: { en: "Auto Insurance", es: "Seguro De Auto" },
+    subtitle: {
+        en: "We’ve partnered with Alinsko to provide quick and easy Auto Insurance coverage",
+        es: "Nos hemos asociado con Alinsko para proporcionar una cobertura rápida y fácil de seguro de auto"
+    },
     image: { src: HeroImg, },
     validation: "zipcode",
     cta: {
         type: "input",
         validation: "numbers",
-        placeholder: "Zip Code",
-        button: "Get A Quote",
+        placeholder: { en: "Zip Code", es: "Código Postal" },
+        buttonText: {
+            en: "Get A Quote",
+            es: "Obtener Una Cotización"
+        }
     }
 }
 const slideData = {

@@ -2,6 +2,8 @@ import { Box, Typography, Button, TextField } from "@mui/material";
 import Image from "next/image";
 
 import { useEffect, useState } from "react";
+import { Lang } from "../../locale/LocaleSwitcher";
+import { useRouter } from "next/router";
 const styles = {
     imageContainer: {
         width: "100%",
@@ -33,8 +35,15 @@ const styles = {
         gap: "1rem",
     }
 }
-
+const errorValidationText = {
+    en: "Please enter a valid zipcode",
+    es: "Por favor ingrese un código postal válido"
+}
 export default function (props) {
+    const router = useRouter()
+    const { locale } = router
+    const currentLang = Lang[locale ?? 'en']
+
     const [inputValue, setInputValue] = useState("")
     const [isValid, setIsValid] = useState(false)
     const [errorText, setErrorText] = useState("")
@@ -54,17 +63,18 @@ export default function (props) {
     }
 
     useEffect(() => {
-        if (props.validation?.toLowerCase() === "zipcode") {
+        if (props.validation.toLowerCase() === "zipcode") {
             if (inputValue?.length === 5) {
                 setOnceValid(true)
                 setIsValid(true)
                 setErrorText("")
             } else if (inputValue?.length !== 5 && onceValid) {
                 setIsValid(false)
-                setErrorText("Please enter a valid zipcode")
+                setErrorText(errorValidationText[currentLang])
             }
         }
     }, [inputValue])
+
     return (
         <>
             <Box
@@ -101,7 +111,7 @@ export default function (props) {
 
                         }}
                     >
-                        {props.title}
+                        {props.title[currentLang]}
                     </Typography>
                     <Typography variant="h4"
 
@@ -110,7 +120,7 @@ export default function (props) {
 
                         }}
                     >
-                        {props.subtitle}
+                        {props.subtitle[currentLang]}
                     </Typography>
                     <Box
                         sx={{
@@ -121,7 +131,7 @@ export default function (props) {
                         }}
                     >
                         <TextField
-                            placeholder={props.cta.placeholder}
+                            placeholder={props.cta.placeholder[currentLang]}
                             variant="outlined"
                             color="secondary"
                             value={inputValue}
@@ -133,7 +143,7 @@ export default function (props) {
                                 if (isValid) {
                                     window.open(alinskoLink, "_blank")
                                 } else {
-                                    setErrorText("Please enter a valid zipcode")
+                                    setErrorText(errorValidationText[currentLang])
                                 }
                             }}
                             error={!isValid}
@@ -152,12 +162,14 @@ export default function (props) {
                                     if (isValid) {
                                         window.open(alinskoLink, "_blank")
                                     } else {
-                                        setErrorText("Please enter a valid zipcode")
+                                        setErrorText(errorValidationText[currentLang])
                                     }
                                 }}
-                                sx={{ width: "10rem", minHeight: "3.5rem" }}
+                                sx={{
+                                    minWidth: "10rem", minHeight: "3.5rem"
+                                }}
                             >
-                                {props.cta.button}
+                                {props.cta.buttonText[currentLang]}
                             </Button>
 
                         </Box>
