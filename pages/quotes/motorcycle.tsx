@@ -1,6 +1,97 @@
 import JotFormEmbed from 'react-jotform-embed';
 import SimpleForm from '../../components/Forms/Simple/Simple';
+import PATHCONSTANTS from '../../constants/sitemap';
+import MainGrid from '../../components/Content/Grids/MainGrid';
+import TwoColumn from '../../components/Content/Grids/TwoColumn';
+import VerticalBanner from '../../components/Content/Hero/VerticalBanner';
+import MotoImg1 from '../../public/assets/images/quotes/motorcycle/motorcycle1.png';
+import MotoImg2 from '../../public/assets/images/quotes/motorcycle/motorcycle2.png';
+import MotoImg3 from '../../public/assets/images/quotes/motorcycle/motorcycle3.png';
 
+const bannerContent = {
+    title: {
+        en: "Get Motorcycle Insurance Today",
+        es: "Obtenga Seguro De Motocicleta Hoy"
+    },
+    subtitle: {
+        en: `Protect yourself and your valuables by getting low cost motorcycle insurance that will cover the content of an apartment or home that you'll be renting.`,
+        es: `Protéjase a sí mismo y a sus objetos de valor obteniendo un seguro de motocicleta de bajo costo que cubrirá el contenido de un apartamento o casa que alquilará.`
+    },
+    img: {
+        src: MotoImg1,
+        alt: "motorcycle",
+    }
+}
+const contentSection2 = {
+    largeHorizontalCard: {
+        title: {
+            en: "Protecting Your Passion and Your Pocket",
+            es: "Protegiendo su pasión y su bolsillo"
+        },
+        body: {
+            en: [`Whether you're a seasoned rider or a beginner, having the right insurance coverage is not just a legal requirement in many places,
+             but it's also a smart decision to protect your investment and your well-being.`,],
+            es: [`Ya sea que sea un motociclista experimentado o un principiante, tener la cobertura de seguro adecuada no es solo un requisito legal en muchos lugares,
+                sino que también es una decisión inteligente para proteger su inversión y su bienestar.`,]
+        }
+    },
+    largeVerticalCard: {
+        body: {
+            en: ['Join the thousands of people who have saved money by getting a free motorcycle insurance quote from us.'],
+            es: ['Únase a los miles de personas que han ahorrado dinero obteniendo una cotización gratuita de seguro de motocicleta de nosotros.']
+        },
+        img: {
+            src: MotoImg2,
+            alt: "helmet"
+        }
+    },
+    smallCard1: {
+        body: {
+            en: ["Visit one of our offices located all across the country."],
+            es: ["Visite una de nuestras oficinas ubicadas en todo el país."]
+        },
+        CTA: {
+            text: {
+                en: "Find a Store",
+                es: "Encuentra una ubicación"
+            },
+            link: PATHCONSTANTS.LOCATIONS.INDEX,
+            type: "secondary"
+        }
+    },
+    smallCard2: {
+        body: {
+            en: ["Get a free quote today from the comfort of your home."],
+            es: ["Obtenga una cotización gratuita hoy desde la comodidad de su hogar."]
+        },
+        CTA: {
+            text: {
+                en: "Get a Quote",
+                es: "Obtenga una cotización"
+            },
+            link: `${PATHCONSTANTS.QUOTES.MOTORCYCLE}#motorcycle-quote`,
+            type: "primary"
+        }
+    }
+}
+const contentSection3 = {
+    title: {
+        en: "Covering Every Curve: Motorcycle Insurance Options",
+    },
+    body: {
+        en: [`At Ai United, we understand that every driver is unique. That's why we offer a variety of auto insurance coverages to match your needs.`,
+            `• Liability Insurance`,
+            `• Collision Coverage`, `• Comprehensive Coverage`, `• And More`
+        ],
+        es: [`En Ai United, entendemos que cada conductor es único. Es por eso que ofrecemos una variedad de coberturas de seguro de automóvil para satisfacer sus necesidades.`,
+            `• Seguro de responsabilidad`, `• Cobertura de colisión`, `• Cobertura integral`, `• Y más`
+        ]
+    },
+    img: {
+        src: MotoImg3,
+        alt: "Motorcycle",
+    }
+}
 const formContent = {
     title: { en: "Motorcycle Insurance Quote", es: "Cotización de seguro de motocicleta" },
     subtitle: { en: "Start a free motorcycle insurance quote to see the savings", es: `Comience una cotización gratuita de seguro de motocicleta para ver los ahorros` },
@@ -158,6 +249,9 @@ const formContent = {
 }
 export default function () {
     return <>
+        <VerticalBanner {...bannerContent} />
+        <MainGrid {...contentSection2} />
+        <TwoColumn {...contentSection3} />
         <SimpleForm {...formContent} />
     </>
 }
