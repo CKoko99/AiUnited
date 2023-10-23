@@ -198,8 +198,8 @@ const navItems = [
       },
       {
         title: {
-          en: "Dallas/ Fort Worth",
-          es: "Dallas/ Fort Worth"
+          en: "Dallas / Fort Worth",
+          es: "Dallas / Fort Worth"
         },
         link: PATHCONSTANTS.LOCATIONS.DALLAS
       },
