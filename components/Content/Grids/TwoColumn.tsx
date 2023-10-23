@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { useRouter } from "next/router";
 import { Lang } from "../../locale/LocaleSwitcher";
 import { CustomFonts } from "../../../providers/theme";
@@ -8,10 +8,8 @@ interface TwoColumnProps {
     title: { [lang: string]: string; };
     body: { [lang: string]: string[]; };
     img: {
-        src: string;
+        src: StaticImageData;
         alt: string;
-        width: number;
-        height: number;
     };
 }
 
@@ -44,7 +42,7 @@ export default function (props: TwoColumnProps) {
                 display: "flex", flexDirection: "column", gap: "1rem"
             }}
         >
-            <Typography fontFamily={CustomFonts.Gustavo} variant="h4">{props.title[currentLang]}</Typography>
+            <Typography textAlign={"center"} fontFamily={CustomFonts.Gustavo} variant="h4">{props.title[currentLang]}</Typography>
             <Box>
                 {props.body[currentLang].map((paragraph, index) => {
                     return <Typography key={index} variant="h5"> {paragraph}</Typography>

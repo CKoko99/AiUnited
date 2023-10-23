@@ -2,7 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { Lang } from "../../locale/LocaleSwitcher";
 import { CustomFonts } from "../../../providers/theme";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 
 interface MainGridProps {
@@ -13,10 +13,8 @@ interface MainGridProps {
     largeVerticalCard?: {
         body: { [lang: string]: string[]; };
         img: {
-            src: string;
+            src: StaticImageData;
             alt: string;
-            width: number;
-            height: number;
         };
     };
     smallCard1?: {
@@ -24,7 +22,7 @@ interface MainGridProps {
         CTA?: {
             text: { [lang: string]: string; };
             link: string;
-            type: "primary" | "secondary";
+            type: string;
         };
     };
     smallCard2?: {
@@ -32,7 +30,7 @@ interface MainGridProps {
         CTA?: {
             text: { [lang: string]: string; };
             link: string;
-            type: "primary" | "secondary";
+            type: string;
         };
     };
 }
