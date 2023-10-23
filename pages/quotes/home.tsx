@@ -1,6 +1,108 @@
 import SimpleForm from '../../components/Forms/Simple/Simple';
+import PATHCONSTANTS from '../../constants/sitemap';
+import MainGrid from '../../components/Content/Grids/MainGrid';
+import TwoColumn from '../../components/Content/Grids/TwoColumn';
+import VerticalBanner from '../../components/Content/Hero/VerticalBanner';
+import HomeImg1 from '../../public/assets/images/quotes/home/home1.png';
+import HomeImg2 from '../../public/assets/images/quotes/home/home2.png';
+import HomeImg3 from '../../public/assets/images/quotes/home/home3.png';
 
-
+const bannerContent = {
+    title: {
+        en: "Get Home Insurance Today",
+        es: "Obtenga Seguro De Hogar Hoy"
+    },
+    subtitle: {
+        en: `Home insurance is a crucial safeguard for your most significant investment - your home.
+         It provdes financial protection against unforeseene events and disasters.`,
+        es: `El seguro de hogar es una protección crucial para su inversión más importante: su hogar.
+            Proporciona protección financiera contra eventos imprevistos y desastres.`
+    },
+    img: {
+        src: HomeImg1,
+        alt: "Home",
+    }
+}
+const contentSection2 = {
+    largeHorizontalCard: {
+        title: {
+            en: "Why Home Insurance is Your Shield Against the Unexpected",
+            es: "Por qué el seguro de hogar es su escudo contra lo inesperado"
+        },
+        body: {
+            en: [`Home insurance covers your dwelling and personal belongings in case of damage or theft. This means your home 
+            and the things you value are protected.`,
+                `Having home insurance offers peace of mind. You can rest easy knowing that your home and belongings are secure, and you won't
+        face a financial crisis if disaster strikes.`
+            ],
+            es: [`El seguro de hogar cubre su vivienda y sus pertenencias personales en caso de daños o robos. Esto significa que su hogar
+            y las cosas que valoras están protegidas.`,
+                `Tener un seguro de hogar ofrece tranquilidad. Puede descansar tranquilo sabiendo que su hogar y sus pertenencias están seguros, y usted no
+        enfrentar una crisis financiera si ocurre un desastre.`
+            ]
+        },
+        img: {
+            src: HomeImg2,
+            alt: "family"
+        }
+    },
+    largeVerticalCard: {
+        body: {
+            en: ['Join the thousands of people who switched to Ai United Insurance'],
+            es: ['Únase a los miles de personas que cambiaron a Ai United Insurance']
+        },
+        img: {
+            src: HomeImg2,
+            alt: "helmet"
+        }
+    },
+    smallCard1: {
+        body: {
+            en: ["Visit one of our offices located all across the country."],
+            es: ["Visite una de nuestras oficinas ubicadas en todo el país."]
+        },
+        CTA: {
+            text: {
+                en: "Find a Store",
+                es: "Encuentra una ubicación"
+            },
+            link: PATHCONSTANTS.LOCATIONS.INDEX,
+            type: "secondary"
+        }
+    },
+    smallCard2: {
+        body: {
+            en: ["Get a free quote today from the comfort of your home."],
+            es: ["Obtenga una cotización gratuita hoy desde la comodidad de su hogar."]
+        },
+        CTA: {
+            text: {
+                en: "Get a Quote",
+                es: "Obtenga una cotización"
+            },
+            link: `${PATHCONSTANTS.QUOTES.MOTORCYCLE}#motorcycle-quote`,
+            type: "primary"
+        }
+    }
+}
+const contentSection3 = {
+    title: {
+        en: "Exploring Home Insurance Coverage Options",
+        es: "Explorando las opciones de cobertura de seguro de hogar"
+    },
+    body: {
+        en: [`At Ai United, we understand that every driver is unique. That's why we offer a variety of auto insurance coverages to match your needs.`,
+            `• Liability Insurance`,
+            `• Collision Coverage`, `• Comprehensive Coverage`, `• And More`],
+        es: [`En Ai United, entendemos que cada conductor es único. Es por eso que ofrecemos una variedad de coberturas de seguro de automóvil para satisfacer sus necesidades.`,
+            `• Seguro de responsabilidad`, `• Cobertura de colisión`, `• Cobertura integral`, `• Y más`
+        ]
+    },
+    img: {
+        src: HomeImg3,
+        alt: "Motorcycle",
+    }
+}
 const formContent = {
     title: {
         en: "Home Insurance Quote", es: "Cotización de seguro de hogar"
@@ -133,6 +235,9 @@ const formContent = {
 }
 export default function () {
     return <>
+        <VerticalBanner {...bannerContent} />
+        <MainGrid {...contentSection2} />
+        <TwoColumn {...contentSection3} />
         <SimpleForm {...formContent} />
     </>
 }
