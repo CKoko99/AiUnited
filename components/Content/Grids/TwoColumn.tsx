@@ -4,7 +4,18 @@ import { useRouter } from "next/router";
 import { Lang } from "../../locale/LocaleSwitcher";
 import { CustomFonts } from "../../../providers/theme";
 
-export default function (props) {
+interface TwoColumnProps {
+    title: { [lang: string]: string; };
+    body: { [lang: string]: string[]; };
+    img: {
+        src: string;
+        alt: string;
+        width: number;
+        height: number;
+    };
+}
+
+export default function (props: TwoColumnProps) {
     const router = useRouter()
     const { locale } = router
     const currentLang = Lang[locale ?? 'en']
