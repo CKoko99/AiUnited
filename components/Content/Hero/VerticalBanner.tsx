@@ -2,11 +2,30 @@ import { Box, Button, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { Lang } from "../../locale/LocaleSwitcher";
 import { CustomFonts } from "../../../providers/theme";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import theme from "../../../providers/theme";
 
-export default function (props) {
+interface VerticalBannerProps {
+    title?: {
+        [lang: string]: string;
+    };
+    subtitle?: {
+        [lang: string]: string;
+    };
+    CTA?: {
+        text: {
+            [lang: string]: string;
+        };
+        link: string;
+    };
+    img?: {
+        src: StaticImageData;
+        alt: string;
+    };
+}
+
+export default function (props: VerticalBannerProps) {
 
     const router = useRouter()
     const { locale } = router
@@ -21,8 +40,8 @@ export default function (props) {
                 padding: "1.5rem", alignItems: "center", justifyContent: "center",
             }}
         >
-            <Typography fontFamily={CustomFonts.Gustavo} variant="h3">{props.title[currentLang]}</Typography>
-            <Typography variant="h5">{props.subtitle[currentLang]}</Typography>
+            <Typography fontFamily={CustomFonts.Gustavo} variant="h3">{props.title && props.title[currentLang]}</Typography>
+            <Typography variant="h5">{props.subtitle && props.subtitle[currentLang]}</Typography>
             {props.CTA &&
                 <Link href={props.CTA.link} scroll={false}>
                     <Button variant="contained"
