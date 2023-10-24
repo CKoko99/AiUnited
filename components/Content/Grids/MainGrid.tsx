@@ -86,7 +86,7 @@ export default function (props: MainGridProps) {
                     >
                         <Typography textAlign={"center"} fontFamily={CustomFonts.Gustavo} variant="h4">{props.largeHorizontalCard.title && props.largeHorizontalCard.title[currentLang]}</Typography>
                         {props.largeHorizontalCard.body[currentLang].map((paragraph, index) => {
-                            return <Typography key={index} variant="h5">• {paragraph}</Typography>
+                            return <Typography key={index} variant="h5">{paragraph}</Typography>
                         })}
                     </Box>}
                 <Box

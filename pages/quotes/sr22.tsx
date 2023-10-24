@@ -1,6 +1,116 @@
+import MainGrid from '../../components/Content/Grids/MainGrid';
+import TwoColumn from '../../components/Content/Grids/TwoColumn';
+import VerticalBanner from '../../components/Content/Hero/VerticalBanner';
 import SimpleForm from '../../components/Forms/Simple/Simple';
+import PATHCONSTANTS from '../../constants/sitemap';
+import Sr22Img1 from "../../public/assets/images/quotes/sr22/sr1.png";
+import Sr22Img2 from "../../public/assets/images/quotes/sr22/sr2.png";
+import Sr22Img3 from "../../public/assets/images/quotes/sr22/sr3.png";
 
 
+const bannerContent = {
+    title: {
+        en: "Get SR-22 Insurance Today",
+        es: "Obtenga Seguro SR-22 Hoy"
+    },
+    subtitle: {
+        en: `If you've found yourself in a situation where you need SR-22 insurance, you're not alone. 
+        It's essential to understand why you might need SR-22 insurance and how it can help you get back on the road.`,
+        es: `Si se encuentra en una situación en la que necesita un seguro SR-22, no está solo.
+        Es esencial comprender por qué puede necesitar un seguro SR-22 y cómo puede ayudarlo a volver a la carretera.`
+    },
+    CTA: {
+        color: "secondary",
+        text: {
+            en: "Get a Quote",
+            es: "Obtener una cotización"
+        },
+        link: `${PATHCONSTANTS.QUOTES.SR22}#SR22-quote`
+    },
+    img: {
+        src: Sr22Img1,
+        alt: "renters"
+    }
+}
+
+const contentSection2 = {
+    title: {
+        en: "Why You May Need SR-22 Insurance",
+        es: `Por qué puede necesitar un seguro SR-22`
+    },
+    body: {
+        en: [`• DUI/DWI Convictions: If you've been convicted of a DUI or DWI, you'll likely need SR-22 insurance to 
+            reinstate your driver's license`,
+            `• Multiple Traffic Violations: If you've been convicted of a DUI or DWI, you'll likely need SR-22 insurance 
+            to reinstate your driver's license`,
+            `• Uninsured Accidents: If you've been involved in an accident while uninsured, you might require SR-22 insurance to demonstrate
+             your commitment to financial responsibility and compliance with the law`
+        ],
+        es: [`• Condenas por DUI / DWI: si ha sido condenado por un DUI o DWI, es probable que necesite un seguro SR-22 para
+            reactivar su licencia de conducir`,
+            `• Múltiples violaciones de tráfico: si ha sido condenado por un DUI o DWI, es probable que necesite un seguro SR-22
+            para reactivar su licencia de conducir`,
+            `• Accidentes sin seguro: si ha estado involucrado en un accidente sin seguro, es posible que necesite un seguro SR-22 para demostrar
+            su compromiso con la responsabilidad financiera y el cumplimiento de la ley`
+        ],
+    },
+    img: { src: Sr22Img2, alt: "apartment" }
+
+
+}
+const contentSection3 = {
+    largeHorizontalCard: {
+        title: {
+            en: "Different Types of SR-22 Insurance",
+            es: `Diferentes tipos de seguro SR-22`
+        },
+        body: {
+            en: [`When it comes to SR-22 insurance, you have some flexibility in choosing coverage options
+             that suit your situation. Here are some of the most common types of SR-22 insurance:`,
+                `• Liability Coverage`,
+                `• Non-Owner SR-22`,
+                `• Full Coverage`,
+                `• High-Risk SR-22`
+            ],
+            es: [`Cuando se trata de seguro SR-22, tiene cierta flexibilidad para elegir opciones de cobertura
+            que se adapte a su situación. Estos son algunos de los tipos más comunes de seguro SR-22:`,
+                `• Cobertura de responsabilidad`,
+                `• SR-22 sin propietario`,
+                `• Cobertura completa`,
+                `• SR-22 de alto riesgo`
+            ]
+        },
+    },
+    largeVerticalCard: {
+        body: {
+            en: [`Join the thousands of Texans who switch to Ai United Insurance`],
+            es: [`Únase a los miles de tejanos que cambian a Ai United Insurance`]
+        },
+        img: { src: Sr22Img3, alt: "apartment" }
+    },
+    smallCard1: {
+        body: {
+            en: [`Visit one of our offices located throughout Texas`],
+            es: [`Visite una de nuestras oficinas ubicadas en todo Texas`]
+        },
+        CTA: {
+            type: "secondary",
+            text: { en: "Find a Store", es: "Encuentra una tienda" },
+            link: PATHCONSTANTS.LOCATIONS.INDEX
+        },
+    },
+    smallCard2: {
+        body: {
+            en: ['Get a free quote today from the comfort of your home'],
+            es: ['Obtenga una cotización gratuita hoy desde la comodidad de su hogar']
+        },
+        CTA: {
+            type: "primary",
+            text: { en: "Get A Quote", es: "Obtener Una Cotización" },
+            link: `#SR22-quote`
+        },
+    }
+}
 const formContent = {
     title: {
         en: "SR-22 Insurance Quote", es: "Cotización de seguro de SR-22"
@@ -122,6 +232,9 @@ const formContent = {
 }
 export default function () {
     return <>
+        <VerticalBanner {...bannerContent} />
+        <TwoColumn {...contentSection2} />
+        <MainGrid {...contentSection3} />
         <SimpleForm {...formContent} />
     </>
 }
