@@ -47,7 +47,9 @@ const textContent = {
         },
         body: {
             en: `Ready to get a quote or have questions about your insurance options? Our team of experts 
-            are ready to assist you in finding the perfect coverage for your home.`
+            are ready to assist you in finding the perfect coverage for your home.`,
+            es: `¿Listo para obtener una cotización o tiene preguntas sobre sus opciones de seguro? Nuestro equipo de expertos
+         están listos para ayudarlo a encontrar la cobertura perfecta para su hogar.`,
         },
         img: {
             src: ContactImg,
@@ -100,6 +102,7 @@ const classes = {
         margin: "auto",
         borderRadius: "16px",
         flex: "1",
+        boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.25)",
     },
     itemTextContainer: {
         padding: "0 1rem 1rem 1rem",
@@ -204,9 +207,7 @@ export default function (props) {
                                         variant={button.variant === "contained" ? "contained" : "outlined"}
                                         color={button.color === "primary" ? "primary" : "secondary"}
                                         sx={{ ...classes.button }}
-
                                     >
-
                                         {button.text[currentLang]}</Button>
                                 </Link>
                             })}

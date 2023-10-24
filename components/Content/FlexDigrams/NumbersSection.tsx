@@ -80,6 +80,7 @@ const SectionItem = forwardRef((props: SectionItemProps, ref) => {
                 padding: { xs: "1.5rem", md: "1.4rem 1rem" }, borderRadius: "1rem",
                 display: "flex", alignItems: "center",
                 gap: "1rem", width: "fit-content", margin: "auto",
+                boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.25)",
 
             }}
         >

@@ -27,9 +27,7 @@ const Lang = {}
 Object.keys(languageMap).forEach((key) => {
     Lang[languageMap[key].locale] = key
 })
-console.log(Lang)
 export { Lang }
-console.log(localesAndLanguages)
 export default function LocaleSwitcher() {
     const router = useRouter()
     const { locales, locale: activeLocale } = router
