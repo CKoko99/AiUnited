@@ -59,13 +59,14 @@ const styles = {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
+        color: "#7d7d7d",
         "&:hover": {
             cursor: "pointer",
-            fontWeight: "bold",
+            color: "black",
             border: "2px solid #6e6e6e",
         },
         minWidth: { xs: "205px", lg: "250px" },
-        transition: 'font-weight 0.3s, border 0.3s', // Add opacity transition
+        transition: 'all 0.3s, border 0.3s', // Add opacity transition
 
     },
     cards: {
