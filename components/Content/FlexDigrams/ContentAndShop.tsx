@@ -91,12 +91,15 @@ const classes = {
     itemsContainer: {
         display: "flex",
         justifyContent: "space-around",
+        flexDirection: { xs: "column", md: "row" },
+        gap: "2rem",
     },
     contentItem: {
         border: "1px solid #cacaca",
-        maxWidth: { xs: "100%", md: "40%" },
+        maxWidth: { xs: "90%", md: "40%" },
+        margin: "auto",
         borderRadius: "16px",
-        flex: "1"
+        flex: "1",
     },
     itemTextContainer: {
         padding: "0 1rem 1rem 1rem",
@@ -107,7 +110,12 @@ const classes = {
         display: "flex",
         justifyContent: "space-around",
         gap: "1rem",
-        marginTop: "1rem"
+        marginTop: "1rem",
+        flexDirection: { xs: "column", md: "row" },
+        alignItems: "center",
+    },
+    button: {
+        minWidth: { xs: "12rem", md: "" },
     }
 }
 export default function (props) {
@@ -156,6 +164,7 @@ export default function (props) {
                                 href={props.quoteLink || ""}>
                                 <Button
                                     variant="contained" color="primary"
+                                    sx={{ ...classes.button }}
                                 >{textContent.shopOnline.CtaButton.text[currentLang]}</Button>
                             </Link>
                         </Box>
@@ -194,6 +203,8 @@ export default function (props) {
                                         key={index}
                                         variant={button.variant === "contained" ? "contained" : "outlined"}
                                         color={button.color === "primary" ? "primary" : "secondary"}
+                                        sx={{ ...classes.button }}
+
                                     >
 
                                         {button.text[currentLang]}</Button>
