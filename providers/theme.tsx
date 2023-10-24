@@ -34,18 +34,17 @@ let theme = createTheme({
         outlinedSecondary: {
           color: 'black',
           borderColor: 'black',
-          transition: 'font-weight 0.3s',
+          transition: 'all 0.3s',
           '&:hover': {
             borderColor: 'black',
             color: 'black',
-            fontWeight: 'bold',
+            backgroundColor: '#cacaca',
           },
         },
         containedSecondary: {
-          transition: 'font-weight 0.3s',
+          transition: 'all 0.3s',
           '&:hover': {
 
-            fontWeight: 'bold',
           },
         },
       },
