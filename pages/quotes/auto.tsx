@@ -7,6 +7,7 @@ import MainGrid from '../../components/Content/Grids/MainGrid';
 import CarImg1 from "../../public/assets/images/quotes/auto/car1.png";
 import CarImg2 from "../../public/assets/images/quotes/auto/car2.png";
 import TwoColumn from '../../components/Content/Grids/TwoColumn';
+import ContentAndShop from '../../components/Content/FlexDigrams/ContentAndShop';
 const heroContent = {
     title: { en: "Auto Insurance", es: "Seguro De Auto" },
     subtitle: {
@@ -125,11 +126,48 @@ const contentSection3 = {
     },
     img: { src: CarImg2, alt: "car" },
 }
+const contentSection4 = {
+    title: {
+        en: "Learn More About Auto Insurance",
+        es: "Aprenda Más Sobre El Seguro De Auto"
+    },
+    content: [
+        {
+            title: {
+                en: "Auto Insurance",
+                es: "Seguro De Auto"
+            },
+            body: [""]
+        },
+        {
+            title: {
+                en: "Coverage Details",
+                es: "Detalles De Cobertura"
+            },
+            body: [""]
+        },
+        {
+            title: {
+                en: "Affordable Coverage",
+                es: "Cobertura Asequible"
+            },
+            body: [""]
+        },
+        {
+            title: {
+                en: "Frequently Asked Questions",
+                es: "Preguntas Frecuentes"
+            },
+            body: [""]
+        }
+    ]
+}
 export default function () {
     return <>
         <AutoQuoteHero {...heroContent} />
         <NumbersSection {...slideData} menuContent={slideData.menuContent} />
         <MainGrid {...contentSection2} />
         <TwoColumn {...contentSection3} />
+        <ContentAndShop quoteLink="#auto-quote" />
     </>
 }
