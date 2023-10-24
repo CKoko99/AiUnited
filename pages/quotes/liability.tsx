@@ -2,6 +2,7 @@ import JotFormEmbed from 'react-jotform-embed';
 import SimpleForm from '../../components/Forms/Simple/Simple';
 
 const formContent = {
+    id: "GeneralLiability-quote",
     title: { en: "General Liability Quote", es: "Cotización de responsabilidad general" },
     subtitle: { en: "Start a free liability insurance quote to see the savings", es: `Comience una cotización gratuita de seguro de responsabilidad para ver los ahorros` },
     questions: [

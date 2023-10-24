@@ -1,4 +1,3 @@
-import JotFormEmbed from 'react-jotform-embed';
 import SimpleForm from '../../components/Forms/Simple/Simple';
 import PATHCONSTANTS from '../../constants/sitemap';
 import MainGrid from '../../components/Content/Grids/MainGrid';
@@ -7,6 +6,7 @@ import VerticalBanner from '../../components/Content/Hero/VerticalBanner';
 import MotoImg1 from '../../public/assets/images/quotes/motorcycle/motorcycle1.png';
 import MotoImg2 from '../../public/assets/images/quotes/motorcycle/motorcycle2.png';
 import MotoImg3 from '../../public/assets/images/quotes/motorcycle/motorcycle3.png';
+import ContactAndShop from '../../components/Content/FlexDigrams/ContactAndShop';
 
 const bannerContent = {
     title: {
@@ -20,6 +20,13 @@ const bannerContent = {
     img: {
         src: MotoImg1,
         alt: "motorcycle",
+    },
+    CTA: {
+        text: {
+            en: "Get a Quote",
+            es: "Obtenga una cotización"
+        },
+        link: `${PATHCONSTANTS.QUOTES.MOTORCYCLE}#Motorcycle-quote`,
     }
 }
 const contentSection2 = {
@@ -93,6 +100,7 @@ const contentSection3 = {
     }
 }
 const formContent = {
+    id: "Motorcycle-quote",
     title: { en: "Motorcycle Insurance Quote", es: "Cotización de seguro de motocicleta" },
     subtitle: { en: "Start a free motorcycle insurance quote to see the savings", es: `Comience una cotización gratuita de seguro de motocicleta para ver los ahorros` },
     questions: [
@@ -252,6 +260,7 @@ export default function () {
         <VerticalBanner {...bannerContent} />
         <MainGrid {...contentSection2} />
         <TwoColumn {...contentSection3} />
+        <ContactAndShop quoteLink="#Motorcycle-quote" />
         <SimpleForm {...formContent} />
     </>
 }

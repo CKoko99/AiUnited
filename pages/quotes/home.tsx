@@ -6,6 +6,7 @@ import VerticalBanner from '../../components/Content/Hero/VerticalBanner';
 import HomeImg1 from '../../public/assets/images/quotes/home/home1.png';
 import HomeImg2 from '../../public/assets/images/quotes/home/home2.png';
 import HomeImg3 from '../../public/assets/images/quotes/home/home3.png';
+import ContactAndShop from '../../components/Content/FlexDigrams/ContactAndShop';
 
 const bannerContent = {
     title: {
@@ -21,6 +22,13 @@ const bannerContent = {
     img: {
         src: HomeImg1,
         alt: "Home",
+    },
+    CTA: {
+        text: {
+            en: "Get a Quote",
+            es: "Obtenga una cotización"
+        },
+        link: `${PATHCONSTANTS.QUOTES.HOME}#Home-quote`,
     }
 }
 const contentSection2 = {
@@ -104,6 +112,7 @@ const contentSection3 = {
     }
 }
 const formContent = {
+    id: "Home-quote",
     title: {
         en: "Home Insurance Quote", es: "Cotización de seguro de hogar"
     },
@@ -238,6 +247,7 @@ export default function () {
         <VerticalBanner {...bannerContent} />
         <MainGrid {...contentSection2} />
         <TwoColumn {...contentSection3} />
+        <ContactAndShop quoteLink="#Home-quote" />
         <SimpleForm {...formContent} />
     </>
 }

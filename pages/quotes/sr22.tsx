@@ -1,3 +1,4 @@
+import ContactAndShop from '../../components/Content/FlexDigrams/ContactAndShop';
 import MainGrid from '../../components/Content/Grids/MainGrid';
 import TwoColumn from '../../components/Content/Grids/TwoColumn';
 import VerticalBanner from '../../components/Content/Hero/VerticalBanner';
@@ -112,6 +113,7 @@ const contentSection3 = {
     }
 }
 const formContent = {
+    id: "SR22-quote",
     title: {
         en: "SR-22 Insurance Quote", es: "Cotización de seguro de SR-22"
     },
@@ -235,6 +237,8 @@ export default function () {
         <VerticalBanner {...bannerContent} />
         <TwoColumn {...contentSection2} />
         <MainGrid {...contentSection3} />
+        <ContactAndShop quoteLink="#SR22-quote" />
+
         <SimpleForm {...formContent} />
     </>
 }

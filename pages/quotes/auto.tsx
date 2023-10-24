@@ -7,7 +7,7 @@ import MainGrid from '../../components/Content/Grids/MainGrid';
 import CarImg1 from "../../public/assets/images/quotes/auto/car1.png";
 import CarImg2 from "../../public/assets/images/quotes/auto/car2.png";
 import TwoColumn from '../../components/Content/Grids/TwoColumn';
-import ContentAndShop from '../../components/Content/FlexDigrams/ContentAndShop';
+import ContactAndShop from '../../components/Content/FlexDigrams/ContactAndShop';
 const heroContent = {
     title: { en: "Auto Insurance", es: "Seguro De Auto" },
     subtitle: {
@@ -168,6 +168,6 @@ export default function () {
         <NumbersSection {...slideData} menuContent={slideData.menuContent} />
         <MainGrid {...contentSection2} />
         <TwoColumn {...contentSection3} />
-        <ContentAndShop quoteLink="#auto-quote" />
+        <ContactAndShop quoteLink="#auto-quote" />
     </>
 }

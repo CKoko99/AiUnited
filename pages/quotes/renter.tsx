@@ -1,3 +1,4 @@
+import ContactAndShop from '../../components/Content/FlexDigrams/ContactAndShop';
 import MainGrid from '../../components/Content/Grids/MainGrid';
 import TwoColumn from '../../components/Content/Grids/TwoColumn';
 import VerticalBanner from '../../components/Content/Hero/VerticalBanner';
@@ -22,7 +23,7 @@ const bannerContent = {
             en: "Get a Quote",
             es: "Obtener una cotización"
         },
-        link: `${PATHCONSTANTS.QUOTES.RENTER}#renter-quote`
+        link: `${PATHCONSTANTS.QUOTES.RENTER}#Renter-quote`
     },
     img: {
         src: RentersImg1,
@@ -92,7 +93,7 @@ const contentSection3 = {
     img: { src: RentersImg3, alt: "Home" },
 }
 const formContent = {
-    id: "renter-quote",
+    id: "Renter-quote",
     title: {
         en: "Renters Insurance Quote", es: "Cotización de seguro de inquilinos"
     },
@@ -227,6 +228,7 @@ export default function () {
         <VerticalBanner {...bannerContent} />
         <MainGrid {...contentSection2} />
         <TwoColumn {...contentSection3} />
+        <ContactAndShop quoteLink="#Renter-quote" />
         <SimpleForm {...formContent} />
     </>
 }
