@@ -94,20 +94,24 @@ const classes = {
         display: "flex",
         justifyContent: "space-around",
         flexDirection: { xs: "column", md: "row" },
-        gap: "2rem",
+        gap: "2rem", alignItems: "stretch"
     },
     contentItem: {
         border: "1px solid #cacaca",
         maxWidth: { xs: "90%", md: "40%" },
-        margin: "auto",
+        margin: "0 auto",
         borderRadius: "16px",
         flex: "1",
         boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.25)",
+        display: "flex", flexDirection: "column",
     },
     itemTextContainer: {
-        padding: "0 1rem 1rem 1rem",
         display: "flex",
         flexDirection: "column",
+    },
+    bottomContainer: {
+        display: "flex", flexDirection: "column", justifyContent: "space-between",
+        flex: "1", paddingBottom: "1rem", padding: "0 1rem 1rem 1rem"
     },
     buttonsContainer: {
         display: "flex",
@@ -141,25 +145,35 @@ export default function (props) {
                 <Box
                     sx={{ ...classes.contentItem }}
                 >
-                    <Box
-                        sx={{ ...classes.imageContainer }}
-                    >
-                        <Image fill style={{ objectFit: "contain" }} {...textContent.shopOnline.img} />
+                    <Box>
+
+                        <Box
+                            sx={{ ...classes.imageContainer }}
+                        >
+                            <Image fill style={{ objectFit: "contain" }} {...textContent.shopOnline.img} />
+                        </Box>
+                        <hr />
                     </Box>
-                    <hr />
                     <Box
-                        sx={{ ...classes.itemTextContainer }}
+                        sx={{
+                            ...classes.bottomContainer
+                        }}
                     >
-                        <Typography
-                            variant="h6" fontFamily={CustomFonts.Gustavo}
+
+                        <Box
+                            sx={{ ...classes.itemTextContainer }}
                         >
-                            {textContent.shopOnline.title[currentLang]}
-                        </Typography>
-                        <Typography
-                            variant="body1"
-                        >
-                            {textContent.shopOnline.body[currentLang]}
-                        </Typography>
+                            <Typography
+                                variant="h6" fontFamily={CustomFonts.Gustavo}
+                            >
+                                {textContent.shopOnline.title[currentLang]}
+                            </Typography>
+                            <Typography
+                                variant="body1"
+                            >
+                                {textContent.shopOnline.body[currentLang]}
+                            </Typography>
+                        </Box>
                         <Box
                             sx={{ ...classes.buttonsContainer }}
                         >
@@ -176,25 +190,34 @@ export default function (props) {
                 <Box
                     sx={{ ...classes.contentItem }}
                 >
-                    <Box
-                        sx={{ ...classes.imageContainer }}
-                    >
-                        <Image fill style={{ objectFit: "contain" }} {...textContent.Contact.img} />
+                    <Box>
+
+                        <Box
+                            sx={{ ...classes.imageContainer }}
+                        >
+                            <Image fill style={{ objectFit: "contain" }} {...textContent.Contact.img} />
+                        </Box>
+                        <hr />
                     </Box>
-                    <hr />
                     <Box
-                        sx={{ ...classes.itemTextContainer }}
+                        sx={{
+                            ...classes.bottomContainer
+                        }}
                     >
-                        <Typography
-                            variant="h6" fontFamily={CustomFonts.Gustavo}
+                        <Box
+                            sx={{ ...classes.itemTextContainer }}
                         >
-                            {textContent.Contact.title[currentLang]}
-                        </Typography>
-                        <Typography
-                            variant="body1"
-                        >
-                            {textContent.Contact.body[currentLang]}
-                        </Typography>
+                            <Typography
+                                variant="h6" fontFamily={CustomFonts.Gustavo}
+                            >
+                                {textContent.Contact.title[currentLang]}
+                            </Typography>
+                            <Typography
+                                variant="body1"
+                            >
+                                {textContent.Contact.body[currentLang]}
+                            </Typography>
+                        </Box>
                         <Box
                             sx={{ ...classes.buttonsContainer }}
                         >
@@ -211,7 +234,6 @@ export default function (props) {
                                         {button.text[currentLang]}</Button>
                                 </Link>
                             })}
-
                         </Box>
                     </Box>
                 </Box>
