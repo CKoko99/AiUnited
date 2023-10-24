@@ -44,9 +44,9 @@ const slideData = {
             src: americaImg,
             alt: "America"
         },
-        number: 30,
-        afterNumber: "k+",
-        body: "Americans Insured",
+        beforeNumber: "$",
+        number: 247,
+        body: "Saved on Average",
 
     },
     {
@@ -54,9 +54,10 @@ const slideData = {
             src: americaImg,
             alt: "America"
         },
-        number: 30,
-        afterNumber: "k+",
-        body: "Americans Insured",
+        number: 6,
+        afterNumberGap: true,
+        afterNumber: "minutes",
+        body: "Qouting Process",
     },]
 }
 const contentSection2 = {
