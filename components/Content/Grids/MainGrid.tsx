@@ -49,7 +49,8 @@ const styles = {
         border: "1px solid #cacaca",
         borderRadius: "16px",
         display: "flex", flexDirection: "column",
-        gap: "1rem"
+        gap: "1rem",
+        boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.25)",
     },
 
     smallCard: {
@@ -60,6 +61,20 @@ const styles = {
     verticalCard: {
         width: { xs: "100%", md: "33%" },
         padding: "24px"
+    },
+    largeHorizontalCard: {
+        minHeight: "19rem",
+        padding: { xs: "1rem", md: "1rem 2.5rem" },
+    },
+    smallCardsContainer: {
+        display: "flex", justifyContent: "space-between",
+        flexDirection: { xs: "column", md: "row" }, gap: "1rem",
+        flex: "1"
+    },
+    largeVerticalCardImage: {
+        position: "relative",
+        width: "90%", height: { xs: "12rem", sm: "15rem", md: "18rem" },
+        margin: "auto"
     }
 }
 
@@ -80,8 +95,7 @@ export default function (props: MainGridProps) {
                     <Box
                         sx={{
                             ...styles.card,
-                            minHeight: "19rem",
-                            padding: { xs: "1rem", md: "1rem 2.5rem" },
+                            ...styles.largeHorizontalCard
                         }}
                     >
                         <Typography textAlign={"center"} fontFamily={CustomFonts.Gustavo} variant="h4">{props.largeHorizontalCard.title && props.largeHorizontalCard.title[currentLang]}</Typography>
@@ -91,9 +105,7 @@ export default function (props: MainGridProps) {
                     </Box>}
                 <Box
                     sx={{
-                        display: "flex", justifyContent: "space-between",
-                        flexDirection: { xs: "column", md: "row" }, gap: "1rem",
-                        flex: "1"
+                        ...styles.smallCardsContainer,
                     }}
                 >
                     {props.smallCard1 &&
@@ -157,9 +169,7 @@ export default function (props: MainGridProps) {
                     })}
                     <Box
                         sx={{
-                            position: "relative",
-                            width: "90%", height: { xs: "12rem", sm: "15rem", md: "18rem" },
-                            margin: "auto"
+                            ...styles.largeVerticalCardImage
                         }}
                     >
                         <Image fill style={{
