@@ -37,5 +37,6 @@ const PATHCONSTANTS = {
         REVIEWS: '/about/reviews',
     },
     PAYMENTS: '/payments',
+    PHONE: "tel:5555555555",
 };
 export default PATHCONSTANTS
