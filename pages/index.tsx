@@ -247,7 +247,7 @@ const aboutContent = {
                 src: PoliciesImg,
                 alt: "Policies"
             },
-            link: "/about/policies"
+            link: PATHCONSTANTS.QUOTES.INDEX
         },
         {
             title: {

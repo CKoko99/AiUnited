@@ -155,6 +155,8 @@ export default function () {
     const [error, setError] = useState(false)
     const [openModal, setOpenModal] = useState(false)
     const [modalContent, setModalContent] = useState<ModalContent | null>(null)
+    const [errorCount, setErrorCount] = useState(0)
+    const [showAllProviders, setShowAllProviders] = useState(false)
     function handleKeySearch() {
         //loop through providers and check if any of the keys match the start of the input
         //if they do, redirect to that link
@@ -176,8 +178,7 @@ export default function () {
         if (!found) {
             setError(true)
         }
-
-
+        setErrorCount(errorCount + 1)
     }
     const providersContent = <Box sx={{
         display: "flex",
@@ -204,7 +205,6 @@ export default function () {
             <Typography variant="h5">Enter your policy number below to make a payment</Typography>
             <FormControl
                 sx={{ display: "flex", flexDirection: "row", }}
-
             >
                 <TextField label="Policy Number" variant="outlined"
                     value={paymentInput}
@@ -216,12 +216,20 @@ export default function () {
                         backgroundColor: "white"
                     }}
                 />
-                <Button variant="contained" color="secondary"
-                    onClick={handleKeySearch}
-                    sx={{ width: "10rem", minHeight: "3.5rem" }}
+                <Box>
+                    <Button variant="contained" color="secondary"
+                        onClick={handleKeySearch}
+                        sx={{ width: "10rem", minHeight: "3.5rem" }}
 
-                >Make a Payment</Button>
+                    >Make a Payment</Button>
+                </Box>
             </FormControl>
+            {(errorCount > 1 && !showAllProviders) && <Button
+                onClick={() => setShowAllProviders(true)}
+            >
+                Click Here to Select Your Insurance Provider
+            </Button>}
+            {showAllProviders && providersContent}
             {openModal && <Modal
 
                 open={openModal}

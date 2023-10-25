@@ -102,6 +102,7 @@ export default function Diagram(props: DiagramProps) {
                                             fontWeight: "bold",
                                             margin: "1rem 0",
                                             whiteSpace: "pre-line",
+                                            lineHeight: "1.4rem",
                                         }}
                                     >
                                         {item.title[currentLang]?.split(' ').map((word: string, index: any) => (
