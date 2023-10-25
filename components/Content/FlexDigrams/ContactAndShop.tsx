@@ -125,7 +125,10 @@ const classes = {
         minWidth: { xs: "12rem", md: "" },
     }
 }
-export default function (props) {
+interface Props {
+    quoteLink?: string
+}
+export default function (props: Props) {
     const router = useRouter()
     const { locale } = router
     const currentLang = Lang[locale ?? 'en']
