@@ -3,6 +3,7 @@ import Question from "./Question";
 import { useRouter } from "next/router";
 import { Lang } from "../../locale/LocaleSwitcher";
 import { useEffect, useState } from "react";
+import PATHCONSTANTS from "../../../constants/sitemap";
 
 export default function (props) {
     const router = useRouter()
@@ -31,19 +32,7 @@ export default function (props) {
         const valid = validArray.every((value) => value)
         setValid(valid)
     }, [validArray])
-    useEffect(() => {
-        console.log('here')
-        for (let key in process.env) {
-            if (process.env.hasOwnProperty(key)) {
-                const value = process.env[key];
-                console.log(`Key: ${key}, Value: ${value}`);
-            } else {
-                console.log(key)
-            }
-        }
-        console.log(process.env.BACKEND)
-        console.log(process.env.NEXT_PUBLIC_BACKEND)
-    }, [])
+
     async function handleSubmit() {
         //send answers to backend
         console.log(answersArray)
@@ -59,9 +48,8 @@ export default function (props) {
         }
         formData.append("SheetTitle", props.title.en);
         formData.append("Spreadsheet", "AiUnited");
-        console.log(process.env)
-        console.log(process.env.NEXT_PUBLIC_BACKEND)
-        fetch(`${process.env.NEXT_PUBLIC_BACKEND}/forms`, {
+        console.log(PATHCONSTANTS.BACKEND)
+        fetch(`${PATHCONSTANTS.BACKEND}/forms`, {
 
             method: "POST",
             headers: {
