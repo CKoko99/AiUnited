@@ -127,42 +127,7 @@ const contentSection3 = {
     },
     img: { src: CarImg2, alt: "car" },
 }
-const contentSection4 = {
-    title: {
-        en: "Learn More About Auto Insurance",
-        es: "Aprenda Más Sobre El Seguro De Auto"
-    },
-    content: [
-        {
-            title: {
-                en: "Auto Insurance",
-                es: "Seguro De Auto"
-            },
-            body: [""]
-        },
-        {
-            title: {
-                en: "Coverage Details",
-                es: "Detalles De Cobertura"
-            },
-            body: [""]
-        },
-        {
-            title: {
-                en: "Affordable Coverage",
-                es: "Cobertura Asequible"
-            },
-            body: [""]
-        },
-        {
-            title: {
-                en: "Frequently Asked Questions",
-                es: "Preguntas Frecuentes"
-            },
-            body: [""]
-        }
-    ]
-}
+
 export default function () {
     return <>
         <AutoQuoteHero {...heroContent} />
