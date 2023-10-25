@@ -1,7 +1,115 @@
 import SimpleForm from '../../components/Forms/Simple/Simple';
 
+import VerticalBanner from '../../components/Content/Hero/VerticalBanner';
+import PATHCONSTANTS from '../../constants/sitemap';
+import SuretyImg1 from '../../public/assets/images/quotes/surety/surety1.png';
+import SuretyImg2 from '../../public/assets/images/quotes/surety/surety2.png';
+import SuretyImg3 from '../../public/assets/images/quotes/surety/surety3.png';
+import MainGrid from '../../components/Content/Grids/MainGrid';
+import ContactAndShop from '../../components/Content/FlexDigrams/ContactAndShop';
+import TwoColumn from '../../components/Content/Grids/TwoColumn';
 
+const bannerContent = {
+    title: {
+        en: "Get a Surety Bond Today",
+        es: "Obtenga un seguro de fianza hoy"
+    },
+    subtitle: {
+        en: `Ai United is dedicated to simplifying the world of Surety Bonds, ensuring you have the coverage you 
+        need, precisely when you need it.`,
+        es: `Ai United se dedica a simplificar el mundo de los bonos de garantía, asegurando que tenga la cobertura que
+        necesitas, precisamente cuando lo necesitas.`
+    },
+    CTA: {
+        text: {
+            en: "Get a Quote",
+            es: "Obtenga Una Cotización"
+        },
+        link: `${PATHCONSTANTS.QUOTES.MEXICO}#Surety-quote`
+    },
+    img: {
+        src: SuretyImg1,
+        alt: "Tourist"
+    }
+}
+const contentSection1 = {
+    largeHorizontalCard: {
+        title: {
+            en: "Why Surety Bond Insurance Matters",
+            es: "Por qué importa el seguro de fianza"
+        },
+        body: {
+            en: [`Surety Bond insurance is an essential safeguard that provides financial security and peace of mind. It 
+            acts as a three-way agreement between you (the principal), the entity requiring the bond (the obligee) and 
+            the surety company.`,
+                `Whether you're a construction professional, a business owner, or an individual seeking the protection and assurance 
+            of Surety Bond insurance, we're here to be your unwavering partner.`
+            ],
+            es: [`El seguro de fianza es una salvaguarda esencial que brinda seguridad financiera y tranquilidad. Es
+            actúa como un acuerdo de tres vías entre usted (el principal), la entidad que requiere el bono (el obligado) y
+            la compañía de seguros de caución.`,
+                `Ya sea que sea un profesional de la construcción, propietario de un negocio o una persona que busca la protección y seguridad
+            del seguro de fianza, estamos aquí para ser su socio inquebrantable.`
+            ],
+        },
+    },
+    largeVerticalCard: {
+        body: {
+            en: [`Join the thousands of Texans who switch to Ai United Insurance`],
+            es: [`Únase a los miles de tejanos que cambian a Ai United Insurance`]
+        },
+        img: { src: SuretyImg2, alt: "car" }
+    },
+    smallCard1: {
+        body: {
+            en: [`See what our customers have to say about Ai United`],
+            es: [`Vea lo que nuestros clientes tienen que decir sobre Ai United`]
+        },
+        CTA: {
+            type: "secondary",
+            text: { en: "Read Reviews", es: "Leer Reseñas" },
+            link: PATHCONSTANTS.ABOUT.REVIEWS
+        },
+    },
+    smallCard2: {
+        body: {
+            en: ['Get a free quote today from the comfort of your home'],
+            es: ['Obtenga una cotización gratuita hoy desde la comodidad de su hogar']
+        },
+        CTA: {
+            type: "primary",
+            text: { en: "Get A Quote", es: "Obtener Una Cotización" },
+            link: `${PATHCONSTANTS.QUOTES.AUTO}#auto-quote`
+        },
+    }
+}
+const contentSection2 = {
+    title: {
+        en: "Exploring Surety Bonds Coverage Options",
+        es: "Explorando las opciones de cobertura de bonos de garantía"
+    },
+    body: {
+        en: [
+            `Surety bonds come in various forms to suit different needs:`,
+            `• Contract Surety Bonds`,
+            `• Commercial Surety Bonds`,
+            `• Fidelity Surety Bonds`,
+            `• Judicial Surety Bonds`,
+            `• And More`
+        ],
+        es: [
+            `Los bonos de garantía vienen en varias formas para adaptarse a diferentes necesidades:`,
+            `• Bonos de garantía de contrato`,
+            `• Bonos de garantía comercial`,
+            `• Bonos de garantía de fidelidad`,
+            `• Bonos de garantía judicial`,
+            `• Y Más`
+        ]
+    },
+    img: { src: SuretyImg3, alt: "car" },
+}
 const formContent = {
+    id: "Surety-quote",
     title: {
         en: "Surety Bond Quote", es: "Cotización de seguro de fianza"
     },
@@ -114,6 +222,10 @@ const formContent = {
 }
 export default function () {
     return <>
+        <VerticalBanner {...bannerContent} />
+        <MainGrid  {...contentSection1} />
+        <TwoColumn {...contentSection2} />
+        <ContactAndShop quoteLink='#Surety-quote' />
         <SimpleForm {...formContent} />
     </>
 }
