@@ -222,6 +222,13 @@ const navItems = [
     menuItems: [
       {
         title: {
+          en: "Ai United",
+          es: "Ai United"
+        },
+        link: PATHCONSTANTS.ABOUT.INDEX
+      },
+      {
+        title: {
           en: "Contact Us",
           es: "Contáctenos"
         },
