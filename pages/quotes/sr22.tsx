@@ -6,7 +6,7 @@ import SimpleForm from '../../components/Forms/Simple/Simple';
 import PATHCONSTANTS from '../../constants/sitemap';
 import Sr22Img1 from "../../public/assets/images/quotes/sr22/sr1.png";
 import Sr22Img2 from "../../public/assets/images/quotes/sr22/sr2.png";
-import Sr22Img3 from "../../public/assets/images/quotes/sr22/sr3.png";
+import Sr22Img3 from "../../public/assets/images/quotes/home/home2.png";
 
 
 const bannerContent = {
@@ -235,8 +235,8 @@ const formContent = {
 export default function () {
     return <>
         <VerticalBanner {...bannerContent} />
-        <TwoColumn {...contentSection2} />
         <MainGrid {...contentSection3} />
+        <TwoColumn {...contentSection2} />
         <ContactAndShop quoteLink="#SR22-quote" />
 
         <SimpleForm {...formContent} />
