@@ -26,7 +26,7 @@ const bannerContent = {
             en: "Get a Quote",
             es: "Obtenga una cotización"
         },
-        link: `${PATHCONSTANTS.QUOTES.MOTORCYCLE}#Motorcycle-quote`,
+        link: `${PATHCONSTANTS.QUOTES.MOTORCYCLE.FORM}`,
     }
 }
 const contentSection2 = {
@@ -76,7 +76,7 @@ const contentSection2 = {
                 en: "Get a Quote",
                 es: "Obtenga una cotización"
             },
-            link: `${PATHCONSTANTS.QUOTES.MOTORCYCLE}#motorcycle-quote`,
+            link: `${PATHCONSTANTS.QUOTES.MOTORCYCLE.FORM}`,
             type: "primary"
         }
     }
@@ -260,7 +260,7 @@ export default function () {
         <VerticalBanner {...bannerContent} />
         <MainGrid {...contentSection2} />
         <TwoColumn {...contentSection3} />
-        <ContactAndShop quoteLink="#Motorcycle-quote" />
+        <ContactAndShop quoteLink={PATHCONSTANTS.QUOTES.MOTORCYCLE.FORM} />
         <SimpleForm {...formContent} />
     </>
 }

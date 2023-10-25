@@ -1,5 +1,4 @@
 import SimpleForm from '../../components/Forms/Simple/Simple';
-
 import VerticalBanner from '../../components/Content/Hero/VerticalBanner';
 import PATHCONSTANTS from '../../constants/sitemap';
 import SuretyImg1 from '../../public/assets/images/quotes/surety/surety1.png';
@@ -25,7 +24,7 @@ const bannerContent = {
             en: "Get a Quote",
             es: "Obtenga Una Cotización"
         },
-        link: `${PATHCONSTANTS.QUOTES.MEXICO}#Surety-quote`
+        link: PATHCONSTANTS.QUOTES.SURETY.FORM
     },
     img: {
         src: SuretyImg1,
@@ -79,7 +78,7 @@ const contentSection1 = {
         CTA: {
             type: "primary",
             text: { en: "Get A Quote", es: "Obtener Una Cotización" },
-            link: `${PATHCONSTANTS.QUOTES.AUTO}#auto-quote`
+            link: PATHCONSTANTS.QUOTES.SURETY.FORM
         },
     }
 }
@@ -225,7 +224,7 @@ export default function () {
         <VerticalBanner {...bannerContent} />
         <MainGrid  {...contentSection1} />
         <TwoColumn {...contentSection2} />
-        <ContactAndShop quoteLink='#Surety-quote' />
+        <ContactAndShop quoteLink={PATHCONSTANTS.QUOTES.SURETY.FORM} />
         <SimpleForm {...formContent} />
     </>
 }

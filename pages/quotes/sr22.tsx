@@ -26,7 +26,7 @@ const bannerContent = {
             en: "Get a Quote",
             es: "Obtener una cotización"
         },
-        link: `${PATHCONSTANTS.QUOTES.SR22}#SR22-quote`
+        link: PATHCONSTANTS.QUOTES.SR22.FORM
     },
     img: {
         src: Sr22Img1,
@@ -108,7 +108,7 @@ const contentSection3 = {
         CTA: {
             type: "primary",
             text: { en: "Get A Quote", es: "Obtener Una Cotización" },
-            link: `#SR22-quote`
+            link: PATHCONSTANTS.QUOTES.SR22.FORM
         },
     }
 }
@@ -237,7 +237,7 @@ export default function () {
         <VerticalBanner {...bannerContent} />
         <MainGrid {...contentSection3} />
         <TwoColumn {...contentSection2} />
-        <ContactAndShop quoteLink="#SR22-quote" />
+        <ContactAndShop quoteLink={PATHCONSTANTS.QUOTES.SR22.FORM} />
 
         <SimpleForm {...formContent} />
     </>

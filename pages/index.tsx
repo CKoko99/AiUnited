@@ -26,6 +26,7 @@ import PoliciesImg from "../public/assets/images/home/about/policies.png";
 import AboutImg from "../public/assets/images/home/about/about.png";
 import CareersImg from "../public/assets/images/home/about/careers.png";
 import { Lang } from '../components/locale/LocaleSwitcher';
+import PATHCONSTANTS from '../constants/sitemap';
 console.log(Lang)
 const bannerContent = {
     title: {
@@ -102,7 +103,7 @@ const onlineQuotesContent = {
                 en: "Auto Insurance",
                 es: "Seguro de auto"
             },
-            link: "/quote/auto"
+            link: PATHCONSTANTS.QUOTES.AUTO.INDEX
         },
         {
             img: {
@@ -113,7 +114,7 @@ const onlineQuotesContent = {
                 en: "Home Insurance",
                 es: "Seguro de casa"
             },
-            link: "/quote/home"
+            link: PATHCONSTANTS.QUOTES.HOME.INDEX
         },
         {
             img: {
@@ -124,7 +125,7 @@ const onlineQuotesContent = {
                 en: "Motorcycle Insurance",
                 es: "Seguro de motocicleta"
             },
-            link: "/quote/motorcycle"
+            link: PATHCONSTANTS.QUOTES.MOTORCYCLE.INDEX
         },
         {
             img: {
@@ -135,7 +136,7 @@ const onlineQuotesContent = {
                 en: "SR-22 Insurance",
                 es: "Seguro SR-22"
             },
-            link: "/quote/sr22"
+            link: PATHCONSTANTS.QUOTES.SR22.INDEX
         },
         {
             img: {
@@ -146,7 +147,7 @@ const onlineQuotesContent = {
                 en: "Renters Insurance",
                 es: "Seguro de inquilinos"
             },
-            link: "/quote/renters"
+            link: PATHCONSTANTS.QUOTES.RENTER.INDEX
         },
         {
             img: {
@@ -157,7 +158,7 @@ const onlineQuotesContent = {
                 en: "Mexico Insurance",
                 es: "Seguro de México"
             },
-            link: "/quote/mexico"
+            link: PATHCONSTANTS.QUOTES.MEXICO.INDEX
         },
         {
             img: {
@@ -168,7 +169,7 @@ const onlineQuotesContent = {
                 en: "Surety Bonds",
                 es: "Fianzas"
             },
-            link: "/quote/surety"
+            link: PATHCONSTANTS.QUOTES.SURETY.INDEX
         },
     ]
 }
@@ -187,14 +188,14 @@ const callQuoteContent = {
     },
     cta1: {
         text: { en: "(555)-555-5555", es: "(555)-555-5555" },
-        link: "tel:5555555555"
+        link: PATHCONSTANTS.PHONE
     },
     cta2: {
         text: {
             en: "Get in Touch!",
             es: "Ponerse en contacto!"
         },
-        link: "/about/contact"
+        link: PATHCONSTANTS.ABOUT.CONTACT
     }
 }
 const reviewContent = {
@@ -219,7 +220,7 @@ const reviewContent = {
             en: "Read More Reviews",
             es: "Leer más reseñas"
         },
-        link: "/about/reviews"
+        link: PATHCONSTANTS.ABOUT.REVIEWS
     },
     img: {
         src: ReviewImg,
@@ -257,7 +258,7 @@ const aboutContent = {
                 src: AboutImg,
                 alt: "About"
             },
-            link: "/about"
+            link: PATHCONSTANTS.ABOUT.INDEX
         },
         {
             title: {
@@ -268,7 +269,7 @@ const aboutContent = {
                 src: CareersImg,
                 alt: "Careers"
             },
-            link: "/about/careers"
+            link: PATHCONSTANTS.ABOUT.CAREERS
         }
     ]
 }

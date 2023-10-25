@@ -26,7 +26,7 @@ const bannerContent = {
             en: "Get a Quote",
             es: "Obtenga Una Cotización"
         },
-        link: `${PATHCONSTANTS.QUOTES.MEXICO}#Mexico-quote`
+        link: `${PATHCONSTANTS.QUOTES.MEXICO.FORM}`
     },
     img: {
         src: MexicoImg1,
@@ -76,7 +76,7 @@ const contentSection1 = {
         CTA: {
             type: "primary",
             text: { en: "Get A Quote", es: "Obtener Una Cotización" },
-            link: `${PATHCONSTANTS.QUOTES.AUTO}#auto-quote`
+            link: `${PATHCONSTANTS.QUOTES.MEXICO.FORM}`
         },
     }
 }
@@ -108,7 +108,7 @@ export default function () {
         <VerticalBanner {...bannerContent} />
         <MainGrid  {...contentSection1} />
         <TwoColumn {...contentSection2} />
-        <ContactAndShop quoteLink='#Mexico-quote' />
+        <ContactAndShop quoteLink={PATHCONSTANTS.QUOTES.MEXICO.FORM} />
         <Box
             id="Mexico-quote"
             sx={{

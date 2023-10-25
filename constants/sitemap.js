@@ -2,14 +2,20 @@ const PATHCONSTANTS = {
     HOME: '/',
     QUOTES: {
         INDEX: '/quotes',
-        AUTO: '/quotes/auto',
-        HOME: '/quotes/home',
-        MEXICO: '/quotes/mexico',
-        MOTORCYCLE: '/quotes/motorcycle',
-        RENTER: '/quotes/renter',
-        SURETY: '/quotes/surety-bond',
-        SR22: '/quotes/sr22',
-        LIABILITY: '/quotes/liability',
+        AUTO: {
+            INDEX: '/quotes/auto',
+            FORM: '/quotes/auto#Auto-quote'
+        },
+        HOME: {
+            INDEX: '/quotes/home',
+            FORM: '/quotes/home#Home-quote'
+        },
+        MEXICO: { INDEX: '/quotes/mexico', FORM: '/quotes/mexico#Mexico-quote' },
+        MOTORCYCLE: { INDEX: '/quotes/motorcycle', FORM: '/quotes/motorcycle#Motorcycle-quote' },
+        RENTER: { INDEX: '/quotes/renter', FORM: '/quotes/renter#Renter-quote' },
+        SURETY: { INDEX: '/quotes/surety-bond', FORM: '/quotes/surety-bond#Surety-quote' },
+        SR22: { INDEX: '/quotes/sr22', FORM: '/quotes/sr22#SR22-quote' },
+        LIABILITY: { INDEX: '/quotes/liability', FORM: '/quotes/liability#Liability-quote' },
     },
     PRODUCTS: {
         INDEX: '/products',

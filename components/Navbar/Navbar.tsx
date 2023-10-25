@@ -42,118 +42,118 @@ const navItems = [
           en: "Auto Insurance",
           es: "Seguro de Auto"
         },
-        link: PATHCONSTANTS.QUOTES.AUTO
+        link: PATHCONSTANTS.QUOTES.AUTO.INDEX
       },
       {
         title: {
           en: "Motorcycle Insurance",
           es: "Seguro de Motocicleta"
         },
-        link: PATHCONSTANTS.QUOTES.MOTORCYCLE
+        link: PATHCONSTANTS.QUOTES.MOTORCYCLE.INDEX
       },
       {
         title: {
           en: "Mexico Insurance",
           es: "Seguro de México"
         },
-        link: PATHCONSTANTS.QUOTES.MEXICO
+        link: PATHCONSTANTS.QUOTES.MEXICO.INDEX
       },
       {
         title: {
           en: "Home Insurance",
           es: "Seguro de Hogar"
         },
-        link: PATHCONSTANTS.QUOTES.HOME
+        link: PATHCONSTANTS.QUOTES.HOME.INDEX
       },
       {
         title: {
           en: "Renters Insurance",
           es: "Seguro de Inquilinos"
         },
-        link: PATHCONSTANTS.QUOTES.RENTER
+        link: PATHCONSTANTS.QUOTES.RENTER.INDEX
       },
       {
         title: {
           en: "SR-22 Insurance",
           es: "Seguro SR-22"
         },
-        link: PATHCONSTANTS.QUOTES.SR22
+        link: PATHCONSTANTS.QUOTES.SR22.INDEX
       },
       {
         title: {
           en: "Surety Bonds",
           es: "Fianzas de Fidelidad"
         },
-        link: PATHCONSTANTS.QUOTES.SURETY
+        link: PATHCONSTANTS.QUOTES.SURETY.INDEX
       },
       {
         title: {
           en: "General Liability",
           es: "Responsabilidad Civil General"
         },
-        link: PATHCONSTANTS.QUOTES.LIABILITY
+        link: PATHCONSTANTS.QUOTES.LIABILITY.INDEX
       },
     ],
     bold: true
   },
-  {
-    label: {
-      en: "Our Products",
-      es: "Nuestros Productos"
-    },
-    link: PATHCONSTANTS.PRODUCTS.INDEX,
-    menuItems: [
-      {
-        title: {
-          en: "Auto Insurance",
-          es: "Seguro de Auto"
-        },
-        link: PATHCONSTANTS.PRODUCTS.AUTO
-      },
-      {
-        title: {
-          en: "Motorcycle Insurance",
-          es: "Seguro de Motocicleta"
-        },
-        link: PATHCONSTANTS.PRODUCTS.MOTORCYCLE
-      },
-      {
-        title: {
-          en: "Mexico Insurance",
-          es: "Seguro de México"
-        },
-        link: PATHCONSTANTS.PRODUCTS.MEXICO
-      },
-      {
-        title: {
-          en: "Home Insurance",
-          es: "Seguro de Hogar"
-        },
-        link: PATHCONSTANTS.PRODUCTS.HOME
-      },
-      {
-        title: {
-          en: "Renters Insurance",
-          es: "Seguro de Inquilinos"
-        },
-        link: PATHCONSTANTS.PRODUCTS.RENTER
-      },
-      {
-        title: {
-          en: "SR-22 Insurance",
-          es: "Seguro SR-22"
-        },
-        link: PATHCONSTANTS.PRODUCTS.SR22
-      },
-      {
-        title: {
-          en: "Surety Bonds",
-          es: "Fianzas de Fidelidad"
-        },
-        link: PATHCONSTANTS.PRODUCTS.SURETY
-      },
-    ]
-  },
+  /* {
+     label: {
+       en: "Our Products",
+       es: "Nuestros Productos"
+     },
+     link: PATHCONSTANTS.PRODUCTS.INDEX,
+     menuItems: [
+       {
+         title: {
+           en: "Auto Insurance",
+           es: "Seguro de Auto"
+         },
+         link: PATHCONSTANTS.PRODUCTS.AUTO
+       },
+       {
+         title: {
+           en: "Motorcycle Insurance",
+           es: "Seguro de Motocicleta"
+         },
+         link: PATHCONSTANTS.PRODUCTS.MOTORCYCLE
+       },
+       {
+         title: {
+           en: "Mexico Insurance",
+           es: "Seguro de México"
+         },
+         link: PATHCONSTANTS.PRODUCTS.MEXICO
+       },
+       {
+         title: {
+           en: "Home Insurance",
+           es: "Seguro de Hogar"
+         },
+         link: PATHCONSTANTS.PRODUCTS.HOME
+       },
+       {
+         title: {
+           en: "Renters Insurance",
+           es: "Seguro de Inquilinos"
+         },
+         link: PATHCONSTANTS.PRODUCTS.RENTER
+       },
+       {
+         title: {
+           en: "SR-22 Insurance",
+           es: "Seguro SR-22"
+         },
+         link: PATHCONSTANTS.PRODUCTS.SR22
+       },
+       {
+         title: {
+           en: "Surety Bonds",
+           es: "Fianzas de Fidelidad"
+         },
+         link: PATHCONSTANTS.PRODUCTS.SURETY
+       },
+     ]
+   },*/
   {
     label: {
       en: "Find a Store",

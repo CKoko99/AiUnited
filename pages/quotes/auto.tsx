@@ -100,7 +100,7 @@ const contentSection2 = {
         CTA: {
             type: "primary",
             text: { en: "Get A Quote", es: "Obtener Una Cotización" },
-            link: `${PATHCONSTANTS.QUOTES.AUTO}#auto-quote`
+            link: `${PATHCONSTANTS.QUOTES.AUTO.FORM}`
         },
     }
 }
@@ -134,6 +134,6 @@ export default function () {
         <NumbersSection {...slideData} menuContent={slideData.menuContent} />
         <MainGrid {...contentSection2} />
         <TwoColumn {...contentSection3} />
-        <ContactAndShop quoteLink="#auto-quote" />
+        <ContactAndShop quoteLink={PATHCONSTANTS.QUOTES.AUTO.FORM} />
     </>
 }

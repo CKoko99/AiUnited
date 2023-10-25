@@ -23,7 +23,7 @@ const bannerContent = {
             en: "Get a Quote",
             es: "Obtener una cotización"
         },
-        link: `${PATHCONSTANTS.QUOTES.RENTER}#Renter-quote`
+        link: `${PATHCONSTANTS.QUOTES.RENTER.FORM}`
     },
     img: {
         src: RentersImg1,
@@ -70,7 +70,7 @@ const contentSection2 = {
         CTA: {
             type: "primary",
             text: { en: "Get A Quote", es: "Obtener Una Cotización" },
-            link: `#renter-quote`
+            link: PATHCONSTANTS.QUOTES.RENTER.FORM
         },
     }
 }
@@ -228,7 +228,7 @@ export default function () {
         <VerticalBanner {...bannerContent} />
         <MainGrid {...contentSection2} />
         <TwoColumn {...contentSection3} />
-        <ContactAndShop quoteLink="#Renter-quote" />
+        <ContactAndShop quoteLink={PATHCONSTANTS.QUOTES.RENTER.FORM} />
         <SimpleForm {...formContent} />
     </>
 }
