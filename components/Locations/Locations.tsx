@@ -55,8 +55,9 @@ export default function (props) {
     const [selectedMarker, setSelectedMarker] = useState<Marker | null>(null);
     const [locations, setLocations] = useState(props.locations)
     const [maxLocations, setMaxLocations] = useState(5)
+    const [zoom, setZoom] = useState(props.zoom || 10)
     const googleMapRef = useRef(null)
-    console.log(googleMapRef)
+
     useEffect(() => {
         //use pythagorean theorem to find distance between center and each location
         //then sort by distance
@@ -146,7 +147,7 @@ export default function (props) {
                         </StandaloneSearchBox>
                         <GoogleMap
                             options={mapOptions}
-                            zoom={props.zoom || 10}
+                            zoom={zoom}
                             onLoad={(map) => {
                                 console.log('Map Type:', map.data);
                             }}
@@ -219,6 +220,7 @@ export default function (props) {
                                     top: 200,
                                     behavior: "smooth"
                                 })
+                                setZoom(13)
                                 setTimeout(() => {
                                     setSelectedMarker(location)
                                 }, 800)
