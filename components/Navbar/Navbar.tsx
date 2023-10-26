@@ -24,6 +24,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import PATHCONSTANTS from '../../constants/sitemap';
 import { Lang } from '../locale/LocaleSwitcher';
+import MainNavbarItem from './MainNavbarItem';
 
 
 
@@ -35,6 +36,7 @@ const navItems = [
       en: "Get a Quote",
       es: "Obtenga una cotización"
     },
+    main: true,
     link: PATHCONSTANTS.QUOTES.INDEX,
     menuItems: [
       {
@@ -430,11 +432,17 @@ function DrawerAppBar(props: any) {
           }
           , alignItems: 'center'
         }}>
-          {navItems.map((item, index) => (
-            <NavbarItem key={index}
-              item={item}
-            />
-          ))}
+          {navItems.map((item, index) => {
+            if (item.main) {
+              return <MainNavbarItem key={index} item={item} />
+            } else {
+
+              return <NavbarItem key={index}
+                item={item}
+              />
+            }
+          }
+          )}
         </Box>
 
         <Drawer
