@@ -1,23 +1,9 @@
 steps:
   - name: "gcr.io/cloud-builders/docker"
-    entrypoint: "bash"
     args:
-      [
-        "-c",
-        "docker pull  gcr.io/insurance-hub-397016/aiunited:latest || exit 0",
-      ]
+      ["build", "-t", "gcr.io/insurance-hub-397016/aiunited:$SHORT_SHA", "."]
   - name: "gcr.io/cloud-builders/docker"
-    args:
-      [
-        "build",
-        "-t",
-        "gcr.io/insurance-hub-397016/aiunited:latest",
-        "--cache-from",
-        "gcr.io/insurance-hub-397016/aiunited:latest",
-        ".",
-      ]
-  - name: "gcr.io/cloud-builders/docker"
-    args: ["push", "gcr.io/insurance-hub-397016/aiunited:latest"]
+    args: ["push", "gcr.io/insurance-hub-397016/aiunited:$SHORT_SHA"]
   - name: "gcr.io/cloud-builders/gcloud"
     args:
       [
@@ -27,6 +13,5 @@ steps:
         "aiunited",
         "--region=us-east1",
         "--platform=managed",
-        "--image=gcr.io/insurance-hub-397016/aiunited:latest",
+        "--image=gcr.io/insurance-hub-397016/aiunited:$SHORT_SHA",
       ]
-images: ["gcr.io/insurance-hub-397016/aiunited:latest"]
