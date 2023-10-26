@@ -1,9 +1,11 @@
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, Modal } from "@mui/material";
 import Image, { StaticImageData } from "next/image";
 import theme from "../../../providers/theme";
 import { useRouter } from "next/router";
 import { Lang } from "../../locale/LocaleSwitcher";
 import Link from "next/link";
+import { useState } from "react";
+import GetAQuote from "../../Modals/GetAQuote";
 
 interface BannerProps {
     title: {
@@ -80,6 +82,7 @@ export default function Banner(props: BannerProps) {
     const router = useRouter()
     const { locale } = router
     const currentLang = Lang[locale ?? 'en']
+    const [openModal, setOpenModal] = useState(false);
 
     return (<>
         <Box sx={{ ...styles.root }}>
@@ -95,10 +98,11 @@ export default function Banner(props: BannerProps) {
                 }} variant="h4" gutterBottom>{props.subtitle[currentLang]}</Typography>
 
                 {props.ctaButton && (
-                    <Button sx={{ ...styles.ctaButton }} variant="contained">
-                        <Link href={props.ctaButton.link}  >
-                            {props.ctaButton.text[currentLang]}
-                        </Link>
+                    <Button sx={{ ...styles.ctaButton }} variant="contained"
+                        onClick={() => { setOpenModal(true) }}
+                    >
+                        {props.ctaButton.text[currentLang]}
+
                     </Button>
                 )}
             </Box>
@@ -114,5 +118,11 @@ export default function Banner(props: BannerProps) {
                 }} variant="h4" gutterBottom>{props.subtitle[currentLang]}</Typography>
             </Box>
         </Box >
+        <Modal
+            open={openModal}
+            onClose={() => setOpenModal(false)}
+        >
+            <GetAQuote close={() => { setOpenModal(false) }} />
+        </Modal>
     </>)
 }

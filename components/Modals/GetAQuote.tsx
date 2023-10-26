@@ -192,7 +192,10 @@ export default function (props) {
             <CloseIcon sx={{ cursor: "pointer" }} onClick={props.close} />
         </Box>
         <Box
-            sx={{ display: "flex", flexDirection: "column", gap: ".5rem", alignItems: "center" }}
+            sx={{
+                display: "flex", flexDirection: "column", gap: ".5rem", alignItems: "center",
+                width: "80%", margin: "auto"
+            }}
         >
             <Typography fontWeight={"bold"} variant="h4" align="center">
                 {text.title[currentLang]}
