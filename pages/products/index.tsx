@@ -10,6 +10,7 @@ import MexicoImg from "../../public/assets/images/products/mexico.png"
 import SuretyImg from "../../public/assets/images/products/surety.png"
 import Image from "next/image"
 import Hero from "../../components/Content/Hero/Hero"
+import BannerImage from "../../public/assets/images/products/banner.png"
 // auto home motorcycle sr22, renters, mexico, surety bonds
 const bannerContent = {
     title: {
@@ -20,6 +21,10 @@ const bannerContent = {
         en: "We offer a variety of insurance products to match your needs.",
         es: "Ofrecemos una variedad de productos de seguros para satisfacer sus necesidades."
     },
+    image: {
+        src: BannerImage,
+        alt: "Our Products"
+    }
 }
 const navContent = [
     {

@@ -1,5 +1,6 @@
 import AutoQuoteHero from '../../components/Content/Hero/AutoQuoteHero';
 import HeroImg from "../../public/assets/images/quotes/auto/Hero.png";
+import HeroImg2 from "../../public/assets/images/quotes/auto/Hero2.png";
 import NumbersSection from '../../components/Content/FlexDigrams/NumbersSection';
 import americaImg from '../../public/assets/images/quotes/auto/america.png'
 import PATHCONSTANTS from '../../constants/sitemap';
@@ -14,7 +15,10 @@ const heroContent = {
         en: "We’ve partnered with Alinsko to provide quick and easy Auto Insurance coverage",
         es: "Nos hemos asociado con Alinsko para proporcionar una cobertura rápida y fácil de seguro de auto"
     },
-    image: { src: HeroImg, },
+    image: {
+        src: HeroImg2,
+        alt: "car"
+    },
     validation: "zipcode",
     cta: {
         type: "input",
