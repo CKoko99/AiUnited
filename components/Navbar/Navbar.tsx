@@ -394,8 +394,8 @@ function DrawerAppBar(props: any) {
     >
       <Box sx={{
         display: 'flex',
-        width: { xs: "92%", sm: "98%", md: "98%", lg: "83%" },
-        maxWidth: "1800px",
+        width: { xs: "92%", sm: "98%", md: "98%", lg: "85%" },
+        maxWidth: "1500px",
         flexDirection: "row", justifyContent: "space-between", alignItems: "center",
         margin: "auto"
       }}>

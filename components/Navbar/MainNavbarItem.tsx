@@ -15,7 +15,8 @@ const styles = {
     mainButton: {
         backgroundColor: "white",
         fontWeight: "bold",
-        fontSize: "1.1rem",
+        fontSize: { xs: "1rem", md: "1.1rem" },
+        maxWidth: "12rem",
         marginRight: ".5rem",
         color: "black", fontFamily: CustomFonts.Gustavo,
         "&:hover": {

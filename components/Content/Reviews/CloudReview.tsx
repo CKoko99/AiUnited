@@ -21,7 +21,7 @@ interface HomeReviewProps {
 
 const styles = {
     root: {
-        backgroundColor: theme.palette.primary.light,
+        backgroundColor: theme.palette.primary.main,
         padding: ".5rem 0",
         margin: "1rem auto"
     },
