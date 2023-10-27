@@ -13,7 +13,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import NavbarItem from './NavbarItem';
-import LogoImg from '../../public/assets/images/ai-logo-white.png';
+import LogoImg from '../../public/assets/images/ai-logo-blue.jpeg';
 import { styled } from '@mui/system';
 import { Collapse } from '@mui/material';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
@@ -388,8 +388,9 @@ function DrawerAppBar(props: any) {
   return (<>
     <Box
       sx={{
-        bgcolor: "primary.main",
+
         zIndex: 1000,
+        borderBottom: "1px solid #e0e0e0",
       }}
     >
       <Box sx={{

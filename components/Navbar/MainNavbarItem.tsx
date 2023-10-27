@@ -13,15 +13,11 @@ import { CustomFonts } from "../../providers/theme";
 import GetAQuote from "../Modals/GetAQuote";
 const styles = {
     mainButton: {
-        backgroundColor: "white",
         fontWeight: "bold",
         fontSize: { xs: "1rem", md: "1.1rem" },
         maxWidth: "12rem",
         marginRight: ".5rem",
-        color: "black", fontFamily: CustomFonts.Gustavo,
-        "&:hover": {
-            backgroundColor: "#cacaca",
-        }
+        fontFamily: CustomFonts.Gustavo,
     },
 }
 
@@ -35,7 +31,7 @@ export default function MainNavbarItem(props: any) {
         <>
             <Button
                 onClick={() => { setOpenModal(true); }}
-                variant="contained"
+                variant="contained" color="primary"
                 sx={{ ...styles.mainButton }}
             >
                 {props.item.label[currentLang]}

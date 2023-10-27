@@ -89,6 +89,7 @@ function SimpleMenu(props) {
                         sx={{
                             fontSize: { xs: "1.1rem", lg: "1.2rem" }, fontWeight: props.item.bold ? "bold" : "normal",
                             //whiteSpace: { md: "", lg: "nowrap" },
+                            color: "black",
                         }}
                     >
                         {props.item.label[currentLang]}

@@ -42,7 +42,10 @@ export default function LocaleSwitcher() {
     };
     return (<>
         <Box
-            sx={{ backgroundColor: "primary.dark" }}
+            sx={{
+                backgroundColor: "#dadada",
+                color: "black",
+            }}
         >
             <Box
                 sx={{
@@ -60,7 +63,6 @@ export default function LocaleSwitcher() {
                         gap: ".5rem",
                         cursor: "pointer",
                         margin: "0 1rem",
-                        color: "white",
                     }}
                     onClick={handleToggle}
                     id="locale-switcher"
