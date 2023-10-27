@@ -56,7 +56,7 @@ export default function (props) {
                             backgroundColor: "black",
                             overflow: "hidden",
                         }}>
-                        <Image {...props.image} fill style={{ objectFit: "cover" }} />
+                        <Image priority {...props.image} fill style={{ objectFit: "cover" }} />
                     </Box>
                 </Box>
                 <Box

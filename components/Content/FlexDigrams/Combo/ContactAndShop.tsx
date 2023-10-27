@@ -179,7 +179,7 @@ export default function (props: Props) {
                         >
                             {textContent.Contact.CTAButtons.map((button, index) => {
                                 return <Link
-                                    href={button.link}
+                                    href={button.link} key={index}
                                 >
                                     <Button
                                         key={index}

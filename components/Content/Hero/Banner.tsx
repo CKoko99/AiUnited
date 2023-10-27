@@ -110,7 +110,7 @@ export default function Banner(props: BannerProps) {
                 sx={{ ...styles.imageContainer }}
             >
                 {props.image && <Image
-                    fill
+                    fill priority
                     style={{ objectFit: "contain" }}
                     {...props.image} />}
                 <Typography sx={{
