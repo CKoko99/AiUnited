@@ -12,13 +12,12 @@ const styles = {
     textContainer: {
         top: "50%", position: "absolute",
         left: "50%", transform: "translate(-50%, -50%)",
-        width: { xs: "80%", sm: "70%", md: "60%" },
+        width: { xs: "80%", sm: "70%", md: "70%" },
         color: "white",
         textAlign: "center",
     },
     glowText: {
         textShadow: " 0 0 10px #c1c1c1, 0 0 1px #a1a1a1, 0 0 30px #a8a8a8, 0 0 40px #a38d8f, 0 0 50px #b25e65, 0 0 60px #bb4a53, 0 0 70px #e27b83;"
-
     },
     glowTextSub: {
         textShadow: "0 0 10px #fff, 0 0 20px #000, 0 0 30px #a8a8a8, 0 0 40px #a38d8f, 0 0 50px #b25e65, 0 0 60px #bb4a53, 0 0 70px #e27b83;"
@@ -29,13 +28,8 @@ const styles = {
         justifyContent: "space-around",
         alignItems: "center",
         margin: "2rem 0 0",
-
         gap: "1rem",
     }
-}
-const errorValidationText = {
-    en: "Please enter a valid zipcode",
-    es: "Por favor ingrese un código postal válido"
 }
 export default function (props) {
     const router = useRouter()

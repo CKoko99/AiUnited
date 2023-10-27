@@ -1,7 +1,20 @@
 import JotFormEmbed from 'react-jotform-embed';
 import SimpleForm from '../../components/Forms/Simple/Simple';
 import ContactAndLocations from '../../components/Content/FlexDigrams/Combo/ContactAndLocations';
+import Hero from '../../components/Content/Hero/Hero';
 
+const heroContent = {
+  title: {
+    en: "Get in Touch",
+    es: "Póngase en contacto",
+  },
+  subtitle: {
+    en: `We'd love to hear from you, if you need to contact us for any reason, or 
+    complete the form below and we'll get back to you as soon as possible.`,
+    es: `Nos encantaría saber de usted, si necesita comunicarse con nosotros por cualquier motivo, o
+    complete el formulario a continuación y nos pondremos en contacto con usted lo antes posible.`,
+  },
+}
 const formContent = {
   title: {
     en: "Contact Us",
@@ -58,6 +71,7 @@ const formContent = {
 export default function () {
   return (
     <>
+      <Hero {...heroContent} />
       <ContactAndLocations />
       <SimpleForm {...formContent} />
       <JotFormEmbed src="https://form.jotform.com/80783795128166" />
