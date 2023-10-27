@@ -17,6 +17,7 @@ const styles = {
         fontWeight: "bold",
         fontSize: "1.1rem",
         marginRight: ".5rem",
+        color: "black", fontFamily: CustomFonts.Gustavo,
         "&:hover": {
             backgroundColor: "#cacaca",
         }
@@ -36,14 +37,7 @@ export default function MainNavbarItem(props: any) {
                 variant="contained"
                 sx={{ ...styles.mainButton }}
             >
-                <Typography
-                    sx={{
-                        color: "black", fontFamily: CustomFonts.Gustavo,
-                        fontWeight: "bold",
-                    }}
-                >
-                    {props.item.label[currentLang]}
-                </Typography>
+                {props.item.label[currentLang]}
             </Button>
             <Modal
                 open={openModal}

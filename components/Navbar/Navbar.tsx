@@ -383,13 +383,11 @@ function DrawerAppBar(props: any) {
     >
       <Box sx={{
         display: 'flex',
-        width: { xs: "92%", sm: "95%", md: "90%", lg: "80%" },
+        width: { xs: "92%", sm: "98%", md: "98%", lg: "83%" },
         maxWidth: "1800px",
         flexDirection: "row", justifyContent: "space-between", alignItems: "center",
         margin: "auto"
       }}>
-
-
         <IconButton
           color="inherit"
           aria-label="open drawer"
@@ -403,7 +401,6 @@ function DrawerAppBar(props: any) {
           }}
         >
           <MenuIcon sx={{ height: "3rem", width: "3rem", color: "white" }} />
-
         </IconButton>
         <Box
           sx={{

@@ -79,11 +79,15 @@ function SimpleMenu(props) {
                     color: "white",
                 }}
             >
-                <Link href={props.item.link} style={{ color: "inherit", textDecoration: "none" }}>
+                <Link href={props.item.link} style={{
+                    color: "inherit", textDecoration: "none",
+                    width: "min-content",
+                    minWidth: " 5rem"
+                }}>
                     <Typography variant="h6"
-                        style={{
+                        sx={{
                             fontSize: "1.1rem", fontWeight: props.item.bold ? "bold" : "normal",
-                            maxWidth: "9rem"
+                            maxWidth: "10rem", whiteSpace: { md: "", lg: "nowrap" },
                         }}
                     >
                         {props.item.label[currentLang]}
