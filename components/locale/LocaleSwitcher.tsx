@@ -32,22 +32,15 @@ export default function LocaleSwitcher() {
     const router = useRouter()
     const { locales, locale: activeLocale } = router
 
-    const otherLocales = (locales || []).filter(
-        (locale) => locale !== activeLocale
-    )
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLButtonElement>(null);
-    const [hovering, setHovering] = useState(false)
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
     const handleClose = () => {
-        setAnchorEl(null);
         setOpen(false);
     };
     return (<>
-
         <Box
             sx={{ backgroundColor: "primary.dark" }}
         >
@@ -68,9 +61,7 @@ export default function LocaleSwitcher() {
                         cursor: "pointer",
                         margin: "0 1rem",
                         color: "white",
-
                     }}
-
                     onClick={handleToggle}
                     id="locale-switcher"
                 >
@@ -81,7 +72,7 @@ export default function LocaleSwitcher() {
                 </Box>
                 <Menu
                     id="locale-switcher"
-                    open={(hovering || open)}
+                    open={open}
                     onClose={handleClose}
                     anchorEl={anchorRef.current}
                     MenuListProps={{
@@ -93,7 +84,6 @@ export default function LocaleSwitcher() {
                         pointerEvents: "none",
                         marginLeft: "2rem",
                     }}
-
                 >
                     {locales?.map((locale, index) => {
                         const { pathname, query, asPath } = router
