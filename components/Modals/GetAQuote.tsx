@@ -16,7 +16,7 @@ import suretyPlainImg from "../../public/assets/images/home/quotes/suretyplain.p
 import Image from "next/image";
 import { Lang } from "../locale/LocaleSwitcher";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { forwardRef } from "react";
 import Link from "next/link";
 import PATHCONSTANTS from "../../constants/sitemap";
 import CloseIcon from '@mui/icons-material/Close';
@@ -173,7 +173,7 @@ function ContentItem(props) {
         </Link >
     </>
 }
-export default function (props) {
+function GetAQuote(props, ref) {
     const [usePlain, setUsePlain] = React.useState(false)
     const router = useRouter();
     const { locale } = router
@@ -182,7 +182,7 @@ export default function (props) {
         sx={{
             ...classes.modal
         }}
-        onClick={(event) => {
+        onClick={() => {
             setUsePlain(!usePlain)
         }}
     >
@@ -219,3 +219,4 @@ export default function (props) {
         </Box>
     </Box >
 }
+export default forwardRef(GetAQuote)

@@ -43,7 +43,10 @@ export default function MainNavbarItem(props: any) {
                 open={openModal}
                 onClose={() => setOpenModal(false)}
             >
-                <GetAQuote close={() => { setOpenModal(false) }} />
+                <GetAQuote close={() => {
+                    setOpenModal(false)
+                    if (props.close) props.close()
+                }} />
             </Modal>
         </ >
     );

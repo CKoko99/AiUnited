@@ -296,6 +296,7 @@ function DrawerAppBar(props: any) {
     event.stopPropagation();
     setOpenItem((prevOpenItem) => (prevOpenItem === label ? null : label));
   };
+
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography onClick={handleLogoClick} variant="h6" sx={{ my: 2 }}>
@@ -303,65 +304,75 @@ function DrawerAppBar(props: any) {
       </Typography>
       <Divider />
       <List sx={{ textAlign: "left" }}>
-        {navItems.map((item, index) => (
-          item.menuItems.length === 0 ? (
-            <Link key={index} href={item.link} style={{ color: "inherit", textDecoration: "none" }}>
-              <ListItem disablePadding>
-                <ListItemButton
-                  sx={{ textAlign: "center" }}
-                  onClick={(event) => handleMenuItemToggle(item.label, event)}
-                >
-                  <ListItemText
-                    primary={
-                      <Typography
-                        style={{ display: "flex", fontWeight: "700" }}
-                      >
-                        {item.label[currentLang]}
-                      </Typography>
-                    }
-                  />
-                </ListItemButton>
-              </ListItem>
-            </Link>
-          ) : (
-            <React.Fragment key={index}>
-              <ListItem disablePadding>
-                <ListItemButton
-                  sx={{ textAlign: "center" }}
-                  onClick={(event) => handleMenuItemToggle(item.label, event)}
-                >
-                  <ListItemText
-                    primary={
-                      <Typography
-                        style={{ display: "flex", fontWeight: "700" }}
-                      >
-                        {item.label[currentLang]} {item.menuItems.length > 0 ? openItem === item.label ? <ExpandLessIcon /> : <ExpandMoreIcon /> : ""}
-                      </Typography>
-                    }
-                  />
-                </ListItemButton>
-              </ListItem>
-              <Collapse in={openItem === item.label} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                  {item.menuItems.map((menu, itemIndex) => (
-                    <Link key={itemIndex} href={menu.link} style={{ color: "inherit", textDecoration: "none" }}>
-                      <ListItem >
-                        <ListItemText
-                          primary={
-                            <Typography>
-                              •{" "}
-                              {menu.title[currentLang]}
-                            </Typography>
-                          }
-                        />
-                      </ListItem>
-                    </Link>
-                  ))}
-                </List>
-              </Collapse>
-            </React.Fragment>
-          )
-        ))}
+        {navItems.map((item, index) => {
+          return <React.Fragment key={index}>{
+            item.main ? (
+              <Box
+                sx={{
+                  textAlign: "center", margin: "1rem auto",
+                }}
+              > <MainNavbarItem item={item} close={handleDrawerToggle} /></Box>
+            ) : <>
+              {item.menuItems.length === 0 ? (
+                <Link key={index} href={item.link} style={{ color: "inherit", textDecoration: "none" }}>
+                  <ListItem disablePadding>
+                    <ListItemButton
+                      sx={{ textAlign: "center" }}
+                      onClick={(event) => handleMenuItemToggle(item.label, event)}
+                    >
+                      <ListItemText
+                        primary={
+                          <Typography
+                            style={{ display: "flex", fontWeight: "700" }}
+                          >
+                            {item.label[currentLang]}
+                          </Typography>
+                        }
+                      />
+                    </ListItemButton>
+                  </ListItem>
+                </Link>
+              ) : (
+                <React.Fragment key={index}>
+                  <ListItem disablePadding>
+                    <ListItemButton
+                      sx={{ textAlign: "center" }}
+                      onClick={(event) => handleMenuItemToggle(item.label, event)}
+                    >
+                      <ListItemText
+                        primary={
+                          <Typography
+                            style={{ display: "flex", fontWeight: "700" }}
+                          >
+                            {item.label[currentLang]} {item.menuItems.length > 0 ? openItem === item.label ? <ExpandLessIcon /> : <ExpandMoreIcon /> : ""}
+                          </Typography>
+                        }
+                      />
+                    </ListItemButton>
+                  </ListItem>
+                  <Collapse in={openItem === item.label} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                      {item.menuItems.map((menu, itemIndex) => (
+                        <Link key={itemIndex} href={menu.link} style={{ color: "inherit", textDecoration: "none" }}>
+                          <ListItem >
+                            <ListItemText
+                              primary={
+                                <Typography>
+                                  •{" "}
+                                  {menu.title[currentLang]}
+                                </Typography>
+                              }
+                            />
+                          </ListItem>
+                        </Link>
+                      ))}
+                    </List>
+                  </Collapse>
+                </React.Fragment>
+              )}
+            </>
+          }</React.Fragment>
+        })}
 
 
 
