@@ -5,7 +5,7 @@ import SuretyImg1 from '../../public/assets/images/quotes/surety/surety1.png';
 import SuretyImg2 from '../../public/assets/images/quotes/surety/surety2.png';
 import SuretyImg3 from '../../public/assets/images/quotes/surety/surety3.png';
 import MainGrid from '../../components/Content/Grids/MainGrid';
-import ContactAndShop from '../../components/Content/FlexDigrams/ContactAndShop';
+import ContactAndShop from '../../components/Content/FlexDigrams/Combo/ContactAndShop';
 import TwoColumn from '../../components/Content/Grids/TwoColumn';
 
 const bannerContent = {

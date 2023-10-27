@@ -8,7 +8,7 @@ import MainGrid from '../../components/Content/Grids/MainGrid';
 import CarImg1 from "../../public/assets/images/quotes/auto/car1.png";
 import CarImg2 from "../../public/assets/images/quotes/auto/car2.png";
 import TwoColumn from '../../components/Content/Grids/TwoColumn';
-import ContactAndShop from '../../components/Content/FlexDigrams/ContactAndShop';
+import ContactAndShop from '../../components/Content/FlexDigrams/Combo/ContactAndShop';
 const heroContent = {
     title: { en: "Auto Insurance", es: "Seguro De Auto" },
     subtitle: {

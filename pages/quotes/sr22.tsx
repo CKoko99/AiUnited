@@ -1,4 +1,4 @@
-import ContactAndShop from '../../components/Content/FlexDigrams/ContactAndShop';
+import ContactAndShop from '../../components/Content/FlexDigrams/Combo/ContactAndShop';
 import MainGrid from '../../components/Content/Grids/MainGrid';
 import TwoColumn from '../../components/Content/Grids/TwoColumn';
 import VerticalBanner from '../../components/Content/Hero/VerticalBanner';

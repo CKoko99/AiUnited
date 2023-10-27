@@ -5,7 +5,7 @@ import MexicoImg1 from '../../public/assets/images/quotes/mexico/mexico1.png';
 import MexicoImg2 from '../../public/assets/images/quotes/home/home2.png';
 import MexicoImg3 from '../../public/assets/images/quotes/mexico/mexico2.png';
 import MainGrid from '../../components/Content/Grids/MainGrid';
-import ContactAndShop from '../../components/Content/FlexDigrams/ContactAndShop';
+import ContactAndShop from '../../components/Content/FlexDigrams/Combo/ContactAndShop';
 import TwoColumn from '../../components/Content/Grids/TwoColumn';
 
 const bannerContent = {

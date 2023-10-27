@@ -6,7 +6,7 @@ import VerticalBanner from '../../components/Content/Hero/VerticalBanner';
 import MotoImg1 from '../../public/assets/images/quotes/motorcycle/motorcycle1.png';
 import MotoImg2 from '../../public/assets/images/quotes/motorcycle/motorcycle2.png';
 import MotoImg3 from '../../public/assets/images/quotes/motorcycle/motorcycle3.png';
-import ContactAndShop from '../../components/Content/FlexDigrams/ContactAndShop';
+import ContactAndShop from '../../components/Content/FlexDigrams/Combo/ContactAndShop';
 
 const bannerContent = {
     title: {

@@ -1,5 +1,6 @@
 import JotFormEmbed from 'react-jotform-embed';
 import SimpleForm from '../../components/Forms/Simple/Simple';
+import ContactAndLocations from '../../components/Content/FlexDigrams/Combo/ContactAndLocations';
 
 const formContent = {
   title: {
@@ -57,6 +58,7 @@ const formContent = {
 export default function () {
   return (
     <>
+      <ContactAndLocations />
       <SimpleForm {...formContent} />
       <JotFormEmbed src="https://form.jotform.com/80783795128166" />
     </>

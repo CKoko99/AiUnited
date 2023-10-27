@@ -1,12 +1,13 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useRouter } from "next/router";
-import { Lang } from "../../locale/LocaleSwitcher";
-import { CustomFonts } from "../../../providers/theme";
-import PATHCONSTANTS from "../../../constants/sitemap";
-import ShopOnlineImg from "../../../public/assets/images/components/shoponline.png";
-import ContactImg from "../../../public/assets/images/components/contact.png";
+import { Lang } from "../../../locale/LocaleSwitcher";
+import { CustomFonts } from "../../../../providers/theme";
+import PATHCONSTANTS from "../../../../constants/sitemap";
+import ShopOnlineImg from "../../../../public/assets/images/components/shoponline.png";
+import ContactImg from "../../../../public/assets/images/components/contact.png";
 import Image from "next/image";
 import Link from "next/link";
+import { classes } from "./Styles";
 const textContent = {
     title: {
         en: "Get Instant Coverage",
@@ -76,55 +77,7 @@ const textContent = {
         ]
     }
 }
-const classes = {
-    root: {
-        width: "90%",
-        margin: "auto",
-        padding: "1rem 0",
-        display: "flex",
-        flexDirection: "column",
-        gap: "2rem"
-    },
-    imageContainer: {
-        position: "relative",
-        height: "13rem",
-        width: "100%",
-    },
-    itemsContainer: {
-        display: "flex",
-        justifyContent: "space-around",
-        flexDirection: { xs: "column", md: "row" },
-        gap: "2rem", alignItems: "stretch"
-    },
-    contentItem: {
-        border: "1px solid #cacaca",
-        maxWidth: { xs: "90%", md: "40%" },
-        margin: "0 auto",
-        borderRadius: "16px",
-        flex: "1",
-        boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.25)",
-        display: "flex", flexDirection: "column",
-    },
-    itemTextContainer: {
-        display: "flex",
-        flexDirection: "column",
-    },
-    bottomContainer: {
-        display: "flex", flexDirection: "column", justifyContent: "space-between",
-        flex: "1", paddingBottom: "1rem", padding: "0 1rem 1rem 1rem"
-    },
-    buttonsContainer: {
-        display: "flex",
-        justifyContent: "space-around",
-        gap: "1rem",
-        marginTop: "1rem",
-        flexDirection: { xs: "column", md: "row" },
-        alignItems: "center",
-    },
-    button: {
-        minWidth: { xs: "12rem", md: "" },
-    }
-}
+
 interface Props {
     quoteLink?: string
 }

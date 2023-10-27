@@ -6,7 +6,7 @@ import VerticalBanner from '../../components/Content/Hero/VerticalBanner';
 import HomeImg1 from '../../public/assets/images/quotes/home/home1.png';
 import HomeImg2 from '../../public/assets/images/quotes/home/home2.png';
 import HomeImg3 from '../../public/assets/images/quotes/home/home3.png';
-import ContactAndShop from '../../components/Content/FlexDigrams/ContactAndShop';
+import ContactAndShop from '../../components/Content/FlexDigrams/Combo/ContactAndShop';
 
 const bannerContent = {
     title: {
