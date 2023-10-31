@@ -68,14 +68,14 @@ const formContent = {
     },
   ],
 };
+
+
 export default function () {
   return (
     <>
       <Hero {...heroContent} />
       <ContactAndLocations />
       <SimpleForm {...formContent} />
-      <JotFormEmbed src="https://form.jotform.com/80783795128166" />
     </>
-
   )
 }
