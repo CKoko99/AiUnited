@@ -95,7 +95,7 @@ function SimpleMenu(props) {
                         {props.item.label[currentLang]}
                     </Typography>
                 </Link>
-                {props.item.menuItems?.length > 0 ? <KeyboardArrowDownSharpIcon /> : ""}
+                {props.item.menuItems?.length > 0 ? <KeyboardArrowDownSharpIcon sx={{ color: "black" }} /> : ""}
             </Button>
             <Transition in={Boolean(anchorEl)} timeout={0} unmountOnExit nodeRef={menuRef}>
                 {(state) => (

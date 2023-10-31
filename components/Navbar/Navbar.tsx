@@ -412,7 +412,7 @@ function DrawerAppBar(props: any) {
             },
           }}
         >
-          <MenuIcon sx={{ height: "3rem", width: "3rem", color: "white" }} />
+          <MenuIcon sx={{ height: "3rem", width: "3rem", color: "black" }} />
         </IconButton>
         <Box
           sx={{
