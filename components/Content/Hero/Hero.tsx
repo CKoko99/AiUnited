@@ -1,7 +1,18 @@
 import { Box, Typography, Button, TextField } from "@mui/material";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { Lang } from "../../locale/LocaleSwitcher";
 import { useRouter } from "next/router";
+
+interface ComponentProps {
+    image?: {
+        src: StaticImageData,
+        alt: string,
+    }
+    title: { [lang: string]: string; };
+    subtitle: { [lang: string]: string; };
+    opacity?: number;
+    align?: "left" | "center" | "right";
+}
 const styles = {
     imageContainer: {
         width: "100%",
@@ -31,7 +42,7 @@ const styles = {
         gap: "1rem",
     }
 }
-export default function (props) {
+export default function (props: ComponentProps) {
     const router = useRouter()
     const { locale } = router
     const currentLang = Lang[locale ?? 'en']
@@ -56,7 +67,7 @@ export default function (props) {
                             backgroundColor: "black",
                             overflow: "hidden",
                         }}>
-                        <Image priority {...props.image} fill style={{ objectFit: "cover" }} />
+                        {props.image ? <Image priority {...props.image} fill style={{ objectFit: "cover" }} /> : null}
                     </Box>
                 </Box>
                 <Box
