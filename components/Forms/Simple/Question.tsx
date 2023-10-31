@@ -121,7 +121,7 @@ function InputQuestion(props) {
     return <>
         <Box
             sx={{
-                width: (props.fullWidth || props.outsideLabel) ? "100%" : { xs: "100%", md: "48.5%" },
+                width: (props.fullWidth || props.outsideLabel) ? "100%" : { xs: "100%", md: "49.5%" },
                 display: "flex", alignItems: "center", justifyContent: "space-between",
                 flexDirection: { xs: "column", md: "row" },
             }}
@@ -134,7 +134,7 @@ function InputQuestion(props) {
                 </Box>
             }
             <Box
-                sx={{ width: props.outsideLabel ? { xs: "100%", md: "48.5%" } : "100%" }}
+                sx={{ width: props.outsideLabel ? { xs: "100%", md: "49.5%" } : "100%" }}
             >
                 <FormControl fullWidth>
                     <TextField
@@ -168,7 +168,7 @@ function RadioQuestion(props) {
     return <>
         <Box
             sx={{
-                width: props.fullWidth ? "100%" : { xs: "100%", md: "48.5%" },
+                width: props.fullWidth ? "100%" : { xs: "100%", md: "49.5%" },
                 display: "flex", flexDirection: props.fullWidth ? { xs: "column", md: 'row' } : "column",
                 justifyContent: "space-between", alignItems: "center"
             }}
@@ -226,7 +226,7 @@ function SelectQuestion(props) {
     return <>
         <Box
             sx={{
-                width: props.fullWidth ? "100%" : { xs: "100%", md: "48.5%" },
+                width: props.fullWidth ? "100%" : { xs: "100%", md: "49%" },
                 display: "flex", flexDirection: props.fullWidth ? { xs: "column", md: 'row' } : "column",
                 justifyContent: "space-between", alignItems: "center"
             }}
@@ -242,7 +242,7 @@ function SelectQuestion(props) {
             <Box
                 sx={{
                     display: "flex", gap: "2rem", justifyContent: "space-around",
-                    width: props.fullWidth ? { xs: "100%", md: '48.5%' } : "100%"
+                    width: props.fullWidth ? { xs: "100%", md: '49%' } : "100%"
                 }}
             >
                 <FormControl error={!valid && validOnce} fullWidth
@@ -323,7 +323,7 @@ function DateQuestion(props) {
     return (<>
         <Box
             sx={{
-                width: props.fullWidth ? "100%" : { xs: "100%", md: "48.5%" },
+                width: props.fullWidth ? "100%" : { xs: "100%", md: "49%" },
                 display: "flex", flexDirection: props.fullWidth ? { xs: "column", md: 'row' } : "column",
                 justifyContent: "space-between", alignItems: "center"
             }}
@@ -339,7 +339,7 @@ function DateQuestion(props) {
             <Box
                 sx={{
                     display: "flex", gap: "2rem", justifyContent: "space-around",
-                    width: props.fullWidth ? { xs: "100%", md: '48.5%' } : "100%"
+                    width: props.fullWidth ? { xs: "100%", md: '49%' } : "100%"
                 }}
             >
 
