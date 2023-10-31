@@ -1,9 +1,10 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Modal, Typography } from "@mui/material";
 import Question from "./Question";
 import { useRouter } from "next/router";
 import { Lang } from "../../locale/LocaleSwitcher";
 import { useEffect, useState } from "react";
 import PATHCONSTANTS from "../../../constants/sitemap";
+import FormModal from "../../Modals/FormModal";
 
 export default function (props) {
     const router = useRouter()
@@ -14,6 +15,10 @@ export default function (props) {
     const [validArray, setValidArray] = useState(Array(props.questions.length).fill(false))
     const [valid, setValid] = useState(false)
     const [answersArray, setAnswersArray] = useState(Array(props.questions.length).fill(null))
+
+    const [showModal, setShowModal] = useState(false)
+    const [modalError, setModalError] = useState(false)
+    const [loading, setLoading] = useState(false)
     function setIndexValid(index, valid) {
         const newArray = [...validArray]
         newArray[index] = valid
@@ -35,6 +40,7 @@ export default function (props) {
 
     async function handleSubmit() {
         //send answers to backend
+        setLoading(true)
         console.log(answersArray)
         const timestamp = new Date().toLocaleString();
 
@@ -49,7 +55,7 @@ export default function (props) {
         formData.append("SheetTitle", props.title.en);
         formData.append("Spreadsheet", "AiUnited");
         console.log(PATHCONSTANTS.BACKEND)
-        fetch(`${PATHCONSTANTS.BACKEND}/forms`, {
+        await fetch(`${PATHCONSTANTS.BACKEND}/forms`, {
 
             method: "POST",
             headers: {
@@ -62,11 +68,16 @@ export default function (props) {
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
+                setModalError(false)
             })
             .catch((error) => {
                 console.log(error);
+                setModalError(true)
             });
+        setShowModal(true)
+        setLoading(false)
     }
+
     return <>
         <Box
             id={props.id}
@@ -102,7 +113,7 @@ export default function (props) {
 
                     <Box
                         sx={{
-                            display: "flex", flexDirection: { xs: "column", md: "row" }, flexWrap: "wrap", gap: "1.2rem",
+                            display: "flex", flexDirection: { xs: "column", md: "row" }, flexWrap: "wrap", gap: "1.2rem 0rem",
                             justifyContent: "space-between", margin: "auto",
                             padding: "1rem"
                         }}
@@ -115,10 +126,17 @@ export default function (props) {
                         sx={{ padding: "1rem" }}
                     >
 
-                        <Button onClick={handleSubmit} disabled={!valid} variant="contained" color="secondary">Submit</Button>
+                        <Button onClick={handleSubmit} disabled={loading || !valid} variant="contained" color="secondary">
+                            {!loading ? "Submit" : <CircularProgress style={{ width: "2rem", height: "2rem" }} />}</Button>
                     </Box>
                 </Box>
             </Box >
         </Box >
+        {showModal ? <Modal
+            open={showModal}
+            onClose={() => { setShowModal(false) }}
+        >
+            <FormModal close={() => setShowModal(false)} isError={modalError} />
+        </Modal> : null}
     </>
 }
