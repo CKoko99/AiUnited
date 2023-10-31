@@ -220,9 +220,9 @@ export default function (props) {
                                     top: 200,
                                     behavior: "smooth"
                                 })
-                                setZoom(13)
                                 setTimeout(() => {
                                     setSelectedMarker(location)
+                                    setZoom(13)
                                 }, 800)
                             }}
                             sx={{
