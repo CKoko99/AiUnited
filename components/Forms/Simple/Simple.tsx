@@ -8,6 +8,7 @@ import FormModal from "../../Modals/FormModal";
 import FormConfirmation from "../../Emails/FormConfirmation";
 import { render } from '@react-email/render';
 import AiLogo from '../../../public/assets/images/ai-logo-blue.png'
+import TeamConfirmation from "../../Emails/TeamConfirmation";
 
 function getEmailProps(questions, answers) {
     let name = ["", ""]
@@ -120,6 +121,25 @@ export default function (props) {
             }),
         })
 
+        const internalEmailHtml = render(TeamConfirmation({
+            name: emailProps.name,
+            phoneNumber: PATHCONSTANTS.PHONETEXT,
+            formTitle: props.title.en,
+            company: "Ai United",
+            questions: props.questions,
+            answers: answersArray,
+        }))
+
+        await fetch(`${PATHCONSTANTS.BACKEND}/forms/email-team`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                html: internalEmailHtml,
+                subject: `${emailProps.name} completed a ${props.title.en} form for Ai United`,
+            }),
+        })
     }
     return <>
         <Box
