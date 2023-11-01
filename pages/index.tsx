@@ -25,9 +25,8 @@ import Card from '../components/Content/Cards/Cards';
 import PoliciesImg from "../public/assets/images/home/about/policies.png";
 import AboutImg from "../public/assets/images/home/about/about.png";
 import CareersImg from "../public/assets/images/home/about/careers.png";
-import { Lang } from '../components/locale/LocaleSwitcher';
 import PATHCONSTANTS from '../constants/sitemap';
-console.log(Lang)
+
 const bannerContent = {
     title: {
         en: "Simplify Your Coverage and Save Money Today",
