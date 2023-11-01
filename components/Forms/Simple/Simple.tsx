@@ -5,12 +5,33 @@ import { Lang } from "../../locale/LocaleSwitcher";
 import { useEffect, useState } from "react";
 import PATHCONSTANTS from "../../../constants/sitemap";
 import FormModal from "../../Modals/FormModal";
+import FormConfirmation from "../../Emails/FormConfirmation";
+import { render } from '@react-email/render';
+import AiLogo from '../../../public/assets/images/ai-logo-blue.png'
+
+function getEmailProps(questions, answers) {
+    let name = ["", ""]
+    let email = ""
+    //find first name and last name
+    for (let i = 0; i < questions.length; i++) {
+        if (questions[i].title.en.toLowerCase() === "first name") {
+            name[0] = answers[i]
+        }
+        if (questions[i].title.en.toLowerCase() === "last name") {
+            name[1] = answers[i]
+        }
+        if (questions[i].title.en.toLowerCase() === "email") {
+            email = answers[i]
+        }
+    }
+    return { name: name.join(" "), email }
+}
 
 export default function (props) {
     const router = useRouter()
-
     const { locale } = router
     const currentLang = Lang[locale ?? 'en']
+
     //fill array with false values for each question 
     const [validArray, setValidArray] = useState(Array(props.questions.length).fill(false))
     const [valid, setValid] = useState(false)
@@ -19,6 +40,7 @@ export default function (props) {
     const [showModal, setShowModal] = useState(false)
     const [modalError, setModalError] = useState(false)
     const [loading, setLoading] = useState(false)
+
     function setIndexValid(index, valid) {
         const newArray = [...validArray]
         newArray[index] = valid
@@ -77,7 +99,28 @@ export default function (props) {
         setShowModal(true)
         setLoading(false)
     }
+    async function sendEmail() {
+        console.log("send email")
+        console.log(getEmailProps(props.questions, answersArray))
+        const emailProps = getEmailProps(props.questions, answersArray)
+        const emailHtml = render(FormConfirmation({
+            name: emailProps.name,
+            phoneNumber: PATHCONSTANTS.PHONETEXT,
+        }))
 
+        await fetch(`${PATHCONSTANTS.BACKEND}/forms/email`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                html: emailHtml,
+                to: emailProps.email,
+                subject: "Thank you for reaching out to Ai United",
+            }),
+        })
+
+    }
     return <>
         <Box
             id={props.id}
@@ -126,7 +169,9 @@ export default function (props) {
                         sx={{ padding: "1rem" }}
                     >
 
-                        <Button onClick={handleSubmit} disabled={loading || !valid} variant="contained" color="secondary">
+                        <Button onClick={sendEmail} disabled={false}
+                            //loading || !valid} 
+                            variant="contained" color="secondary">
                             {!loading ? "Submit" : <CircularProgress style={{ width: "2rem", height: "2rem" }} />}</Button>
                     </Box>
                 </Box>
