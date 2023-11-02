@@ -241,7 +241,7 @@ const navItems = [
           en: "Careers",
           es: "Carreras"
         },
-        link: PATHCONSTANTS.ABOUT.CAREERS
+        link: PATHCONSTANTS.ABOUT.CAREERS.INDEX
       },
       {
         title: {

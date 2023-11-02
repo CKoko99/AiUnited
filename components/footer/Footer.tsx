@@ -39,7 +39,7 @@ const section2content = [
       en: "Careers",
       es: "Carreras"
     },
-    link: PATHCONSTANTS.ABOUT.CAREERS
+    link: PATHCONSTANTS.ABOUT.CAREERS.INDEX
   }
 ]
 const section3content = {

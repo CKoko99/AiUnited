@@ -41,7 +41,6 @@ const bannerContent = {
             en: "Get a Quote!",
             es: "¡Obtenga una cotización!"
         },
-        link: "/quote"
     },
     image: {
         src: BannerImage,
@@ -268,7 +267,7 @@ const aboutContent = {
                 src: CareersImg,
                 alt: "Careers"
             },
-            link: PATHCONSTANTS.ABOUT.CAREERS
+            link: PATHCONSTANTS.ABOUT.CAREERS.INDEX
         }
     ]
 }

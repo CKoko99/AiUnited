@@ -39,7 +39,12 @@ const PATHCONSTANTS = {
     ABOUT: {
         INDEX: '/about',
         CONTACT: '/about/contact',
-        CAREERS: '/about/careers',
+        CAREERS: {
+            INDEX: '/about/careers',
+            CSR: '/about/careers/csr',
+            OPERATIONS: '/about/careers/operations',
+            DM: '/about/careers/dm',
+        },
         REVIEWS: '/about/reviews',
     },
     PAYMENTS: '/payments',
