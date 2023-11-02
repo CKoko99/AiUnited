@@ -121,7 +121,7 @@ function InputQuestion(props) {
     return <>
         <Box
             sx={{
-                width: (props.fullWidth || props.outsideLabel) ? "100%" : { xs: "100%", md: "49.5%" },
+                width: (props.fullWidth || props.outsideLabel) ? "100%" : { xs: "100%", md: "49%" },
                 display: "flex", alignItems: "center", justifyContent: "space-between",
                 flexDirection: { xs: "column", md: "row" },
             }}
@@ -134,7 +134,7 @@ function InputQuestion(props) {
                 </Box>
             }
             <Box
-                sx={{ width: props.outsideLabel ? { xs: "100%", md: "49.5%" } : "100%" }}
+                sx={{ width: props.outsideLabel ? { xs: "100%", md: "49%" } : "100%" }}
             >
                 <FormControl fullWidth>
                     <TextField
@@ -305,14 +305,26 @@ function DateQuestion(props) {
             //const date = `${stringMonth}-${stringDate}-${value.year()}`
             const date = `${value.year()}-${stringMonth}-${stringDate}`
             //check if date is less than max date
-            if (dayjs(date).isBefore(maxDate) && dayjs(date).isAfter("1900-01-01")) {
-                props.setValid(props.index, true)
-                props.setAnswer(props.index, date)
-                setError("")
+            if (props.future) {
+                if (dayjs(date).isAfter(maxDate)) {
+                    props.setValid(props.index, true)
+                    props.setAnswer(props.index, date)
+                    setError("")
+                } else {
+                    props.setValid(props.index, false)
+                    //setError(`${date} ${dayjs(date)} `)
+                    setError(validationText.date[props.lang])
+                }
             } else {
-                props.setValid(props.index, false)
-                //setError(`${date} ${dayjs(date)} `)
-                setError(validationText.date[props.lang])
+                if (dayjs(date).isBefore(maxDate) && dayjs(date).isAfter("1900-01-01")) {
+                    props.setValid(props.index, true)
+                    props.setAnswer(props.index, date)
+                    setError("")
+                } else {
+                    props.setValid(props.index, false)
+                    //setError(`${date} ${dayjs(date)} `)
+                    setError(validationText.date[props.lang])
+                }
             }
         } else {
             props.setValid(props.index, false)
