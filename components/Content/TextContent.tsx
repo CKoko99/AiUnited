@@ -16,7 +16,6 @@ export default function (props: TextContentProps) {
     const router = useRouter()
     const { locale } = router
     const currentLang = Lang[locale ?? 'en']
-    console.log(props.content[2].text[currentLang])
 
     return <Box
         sx={{ padding: "1rem" }}
