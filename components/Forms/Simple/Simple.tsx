@@ -42,14 +42,13 @@ export default function (props) {
     const [modalError, setModalError] = useState(false)
     const [loading, setLoading] = useState(false)
 
-    function setIndexValid(index, valid) {
+    function setIndexValid(index: number, valid: boolean) {
         const newArray = [...validArray]
         newArray[index] = valid
         setValidArray(newArray)
-
     }
 
-    function setIndexAnswer(index, answer) {
+    function setIndexAnswer(index: number, answer: any) {
         const newArray = [...answersArray]
         newArray[index] = answer
         setAnswersArray(newArray)
@@ -61,9 +60,7 @@ export default function (props) {
         setValid(valid)
     }, [validArray])
 
-    async function handleSubmit() {
-        //send answers to backend
-        setLoading(true)
+    async function uploadToSheet() {
         console.log(answersArray)
         const timestamp = new Date().toLocaleString();
 
@@ -75,7 +72,7 @@ export default function (props) {
         for (let i = 0; i < answersArray.length; i++) {
             formData.append(`${2 + i} ${i + 1} ${props.questions[i].title.en}`, answersArray[i]);
         }
-        formData.append("SheetTitle", props.title.en);
+        formData.append("SheetTitle", props.sheetTitle || props.title.en);
         formData.append("Spreadsheet", "AiUnited");
         console.log(PATHCONSTANTS.BACKEND)
         await fetch(`${PATHCONSTANTS.BACKEND}/forms`, {
@@ -98,11 +95,10 @@ export default function (props) {
                 setModalError(true)
             });
         setShowModal(true)
-        setLoading(false)
     }
+
     async function sendEmail() {
         console.log("send email")
-        console.log(getEmailProps(props.questions, answersArray))
         const emailProps = getEmailProps(props.questions, answersArray)
         const emailHtml = render(FormConfirmation({
             name: emailProps.name,
@@ -140,6 +136,13 @@ export default function (props) {
                 subject: `${emailProps.name} completed a ${props.title.en} form for Ai United`,
             }),
         })
+    }
+    async function handleSubmit() {
+        //send answers to backend
+        setLoading(true)
+        await uploadToSheet()
+        setLoading(false)
+        await sendEmail()
     }
     return <>
         <Box
@@ -188,9 +191,7 @@ export default function (props) {
                     <Box
                         sx={{ padding: "1rem" }}
                     >
-
-                        <Button onClick={sendEmail} disabled={false}
-                            //loading || !valid} 
+                        <Button onClick={handleSubmit} disabled={loading || !valid}
                             variant="contained" color="secondary">
                             {!loading ? "Submit" : <CircularProgress style={{ width: "2rem", height: "2rem" }} />}</Button>
                     </Box>
