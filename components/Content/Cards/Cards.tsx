@@ -134,7 +134,9 @@ function Card(props) {
                 </Box>
             </Box>
         </Link >
-        <Link href={`${props.link}`}>
+        <Link
+            style={{ margin: "auto" }}
+            href={`${props.link}`}>
             <Box
                 sx={{ ...styles.cardTitle }}
             >
