@@ -8,8 +8,8 @@ interface ComponentProps {
         src: StaticImageData,
         alt: string,
     }
-    title: { [lang: string]: string; };
-    subtitle: { [lang: string]: string; };
+    title?: { [lang: string]: string; };
+    subtitle?: { [lang: string]: string; };
     opacity?: number;
     align?: "left" | "center" | "right";
 }
@@ -76,23 +76,22 @@ export default function (props: ComponentProps) {
                         textAlign: props.align ? props.align : "center",
                     }}
                 >
-                    <Typography variant="h3"
+                    {props.title ? <Typography variant="h3"
                         sx={{
                             ...styles.glowText,
 
                         }}
                     >
                         {props.title[currentLang]}
-                    </Typography>
-                    <Typography variant="h4"
-
-                        sx={{
-                            ...styles.glowTextSub,
-
-                        }}
-                    >
-                        {props.subtitle[currentLang]}
-                    </Typography>
+                    </Typography> : null}
+                    {props.subtitle ?
+                        <Typography variant="h4"
+                            sx={{
+                                ...styles.glowTextSub,
+                            }}
+                        >
+                            {props.subtitle[currentLang]}
+                        </Typography> : null}
                 </Box>
             </Box>
         </>
