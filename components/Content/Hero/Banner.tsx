@@ -15,7 +15,6 @@ interface BannerProps {
         [lang: string]: string;
     };
     ctaButton?: {
-        link: string;
         text: {
             [lang: string]: string;
         };
