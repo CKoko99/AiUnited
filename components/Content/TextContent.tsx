@@ -20,14 +20,14 @@ export default function (props: TextContentProps) {
     return <Box
         sx={{ padding: "1rem" }}
     >
-        {props.content.map((item: any, contentIndex) => {
+        {props.content?.map((item: any, contentIndex) => {
             return <Typography key={contentIndex}
                 sx={{ margin: '1rem' }}
                 variant={item.variant ?? "h6"}
                 fontWeight={item.fontWeight ? item.fontWeight : "normal"}
                 color={props.contrast ? "white" : "black"}
             >
-                {item.text[currentLang].map((text: string, textIndex) => {
+                {item.text[currentLang]?.map((text: string, textIndex) => {
                     return <React.Fragment key={textIndex}>
                         {item.type?.toLowerCase() === "bulletedlist" && <>
                             • {text}
