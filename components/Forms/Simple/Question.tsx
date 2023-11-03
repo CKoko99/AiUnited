@@ -1,11 +1,15 @@
-import { Box, FormControl, TextField, Input, Typography, RadioGroup, Radio, FormControlLabel, Select, MenuItem, InputLabel, FormHelperText } from "@mui/material"
+import { Box, FormControl, TextField, Input, Typography, RadioGroup, Radio, FormControlLabel, Select, MenuItem, InputLabel, FormHelperText, Button } from "@mui/material"
 import { useRouter } from "next/router"
 import { Lang } from "../../locale/LocaleSwitcher"
-import { useEffect, useMemo, useState } from "react"
+import { ChangeEvent, useEffect, useMemo, useState } from "react"
 import { DateField, DatePicker, DateValidationError, LocalizationProvider } from "@mui/x-date-pickers"
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs, { Dayjs } from 'dayjs';
 import { CustomFonts } from "../../../providers/theme"
+import { KeyboardArrowDownSharp } from "@mui/icons-material"
+import PATHCONSTANTS from "../../../constants/sitemap"
+
+const chunkSize = 1024 * 1024 * .5;
 
 const validationText = {
     email: {
@@ -381,7 +385,128 @@ function DateQuestion(props) {
         </Box>
     </>)
 }
+function FileQuestion(props) {
 
+    const [value, setValue] = useState(null)
+    const [currentChunkIndex, setCurrentChunkIndex] = useState(-1);
+    const [progress, setProgress] = useState(0);
+    function handleDrop(e: any) {
+        e.preventDefault();
+        console.log(e.target.files[0]);
+        setValue(e.target.files[0])
+    }
+
+
+    async function uploadChunk(readerEvent) {
+        const data = readerEvent.target.result;
+        const params = new URLSearchParams();
+        params.set('name', value.name);
+        params.set('size', value.size);
+        params.set('currentChunkIndex', currentChunkIndex.toString());
+        console.log('totalChunks', Math.ceil(value.size / chunkSize).toString());
+        params.set('totalChunks', Math.ceil(value.size / chunkSize).toString());
+        const headers = { 'Content-Type': 'application/octet-stream' };
+        const url = PATHCONSTANTS.BACKEND + '/files?' + params.toString();
+        console.log(url);
+        const chunks = Math.ceil(value.size / chunkSize) - 1;
+        const isLastChunk = currentChunkIndex === chunks;
+        if (isLastChunk) {
+            setProgress(99);
+        }
+        await fetch(url, {
+            method: 'POST',
+            headers: headers,
+            body: data
+        }).then(respone => respone.json())
+            .then(data => {
+                if (isLastChunk) {
+                    //file.finalFilename = response.data.finalFilename;
+                    setCurrentChunkIndex(-1);
+                    console.log(data)
+                    //props.onFileChange(data.fileLink);
+                    setProgress(100);
+                } else {
+                    setProgress(Math.round((currentChunkIndex + 1) / chunks * 100));
+                    setCurrentChunkIndex(currentChunkIndex + 1);
+                }
+                console.log("continue")
+            }).catch(error => {
+                console.log(error);
+            });
+    }
+
+    function readAndUploadCurrentChunk() {
+        const reader = new FileReader();
+        if (!value) {
+            return;
+        }
+        if (currentChunkIndex === 0) {
+            console.log("first chunk");
+            console.log(value)
+            console.log("out of", Math.ceil(value.size / chunkSize))
+        }
+        const from = currentChunkIndex * chunkSize;
+        const to = from + chunkSize;
+        const blob = value.slice(from, to);
+        if (currentChunkIndex === -1) {
+            console.log("negative")
+            return
+        }
+        console.log("uploading chunk", currentChunkIndex);
+        reader.onload = e => uploadChunk(e);
+        reader.readAsDataURL(blob);
+    }
+    useEffect(() => {
+        if (value && value.size) {
+            console.log("value changed")
+            setCurrentChunkIndex(0)
+        }
+    }, [value])
+    useEffect(() => {
+        if (currentChunkIndex === -1) {
+            return
+        } else {
+            console.log("current chunk changed" + currentChunkIndex)
+            readAndUploadCurrentChunk()
+        }
+    }, [currentChunkIndex])
+
+    return <>
+        <Box
+            sx={{
+                width: props.fullWidth ? "100%" : { xs: "100%", md: "49.5%" },
+                display: "flex", flexDirection: props.fullWidth ? { xs: "column", md: 'row' } : "column",
+                justifyContent: "space-between", alignItems: "center"
+            }}
+        >
+            <Box
+                sx={{ width: props.fullWidth ? { xs: "100%", md: '50%' } : "100%" }}
+            >
+                <Typography variant="h6">
+                    {props.title}
+                </Typography>
+            </Box>
+            <Box sx={{
+                display: "flex", gap: "2rem", justifyContent: "space-around",
+                width: props.fullWidth ? { xs: "100%", md: '50%' } : "100%"
+            }}>
+                <Input
+                    accept="*"
+                    style={{ display: 'none' }}
+                    id={`file-input-add-file`}
+                    type="file"
+                    onChange={e => handleDrop(e)}
+                />
+                <label htmlFor={`file-input-add-file`}>
+                    <Button variant="contained" color="primary" component="span">
+                        Add File
+                        <KeyboardArrowDownSharp />
+                    </Button>
+                </label>
+            </Box>
+        </Box>
+    </>
+}
 export default function (props) {
     const router = useRouter()
     const { locale } = router
@@ -397,8 +522,9 @@ export default function (props) {
         </Box>
         }
         {props.type.toLowerCase() == "input" && <InputQuestion  {...props} title={props.title[currentLang]} />}
-        {props.type == "radio" && <RadioQuestion lang={currentLang}  {...props} title={props.title[currentLang]} />}
+        {props.type.toLowerCase() == "radio" && <RadioQuestion lang={currentLang}  {...props} title={props.title[currentLang]} />}
         {props.type.toLowerCase() === "select" && <SelectQuestion lang={currentLang} {...props} title={props.title[currentLang]} />}
-        {props.type === "date" && <DateQuestion {...props} lang={currentLang} />}
+        {props.type.toLowerCase() === "date" && <DateQuestion {...props} lang={currentLang} />}
+        {props.type.toLowerCase() === "file" && <FileQuestion {...props} title={props.title[currentLang]} lang={currentLang} />}
     </>
 }

@@ -191,7 +191,7 @@ export default function (props) {
                     <Box
                         sx={{ padding: "1rem" }}
                     >
-                        <Button onClick={handleSubmit} disabled={loading || !valid}
+                        <Button onClick={handleSubmit} disabled={false} //loading || !valid}
                             variant="contained" color="secondary">
                             {!loading ? "Submit" : <CircularProgress style={{ width: "2rem", height: "2rem" }} />}</Button>
                     </Box>

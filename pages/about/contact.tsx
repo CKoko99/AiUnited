@@ -66,6 +66,15 @@ const formContent = {
       required: true,
       fullWidth: true,
     },
+    {
+      type: "file",
+      title: {
+        en: "Upload Resume",
+        es: "Subir currículum",
+      },
+      required: true,
+      fullWidth: true,
+    }
   ],
 };
 
