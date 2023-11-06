@@ -41,7 +41,7 @@ export default function (props) {
     const [showModal, setShowModal] = useState(false)
     const [modalError, setModalError] = useState(false)
     const [loading, setLoading] = useState(false)
-
+    const [handlingSubmit, setHandlingSubmit] = useState(false)
     function setIndexValid(index: number, valid: boolean) {
         const newArray = [...validArray]
         newArray[index] = valid
@@ -144,6 +144,30 @@ export default function (props) {
         setLoading(false)
         await sendEmail()
     }
+    useEffect(() => {
+        //loop through valid array and check if atleast one value = "FILE_PLACEHOLDER"
+        //if so, set valid to false
+        //if not, set valid to true
+        if (!handlingSubmit) {
+            return
+        }
+        setLoading(true)
+        let Uploading = false
+        for (let i = 0; i < answersArray.length; i++) {
+            if (answersArray[i] === "FILE_PLACEHOLDER") {
+                console.log("FOUND PLACEHOLDER")
+                Uploading = true
+            }
+        }
+        if (Uploading) {
+            return
+        }
+        console.log("HANDLE SUBMIT")
+        handleSubmit()
+        //handleSubmit()
+        //setHandlingSubmit(false)
+
+    }, [handlingSubmit, answersArray])
     return <>
         <Box
             id={props.id}
@@ -185,13 +209,13 @@ export default function (props) {
                         }}
                     >
                         {props.questions.map((question, index) => {
-                            return <Question index={index} setAnswer={setIndexAnswer} setValid={setIndexValid} key={index} {...question} />
+                            return <Question handlingSubmit={handlingSubmit} index={index} setAnswer={setIndexAnswer} setValid={setIndexValid} key={index} {...question} />
                         })}
                     </Box>
                     <Box
                         sx={{ padding: "1rem" }}
                     >
-                        <Button onClick={handleSubmit} disabled={false} //loading || !valid}
+                        <Button onClick={() => { setHandlingSubmit(true) }} disabled={loading || !valid}
                             variant="contained" color="secondary">
                             {!loading ? "Submit" : <CircularProgress style={{ width: "2rem", height: "2rem" }} />}</Button>
                     </Box>

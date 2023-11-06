@@ -387,13 +387,16 @@ function DateQuestion(props) {
 }
 function FileQuestion(props) {
 
-    const [value, setValue] = useState({
-    })
+    const [value, setValue] = useState({})
     const [currentChunkIndex, setCurrentChunkIndex] = useState(-1);
     const [progress, setProgress] = useState(0);
+    const [fileLink, setFileLink] = useState("")
     function handleDrop(e: any) {
         e.preventDefault();
         console.log(e.target.files[0]);
+        console.log(props.index)
+        console.log("FILE_PLACEHOLDER")
+        props.setValid(props.index, true)
         setValue(e.target.files[0])
     }
 
@@ -425,6 +428,8 @@ function FileQuestion(props) {
                     //file.finalFilename = response.data.finalFilename;
                     setCurrentChunkIndex(-1);
                     console.log(data.fileLink)
+                    props.setAnswer(props.index, data.fileLink)
+
                     //props.onFileChange(data.fileLink);
                     setProgress(100);
                 } else {
@@ -460,7 +465,7 @@ function FileQuestion(props) {
     useEffect(() => {
         if (value && (value as File).size) {
             console.log("value changed")
-            setCurrentChunkIndex(0)
+            //     setCurrentChunkIndex(0)
         }
     }, [value])
     useEffect(() => {
@@ -472,6 +477,14 @@ function FileQuestion(props) {
         }
     }, [currentChunkIndex])
 
+    useEffect(() => {
+        if (props.handlingSubmit) {
+            console.log("handling submit")
+            if (currentChunkIndex === -1) {
+                setCurrentChunkIndex(0)
+            }
+        }
+    }, [props.handlingSubmit])
     return <>
         <Box
             sx={{
