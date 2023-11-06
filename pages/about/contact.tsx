@@ -104,6 +104,7 @@ const formContentTemp = {
       required: true,
       fullWidth: true,
     }
+
   ],
 };
 

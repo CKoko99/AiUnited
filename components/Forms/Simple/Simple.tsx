@@ -138,10 +138,12 @@ export default function (props) {
         })
     }
     async function handleSubmit() {
+        console.log("HANDLE SUBMIT")
         //send answers to backend
         setLoading(true)
         await uploadToSheet()
         setLoading(false)
+        setHandlingSubmit(false)
         await sendEmail()
     }
     useEffect(() => {
@@ -162,11 +164,7 @@ export default function (props) {
         if (Uploading) {
             return
         }
-        console.log("HANDLE SUBMIT")
         handleSubmit()
-        //handleSubmit()
-        //setHandlingSubmit(false)
-
     }, [handlingSubmit, answersArray])
     return <>
         <Box
