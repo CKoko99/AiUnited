@@ -43,7 +43,7 @@ const PATHCONSTANTS = {
             INDEX: '/about/careers',
             CSR: '/about/careers/csr',
             OPERATIONS: '/about/careers/operations',
-            DM: '/about/careers/dm',
+            DM: '/about/careers/district-manager',
         },
         REVIEWS: '/about/reviews',
     },

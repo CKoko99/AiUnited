@@ -4,93 +4,58 @@ import Simple from "../../../components/Forms/Simple/Simple";
 
 const heroContent = {
     title: {
-        en: "Customer Service Representative / Insurance Agent",
-        es: "Representante de servicio al cliente / Agente de seguros"
+        en: "Operations",
+        es: "Operaciones"
     }
 }
+
 const textContent = {
     content: [
         {
             variant: "h4",
             fontWeight: "bold",
             text: {
-                en: [`Customer Service Representative / Insurance Agent`],
-                es: [`Representante de servicio al cliente / Agente de seguros`]
-            },
-        },
-        {
-            text: {
-                en: [`Customer Service Representative / Insurance Agent are responsible for handling multiple types of customer experience 
-            inquiries, resolving service concerns, documenting customer requests and completing changes to policies. Other 
-            responsibilities of a Customer Service Representative may also include:`],
-                es: [`Los representantes de servicio al cliente / agentes de seguros son responsables de manejar múltiples tipos de
-            consultas de experiencia del cliente, resolver problemas de servicio, documentar las solicitudes de los clientes y completar
-            cambios en las pólizas. Otras responsabilidades de un representante de servicio al cliente también pueden incluir:`]
+                en: [`Operations`],
+                es: [`Operaciones`]
             },
         },
         {
             type: "bulletedList",
             text: {
-                en: [`Performing administrative tasks`,
-                    `Attending meetings, seminars and programs to learn about new products and services, learning new skills, 
-        and receiving technical assistance in developing new accounts`,
-                    `Provide various types of insurance policies to businesses and individuals`,
-                    `Calculating premiums and establishing payment methods`,
-                    `Communicating with customers through phone calls, texts, email and other forms of communication`,
-                    `Communicating with underwriting departments and submitting forms`,
-                    `Customizing insurance programs to suit individual customers`,
-                    `Ensuring that policy requirements are fulfilled, including the completion of appropriate forms`,
-                    `Explaining features, advantages and disadvantages of various policies`,
-                    `Seeking out new clients and developing clientele by networking to find new customers and generating lists of prospective clients`,
-                    `Get licensed or obtain continuing education courses for licensing purposes`,
+                en: [`Work full-time available 5 days a week Monday- Saturdays`,
+                    `Able to travel to other cities when needed but not often`,
+                    `Some physical activities are needed from time to time like lifting, picking up, moving and cleaning`,
+                    `Other duties that arise`,
+                    `Recording, processing, verifying and maintaining records of financial transactions`,
+                    `Recording, processing, verifying and maintaining records of mainteneance tasks`,
+                    `Work with local government agencies to obtain and keep up to date all inspection and permitting`,
+                    `Oversee the registration, inspection, and maintenance of all company vehicles`,
+                    `Communicate clearly and effectively with landlords, contractors, and different vendors`,
+                    `Schedule vendor appointments for different locations, such as pest control, HVAC, contractors etc.`,
+                    `Receiving, reportingm and assigning tech issues`,
+                    `Data entry`,
+                    `Track and report all maintenance, security, or IT issues`,
+                    `Maintain/ renew location leases`,
                 ],
-                es: [`Realizar tareas administrativas`,
-                    `Asistir a reuniones, seminarios y programas para aprender sobre nuevos productos y servicios, aprender nuevas habilidades,
-        y recibir asistencia técnica para desarrollar nuevas cuentas`,
-                    `Proporcionar varios tipos de pólizas de seguro a empresas y particulares`,
-                    `Calcular primas y establecer métodos de pago`,
-                    `Comunicarse con los clientes a través de llamadas telefónicas, mensajes de texto, correo electrónico y otras formas de comunicación`,
-                    `Comunicarse con los departamentos de suscripción y enviar formularios`,
-                    `Personalizar programas de seguros para adaptarse a clientes individuales`,
-                    `Asegurarse de que se cumplan los requisitos de la póliza, incluida la cumplimentación de los formularios correspondientes`,
-                    `Explicar las características, ventajas y desventajas de varias pólizas`,
-                    `Buscar nuevos clientes y desarrollar una clientela mediante la creación de redes para encontrar nuevos clientes y generar listas de clientes potenciales`,
-                    `Obtener licencias u obtener cursos de educación continua para fines de licencias`,
+                es: [`Trabajar a tiempo completo disponible 5 días a la semana de lunes a sábados`,
+                    `Capaz de viajar a otras ciudades cuando sea necesario pero no con frecuencia`,
+                    `De vez en cuando se necesitan algunas actividades físicas como levantar, recoger, mover y limpiar`,
+                    `Otras tareas que surjan`,
+                    `Grabación, procesamiento, verificación y mantenimiento de registros de transacciones financieras`,
+                    `Grabación, procesamiento, verificación y mantenimiento de registros de tareas de mantenimiento`,
+                    `Trabajar con agencias gubernamentales locales para obtener y mantener al día todas las inspecciones y permisos`,
+                    `Supervisar el registro, la inspección y el mantenimiento de todos los vehículos de la empresa`,
+                    `Comunicarse de manera clara y efectiva con propietarios, contratistas y diferentes proveedores`,
+                    `Programar citas con proveedores para diferentes ubicaciones, como control de plagas, HVAC, contratistas, etc.`,
+                    `Recibir, informar y asignar problemas técnicos`,
+                    `Entrada de datos`,
+                    `Seguimiento e informe de todos los problemas de mantenimiento, seguridad o TI`,
+                    `Mantener / renovar los arrendamientos de ubicación`,
                 ]
             },
         },
         {
-            text: {
-                en: [`To effectively perform the duties of a Customer Service Representative/ Insurance agent, individuals must be able to 
-            demonstrate a number of competencies that are essential to the position, which include:`],
-                es: [`Para desempeñar eficazmente las funciones de representante de servicio al cliente / agente de seguros, las personas deben poder
-            demostrar una serie de competencias que son esenciales para el puesto, que incluyen:`]
-            }
-        },
-        {
-            text: {
-                en: [`Bilingual (Spanish/English) Required`,
-                    `Basic computer knowledge; ability to type 20+ WPM`,
-                    `Possess strong interpersonal skills`,
-                    `Be able to communicate clearly, both writtern and orally`,
-                    `Be able to prioritize  plan work activities as to use time efficiently`,
-                    `Be organized, accurate, thorough, and able to monitor work for quality`,
-                    `Be dependable, able to follow instructions, respond to management direction, and must be able to improve
-        performance through management feedback`,
-                    `Reliable transportation`,
-                ],
-                es: [`Bilingüe (español / inglés) requerido`,
-                    `Conocimientos básicos de informática; capacidad para escribir a máquina 20+ WPM`,
-                    `Poseer fuertes habilidades interpersonales`,
-                    `Ser capaz de comunicarse claramente, tanto por escrito como oralmente`,
-                    `Ser capaz de priorizar planificar las actividades de trabajo para utilizar el tiempo de manera eficiente`,
-                    `Ser organizado, preciso, minucioso y capaz de controlar el trabajo con calidad`,
-                    `Ser confiable, capaz de seguir instrucciones, responder a la dirección de la gerencia y debe poder mejorar
-        el rendimiento a través de la retroalimentación de la gerencia`,
-                    `Transporte confiable`,]
-            }
-        },
-        {
+            fontWeight: "Bold",
             text: {
                 en: [`Education and Licensing`],
                 es: [`Educación y licencias`]
@@ -100,11 +65,23 @@ const textContent = {
             type: "bulletedList",
             text: {
                 en: [`High School Diploma or GED`,
-                    `0 - 6 months Customer Service / Insurance / Sales Experience (preferred)`,
-                    `Valid County Mutual, Limited Lines or Property & Casualty License in Texas (preferred)`,],
+                    `6 months - 1 year of Customer Service`,
+                    `1-2 year of Lead/ Supervisory experience, preferred`,
+                    `Good organizational and interpersonal skills`,
+                    `Good computer knowledge`,
+                    `Able to work independently with minimal/ no supervision`,
+                    `Ability to quickly learn any Company/ Proprietary software is necessary`,
+                    `Bilingual (English/ Spanish)`
+                ],
                 es: [`Diploma de escuela secundaria o GED`,
-                    `0 - 6 meses de experiencia en servicio al cliente / seguros / ventas (preferido)`,
-                    `Licencia válida de County Mutual, Limited Lines o Property & Casualty en Texas (preferido)`,]
+                    `6 meses - 1 año de servicio al cliente`,
+                    `1-2 años de experiencia de liderazgo / supervisión, preferido`,
+                    `Buenas habilidades organizativas e interpersonales`,
+                    `Buen conocimiento informático`,
+                    `Capaz de trabajar de forma independiente con supervisión mínima / nula`,
+                    `La capacidad de aprender rápidamente cualquier software de la compañía / patentado es necesaria`,
+                    `Bilingüe (inglés / español)`
+                ]
             }
         },
         {
@@ -127,26 +104,22 @@ const textContent = {
                     `This job description in no way states or implies that these are the only duties to be performed by the employee occupying this position. 
                 Employees will be required to follow any other job-related instructions and to perform any other job-related 
                 dutiesrequested by their supervisor.`
+                ],
+                es: [
+                    `Esta descripción del trabajo de ninguna manera establece o implica que estas son las únicas tareas que debe realizar el empleado que ocupa este puesto.
+                Se requerirá que los empleados sigan cualquier otra instrucción relacionada con el trabajo y realicen cualquier otra tarea relacionada con el trabajo
+                deberes solicitados por su supervisor.`
                 ]
             }
         },
-        {
-            text: {
-                en: [
-                    `This job description may be revised upon development of other duties and changes in responsibilities.`
-                ],
-                es: [
-                    `Esta descripción del trabajo puede revisarse al desarrollar otras tareas y cambios en las responsabilidades.`
-                ]
-            }
-        }
     ]
 }
+
 const formContent = {
-    sheetTitle: "CSR Application",
+    sheetTitle: "Operations Application",
     title: {
-        en: "Customer Service Representative / Insurance Agent",
-        es: "Representante de servicio al cliente / Agente de seguros",
+        en: "Operations Representative",
+        es: "Representante de operaciones",
     },
     subtitle: {
         en: "Please fill out the form below and we will get back to you as soon as possible.",
@@ -330,12 +303,10 @@ const formContent = {
         }
     ],
 };
-
 export default function () {
     return <>
         <Hero {...heroContent} />
         <TextContent {...textContent} />
-
         <Simple {...formContent} />
     </>
 }

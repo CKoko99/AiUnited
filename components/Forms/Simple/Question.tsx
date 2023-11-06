@@ -31,6 +31,16 @@ const validationText = {
     date: {
         en: "Please enter a valid date.",
         es: "Por favor ingrese una fecha válida.",
+    },
+    file: {
+        choose: {
+            en: "Choose a file",
+            es: "Elija un archivo",
+        },
+        replace: {
+            en: "Replace file",
+            es: "Reemplazar archivo",
+        }
     }
 }
 const selectLabel = {
@@ -394,8 +404,6 @@ function FileQuestion(props) {
     function handleDrop(e: any) {
         e.preventDefault();
         console.log(e.target.files[0]);
-        console.log(props.index)
-        console.log("FILE_PLACEHOLDER")
         props.setValid(props.index, true)
         setValue(e.target.files[0])
     }
@@ -465,7 +473,6 @@ function FileQuestion(props) {
     useEffect(() => {
         if (value && (value as File).size) {
             console.log("value changed")
-            //     setCurrentChunkIndex(0)
         }
     }, [value])
     useEffect(() => {
@@ -501,8 +508,9 @@ function FileQuestion(props) {
                 </Typography>
             </Box>
             <Box sx={{
-                display: "flex", gap: "2rem", justifyContent: "space-around",
-                width: props.fullWidth ? { xs: "100%", md: '50%' } : "100%"
+                display: "flex", gap: ".5rem", justifyContent: "space-around",
+                width: props.fullWidth ? { xs: "100%", md: '50%' } : "100%",
+                flexDirection: "column", alignItems: "center"
             }}>
                 <Input
                     //accept="*"
@@ -513,10 +521,11 @@ function FileQuestion(props) {
                 />
                 <label htmlFor={`file-input-add-file`}>
                     <Button variant="contained" color="primary" component="span">
-                        Add File
+                        {(value as File).name ? validationText.file.replace[props.lang] : validationText.file.choose[props.lang]}
                         <KeyboardArrowDownSharp />
                     </Button>
                 </label>
+                {value && (value as File).name}
             </Box>
         </Box>
     </>
