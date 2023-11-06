@@ -387,7 +387,8 @@ function DateQuestion(props) {
 }
 function FileQuestion(props) {
 
-    const [value, setValue] = useState(null)
+    const [value, setValue] = useState({
+    })
     const [currentChunkIndex, setCurrentChunkIndex] = useState(-1);
     const [progress, setProgress] = useState(0);
     function handleDrop(e: any) {
@@ -400,19 +401,20 @@ function FileQuestion(props) {
     async function uploadChunk(readerEvent) {
         const data = readerEvent.target.result;
         const params = new URLSearchParams();
-        params.set('name', value.name);
-        params.set('size', value.size);
+        params.set('name', (value as File).name);
+        params.set('size', (value as File).size.toString());
         params.set('currentChunkIndex', currentChunkIndex.toString());
-        console.log('totalChunks', Math.ceil(value.size / chunkSize).toString());
-        params.set('totalChunks', Math.ceil(value.size / chunkSize).toString());
+        console.log('totalChunks', Math.ceil((value as File).size / chunkSize).toString());
+        params.set('totalChunks', Math.ceil((value as File).size / chunkSize).toString());
         const headers = { 'Content-Type': 'application/octet-stream' };
         const url = PATHCONSTANTS.BACKEND + '/files?' + params.toString();
         console.log(url);
-        const chunks = Math.ceil(value.size / chunkSize) - 1;
+        const chunks = Math.ceil((value as File).size / chunkSize) - 1;
         const isLastChunk = currentChunkIndex === chunks;
         if (isLastChunk) {
             setProgress(99);
         }
+
         await fetch(url, {
             method: 'POST',
             headers: headers,
@@ -422,14 +424,13 @@ function FileQuestion(props) {
                 if (isLastChunk) {
                     //file.finalFilename = response.data.finalFilename;
                     setCurrentChunkIndex(-1);
-                    console.log(data)
+                    console.log(data.fileLink)
                     //props.onFileChange(data.fileLink);
                     setProgress(100);
                 } else {
                     setProgress(Math.round((currentChunkIndex + 1) / chunks * 100));
                     setCurrentChunkIndex(currentChunkIndex + 1);
                 }
-                console.log("continue")
             }).catch(error => {
                 console.log(error);
             });
@@ -443,11 +444,11 @@ function FileQuestion(props) {
         if (currentChunkIndex === 0) {
             console.log("first chunk");
             console.log(value)
-            console.log("out of", Math.ceil(value.size / chunkSize))
+            console.log("out of", Math.ceil((value as File).size / chunkSize))
         }
         const from = currentChunkIndex * chunkSize;
         const to = from + chunkSize;
-        const blob = value.slice(from, to);
+        const blob = (value as File).slice(from, to);
         if (currentChunkIndex === -1) {
             console.log("negative")
             return
@@ -457,7 +458,7 @@ function FileQuestion(props) {
         reader.readAsDataURL(blob);
     }
     useEffect(() => {
-        if (value && value.size) {
+        if (value && (value as File).size) {
             console.log("value changed")
             setCurrentChunkIndex(0)
         }
@@ -491,7 +492,7 @@ function FileQuestion(props) {
                 width: props.fullWidth ? { xs: "100%", md: '50%' } : "100%"
             }}>
                 <Input
-                    accept="*"
+                    //accept="*"
                     style={{ display: 'none' }}
                     id={`file-input-add-file`}
                     type="file"
