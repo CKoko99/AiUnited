@@ -65,56 +65,16 @@ const formContent = {
       type: "input",
       required: true,
       fullWidth: true,
-    },
-    {
-      type: "file",
-      title: {
-        en: "Upload Resume",
-        es: "Subir currículum",
-      },
-      required: true,
-      fullWidth: true,
     }
   ],
 };
-const formContentTemp = {
-  title: {
-    en: "Contact Us",
-    es: "Contáctenos",
-  },
-  subtitle: {
-    en: "Please fill out the form below and we will get back to you as soon as possible.",
-    es: "Por favor complete el formulario a continuación y nos pondremos en contacto con usted lo antes posible."
-  },
-  questions: [
-    {
-      title: {
-        en: "First Name",
-        es: "Nombre",
-      },
-      type: "input",
-      required: true,
-    },
-    {
-      type: "file",
-      title: {
-        en: "Upload Resume",
-        es: "Subir currículum",
-      },
-      required: true,
-      fullWidth: true,
-    }
-
-  ],
-};
-
 
 export default function () {
   return (
     <>
       <Hero {...heroContent} />
       <ContactAndLocations />
-      <SimpleForm {...formContentTemp} />
+      <SimpleForm {...formContent} />
     </>
   )
 }
