@@ -64,7 +64,7 @@ export default function ({
                             {name} has completed a {formTitle} form for {company}! Please Reach out to them as soon as possible!
                         </Text>
                         {questions.map((question, index) => {
-                            return <Text className="text-black text-[14px] leading-[24px]">
+                            return <Text key={index} className="text-black text-[14px] leading-[24px]">
                                 {question.title.en}: {answers[index]}
                             </Text>
                         })}
