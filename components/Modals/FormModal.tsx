@@ -1,4 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
+import { forwardRef } from "react";
 
 interface ComponentProps {
     isError?: boolean;
@@ -50,7 +51,7 @@ const classes = {
         }
     }
 }
-export default function (props: ComponentProps) {
+function FormModal(props: ComponentProps, ref: any) {
     return <>
 
         <Box
@@ -71,3 +72,4 @@ export default function (props: ComponentProps) {
 
     </>
 }
+export default forwardRef(FormModal)
