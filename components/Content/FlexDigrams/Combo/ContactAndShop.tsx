@@ -8,6 +8,7 @@ import ContactImg from "../../../../public/assets/images/components/contact.png"
 import Image from "next/image";
 import Link from "next/link";
 import { classes } from "./Styles";
+
 const textContent = {
     title: {
         en: "Get Instant Coverage",
@@ -47,10 +48,10 @@ const textContent = {
             es: "Contacte a un representante"
         },
         body: {
-            en: `Ready to get a quote or have questions about your insurance options? Our team of experts 
-            are ready to assist you in finding the perfect coverage for your home.`,
-            es: `¿Listo para obtener una cotización o tiene preguntas sobre sus opciones de seguro? Nuestro equipo de expertos
-         están listos para ayudarlo a encontrar la cobertura perfecta para su hogar.`,
+            en: `Are you prepared to receive a quote, or do you have inquiries regarding your insurance options? 
+            Our team of seasoned experts is poised to guide you in discovering the ideal coverage for your needs.`,
+            es: `¿Está preparado para recibir una cotización o tiene consultas sobre sus opciones de seguro?
+            Nuestro equipo de expertos experimentados está preparado para guiarlo en el descubrimiento de la cobertura ideal para sus necesidades.`,
         },
         img: {
             src: ContactImg,
@@ -81,6 +82,7 @@ const textContent = {
 interface Props {
     quoteLink?: string
 }
+
 export default function (props: Props) {
     const router = useRouter()
     const { locale } = router
