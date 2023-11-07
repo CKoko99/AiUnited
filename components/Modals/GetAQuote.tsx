@@ -16,7 +16,7 @@ import suretyPlainImg from "../../public/assets/images/home/quotes/suretyplain.p
 import Image from "next/image";
 import { Lang } from "../locale/LocaleSwitcher";
 import { useRouter } from "next/router";
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import Link from "next/link";
 import PATHCONSTANTS from "../../constants/sitemap";
 import CloseIcon from '@mui/icons-material/Close';
@@ -110,51 +110,61 @@ const classes = {
     contentItemMain: {
         display: "flex", flexDirection: "column",
         alignItems: "center", gap: ".5rem", width: "100%",
-        border: "2px solid #a8a8a8",
+        border: "2px solid #cccccc",
         padding: ".5rem", borderRadius: "16px",
         transition: "all .3s",
         boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.25)",
         "&:hover": {
-            border: "2px solid #6f6f6f",
-            backgroundColor: "#e1e1e1",
+            border: "2px solid #a8a8a8",
+            backgroundColor: "#eaeaea",
         }
     },
     contentItem: {
         display: "flex", flexDirection: "row",
         alignItems: "center", gap: ".75rem", width: "100%",
-        border: "2px solid #a8a8a8",
+        border: "2px solid #cccccc",
         padding: ".5rem", borderRadius: "16px",
         transition: "all .3s",
         boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.25)",
         "&:hover": {
-            border: "2px solid #6f6f6f",
-            backgroundColor: "#e1e1e1",
+            border: "2px solid #a8a8a8",
+            backgroundColor: "#eaeaea",
         }
-    }
+    },
 }
 function ContentItem(props) {
+    const [isHovered, setIsHovered] = useState(false);
+
+    const handleHover = () => {
+        setIsHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+    };
     return <>
         <Link href={props.link}
             style={classes.contentItemLink}
             onClick={
                 props.close
             }
+            onMouseEnter={handleHover}
+            onMouseLeave={handleMouseLeave}
         >
             <Box
                 sx={props.main ? classes.contentItemMain : classes.contentItem}
             >
                 <Box
                     sx={{
-                        position: "relative", height: props.main ? "5rem" : "3rem",
-                        width: props.main ? "5rem" : "3rem"
+                        position: "relative", height: props.main ? "5rem" : "3rem", transition: 'transform 0.3s',
+                        width: props.main ? "5rem" : "3rem", transform: isHovered ? 'scale(1.1) rotate(5deg)' : "",
+
                     }}
                 >
                     <Image fill style={{ objectFit: "contain" }} src={props.usePlain ? props.plainImg.src : props.img.src} alt={props.id} />
                 </Box>
                 {//if props.title[props.currentLang] is greater than 13 characters, 
                     props.title[props.currentLang].length > 13 ?
-
-
                         <Typography lineHeight={"1.4rem"} fontWeight={props.main ? 600 : 500}
                             textAlign={props.main ? "center" : "left"}
                             variant={props.main ? "h6" : "body1"}>

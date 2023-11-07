@@ -1,6 +1,6 @@
 import { Box, Typography, Button, Modal } from "@mui/material";
 import Image, { StaticImageData } from "next/image";
-import theme from "../../../providers/theme";
+import theme, { CustomFonts } from "../../../providers/theme";
 import { useRouter } from "next/router";
 import { Lang } from "../../locale/LocaleSwitcher";
 import Link from "next/link";
@@ -53,6 +53,8 @@ const styles = {
         color: "white",
         padding: "1rem 2rem",
         borderRadius: "2rem",
+        fontFamily: CustomFonts.Gustavo,
+        fontSize: "1rem",
         fontWeight: "bold",
         '&:hover': {
             backgroundColor: theme.palette.primary.main,
@@ -100,7 +102,9 @@ export default function Banner(props: BannerProps) {
                     <Button sx={{ ...styles.ctaButton }} variant="contained"
                         onClick={() => { setOpenModal(true) }}
                     >
+
                         {props.ctaButton.text[currentLang]}
+
 
                     </Button>
                 )}
