@@ -38,7 +38,7 @@ const styles = {
     root: {
         display: "flex", justifyContent: "space-between",
         padding: "1rem",
-        flexDirection: { xs: "column-reverse", md: "row" },
+        flexDirection: { xs: "column", md: "row" },
         gap: "1rem",
         width: {
             xs: "90%", md: "100%",
