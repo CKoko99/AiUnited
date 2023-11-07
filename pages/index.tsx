@@ -50,8 +50,8 @@ const bannerContent = {
 }
 const picturesWithListContent = {
     title: {
-        en: `We Make Insurance Simple`,
-        es: `Hacemos que el seguro sea simple`
+        en: `Your 3 Step Insurance Solution`,
+        es: `Su solución de seguro de 3 pasos`
     },
     img: {
         src: LaptopImg,

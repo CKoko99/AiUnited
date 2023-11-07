@@ -45,18 +45,19 @@ const parentClasses = {
     },
     imageContainer: {
         width: { xs: "100%", sm: "100%", md: "45%", lg: "45%" },
+        padding: "2rem",
     },
     image: {
         position: "relative",
         height: "25rem",
-        width: "100%"
+        width: "100%",
     },
     contentContainer: {
         width: { xs: "100%", sm: "100%", md: "45%", lg: "45%" },
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-around",
-        gap: "2rem",
+        gap: { xs: "1rem", md: "0" },
         padding: "1rem"
     },
 }
@@ -94,7 +95,7 @@ export default function (props) {
             <Box sx={parentClasses.titles}>
                 {props.title && <Typography
                     fontFamily={CustomFonts.Gustavo}
-                    fontWeight={"bold"} variant="h3">{props.title[currentLang]}</Typography>}
+                    fontWeight={"bold"} variant="h4">{props.title[currentLang]}</Typography>}
                 {props.subtitle && <Typography variant="h6">{props.subtitle[currentLang]}</Typography>}
             </Box>
             <Box sx={parentClasses.mainContainer}>
