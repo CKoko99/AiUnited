@@ -3,7 +3,8 @@ import Hero from "../../components/Content/Hero/Hero";
 import TextSection from "../../components/Content/TextSection";
 import PATHCONSTANTS from "../../constants/sitemap";
 import CsrImg from '../../public/assets/images/about/careers/csr.png'
-
+import OpsImg from '../../public/assets/images/about/careers/operations.png'
+import DmImg from '../../public/assets/images/about/careers/dm.png'
 const heroContent = {
     title: {
         en: `Start Your Career At Ai United`,
@@ -47,8 +48,8 @@ const cardsContent = {
         link: PATHCONSTANTS.ABOUT.CAREERS.CSR,
     }, {
         img: {
-            src: CsrImg,
-            alt: "Customer Service Representative"
+            src: OpsImg,
+            alt: "Operations"
         },
         title: {
             en: "Operations",
@@ -57,8 +58,8 @@ const cardsContent = {
         link: PATHCONSTANTS.ABOUT.CAREERS.OPERATIONS,
     }, {
         img: {
-            src: CsrImg,
-            alt: "Customer Service Representative"
+            src: DmImg,
+            alt: "District Manager"
         },
         title: {
             en: "District Manager",
