@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import HeadComponent from "../components/Head";
 import Banner from "../components/Content/Hero/Banner";
 import BannerImage from "../public/assets/images/home/Umbrella.png";
-import FlexDiagram from "../components/Content/FlexDigrams/CompaniesDiagram";
+import PictureWithList from '../components/Content/PictureWithList';
 import partnerImg1 from "../public/assets/images/home/partners/progressive.png";
 import partnerImg2 from "../public/assets/images/home/partners/alinsco.png";
 import partnerImg3 from "../public/assets/images/home/partners/appllo.png";
@@ -25,6 +25,7 @@ import Card from '../components/Content/Cards/Cards';
 import PoliciesImg from "../public/assets/images/home/about/policies.png";
 import AboutImg from "../public/assets/images/home/about/about.png";
 import CareersImg from "../public/assets/images/home/about/careers.png";
+import LaptopImg from "../public/assets/images/home/Laptop.png";
 import PATHCONSTANTS from '../constants/sitemap';
 
 const bannerContent = {
@@ -46,6 +47,49 @@ const bannerContent = {
         src: BannerImage,
         alt: "Umbrella"
     }
+}
+const picturesWithListContent = {
+    title: {
+        en: `We Make Insurance Simple`,
+        es: `Hacemos que el seguro sea simple`
+    },
+    img: {
+        src: LaptopImg,
+        alt: "Laptop"
+    },
+    hideMobileImg: true,
+    content: [
+        {
+            title: {
+                en: "Complete Our Easy Online Form",
+                es: "Complete nuestro formulario en línea fácil"
+            },
+            body: {
+                en: "We'll ask you a few simple questions about your insurance needs through our online quoting form",
+                es: "Le haremos algunas preguntas simples sobre sus necesidades de seguro a través de nuestro formulario de cotización en línea"
+            }
+        },
+        {
+            title: {
+                en: "Review Insurance Options",
+                es: "Revisar opciones de seguro"
+            },
+            body: {
+                en: "These options are carefully curated, considering factors like your preferences, budget, and coverage requirements.",
+                es: "Estas opciones están cuidadosamente seleccionadas, teniendo en cuenta factores como sus preferencias, presupuesto y requisitos de cobertura."
+            }
+        },
+        {
+            title: {
+                en: "Choose the coverage that suits you best",
+                es: "Elija la cobertura que mejor se adapte a sus necesidades"
+            },
+            body: {
+                en: "When you're satisfied with your selection, you can proceed to secure the coverage right then and there.",
+                es: "Cuando esté satisfecho con su selección, puede proceder a asegurar la cobertura en ese momento."
+            }
+        },
+    ]
 }
 const partnerCompanies = {
     title: {
@@ -276,7 +320,9 @@ export default function () {
         <>
             <HeadComponent title={'Ai United'} metaData={'Ai United Insurnace'} />
             <Banner {...bannerContent} />
-            <FlexDiagram {...partnerCompanies} />
+            {//<FlexDiagram {...partnerCompanies} />
+            }
+            <PictureWithList {...picturesWithListContent} />
             <ContentSplit
                 title={{ en: "Get a Free Quote in Minutes!", es: "¡Obtenga una cotización gratuita en minutos!" }}
             >
