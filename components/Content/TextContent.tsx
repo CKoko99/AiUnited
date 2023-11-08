@@ -9,6 +9,7 @@ export interface TextContentProps {
         variant?: string;
     }[];
     contrast?: boolean;
+    align?: string;
 }
 
 
@@ -18,7 +19,10 @@ export default function (props: TextContentProps) {
     const currentLang = Lang[locale ?? 'en']
 
     return <Box
-        sx={{ padding: "1rem" }}
+        sx={{
+            padding: "1rem",
+            textAlign: props.align ?? "left",
+        }}
     >
         {props.content?.map((item: any, contentIndex) => {
             return <Typography key={contentIndex}
@@ -26,6 +30,7 @@ export default function (props: TextContentProps) {
                 variant={item.variant ?? "h6"}
                 fontWeight={item.fontWeight ? item.fontWeight : "normal"}
                 color={props.contrast ? "white" : "black"}
+                fontFamily={item.fontFamily}
             >
                 {item.text[currentLang]?.map((text: string, textIndex) => {
                     return <React.Fragment key={textIndex}>
