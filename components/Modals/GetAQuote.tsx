@@ -184,16 +184,13 @@ function ContentItem(props) {
     </>
 }
 function GetAQuote(props, ref) {
-    const [usePlain, setUsePlain] = React.useState(false)
+    const [usePlain, setUsePlain] = React.useState(true)
     const router = useRouter();
     const { locale } = router
     const currentLang = Lang[locale ?? 'en']
     return <Box
         sx={{
             ...classes.modal
-        }}
-        onClick={() => {
-            setUsePlain(!usePlain)
         }}
     >
         <Box

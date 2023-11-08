@@ -49,7 +49,7 @@ const styles = {
         padding: "1rem",
     },
     ctaButton: {
-        backgroundColor: theme.palette.primary.light,
+        //backgroundColor: theme.palette.primary.light,
         color: "white",
         padding: "1rem 2rem",
         borderRadius: "2rem",
@@ -57,7 +57,7 @@ const styles = {
         fontSize: "1rem",
         fontWeight: "bold",
         '&:hover': {
-            backgroundColor: theme.palette.primary.main,
+            //    backgroundColor: theme.palette.primary.main,
         },
         minWidth: "15rem",
         width: {

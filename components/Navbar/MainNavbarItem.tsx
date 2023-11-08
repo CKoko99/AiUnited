@@ -1,15 +1,9 @@
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-//import { useHistory } from "react-router-dom";
-import { Transition } from "react-transition-group";
-import { Box, CssBaseline, Modal, Typography } from "@mui/material";
-import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
-import Link from "next/link";
+import { Modal } from "@mui/material";
 import { Lang } from "../locale/LocaleSwitcher";
 import { useRouter } from "next/router";
-import { CustomFonts } from "../../providers/theme";
+import theme, { CustomFonts } from "../../providers/theme";
 import GetAQuote from "../Modals/GetAQuote";
 const styles = {
     mainButton: {
@@ -18,6 +12,7 @@ const styles = {
         maxWidth: "12rem",
         marginRight: ".5rem",
         fontFamily: CustomFonts.Gustavo,
+        //backgroundColor: theme.palette.primary.light,
     },
 }
 
@@ -31,7 +26,7 @@ export default function MainNavbarItem(props: any) {
         <>
             <Button
                 onClick={() => { setOpenModal(true); }}
-                variant="contained" color="primary"
+                variant="contained"
                 sx={{ ...styles.mainButton }}
             >
                 {props.item.label[currentLang]}
