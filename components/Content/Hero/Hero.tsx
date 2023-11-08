@@ -1,4 +1,4 @@
-import { Box, Typography, Button, TextField } from "@mui/material";
+import { Box, Typography, } from "@mui/material";
 import Image, { StaticImageData } from "next/image";
 import { Lang } from "../../locale/LocaleSwitcher";
 import { useRouter } from "next/router";
@@ -11,7 +11,7 @@ interface ComponentProps {
     title?: { [lang: string]: string; };
     subtitle?: { [lang: string]: string; };
     opacity?: number;
-    align?: "left" | "center" | "right";
+    align?: string;
 }
 const styles = {
     imageContainer: {

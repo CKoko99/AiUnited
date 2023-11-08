@@ -2,7 +2,7 @@ import JotFormEmbed from 'react-jotform-embed';
 import SimpleForm from '../../components/Forms/Simple/Simple';
 import ContactAndLocations from '../../components/Content/FlexDigrams/Combo/ContactAndLocations';
 import Hero from '../../components/Content/Hero/Hero';
-
+import BannerImg from '../../public/assets/images/about/contact/banner.png';
 const heroContent = {
   title: {
     en: "Get in Touch",
@@ -14,6 +14,12 @@ const heroContent = {
     es: `Nos encantaría saber de usted, si necesita comunicarse con nosotros por cualquier motivo, o
     complete el formulario a continuación y nos pondremos en contacto con usted lo antes posible.`,
   },
+  image: {
+    src: BannerImg,
+    alt: "Contact Us",
+  },
+  opacity: 0.4,
+  align: "left",
 }
 const formContent = {
   title: {

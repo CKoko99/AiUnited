@@ -5,6 +5,7 @@ import PATHCONSTANTS from "../../constants/sitemap";
 import CsrImg from '../../public/assets/images/about/careers/csr.png'
 import OpsImg from '../../public/assets/images/about/careers/operations.png'
 import DmImg from '../../public/assets/images/about/careers/dm.png'
+import BannerImg from '../../public/assets/images/about/careers/banner.png'
 const heroContent = {
     title: {
         en: `Start Your Career At Ai United`,
@@ -14,6 +15,10 @@ const heroContent = {
         en: `At Ai United Insurance, you have the best of the best. Earn what you're worth!`,
         es: `En Ai United Insurance, tienes lo mejor de lo mejor. ¡Gana lo que vales!`
     },
+    image: {
+        src: BannerImg,
+        alt: 'Ai United Insurance Careers',
+    }
 }
 const textSection1 = {
     title: {
