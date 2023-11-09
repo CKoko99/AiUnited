@@ -5,6 +5,7 @@ import TextContent from "../../components/Content/TextContent"
 import ReviewsList from "../../components/Content/Reviews/ReviewsList"
 import { CustomFonts } from "../../providers/theme"
 import ContactAndShop from "../../components/Content/FlexDigrams/Combo/ContactAndShop"
+import BannerImg from "../../public/assets/images/about/reviews/Banner.png"
 const heroContent = {
     title: {
         en: "See What Our Customers Are Saying",
@@ -15,7 +16,12 @@ const heroContent = {
         We are thrilled to share what our valued customers have to say about their experiences`,
         es: `Nos enorgullecemos de la calidad de nuestros productos y servicios.
         Estamos encantados de compartir lo que nuestros valiosos clientes tienen que decir sobre sus experiencias`
-    }
+    },
+    image: {
+        src: BannerImg,
+        alt: "Ai United Insurance Reviews",
+    },
+    align: "left",
 }
 
 const textSectionContent = {
@@ -108,6 +114,7 @@ export default function () {
         <TextSection {...textSectionContent} />
         <Ratings />
         <ReviewsList reviews={reviews} />
-        <ContactAndShop />
+        {//<ContactAndShop />
+        }
     </>
 }

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react"
 import { Lang } from "../../locale/LocaleSwitcher";
-import { CustomFonts } from "../../../providers/theme";
+import theme, { CustomFonts } from "../../../providers/theme";
 
 const text = {
     title: {
@@ -42,52 +42,95 @@ const classes = {
         display: "flex",
         justifyContent: "space-around",
         flexDirection: { xs: "column", md: "row" },
-        gap: "1.5rem",
+        gap: "3.5rem 1.5rem",
         flexWrap: "wrap",
+        marginTop: "2rem",
     },
     card: {
         margin: { xs: "auto", md: "0" },
         backgroundColor: "#F2F2F2",
         border: "1px solid #cacaca",
         borderRadius: "16px",
-        display: "flex", flexDirection: "column",
-        gap: "1rem",
         boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.25)",
         padding: "16px",
-        width: { xs: "90%", md: "30%" },
+        minWidth: { xs: "90%", md: "30%" },
         textAlign: "left",
         justifyContent: "space-between",
+        display: "flex",
+        flexDirection: "column",
+        flex: "1"
     },
+    initials: {
+        marginTop: "-0.25rem", color: "white",
+        fontFamily: CustomFonts.Gustavo, fontWeight: "bold"
+    }
+}
+function Avatar(props: any) {
+    const initials = props.author.split(" ").map((name: string) => name[0]).join("")
+    return <Box
+        sx={{
+            position: "relative",
+            display: "flex",
+            justifyContent: "center",
+            top: "-3rem",
+        }}
+    >
+        <Box
+            sx={{ backgroundColor: theme.palette.primary.main, padding: "1rem", borderRadius: "50%" }}
+        >
+            <Typography
+                variant="h5"
+                sx={{ ...classes.initials }}
+            >
+                {initials[0]}.{initials[1]}.
+            </Typography>
+        </Box>
+    </Box>
 }
 function ReviewItem(props: any) {
     return <>
         <Box
             sx={{ ...classes.card }}
         >
-            <Box>
-                <Typography>
-                    "{props.body.en.substring(0, 350)} {props.body.en.length > 350 ? "..." : ""}"
-                </Typography>
-            </Box>
+            <Avatar author={props.author} />
+
             <Box
+                sx={{
+                    display: "flex", flexDirection: "column",
+                    justifyContent: "space-between", flex: "1",
+                    marginTop: "-2.5rem",
+                }}
             >
-                <Typography
-                    textAlign={"right"}
-                >
-                    - {props.author}
-                </Typography>
-                <Typography
-                    textAlign={"center"}
-                    color="primary"
-                >
-                    <Link href={props.reviewLink}
-                        target="_blank"
+                <Box>
+                    <Typography
+                        variant="body1"
                     >
-                        {text.readFull[props.lang]}
-                    </Link>
-                </Typography>
+                        "{props.body.en.substring(0, 350)} {props.body.en.length > 350 ? "..." : ""}"
+                    </Typography>
+                </Box>
+                <Box
+                >
+                    <Typography
+                        textAlign={"right"}
+                        sx={{ marginBottom: ".5rem" }}
+                        variant="body1"
+                    >
+                        - {props.author}
+                    </Typography>
+                    <Typography
+                        textAlign={"center"}
+                        variant="body1"
+                        color="primary"
+                    >
+                        <Link href={props.reviewLink}
+                            target="_blank"
+                        >
+                            {text.readFull[props.lang]}
+                        </Link>
+                    </Typography>
+                </Box>
             </Box>
-        </Box>
+        </Box >
     </>
 }
 export default function (props: ReviewsListProps) {
