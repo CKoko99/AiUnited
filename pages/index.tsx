@@ -25,7 +25,7 @@ import Card from '../components/Content/Cards/Cards';
 import PoliciesImg from "../public/assets/images/home/about/policies.png";
 import AboutImg from "../public/assets/images/home/about/about.png";
 import CareersImg from "../public/assets/images/home/about/careers.png";
-import LaptopImg from "../public/assets/images/home/Laptop.png";
+import PhoneImg from "../public/assets/images/home/phone.png";
 import PATHCONSTANTS from '../constants/sitemap';
 
 const bannerContent = {
@@ -54,8 +54,8 @@ const picturesWithListContent = {
         es: `Su solución de seguro de 3 pasos`
     },
     img: {
-        src: LaptopImg,
-        alt: "Laptop"
+        src: PhoneImg,
+        alt: "Phone"
     },
     hideMobileImg: true,
     content: [

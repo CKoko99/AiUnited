@@ -45,11 +45,11 @@ const parentClasses = {
     },
     imageContainer: {
         width: { xs: "100%", sm: "100%", md: "45%", lg: "45%" },
-        padding: "2rem",
+        padding: "1rem",
     },
     image: {
         position: "relative",
-        height: "23rem",
+        height: "25rem",
         width: "100%",
     },
     contentContainer: {
