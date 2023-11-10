@@ -255,7 +255,7 @@ export default function (props) {
                                 sx={{ marginTop: "1rem" }}
                                 onClick={(e) => e.stopPropagation()}
                                 href={`/locations/${location.id}`}
-                            >More Information</Button>
+                            >More Store Info</Button>
                         </Box>
 
                     })}
