@@ -21,8 +21,8 @@ const heroContent = {
 }
 const CenterVideoContent = {
   video: {
-    en: "https://drive.google.com/file/d/1418FIK-HC5E3EkA98-eZkLLsg7CTAgkv/preview",
-    es: "https://drive.google.com/file/d/1-APrP7qmcg4_FvMBZBkgiyl82KGS6JEV/preview"
+    en: "https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/Long-Commercial%20With%20Logo%20at%20the%20End.mp4?alt=media&token=e3ab73a8-4f90-42b1-8655-bd8ab6510c87",
+    es: "https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/Long-Commercial%20With%20Logo%20at%20the%20End%20Spanish.mp4?alt=media&token=1a312a80-7899-4007-9469-189bd927e24e"
   }
 }
 const textSectionContent = {

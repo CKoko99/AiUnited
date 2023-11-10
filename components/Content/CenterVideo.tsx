@@ -13,6 +13,7 @@ export default function (props: ComponentProps) {
     const { locale } = router
     const currentLang = Lang[locale ?? 'en']
 
+    const videoLink = props.video[currentLang]
     return <>
         <Box
             sx={{
@@ -32,9 +33,10 @@ export default function (props: ComponentProps) {
                         paddingTop: "56.25%",
                     }}
                 >
+
                     <Iframe
-                        width="640" height="480"
-                        //aria-controls="video"
+                        width="640"
+                        height="480"
                         loading="lazy"
                         styles={{
                             position: "absolute",
@@ -43,7 +45,7 @@ export default function (props: ComponentProps) {
                             width: "100%",
                             height: "100%",
                         }}
-                        url={props.video[currentLang]}
+                        url={videoLink}
                     />
                 </Box>
             </Box>
