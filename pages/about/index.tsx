@@ -3,6 +3,7 @@ import Hero from "../../components/Content/Hero/Hero";
 import CenterVideo from "../../components/Content/CenterVideo";
 import locationImage from '../../public/assets/images/about/index/location.png';
 import TextSection from "../../components/Content/TextSection";
+import HeadComponent from "../../components/Head";
 const heroContent = {
   title: {
     en: "Ai United Insurance",
@@ -34,6 +35,7 @@ const textSectionContent = {
 const About: NextPage = () => {
   return (
     <>
+      <HeadComponent title={'Learn More About Ai United'} />
       <Hero {...heroContent} />
       <TextSection {...textSectionContent} />
       <CenterVideo {...CenterVideoContent} />

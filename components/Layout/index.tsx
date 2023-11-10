@@ -3,6 +3,7 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../footer/Footer";
 import { ReactNode } from "react";
 import LocaleSwitcher from "../locale/LocaleSwitcher";
+import HeadComponent from "../Head";
 
 interface LayoutProps {
   children: ReactNode; // Define the children prop with ReactNode type
@@ -11,6 +12,7 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <>
+      <HeadComponent />
       <LocaleSwitcher />
       <Navbar />
       <Box

@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+import type { Metadata, NextPage } from 'next'
 import HeadComponent from "../components/Head";
 import Banner from "../components/Content/Hero/Banner";
 import BannerImage from "../public/assets/images/home/Umbrella.png";
@@ -315,6 +315,7 @@ const aboutContent = {
         }
     ]
 }
+
 export default function () {
     return (
         <>
