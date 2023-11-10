@@ -7,6 +7,7 @@ import PATHCONSTANTS from '../../constants/sitemap';
 import Sr22Img1 from "../../public/assets/images/quotes/sr22/sr1.png";
 import Sr22Img2 from "../../public/assets/images/quotes/sr22/sr2.png";
 import Sr22Img3 from "../../public/assets/images/quotes/home/home2.png";
+import HeadComponent from '../../components/Head';
 
 
 const bannerContent = {
@@ -234,6 +235,8 @@ const formContent = {
 }
 export default function () {
     return <>
+        <HeadComponent title={'SR-22 Insurance | Get a Free SR-22 Insurance Quote'}
+            metaData={'Get a Free SR-22 Insurance Quote with Ai United Insurnace Today'} />
         <VerticalBanner {...bannerContent} />
         <MainGrid {...contentSection3} />
         <TwoColumn {...contentSection2} />

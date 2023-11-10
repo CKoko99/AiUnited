@@ -7,6 +7,7 @@ import HomeImg1 from '../../public/assets/images/quotes/home/home1.png';
 import HomeImg2 from '../../public/assets/images/quotes/home/home2.png';
 import HomeImg3 from '../../public/assets/images/quotes/home/home3.png';
 import ContactAndShop from '../../components/Content/FlexDigrams/Combo/ContactAndShop';
+import HeadComponent from '../../components/Head';
 
 const bannerContent = {
     title: {
@@ -244,6 +245,8 @@ const formContent = {
 }
 export default function () {
     return <>
+        <HeadComponent title={'Home Insurance | Get a Free Home Insurance Quote'}
+            metaData={'Get a Free Home Insurance Quote with Ai United Insurnace Today'} />
         <VerticalBanner {...bannerContent} />
         <MainGrid {...contentSection2} />
         <TwoColumn {...contentSection3} />

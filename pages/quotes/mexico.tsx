@@ -8,6 +8,7 @@ import MainGrid from '../../components/Content/Grids/MainGrid';
 import ContactAndShop from '../../components/Content/FlexDigrams/Combo/ContactAndShop';
 import TwoColumn from '../../components/Content/Grids/TwoColumn';
 import Iframe from 'react-iframe';
+import HeadComponent from '../../components/Head';
 
 const bannerContent = {
     title: {
@@ -106,6 +107,8 @@ const contentSection2 = {
 }
 export default function () {
     return <>
+        <HeadComponent title={'Mexico Insurance | Get a Free Mexican Insurance Quote'}
+            metaData={'Get a Free Mexico Tourist Insurance Quote with Ai United Insurnace Today'} />
         <VerticalBanner {...bannerContent} />
         <MainGrid  {...contentSection1} />
         <TwoColumn {...contentSection2} />

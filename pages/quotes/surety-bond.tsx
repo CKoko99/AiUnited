@@ -7,6 +7,7 @@ import SuretyImg3 from '../../public/assets/images/quotes/surety/surety3.png';
 import MainGrid from '../../components/Content/Grids/MainGrid';
 import ContactAndShop from '../../components/Content/FlexDigrams/Combo/ContactAndShop';
 import TwoColumn from '../../components/Content/Grids/TwoColumn';
+import HeadComponent from '../../components/Head';
 
 const bannerContent = {
     title: {
@@ -221,6 +222,8 @@ const formContent = {
 }
 export default function () {
     return <>
+        <HeadComponent title={'Surety Bond | Get a Free Surety Bond Quote'}
+            metaData={'Get a Free Surety Bond Quote with Ai United Insurnace Today'} />
         <VerticalBanner {...bannerContent} />
         <MainGrid  {...contentSection1} />
         <TwoColumn {...contentSection2} />

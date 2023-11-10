@@ -247,8 +247,6 @@ export default function (props) {
                                 <PhonelinkRingIcon sx={{ color: "black", fontSize: "1rem", marginRight: ".25rem" }} />
                                 <Typography fontWeight={600} variant='body2'>{location.phone}</Typography>
                             </Link>
-
-
                             <Button
                                 variant='contained'
                                 color='primary'

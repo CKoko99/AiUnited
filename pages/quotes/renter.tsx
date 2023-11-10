@@ -3,6 +3,7 @@ import MainGrid from '../../components/Content/Grids/MainGrid';
 import TwoColumn from '../../components/Content/Grids/TwoColumn';
 import VerticalBanner from '../../components/Content/Hero/VerticalBanner';
 import SimpleForm from '../../components/Forms/Simple/Simple';
+import HeadComponent from '../../components/Head';
 import PATHCONSTANTS from '../../constants/sitemap';
 import RentersImg1 from "../../public/assets/images/quotes/renters/renter1.png";
 import RentersImg2 from "../../public/assets/images/quotes/renters/renter2.png";
@@ -225,6 +226,8 @@ const formContent = {
 }
 export default function () {
     return <>
+        <HeadComponent title={'Renter Insurance | Get a Free Renter Insurance Quote'}
+            metaData={'Get a Free Renter Insurance Quote with Ai United Insurnace Today'} />
         <VerticalBanner {...bannerContent} />
         <MainGrid {...contentSection2} />
         <TwoColumn {...contentSection3} />

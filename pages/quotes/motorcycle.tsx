@@ -7,6 +7,7 @@ import MotoImg1 from '../../public/assets/images/quotes/motorcycle/motorcycle1.p
 import MotoImg2 from '../../public/assets/images/quotes/motorcycle/motorcycle2.png';
 import MotoImg3 from '../../public/assets/images/quotes/motorcycle/motorcycle3.png';
 import ContactAndShop from '../../components/Content/FlexDigrams/Combo/ContactAndShop';
+import HeadComponent from '../../components/Head';
 
 const bannerContent = {
     title: {
@@ -257,6 +258,8 @@ const formContent = {
 }
 export default function () {
     return <>
+        <HeadComponent title={'Motorcycle Insurance | Get a Free Motorcycle Insurance Quote'}
+            metaData={'Get a Free Motorcycle Insurance Quote with Ai United Insurnace Today'} />
         <VerticalBanner {...bannerContent} />
         <MainGrid {...contentSection2} />
         <TwoColumn {...contentSection3} />

@@ -9,6 +9,7 @@ import CarImg1 from "../../public/assets/images/quotes/auto/car1.png";
 import CarImg2 from "../../public/assets/images/quotes/auto/car2.png";
 import TwoColumn from '../../components/Content/Grids/TwoColumn';
 import ContactAndShop from '../../components/Content/FlexDigrams/Combo/ContactAndShop';
+import HeadComponent from '../../components/Head';
 const heroContent = {
     title: { en: "Auto Insurance", es: "Seguro De Auto" },
     subtitle: {
@@ -134,6 +135,8 @@ const contentSection3 = {
 
 export default function () {
     return <>
+        <HeadComponent title={'Car Insurance | Get a Free Auto Insurance Quote'}
+            metaData={'Get a Free Car Insurance Quote with Ai United Insurnace Today'} />
         <AutoQuoteHero {...heroContent} />
         <NumbersSection {...slideData} menuContent={slideData.menuContent} />
         <MainGrid {...contentSection2} />
