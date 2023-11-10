@@ -34,6 +34,7 @@ export default function (props: ComponentProps) {
                     <iframe
                         width="640" height="480"
                         aria-controls="video"
+                        loading="lazy"
                         style={{
                             position: "absolute",
                             top: 0,
