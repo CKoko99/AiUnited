@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { Lang } from "../locale/LocaleSwitcher";
 import { Box } from "@mui/material";
+import Iframe from 'react-iframe'
 
 interface ComponentProps {
     video: {
@@ -11,7 +12,7 @@ export default function (props: ComponentProps) {
     const router = useRouter()
     const { locale } = router
     const currentLang = Lang[locale ?? 'en']
-    console.log(props.video[currentLang])
+
     return <>
         <Box
             sx={{
@@ -31,18 +32,18 @@ export default function (props: ComponentProps) {
                         paddingTop: "56.25%",
                     }}
                 >
-                    <iframe
+                    <Iframe
                         width="640" height="480"
-                        aria-controls="video"
+                        //aria-controls="video"
                         loading="lazy"
-                        style={{
+                        styles={{
                             position: "absolute",
                             top: 0,
                             left: 0,
                             width: "100%",
                             height: "100%",
                         }}
-                        src={props.video[currentLang]}
+                        url={props.video[currentLang]}
                     />
                 </Box>
             </Box>
