@@ -27,6 +27,7 @@ import AboutImg from "../public/assets/images/home/about/about.png";
 import CareersImg from "../public/assets/images/home/about/careers.png";
 import PhoneImg from "../public/assets/images/home/phone.png";
 import PATHCONSTANTS from '../constants/sitemap';
+import { useEffect } from 'react';
 
 const bannerContent = {
     title: {
@@ -317,6 +318,12 @@ const aboutContent = {
 }
 
 export default function () {
+    useEffect(() => {
+        fetch(`${PATHCONSTANTS.BACKEND}/`)
+            .then(
+                () => { console.log("success") }).catch((err) => { console.log(err) })
+
+    }, [])
     return (
         <>
             <HeadComponent title={'Ai United'} metaData={'Ai United Insurnace'} />

@@ -2,9 +2,20 @@ import Locations from "../../components/Locations/Locations"
 
 
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
     try {
-        const res = await fetch(`${process.env.BACKEND}/locations/aiunited`)
+        console.log(context.req.headers)
+        const res = await fetch(`${process.env.BACKEND}/locations/aiunited`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "origin": context.req.headers.referer
+                },
+
+            })
+        console.log(context.req.headers.host)
         const data = await res.json()
         //for every location give it a position attribute with lat and long combined
         console.log("here")
