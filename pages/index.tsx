@@ -318,11 +318,13 @@ const aboutContent = {
 }
 
 export default function () {
-    useEffect(() => {
-        fetch(`${PATHCONSTANTS.BACKEND}/`)
+    async function testServer() {
+        await fetch(`${PATHCONSTANTS.BACKEND}/`)
             .then(
                 () => { console.log("success") }).catch((err) => { console.log(err) })
-
+    }
+    useEffect(() => {
+        testServer()
     }, [])
     return (
         <>
