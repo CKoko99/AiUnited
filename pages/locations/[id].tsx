@@ -5,9 +5,18 @@ import { CustomFonts } from "../../providers/theme"
 import { useRouter } from "next/router"
 import { Lang } from "../../components/locale/LocaleSwitcher"
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, req }) {
+
     const locationId = params.id
-    const res = await fetch(`${process.env.BACKEND}/locations/aiunited/${locationId}`)
+    const res = await fetch(`${process.env.BACKEND}/locations/aiunited/${locationId}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "origin": req.headers.referer
+        },
+
+    })
     const data = await res.json()
     //for every location give it a position attribute with lat and long combined
 
@@ -42,7 +51,7 @@ export default function (props) {
     const { locale } = router
     const currentLang = Lang[locale ?? 'en']
 
-    console.log(props.data)
+    // console.log(props.data)
     return <>
         <Box
             textAlign={"center"}

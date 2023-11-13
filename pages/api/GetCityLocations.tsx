@@ -10,9 +10,18 @@ interface Location {
     }
 }
 
-export default async function (center) {
+export default async function (center, referer) {
     try {
-        const res = await fetch(`${process.env.BACKEND}/locations/aiunited`)
+        const res = await fetch(`${process.env.BACKEND}/locations/aiunited`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "origin": referer
+                },
+
+            })
         const data = await res.json()
         //for every location give it a position attribute with lat and long combined
         data.locations.forEach(location => {

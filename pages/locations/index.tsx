@@ -5,7 +5,7 @@ import Locations from "../../components/Locations/Locations"
 export async function getServerSideProps(context) {
     try {
         console.log("were here")
-        console.log(context.req.headers)
+        //console.log(context.req.headers)
         console.log(context.req.headers.host)
         console.log(context.req.headers.referer)
         const res = await fetch(`${process.env.BACKEND}/locations/aiunited`,
@@ -41,6 +41,7 @@ export async function getServerSideProps(context) {
             },
         }
     } catch (err) {
+        console.log("error")
         console.log(err)
         return {
             props: {

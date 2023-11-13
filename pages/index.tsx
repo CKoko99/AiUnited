@@ -324,7 +324,7 @@ export default function () {
                 () => { console.log("success") }).catch((err) => { console.log(err) })
     }
     useEffect(() => {
-        testServer()
+        //   testServer()
     }, [])
     return (
         <>

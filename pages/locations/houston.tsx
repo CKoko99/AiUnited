@@ -2,8 +2,8 @@ import Locations from "../../components/Locations/Locations"
 import GetCityLocations from "../api/GetCityLocations"
 
 const center = { lat: 29.7433, lng: -95.3085, }
-export async function getServerSideProps() {
-    return await GetCityLocations(center)
+export async function getServerSideProps(context) {
+    return await GetCityLocations(center, context.req.headers.referer)
 }
 
 export default function (props) {
