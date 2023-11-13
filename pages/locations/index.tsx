@@ -6,6 +6,8 @@ export async function getServerSideProps(context) {
     try {
         console.log("were here")
         console.log(context.req.headers)
+        console.log(context.req.headers.host)
+        console.log(context.req.headers.referer)
         const res = await fetch(`${process.env.BACKEND}/locations/aiunited`,
             {
                 method: "GET",
