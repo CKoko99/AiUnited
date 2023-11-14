@@ -7,6 +7,7 @@ interface ComponentProps {
     video: {
         [lang: string]: string;
     }
+    title: string;
 }
 export default function (props: ComponentProps) {
     const router = useRouter()
@@ -46,6 +47,7 @@ export default function (props: ComponentProps) {
                             height: "100%",
                         }}
                         url={videoLink}
+                        title={props.title}
                     />
                 </Box>
             </Box>
