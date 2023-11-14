@@ -97,7 +97,8 @@ export default function (props) {
         console.log("send email")
         const emailProps = getEmailProps(props.questions, answersArray)
 
-        let questionsArray = []
+
+        const questionsArray: string[] = []
         props.questions.forEach((question) => {
             questionsArray.push(question.title.en)
         })
