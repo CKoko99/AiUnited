@@ -175,6 +175,7 @@ export default function Footer() {
               <a
                 href="https://www.linkedin.com/company/ai-united-insurance"
                 target="_blank" rel="noopener noreferrer"
+                aria-label="Visit AI United on LinkedIn"
               >
                 <LinkedInIcon
                   sx={{ ...classes.socialIcon }}
@@ -182,6 +183,7 @@ export default function Footer() {
               </a>
               <a href="https://twitter.com/aiunited?lang=en"
                 target="_blank" rel="noopener noreferrer"
+                aria-label="Visit AI United on Twitter"
               >
                 <TwitterIcon
                   sx={{ ...classes.socialIcon }}
@@ -189,6 +191,7 @@ export default function Footer() {
               </a>
               <a href="https://twitter.com/aiunited?lang=en"
                 target="_blank" rel="noopener noreferrer"
+                aria-label="Visit AI United on Facebook"
               >
                 <FacebookIcon
                   sx={{ ...classes.socialIcon }}
