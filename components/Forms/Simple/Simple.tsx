@@ -5,10 +5,6 @@ import { Lang } from "../../locale/LocaleSwitcher";
 import { useEffect, useState } from "react";
 import PATHCONSTANTS from "../../../constants/sitemap";
 import FormModal from "../../Modals/FormModal";
-import FormConfirmation from "../../Emails/FormConfirmation";
-import { render } from '@react-email/render';
-import AiLogo from '../../../public/assets/images/ai-logo-blue.png'
-import TeamConfirmation from "../../Emails/TeamConfirmation";
 
 function getEmailProps(questions, answers) {
     let name = ["", ""]
@@ -100,40 +96,23 @@ export default function (props) {
     async function sendEmail() {
         console.log("send email")
         const emailProps = getEmailProps(props.questions, answersArray)
-        const emailHtml = render(FormConfirmation({
-            name: emailProps.name,
-            phoneNumber: PATHCONSTANTS.PHONETEXT,
-        }))
 
+        let questionsArray = []
+        props.questions.forEach((question) => {
+            questionsArray.push(question.title.en)
+        })
         await fetch(`${PATHCONSTANTS.BACKEND}/forms/email`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                html: emailHtml,
                 to: emailProps.email,
-                subject: "Thank you for reaching out to Ai United",
-            }),
-        })
-
-        const internalEmailHtml = render(TeamConfirmation({
-            name: emailProps.name,
-            phoneNumber: PATHCONSTANTS.PHONETEXT,
-            formTitle: props.title.en,
-            company: "Ai United",
-            questions: props.questions,
-            answers: answersArray,
-        }))
-
-        await fetch(`${PATHCONSTANTS.BACKEND}/forms/email-team`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                html: internalEmailHtml,
-                subject: `${emailProps.name} completed a ${props.title.en} form for Ai United`,
+                company: "Ai United",
+                name: emailProps.name,
+                questions: questionsArray,
+                answers: answersArray,
+                formTitle: props.title.en,
             }),
         })
     }

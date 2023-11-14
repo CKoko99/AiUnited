@@ -321,7 +321,8 @@ export default function () {
     async function testServer() {
         await fetch(`${PATHCONSTANTS.BACKEND}/`)
             .then(
-                () => { console.log("success") }).catch((err) => { console.log(err) })
+                () => { console.log("success") })
+            .catch((err) => { console.log(err) })
     }
     useEffect(() => {
         //   testServer()

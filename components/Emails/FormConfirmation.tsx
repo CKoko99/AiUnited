@@ -1,7 +1,5 @@
 import {
     Body,
-    Button,
-    Column,
     Container,
     Head,
     Heading,
@@ -9,18 +7,13 @@ import {
     Html,
     Link,
     Preview,
-    Row,
     Section,
     Tailwind,
     Text,
 } from '@react-email/components';
 import { Img, } from '@react-email/img';
-import AiLogo from '../../public/assets/images/ai-logo-blue.png'
 import React from 'react';
-import { StaticImageData } from 'next/image';
-const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : '';
+
 
 interface ComponentProps {
     company?: string;
