@@ -114,7 +114,7 @@ export default function () {
         <TextSection {...textSectionContent} />
         <Ratings />
         <ReviewsList reviews={reviews} />
-        {//<ContactAndShop />
-        }
+        <ContactAndShop />
+
     </>
 }

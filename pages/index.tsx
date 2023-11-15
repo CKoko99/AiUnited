@@ -1,7 +1,7 @@
 import type { Metadata, NextPage } from 'next'
 import HeadComponent from "../components/Head";
 import Banner from "../components/Content/Hero/Banner";
-import BannerImage from "../public/assets/images/home/Umbrella.png";
+import BannerImage from "../public/assets/images/home/Reading.png";
 import PictureWithList from '../components/Content/PictureWithList';
 import partnerImg1 from "../public/assets/images/home/partners/progressive.png";
 import partnerImg2 from "../public/assets/images/home/partners/alinsco.png";
@@ -46,7 +46,7 @@ const bannerContent = {
     },
     image: {
         src: BannerImage,
-        alt: "Umbrella"
+        alt: "Reading"
     }
 }
 const picturesWithListContent = {
