@@ -8,6 +8,7 @@ import ContactImg from "../../../../public/assets/images/components/contact.png"
 import Image from "next/image";
 import Link from "next/link";
 import { classes } from "./Styles";
+import TextSection from "../../TextSection";
 const textContent = {
     title: {
         en: "Contact Us",
@@ -75,15 +76,10 @@ export default function (props: Props) {
     const { locale } = router
     const currentLang = Lang[locale ?? 'en']
     return (<>
+        <TextSection {...textContent} />
         <Box
             sx={{ ...classes.root }}
         >
-            <Box
-                sx={{ ...classes.titles, }}
-            >
-                <Typography fontWeight={600} fontFamily={CustomFonts.Gustavo} variant="h4">{textContent.title[currentLang]}</Typography>
-                <Typography variant="h6">{textContent.subtitle[currentLang]}</Typography>
-            </Box>
             <Box
                 sx={{ ...classes.itemsContainer }}
             >

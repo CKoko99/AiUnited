@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { Lang } from "../locale/LocaleSwitcher";
+import { CustomFonts } from "../../providers/theme";
 
 interface ComponentProps {
     title?: { [lang: string]: string; };
@@ -9,8 +10,10 @@ interface ComponentProps {
 
 const classes = {
     root: {
-        width: { xs: "90%", sm: "80%", md: "70%" },
-        margin: "auto",
+        width: { xs: "90%", sm: "80%", md: "70%", lg: "60%" },
+        margin: "auto", padding: "1rem 0", display: "flex",
+        flexDirection: "column", alignItems: "center",
+        gap: "1rem",
     }
 }
 
@@ -24,11 +27,11 @@ export default function (props: ComponentProps) {
         <Box sx={{ ...classes.root, }}
         >
             {props.title ?
-                <Typography variant="h3" sx={{ textAlign: "center", margin: "2rem 0 0" }}>
+                <Typography fontFamily={CustomFonts.Gustavo} variant="h4" fontWeight={600} sx={{ textAlign: "center", }}>
                     {props.title[currentLang]}
                 </Typography> : null}
             {props.subtitle ?
-                <Typography variant="h5" sx={{ textAlign: "center", margin: "2rem 0 0" }}>
+                <Typography variant="h6" sx={{ textAlign: "center", }}>
                     {props.subtitle[currentLang]}
                 </Typography> : null}
         </Box>
