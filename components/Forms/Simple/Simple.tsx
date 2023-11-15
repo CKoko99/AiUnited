@@ -167,7 +167,7 @@ export default function (props) {
                     }}
                 >
                     <Typography variant="h2">{props.title[currentLang]}</Typography>
-                    <Typography variant="h5">{props.subtitle[currentLang]}</Typography>
+                    <Typography fontSize={"1.5rem"} variant="subtitle1">{props.subtitle[currentLang]}</Typography>
                 </Box>
                 <Box
                     sx={{
@@ -193,7 +193,8 @@ export default function (props) {
                     <Box
                         sx={{ padding: "1rem" }}
                     >
-                        <Button onClick={() => { setHandlingSubmit(true) }} disabled={loading || !valid}
+                        <Button onClick={() => { setHandlingSubmit(true) }}
+                            disabled={loading || !valid}
                             variant="contained" color="secondary">
                             {!loading ? "Submit" : <CircularProgress style={{ width: "2rem", height: "2rem" }} />}</Button>
                     </Box>

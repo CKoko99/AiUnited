@@ -428,7 +428,7 @@ function FileQuestion(props) {
         if (!e.target.files[0]) {
             return
         }
-        if (e.target.files[0].size / 1024 / 1024 > 10) {
+        if (e.target.files[0].size / chunkSize > 20) {
             props.setValid(props.index, false)
             setValue({})
             setShowModal(true)
