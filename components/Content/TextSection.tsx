@@ -10,7 +10,7 @@ interface ComponentProps {
 
 const classes = {
     root: {
-        width: { xs: "90%", sm: "80%", md: "70%", lg: "60%" },
+        width: { xs: "90%", sm: "80%", md: "70%", lg: "65%" },
         margin: "auto", padding: "1rem 0", display: "flex",
         flexDirection: "column", alignItems: "center",
         gap: "1rem",

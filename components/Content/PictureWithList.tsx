@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { Lang } from "../locale/LocaleSwitcher";
 import { useState } from "react";
 import { CustomFonts } from "../../providers/theme";
+import TextSection from "./TextSection";
 
 interface ParentProps {
     title?: {
@@ -35,6 +36,8 @@ const parentClasses = {
     },
     titles: {
         textAlign: "center",
+        margin: "auto",
+        width: "80%"
     },
     mainContainer: {
         margin: "auto",
@@ -57,7 +60,7 @@ const parentClasses = {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-around",
-        gap: { xs: "1rem", md: "0" },
+        gap: { xs: "1rem", md: ".5rem" },
         padding: "1rem"
     },
 }
