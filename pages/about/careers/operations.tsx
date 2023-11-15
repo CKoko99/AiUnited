@@ -1,11 +1,16 @@
 import Hero from "../../../components/Content/Hero/Hero";
 import TextContent from "../../../components/Content/TextContent";
 import Simple from "../../../components/Forms/Simple/Simple";
+import BannerImg from '../../../public/assets/images/about/careers/banner.png'
 
 const heroContent = {
     title: {
         en: "Operations",
         es: "Operaciones"
+    },
+    image: {
+        src: BannerImg,
+        alt: 'Ai United Insurance Careers',
     }
 }
 
