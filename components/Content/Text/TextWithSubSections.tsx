@@ -12,6 +12,7 @@ interface ComponentProps {
         body: { [lang: string]: string; };
     }[];
     horizontal?: boolean;
+    textAlign?: string;
 }
 const classes = {
     root: {
@@ -28,14 +29,21 @@ const classes = {
 function MiniSection(props) {
     return <>
         <Box
-            sx={{ width: "45%" }}
+            sx={{ width: { xs: "45%", md: "30%" } }}
         >
             <Typography
-                sx={{ ...classes.title }}
+                sx={{
+                    ...classes.title,
+                    textAlign: props.textAlign ?? "left",
+                }}
                 variant="h4">
                 {props.title[props.lang]}
             </Typography>
-            <Typography variant="subtitle1">
+            <Typography
+                sx={{
+                    textAlign: props.textAlign ?? "left",
+                }}
+                variant="subtitle1">
                 {props.body[props.lang]}
             </Typography>
         </Box>
@@ -59,7 +67,10 @@ export default function (props: ComponentProps) {
                     margin: "auto"
                 }}
             >
-                <Typography sx={{ ...classes.title }}
+                <Typography sx={{
+                    ...classes.title,
+                    textAlign: props.textAlign ?? "left",
+                }}
                     variant="h4">
                     {props.title && props.title[currentLang]}
                 </Typography>
@@ -71,15 +82,19 @@ export default function (props: ComponentProps) {
                 }}
             >
                 <Box>
-                    <Typography variant="body1">
+                    <Typography variant="body1"
+                        sx={{
+                            textAlign: props.textAlign ?? "left",
+                        }}
+                    >
                         {props.subtitle && props.subtitle[currentLang]}
                     </Typography>
                 </Box>
                 <Box
-                    sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}
+                    sx={{ display: "flex", flexDirection: "row", justifyContent: { xs: "space-between", md: "space-around" } }}
                 >
                     {props.miniSections && props.miniSections.map((section, index) => {
-                        return <MiniSection lang={currentLang} {...section} key={index} />
+                        return <MiniSection lang={currentLang} textAlign={props.textAlign} {...section} key={index} />
                     })}
                 </Box>
             </Box>

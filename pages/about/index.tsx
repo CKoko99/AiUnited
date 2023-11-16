@@ -105,7 +105,8 @@ const textSectionContent = {
         es: "de nuestros clientes nos recomiendan a amigos y familiares"
       }
     },
-  ]
+  ],
+  textAlign: "center"
 }
 const InsuranceProductsContent = {
   title: {
