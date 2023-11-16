@@ -52,7 +52,7 @@ const parentClasses = {
     },
     image: {
         position: "relative",
-        height: "25rem",
+        minHeight: { xs: "20rem", md: "25rem" },
         width: "100%",
     },
     contentContainer: {
