@@ -4,6 +4,7 @@ import { Lang } from "../../../locale/LocaleSwitcher";
 import { CustomFonts } from "../../../../providers/theme";
 import PATHCONSTANTS from "../../../../constants/sitemap";
 import ShopOnlineImg from "../../../../public/assets/images/components/shoponline.png";
+import MapImg from "../../../../public/assets/images/components/map.png";
 import ContactImg from "../../../../public/assets/images/components/contact.png";
 import Image from "next/image";
 import Link from "next/link";
@@ -53,8 +54,8 @@ const textContent = {
             es: `Tenemos más de 100 tiendas en todo Texas. Encuentra una tienda cerca de ti.`,
         },
         img: {
-            src: ShopOnlineImg,
-            alt: "shop online"
+            src: MapImg,
+            alt: "Map"
         },
         CtaButton: {
             text: {
@@ -70,13 +71,15 @@ const textContent = {
 
 interface Props {
     quoteLink?: string
+    hideTitle?: boolean
 }
 export default function (props: Props) {
     const router = useRouter()
     const { locale } = router
     const currentLang = Lang[locale ?? 'en']
     return (<>
-        <TextSection {...textContent} />
+        {!props.hideTitle &&
+            <TextSection {...textContent} />}
         <Box
             sx={{ ...classes.root }}
         >
