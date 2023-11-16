@@ -16,8 +16,7 @@ interface ComponentProps {
 const styles = {
     imageContainer: {
         width: "100%",
-        minHeight: { xs: "32rem", sm: "29rem", md: "24rem" },
-
+        minHeight: "24rem",
         position: "relative",
     },
     textContainer: {
