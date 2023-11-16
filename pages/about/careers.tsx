@@ -7,7 +7,7 @@ import OpsImg from '../../public/assets/images/about/careers/operations.png'
 import DmImg from '../../public/assets/images/about/careers/dm.png'
 import BannerImg from '../../public/assets/images/about/careers/banner.png'
 import PictureWithList from "../../components/Content/PictureWithList";
-import PhoneImg from "../../public/assets/images/home/phone.png";
+import WorkImg from "../../public/assets/images/about/careers/work.png";
 
 
 const heroContent = {
@@ -39,10 +39,9 @@ const textSection1 = {
 
 const picturesWithListContent = {
     img: {
-        src: PhoneImg,
+        src: WorkImg,
         alt: "Phone"
     },
-    hideMobileImg: true,
     content: [
         {
             title: {
