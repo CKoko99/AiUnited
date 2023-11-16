@@ -18,7 +18,7 @@ export default function (props: ComponentProps) {
     return <>
         <Box
             sx={{
-                width: { xs: "90%", sm: "80%", md: "60%", lg: "50%" },
+                width: { xs: "100%", sm: "90%", md: "70%", lg: "65%" },
                 margin: "auto",
             }}
         >
