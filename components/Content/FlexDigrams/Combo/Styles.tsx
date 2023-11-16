@@ -16,13 +16,14 @@ export const classes = {
     imageContainer: {
         position: "relative",
         height: "13rem",
-        width: "100%",
+        width: "100%", zIndex: -1,
     },
     itemsContainer: {
         display: "flex",
         justifyContent: "space-around",
         flexDirection: { xs: "column", md: "row" },
-        gap: "2rem", alignItems: "stretch"
+        gap: "2rem", alignItems: "stretch",
+
     },
     contentItem: {
         border: "1px solid #cacaca",
