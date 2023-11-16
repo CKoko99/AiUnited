@@ -21,7 +21,7 @@ const heroContent = {
         src: BannerImg,
         alt: "Ai United Insurance Reviews",
     },
-    align: "left",
+    align: "center",
 }
 
 const textSectionContent = {
