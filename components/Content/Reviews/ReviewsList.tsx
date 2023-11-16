@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useState } from "react"
 import { Lang } from "../../locale/LocaleSwitcher";
 import theme, { CustomFonts } from "../../../providers/theme";
+import TextSection from "../TextSection";
 
 const text = {
     title: {
@@ -142,7 +143,7 @@ export default function (props: ReviewsListProps) {
         <Box
             sx={classes.root}
         >
-            <Typography fontFamily={CustomFonts.Gustavo} fontWeight={"bold"} variant="h3">{text.title[currentLang]}</Typography>
+            <TextSection title={text.title} />
             <Box
                 sx={{ ...classes.cardContainer }}>
                 {props.reviews?.map((review, index) => {
