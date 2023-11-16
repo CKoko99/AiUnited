@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import CenterVideo from "./CenterVideo";
 import { Lang } from "../locale/LocaleSwitcher";
 import { useRouter } from "next/router";
@@ -17,6 +17,18 @@ interface ComponentProps {
     body?: {
         [lang: string]: string;
     }
+    cta1: {
+        text: {
+            [lang: string]: string;
+        }
+        href: string;
+    }
+    cta2: {
+        text: {
+            [lang: string]: string;
+        }
+        href: string;
+    }
 }
 
 export default function (props: ComponentProps) {
@@ -29,7 +41,7 @@ export default function (props: ComponentProps) {
         <Box
             sx={{
                 display: "flex",
-                flexDirection: { xs: "column", md: "row" },
+                flexDirection: { xs: "column-reverse", md: "row" },
                 alignItems: "center",
                 width: "90%",
                 margin: "auto",
@@ -46,16 +58,30 @@ export default function (props: ComponentProps) {
                 }}
             >
                 <Typography variant="h4"
-                    sx={{ textAlign: { xs: "center", md: "left" } }}
+                    sx={{ textAlign: "left" }}
                     fontWeight={600} fontFamily={CustomFonts.Gustavo}
                 >
                     {props.title && props.title[currentLang]}
                 </Typography>
                 <Typography variant="h6"
-                    sx={{ textAlign: { xs: "center", md: "left" } }}
+                    sx={{ textAlign: "left" }}
                 >
                     {props.body && props.body[currentLang]}
                 </Typography>
+                <Box
+                    sx={{
+                        display: "flex", gap: "1.5rem",
+                        justifyContent: { xs: "space-between", md: "flex-start" },
+                        width: { xs: "90%", sm: "80%", md: "100%" }, margin: "auto"
+                    }}
+                >
+                    <Button variant="outlined" color="secondary" href={props.cta1.href}>
+                        {props.cta1.text[currentLang]}
+                    </Button>
+                    <Button variant="text" color="secondary" href={props.cta2.href}>
+                        {props.cta2.text[currentLang]}
+                    </Button>
+                </Box>
             </Box>
             <CenterVideo {...props.video} />
         </Box>

@@ -1,11 +1,19 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { Lang } from "../locale/LocaleSwitcher";
 import { CustomFonts } from "../../providers/theme";
+import { OverridableStringUnion } from '@mui/types';
+import { ButtonPropsVariantOverrides } from '@mui/material';
 
 interface ComponentProps {
     title?: { [lang: string]: string; };
     subtitle?: { [lang: string]: string; };
+    ctaButtons?: {
+        text: { [lang: string]: string; };
+        href: string;
+        color?: string;
+        variant?: string;
+    }[];
 }
 
 const classes = {
@@ -34,6 +42,21 @@ export default function (props: ComponentProps) {
                 <Typography variant="h6" sx={{ textAlign: "center", }}>
                     {props.subtitle[currentLang]}
                 </Typography> : null}
+            {props.ctaButtons ? <Box
+                sx={{
+                    display: "flex", flexDirection: "row",
+                    width: { xs: "80%", sm: "80%", md: "70%", lg: "50%" },
+                    margin: "auto", justifyContent: { xs: "space-between", md: "space-around" },
+                }}
+            >
+                {props.ctaButtons.map((cta, index) => {
+                    return <Button key={index}
+                        color={cta.color as OverridableStringUnion<"primary" | "secondary"> ?? "primary"}
+                        variant={cta.variant as OverridableStringUnion<"text" | "contained" | "outlined"> ?? "outlined"}
+                        href={cta.href}
+                    >{cta.text[currentLang]}</Button>
+                })}
+            </Box> : null}
         </Box>
     </>
 }
