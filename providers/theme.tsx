@@ -41,6 +41,14 @@ let theme = createTheme({
             backgroundColor: '#cacaca',
           },
         },
+        textSecondary: {
+          color: '#111111',
+          transition: 'all 0.3s',
+          '&:hover': {
+            color: 'black',
+            backgroundColor: '#cacaca',
+          },
+        },
         containedSecondary: {
           transition: 'all 0.3s',
           '&:hover': {
