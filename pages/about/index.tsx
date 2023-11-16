@@ -6,6 +6,8 @@ import TextSection from "../../components/Content/TextSection";
 import HeadComponent from "../../components/Head";
 import VideoWithContent from "../../components/Content/VideoWithContent";
 import ContactAndLocations from "../../components/Content/FlexDigrams/Combo/ContactAndLocations";
+import PATHCONSTANTS from "../../constants/sitemap";
+import HorizontalText from "../../components/Content/Text/TextWithSubSections";
 const heroContent = {
   title: {
     en: "Ai United Insurance",
@@ -27,6 +29,12 @@ const CenterVideoContent = {
     en: "Experience peace of mind with Ai United Insurance",
     es: "Experimente la tranquilidad con Ai United Insurance"
   },
+  subtitle: {
+    en: `At Ai United Insurance, we pride ourselves on delivering personalized service and comprehensive
+     coverage options to our valued customers.`,
+    es: `En Ai United Insurance, nos enorgullecemos de brindar un servicio personalizado y opciones de cobertura
+      integral a nuestros valiosos clientes. `,
+  },
   body: {
     en: `At Ai United Insurance, we pride ourselves on delivering personalized service and comprehensive
      coverage options to our valued customers.`,
@@ -36,10 +44,28 @@ const CenterVideoContent = {
   video: {
     title: "Ai United Insurance",
     video: {
-      en: "https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/Long-Commercial%20With%20Logo%20at%20the%20End.mp4?alt=media&token=e3ab73a8-4f90-42b1-8655-bd8ab6510c87",
-      es: "https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/Long-Commercial%20With%20Logo%20at%20the%20End%20Spanish.mp4?alt=media&token=1a312a80-7899-4007-9469-189bd927e24e"
+      en: "https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/About%20Us.mp4?alt=media&token=98ab4a11-4a34-4f2f-a321-f35f9cd5e569",
+      es: "https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/About%20Us%20Spanish.mp4?alt=media&token=7d2b0eea-5085-4512-9192-3b855595d079"
     }
-  }
+  },
+}
+const videoButtons = {
+  ctaButtons: [
+    {
+      text: {
+        en: "Give us a call",
+        es: "Danos una llamada"
+      },
+      href: PATHCONSTANTS.PHONE
+    },
+    {
+      text: {
+        en: "Find a Location",
+        es: "Encuentra una ubicación"
+      },
+      href: PATHCONSTANTS.LOCATIONS.INDEX
+    }
+  ]
 }
 const textSectionContent = {
   /*title: {
@@ -47,8 +73,8 @@ const textSectionContent = {
     es: `Nuestro compromiso inquebrantable es brindar soluciones de seguros confiables en las que los tejanos siempre puedan confiar.`
   },*/
   title: {
-    en: `Providing Trusted Insurance Coverage in Texas since 2008`,
-    es: `Brindando cobertura de seguro confiable en Texas desde 2008`
+    en: `Celebrating Our Journey: Over 15 Years of Providing Trusted Insurance Coverage in Texas`,
+    es: `Celebrando nuestro viaje: más de 15 años brindando cobertura de seguros confiable en Texas`
   },
   subtitle: {
     en: `At Ai United Insurance, we have a rich history of growth and dedication to becoming the most trusted 
@@ -57,15 +83,70 @@ const textSectionContent = {
     es: `En Ai United Insurance, tenemos una rica historia de crecimiento y dedicación para 
     convertirnos en el proveedor de seguros más confiable de Texas. Nuestro viaje ha sido impulsado 
     por un compromiso de brindar cobertura confiable y un servicio al cliente excepcional a nuestros clientes.`
-  }
+  },
+  miniSections: [
+    {
+      title: {
+        en: "98%",
+        es: "98%",
+      },
+      body: {
+        en: "of our customers renew their policies with us.",
+        es: "de nuestros clientes renuevan sus pólizas con nosotros."
+      }
+    },
+    {
+      title: {
+        en: "95%",
+        es: "95%",
+      },
+      body: {
+        en: "of our customers recommend us to friends and family.",
+        es: "de nuestros clientes nos recomiendan a amigos y familiares"
+      }
+    },
+  ]
+}
+const InsuranceProductsContent = {
+  title: {
+    en: "Discover Our Insurance Products",
+    es: "Descubra nuestros productos de seguro"
+  },
+  subtitle: {
+    en: "Explore our range of insurance products and find the coverage that is right for you.",
+    es: "Explore nuestra gama de productos de seguro y encuentre la cobertura que sea adecuada para usted."
+  },
+  ctaButtons: [
+    {
+      text: {
+        en: "Learn More",
+        es: "Aprende más"
+      },
+      href: PATHCONSTANTS.PRODUCTS.INDEX,
+      color: "secondary",
+      variant: "contained"
+    },
+    {
+      text: {
+        en: "Contact Us",
+        es: "Contáctenos"
+      },
+      href: PATHCONSTANTS.ABOUT.CONTACT,
+      variant: "outlined",
+      color: "secondary",
+
+    }
+  ]
 }
 const About: NextPage = () => {
   return (
     <>
       <HeadComponent title={'Learn More About Ai United'} />
       <Hero {...heroContent} />
-      <TextSection {...textSectionContent} />
-      <VideoWithContent {...CenterVideoContent} />
+      <TextSection {...CenterVideoContent} />
+      <CenterVideo {...CenterVideoContent.video} />
+      <TextSection {...InsuranceProductsContent} />
+      <HorizontalText horizontal {...textSectionContent} />
       <ContactAndLocations />
     </>
   )
