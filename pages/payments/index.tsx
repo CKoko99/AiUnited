@@ -164,7 +164,7 @@ export default function () {
         setError(false)
         providers.forEach((item) => {
             item.keys.forEach((key) => {
-                if (paymentInput.startsWith(key)) {
+                if (paymentInput.toUpperCase().startsWith(key.toUpperCase())) {
                     setOpenModal(true)
                     setModalContent({
                         title: item.title,
@@ -252,6 +252,15 @@ export default function () {
                         style={{ width: "10rem", margin: "auto" }}
                         onClick={() => window.open(modalContent?.link, "_blank")}
                     >Continue</Button>
+                    <Button
+                        onClick={() => {
+                            setShowAllProviders(true)
+                            setOpenModal(false)
+                        }
+                        }
+                    >
+                        Not Your Insurance Provider? Click Here to Select Others
+                    </Button>
                 </Box>
             </Modal>}
         </Box >
