@@ -48,7 +48,7 @@ export default function (props) {
     const [isValid, setIsValid] = useState(false)
     const [errorText, setErrorText] = useState("")
     const [onceValid, setOnceValid] = useState(false)
-    let alinskoLink = `https://customers.empowerins.com/Fn/Quotes/PrimaryDriver.aspx?AgentNo=p1cLqpHj4s4fcL2mzmkBvA&zipcode=${inputValue}`
+    let alinscoLink = `https://customers.empowerins.com/Fn/Quotes/PrimaryDriver.aspx?AgentNo=p1cLqpHj4s4fcL2mzmkBvA&zipcode=${inputValue}`
 
 
     const handleValueChange = (targetValue) => {
@@ -141,7 +141,7 @@ export default function (props) {
                                     return
                                 }
                                 if (isValid) {
-                                    window.open(alinskoLink, "_blank")
+                                    window.open(alinscoLink, "_blank")
                                 } else {
                                     setErrorText(errorValidationText[currentLang])
                                 }
@@ -160,7 +160,7 @@ export default function (props) {
                                 color="secondary"
                                 onClick={() => {
                                     if (isValid) {
-                                        window.open(alinskoLink, "_blank")
+                                        window.open(alinscoLink, "_blank")
                                     } else {
                                         setErrorText(errorValidationText[currentLang])
                                     }
