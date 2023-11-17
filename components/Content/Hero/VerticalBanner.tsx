@@ -75,7 +75,7 @@ export default function (props: VerticalBannerProps) {
                         width: "100%", height: { xs: "15rem", sm: "20rem", md: "25rem" },
                     }}
                 >
-                    <Image fill style={{ objectFit: "contain" }} {...props.img} />
+                    <Image fill priority={true} style={{ objectFit: "contain" }} {...props.img} />
                 </Box>
             }
         </Box>
