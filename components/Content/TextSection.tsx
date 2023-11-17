@@ -14,6 +14,7 @@ interface ComponentProps {
         color?: string;
         variant?: string;
     }[];
+    subtitleVariant?: "h5" | "h6" | "subtitle1" | "subtitle2" | "body1" | "body2" | "caption" | "button" | "overline" | undefined;
 }
 
 const classes = {
@@ -39,7 +40,7 @@ export default function (props: ComponentProps) {
                     {props.title[currentLang]}
                 </Typography> : null}
             {props.subtitle ?
-                <Typography variant="h6" sx={{ textAlign: "center", }}>
+                <Typography variant={props.subtitleVariant ?? "h6"} sx={{ textAlign: "center", }}>
                     {props.subtitle[currentLang]}
                 </Typography> : null}
             {props.ctaButtons ? <Box

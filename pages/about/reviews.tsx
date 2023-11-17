@@ -111,7 +111,7 @@ const reviews = [
 export default function () {
     return <>
         <Hero {...heroContent} />
-        <TextSection {...textSectionContent} />
+        <TextSection subtitleVariant="h5" {...textSectionContent} />
         <Ratings />
         <ReviewsList reviews={reviews} />
         <ContactAndShop />

@@ -25,6 +25,24 @@ const textContent = {
             },
         },
         {
+            text: {
+                en: [`An Operations Reoresentative is a professional who ensures that everything runs 
+                smoothly from one day to another. They maximize processes
+                 and procedures while meeting customer expectations in terms of cost-effectiveness.`],
+                es: [`Un representante de operaciones es un profesional que se asegura de que todo funcione
+                sin problemas de un día para otro. Maximizan los procesos
+                    y procedimientos al tiempo que satisfacen las expectativas del cliente en términos de rentabilidad.`]
+            }
+        },
+        {
+            variant: "h5",
+            fontWeight: "bold",
+            text: {
+                en: [`Responsibilities and Duties`],
+                es: [`Responsabilidades y deberes`]
+            },
+        },
+        {
             type: "bulletedList",
             text: {
                 en: [`Work full-time available 5 days a week Monday- Saturdays`,
@@ -37,7 +55,7 @@ const textContent = {
                     `Oversee the registration, inspection, and maintenance of all company vehicles`,
                     `Communicate clearly and effectively with landlords, contractors, and different vendors`,
                     `Schedule vendor appointments for different locations, such as pest control, HVAC, contractors etc.`,
-                    `Receiving, reportingm and assigning tech issues`,
+                    `Receiving, reporting and assigning tech issues`,
                     `Data entry`,
                     `Track and report all maintenance, security, or IT issues`,
                     `Maintain/ renew location leases`,
@@ -60,7 +78,33 @@ const textContent = {
             },
         },
         {
-            fontWeight: "Bold",
+            variant: "h5",
+            fontWeight: "bold",
+            text: {
+                en: [`Qualifications and Requirements`],
+                es: [`Calificaciones y requisitos`]
+            },
+        },
+        {
+            type: "bulletedList",
+            text: {
+                en: [`Good organizational and interpersonal skills`,
+                    `Good computer knowledge`,
+                    `Able to work independently with minimal/ no supervision`,
+                    `Ability to quickly learn any Company/ Proprietary software is necessary`,
+                    `Bilingual (English/ Spanish)`
+                ],
+                es: [`Buenas habilidades organizativas e interpersonales`,
+                    `Buen conocimiento informático`,
+                    `Capaz de trabajar de forma independiente con supervisión mínima / nula`,
+                    `La capacidad de aprender rápidamente cualquier software de la compañía / patentado es necesaria`,
+                    `Bilingüe (inglés / español)`
+                ]
+            }
+        },
+        {
+            variant: "h5",
+            fontWeight: "bold",
             text: {
                 en: [`Education and Licensing`],
                 es: [`Educación y licencias`]
@@ -72,20 +116,10 @@ const textContent = {
                 en: [`High School Diploma or GED`,
                     `6 months - 1 year of Customer Service`,
                     `1-2 year of Lead/ Supervisory experience, preferred`,
-                    `Good organizational and interpersonal skills`,
-                    `Good computer knowledge`,
-                    `Able to work independently with minimal/ no supervision`,
-                    `Ability to quickly learn any Company/ Proprietary software is necessary`,
-                    `Bilingual (English/ Spanish)`
                 ],
                 es: [`Diploma de escuela secundaria o GED`,
                     `6 meses - 1 año de servicio al cliente`,
                     `1-2 años de experiencia de liderazgo / supervisión, preferido`,
-                    `Buenas habilidades organizativas e interpersonales`,
-                    `Buen conocimiento informático`,
-                    `Capaz de trabajar de forma independiente con supervisión mínima / nula`,
-                    `La capacidad de aprender rápidamente cualquier software de la compañía / patentado es necesaria`,
-                    `Bilingüe (inglés / español)`
                 ]
             }
         },

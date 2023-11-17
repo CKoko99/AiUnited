@@ -13,7 +13,7 @@ const componentText = {
         en: "Click here to see all reviews on Google",
         es: "Haga clic aquí para ver todas las reseñas en Google",
     },
-    reviewsLink: "https://www.google.com/search?q=ai+united+insurance+bammel&sca_esv=576971128&ei=G906ZZyfIvGlqtsP5PeL8Ag&ved=0ahUKEwjcmNeC15SCAxXxkmoFHeT7Ao4Q4dUDCBA&uact=5&oq=ai+united+insurance+bammel&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmFpIHVuaXRlZCBpbnN1cmFuY2UgYmFtbWVsMggQABiJBRiiBDIFEAAYogRI_i1QwRNYryRwAngBkAEAmAF2oAGRBaoBAzkuMbgBA8gBAPgBAcICChAAGEcY1gQYsAPCAg0QABhHGNYEGMkDGLADwgILEAAYigUYkgMYsAPCAgsQLhiABBjHARivAcICCBAAGIoFGIYDwgIaEC4YgAQYxwEYrwEYlwUY3AQY3gQY4ATYAQHCAg0QLhgNGIAEGMcBGNEDwgIHEAAYDRiABMICDRAuGA0YgAQYxwEYrwHCAhwQLhgNGIAEGMcBGNEDGJcFGNwEGN4EGOAE2AEBwgIEECEYCuIDBBgAIEGIBgGQBgq6BgYIARABGBQ&sclient=gws-wiz-serp#lrd=0x8640cec3750f28c9:0x4b789d1d956fb6d3,1,,,,"
+    reviewsLink: "https://www.google.com/search?sca_esv=576971128&sxsrf=AM9HkKl0tGlHbe1Jj9XpcL9eAfhAeeH3qA:1700233866823&q=Ai+United+Insurance&ludocid=5438269300436612819&lsig=AB86z5WGPXa4UD1341t4v3EQFrPj&kgs=e999a6ad534847b9&shndl=-1&source=sh/x/loc/act/m1/can/3#lrd=0x8640cec3750f28c9:0x4b789d1d956fb6d3,1,,,,"
 }
 const reviewSections = [
     {

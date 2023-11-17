@@ -34,11 +34,12 @@ const textContent = {
             }
         },
         {
-            fontWeight: "Bold",
+            variant: "h5",
+            fontWeight: "bold",
             text: {
-                en: [`Responsibilities`],
-                es: [`Responsabilidades`]
-            }
+                en: [`Responsibilities and Duties`],
+                es: [`Responsabilidades y deberes`]
+            },
         },
         {
             type: "bulletedList",
@@ -72,7 +73,33 @@ const textContent = {
             },
         },
         {
-            fontWeight: "Bold",
+            variant: "h5",
+            fontWeight: "bold",
+            text: {
+                en: [`Qualifications and Requirements`],
+                es: [`Calificaciones y requisitos`]
+            },
+        },
+        {
+            type: "bulletedList",
+            text: {
+                en: [`Good organizational and interpersonal skills`,
+                    `Good computer knowledge`,
+                    `Able to work independently with minimal/ no supervision`,
+                    `Ability to quickly learn any Company/ Proprietary software is necessary`,
+                    `Bilingual (English/ Spanish)`
+                ],
+                es: [`Buenas habilidades organizativas e interpersonales`,
+                    `Buen conocimiento informático`,
+                    `Capaz de trabajar de forma independiente con supervisión mínima / nula`,
+                    `La capacidad de aprender rápidamente cualquier software de la compañía / patentado es necesaria`,
+                    `Bilingüe (inglés / español)`
+                ]
+            }
+        },
+        {
+            variant: "h5",
+            fontWeight: "bold",
             text: {
                 en: [`Education and Licensing`],
                 es: [`Educación y licencias`]
@@ -84,23 +111,15 @@ const textContent = {
                 en: [`High School Diploma or GED`,
                     `6 months - 1 year of Customer Service`,
                     `1-2 year of Lead/ Supervisory experience, preferred`,
-                    `Good organizational and interpersonal skills`,
-                    `Good computer knowledge`,
-                    `Able to work independently with minimal/ no supervision`,
-                    `Ability to quickly learn any Company/ Proprietary software is necessary`,
-                    `Bilingual (English/ Spanish)`
+
                 ],
                 es: [`Diploma de escuela secundaria o GED`,
                     `6 meses - 1 año de servicio al cliente`,
                     `1-2 años de experiencia de liderazgo / supervisión, preferido`,
-                    `Buenas habilidades organizativas e interpersonales`,
-                    `Buen conocimiento informático`,
-                    `Capaz de trabajar de forma independiente con supervisión mínima / nula`,
-                    `La capacidad de aprender rápidamente cualquier software de la compañía / patentado es necesaria`,
-                    `Bilingüe (inglés / español)`
                 ]
             }
         },
+
         {
             text: {
                 en: [

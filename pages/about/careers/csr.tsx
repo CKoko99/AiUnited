@@ -34,6 +34,14 @@ const textContent = {
             },
         },
         {
+            variant: "h5",
+            fontWeight: "bold",
+            text: {
+                en: [`Responsibilities and Duties`],
+                es: [`Responsabilidades y deberes`]
+            },
+        },
+        {
             type: "bulletedList",
             text: {
                 en: [`Performing administrative tasks`,
@@ -73,6 +81,14 @@ const textContent = {
             }
         },
         {
+            variant: "h5",
+            fontWeight: "bold",
+            text: {
+                en: [`Qualifications and Requirements`],
+                es: [`Calificaciones y requisitos`]
+            },
+        },
+        {
             text: {
                 en: [`Bilingual (Spanish/English) Required`,
                     `Basic computer knowledge; ability to type 20+ WPM`,
@@ -96,6 +112,8 @@ const textContent = {
             }
         },
         {
+            variant: "h5",
+            fontWeight: "bold",
             text: {
                 en: [`Education and Licensing`],
                 es: [`Educación y licencias`]
