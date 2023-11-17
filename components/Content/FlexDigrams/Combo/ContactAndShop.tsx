@@ -59,8 +59,8 @@ const textContent = {
         },
         CTAButtons: [{
             text: {
-                en: "Call: (555)-555-5555",
-                es: "Llame: (555)-555-5555"
+                en: `Call: ${PATHCONSTANTS.PHONETEXT}`,
+                es: `Llame: ${PATHCONSTANTS.PHONETEXT}`
             },
             color: "secondary",
             variant: "contained",

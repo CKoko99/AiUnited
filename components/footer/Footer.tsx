@@ -168,7 +168,7 @@ export default function Footer() {
             sx={{ ...classes.section1content }}
           >
             <Box>
-              {`(555)-555-5555`}
+              {PATHCONSTANTS.PHONETEXT}
             </Box>
             <Box
             >

@@ -230,7 +230,7 @@ const callQuoteContent = {
         es: "Ya sea que nos llame o solicite una cotización en línea, nuestros expertos están aquí para brindarle una excelente asistencia."
     },
     cta1: {
-        text: { en: "(555)-555-5555", es: "(555)-555-5555" },
+        text: { en: PATHCONSTANTS.PHONETEXT, es: PATHCONSTANTS.PHONETEXT },
         link: PATHCONSTANTS.PHONE
     },
     cta2: {
