@@ -120,8 +120,8 @@ const InsuranceProductsContent = {
   ctaButtons: [
     {
       text: {
-        en: "Learn More",
-        es: "Aprende más"
+        en: "Our Products",
+        es: "Nuestros productos"
       },
       href: PATHCONSTANTS.PRODUCTS.INDEX,
       color: "secondary",
