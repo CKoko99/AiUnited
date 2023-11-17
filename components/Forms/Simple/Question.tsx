@@ -281,7 +281,7 @@ function SelectQuestion(props) {
             >
                 <FormControl error={!valid && validOnce} fullWidth
                 >
-                    <InputLabel id="select-label">{selectLabel[props.lang]}</InputLabel>
+                    <InputLabel id={"select-label" + selectLabel[props.lang]}>{selectLabel[props.lang]}</InputLabel>
                     <Select
                         sx={{ minWidth: "15rem" }}
                         value={value}
@@ -294,6 +294,8 @@ function SelectQuestion(props) {
                             }
                             setValidOnce(true)
                         }}
+                        labelId={"select-label" + selectLabel[props.lang]}
+                        id={"select" + selectLabel[props.lang]}
                         label={selectLabel[props.lang]}
                     >
                         {props.answers.map((option, index) => {
@@ -551,12 +553,15 @@ function FileQuestion(props) {
                     id={`file-input-add-file`}
                     type="file"
                     onChange={e => handleDrop(e)}
+                    aria-label="add file"
                 />
                 <label htmlFor={`file-input-add-file`}>
                     <Button variant="contained" color="primary" component="span">
                         {(value as File).name ? validationText.file.replace[props.lang] : validationText.file.choose[props.lang]}
                         <KeyboardArrowDownSharp />
                     </Button>
+                    {/* Add a visually hidden label for accessibility */}
+                    <span style={{ display: 'none' }}>Choose a file</span>
                 </label>
                 {value && (value as File).name}
             </Box>

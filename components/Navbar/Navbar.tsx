@@ -262,7 +262,7 @@ const navItems = [
       en: "Payments",
       es: "Pagos"
     },
-    link: '/payments',
+    link: PATHCONSTANTS.PAYMENTS,
     menuItems: []
   },
 

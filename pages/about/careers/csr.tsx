@@ -339,7 +339,7 @@ const formContent = {
                 es: "¿Referido por?"
             },
             type: "input",
-            label: "Name",
+            label: { en: "Name", es: "Nombre" },
             outsideLabel: true,
         },
         {
