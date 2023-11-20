@@ -52,9 +52,7 @@ export default function (props) {
 
 
     const handleValueChange = (targetValue) => {
-        // if (!targetValue) return
         if (props.validation?.toLowerCase() === "zipcode") {
-            //remove all non numbers from string
             targetValue = targetValue.replace(/\D/g, '')
             setInputValue(targetValue)
         } else {
