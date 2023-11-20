@@ -1,5 +1,10 @@
-import Locations from "../../components/Locations/Locations"
 import GetCityLocations from "../api/GetCityLocations"
+import dynamic from 'next/dynamic';
+
+const Locations = dynamic(() => import('../../components/Locations/Locations'), {
+    loading: () => <p>Loading...</p>, // Optional loading component
+    //ssr: false, // Disable server-side rendering
+});
 const center = { lat: 28.8, lng: -97, }
 
 export async function getServerSideProps(context) {

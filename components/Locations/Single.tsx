@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Lang } from '../locale/LocaleSwitcher';
 
+
 const styles = {
     textfield: {
         margin: "1rem 0"

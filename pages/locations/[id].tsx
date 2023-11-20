@@ -1,9 +1,14 @@
 import { Box, Button, Typography } from "@mui/material"
-import Single from "../../components/Locations/Single"
 import Link from "next/link"
 import { CustomFonts } from "../../providers/theme"
 import { useRouter } from "next/router"
 import { Lang } from "../../components/locale/LocaleSwitcher"
+import dynamic from 'next/dynamic';
+
+const Single = dynamic(() => import('../../components/Locations/Single'), {
+    loading: () => <p>Loading...</p>, // Optional loading component
+    //ssr: false, // Disable server-side rendering
+});
 
 export async function getServerSideProps({ params, req }) {
 

@@ -1,5 +1,5 @@
 import { Box, Button, CircularProgress, Modal, Typography } from "@mui/material";
-import Question from "./Question";
+//import Question from "./Question";
 import { useRouter } from "next/router";
 import { Lang } from "../../locale/LocaleSwitcher";
 import { useEffect, useState } from "react";
@@ -7,6 +7,12 @@ import PATHCONSTANTS from "../../../constants/sitemap";
 import FormModal from "../../Modals/FormModal";
 import Image from "next/image";
 import checkmarkImg from "../../../public/assets/images/components/checkmark.png"
+import dynamic from 'next/dynamic';
+
+const Question = dynamic(() => import('./Question'), {
+    loading: () => <p>Loading...</p>, // Optional loading component
+    // ssr: false, // Disable server-side rendering
+});
 
 function getEmailProps(questions, answers) {
     let name = ["", ""]
