@@ -5,6 +5,8 @@ import { Lang } from "../../locale/LocaleSwitcher";
 import { useEffect, useState } from "react";
 import PATHCONSTANTS from "../../../constants/sitemap";
 import FormModal from "../../Modals/FormModal";
+import Image from "next/image";
+import checkmarkImg from "../../../public/assets/images/components/checkmark.png"
 
 function getEmailProps(questions, answers) {
     let name = ["", ""]
@@ -35,6 +37,7 @@ export default function (props) {
     const [answersArray, setAnswersArray] = useState(Array(props.questions.length).fill(null))
 
     const [showModal, setShowModal] = useState(false)
+    const [formSubmmited, setFormSubmitted] = useState(false)
     const [modalError, setModalError] = useState(false)
     const [loading, setLoading] = useState(false)
     const [handlingSubmit, setHandlingSubmit] = useState(false)
@@ -85,10 +88,13 @@ export default function (props) {
             .then((data) => {
                 console.log(data);
                 setModalError(false)
+                setFormSubmitted(true)
+
             })
             .catch((error) => {
                 console.log(error);
                 setModalError(true)
+                setFormSubmitted(false)
             });
         setShowModal(true)
     }
@@ -179,7 +185,7 @@ export default function (props) {
                     }}
                 >
 
-                    <Box
+                    {!formSubmmited ? <><Box
                         sx={{
                             display: "flex", flexDirection: { xs: "column", md: "row" }, flexWrap: "wrap", gap: "1.2rem 0rem",
                             justifyContent: "space-between", margin: "auto",
@@ -190,14 +196,37 @@ export default function (props) {
                             return <Question handlingSubmit={handlingSubmit} index={index} setAnswer={setIndexAnswer} setValid={setIndexValid} key={index} {...question} />
                         })}
                     </Box>
-                    <Box
-                        sx={{ padding: "1rem" }}
-                    >
-                        <Button onClick={() => { setHandlingSubmit(true) }}
-                            disabled={loading || !valid}
-                            variant="contained" color="secondary">
-                            {!loading ? "Submit" : <CircularProgress style={{ width: "2rem", height: "2rem" }} />}</Button>
-                    </Box>
+                        <Box
+                            sx={{ padding: "1rem" }}
+                        >
+                            <Button onClick={() => { setHandlingSubmit(true) }}
+                                disabled={loading || !valid}
+                                variant="contained" color="secondary">
+                                {!loading ? "Submit" : <CircularProgress style={{ width: "2rem", height: "2rem" }} />}</Button>
+                        </Box>
+                    </> : <>
+                        <Box sx={{
+                            padding: "1rem", display: "flex",
+                            flexDirection: "column", gap: ".75rem"
+                        }}>
+                            <Box
+                                sx={{ position: "relative", width: "10rem", height: "10rem", margin: "auto" }}
+                            >
+                                <Image fill style={{ objectFit: "contain" }} src={checkmarkImg} alt="checkmark" />
+                            </Box>
+                            <Typography
+                                fontWeight={"bold"}
+                                variant="h4"
+                            >
+                                Thank You!
+                            </Typography>
+                            <Typography
+                                variant="h5"
+                            >
+                                Your Submission Has Been Recevied.
+                            </Typography>
+                        </Box>
+                    </>}
                 </Box>
             </Box >
         </Box >
