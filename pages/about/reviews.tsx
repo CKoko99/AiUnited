@@ -1,9 +1,7 @@
 import Hero from "../../components/Content/Hero/Hero"
 import Ratings from "../../components/Content/Reviews/Ratings"
 import TextSection from "../../components/Content/TextSection"
-import TextContent from "../../components/Content/TextContent"
 import ReviewsList from "../../components/Content/Reviews/ReviewsList"
-import { CustomFonts } from "../../providers/theme"
 import ContactAndShop from "../../components/Content/FlexDigrams/Combo/ContactAndShop"
 import BannerImg from "../../public/assets/images/about/reviews/Banner.png"
 const heroContent = {

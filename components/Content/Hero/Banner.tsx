@@ -1,9 +1,8 @@
 import { Box, Typography, Button, Modal } from "@mui/material";
 import Image, { StaticImageData } from "next/image";
-import theme, { CustomFonts } from "../../../providers/theme";
+import { CustomFonts } from "../../../providers/theme";
 import { useRouter } from "next/router";
 import { Lang } from "../../locale/LocaleSwitcher";
-import Link from "next/link";
 import { useState } from "react";
 import GetAQuote from "../../Modals/GetAQuote";
 

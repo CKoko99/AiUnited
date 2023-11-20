@@ -5,7 +5,6 @@ import { CustomFonts } from "../../../../providers/theme";
 import PATHCONSTANTS from "../../../../constants/sitemap";
 import ShopOnlineImg from "../../../../public/assets/images/components/shoponline.png";
 import MapImg from "../../../../public/assets/images/components/map.png";
-import ContactImg from "../../../../public/assets/images/components/contact.png";
 import Image from "next/image";
 import Link from "next/link";
 import { classes } from "./Styles";

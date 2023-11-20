@@ -1,5 +1,4 @@
 import AutoQuoteHero from '../../components/Content/Hero/AutoQuoteHero';
-import HeroImg from "../../public/assets/images/quotes/auto/Hero.png";
 import HeroImg2 from "../../public/assets/images/quotes/auto/Hero2.png";
 import NumbersSection from '../../components/Content/FlexDigrams/NumbersSection';
 import americaImg from '../../public/assets/images/quotes/auto/america.png'

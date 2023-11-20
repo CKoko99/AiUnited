@@ -1,7 +1,5 @@
 import Link from "next/link";
 import styles from './Page404.module.css';
-import { useEffect } from "react";
-import { useRouter } from 'next/router';
 
 const Page404 = () => {
 

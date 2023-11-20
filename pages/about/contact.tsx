@@ -1,4 +1,3 @@
-import JotFormEmbed from 'react-jotform-embed';
 import SimpleForm from '../../components/Forms/Simple/Simple';
 import ContactAndLocations from '../../components/Content/FlexDigrams/Combo/ContactAndLocations';
 import Hero from '../../components/Content/Hero/Hero';

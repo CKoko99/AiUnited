@@ -1,4 +1,3 @@
-import JotFormEmbed from 'react-jotform-embed';
 import SimpleForm from '../../components/Forms/Simple/Simple';
 
 const formContent = {

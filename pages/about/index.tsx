@@ -4,7 +4,6 @@ import CenterVideo from "../../components/Content/CenterVideo";
 import locationImage from '../../public/assets/images/about/index/location.png';
 import TextSection from "../../components/Content/TextSection";
 import HeadComponent from "../../components/Head";
-import VideoWithContent from "../../components/Content/VideoWithContent";
 import ContactAndLocations from "../../components/Content/FlexDigrams/Combo/ContactAndLocations";
 import PATHCONSTANTS from "../../constants/sitemap";
 import HorizontalText from "../../components/Content/Text/TextWithSubSections";

@@ -1,4 +1,3 @@
-import type { Metadata, NextPage } from 'next'
 import HeadComponent from "../components/Head";
 import Banner from "../components/Content/Hero/Banner";
 import BannerImage from "../public/assets/images/home/Reading.png";

@@ -1,12 +1,9 @@
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useLoadScript, GoogleMap, MarkerF, InfoWindowF as InfoWindow } from '@react-google-maps/api';
-import { StandaloneSearchBox } from '@react-google-maps/api';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import markerimg from '../../public/assets/images/locations/Ai-United-Google-Drop-Pin.png'
 import AILogo from '../../public/assets/images/ai-logo-blue.jpeg'
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { Lang } from '../locale/LocaleSwitcher';
 
 
 const styles = {

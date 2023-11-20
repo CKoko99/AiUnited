@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { Lang } from "../locale/LocaleSwitcher";
 import { CustomFonts } from "../../providers/theme";
 import { OverridableStringUnion } from '@mui/types';
-import { ButtonPropsVariantOverrides } from '@mui/material';
 
 interface ComponentProps {
     title?: { [lang: string]: string; };

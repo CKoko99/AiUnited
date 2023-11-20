@@ -2,7 +2,7 @@ import { Box, Menu, MenuItem, Typography } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import LanguageIcon from '@mui/icons-material/Language';
-import React, { useState } from 'react';
+import React from 'react';
 import KeyboardArrowDownSharp from '@mui/icons-material/KeyboardArrowDownSharp';
 
 const languageMap = {
