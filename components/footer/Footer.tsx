@@ -25,12 +25,12 @@ const section2content = [
       en: "Make a Payment",
       es: "Hacer un pago"
     },
-    link: PATHCONSTANTS.ABOUT.CONTACT
+    link: PATHCONSTANTS.PAYMENTS
   },
   {
     title: {
-      en: "About us",
-      es: "Sobre nosotros"
+      en: "About Us",
+      es: "Sobre Nosotros"
     },
     link: PATHCONSTANTS.ABOUT.INDEX
   },
@@ -53,31 +53,31 @@ const section3content = {
         en: "Auto Insurance",
         es: "Seguro de auto"
       }
-      , link: PATHCONSTANTS.PRODUCTS.AUTO
+      , link: PATHCONSTANTS.QUOTES.AUTO.INDEX
     },
     {
       text: { en: "Motorcycle Insurance", es: "Seguro de motocicleta" },
-      link: PATHCONSTANTS.PRODUCTS.MOTORCYCLE
+      link: PATHCONSTANTS.QUOTES.MOTORCYCLE.INDEX
     },
     {
       text: { en: "Home Insurance", es: "Seguro de casa" },
-      link: PATHCONSTANTS.PRODUCTS.HOME
+      link: PATHCONSTANTS.QUOTES.HOME.INDEX
     },
     {
       text: { en: "Renters Insurance", es: "Seguro de inquilinos" },
-      link: PATHCONSTANTS.PRODUCTS.RENTER
+      link: PATHCONSTANTS.QUOTES.RENTER.INDEX
     },
     {
       text: { en: "Mexico Insruance", es: "Seguro de México" },
-      link: PATHCONSTANTS.PRODUCTS.MEXICO
+      link: PATHCONSTANTS.QUOTES.MEXICO.INDEX
     },
     {
       text: { en: "SR-22", es: "SR-22" },
-      link: PATHCONSTANTS.PRODUCTS.SR22
+      link: PATHCONSTANTS.QUOTES.SR22.INDEX
     },
     {
       text: { en: "Surety Bonds", es: "Fianzas de garantía" },
-      link: PATHCONSTANTS.PRODUCTS.SURETY
+      link: PATHCONSTANTS.QUOTES.SURETY.INDEX
     },
   ]
 }
