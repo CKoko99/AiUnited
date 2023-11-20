@@ -1,8 +1,8 @@
 import { Box, FormControl, TextField, Input, Typography, RadioGroup, Radio, FormControlLabel, Select, MenuItem, InputLabel, FormHelperText, Button, Modal } from "@mui/material"
 import { useRouter } from "next/router"
 import { Lang } from "../../locale/LocaleSwitcher"
-import { ChangeEvent, useEffect, useMemo, useState } from "react"
-import { DateField, DatePicker, DateValidationError, LocalizationProvider } from "@mui/x-date-pickers"
+import { ChangeEvent, lazy, useEffect, useMemo, useState } from "react"
+//import { DateField, DatePicker, DateValidationError, LocalizationProvider } from "@mui/x-date-pickers"
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs, { Dayjs } from 'dayjs';
 import { CustomFonts } from "../../../providers/theme"
@@ -10,6 +10,10 @@ import { KeyboardArrowDownSharp } from "@mui/icons-material"
 import CloseIcon from '@mui/icons-material/Close';
 import PATHCONSTANTS from "../../../constants/sitemap"
 
+const DateField = lazy(() => import('@mui/x-date-pickers').then(({ DateField }) => ({ default: DateField })));
+const LocalizationProvider = lazy(() => import('@mui/x-date-pickers').then(({ LocalizationProvider }) => ({ default: LocalizationProvider })));
+
+// Usage i
 const chunkSize = 1024 * 1024 * .5;
 
 const validationText = {
@@ -316,7 +320,6 @@ function DateQuestion(props) {
     const [check, setCheck] = useState(false)
     const maxDate = dayjs()
 
-
     useEffect(() => {
 
         //check if value is a valid date
@@ -397,7 +400,7 @@ function DateQuestion(props) {
                         label={"Date"}
                         value={value}
                         helperText={error}
-                        onChange={(newValue) => {
+                        onChange={(newValue: Dayjs | null) => {
                             setValue(newValue)
                         }}
                         onBlur={() => { setCheck(true) }}
