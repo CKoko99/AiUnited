@@ -109,11 +109,12 @@ const classes = {
     },
     contentItemMain: {
         display: "flex", flexDirection: "column",
-        alignItems: "center", gap: ".5rem", width: "100%",
+        alignItems: "center", width: "100%",
         border: "2px solid #cccccc",
         padding: ".5rem", borderRadius: "16px",
+        paddingBottom: "1rem",
         transition: "all .3s",
-        boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.25)",
+        boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.15)",
         "&:hover": {
             border: "2px solid #a8a8a8",
             backgroundColor: "#eaeaea",
@@ -125,7 +126,7 @@ const classes = {
         border: "2px solid #cccccc",
         padding: ".5rem", borderRadius: "16px",
         transition: "all .3s",
-        boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.25)",
+        boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.15)",
         "&:hover": {
             border: "2px solid #a8a8a8",
             backgroundColor: "#eaeaea",
@@ -156,9 +157,8 @@ function ContentItem(props) {
             >
                 <Box
                     sx={{
-                        position: "relative", height: props.main ? "5rem" : "3rem", transition: 'transform 0.3s',
-                        width: props.main ? "5rem" : "3rem", transform: isHovered ? 'scale(1.1) rotate(5deg)' : "",
-
+                        position: "relative", height: props.main ? "4.5rem" : "3rem", transition: 'transform 0.3s',
+                        width: props.main ? "4.5rem" : "3rem", transform: isHovered ? 'scale(1.1) rotate(5deg)' : "",
                     }}
                 >
                     <Image fill style={{ objectFit: "contain" }} src={props.usePlain ? props.plainImg.src : props.img.src} alt={props.id} />
