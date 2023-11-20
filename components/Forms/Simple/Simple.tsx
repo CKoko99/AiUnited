@@ -8,11 +8,8 @@ import FormModal from "../../Modals/FormModal";
 import Image from "next/image";
 import checkmarkImg from "../../../public/assets/images/components/checkmark.png"
 import dynamic from 'next/dynamic';
+import Question from "./Question";
 
-const Question = dynamic(() => import('./Question'), {
-    loading: () => <p>Loading...</p>, // Optional loading component
-    // ssr: false, // Disable server-side rendering
-});
 
 function getEmailProps(questions, answers) {
     let name = ["", ""]

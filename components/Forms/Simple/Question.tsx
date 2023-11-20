@@ -6,13 +6,8 @@ import { CustomFonts } from "../../../providers/theme"
 import { KeyboardArrowDownSharp } from "@mui/icons-material"
 import CloseIcon from '@mui/icons-material/Close';
 import PATHCONSTANTS from "../../../constants/sitemap"
-
 import dynamic from 'next/dynamic';
-
-const DateQuestion = dynamic(() => import('./DateQuestion'), {
-    loading: () => <p>Loading...</p>, // Optional loading component
-    // ssr: false, // Disable server-side rendering
-});
+import DateQuestion from "./DateQuestion"
 
 
 // Usage i
