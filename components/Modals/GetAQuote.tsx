@@ -100,7 +100,7 @@ const classes = {
         display: "flex",
         flexDirection: "column",
         gap: "1rem",
-        padding: { xs: "1rem", sm: " 2rem  " },
+        padding: { xs: "1rem", sm: " 1rem" },
         boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
         maxHeight: "90vh",
     },
@@ -194,7 +194,10 @@ function GetAQuote(props, ref) {
         }}
     >
         <Box
-            sx={{ textAlign: "right" }}
+            sx={{
+                textAlign: "right", paddingTop: ".5rem",
+                paddingRight: ".5rem"
+            }}
         >
             <CloseIcon sx={{ cursor: "pointer" }} onClick={props.close} />
         </Box>

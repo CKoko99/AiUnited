@@ -3,6 +3,8 @@ import HeroImg from "../../public/assets/images/quotes/auto/Hero.png";
 import HeroImg2 from "../../public/assets/images/quotes/auto/Hero2.png";
 import NumbersSection from '../../components/Content/FlexDigrams/NumbersSection';
 import americaImg from '../../public/assets/images/quotes/auto/america.png'
+import moneyImg from '../../public/assets/images/quotes/auto/money.png'
+import hourglassImg from '../../public/assets/images/quotes/auto/hourglass.png'
 import PATHCONSTANTS from '../../constants/sitemap';
 import MainGrid from '../../components/Content/Grids/MainGrid';
 import CarImg1 from "../../public/assets/images/quotes/auto/car1.png";
@@ -46,8 +48,8 @@ const slideData = {
     },
     {
         img: {
-            src: americaImg,
-            alt: "America"
+            src: moneyImg,
+            alt: "money"
         },
         beforeNumber: "$",
         number: 247,
@@ -56,8 +58,8 @@ const slideData = {
     },
     {
         img: {
-            src: americaImg,
-            alt: "America"
+            src: hourglassImg,
+            alt: "hourglass"
         },
         number: 6,
         afterNumberGap: true,
