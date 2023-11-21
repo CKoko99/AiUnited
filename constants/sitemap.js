@@ -50,6 +50,8 @@ const PATHCONSTANTS = {
     PAYMENTS: '/payments',
     PHONE: "tel:5555555555",
     PHONETEXT: "(555)-555-5555",
+    PRIVACY: '/privacy-policy',
+    TERMS: '/terms-of-service',
     BACKEND: process.env.NODE_ENV === "development" ? "http://localhost:8080" : "https://insurancehubbackend-uc3v53rceq-ue.a.run.app"
 };
 export default PATHCONSTANTS

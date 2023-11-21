@@ -1,4 +1,4 @@
-import { Box, } from "@mui/material";
+import { Box, Button, } from "@mui/material";
 import { Typography } from "@mui/material";
 import PATHCONSTANTS from '../../constants/sitemap';
 
@@ -231,6 +231,17 @@ export default function Footer() {
         </Box>
         <Box sx={{ ...classes.copyright }}>
           <Typography variant="h6">{copyright[currentLang]}</Typography>
+        </Box>
+        <Box sx={{
+          display: "flex", gap: ".25rem",
+          justifyContent: "center", alignItems: "center",
+        }} >
+          <Button sx={{ color: "white" }}
+            href={PATHCONSTANTS.TERMS}
+          >Terms of Use</Button>|
+          <Button sx={{ color: "white" }}
+            href={PATHCONSTANTS.PRIVACY}
+          >Privacy Policy</Button>
         </Box>
       </Box >
     </Box >
