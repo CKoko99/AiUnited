@@ -6,7 +6,8 @@ export default async function sitemap() {
     //let sitemap = PathConstants minus pathconstants.backend
     let Sitemap = PATHCONSTANTS
     delete Sitemap.BACKEND
-
+    delete Sitemap.PHONE
+    delete Sitemap.PHONETEXT
     //loop through all the paths in PATHCONSTANTS
     for (const path in Sitemap) {
         //if the path is an object, loop through the subpaths
