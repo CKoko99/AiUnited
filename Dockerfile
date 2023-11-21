@@ -12,6 +12,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NODE_ENV=production
 RUN npm run build
+RUN npm run sitemap
 
 # Stage 3
 FROM node:18-alpine AS runner
