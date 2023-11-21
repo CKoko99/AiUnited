@@ -1,5 +1,4 @@
 import { Box, Button, Typography } from "@mui/material"
-import Link from "next/link"
 import { CustomFonts } from "../../providers/theme"
 import { useRouter } from "next/router"
 import { Lang } from "../../components/locale/LocaleSwitcher"
