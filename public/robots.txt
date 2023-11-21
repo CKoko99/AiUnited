@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://aiunited-uc3v53rceq-ue.a.run.app
+
+# Sitemaps
+Sitemap: https://aiunited-uc3v53rceq-ue.a.run.app/sitemap.xml
