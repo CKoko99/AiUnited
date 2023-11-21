@@ -1,11 +1,11 @@
 import { Box, Typography } from "@mui/material"
 import { lazy, useEffect, useState } from "react"
-//import { DateField, DatePicker, DateValidationError, LocalizationProvider } from "@mui/x-date-pickers"
+import { DateField, DatePicker, DateValidationError, LocalizationProvider } from "@mui/x-date-pickers"
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs, { Dayjs } from 'dayjs';
 import validationText from './validationText'
-const DateField = lazy(() => import('@mui/x-date-pickers').then(({ DateField }) => ({ default: DateField })));
-const LocalizationProvider = lazy(() => import('@mui/x-date-pickers').then(({ LocalizationProvider }) => ({ default: LocalizationProvider })));
+//const DateField = lazy(() => import('@mui/x-date-pickers').then(({ DateField }) => ({ default: DateField })));
+//const LocalizationProvider = lazy(() => import('@mui/x-date-pickers').then(({ LocalizationProvider }) => ({ default: LocalizationProvider })));
 
 export default function DateQuestion(props) {
     const [value, setValue] = useState<Dayjs | null>(null);
