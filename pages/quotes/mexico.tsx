@@ -7,7 +7,7 @@ import MexicoImg3 from '../../public/assets/images/quotes/mexico/mexico2.png';
 import MainGrid from '../../components/Content/Grids/MainGrid';
 import ContactAndShop from '../../components/Content/FlexDigrams/Combo/ContactAndShop';
 import TwoColumn from '../../components/Content/Grids/TwoColumn';
-import Iframe from 'react-iframe';
+
 import HeadComponent from '../../components/Head';
 
 const bannerContent = {
@@ -132,7 +132,7 @@ export default function () {
             <Box
                 sx={{ width: "90%", margin: "auto", padding: "2rem" }}
             >
-                <Iframe id="Mexico-quote" url="https://buy.mexipass.com/AIUN034" height="800" width="100%" />
+                <iframe id="Mexico-quote" src="https://buy.mexipass.com/AIUN034" height="800" width="100%" />
             </Box>
         </Box>
     </>
