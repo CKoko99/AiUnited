@@ -12,11 +12,11 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NODE_ENV=production
 RUN npm run build
-RUN npm run sitemap
 
 # Stage 3
 FROM node:18-alpine AS runner
 WORKDIR /app
+RUN npm run sitemap
 ENV NODE_ENV production
 RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
 COPY --from=builder /app/next.config.js ./
