@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { Lang } from "../locale/LocaleSwitcher";
 import { Box } from "@mui/material";
-import Iframe from 'react-iframe'
+
 
 interface ComponentProps {
     video: {
@@ -35,18 +35,18 @@ export default function (props: ComponentProps) {
                     }}
                 >
 
-                    <Iframe
+                    <iframe
                         width="640"
                         height="480"
                         loading="lazy"
-                        styles={{
+                        style={{
                             position: "absolute",
                             top: 0,
                             left: 0,
                             width: "100%",
                             height: "100%",
                         }}
-                        url={videoLink}
+                        src={videoLink}
                         title={props.title}
                     />
                 </Box>
