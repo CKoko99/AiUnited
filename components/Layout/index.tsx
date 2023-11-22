@@ -14,6 +14,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <HeadComponent />
+      <GTMBody />
       <LocaleSwitcher />
       <Navbar />
       <Box
@@ -28,7 +29,6 @@ const Layout = ({ children }: LayoutProps) => {
         {children}
       </Box>
       <Footer />
-      <GTMBody />
     </>
   )
 }
