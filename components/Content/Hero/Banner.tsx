@@ -91,7 +91,7 @@ export default function Banner(props: BannerProps) {
                     ...styles.textSection,
                 }}
             >
-                <Typography variant="h2" fontWeight="bold" gutterBottom>{props.title[currentLang]}</Typography>
+                <Typography variant="h2" component={"h1"} fontWeight="bold" gutterBottom>{props.title[currentLang]}</Typography>
 
                 <Typography sx={{
 

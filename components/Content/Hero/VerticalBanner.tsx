@@ -40,7 +40,7 @@ export default function (props: VerticalBannerProps) {
                 padding: "1.5rem", alignItems: "center", justifyContent: "center",
             }}
         >
-            <Typography fontFamily={CustomFonts.Gustavo} variant="h3">{props.title && props.title[currentLang]}</Typography>
+            <Typography fontFamily={CustomFonts.Gustavo} component={"h1"} variant="h3">{props.title && props.title[currentLang]}</Typography>
             <Typography variant="h5">{props.subtitle && props.subtitle[currentLang]}</Typography>
             {props.CTA &&
                 <Link href={props.CTA.link} scroll={false}>
