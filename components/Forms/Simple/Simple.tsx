@@ -9,7 +9,7 @@ import Image from "next/image";
 import checkmarkImg from "../../../public/assets/images/components/checkmark.png"
 import dynamic from 'next/dynamic';
 import Question from "./Question";
-
+import ShieldIcon from '@mui/icons-material/Shield';
 
 function getEmailProps(questions, answers) {
     let name = ["", ""]
@@ -206,6 +206,12 @@ export default function (props) {
                                 disabled={loading || !valid}
                                 variant="contained" color="secondary">
                                 {!loading ? "Submit" : <CircularProgress style={{ width: "2rem", height: "2rem" }} />}</Button>
+                        </Box>
+                        <Box textAlign={"center"} sx={{ width: "80%", margin: "auto" }} >
+                            <Typography variant="subtitle1">
+                                Your information is secure and will never be shared.
+                                By submitting this form you agree to be contacted by an Ai United Insurance agent.
+                            </Typography>
                         </Box>
                     </> : <>
                         <Box sx={{
