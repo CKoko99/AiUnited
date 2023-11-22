@@ -4,6 +4,7 @@ import Footer from "../footer/Footer";
 import { ReactNode } from "react";
 import LocaleSwitcher from "../locale/LocaleSwitcher";
 import HeadComponent from "../Head";
+import { GTMBody } from "../Scripts/GoogleTag";
 
 interface LayoutProps {
   children: ReactNode; // Define the children prop with ReactNode type
@@ -27,6 +28,7 @@ const Layout = ({ children }: LayoutProps) => {
         {children}
       </Box>
       <Footer />
+      <GTMBody />
     </>
   )
 }
