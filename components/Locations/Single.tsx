@@ -6,11 +6,6 @@ import AILogo from '../../public/assets/images/ai-logo-blue.jpeg'
 import Image from 'next/image';
 
 
-const styles = {
-    textfield: {
-        margin: "1rem 0"
-    }
-}
 interface Marker {
     position: {
         lat: number;

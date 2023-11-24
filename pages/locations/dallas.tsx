@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 
 const Locations = dynamic(() => import('../../components/Locations/Locations'), {
     loading: () => <p>Loading...</p>, // Optional loading component
-    ssr: true, // Disable server-side rendering
+    //  ssr: false, // Disable server-side rendering
 });
 const center = { lat: 32.7767, lng: -97.0, }
 

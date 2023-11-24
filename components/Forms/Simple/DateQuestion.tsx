@@ -1,6 +1,8 @@
 import { Box, Typography } from "@mui/material"
 import { useEffect, useState } from "react"
-import { DateField, LocalizationProvider } from "@mui/x-date-pickers"
+//import { DateField, LocalizationProvider } from "@mui/x-date-pickers"
+import { DateField } from '@mui/x-date-pickers/DateField';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs, { Dayjs } from 'dayjs';
 import validationText from './validationText'

@@ -1,4 +1,4 @@
-import SimpleForm from '../../components/Forms/Simple/Simple';
+//import SimpleForm from '../../components/Forms/Simple/Simple';
 import VerticalBanner from '../../components/Content/Hero/VerticalBanner';
 import PATHCONSTANTS from '../../constants/sitemap';
 import SuretyImg1 from '../../public/assets/images/quotes/surety/surety1.png';
@@ -8,7 +8,8 @@ import MainGrid from '../../components/Content/Grids/MainGrid';
 import ContactAndShop from '../../components/Content/FlexDigrams/Combo/ContactAndShop';
 import TwoColumn from '../../components/Content/Grids/TwoColumn';
 import HeadComponent from '../../components/Head';
-
+import dynamic from 'next/dynamic';
+const SimpleForm = dynamic(() => import('../../components/Forms/Simple/Simple'), { ssr: false });
 const bannerContent = {
     title: {
         en: "Get a Surety Bond Today",

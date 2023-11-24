@@ -1,9 +1,11 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Layout from "../components/Layout";
-import { ThemeProvider } from '@emotion/react';
+//import { ThemeProvider } from '@emotion/react';
+import { ThemeProvider } from '@mui/material/styles';
 import theme from "../providers/theme";
 import GoogleAnalytics from "../components/Scripts/GoogleAnalytics";
+
 
 function MyApp({ Component, pageProps }: AppProps) {
 

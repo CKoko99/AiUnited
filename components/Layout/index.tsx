@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import Box from "@mui/material/Box";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../footer/Footer";
 import { ReactNode } from "react";

@@ -91,6 +91,7 @@ const picturesWithListContent = {
         },
     ]
 }
+
 const partnerCompanies = {
     title: {
         en: "We Shop For the Best Deals to Save You Time and Money",

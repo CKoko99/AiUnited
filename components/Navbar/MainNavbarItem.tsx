@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import { Modal } from "@mui/material";
 import { Lang } from "../locale/LocaleSwitcher";
 import { useRouter } from "next/router";
-import theme, { CustomFonts } from "../../providers/theme";
+import { CustomFonts } from "../../providers/theme";
 import GetAQuote from "../Modals/GetAQuote";
 const styles = {
     mainButton: {

@@ -1,4 +1,3 @@
-import SimpleForm from '../../components/Forms/Simple/Simple';
 import PATHCONSTANTS from '../../constants/sitemap';
 import MainGrid from '../../components/Content/Grids/MainGrid';
 import TwoColumn from '../../components/Content/Grids/TwoColumn';
@@ -8,6 +7,8 @@ import MotoImg2 from '../../public/assets/images/quotes/motorcycle/motorcycle2.p
 import MotoImg3 from '../../public/assets/images/quotes/motorcycle/motorcycle3.png';
 import ContactAndShop from '../../components/Content/FlexDigrams/Combo/ContactAndShop';
 import HeadComponent from '../../components/Head';
+import dynamic from 'next/dynamic';
+const SimpleForm = dynamic(() => import('../../components/Forms/Simple/Simple'), { ssr: false });
 
 const bannerContent = {
     title: {

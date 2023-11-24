@@ -1,5 +1,6 @@
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 import { yellow } from '@mui/material/colors';
+
 import GustavoFont from '../public/assets/fonts/Gustavo/GustavoFont'
 import PoppinsFont from '../public/assets/fonts/Poppins/PoppinsFont'
 
