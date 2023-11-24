@@ -20,6 +20,7 @@ import React, { forwardRef, useState } from "react";
 import Link from "next/link";
 import PATHCONSTANTS from "../../constants/sitemap";
 import CloseIcon from '@mui/icons-material/Close';
+import { GTMEVENTS, GTMEventHandler } from "../Scripts/GoogleTag";
 const text = {
     title: {
         en: "Unlock your savings today!",
@@ -80,7 +81,7 @@ const products = [
     },
     {
         title: { en: "Surety Bonds", es: "Seguro de fianza" },
-        id: "SuretyBonds",
+        id: "Surety",
         img: suretyQuoteImg,
         plainImg: suretyPlainImg,
         link: PATHCONSTANTS.QUOTES.SURETY.FORM,
@@ -146,8 +147,10 @@ function ContentItem(props) {
     return <>
         <Link href={props.link}
             style={classes.contentItemLink}
-            onClick={
-                props.close
+            onClick={() => {
+                GTMEventHandler(`${GTMEVENTS.audience}-${props.id}`, { 'name': `${props.id}-Quote` })
+                props.close()
+            }
             }
             onMouseEnter={handleHover}
             onMouseLeave={handleMouseLeave}

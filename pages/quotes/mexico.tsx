@@ -33,7 +33,8 @@ const bannerContent = {
     img: {
         src: MexicoImg1,
         alt: "Tourist"
-    }
+    },
+    audience: "Mexico"
 }
 const contentSection1 = {
     largeHorizontalCard: {

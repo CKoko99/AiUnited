@@ -28,7 +28,8 @@ const bannerContent = {
             es: "Obtenga una cotización"
         },
         link: `${PATHCONSTANTS.QUOTES.MOTORCYCLE.FORM}`,
-    }
+    },
+    audience: "Motorcycle"
 }
 const contentSection2 = {
     largeHorizontalCard: {

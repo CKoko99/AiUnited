@@ -29,3 +29,17 @@ export function GTMBody() {
     />
 
 }
+declare global {
+    interface Window {
+        gtag: Function;
+    }
+}
+
+export function GTMEventHandler(action: string, params: any) {
+    window.gtag('event', action, params);
+}
+
+const GTMEVENTS = {
+    audience: "Audience",
+};
+export { GTMEVENTS }

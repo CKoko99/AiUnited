@@ -32,7 +32,8 @@ const bannerContent = {
     img: {
         src: Sr22Img1,
         alt: "renters"
-    }
+    },
+    audience: "SR22"
 }
 
 const contentSection2 = {

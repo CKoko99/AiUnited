@@ -30,7 +30,8 @@ const bannerContent = {
     img: {
         src: SuretyImg1,
         alt: "Tourist"
-    }
+    },
+    audience: "Surety"
 }
 const contentSection1 = {
     largeHorizontalCard: {

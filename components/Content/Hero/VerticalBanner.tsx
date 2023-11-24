@@ -5,6 +5,7 @@ import { CustomFonts } from "../../../providers/theme";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import theme from "../../../providers/theme";
+import { GTMEVENTS, GTMEventHandler } from "../../Scripts/GoogleTag";
 
 interface VerticalBannerProps {
     title?: {
@@ -23,6 +24,7 @@ interface VerticalBannerProps {
         src: StaticImageData;
         alt: string;
     };
+    audience: string;
 }
 
 export default function (props: VerticalBannerProps) {
@@ -63,6 +65,7 @@ export default function (props: VerticalBannerProps) {
                                 xs: "auto", sm: "auto", md: "0",
                             }
                         }}
+                        onClick={() => { GTMEventHandler(`${GTMEVENTS.audience}-${props.audience}`, { 'name': `${props.audience}-Quote` }) }}
                     >
                         {props.CTA.text[currentLang]}
                     </Button>

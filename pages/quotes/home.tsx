@@ -30,7 +30,8 @@ const bannerContent = {
             es: "Obtenga una cotización"
         },
         link: `${PATHCONSTANTS.QUOTES.HOME.FORM}`,
-    }
+    },
+    audience: "Home"
 }
 const contentSection2 = {
     largeHorizontalCard: {
