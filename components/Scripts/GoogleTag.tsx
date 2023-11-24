@@ -42,5 +42,6 @@ export function GTMEventHandler(action: string, params: any) {
 
 const GTMEVENTS = {
     audience: "Audience",
+    conversion: "Conversion",
 };
 export { GTMEVENTS }

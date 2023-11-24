@@ -10,6 +10,7 @@ import checkmarkImg from "../../../public/assets/images/components/checkmark.png
 import dynamic from 'next/dynamic';
 import Question from "./Question";
 import ShieldIcon from '@mui/icons-material/Shield';
+import { GTMEVENTS, GTMEventHandler } from "../../Scripts/GoogleTag";
 
 function getEmailProps(questions, answers) {
     let name = ["", ""]
@@ -133,6 +134,9 @@ export default function (props) {
         await uploadToSheet()
         setLoading(false)
         setHandlingSubmit(false)
+        if (props.conversion) {
+            GTMEventHandler(`${GTMEVENTS.conversion}-${props.conversion}`, { 'name': `${props.conversion}-Quote` })
+        }
         await sendEmail()
     }
     useEffect(() => {

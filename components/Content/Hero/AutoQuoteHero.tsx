@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Lang } from "../../locale/LocaleSwitcher";
 import { useRouter } from "next/router";
+import { GTMEVENTS, GTMEventHandler } from "../../Scripts/GoogleTag";
 const styles = {
     imageContainer: {
         width: "100%",
@@ -59,7 +60,14 @@ export default function (props) {
             setInputValue(targetValue)
         }
     }
-
+    function redirect() {
+        if (isValid) {
+            GTMEventHandler(`${GTMEVENTS.conversion}-Auto`, { 'name': "Auto-Quote" })
+            window.open(alinscoLink, "_blank")
+        } else {
+            setErrorText(errorValidationText[currentLang])
+        }
+    }
     useEffect(() => {
         if (props.validation.toLowerCase() === "zipcode") {
             if (inputValue?.length === 5) {
@@ -138,11 +146,7 @@ export default function (props) {
                                 if (e.key !== "Enter") {
                                     return
                                 }
-                                if (isValid) {
-                                    window.open(alinscoLink, "_blank")
-                                } else {
-                                    setErrorText(errorValidationText[currentLang])
-                                }
+                                redirect()
                             }}
                             error={!isValid}
                             helperText={errorText}
