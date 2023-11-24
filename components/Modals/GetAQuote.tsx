@@ -148,7 +148,7 @@ function ContentItem(props) {
         <Link href={props.link}
             style={classes.contentItemLink}
             onClick={() => {
-                GTMEventHandler(`${GTMEVENTS.audience}-${props.id}`, { 'name': `${props.id}-Quote` })
+                GTMEventHandler(`${GTMEVENTS.audience}-${props.id}-modal`, { 'name': `${props.id}-Quote` })
                 props.close()
             }
             }
