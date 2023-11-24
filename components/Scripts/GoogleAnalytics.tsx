@@ -2,11 +2,11 @@ import Script from 'next/script';
 
 
 
-const GtagID = "G-PSJW7EDC3G"
+const MeasurementID = process.env.NODE_ENV === "development" ? "" : "G-PSJW7EDC3G"
 export default function () {
     return <>
         <Script
-            strategy='afterInteractive' src={`https://www.googletagmanager.com/gtag/js?id=${GtagID}`}
+            strategy='afterInteractive' src={`https://www.googletagmanager.com/gtag/js?id=${MeasurementID}`}
         />
         <Script
             strategy='afterInteractive'
@@ -15,7 +15,7 @@ export default function () {
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments)}
               gtag('js', new Date());
-              gtag('config', '${GtagID}', {
+              gtag('config', '${MeasurementID}', {
                 page_path: window.location.pathname,
               });
             `,

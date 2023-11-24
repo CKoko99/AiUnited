@@ -1,5 +1,6 @@
 import Script from "next/script"
 
+const GtagID = process.env.NODE_ENV === "development" ? "" : "GTM-KMN44RTR"
 export function GTMHead() {
     return <Script
         strategy='afterInteractive'
@@ -10,7 +11,7 @@ export function GTMHead() {
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KMN44RTR');</script>
+    })(window,document,'script','dataLayer','${GtagID}');</script>
     <!-- End Google Tag Manager -->
     `}}
     />
@@ -23,7 +24,7 @@ export function GTMBody() {
               new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
               j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-KMN44RTR');
+              })(window,document,'script','dataLayer','${GtagID}');
             `,
         }}
     />
