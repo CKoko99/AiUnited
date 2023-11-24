@@ -3,7 +3,7 @@ import Script from "next/script"
 const GtagID = process.env.NODE_ENV === "development" ? "" : "GTM-KMN44RTR"
 export function GTMHead() {
     return <Script
-        strategy='afterInteractive'
+        strategy='lazyOnload'
         dangerouslySetInnerHTML={{
             __html: `  
         <!-- Google Tag Manager -->
@@ -18,7 +18,7 @@ export function GTMHead() {
 }
 export function GTMBody() {
     return <Script
-        strategy='afterInteractive'
+        strategy='lazyOnload'
         dangerouslySetInnerHTML={{
             __html: `
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

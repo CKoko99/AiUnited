@@ -6,10 +6,10 @@ const MeasurementID = process.env.NODE_ENV === "development" ? "" : "G-PSJW7EDC3
 export default function () {
     return <>
         <Script
-            strategy='afterInteractive' src={`https://www.googletagmanager.com/gtag/js?id=${MeasurementID}`}
+            strategy='lazyOnload' src={`https://www.googletagmanager.com/gtag/js?id=${MeasurementID}`}
         />
         <Script
-            strategy='afterInteractive'
+            strategy='lazyOnload'
             dangerouslySetInnerHTML={{
                 __html: `
               window.dataLayer = window.dataLayer || [];
