@@ -1,7 +1,7 @@
 const PATHCONSTANTS = {
     HOME: '/',
     QUOTES: {
-        INDEX: '/quotes',
+        // INDEX: '/quotes',
         AUTO: {
             INDEX: '/quotes/auto',
             FORM: '/quotes/auto#Auto-quote'
@@ -19,13 +19,14 @@ const PATHCONSTANTS = {
     },
     PRODUCTS: {
         INDEX: '/products',
-        AUTO: '/products/auto',
-        HOME: '/products/home',
-        MEXICO: '/products/mexico',
-        MOTORCYCLE: '/products/motorcycle',
-        RENTER: '/products/renter',
-        SURETY: '/products/surety-bond',
-        SR22: '/products/sr22',
+        /*     AUTO: '/products/auto',
+             HOME: '/products/home',
+             MEXICO: '/products/mexico',
+             MOTORCYCLE: '/products/motorcycle',
+             RENTER: '/products/renter',
+             SURETY: '/products/surety-bond',
+             SR22: '/products/sr22',
+             */
     },
     LOCATIONS: {
         INDEX: '/locations',
