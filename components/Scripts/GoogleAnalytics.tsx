@@ -5,10 +5,11 @@ import Script from 'next/script';
 const MeasurementID = process.env.NODE_ENV === "development" ? "" : "G-PSJW7EDC3G"
 export default function () {
     return <>
-        <Script
+        <Script async
             strategy='lazyOnload' src={`https://www.googletagmanager.com/gtag/js?id=${MeasurementID}`}
         />
         <Script
+            async
             strategy='lazyOnload'
             dangerouslySetInnerHTML={{
                 __html: `

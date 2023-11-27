@@ -2,7 +2,7 @@ import Script from "next/script"
 
 const GtagID = process.env.NODE_ENV === "development" ? "" : "GTM-KMN44RTR"
 export function GTMHead() {
-    return <Script
+    return <Script async
         strategy='lazyOnload'
         dangerouslySetInnerHTML={{
             __html: `  
@@ -17,7 +17,7 @@ export function GTMHead() {
     />
 }
 export function GTMBody() {
-    return <Script
+    return <Script async
         strategy='lazyOnload'
         dangerouslySetInnerHTML={{
             __html: `
