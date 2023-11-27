@@ -22,7 +22,7 @@ const reviewSections = [
     },
     {
         value: 4,
-        percent: 25,
+        percent: 22,
     },
     {
         value: 3,
@@ -30,11 +30,11 @@ const reviewSections = [
     },
     {
         value: 2,
-        percent: 8,
+        percent: 6,
     },
     {
         value: 1,
-        percent: 15,
+        percent: 10,
     },
 ]
 
