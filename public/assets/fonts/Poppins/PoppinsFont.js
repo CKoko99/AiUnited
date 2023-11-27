@@ -152,7 +152,6 @@ const filteredFonts = [
 console.log(filteredFonts)
 const Poppins = localFont({
     src: [
-
         {
             path: './Poppins-Black.ttf',
             weight: '900',
@@ -163,28 +162,11 @@ const Poppins = localFont({
             weight: '700',
             style: 'normal'
         },
-
         {
             path: './Poppins-ExtraBold.ttf',
             weight: '800',
             style: 'normal'
         },
-
-        {
-            path: './Poppins-ExtraLight.ttf',
-            weight: '200',
-            style: 'normal'
-
-        },
-
-
-        {
-            path: './Poppins-Light.ttf',
-            weight: '300',
-            style: 'normal'
-        },
-
-
         {
             path: './Poppins-Regular.ttf',
             weight: '400',
@@ -193,11 +175,6 @@ const Poppins = localFont({
         {
             path: './Poppins-SemiBold.ttf',
             weight: '600',
-            style: 'normal'
-        },
-        {
-            path: './Poppins-Thin.ttf',
-            weight: '100',
             style: 'normal'
         },
         {
