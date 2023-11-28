@@ -2,6 +2,8 @@ import { Box, Typography } from "@mui/material";
 import { forwardRef, useEffect, useState } from "react";
 import { CustomFonts } from "../../../providers/theme";
 import Image, { StaticImageData } from "next/image";
+import { useRouter } from "next/router";
+import { Lang } from "../../locale/LocaleSwitcher";
 interface NumbersSectionProps {
     title: string;
     menuContent: {
@@ -24,6 +26,7 @@ interface SectionItemProps {
         src: StaticImageData;
         alt: string;
     }
+    lang: any;
 }
 //forward ref
 function returnRandomTime(number) {
@@ -123,15 +126,16 @@ const SectionItem = forwardRef((props: SectionItemProps, ref) => {
                     }} fontWeight={"500"} variant="h4"
                     >{props.afterNumber}</Typography>
                 </Box>
-                <Typography textAlign={"left"} sx={{ whiteSpace: "nowrap", }} variant="body1">{props.body}</Typography>
+                <Typography textAlign={"left"} sx={{ whiteSpace: "nowrap", }} variant="body1">{props.body[props.lang]}</Typography>
             </Box >
         </Box >
-
     </>
 }
 )
 export default function NumbersSection(props) {
-
+    const router = useRouter()
+    const { locale } = router
+    const currentLang = Lang[locale ?? 'en']
     return (<>
         <Box
             sx={{
@@ -164,7 +168,7 @@ export default function NumbersSection(props) {
                 }}
             >
                 {props.menuContent.map((item, index) => {
-                    return <SectionItem key={index} {...item} />
+                    return <SectionItem lang={currentLang} key={index} {...item} />
                 }
                 )}
             </Box>

@@ -42,8 +42,10 @@ const slideData = {
         },
         number: 30,
         afterNumber: "k+",
-        body: "Americans Insured",
-
+        body: {
+            en: "Americans Insured",
+            es: "Estadounidenses Asegurados"
+        }
     },
     {
         img: {
@@ -52,8 +54,10 @@ const slideData = {
         },
         beforeNumber: "$",
         number: 247,
-        body: "Saved on Average",
-
+        body: {
+            en: "Saved on Average",
+            es: "Ahorro Promedio"
+        },
     },
     {
         img: {
@@ -63,7 +67,10 @@ const slideData = {
         number: 6,
         afterNumberGap: true,
         afterNumber: "minutes",
-        body: "Qouting Process",
+        body: {
+            en: "Quoting Process",
+            es: "Proceso De Cotización"
+        }
     },]
 }
 const contentSection2 = {
