@@ -4,12 +4,9 @@ import { useRouter } from "next/router";
 import { Lang } from "../../locale/LocaleSwitcher";
 import { useEffect, useState } from "react";
 import PATHCONSTANTS from "../../../constants/sitemap";
-import FormModal from "../../Modals/FormModal";
 import Image from "next/image";
 import checkmarkImg from "../../../public/assets/images/components/checkmark.png"
-import dynamic from 'next/dynamic';
 import Question from "./Question";
-import ShieldIcon from '@mui/icons-material/Shield';
 import { GTMEVENTS, GTMEventHandler } from "../../Scripts/GoogleTag";
 
 function getEmailProps(questions, answers) {
@@ -40,9 +37,7 @@ export default function (props) {
     const [valid, setValid] = useState(false)
     const [answersArray, setAnswersArray] = useState(Array(props.questions.length).fill(null))
 
-    const [showModal, setShowModal] = useState(false)
     const [formSubmmited, setFormSubmitted] = useState(false)
-    const [modalError, setModalError] = useState(false)
     const [loading, setLoading] = useState(false)
     const [handlingSubmit, setHandlingSubmit] = useState(false)
     function setIndexValid(index: number, valid: boolean) {
@@ -91,16 +86,12 @@ export default function (props) {
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
-                setModalError(false)
                 setFormSubmitted(true)
-
             })
             .catch((error) => {
                 console.log(error);
-                setModalError(true)
                 setFormSubmitted(false)
             });
-        setShowModal(true)
     }
 
     async function sendEmail() {
@@ -243,11 +234,5 @@ export default function (props) {
                 </Box>
             </Box >
         </Box >
-        {showModal ? <Modal
-            open={showModal}
-            onClose={() => { setShowModal(false) }}
-        >
-            <FormModal close={() => setShowModal(false)} isError={modalError} />
-        </Modal> : null}
     </>
 }
