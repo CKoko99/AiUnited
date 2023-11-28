@@ -142,7 +142,7 @@ export default function (props) {
                         >
                             <>
                                 <TextField
-                                    placeholder={props.placeholder}
+                                    placeholder={"Search by Zip Code, City or State"}
                                     sx={{ ...styles.textfield }}
                                     fullWidth
                                     id="outlined-basic"
