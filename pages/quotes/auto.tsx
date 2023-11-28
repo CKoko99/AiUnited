@@ -14,8 +14,8 @@ import HeadComponent from '../../components/Head';
 const heroContent = {
     title: { en: "Auto Insurance", es: "Seguro De Auto" },
     subtitle: {
-        en: "We’ve partnered with Alinsco to provide quick and easy Auto Insurance coverage",
-        es: "Nos hemos asociado con Alinsco para proporcionar una cobertura rápida y fácil de seguro de auto"
+        en: "Enter your zip code to get a free quote",
+        es: "Ingrese su código postal para obtener una cotización gratuita"
     },
     image: {
         src: HeroImg2,
