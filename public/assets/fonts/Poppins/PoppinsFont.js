@@ -149,7 +149,7 @@ const filteredFonts = [
         style: 'normal'
     },
 ]
-console.log(filteredFonts)
+
 const Poppins = localFont({
     src: [
         {

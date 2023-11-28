@@ -58,6 +58,7 @@ export default function (props) {
     useEffect(() => {
         //use pythagorean theorem to find distance between center and each location
         //then sort by distance
+        console.log("map center change")
         let newLocations = [...locations]
         newLocations.forEach(location => {
             let distance = Math.sqrt(Math.pow(location.position.lat - mapCenter.lat, 2) + Math.pow(location.position.lng - mapCenter.lng, 2))
@@ -71,6 +72,11 @@ export default function (props) {
             return a.distance - b.distance
         })
         setLocations(newLocations)
+        if (zoom === 11) {
+            setTimeout(() => {
+                setSelectedMarker(newLocations[0])
+            }, 500)
+        }
     }, [mapCenter])
     const mapOptions = useMemo<google.maps.MapOptions>(
         () => ({
@@ -111,7 +117,10 @@ export default function (props) {
             lat: selectedLocation.lat(),
             lng: selectedLocation.lng(),
         };
+
         setMapCenter(newCenter);
+        setZoom(11)
+
     }
 
     return <>
@@ -152,6 +161,7 @@ export default function (props) {
                             center={mapCenter}
                             mapTypeId={google.maps.MapTypeId.ROADMAP}
                             mapContainerStyle={{ width: '100%', height: '500px' }}
+
                         //onLoad={() => console.log('Map Component Loaded...')}
                         >
                             {locations.map((marker, index) => {
@@ -159,16 +169,17 @@ export default function (props) {
                                     key={index}
                                     position={...marker.position}
                                     icon={markerimg.src}
+
                                     onClick={() => setSelectedMarker(marker)} // Handle click event to show InfoWindow
                                 />
                             }
                             )}
                             {(selectedMarker && !loadError) && (
                                 <Box
-                                    sx={{ bottom: "3rem" }}
+
                                 >
                                     <InfoWindow
-
+                                        options={{ pixelOffset: new google.maps.Size(0, -35) }}
                                         position={(selectedMarker as any)?.position}
                                         onCloseClick={() => setSelectedMarker(null)} // Handle close event to hide InfoWindow
                                     >
@@ -205,7 +216,6 @@ export default function (props) {
                         if (index > maxLocations) return <React.Fragment key={index}></React.Fragment>
                         return <Box key={index}
                             onMouseEnter={() => {
-                                console.log(isLoaded)
                                 if (!loadError) {
                                     setSelectedMarker(location)
                                 }

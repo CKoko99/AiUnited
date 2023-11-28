@@ -22,7 +22,7 @@ interface Marker {
 
 export default function (props) {
 
-    const [selectedMarker, setSelectedMarker] = useState<Marker | null>(null);
+    const [selectedMarker, setSelectedMarker] = useState<Marker | null>(props.location);
 
     const mapOptions = useMemo<google.maps.MapOptions>(
         () => ({
@@ -60,7 +60,6 @@ export default function (props) {
                         <GoogleMap
                             options={mapOptions}
                             zoom={13}
-
                             center={props.center}
                             mapTypeId={google.maps.MapTypeId.ROADMAP}
                             mapContainerStyle={{ width: '100%', height: '500px' }}
@@ -76,6 +75,7 @@ export default function (props) {
                                     sx={{ bottom: "3rem" }}
                                 >
                                     <InfoWindow
+                                        options={{ pixelOffset: new google.maps.Size(0, -35) }}
                                         position={selectedMarker.position}
                                         onCloseClick={() => setSelectedMarker(null)} // Handle close event to hide InfoWindow
                                     >
