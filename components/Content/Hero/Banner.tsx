@@ -91,20 +91,15 @@ export default function Banner(props: BannerProps) {
                     ...styles.textSection,
                 }}
             >
-                <Typography variant="h2" component={"h1"} fontWeight="bold" gutterBottom>{props.title[currentLang]}</Typography>
+                <Typography variant="h3" fontFamily={CustomFonts.Gustavo} component={"h1"} fontWeight="bold" gutterBottom>{props.title[currentLang]}</Typography>
 
-                <Typography sx={{
-
-                }} variant="h4" gutterBottom>{props.subtitle[currentLang]}</Typography>
+                <Typography variant="h4" gutterBottom>{props.subtitle[currentLang]}</Typography>
 
                 {props.ctaButton && (
                     <Button sx={{ ...styles.ctaButton }} variant="contained"
                         onClick={() => { setOpenModal(true) }}
                     >
-
                         {props.ctaButton.text[currentLang]}
-
-
                     </Button>
                 )}
             </Box>
