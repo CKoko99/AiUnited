@@ -29,6 +29,7 @@ interface Marker {
     zip?: string;
     distance?: string;
     phone?: string;
+    id?: string;
 }
 const LocationText = {
     title: {
@@ -194,6 +195,13 @@ export default function (props) {
                                             <Typography variant='body2'>{selectedMarker.city} {selectedMarker.state} {selectedMarker.zip}</Typography>
                                             <Typography variant='body2'>{selectedMarker.distance}</Typography>
                                             <Typography variant='body2'>{selectedMarker.phone}</Typography>
+                                            <Button
+                                                variant='contained'
+                                                color='primary'
+                                                sx={{ marginTop: "1rem" }}
+                                                onClick={(e) => e.stopPropagation()}
+                                                href={`/locations/${selectedMarker.id}`}
+                                            >More Store Info</Button>
                                         </Box>
                                     </InfoWindow>
                                 </Box>
