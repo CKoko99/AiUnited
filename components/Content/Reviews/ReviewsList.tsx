@@ -5,6 +5,7 @@ import { useState } from "react"
 import { Lang } from "../../locale/LocaleSwitcher";
 import theme, { CustomFonts } from "../../../providers/theme";
 import TextSection from "../TextSection";
+import StarRateIcon from '@mui/icons-material/StarRate';
 
 const text = {
     title: {
@@ -34,7 +35,7 @@ const classes = {
         margin: "auto",
         textAlign: "center",
         justifyContent: "center",
-        gap: "2rem",
+        gap: "1rem",
         alignItems: "center",
         flexDirection: "column",
         width: "90%",
@@ -43,9 +44,9 @@ const classes = {
         display: "flex",
         justifyContent: "space-around",
         flexDirection: { xs: "column", md: "row" },
-        gap: "3.5rem 1.5rem",
+        gap: "1.5rem",
         flexWrap: "wrap",
-        marginTop: "2rem",
+        //marginTop: "1rem",
     },
     card: {
         margin: { xs: "auto", md: "0" },
@@ -93,16 +94,19 @@ function ReviewItem(props: any) {
         <Box
             sx={{ ...classes.card }}
         >
-            <Avatar author={props.author} />
-
             <Box
                 sx={{
                     display: "flex", flexDirection: "column",
                     justifyContent: "space-between", flex: "1",
-                    marginTop: "-2.5rem",
+                    // marginTop: "-2.5rem",
                 }}
             >
                 <Box>
+                    {/*<Box sx={{ textAlign: 'center' }}>
+                        {[1, 2, 3, 4, 5].map((star) => {
+                            return <StarRateIcon sx={{ color: "#F2C94C" }} />
+                        })}
+                    </Box>*/}
                     <Typography
                         variant="body1"
                     >

@@ -4,6 +4,8 @@ import TextSection from "../../components/Content/TextSection"
 import ReviewsList from "../../components/Content/Reviews/ReviewsList"
 import ContactAndShop from "../../components/Content/FlexDigrams/Combo/ContactAndShop"
 import BannerImg from "../../public/assets/images/about/reviews/Banner.png"
+
+
 const heroContent = {
     title: {
         en: "See What Our Customers Are Saying",
@@ -32,6 +34,16 @@ const textSectionContent = {
 const reviews = [
     {
         body: {
+            en: `I was very impressed with the professionalism and customer service this place provides. 
+            Customer service was second to none. I will definitely be recommending this place to family and friends.`,
+            es: `Me impresionó mucho el profesionalismo y el servicio al cliente que brinda este lugar. El servicio
+            al cliente de Karla fue insuperable. Definitivamente recomendaré este lugar a familiares y amigos.`,
+        },
+        author: "Paul R",
+        reviewLink: "https://g.co/kgs/pzzSY4",
+    },
+    {
+        body: {
             en: `I definitely appreciated Kimberly service and her polite and professional mannerism and 
             she was very helpful and she helped me understand things about insurance that I didn’t know. 
             Thanks Kim, good job.`,
@@ -39,7 +51,7 @@ const reviews = [
             ella fue muy servicial y me ayudó a entender cosas sobre el seguro que no sabía.
             Gracias Kim, buen trabajo.`,
         },
-        author: "Robert Butler",
+        author: "Robert B",
         reviewLink: "https://g.co/kgs/B3vmvs",
     },
     {
@@ -51,7 +63,7 @@ const reviews = [
                 hablar lo suficientemente bien de sus servicios. Desde el momento en que me inscribí, su compromiso
                 para proporcionar una cobertura de primera categoría y un servicio al cliente excepcional ha sido consistentemente excepcional.`,
         },
-        author: 'Dylan Pachuca',
+        author: 'Dylan P',
         reviewLink: "https://g.co/kgs/qt5XVv",
     },
     {
@@ -67,7 +79,7 @@ const reviews = [
             hacer una comisión, realmente asesoran y ponen un esfuerzo serio en encontrar el producto adecuado
             para sus clientes. Si fuera posible, daría más de 5 estrellas.`,
         },
-        author: "David Anderson",
+        author: "David A",
         reviewLink: "https://g.co/kgs/JASCBG",
     },
     {
@@ -80,18 +92,8 @@ const reviews = [
             han superado mis expectativas en todos los aspectos. Su servicio al cliente es realmente excepcional,
             ya que sus representantes son siempre amables, conocedores y dispuestos a ir más allá para ayudarme con cualquier consulta o inquietud.`,
         },
-        author: "Roberto Guerrero",
+        author: "Roberto G",
         reviewLink: "https://g.co/kgs/7F8e58"
-    },
-    {
-        body: {
-            en: `I was very impressed with the professionalism and customer service this place provides. Karla’s 
-            customer service was second to none. I will definitely be recommending this place to family and friends.`,
-            es: `Me impresionó mucho el profesionalismo y el servicio al cliente que brinda este lugar. El servicio
-            al cliente de Karla fue insuperable. Definitivamente recomendaré este lugar a familiares y amigos.`,
-        },
-        author: "Paul Ramos",
-        reviewLink: "https://g.co/kgs/pzzSY4",
     },
     {
         body: {
@@ -102,7 +104,7 @@ const reviews = [
             No solo hizo todo lo posible para encontrar un buen seguro. Pero también me ayudó a
             comprender los términos y para qué me estaba registrando. Volvería aquí 100%.`,
         },
-        author: "Paula Castro",
+        author: "Paula C",
         reviewLink: "https://g.co/kgs/iADBir",
     },
 ]
