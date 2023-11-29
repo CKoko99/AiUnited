@@ -15,8 +15,8 @@ import motorcycleQuoteImg from "../public/assets/images/home/quotes/motorcycle.p
 import sr22QuoteImg from "../public/assets/images/home/quotes/sr22.png";
 import rentersQuoteImg from "../public/assets/images/home/quotes/renter.png";
 import mexicoQuoteImg from "../public/assets/images/home/quotes/mexico.png";
-import suretyQuoteImg from "../public/assets/images/home/quotes/surety.png";
-import CTAContent from '../components/Content/CTAContent';
+import suretyQuoteImg from "public/assets/images/home/quotes/surety.png";
+import CTAContent from 'components/Content/CTAContent';
 import representativeImg from "../public/assets/images/home/quotes/representative.png";
 import HomeReview from '../components/Content/Reviews/CloudReview';
 import ReviewImg from "../public/assets/images/home/reviews/review.png";
@@ -27,6 +27,10 @@ import CareersImg from "../public/assets/images/home/about/careers.png";
 import PhoneImg from "../public/assets/images/home/phone.png";
 import PATHCONSTANTS from '../constants/sitemap';
 import { useEffect } from 'react';
+import homePlainImg from "public/assets/images/home/quotes/homeplain.png";
+import autoPlainImg from "public/assets/images/home/quotes/autoplain.png";
+import motorcyclePlainImg from "public/assets/images/home/quotes/motorcycleplain.png";
+import rentersPlainImg from "public/assets/images/home/quotes/renterplain.png";
 
 const bannerContent = {
     title: {
@@ -34,25 +38,70 @@ const bannerContent = {
         es: "Simplifique su cobertura y ahorre dinero hoy"
     },
     subtitle: {
-        en: "Your One-Stop Insurance Destination: Fast, Easy, and Affordable Coverages for All Your Needs",
-        es: "Su destino de seguros de ventanilla única: coberturas rápidas, fáciles y asequibles para todas sus necesidades"
-    },
-    ctaButton: {
-        text: {
-            en: "Get a Quote!",
-            es: "¡Obtenga una cotización!"
-        },
+        en: "Fast, Easy, and Affordable Coverage for All Your Needs!",
+        es: "¡Cobertura rápida, fácil y asequible para todas sus necesidades!"
     },
     image: {
         src: BannerImage,
         alt: "Reading"
-    }
+    },
+    buttons: [
+        {
+            text: {
+                en: "Auto Insurance",
+                es: "Seguro de auto"
+            },
+            img: {
+                src: autoPlainImg,
+                alt: "Auto"
+            },
+            link: PATHCONSTANTS.QUOTES.AUTO.INDEX
+        },
+        {
+            text: {
+                en: "Home Insurance",
+                es: "Seguro de casa"
+            },
+            img: {
+                src: homePlainImg,
+                alt: "Home"
+            },
+            link: PATHCONSTANTS.QUOTES.HOME.INDEX
+
+        },
+        {
+            text: {
+                en: "Renters Insurance",
+                es: "Seguro de motocicleta"
+            },
+            img: {
+                src: rentersPlainImg,
+                alt: "Apartment"
+            },
+            link: PATHCONSTANTS.QUOTES.RENTER.INDEX
+
+        },
+        {
+            text: {
+                en: "Motorcycle Insurance",
+                es: "Seguro de motocicleta"
+            },
+            img: {
+                src: motorcyclePlainImg,
+                alt: "Motorcycle"
+            },
+            link: PATHCONSTANTS.QUOTES.MOTORCYCLE.INDEX
+
+        },
+
+    ]
 }
 const picturesWithListContent = {
     title: {
         en: `Your 3 Step Insurance Solution`,
         es: `Su solución de seguro de 3 pasos`
     },
+
     img: {
         src: PhoneImg,
         alt: "Phone"
