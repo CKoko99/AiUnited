@@ -25,7 +25,16 @@
       }
     ],
     "strictNullChecks": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/public/*": [
+        "public/*"
+      ]
+    }
   },
   "include": [
     "next-env.d.ts",
