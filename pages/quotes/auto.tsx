@@ -11,14 +11,16 @@ import CarImg2 from "../../public/assets/images/quotes/auto/car2.png";
 import TwoColumn from '../../components/Content/Grids/TwoColumn';
 import ContactAndShop from '../../components/Content/FlexDigrams/Combo/ContactAndShop';
 import HeadComponent from '../../components/Head';
+import VerticleAutoBanner from '@/components/Content/Hero/VerticleAutoBanner';
+import BannerImage from '@/public/assets/images/quotes/auto/Banner.png';
 const heroContent = {
     title: { en: "Auto Insurance", es: "Seguro De Auto" },
     subtitle: {
-        en: "Enter your zip code to get a free quote",
-        es: "Ingrese su código postal para obtener una cotización gratuita"
+        en: "Enter your zip code to get started with a free auto quote",
+        es: "Ingrese su código postal para comenzar con una cotización de seguro de auto gratuita"
     },
-    image: {
-        src: HeroImg2,
+    img: {
+        src: BannerImage,
         alt: "car"
     },
     validation: "zipcode",
@@ -145,7 +147,7 @@ export default function () {
     return <>
         <HeadComponent title={'Car Insurance | Get a Free Auto Insurance Quote'}
             metaData={'Get a Free Car Insurance Quote with Ai United Insurnace Today'} />
-        <AutoQuoteHero {...heroContent} />
+        <VerticleAutoBanner {...heroContent} />
         <NumbersSection {...slideData} menuContent={slideData.menuContent} />
         <MainGrid {...contentSection2} />
         <TwoColumn {...contentSection3} />

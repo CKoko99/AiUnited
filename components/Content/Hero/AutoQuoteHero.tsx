@@ -1,10 +1,33 @@
 import { Box, Typography, Button, TextField } from "@mui/material";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 import { useEffect, useState } from "react";
 import { Lang } from "../../locale/LocaleSwitcher";
 import { useRouter } from "next/router";
 import { GTMEVENTS, GTMEventHandler } from "../../Scripts/GoogleTag";
+
+
+interface VerticalBannerProps {
+    title?: {
+        [lang: string]: string;
+    };
+    subtitle?: {
+        [lang: string]: string;
+    };
+    CTA?: {
+        text: {
+            [lang: string]: string;
+        };
+        link: string;
+    };
+    img?: {
+        src: StaticImageData;
+        alt: string;
+    };
+    audience: string;
+    validation?: string;
+}
+
 const styles = {
     imageContainer: {
         width: "100%",
