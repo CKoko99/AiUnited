@@ -3,7 +3,7 @@ import MainGrid from '../../components/Content/Grids/MainGrid';
 import TwoColumn from '../../components/Content/Grids/TwoColumn';
 import VerticalBanner from '../../components/Content/Hero/VerticalBanner';
 import MotoImg1 from '../../public/assets/images/quotes/motorcycle/motorcycle1.png';
-import MotoImg2 from '../../public/assets/images/quotes/motorcycle/motorcycle2.png';
+import MotoImg2 from '../../public/assets/images/quotes/motorcycle/helmet2.png';
 import MotoImg3 from '../../public/assets/images/quotes/motorcycle/motorcycle3.png';
 import ContactAndShop from '../../components/Content/FlexDigrams/Combo/ContactAndShop';
 import HeadComponent from '../../components/Head';

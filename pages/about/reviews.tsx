@@ -33,6 +33,10 @@ const textSectionContent = {
 
 const reviews = [
     {
+        title: {
+            en: "Impressive Professionalism",
+            es: "Profesionalismo impresionante"
+        },
         body: {
             en: `I was very impressed with the professionalism and customer service this place provides. 
             Customer service was second to none. I will definitely be recommending this place to family and friends.`,
@@ -43,18 +47,26 @@ const reviews = [
         reviewLink: "https://g.co/kgs/pzzSY4",
     },
     {
+        title: {
+            en: "Excellent Service",
+            es: "Excelente servicio"
+        },
         body: {
-            en: `I definitely appreciated Kimberly service and her polite and professional mannerism and 
+            en: `I definitely appreciated my agents service and her polite and professional mannerism and 
             she was very helpful and she helped me understand things about insurance that I didn’t know. 
-            Thanks Kim, good job.`,
-            es: `Definitivamente aprecié el servicio de Kimberly y su manera educada y profesional de ser y
-            ella fue muy servicial y me ayudó a entender cosas sobre el seguro que no sabía.
-            Gracias Kim, buen trabajo.`,
+            Thanks Ai United!`,
+            es: `Definitivamente aprecié el servicio de mi agente y su educada y profesional manera de ser y
+        ella fue muy servicial y me ayudó a comprender cosas sobre el seguro que no sabía.
+        ¡Gracias Ai United!`,
         },
         author: "Robert B",
         reviewLink: "https://g.co/kgs/B3vmvs",
     },
     {
+        title: {
+            en: "Committed Staff",
+            es: "Personal comprometido"
+        },
         body: {
             en: `I have been a loyal customer of AI United for several years, and I cannot 
             speak highly enough of their services. From the moment I signed up, their commitment
@@ -67,22 +79,30 @@ const reviews = [
         reviewLink: "https://g.co/kgs/qt5XVv",
     },
     {
+        title: {
+            en: "Great Experience",
+            es: "Gran experiencia"
+        },
         body: {
             en: `I’ve dealt with lots of insurance agencies over the 35 years I’ve been driving, 
-            but none compare to this place. The friendliest and most courteous  staff, especially Esmeralda 
-            in that office. They know what they’re doing and don’t just push some policy on customers to 
-            make a commission, thay actually advise and put serious effort into finding the right product 
+            but none compare to this place. They have the friendliest and most courteous  staff.
+             They know what they’re doing and don’t just push some policy on customers to 
+            make a commission, they actually advise and put serious effort into finding the right product 
             for their clients. If it was possible, I’d give more than 5 stars.`,
-            es: `He tratado con muchas agencias de seguros durante los 35 años que he estado conduciendo,
-            pero ninguno se compara con este lugar. El personal más amable y cortés, especialmente Esmeralda
-            en esa oficina. Saben lo que están haciendo y no solo empujan alguna póliza a los clientes para
-            hacer una comisión, realmente asesoran y ponen un esfuerzo serio en encontrar el producto adecuado
+            es: `He tratado con muchas agencias de seguros durante los 35 años que llevo conduciendo,
+            pero ninguna se compara con este lugar. Tienen el personal más amable y cortés.
+            Saben lo que están haciendo y no solo empujan alguna póliza a los clientes para
+            ganar una comisión, en realidad asesoran y hacen un esfuerzo serio para encontrar el producto adecuado
             para sus clientes. Si fuera posible, daría más de 5 estrellas.`,
         },
         author: "David A",
         reviewLink: "https://g.co/kgs/JASCBG",
     },
     {
+        title: {
+            en: "Exceeded Expectations",
+            es: "Superó las expectativas"
+        },
         body: {
             en: `I am thrilled to share my amazing experience with this insurance company from the very beginning,
              they have exceeded my expectations in every aspect. Their customer service is truly exceptional, 
@@ -96,13 +116,17 @@ const reviews = [
         reviewLink: "https://g.co/kgs/7F8e58"
     },
     {
+        title: {
+            en: "Above and Beyond",
+            es: "Por encima y más allá"
+        },
         body: {
-            en: `I got insurance the other day and I must say Emely has excellent customer service. 
-            Not only did she go above and beyond in finding a good insurance. But she also helped me 
+            en: `I got insurance the other day and I must say their team has excellent customer service. 
+            Not only did they go above and beyond in finding a good insurance. But they also helped me 
             understand the terms and what I was signing up for. I would 100% go here again.`,
-            es: `Obtuve un seguro el otro día y debo decir que Emely tiene un excelente servicio al cliente.
-            No solo hizo todo lo posible para encontrar un buen seguro. Pero también me ayudó a
-            comprender los términos y para qué me estaba registrando. Volvería aquí 100%.`,
+            es: `Obtuve un seguro el otro día y debo decir que su equipo tiene un excelente servicio al cliente.
+            No solo hicieron todo lo posible para encontrar un buen seguro. Pero también me ayudaron
+            a comprender los términos y lo que estaba contratando. Volvería aquí 100%.`,
         },
         author: "Paula C",
         reviewLink: "https://g.co/kgs/iADBir",
@@ -110,8 +134,10 @@ const reviews = [
 ]
 export default function () {
     return <>
+        {/*
         <Hero {...heroContent} />
-        <TextSection subtitleVariant="h5" {...textSectionContent} />
+     */}
+        <TextSection subtitleVariant="h5" title={heroContent.title} {...textSectionContent} />
         <Ratings />
         <ReviewsList reviews={reviews} />
         <ContactAndShop />

@@ -31,7 +31,7 @@ interface ReviewsListProps {
 const classes = {
     root: {
         display: "flex",
-        padding: "2rem 0",
+        padding: "1rem 0",
         margin: "auto",
         textAlign: "center",
         justifyContent: "center",
@@ -98,33 +98,48 @@ function ReviewItem(props: any) {
                 sx={{
                     display: "flex", flexDirection: "column",
                     justifyContent: "space-between", flex: "1",
+                    gap: ".25rem"
                     // marginTop: "-2.5rem",
                 }}
             >
-                <Box>
-                    {/*<Box sx={{ textAlign: 'center' }}>
-                        {[1, 2, 3, 4, 5].map((star) => {
-                            return <StarRateIcon sx={{ color: "#F2C94C" }} />
-                        })}
-                    </Box>*/}
+                <Box
+                >
+                    {props.title &&
+                        <Typography textAlign={"center"} fontWeight={"bold"}
+                            gutterBottom
+                            variant="h6">
+                            {props.title[props.lang]}
+                        </Typography>
+                    }
                     <Typography
                         variant="body1"
                     >
-                        "{props.body.en.substring(0, 350)} {props.body.en.length > 350 ? "..." : ""}"
+                        "{props.body[props.lang].substring(0, 350)}{props.body[props.lang].length > 350 ? "..." : ""}"
                     </Typography>
                 </Box>
                 <Box
                 >
-                    <Typography
-                        textAlign={"right"}
-                        sx={{ marginBottom: ".5rem" }}
-                        variant="body1"
+                    <Box
+                        sx={{
+                            display: "flex", justifyContent: "space-between",
+                            marginBottom: ".5rem", alignItems: "center"
+                        }}
                     >
-                        - {props.author}
-                    </Typography>
+                        <Box sx={{ textAlign: 'center', paddingBottom: ".1rem" }}>
+                            {[1, 2, 3, 4, 5].map((star) => {
+                                return <StarRateIcon sx={{ color: "#F2C94C", fontSize: "1.7rem" }} />
+                            })}
+                        </Box>
+                        <Typography
+                            textAlign={"right"}
+                            variant="body1"
+                        >
+                            - {props.author}
+                        </Typography>
+                    </Box>
                     <Typography
                         textAlign={"center"}
-                        variant="body1"
+                        variant="subtitle2"
                         color="primary"
                     >
                         <Link href={props.reviewLink}
