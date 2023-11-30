@@ -1,0 +1,17 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      ["build", "-t", "gcr.io/insurance-hub-397016/aiuniteddev:$SHORT_SHA", "."]
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/insurance-hub-397016/aiuniteddev:$SHORT_SHA"]
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      [
+        "beta",
+        "run",
+        "deploy",
+        "aiunited",
+        "--region=us-east1",
+        "--platform=managed",
+        "--image=gcr.io/insurance-hub-397016/aiuniteddev:$SHORT_SHA",
+      ]
