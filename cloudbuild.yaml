@@ -10,7 +10,7 @@ steps:
         "beta",
         "run",
         "deploy",
-        "aiunited",
+        "${_SERVICE_NAME}",
         "--region=us-east1",
         "--platform=managed",
         "--image=gcr.io/insurance-hub-397016/aiunited:$SHORT_SHA",
