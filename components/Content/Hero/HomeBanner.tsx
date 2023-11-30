@@ -5,7 +5,15 @@ import { useRouter } from "next/router";
 import { Lang } from "../../locale/LocaleSwitcher";
 import { useEffect, useState } from "react";
 import GetAQuote from "../../Modals/GetAQuote";
-
+import { GTMEVENTS, GTMEventHandler } from "@/components/Scripts/GoogleTag";
+import CategoryIcon from '@mui/icons-material/Category';
+import React from "react";
+const text = {
+    moreProducts: {
+        en: "View more products",
+        es: "Ver más productos"
+    }
+}
 interface BannerProps {
     title: {
         [lang: string]: string;
@@ -87,7 +95,9 @@ const styles = {
     }
 }
 function QuoteButton(props) {
+    const router = useRouter()
     const [text, setText] = useState([] as string[]);
+    const [hovering, setHovering] = useState(false);
     useEffect(() => {
         const words = props.text[props.lang].split(" ");
         let line = "";
@@ -113,22 +123,33 @@ function QuoteButton(props) {
         newText.push(line);
         setText(newText);
     }, [props.lang]);
-
+    function handleButtonClick() {
+        GTMEventHandler(`${GTMEVENTS.audience}-${props.id}-main_banner`, { 'name': `${props.id}-Quote` })
+        router.push(props.link)
+    }
     return <Box sx={{
         //flex: "1",
         color: "black",
         padding: ".5rem",
-        border: "1px solid #9f9d9d",
+        //"black": "#3c3c3c"
+        border: hovering ? "2px solid #3c3c3c" : "2px solid #9f9d9d",
         display: "flex",
         gap: "1rem",
         alignItems: "center",
         width: { xs: "100%", sm: "48.5%", lg: "49%" },
-
+        cursor: "pointer",
+        transition: "all .3s ease-in-out",
+        borderRadius: "6px",
     }}
+        onClick={() => { handleButtonClick() }}
+        onMouseEnter={() => { setHovering(true) }}
+        onMouseLeave={() => { setHovering(false) }}
     >
         <Box
             sx={{
                 position: "relative", minWidth: "3.5rem", minHeight: "3.5rem",
+                transition: "all .3s ease-in-out",
+                transform: hovering ? "scale(1.1)" : "",
             }}
         >
             <Image
@@ -139,17 +160,61 @@ function QuoteButton(props) {
         </Box>
         <Typography variant="h6" fontFamily={CustomFonts.Gustavo}
             sx={{
-                //    wordSpacing: { xs: "", sm: "5rem" },
-                lineHeight: "1.75rem", textAlign: "left"
+                // wordSpacing: { xs: "1rem", },
+                lineHeight: "1.5rem", textAlign: "left",
+                transition: "all .3s ease-in-out",
+                transform: hovering ? "scale(1.05)" : "",
+                color: hovering ? "black" : "#3c3c3c",
             }}
         >
             {text.map((line, index) => {
-                return <>
-                    {line}
-                    <br />
-                </>
+                return <React.Fragment key={index}>
+                    {line} {"  "}
+                    <Box
+                        sx={{ height: "0px", display: { xs: "none", sm: "block" } }}
+                    >
+                        <br />
+                    </Box>
+                </React.Fragment>
             })}
         </Typography>
+    </Box>
+}
+function MoreProducts(props) {
+
+    const [hovering, setHovering] = useState(false);
+    const currentLang = props.lang
+    return <Box
+    >
+        <Box
+            sx={{
+                textAlign: "center", padding: ".5rem 0",
+                display: "flex", alignItems: "center", gap: ".5rem",
+                justifyContent: "center", transition: "all .3s ease-in-out",
+            }}
+            onMouseEnter={() => { setHovering(true) }}
+            onMouseLeave={() => { setHovering(false) }}
+        >
+            <CategoryIcon sx={{
+                transition: "all .3s ease-in-out",
+                fontSize: "1.75rem",
+                color: hovering ? "black" : "#3c3c3c"
+            }} />
+            <Typography sx={{
+                transition: "all .3s ease-in-out",
+                color: hovering ? "black" : "#3c3c3c",
+                cursor: "pointer"
+            }} variant="h6"
+                onClick={() => { props.openModal() }}
+            >
+                {text.moreProducts[currentLang]}
+            </Typography>
+        </Box>
+        <Box sx={{
+            transition: "all .3s ease-in-out",
+            width: hovering ? { xs: "75%", sm: "45%", md: "45%" } : "0",
+            height: "2px", backgroundColor: "black", margin: "auto"
+        }} />
     </Box>
 }
 export default function Banner(props: BannerProps) {
@@ -171,15 +236,20 @@ export default function Banner(props: BannerProps) {
                     gutterBottom>{props.subtitle && props.subtitle[currentLang]}</Typography>
                 {props.buttons &&
                     <Box
-                        sx={{
-                            display: "flex", gap: ".5rem", flexWrap: "wrap",
-                            justifyContent: "space-between",
-
-                        }}
+                        sx={{}}
                     >
-                        {props.buttons.map((button, index) => {
-                            return <QuoteButton key={index} {...button} lang={currentLang} />
-                        })}
+                        <Box
+                            sx={{
+                                display: "flex", gap: ".5rem", flexWrap: "wrap",
+                                justifyContent: "space-between",
+
+                            }}
+                        >
+                            {props.buttons.map((button, index) => {
+                                return <QuoteButton key={index} {...button} lang={currentLang} />
+                            })}
+                        </Box>
+                        <MoreProducts lang={currentLang} openModal={() => { setOpenModal(true) }} />
                     </Box>
                 }
 
