@@ -246,10 +246,6 @@ const navItems = [
         },
         link: PATHCONSTANTS.ABOUT.REVIEWS
       },
-      {
-        title: { en: "Facebook", es: "Facebook" },
-        link: "/about/facebook"
-      },
     ]
 
   },

@@ -189,7 +189,7 @@ export default function Footer() {
                   sx={{ ...classes.socialIcon }}
                 />
               </a>
-              <a href="https://twitter.com/aiunited?lang=en"
+              <a href="https://www.facebook.com/AiUnitedInsurance"
                 target="_blank" rel="noopener noreferrer"
                 aria-label="Visit AI United on Facebook"
               >
