@@ -41,7 +41,7 @@ const reviewSections = [
 const classes = {
     root: {
         display: "flex",
-        padding: "2rem 0",
+        padding: { xs: "0", md: "1rem 0" },
         margin: "auto",
         textAlign: "center",
         justifyContent: "center",

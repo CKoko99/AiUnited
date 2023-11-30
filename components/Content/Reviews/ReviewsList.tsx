@@ -31,7 +31,7 @@ interface ReviewsListProps {
 const classes = {
     root: {
         display: "flex",
-        padding: "2rem 0",
+        padding: "1rem 0",
         margin: "auto",
         textAlign: "center",
         justifyContent: "center",
