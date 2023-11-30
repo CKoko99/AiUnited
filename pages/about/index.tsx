@@ -7,6 +7,8 @@ import HeadComponent from "../../components/Head";
 import ContactAndLocations from "../../components/Content/FlexDigrams/Combo/ContactAndLocations";
 import PATHCONSTANTS from "../../constants/sitemap";
 import HorizontalText from "../../components/Content/Text/TextWithSubSections";
+import ContentSplit from "@/components/Content/ContentSplit";
+import VideoBanner from "@/components/Content/Hero/VideoBanner";
 const heroContent = {
   title: {
     en: "Ai United Insurance",
@@ -46,6 +48,29 @@ const CenterVideoContent = {
       en: "https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/About%20Us.mp4?alt=media&token=98ab4a11-4a34-4f2f-a321-f35f9cd5e569",
       es: "https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/About%20Us%20Spanish.mp4?alt=media&token=7d2b0eea-5085-4512-9192-3b855595d079"
     }
+  },
+}
+const VideoBannerContent = {
+  title: {
+    en: "Experience peace of mind with Ai United Insurance",
+    es: "Experimente la tranquilidad con Ai United Insurance"
+  },
+  subtitle: {
+    en: `At Ai United Insurance, we pride ourselves on delivering personalized service and comprehensive
+     coverage options to our valued customers.`,
+    es: `En Ai United Insurance, nos enorgullecemos de brindar un servicio personalizado y opciones de cobertura
+      integral a nuestros valiosos clientes. `,
+  },
+  body: {
+    en: `At Ai United Insurance, we pride ourselves on delivering personalized service and comprehensive
+     coverage options to our valued customers.`,
+    es: `En Ai United Insurance, nos enorgullecemos de brindar un servicio personalizado y opciones de cobertura
+      integral a nuestros valiosos clientes. `,
+  },
+  video: {
+    en: "https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/About%20Us.mp4?alt=media&token=98ab4a11-4a34-4f2f-a321-f35f9cd5e569",
+    es: "https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/About%20Us%20Spanish.mp4?alt=media&token=7d2b0eea-5085-4512-9192-3b855595d079"
+
   },
 }
 const videoButtons = {
@@ -142,11 +167,19 @@ const About: NextPage = () => {
   return (
     <>
       <HeadComponent title={'Learn More About Ai United'} />
-      <Hero {...heroContent} />
+      {//  <Hero {...heroContent} />
+      }
+
+      <VideoBanner  {...VideoBannerContent} />
+      {/*
       <TextSection {...CenterVideoContent} />
       <CenterVideo {...CenterVideoContent.video} />
-      <TextSection {...InsuranceProductsContent} />
+      <TextSection {...CenterVideoContent} />
+    */}
       <HorizontalText horizontal {...textSectionContent} />
+      {/*
+      <TextSection {...InsuranceProductsContent} />
+    */}
       <ContactAndLocations />
     </>
   )
