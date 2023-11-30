@@ -41,7 +41,7 @@ export default function ContentSplit({ title, children }: componentProps) {
         <Box sx={{ ...styles.root }}>
 
             <Typography variant="h4" component="h4" sx={{ textAlign: "center", fontWeight: "bold", margin: "1rem 0" }}>
-                {title[currentLang]}
+                {title && title[currentLang]}
             </Typography>
             {children && <Box sx={{ ...styles.split }}>
                 {children[0] && <Box sx={{ ...styles.contentSection }}>
