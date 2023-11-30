@@ -16,7 +16,7 @@ import suretyPlainImg from "../../public/assets/images/home/quotes/suretyplain.p
 import Image from "next/image";
 import { Lang } from "../locale/LocaleSwitcher";
 import { useRouter } from "next/router";
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import Link from "next/link";
 import PATHCONSTANTS from "../../constants/sitemap";
 import CloseIcon from '@mui/icons-material/Close';
@@ -100,7 +100,7 @@ const classes = {
         borderRadius: "10px",
         display: "flex",
         flexDirection: "column",
-        gap: "1rem",
+        gap: ".5rem",
         padding: { xs: "1rem", sm: " 1rem" },
         boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
         maxHeight: "90vh",
@@ -118,7 +118,7 @@ const classes = {
         boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.15)",
         "&:hover": {
             border: "2px solid #a8a8a8",
-            backgroundColor: "#eaeaea",
+            backgroundColor: "#f3f3f3",
         }
     },
     contentItem: {
@@ -130,13 +130,13 @@ const classes = {
         boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.15)",
         "&:hover": {
             border: "2px solid #a8a8a8",
-            backgroundColor: "#eaeaea",
+            backgroundColor: "#f3f3f3",
         }
     },
 }
 function ContentItem(props) {
     const [isHovered, setIsHovered] = useState(false);
-
+    const [text, setText] = useState([] as string[]);
     const handleHover = () => {
         setIsHovered(true);
     };
@@ -144,6 +144,31 @@ function ContentItem(props) {
     const handleMouseLeave = () => {
         setIsHovered(false);
     };
+    useEffect(() => {
+        const words = props.title[props.currentLang].split(" ");
+        let line = "";
+        let i = 0;
+        const newText: string[] = [];
+
+        while (i < words.length) {
+            if (line.length + words[i].length < 9) {
+                if (line.length === 0) {
+                    line = words[i];
+                } else {
+                    line += " " + words[i];
+                }
+            } else {
+                if (line.length !== 0) {
+                    newText.push(line);
+                }
+                line = words[i];
+            }
+            i++;
+        }
+
+        newText.push(line);
+        setText(newText);
+    }, [props.lang]);
     return <>
         <Link href={props.link}
             style={classes.contentItemLink}
@@ -166,22 +191,17 @@ function ContentItem(props) {
                 >
                     <Image fill style={{ objectFit: "contain" }} src={props.usePlain ? props.plainImg.src : props.img.src} alt={props.id} />
                 </Box>
-                {//if props.title[props.currentLang] is greater than 13 characters, 
-                    props.title[props.currentLang].length > 13 ?
-                        <Typography lineHeight={"1.4rem"} fontWeight={props.main ? 600 : 500}
-                            textAlign={props.main ? "center" : "left"}
-                            variant={props.main ? "h6" : "body1"}>
-                            {props.title[props.currentLang].split(" ").map((word, index) => {
-                                return <React.Fragment key={index}>
-                                    {word}
-                                    <br />
-                                </React.Fragment>
-                            })}
-                        </Typography> : <Typography fontWeight={600} textAlign={props.main ? "center" : "left"}
-                            variant={props.main ? "h6" : "body1"}>
-                            {props.title[props.currentLang]}
-                        </Typography>
-                }
+
+                <Typography lineHeight={"1.4rem"} fontWeight={props.main ? 600 : 500}
+                    textAlign={props.main ? "center" : "left"}
+                    variant={props.main ? "h6" : "body1"}>
+                    {text.map((line, index) => {
+                        return <React.Fragment key={index}>
+                            {line}
+                            <br />
+                        </React.Fragment>
+                    })}
+                </Typography>
             </Box>
         </Link >
     </>
@@ -207,7 +227,7 @@ function GetAQuote(props, ref) {
         <Box
             sx={{
                 display: "flex", flexDirection: "column", gap: ".5rem", alignItems: "center",
-                width: "80%", margin: "auto"
+                width: "80%", margin: "auto", marginTop: "-.5rem"
             }}
         >
             <Typography fontWeight={"bold"} variant="h4" align="center">

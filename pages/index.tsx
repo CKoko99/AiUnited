@@ -1,5 +1,5 @@
 import HeadComponent from "../components/Head";
-import Banner from "../components/Content/Hero/Banner";
+import Banner from "../components/Content/Hero/HomeBanner";
 import BannerImage from "../public/assets/images/home/Reading.png";
 import PictureWithList from '../components/Content/PictureWithList';
 import partnerImg1 from "../public/assets/images/home/partners/progressive.png";
@@ -55,7 +55,8 @@ const bannerContent = {
                 src: autoPlainImg,
                 alt: "Auto"
             },
-            link: PATHCONSTANTS.QUOTES.AUTO.INDEX
+            link: PATHCONSTANTS.QUOTES.AUTO.INDEX,
+            id: "Auto"
         },
         {
             text: {
@@ -66,8 +67,8 @@ const bannerContent = {
                 src: homePlainImg,
                 alt: "Home"
             },
-            link: PATHCONSTANTS.QUOTES.HOME.INDEX
-
+            link: PATHCONSTANTS.QUOTES.HOME.INDEX,
+            id: "Home"
         },
         {
             text: {
@@ -78,7 +79,8 @@ const bannerContent = {
                 src: rentersPlainImg,
                 alt: "Apartment"
             },
-            link: PATHCONSTANTS.QUOTES.RENTER.INDEX
+            link: PATHCONSTANTS.QUOTES.RENTER.INDEX,
+            id: "Renters"
 
         },
         {
@@ -90,8 +92,8 @@ const bannerContent = {
                 src: motorcyclePlainImg,
                 alt: "Motorcycle"
             },
-            link: PATHCONSTANTS.QUOTES.MOTORCYCLE.INDEX
-
+            link: PATHCONSTANTS.QUOTES.MOTORCYCLE.INDEX,
+            id: "Motorcycle"
         },
 
     ]
