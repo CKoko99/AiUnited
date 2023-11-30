@@ -382,7 +382,7 @@ function DrawerAppBar(props: any) {
       sx={{
 
         zIndex: 1000,
-        borderBottom: "1px solid #e0e0e0",
+        //borderBottom: "1px solid #e0e0e0",
       }}
     >
       <Box sx={{
