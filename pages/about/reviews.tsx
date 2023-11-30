@@ -33,6 +33,10 @@ const textSectionContent = {
 
 const reviews = [
     {
+        title: {
+            en: "Impressive Professionalism",
+            es: "Profesionalismo impresionante"
+        },
         body: {
             en: `I was very impressed with the professionalism and customer service this place provides. 
             Customer service was second to none. I will definitely be recommending this place to family and friends.`,
@@ -43,6 +47,10 @@ const reviews = [
         reviewLink: "https://g.co/kgs/pzzSY4",
     },
     {
+        title: {
+            en: "Excellent Service",
+            es: "Excelente servicio"
+        },
         body: {
             en: `I definitely appreciated Kimberly service and her polite and professional mannerism and 
             she was very helpful and she helped me understand things about insurance that I didn’t know. 
@@ -55,6 +63,10 @@ const reviews = [
         reviewLink: "https://g.co/kgs/B3vmvs",
     },
     {
+        title: {
+            en: "Committed Staff",
+            es: "Personal comprometido"
+        },
         body: {
             en: `I have been a loyal customer of AI United for several years, and I cannot 
             speak highly enough of their services. From the moment I signed up, their commitment
@@ -67,6 +79,10 @@ const reviews = [
         reviewLink: "https://g.co/kgs/qt5XVv",
     },
     {
+        title: {
+            en: "Great Experience",
+            es: "Gran experiencia"
+        },
         body: {
             en: `I’ve dealt with lots of insurance agencies over the 35 years I’ve been driving, 
             but none compare to this place. The friendliest and most courteous  staff, especially Esmeralda 
@@ -83,6 +99,10 @@ const reviews = [
         reviewLink: "https://g.co/kgs/JASCBG",
     },
     {
+        title: {
+            en: "Exceeded Expectations",
+            es: "Superó las expectativas"
+        },
         body: {
             en: `I am thrilled to share my amazing experience with this insurance company from the very beginning,
              they have exceeded my expectations in every aspect. Their customer service is truly exceptional, 
@@ -96,6 +116,10 @@ const reviews = [
         reviewLink: "https://g.co/kgs/7F8e58"
     },
     {
+        title: {
+            en: "Above and Beyond",
+            es: "Por encima y más allá"
+        },
         body: {
             en: `I got insurance the other day and I must say Emely has excellent customer service. 
             Not only did she go above and beyond in finding a good insurance. But she also helped me 
