@@ -85,7 +85,17 @@ const copyright = {
   en: "© 2023 Ai United Insurance. All Rights Reserved.",
   es: "© 2023 Ai United Insurance. Todos los derechos reservados."
 }
+const text = {
+  terms: {
+    en: "Terms of Use",
+    es: "Términos de uso"
+  },
+  privacy: {
+    en: "Privacy Policy",
+    es: "Política de privacidad"
 
+  }
+}
 const classes = {
   root: {
     backgroundColor: "#0E76BC",
@@ -238,10 +248,10 @@ export default function Footer() {
         }} >
           <Button sx={{ color: "white" }}
             href={PATHCONSTANTS.TERMS}
-          >Terms of Use</Button>|
+          >{text.terms[currentLang]}</Button>|
           <Button sx={{ color: "white" }}
             href={PATHCONSTANTS.PRIVACY}
-          >Privacy Policy</Button>
+          >{text.privacy[currentLang]}</Button>
         </Box>
       </Box >
     </Box >
