@@ -62,6 +62,7 @@ export default function (props) {
                 display: "flex", flexDirection: "column", gap: "1rem",
                 padding: "1.5rem", alignItems: "center", justifyContent: "center",
             }}
+            id={"Auto-quote"}
         >
             <Typography fontFamily={CustomFonts.Gustavo} component={"h1"} variant="h3">{props.title && props.title[currentLang]}</Typography>
             <Typography variant="h5">{props.subtitle && props.subtitle[currentLang]}</Typography>

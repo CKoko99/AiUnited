@@ -32,3 +32,56 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+# Getting Started with the new Ai United Website
+
+The purpose of this project was to create a new user experience for our online customers
+Backend Repository can be seen [here](https://github.com/Ckoko99/InsuranceHubBackend)
+
+# Highlighted Features of the New Training Portal
+
+- Improved User Interface
+- Spanish Language Select
+- Advanced Google Analytics User Tracking
+- 99/100 Google Lighthouse Site Performance Score
+- Added Sitemap.xml
+
+- Quoting 
+-   - Removed broken alinsko auto quote widget
+-   - Replaced JotForm Embedded Quotes
+
+- Locations
+-   - Added Find A Nearest Store via Address, Zip Code, or State 
+-   - Added Quick Call Store Button
+-   - Added Quick Google Maps Direction
+
+- About Us
+-   - Added About Us Page
+-   - Simplified Contact Form
+-   - Consildated "Now Hiring" and "Careers" Page
+-   - Improved review page by linking real Google reviews
+- Payments
+-   - Removed list of companies on first glance
+-   - Added find company by policy number search
+-   - If incorrect policy number is entered twice a list of companies will show
+
+
+# Technical Details
+
+Webpage is built with Next Js, and Material Ui
+Google Cloud Storage handles our favicon and video assets
+
+# Enviroment Variables
+
+REACT_APP_API_URL= BACKEND URL
+
+# Deploy
+
+Continous Integration / Continous Deployment pipeline is created using docker, google cloud build, and google cloud run
+
+On every push to the main branch the code is built and uploaded to AiUnited.com
+
+The following secrets need to be setup on GCP Cloud Run
+    NEXT_PUBLIC_BACKEND
+
+The Status of every deployment can be seen in Google Cloud Build and Google Cloud Run

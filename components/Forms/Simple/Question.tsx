@@ -165,7 +165,9 @@ function InputQuestion(props) {
                 <Box
                     sx={{ width: { xs: "100%", md: "50%" } }}
                 >
-                    <Typography variant="h6">{props.title}</Typography>
+                    <Typography variant="h6">{props.title}{//if last letter is a question mark, don't add another
+                        props.title.slice(-1) === "?" ? "" : ":"
+                    }</Typography>
                 </Box>
             }
             <Box
@@ -212,7 +214,9 @@ function RadioQuestion(props) {
                 sx={{ width: props.fullWidth ? { xs: "100%", md: '50%' } : "100%" }}
             >
                 <Typography variant="h6">
-                    {props.title}
+                    {props.title}{//if last letter is a question mark, don't add another
+                        props.title.slice(-1) === "?" ? "" : ":"
+                    }
                 </Typography>
             </Box>
             <Box sx={{
@@ -271,7 +275,9 @@ function SelectQuestion(props) {
             >
 
                 <Typography variant="h6">
-                    {props.title}
+                    {props.title}{//if last letter is a question mark, don't add another
+                        props.title.slice(-1) === "?" ? "" : ":"
+                    }
                 </Typography>
             </Box>
             <Box

@@ -57,7 +57,7 @@ export default function (props) {
                         <iframe
                             width="704"
                             height="528"
-                            loading="lazy"
+                            loading="eager"
                             style={{
                                 position: "absolute",
                                 top: 0,

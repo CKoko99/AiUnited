@@ -13,9 +13,18 @@ import progressiveImg from '../../public/assets/images/payments/Progressive_Insu
 import uaigImg from '../../public/assets/images/payments/uaig.png'
 import ventureImg from '../../public/assets/images/payments/venture.png'
 import wellingtonImg from '../../public/assets/images/payments/wellingtoninsgroup.png'
+import aspenImg from '../../public/assets/images/payments/aspen.png'
+import bridgerImg from '../../public/assets/images/payments/bridger.png'
+import excellentImg from '../../public/assets/images/payments/excellent.png'
+import falconImg from '../../public/assets/images/payments/falcon.png'
+import jubileeImg from '../../public/assets/images/payments/jubilee.png'
+import lamarImg from '../../public/assets/images/payments/lamar.png'
+import lonestarImg from '../../public/assets/images/payments/lonestar.png'
+import trinityImg from '../../public/assets/images/payments/trinity.png'
+import westernImg from '../../public/assets/images/payments/western.png'
 import { Box, Button, FormControl, Modal, TextField, Typography } from '@mui/material'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { StaticImageData } from 'next/image';
 
 const providers = [
@@ -27,27 +36,39 @@ const providers = [
     },
     {
         title: "Aggressive Insurance",
-        link: "https://portalone.processonepayments.com/Aggressive/AggressiveInsurance",
+        link: "https://www.bluefireinsurance.com/make-a-payment/",
         img: aggressiveusaImg,
-        keys: ["TKS", "TXA", "TXE", "MCY"]
+        keys: ["TKS", "TXA", "TXE", "MCY", "AMM", "AAE", 'ALL']
     },
     {
         title: "Amwins Insurance",
         link: "https://osis.amwinsauto.com/insd/",
         img: amwinsImg,
-        keys: ["PGA", "PGL"]
+        keys: ["WCC", "ADR", "VLX", "EGA", "PME", "PRH", "EXL", "HTG", "PGA", "PGL"]
     },
     {
         title: "Apollo Insurance",
         link: "https://isiweb.apollomga.com/is/startPaymentIndex.cfm",
         img: apolloImg,
-        keys: ["APS", "APM"]
+        keys: ["APS", "APM", "NSM", "SPS", "NSS"]
+    },
+    {
+        title: "Aspen Insurance",
+        link: "https://aspenmga.com/aspen/policy_payments.html",
+        img: aspenImg,
+        keys: ["PPTX"],
+    },
+    {
+        title: "Bridger Insurance",
+        link: "https://bridgerins.com/policyholders/",
+        img: bridgerImg,
+        keys: ["TXKBBGPPA"],
     },
     {
         title: "Connect Insurance",
         link: "http://www.connectinsurance.com/insd/",
         img: connectImg,
-        keys: ["CCB"]
+        keys: ["CCB01", "CCA01", "CCM01"]
     },
     {
         title: "DairyLand Insurance",
@@ -56,58 +77,104 @@ const providers = [
         keys: ["434", "TX"]
     },
     {
-        title: "Empower Insurance",
+        title: "Drive Safe Auto",
+        keys: ["DTX"],
+    },
+    {
+        title: "Empower / Alinsco Insurance",
         link: "https://customers.empowerins.com/Insurance/Auto/Policy/tx/fort-worth/empower-insurance-company/121000",
         img: empowerImg,
-        keys: ["EMP", "EAB", "EML", "EAP", "LSS", "EAL", "EAS"]
+        keys: ["EAA", "EAP", "EAL", "EAB", "EAS"]
     },
     {
-        title: "Foremost Insurance",
-        link: "https://www.bristolwest.com/bristolwest/login/login.aspx?Foremost=true",
-        img: foremostImg,
-        keys: ["G00"]
+        title: "Excellent Insurance",
+        link: "https://isiapp.excellentins.com/is/PolicyholderPortal/index.cfm",
+        img: excellentImg,
+        keys: ["X42M", "X42S", "GNM", "GNS"],
     },
     {
-        title: "Foremost Insurance",
-        link: "https://secure4.billerweb.com/fmi/JustPayIt/jpt.do",
-        img: foremostImg,
-        keys: ["0", "RC"]
+        title: "Falcon Insurance",
+        link: "https://www.falconinsgroup.com/en/Customers/Payment",
+        img: falconImg,
+        keys: ["200"]
     },
     {
         title: "Gainsco Insurance",
         link: "https://www.billerpayments.com/app/cust/guestauth.do?bsn=gainsco",
         img: gainscoImg,
-        keys: ["03"]
+        keys: ["03MGEP", "03MGEN"]
     },
     {
         title: "Hallmark Insurance",
         link: "http://www.hallmarkinsco.com/index/make-a-payment-and-manage-your-policy",
         img: hallmarkImg,
-        keys: ["TXA", "TXR", "342", "942", "042", "650"]
+        keys: ["TXA", "TXR",]
+    },
+    {
+        title: "Jubilee Insurance",
+        link: "https://jubileeinsurance.com/ke/how-to-make-payments/",
+        img: jubileeImg,
+        keys: ['0']
+    },
+    {
+        title: "Lamar General Insurance",
+        link: "https://lamargenagency.com/index.php/make-a-payment/",
+        img: lamarImg,
+        keys: ["TXP"],
     },
     {
         title: "Progressive Insurance",
         link: "https://onlineservice7.progressive.com/selfservice.web/SelfService.aspx?Page=Non-LoggedIn.VerifyPolicy.ProvidePolicyInformation&QueryStringSetKey=SessionGateway&OfferingID=SelfService&SessionStart=TRUE&EZDestination=EZPAY",
         img: progressiveImg,
-        keys: ["910", "909", "407", "406", "911"]
+        keys: ["9", "0", "4"]
     },
     {
-        title: "United Automobile Insurance Company",
+        title: "United Auto Insurance Company",
         link: "https://mypolicy.uaig.net/insurednew/",
         img: uaigImg,
-        keys: ["TXA", "TXS"]
+        keys: ["TXA", "TXS", "TXY", "TXM"]
     },
     {
         title: "Venture Insurance Agency",
         link: "https://ventureinsga.net/is/startpaymentindex.cfm",
         img: ventureImg,
-        keys: ["VGAL", "VGAS"]
+        keys: ["VGAL", "VGAM", "VGAS", "VGAO"]
     },
     {
         title: "Wellington Insurance",
         link: "https://www.wellingtoninsgroup.com/mywellington/expresspay",
         img: wellingtonImg,
-        keys: ["TVH", "WLD", "WLH", "CPC", "TVD", "CDI"]
+        keys: ["WDN", "WRA", "WHG", "TIC", "PIC", "TRV", "WWS", "AGW", "TSI", "SUT"]
+    },
+    {
+        title: "Western General",
+        link: "https://www.westerngeneral.com/customers",
+        img: westernImg,
+        keys: ["LST"]
+    },
+    {
+        title: "Lone star",
+        link: "https://www.lonestarmga.com/MakeaPayment",
+        img: lonestarImg,
+        keys: ["TXM"]
+    },
+    {
+        title: "Trinity",
+        link: "https://auto.tttmga.com/is/PolicyholderPortal/index.cfm?ctest=1",
+        img: trinityImg,
+        keys: ["TTXL", "LA0"]
+    },
+    {
+        title: "Dairyland",
+        link: "https://my.dairylandinsurance.com/web/login",
+        img: dairylandImg,
+        keys: ["11406"]
+    },
+    {
+        title: "Foremost",
+        link: "https://www.foremost.com/payonline/",
+        img: foremostImg,
+        keys: ["106-9", "077-00", "276-00", "381-501", "381-500",]
     },
 ]
 
@@ -154,30 +221,62 @@ export default function () {
     const [paymentInput, setPaymentInput] = useState("")
     const [error, setError] = useState(false)
     const [openModal, setOpenModal] = useState(false)
-    const [modalContent, setModalContent] = useState<ModalContent | null>(null)
+    const [modalContent, setModalContent] = useState<ModalContent[] | null>(null)
     const [errorCount, setErrorCount] = useState(0)
     const [showAllProviders, setShowAllProviders] = useState(false)
+
+    useEffect(() => {
+        //check to see if there is 2 keys from different providers that are the same
+        let found = false
+
+        providers.forEach((item, index) => {
+            item.keys.forEach((key) => {
+                providers.forEach((item2, index2) => {
+                    if (index !== index2) {
+                        item2.keys.forEach((key2) => {
+                            if (key === key2) {
+                                found = true
+                                //log companies with duplicate keys
+                                console.log(item.title, item2.title, key)
+                            }
+                        })
+                    }
+                })
+            })
+        })
+        if (found) {
+            console.log("found duplicate keys")
+        } else {
+            console.log("no duplicate keys found")
+        }
+
+
+    }, [])
     function handleKeySearch() {
         //loop through providers and check if any of the keys match the start of the input
         //if they do, redirect to that link
+        const foundProvider = [] as any
         let found = false
         setError(false)
         providers.forEach((item) => {
             item.keys.forEach((key) => {
                 if (paymentInput.toUpperCase().startsWith(key.toUpperCase())) {
                     setOpenModal(true)
-                    setModalContent({
+                    let newProvider = {
                         title: item.title,
                         link: item.link,
                         img: item.img
-                    })
+                    }
+                    foundProvider.push(newProvider)
                     found = true
                 }
             })
         })
+        setModalContent(foundProvider)
         if (!found) {
             setError(true)
         }
+        console.log(foundProvider)
         setErrorCount(errorCount + 1)
     }
     const providersContent = <Box sx={{
@@ -239,19 +338,37 @@ export default function () {
             >
                 <Box sx={{ ...styles.modal, textAlign: "center" }}>
                     <Typography variant="h5">
-                        Continue to {modalContent?.title} to make a payment
+                        Select your insurance provider to make a payment
                     </Typography>
                     <Box
-                        sx={{
-                            position: "relative", height: "7rem", width: "15rem", margin: "auto"
-                        }}
+                        sx={{ display: "flex", gap: "1rem", justifyContent: "center" }}
                     >
-                        {modalContent?.img && <Image fill style={{ objectFit: "contain" }} src={modalContent.img} alt={modalContent.title} />}
+
+                        {modalContent?.map((item, index) => {
+                            return <>
+                                <Link
+                                    style={{
+                                        display: "flex", flexDirection: "column",
+                                    }}
+                                    target='_blank'
+                                    href={item.link || ""}
+                                >
+                                    <Box sx={{
+                                        position: "relative", height: "7rem", width: "15rem", margin: "auto"
+                                    }}>
+
+                                        {item?.img && <Image fill style={{ objectFit: "contain" }} src={item.img} alt={item.title} />}
+                                    </Box>
+                                    <Typography variant="subtitle1">{item.title}</Typography>
+                                </Link>
+                            </>
+                        })}
                     </Box>
-                    <Button variant="contained" color="secondary"
+                    {/*  <Button variant="contained" color="secondary"
                         style={{ width: "10rem", margin: "auto" }}
-                        onClick={() => window.open(modalContent?.link, "_blank")}
+                        onClick={() => window.open(modalContent[0].link, "_blank")}
                     >Continue</Button>
+                    */}
                     <Button
                         onClick={() => {
                             setShowAllProviders(true)

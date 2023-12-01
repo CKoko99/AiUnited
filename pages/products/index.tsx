@@ -11,6 +11,8 @@ import SuretyImg from "../../public/assets/images/products/surety.png"
 import Image from "next/image"
 import Hero from "../../components/Content/Hero/Hero"
 import BannerImage from "../../public/assets/images/products/banner.png"
+import BannerImage1 from "../../public/assets/images/products/banner2.png"
+import VerticalBanner from "@/components/Content/Hero/VerticalBanner"
 // auto home motorcycle sr22, renters, mexico, surety bonds
 const bannerContent = {
     title: {
@@ -23,6 +25,20 @@ const bannerContent = {
     },
     image: {
         src: BannerImage,
+        alt: "Our Products"
+    }
+}
+const verticalBannerContent = {
+    title: {
+        en: "Our Products",
+        es: "Nuestros Productos"
+    },
+    subtitle: {
+        en: "We offer a variety of insurance products to match your needs.",
+        es: "Ofrecemos una variedad de productos de seguros para satisfacer sus necesidades."
+    },
+    img: {
+        src: BannerImage1,
         alt: "Our Products"
     }
 }
@@ -174,7 +190,8 @@ function ContentItem(props) {
 }
 export default function () {
     return <>
-        <Hero {...bannerContent} />
+        {//   <Hero {...bannerContent} />
+        }<VerticalBanner {...verticalBannerContent} />
         <Box
             sx={{
                 display: { xs: "none", md: "flex" }, justifyContent: "space-around",
@@ -190,15 +207,17 @@ export default function () {
             })}
         </Box>
         <Box
-            sx={{ padding: "3rem 0" }}
+            sx={{ padding: { xs: "0 0 1rem", md: "3rem 0" } }}
         >
-            {content.map((item, index) => {
-                return <>
-                    <ContentItem odd={index % 2} key={index} {...item} />
-                    {index !== content.length - 1 && <hr />}
-                </>
-            })}
-        </Box>
+            {
+                content.map((item, index) => {
+                    return <>
+                        <ContentItem odd={index % 2} key={index} {...item} />
+                        {index !== content.length - 1 && <hr />}
+                    </>
+                })
+            }
+        </Box >
 
     </>
 }

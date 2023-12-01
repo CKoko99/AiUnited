@@ -2,6 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import Image, { StaticImageData } from "next/image";
 import { useRouter } from "next/router";
 import { Lang } from "../locale/LocaleSwitcher";
+import Link from "next/link";
 
 interface CTAContentProps {
     title: {
@@ -79,14 +80,17 @@ export default function CTAContent(props: CTAContentProps) {
                 >
                     {props.cta1.text[currentLang]}
                 </Button>}
-                {props.cta2 && <Button
+                {props.cta2 && <Link
+                    href={props.cta2.link}
+                > <Button
                     variant="contained"
                     color="secondary"
-                    href={props.cta2.link}
                     sx={{ textAlign: "center" }}
                 >
-                    {props.cta2.text[currentLang]}
-                </Button>}
+                        {props.cta2.text[currentLang]}
+                    </Button>
+                </Link>
+                }
             </Box>
         </Box>
     </>

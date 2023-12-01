@@ -15,14 +15,19 @@ const Layout = ({ children }: LayoutProps) => {
     <>
       <HeadComponent />
       <GTMBody />
-      <LocaleSwitcher />
-      <Navbar />
+      <Box
+        sx={{ position: "fixed", width: "100%", zIndex: 1000 }}
+      >
+        <LocaleSwitcher />
+        <Navbar />
+      </Box >
+      <Box sx={{ height: "6rem" }} />
       <Box
         sx={{
           maxWidth: "1320px", margin: "auto",
           //boxShadow: "0 0px 40px 10px rgba(204,204,204,.4)", //OG
-          boxShadow: "0 15px 20px 2px rgba(204,204,204,.4)",
-          borderLeft: "1px solid #dfdfdf", borderRight: "1px solid #dfdfdf",
+          //boxShadow: "0 15px 20px 2px rgba(204,204,204,.4)",
+          //borderLeft: "1px solid #dfdfdf", borderRight: "1px solid #dfdfdf",
           minHeight: "60vh"
         }}
       >

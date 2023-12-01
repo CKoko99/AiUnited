@@ -81,6 +81,9 @@ export default function DateQuestion(props) {
 
                 <Typography variant="h6">
                     {props.title[props.lang]}
+                    {//if last letter is a question mark, don't add another
+                        props.title[props.lang].slice(-1) === "?" ? "" : ":"
+                    }
                 </Typography>
             </Box>
             <Box
@@ -109,8 +112,6 @@ export default function DateQuestion(props) {
                         }}
 
                     />
-
-
                 </LocalizationProvider>
             </Box>
         </Box>

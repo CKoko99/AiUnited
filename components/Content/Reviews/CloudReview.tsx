@@ -3,6 +3,7 @@ import { Box, Typography, Button } from "@mui/material";
 import theme from "../../../providers/theme";
 import { useRouter } from "next/router";
 import { Lang } from "../../locale/LocaleSwitcher";
+import Link from "next/link";
 interface HomeReviewProps {
     title: string;
     content: {
@@ -157,11 +158,17 @@ export default function HomeReview(props: any) {
                                 </Box>
                             </Box>
                         }
-                        {props.cta && <Button sx={{ ...styles.ctaButton }} variant="contained" color="secondary"
-                            href={props.cta.link}
-                        >
-                            {props.cta.text[currentLang]}
-                        </Button>}
+                        {props.cta &&
+                            <Link
+                                href={props.cta.link}
+                            >
+                                <Button sx={{ ...styles.ctaButton }} variant="contained"
+                                    color="secondary"
+                                >
+                                    {props.cta.text[currentLang]}
+                                </Button>
+                            </Link>
+                        }
                     </Box>
 
                 </Box>
