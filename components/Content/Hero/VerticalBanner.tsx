@@ -24,7 +24,7 @@ interface VerticalBannerProps {
         src: StaticImageData;
         alt: string;
     };
-    audience: string;
+    audience?: string;
 }
 
 export default function (props: VerticalBannerProps) {
