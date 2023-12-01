@@ -45,7 +45,6 @@ const styles = {
         transition: "all .3s ease-in-out",
         "&:hover": {
             cursor: "pointer",
-            transform: "scale(1.1)",
         },
         height: "100%"
     },
@@ -62,7 +61,55 @@ const styles = {
     contentLink: {
         maxWidth: "33%",
         minWidth: "24%",
+        transition: "all .2s ease-in-out",
     }
+}
+function ContentItem(props: any) {
+    const [hovering, setHovering] = React.useState(false)
+    const currentLang = props.lang
+    return <>
+        <Link
+            href={props.item.link}
+            style={{
+                ...styles.contentLink,
+                transform: hovering ? "scale(1.1)" : "",
+                cursor: hovering ? "pointer" : "default",
+            }}
+            onMouseEnter={() => setHovering(true)}
+            onMouseLeave={() => setHovering(false)}
+        >
+            <Box sx={{ ...styles.contentItem }}
+            >
+                <Box sx={{ ...styles.image }}>
+                    <Image
+                        fill
+                        style={{ objectFit: "contain" }}
+                        {...props.item.img}
+                    />
+                </Box>
+                {props.item.title && (
+                    <Typography
+                        variant="subtitle1"
+
+                        sx={{
+                            textAlign: "center",
+                            fontWeight: "bold",
+                            margin: ".75rem 0",
+                            whiteSpace: "pre-line",
+                            lineHeight: "1.4rem",
+                        }}
+                    >
+                        {props.item.title[currentLang]?.split(' ').map((word: string, index: any) => (
+                            <React.Fragment key={index}>
+                                {word}
+                                <br />
+                            </React.Fragment>
+                        ))}
+                    </Typography>
+                )}
+            </Box>
+        </Link>
+    </>
 }
 export default function Diagram(props: DiagramProps) {
     const router = useRouter()
@@ -79,42 +126,7 @@ export default function Diagram(props: DiagramProps) {
             >
                 {props.content?.map((item: any, index: number) => {
                     return (
-                        <Link
-                            href={item.link}
-                            key={index}
-                            style={{ ...styles.contentLink }}
-                        >
-                            <Box sx={{ ...styles.contentItem }}
-                            >
-                                <Box sx={{ ...styles.image }}>
-                                    <Image
-                                        fill
-                                        style={{ objectFit: "contain" }}
-                                        {...item.img}
-                                    />
-                                </Box>
-                                {item.title && (
-                                    <Typography
-                                        variant="subtitle1"
-
-                                        sx={{
-                                            textAlign: "center",
-                                            fontWeight: "bold",
-                                            margin: "1rem 0",
-                                            whiteSpace: "pre-line",
-                                            lineHeight: "1.4rem",
-                                        }}
-                                    >
-                                        {item.title[currentLang]?.split(' ').map((word: string, index: any) => (
-                                            <React.Fragment key={index}>
-                                                {word}
-                                                <br />
-                                            </React.Fragment>
-                                        ))}
-                                    </Typography>
-                                )}
-                            </Box>
-                        </Link>
+                        <ContentItem lang={currentLang} item={item} index={index} />
                     )
                 })}
             </Box>
