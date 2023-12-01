@@ -43,6 +43,14 @@ const LocationText = {
     near: {
         "en": "Locations Near You",
         "es": "Ubicaciones cerca de ti"
+    },
+    miles: {
+        "en": "miles",
+        "es": "millas"
+    },
+    storeInfo: {
+        en: "More Store Info",
+        es: "Más información de la tienda"
     }
 }
 export default function (props) {
@@ -195,13 +203,16 @@ export default function (props) {
                                             <Typography variant='body2'>{selectedMarker.city} {selectedMarker.state} {selectedMarker.zip}</Typography>
                                             <Typography variant='body2'>{selectedMarker.distance}</Typography>
                                             <Typography variant='body2'>{selectedMarker.phone}</Typography>
-                                            <Button
-                                                variant='contained'
-                                                color='primary'
-                                                sx={{ marginTop: "1rem" }}
-                                                onClick={(e) => e.stopPropagation()}
+                                            <Link
                                                 href={`/locations/${selectedMarker.id}`}
-                                            >More Store Info</Button>
+                                            >
+                                                <Button
+                                                    variant='contained'
+                                                    color='primary'
+                                                    sx={{ marginTop: "1rem" }}
+                                                    onClick={(e) => e.stopPropagation()}
+                                                >{LocationText.storeInfo[currentLang]}</Button>
+                                            </Link>
                                         </Box>
                                     </InfoWindow>
                                 </Box>
@@ -255,20 +266,23 @@ export default function (props) {
                                     backgroundColor: "secondary.main", padding: ".1rem .25rem", margin: ".15rem 0",
                                     fontWeight: 500, maxWidth: "fit-content"
                                 }}
-                                variant='body2'>{location.distance} miles</Typography>
+                                variant='body2'>{location.distance} {LocationText.miles[currentLang]}</Typography>
                             <Link
                                 onClick={(e) => e.stopPropagation()}
                                 style={{ display: "flex", alignItems: "center" }} href={`tel:${location.phone}`}>
                                 <PhonelinkRingIcon sx={{ color: "black", fontSize: "1rem", marginRight: ".25rem" }} />
                                 <Typography fontWeight={600} variant='body2'>{location.phone}</Typography>
                             </Link>
-                            <Button
-                                variant='contained'
-                                color='primary'
-                                sx={{ marginTop: "1rem" }}
-                                onClick={(e) => e.stopPropagation()}
+                            <Link
                                 href={`/locations/${location.id}`}
-                            >More Store Info</Button>
+                            >
+                                <Button
+                                    variant='contained'
+                                    color='primary'
+                                    sx={{ marginTop: "1rem" }}
+                                    onClick={(e) => e.stopPropagation()}
+                                >{LocationText.storeInfo[currentLang]}</Button>
+                            </Link>
                         </Box>
 
                     })}

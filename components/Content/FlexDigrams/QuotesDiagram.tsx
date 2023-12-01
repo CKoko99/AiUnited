@@ -126,7 +126,7 @@ export default function Diagram(props: DiagramProps) {
             >
                 {props.content?.map((item: any, index: number) => {
                     return (
-                        <ContentItem lang={currentLang} item={item} index={index} />
+                        <ContentItem lang={currentLang} item={item} key={index} />
                     )
                 })}
             </Box>
