@@ -101,10 +101,6 @@ const providers = [
         keys: ["434", "TX"]
     },
     {
-        title: "Drive Safe Auto",
-        keys: ["DTX"],
-    },
-    {
         title: "Empower / Alinsco Insurance",
         link: "https://customers.empowerins.com/Insurance/Auto/Policy/tx/fort-worth/empower-insurance-company/121000",
         img: empowerImg,
@@ -201,7 +197,15 @@ const providers = [
         keys: ["106-9", "077-00", "276-00", "381-501", "381-500",]
     },
 ]
-
+providers.sort((a, b) => {
+    if (a.title < b.title) {
+        return -1
+    }
+    if (a.title > b.title) {
+        return 1
+    }
+    return 0
+})
 const styles = {
     modal: {
         position: "fixed",
@@ -226,7 +230,6 @@ function Providers(props) {
         style={{ flex: "1", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" }}
         target='_blank'
         href={props.link} >
-        <Typography variant="h6">{props.title}</Typography>
         <Box
             sx={{
                 position: "relative", height: "7rem", width: "15rem"
@@ -234,6 +237,7 @@ function Providers(props) {
         >
             <Image fill style={{ objectFit: "contain" }} src={props.img} alt={props.title} />
         </Box>
+        <Typography variant="h6">{props.title}</Typography>
     </Link >
 }
 interface ModalContent {
