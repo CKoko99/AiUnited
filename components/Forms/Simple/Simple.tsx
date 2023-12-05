@@ -9,6 +9,24 @@ import checkmarkImg from "../../../public/assets/images/components/checkmark.png
 import Question from "./Question";
 import { GTMEVENTS, GTMEventHandler } from "../../Scripts/GoogleTag";
 
+const text = {
+    secured: {
+        en: "Your information is secure and will never be shared.",
+        es: "Su información es segura y nunca será compartida."
+    },
+    consent: {
+        en: "By submitting this form you agree to be contacted by an Ai United Insurance agent.",
+        es: "Al enviar este formulario, acepta ser contactado por un agente de Ai United Insurance."
+    },
+    thankYou: {
+        en: "Thank You!",
+        es: "Gracias!"
+    },
+    thankYouMessage: {
+        en: "Your Submission Has Been Recevied.",
+        es: "Su envío ha sido recibido."
+    },
+}
 function getEmailProps(questions, answers) {
     let name = ["", ""]
     let email = ""
@@ -204,8 +222,8 @@ export default function (props) {
                         </Box>
                         <Box textAlign={"center"} sx={{ width: "80%", margin: "auto" }} >
                             <Typography variant="subtitle1">
-                                Your information is secure and will never be shared.
-                                By submitting this form you agree to be contacted by an Ai United Insurance agent.
+                                {text.secured[currentLang]}
+                                {text.consent[currentLang]}
                             </Typography>
                         </Box>
                     </> : <>
@@ -222,12 +240,12 @@ export default function (props) {
                                 fontWeight={"bold"}
                                 variant="h4"
                             >
-                                Thank You!
+                                {text.thankYou[currentLang]}
                             </Typography>
                             <Typography
                                 variant="h5"
                             >
-                                Your Submission Has Been Recevied.
+                                {text.thankYouMessage[currentLang]}
                             </Typography>
                         </Box>
                     </>}

@@ -13,6 +13,8 @@ import Hero from "../../components/Content/Hero/Hero"
 import BannerImage from "../../public/assets/images/products/banner.png"
 import BannerImage1 from "../../public/assets/images/products/banner2.png"
 import VerticalBanner from "@/components/Content/Hero/VerticalBanner"
+import { useRouter } from "next/router"
+import { Lang } from "@/components/locale/LocaleSwitcher"
 // auto home motorcycle sr22, renters, mexico, surety bonds
 const bannerContent = {
     title: {
@@ -44,100 +46,135 @@ const verticalBannerContent = {
 }
 const navContent = [
     {
-        title: "Auto",
+        title: { en: "Auto", es: "Auto" },
         link: "#Auto"
     },
     {
-        title: "Home",
+        title: { en: "Home", es: "Casa" },
         link: "#Home"
     },
     {
-        title: "Motorcycle",
+        title: { en: "Motorcycle", es: "Motocicleta" },
         link: "#Motorcycle"
     },
     {
-        title: "SR22",
+        title: { en: "SR22", es: "SR22" },
         link: "#SR22"
     },
     {
-        title: "Renters",
+        title: { en: "Renters", es: "Inquilinos" },
         link: "#Renters"
     },
     {
-        title: "Mexico",
+        title: { en: "Mexico", es: "México" },
         link: "#Mexico"
     },
     {
-        title: "Surety Bonds",
+        title: { en: "Surety Bonds", es: "Fianzas" },
         link: "#SuretyBonds"
     },
 ]
 const content = [
     {
-        title: "Auto Insurance",
+        title: { en: "Auto Insurance", es: "Seguro de auto" },
         id: "Auto",
-        body: `At Ai United, we understand that every driver is unique. That's why we offer a variety 
+        body: {
+            en: `At Ai United, we understand that every driver is unique. That's why we offer a variety 
         of auto insurance coverages to match your needs.`,
+            es: `En Ai United, entendemos que cada conductor es único. Es por eso que ofrecemos una variedad
+            de coberturas de seguro de auto para satisfacer sus necesidades.`},
         quote: PATHCONSTANTS.QUOTES.AUTO.FORM,
         info: PATHCONSTANTS.QUOTES.AUTO.INDEX,
         img: AutoImg
     },
     {
-        title: "Home Insurance",
+        title: { en: "Home Insurance", es: "Seguro de casa" },
         id: "Home",
-        body: `Having home insurance offers peace of mind. You can rest easy knowing that your home and belongings 
+        body: {
+            en: `Having home insurance offers peace of mind. You can rest easy knowing that your home and belongings 
         are secure, and you won't face a financial crisis if disaster strikes.`,
+            es: `Tener un seguro de hogar ofrece tranquilidad. Puede descansar tranquilo sabiendo que su hogar y sus pertenencias
+        están seguros y que no se enfrentará a una crisis financiera si ocurre un desastre.`},
         quote: PATHCONSTANTS.QUOTES.HOME.FORM,
         info: PATHCONSTANTS.QUOTES.HOME.INDEX,
         img: HomeImg
     },
     {
-        title: "Motorcycle Insurance",
+        title: { en: "Motorcycle Insurance", es: "Seguro de motocicleta" },
         id: "Motorcycle",
-        body: `Accidents happen, and when they do, you want to ensure you're financially protected. Motorcycle 
+        body: {
+            en: `Accidents happen, and when they do, you want to ensure you're financially protected. Motorcycle 
         insurance is essential to safeguard both you and your bike.`,
+            es: `Los accidentes ocurren y, cuando ocurren, desea asegurarse de estar protegido financieramente.
+        El seguro de motocicleta es esencial para proteger tanto a usted como a su motocicleta.`},
         quote: PATHCONSTANTS.QUOTES.MOTORCYCLE.FORM,
         info: PATHCONSTANTS.QUOTES.MOTORCYCLE.INDEX,
         img: MotorcycleImg
     },
     {
-        title: "SR22 Insurance",
+        title: { en: "SR22 Insurance", es: "Seguro SR22" },
         id: "SR22",
-        body: `SR-22 insurance is a unique type of coverage required by the state of reinstate your driving 
+        body: {
+            en: `SR-22 insurance is a unique type of coverage required by the state of reinstate your driving 
         privileges after certain violations.`,
+            es: `El seguro SR-22 es un tipo de cobertura única requerida por el estado para restablecer sus privilegios de
+        conducción después de ciertas violaciones.`},
         quote: PATHCONSTANTS.QUOTES.SR22.FORM,
         info: PATHCONSTANTS.QUOTES.SR22.INDEX,
         img: SR22Img
     },
     {
-        title: "Renters Insurance",
+        title: { en: "Renters Insurance", es: "Seguro de inquilinos" },
         id: "Renters",
-        body: `Protect yourself and your valuables by getting low cost renters insurance that will cover the 
+        body: {
+            en: `Protect yourself and your valuables by getting low cost renters insurance that will cover the 
         content of an apartment or home that you'll be renting.`,
+            es: `Protéjase a sí mismo y a sus objetos de valor obteniendo un seguro de inquilinos de bajo costo que cubrirá el
+        contenido de un apartamento o casa que alquilará.`},
         quote: PATHCONSTANTS.QUOTES.RENTER.FORM,
         info: PATHCONSTANTS.QUOTES.RENTER.INDEX,
         img: RentersImg
     },
     {
-        title: "Mexico Insurance",
+        title: {
+            en: "Mexico Insurance",
+            es: "Seguro de México"
+        },
         id: "Mexico",
-        body: `Traveling to Mexico can be an exciting adventure, but it's essential to be prepared for the 
+        body: {
+            en: `Traveling to Mexico can be an exciting adventure, but it's essential to be prepared for the 
         unexpected. It's important to have Mexico tourist insurance on your vehicle.`,
+            es: `Viajar a México puede ser una aventura emocionante, pero es esencial estar preparado para lo inesperado.
+        Es importante tener un seguro de turista de México en su vehículo.`},
         quote: PATHCONSTANTS.QUOTES.MEXICO.FORM,
         info: PATHCONSTANTS.QUOTES.MEXICO.INDEX,
         img: MexicoImg
     },
     {
-        title: "Surety Bonds",
+        title: { en: "Surety Bonds", es: "Fianzas" },
         id: "SuretyBonds",
-        body: `Ai United is dedicated to simplifying the world of Surety Bonds, ensuring you have
+        body: {
+            en: `Ai United is dedicated to simplifying the world of Surety Bonds, ensuring you have
          the coverage you need, precisely when you need it.`,
+            es: `Ai United se dedica a simplificar el mundo de las fianzas, asegurándose de tener
+        la cobertura que necesita, precisamente cuando la necesita.`},
         quote: PATHCONSTANTS.QUOTES.SURETY.FORM,
         info: PATHCONSTANTS.QUOTES.SURETY.INDEX,
         img: SuretyImg
     }
 ]
+const text = {
+    GAQ: {
+        en: "Get a Quote!",
+        es: "¡Obtenga una cotización!"
+    },
+    LM: {
+        en: "Learn More",
+        es: "Aprende más"
+    }
+}
 function ContentItem(props) {
+    const currentLang = props.currentLang
     return <>
         <Box id={props.id}
             sx={{
@@ -165,10 +202,10 @@ function ContentItem(props) {
                 }}
             >
                 <Typography fontWeight={600} variant="h4">
-                    {props.title}
+                    {props.title[currentLang]}
                 </Typography>
                 <Typography variant="h6">
-                    {props.body}
+                    {props.body[currentLang]}
                 </Typography>
                 <Box
                     sx={{ display: "flex", justifyContent: "space-around" }}
@@ -176,12 +213,12 @@ function ContentItem(props) {
                     <Link href={props.quote}>
                         <Button
                             variant="contained" color="primary"
-                        >Get a Quote!</Button>
+                        >{text.GAQ[currentLang]}</Button>
                     </Link>
                     <Link href={props.info}>
                         <Button
                             variant="outlined" color="secondary"
-                        >Learn More</Button>
+                        >{text.LM[currentLang]}</Button>
                     </Link>
                 </Box>
             </Box>
@@ -189,9 +226,12 @@ function ContentItem(props) {
     </>
 }
 export default function () {
+    const router = useRouter()
+    const { locale } = router
+    const currentLang = Lang[locale ?? 'en']
+
     return <>
-        {//   <Hero {...bannerContent} />
-        }<VerticalBanner {...verticalBannerContent} />
+        <VerticalBanner {...verticalBannerContent} />
         <Box
             sx={{
                 display: { xs: "none", md: "flex" }, justifyContent: "space-around",
@@ -201,7 +241,7 @@ export default function () {
             {navContent.map((item, index) => {
                 return <Link href={item.link} key={index}>
                     <Button>
-                        {item.title}
+                        {item.title[currentLang]}
                     </Button>
                 </Link>
             })}
@@ -212,7 +252,7 @@ export default function () {
             {
                 content.map((item, index) => {
                     return <>
-                        <ContentItem odd={index % 2} key={index} {...item} />
+                        <ContentItem currentLang={currentLang} odd={index % 2} key={index} {...item} />
                         {index !== content.length - 1 && <hr />}
                     </>
                 })

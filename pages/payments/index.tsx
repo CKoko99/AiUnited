@@ -26,7 +26,31 @@ import { Box, Button, FormControl, Modal, TextField, Typography } from '@mui/mat
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { StaticImageData } from 'next/image';
+import { useRouter } from 'next/router'
+import { Lang } from '@/components/locale/LocaleSwitcher'
 
+const paymentText = {
+    payment: {
+        en: "Make a Payment",
+        es: "Hacer un pago"
+    },
+    enterPolicyNumber: {
+        en: "Enter your policy number below to make a payment",
+        es: "Ingrese su número de póliza a continuación para realizar un pago"
+    },
+    policyNumber: {
+        en: "Policy Number",
+        es: "Número de póliza"
+    },
+    selectProvider: {
+        en: "Select your insurance provider to make a payment",
+        es: "Seleccione su proveedor de seguros para realizar un pago"
+    },
+    providerNotListed: {
+        en: "Don't See Your Insurance Provider? Click Here to Select Others",
+        es: "¿No ve su proveedor de seguros? Haga clic aquí para seleccionar otros"
+    },
+}
 const providers = [
     {
         title: "American Access Casualty Company",
@@ -75,10 +99,6 @@ const providers = [
         link: "https://my.dairylandinsurance.com/",
         img: dairylandImg,
         keys: ["434", "TX"]
-    },
-    {
-        title: "Drive Safe Auto",
-        keys: ["DTX"],
     },
     {
         title: "Empower / Alinsco Insurance",
@@ -177,7 +197,15 @@ const providers = [
         keys: ["106-9", "077-00", "276-00", "381-501", "381-500",]
     },
 ]
-
+providers.sort((a, b) => {
+    if (a.title < b.title) {
+        return -1
+    }
+    if (a.title > b.title) {
+        return 1
+    }
+    return 0
+})
 const styles = {
     modal: {
         position: "fixed",
@@ -202,7 +230,6 @@ function Providers(props) {
         style={{ flex: "1", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" }}
         target='_blank'
         href={props.link} >
-        <Typography variant="h6">{props.title}</Typography>
         <Box
             sx={{
                 position: "relative", height: "7rem", width: "15rem"
@@ -210,6 +237,7 @@ function Providers(props) {
         >
             <Image fill style={{ objectFit: "contain" }} src={props.img} alt={props.title} />
         </Box>
+        <Typography variant="h6">{props.title}</Typography>
     </Link >
 }
 interface ModalContent {
@@ -224,6 +252,10 @@ export default function () {
     const [modalContent, setModalContent] = useState<ModalContent[] | null>(null)
     const [errorCount, setErrorCount] = useState(0)
     const [showAllProviders, setShowAllProviders] = useState(false)
+    const router = useRouter()
+    const { locale } = router
+    const currentLang = Lang[locale ?? 'en']
+
 
     useEffect(() => {
         //check to see if there is 2 keys from different providers that are the same
@@ -300,12 +332,12 @@ export default function () {
                 display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2rem"
             }}
         >
-            <Typography variant="h2">Make a Payment</Typography>
-            <Typography variant="h5">Enter your policy number below to make a payment</Typography>
+            <Typography variant="h2">{paymentText.payment[currentLang]}</Typography>
+            <Typography variant="h5">{paymentText.enterPolicyNumber[currentLang]}</Typography>
             <FormControl
                 sx={{ display: "flex", flexDirection: "row", }}
             >
-                <TextField label="Policy Number" variant="outlined"
+                <TextField label={paymentText.policyNumber[currentLang]} variant="outlined"
                     value={paymentInput}
                     onChange={(e) => setPaymentInput(e.target.value)}
                     error={error}
@@ -320,13 +352,15 @@ export default function () {
                         onClick={handleKeySearch}
                         sx={{ width: "10rem", minHeight: "3.5rem" }}
 
-                    >Make a Payment</Button>
+                    >
+                        {paymentText.payment[currentLang]}
+                    </Button>
                 </Box>
             </FormControl>
             {(errorCount > 1 && !showAllProviders) && <Button
                 onClick={() => setShowAllProviders(true)}
             >
-                Click Here to Select Your Insurance Provider
+                {paymentText.providerNotListed[currentLang]}
             </Button>}
             {showAllProviders && providersContent}
             {openModal && <Modal
@@ -338,7 +372,7 @@ export default function () {
             >
                 <Box sx={{ ...styles.modal, textAlign: "center" }}>
                     <Typography variant="h5">
-                        Select your insurance provider to make a payment
+                        {paymentText.selectProvider[currentLang]}
                     </Typography>
                     <Box
                         sx={{ display: "flex", gap: "1rem", justifyContent: "center" }}
@@ -376,7 +410,7 @@ export default function () {
                         }
                         }
                     >
-                        Not Your Insurance Provider? Click Here to Select Others
+                        {paymentText.providerNotListed[currentLang]}
                     </Button>
                 </Box>
             </Modal>}
