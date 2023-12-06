@@ -17,7 +17,7 @@ const heroContent = {
     title: { en: "Auto Insurance", es: "Seguro De Auto" },
     subtitle: {
         en: "Enter your zip code to get started with a free auto quote",
-        es: "Ingrese su código postal para comenzar con una cotización de seguro de auto gratuita"
+        es: "Ingrese su código postal para comenzar una cotización de seguro de auto gratuita"
     },
     img: {
         src: BannerImage,
@@ -122,7 +122,7 @@ const contentSection2 = {
 const contentSection3 = {
     title: {
         en: "Tailored Coverage to Meet Your Needs",
-        es: "Cobertura a Medida Para Satisfacer Sus Necesidades"
+        es: "Cobertura Personalizada Para Satisfacer Sus Necesidades"
     },
     body: {
         en: [
@@ -136,7 +136,7 @@ const contentSection3 = {
             `En Ai United, entendemos que cada conductor es único. Es por eso que ofrecemos una variedad de coberturas de seguro de auto para satisfacer sus necesidades.`,
             `• Seguro de Responsabilidad Civil`,
             `• Seguro de Colisión`,
-            `• Seguro Integral`,
+            `• Seguro a Todo Riesgo`,
             `• Y Más`
         ],
     },

@@ -39,7 +39,7 @@ const bannerContent = {
     },
     subtitle: {
         en: "Fast, Easy, and Affordable Coverage for All Your Needs!",
-        es: "¡Cobertura rápida, fácil y asequible para todas sus necesidades!"
+        es: "¡Cobertura rápida, fácil y accesible para todas sus necesidades!"
     },
     image: {
         src: BannerImage,
@@ -73,7 +73,7 @@ const bannerContent = {
         {
             text: {
                 en: "Renters Insurance",
-                es: "Seguro de motocicleta"
+                es: "Seguro de inquilinos"
             },
             img: {
                 src: rentersPlainImg,
@@ -101,7 +101,7 @@ const bannerContent = {
 const picturesWithListContent = {
     title: {
         en: `Your 3 Step Insurance Solution`,
-        es: `Su solución de seguro de 3 pasos`
+        es: `Su solución de seguro en 3 pasos`
     },
 
     img: {
@@ -137,7 +137,7 @@ const picturesWithListContent = {
             },
             body: {
                 en: "When you're satisfied with your selection, you can proceed to secure the coverage right then and there.",
-                es: "Cuando esté satisfecho con su selección, puede proceder a asegurar la cobertura en ese momento."
+                es: "Cuando esté satisfecho con su selección, puede proceder a obtener la cobertura en ese momento."
             }
         },
     ]
@@ -261,7 +261,7 @@ const onlineQuotesContent = {
             },
             title: {
                 en: "Surety Bonds",
-                es: "Fianzas"
+                es: "Fianzas de seguridad"
             },
             link: PATHCONSTANTS.QUOTES.SURETY.INDEX
         },
@@ -287,7 +287,7 @@ const callQuoteContent = {
     cta2: {
         text: {
             en: "Get in Touch!",
-            es: "Ponerse en contacto!"
+            es: "Ponerse en contacto"
         },
         link: PATHCONSTANTS.ABOUT.CONTACT
     }
@@ -328,7 +328,7 @@ const aboutContent = {
     },
     subtitle: {
         en: "Insights, Information, and Beyond",
-        es: "Información y más"
+        es: "Información"
     },
     content: [
         {

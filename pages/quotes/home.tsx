@@ -13,12 +13,12 @@ const SimpleForm = dynamic(() => import('../../components/Forms/Simple/Simple'),
 const bannerContent = {
     title: {
         en: "Get Home Insurance Today",
-        es: "Obtenga Seguro De Hogar Hoy"
+        es: "Obtenga Seguro De Casa Hoy"
     },
     subtitle: {
         en: `Home insurance is a crucial safeguard for your most significant investment - your home.
          It provdes financial protection against unforeseene events and disasters.`,
-        es: `El seguro de hogar es una protección crucial para su inversión más importante: su hogar.
+        es: `El seguro de casa es una protección crucial para su inversión más importante: su casa.
             Proporciona protección financiera contra eventos imprevistos y desastres.`
     },
     img: {
@@ -38,7 +38,7 @@ const contentSection2 = {
     largeHorizontalCard: {
         title: {
             en: "Why Home Insurance is Your Shield Against the Unexpected",
-            es: "Por qué el seguro de hogar es su escudo contra lo inesperado"
+            es: "El Seguro de Casa es su Escudo Contra lo Inesperado"
         },
         body: {
             en: [`Home insurance covers your dwelling and personal belongings in case of damage or theft. This means your home 
@@ -46,9 +46,9 @@ const contentSection2 = {
                 `Having home insurance offers peace of mind. You can rest easy knowing that your home and belongings are secure, and you won't
         face a financial crisis if disaster strikes.`
             ],
-            es: [`El seguro de hogar cubre su vivienda y sus pertenencias personales en caso de daños o robos. Esto significa que su hogar
-            y las cosas que valoras están protegidas.`,
-                `Tener un seguro de hogar ofrece tranquilidad. Puede descansar tranquilo sabiendo que su hogar y sus pertenencias están seguros, y usted no
+            es: [`El seguro de casa cubre su vivienda y sus pertenencias personales en caso de daños o robos. Esto significa que su casa
+            y sus cosas de valor están protegidas.`,
+                `Tener un seguro de casa ofrece tranquilidad. Puede descansar tranquilo sabiendo que su casa y sus pertenencias están seguros, y usted no
         enfrentar una crisis financiera si ocurre un desastre.`
             ]
         },
@@ -84,7 +84,7 @@ const contentSection2 = {
     smallCard2: {
         body: {
             en: ["Get a free quote today from the comfort of your home."],
-            es: ["Obtenga una cotización gratuita hoy desde la comodidad de su hogar."]
+            es: ["Obtenga una cotización gratuita hoy desde la comodidad de su casa."]
         },
         CTA: {
             text: {
@@ -99,14 +99,23 @@ const contentSection2 = {
 const contentSection3 = {
     title: {
         en: "Exploring Home Insurance Coverage Options",
-        es: "Explorando las opciones de cobertura de seguro de hogar"
+        es: "Explorando las opciones de cobertura de seguro de casa"
     },
     body: {
-        en: [`At Ai United, we understand that every driver is unique. That's why we offer a variety of auto insurance coverages to match your needs.`,
+        en: [`Your home represents your greatest financial asset, and at Ai United Insurance we are committed to assisting you in
+        insuring it.
+        `,
+            ``,
             `• Liability Insurance`,
-            `• Collision Coverage`, `• Comprehensive Coverage`, `• And More`],
-        es: [`En Ai United, entendemos que cada conductor es único. Es por eso que ofrecemos una variedad de coberturas de seguro de automóvil para satisfacer sus necesidades.`,
-            `• Seguro de responsabilidad`, `• Cobertura de colisión`, `• Cobertura integral`, `• Y más`
+            `• Dwelling Coverage`, `• Other Structures Coverage`, `• Personal Property Coverage`,
+            `* Loss of Use Coverage`,],
+
+        es: [`Su hogar representasu principal recurso financiero, y en Ai United Insurance estamos comprometidos en 
+        asistirle para asegurarlo.`,
+            ``,
+            `• Cobertura de vivienda`, `• Cobertura de otras estructuras`, `• Cobertura de propiedad personal`,
+            `* Cobertura de pérdida de uso`,
+            `• Seguro de responsabilidad`,
         ]
     },
     img: {
@@ -118,9 +127,9 @@ const formContent = {
     id: "Home-quote",
     conversion: "Home",
     title: {
-        en: "Home Insurance Quote", es: "Cotización de seguro de hogar"
+        en: "Home Insurance Quote", es: "Cotización de seguro de casa"
     },
-    subtitle: { en: "Start a free home insurance quote to see the savings", es: `Comience una cotización gratuita de seguro de hogar para ver los ahorros` },
+    subtitle: { en: "Start a free home insurance quote to see the savings", es: `Comience una cotización gratuita de seguro de casa para ver los ahorros` },
     questions: [
         {
             subGroup: { en: "Personal Information", es: "Información personal" },

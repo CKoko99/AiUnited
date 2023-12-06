@@ -76,7 +76,7 @@ const section3content = {
       link: PATHCONSTANTS.QUOTES.SR22.INDEX
     },
     {
-      text: { en: "Surety Bonds", es: "Fianzas de garantía" },
+      text: { en: "Surety Bonds", es: "Seguro de Fianza" },
       link: PATHCONSTANTS.QUOTES.SURETY.INDEX
     },
   ]
