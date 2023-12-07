@@ -13,7 +13,7 @@ const SimpleForm = dynamic(() => import('../../components/Forms/Simple/Simple'),
 const bannerContent = {
     title: {
         en: "Get a Surety Bond Today",
-        es: "Obtenga un seguro de fianza hoy"
+        es: "Obtenga un Seguro de Fianza Hoy"
     },
     subtitle: {
         en: `Ai United is dedicated to simplifying the world of Surety Bonds, ensuring you have the coverage you 
@@ -38,7 +38,7 @@ const contentSection1 = {
     largeHorizontalCard: {
         title: {
             en: "Why Surety Bond Insurance Matters",
-            es: "Por qué importa el seguro de fianza"
+            es: "¿Por Qué es Importante Tener Seguro de Fianza?"
         },
         body: {
             en: [`Surety Bond insurance is an essential safeguard that provides financial security and peace of mind. It 
@@ -47,10 +47,10 @@ const contentSection1 = {
                 `Whether you're a construction professional, a business owner, or an individual seeking the protection and assurance 
             of Surety Bond insurance, we're here to be your unwavering partner.`
             ],
-            es: [`El seguro de fianza es una salvaguarda esencial que brinda seguridad financiera y tranquilidad. Es
+            es: [`El seguro de fianza es una salvaguarda esencial que brinda seguridad financiera y tranquilidad. Éste seguro
             actúa como un acuerdo de tres vías entre usted (el principal), la entidad que requiere el bono (el obligado) y
-            la compañía de seguros de caución.`,
-                `Ya sea que sea un profesional de la construcción, propietario de un negocio o una persona que busca la protección y seguridad
+            la compañía de fianzas.`,
+                `Ya sea un profesional de la construcción, propietario de un negocio o una persona que busca la protección y seguridad
             del seguro de fianza, estamos aquí para ser su socio inquebrantable.`
             ],
         },
@@ -88,7 +88,7 @@ const contentSection1 = {
 const contentSection2 = {
     title: {
         en: "Exploring Surety Bonds Coverage Options",
-        es: "Explorando las opciones de cobertura de bonos de garantía"
+        es: "Explorando las Opciones de Cobertura de Seguro de Fianza"
     },
     body: {
         en: [
@@ -101,10 +101,10 @@ const contentSection2 = {
         ],
         es: [
             `Los bonos de garantía vienen en varias formas para adaptarse a diferentes necesidades:`,
-            `• Bonos de garantía de contrato`,
-            `• Bonos de garantía comercial`,
-            `• Bonos de garantía de fidelidad`,
-            `• Bonos de garantía judicial`,
+            `• Seguro de Fianza de Contrato`,
+            `• Seguro de Fianza Comercial`,
+            `• Seguro de Fianza de Fidelidad`,
+            `• Seguro de Fianza Judicial`,
             `• Y Más`
         ]
     },
@@ -114,7 +114,7 @@ const formContent = {
     id: "Surety-quote",
     conversion: "Surety",
     title: {
-        en: "Surety Bond Quote", es: "Cotización de seguro de fianza"
+        en: "Surety Bond Quote", es: "Cotización de Seguro de Fianza"
     },
     subtitle: { en: "Start a free surety bond quote to see the savings", es: `Comience una cotización gratuita de seguro de fianza para ver los ahorros` },
     questions: [

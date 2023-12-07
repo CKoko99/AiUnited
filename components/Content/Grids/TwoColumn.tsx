@@ -56,7 +56,9 @@ export default function (props: TwoColumnProps) {
             <Typography textAlign={"center"} fontFamily={CustomFonts.Gustavo} variant="h4">{props.title[currentLang]}</Typography>
             <Box>
                 {props.body[currentLang].map((paragraph, index) => {
-                    return <Typography key={index} variant="h5"> {paragraph}</Typography>
+                    return <Typography key={index} variant="h5"
+                        sx={{ lineHeight: paragraph.length < 1 ? ".5rem" : "" }}
+                    > {paragraph} <br /> </Typography>
                 })}
             </Box>
         </Box>

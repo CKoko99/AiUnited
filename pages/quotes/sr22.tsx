@@ -17,10 +17,8 @@ const bannerContent = {
         es: "Obtenga Seguro SR-22 Hoy"
     },
     subtitle: {
-        en: `If you've found yourself in a situation where you need SR-22 insurance, you're not alone. 
-        It's essential to understand why you might need SR-22 insurance and how it can help you get back on the road.`,
-        es: `Si se encuentra en una situación en la que necesita un seguro SR-22, no está solo.
-        Es esencial comprender por qué puede necesitar un seguro SR-22 y cómo puede ayudarlo a volver a la carretera.`
+        en: `It's essential to understand why you might need SR-22 insurance and how it can help you get back on the road.`,
+        es: `Es esencial comprender por qué puede necesitar un seguro SR-22 y cómo puede ayudarlo a volver a la carretera.`
     },
     CTA: {
         color: "secondary",
@@ -40,20 +38,18 @@ const bannerContent = {
 const contentSection2 = {
     title: {
         en: "Why You May Need SR-22 Insurance",
-        es: `Por qué puede necesitar un seguro SR-22`
+        es: `¿Por Qué Puede Necesitar un Seguro SR-22?`
     },
     body: {
         en: [`• DUI/DWI Convictions: If you've been convicted of a DUI or DWI, you'll likely need SR-22 insurance to 
             reinstate your driver's license`,
-            `• Multiple Traffic Violations: If you've been convicted of a DUI or DWI, you'll likely need SR-22 insurance 
-            to reinstate your driver's license`,
+            `• Multiple Traffic Violations: If you've received multiple traffic violations in a short period, you might need SR-22 insurance`,
             `• Uninsured Accidents: If you've been involved in an accident while uninsured, you might require SR-22 insurance to demonstrate
              your commitment to financial responsibility and compliance with the law`
         ],
         es: [`• Condenas por DUI / DWI: si ha sido condenado por un DUI o DWI, es probable que necesite un seguro SR-22 para
             reactivar su licencia de conducir`,
-            `• Múltiples violaciones de tráfico: si ha sido condenado por un DUI o DWI, es probable que necesite un seguro SR-22
-            para reactivar su licencia de conducir`,
+            `• Múltiples violaciones de tráfico: si ha recibido múltiples violaciones de tráfico en un corto período, es posible que necesite un seguro SR-22`,
             `• Accidentes sin seguro: si ha estado involucrado en un accidente sin seguro, es posible que necesite un seguro SR-22 para demostrar
             su compromiso con la responsabilidad financiera y el cumplimiento de la ley`
         ],
@@ -66,7 +62,7 @@ const contentSection3 = {
     largeHorizontalCard: {
         title: {
             en: "Different Types of SR-22 Insurance",
-            es: `Diferentes tipos de seguro SR-22`
+            es: `Diferentes Tipos de Seguro SR-22`
         },
         body: {
             en: [`When it comes to SR-22 insurance, you have some flexibility in choosing coverage options
@@ -78,10 +74,10 @@ const contentSection3 = {
             ],
             es: [`Cuando se trata de seguro SR-22, tiene cierta flexibilidad para elegir opciones de cobertura
             que se adapte a su situación. Estos son algunos de los tipos más comunes de seguro SR-22:`,
-                `• Cobertura de responsabilidad`,
-                `• SR-22 sin propietario`,
-                `• Cobertura completa`,
-                `• SR-22 de alto riesgo`
+                `• Cobertura de Responsabilidad`,
+                `• SR-22 Sin Propietario`,
+                `• Cobertura Completa`,
+                `• SR-22 de Alto Riesgo`
             ]
         },
     },
@@ -119,7 +115,7 @@ const formContent = {
     id: "SR22-quote",
     conversion: "SR22",
     title: {
-        en: "SR-22 Insurance Quote", es: "Cotización de seguro de SR-22"
+        en: "SR-22 Insurance Quote", es: "Cotización de Seguro de SR-22"
     },
     subtitle: { en: "Start a free SR-22 insurance quote to see the savings", es: `Comience una cotización gratuita de seguro SR-22 para ver los ahorros` },
     questions: [
@@ -225,7 +221,7 @@ const formContent = {
             fullWidth: true,
         },
         {
-            title: { en: "Any accidents or violations in the past 3 years?", es: "¿Algun accidente o violacion en los ultimos 3 años?" },
+            title: { en: "Any accidents or violations in the past 3 years?", es: "¿Ha tenido algún accidente o violación en los últimos 3 años?" },
             type: "radio",
             required: true,
             fullWidth: true,

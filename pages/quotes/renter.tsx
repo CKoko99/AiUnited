@@ -38,13 +38,13 @@ const contentSection2 = {
     largeHorizontalCard: {
         title: {
             en: "Why you need renters insurance",
-            es: `Por qué necesita un seguro de inquilinos`
+            es: `¿Por Qué Necesita un Seguro de Inquilinos?`
         },
         body: {
             en: [`Many landlords through America require tenants to purchase rental insurance`,
                 `The good news is that we can help you find an affordable policy at the comfort of your home`],
             es: [`Muchos propietarios en Estados Unidos requieren que los inquilinos compren un seguro de alquiler`,
-                `La buena noticia es que podemos ayudarlo a encontrar una póliza asequible desde la comodidad de su hogar`]
+                `La buena noticia es que podemos ayudarlo a encontrar una póliza accesible desde la comodidad de su hogar`]
         },
     },
     largeVerticalCard: {
@@ -80,16 +80,18 @@ const contentSection2 = {
 const contentSection3 = {
     title: {
         en: "What does renters insurance cover?",
-        es: "¿Qué cubre el seguro de inquilinos?"
+        es: "¿Qué Cubre el Seguro de Inquilinos?"
     },
     body: {
         en: [
             `Renters insurance is an insurance policy that can cover theft, water backup damages, certain natural disasters, bodily injuries and more in a rented property.`,
+            ``,
             `If you rent an apartment, home or even a dorm, renters insurance is recommended for protecting your space and belongings in the event of a covered accident.`,
         ],
 
         es: [
-            `El seguro de inquilinos es una póliza de seguro que puede cubrir el robo, los daños por respaldo de agua, ciertos desastres naturales, lesiones corporales y más en una propiedad alquilada.`,
+            `El seguro de inquilinos es una póliza de seguro que puede cubrir en caso de robo, daños por acumulación de agua, ciertos desastres naturales, lesiones corporales y más en una propiedad alquilada.`,
+            ``,
             `Si alquila un apartamento, una casa o incluso un dormitorio, se recomienda un seguro de inquilinos para proteger su espacio y pertenencias en caso de un accidente cubierto.`,
         ],
     },
@@ -99,7 +101,7 @@ const formContent = {
     id: "Renter-quote",
     conversion: "Renters",
     title: {
-        en: "Renters Insurance Quote", es: "Cotización de seguro de inquilinos"
+        en: "Renters Insurance Quote", es: "Cotización de Seguro de Inquilinos"
     },
     subtitle: { en: "Start a free renters insurance quote to see the savings", es: `Comience una cotización gratuita de seguro de inquilinos para ver los ahorros` },
     questions: [
@@ -185,7 +187,10 @@ const formContent = {
 
         },
         {
-            title: { en: "How much personal property", es: "¿Cuánta propiedad personal?" },
+            title: {
+                en: "What is the value of your personal property",
+                es: "¿Cuál es el valor de su propiedad personal?"
+            },
             outsideLabel: true,
             type: "input",
             required: true,

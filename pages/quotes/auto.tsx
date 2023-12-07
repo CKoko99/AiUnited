@@ -14,10 +14,10 @@ import HeadComponent from '../../components/Head';
 import VerticleAutoBanner from '@/components/Content/Hero/VerticleAutoBanner';
 import BannerImage from '@/public/assets/images/quotes/auto/Banner.png';
 const heroContent = {
-    title: { en: "Auto Insurance", es: "Seguro De Auto" },
+    title: { en: "Auto Insurance", es: "Seguro de Auto" },
     subtitle: {
         en: "Enter your zip code to get started with a free auto quote",
-        es: "Ingrese su código postal para comenzar con una cotización de seguro de auto gratuita"
+        es: "Ingrese su código postal para comenzar una cotización de seguro de auto gratuita"
     },
     img: {
         src: BannerImage,
@@ -71,7 +71,7 @@ const slideData = {
         afterNumber: "minutes",
         body: {
             en: "Quoting Process",
-            es: "Proceso De Cotización"
+            es: "Proceso de Cotización"
         }
     },]
 }
@@ -79,7 +79,7 @@ const contentSection2 = {
     largeHorizontalCard: {
         title: {
             en: "Protecting What Matters Most",
-            es: "Protegiendo Lo Que Más Importa"
+            es: "Protegiendo lo Que Más Importa"
         },
         body: {
             en: [`In today's fast paced world, auto insurance is a crucial safeguard for you, and your financial well being`,
@@ -122,7 +122,7 @@ const contentSection2 = {
 const contentSection3 = {
     title: {
         en: "Tailored Coverage to Meet Your Needs",
-        es: "Cobertura a Medida Para Satisfacer Sus Necesidades"
+        es: "Cobertura Personalizada Para Satisfacer Sus Necesidades"
     },
     body: {
         en: [
@@ -136,7 +136,7 @@ const contentSection3 = {
             `En Ai United, entendemos que cada conductor es único. Es por eso que ofrecemos una variedad de coberturas de seguro de auto para satisfacer sus necesidades.`,
             `• Seguro de Responsabilidad Civil`,
             `• Seguro de Colisión`,
-            `• Seguro Integral`,
+            `• Seguro a Todo Riesgo`,
             `• Y Más`
         ],
     },

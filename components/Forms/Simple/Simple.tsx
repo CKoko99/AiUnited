@@ -222,7 +222,7 @@ export default function (props) {
                         </Box>
                         <Box textAlign={"center"} sx={{ width: "80%", margin: "auto" }} >
                             <Typography variant="subtitle1">
-                                {text.secured[currentLang]}
+                                {text.secured[currentLang]}{" "}
                                 {text.consent[currentLang]}
                             </Typography>
                         </Box>

@@ -59,7 +59,7 @@ const navItems = [
       {
         title: {
           en: "Home Insurance",
-          es: "Seguro de Hogar"
+          es: "Seguro de Casa"
         },
         link: PATHCONSTANTS.QUOTES.HOME.INDEX
       },
@@ -80,7 +80,7 @@ const navItems = [
       {
         title: {
           en: "Surety Bonds",
-          es: "Fianzas de Fidelidad"
+          es: "Seguro de Fianza"
         },
         link: PATHCONSTANTS.QUOTES.SURETY.INDEX
       },
@@ -125,7 +125,7 @@ const navItems = [
       {
         title: {
           en: "Home Insurance",
-          es: "Seguro de Hogar"
+          es: "Seguro de Casa"
         },
         link: PATHCONSTANTS.QUOTES.HOME.INDEX
       },
@@ -146,7 +146,7 @@ const navItems = [
       {
         title: {
           en: "Surety Bonds",
-          es: "Fianzas de Fidelidad"
+          es: "Seguro de Fianza"
         },
         link: PATHCONSTANTS.QUOTES.SURETY.INDEX
       },
@@ -235,14 +235,14 @@ const navItems = [
       {
         title: {
           en: "Careers",
-          es: "Carreras"
+          es: "Trabaja con Nosotros"
         },
         link: PATHCONSTANTS.ABOUT.CAREERS.INDEX
       },
       {
         title: {
           en: "Reviews",
-          es: "Opiniones"
+          es: "Reseñas"
         },
         link: PATHCONSTANTS.ABOUT.REVIEWS
       },

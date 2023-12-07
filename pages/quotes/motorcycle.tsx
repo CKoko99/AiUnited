@@ -16,8 +16,8 @@ const bannerContent = {
         es: "Obtenga Seguro De Motocicleta Hoy"
     },
     subtitle: {
-        en: `Protect yourself and your valuables by getting low cost motorcycle insurance that will cover the content of an apartment or home that you'll be renting.`,
-        es: `Protéjase a sí mismo y a sus objetos de valor obteniendo un seguro de motocicleta de bajo costo que cubrirá el contenido de un apartamento o casa que alquilará.`
+        en: `Protect yourself and your valuables by getting low cost motorcycle insurance that will cover you in the event of an accident.`,
+        es: `Protéjase a sí mismo y a sus objetos de valor obteniendo un seguro de motocicleta de bajo costo que lo cubrirá en caso de un accidente.`
     },
     img: {
         src: MotoImg1,
@@ -26,7 +26,7 @@ const bannerContent = {
     CTA: {
         text: {
             en: "Get a Quote",
-            es: "Obtenga una cotización"
+            es: "Obtenga una Cotización"
         },
         link: `${PATHCONSTANTS.QUOTES.MOTORCYCLE.FORM}`,
     },
@@ -36,7 +36,7 @@ const contentSection2 = {
     largeHorizontalCard: {
         title: {
             en: "Protecting Your Passion and Your Pocket",
-            es: "Protegiendo su pasión y su bolsillo"
+            es: "Protegiendo su Pasión y Su Bolsillo"
         },
         body: {
             en: [`Whether you're a seasoned rider or a beginner, having the right insurance coverage is not just a legal requirement in many places,
@@ -48,7 +48,7 @@ const contentSection2 = {
     largeVerticalCard: {
         body: {
             en: ['Join the thousands of people who have saved money by getting a free motorcycle insurance quote from us.'],
-            es: ['Únase a los miles de personas que han ahorrado dinero obteniendo una cotización gratuita de seguro de motocicleta de nosotros.']
+            es: ['Únase a las miles de personas que han ahorrado dinero obteniendo una cotización gratuita de seguro de motocicleta con nosotros.']
         },
         img: {
             src: MotoImg2,
@@ -87,14 +87,16 @@ const contentSection2 = {
 const contentSection3 = {
     title: {
         en: "Covering Every Curve: Motorcycle Insurance Options",
+        es: "Cubriendo Cada Curva: Opciones de Seguro de Motocicleta"
     },
     body: {
-        en: [`At Ai United, we understand that every driver is unique. That's why we offer a variety of auto insurance coverages to match your needs.`,
+        en: [`At Ai United, we understand that every driver is unique. That's why we offer a variety of motorcycle insurance coverages to match your needs.`,
             `• Liability Insurance`,
             `• Collision Coverage`, `• Comprehensive Coverage`, `• And More`
         ],
-        es: [`En Ai United, entendemos que cada conductor es único. Es por eso que ofrecemos una variedad de coberturas de seguro de automóvil para satisfacer sus necesidades.`,
-            `• Seguro de responsabilidad`, `• Cobertura de colisión`, `• Cobertura integral`, `• Y más`
+        es: [`En Ai United, entendemos que cada conductor es único. Es por eso que ofrecemos una variedad de coberturas de seguro de motocicleta para satisfacer sus necesidades.`,
+            `• Seguro de Responsabilidad`, `• Cobertura de Colisión`, `• Seguro a Todo Riesgo`,
+            , `• Y Más`
         ]
     },
     img: {
@@ -105,7 +107,7 @@ const contentSection3 = {
 const formContent = {
     id: "Motorcycle-quote",
     conversion: "Motorcycle",
-    title: { en: "Motorcycle Insurance Quote", es: "Cotización de seguro de motocicleta" },
+    title: { en: "Motorcycle Insurance Quote", es: "Cotización de Seguro de Motocicleta" },
     subtitle: { en: "Start a free motorcycle insurance quote to see the savings", es: `Comience una cotización gratuita de seguro de motocicleta para ver los ahorros` },
     questions: [
         {
@@ -247,7 +249,7 @@ const formContent = {
         {
             title: {
                 en: "Any accidents or violations in the past 3 years?",
-                es: "¿Algun accidente o violación en los últimos 3 años?",
+                es: "¿Ha tenido algún  accidente o violación en los últimos 3 años?",
             },
             type: "radio",
             fullWidth: true,

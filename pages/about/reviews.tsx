@@ -9,7 +9,7 @@ import BannerImg from "../../public/assets/images/about/reviews/Banner.png"
 const heroContent = {
     title: {
         en: "See What Our Customers Are Saying",
-        es: "Vea lo que dicen nuestros clientes",
+        es: "Vea Lo Que Dicen Nuestros Clientes",
     },
     subtitle: {
         en: `We take pride in the quality of our products and services. 
@@ -35,7 +35,7 @@ const reviews = [
     {
         title: {
             en: "Impressive Professionalism",
-            es: "Profesionalismo impresionante"
+            es: "Profesionalismo Impresionante"
         },
         body: {
             en: `I was very impressed with the professionalism and customer service this place provides. 
@@ -49,7 +49,7 @@ const reviews = [
     {
         title: {
             en: "Excellent Service",
-            es: "Excelente servicio"
+            es: "Excelente Servicio"
         },
         body: {
             en: `I definitely appreciated my agents service and her polite and professional mannerism and 
@@ -65,7 +65,7 @@ const reviews = [
     {
         title: {
             en: "Committed Staff",
-            es: "Personal comprometido"
+            es: "Personal Comprometido"
         },
         body: {
             en: `I have been a loyal customer of AI United for several years, and I cannot 
@@ -81,7 +81,7 @@ const reviews = [
     {
         title: {
             en: "Great Experience",
-            es: "Gran experiencia"
+            es: "Gran Experiencia"
         },
         body: {
             en: `I’ve dealt with lots of insurance agencies over the 35 years I’ve been driving, 
@@ -101,7 +101,7 @@ const reviews = [
     {
         title: {
             en: "Exceeded Expectations",
-            es: "Superó las expectativas"
+            es: "Superó Las Expectativas"
         },
         body: {
             en: `I am thrilled to share my amazing experience with this insurance company from the very beginning,
@@ -118,7 +118,7 @@ const reviews = [
     {
         title: {
             en: "Above and Beyond",
-            es: "Por encima y más allá"
+            es: "Por Encima y Más Allá"
         },
         body: {
             en: `I got insurance the other day and I must say their team has excellent customer service. 

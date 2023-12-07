@@ -9,6 +9,8 @@ import ContactAndShop from '../../components/Content/FlexDigrams/Combo/ContactAn
 import TwoColumn from '../../components/Content/Grids/TwoColumn';
 
 import HeadComponent from '../../components/Head';
+import { useRouter } from 'next/router';
+import { Lang } from '@/components/locale/LocaleSwitcher';
 
 const bannerContent = {
     title: {
@@ -17,7 +19,7 @@ const bannerContent = {
     },
     subtitle: {
         en: `We are your dedicated partner in ensuring that your trip to Mexico is not only memorable 
-        but also worry-free. Our mission is yo provide you with the peace of mind you need to explore 
+        but also worry-free. Our mission is to provide you with the peace of mind you need to explore 
         Mexico's wonders without hesitation.`,
         es: `Somos su socio dedicado para garantizar que su viaje a México no solo sea memorable,
         sino también sin preocupaciones. Nuestra misión es brindarle la tranquilidad que necesita para explorar
@@ -40,7 +42,7 @@ const contentSection1 = {
     largeHorizontalCard: {
         title: {
             en: "Mexico Insurance is Your Shield Against the Unexpected",
-            es: "El Seguro De México Es Su Escudo Contra Lo Inesperado"
+            es: "El Seguro de México es Su Escudo Contra Lo Inesperado"
         },
         body: {
             en: [`Traveling to Mexico can be an exciting adventure, but it's essential to be prepared for the unexpected.`,
@@ -49,14 +51,14 @@ const contentSection1 = {
             ],
             es: [`Viajar a México puede ser una aventura emocionante, pero es esencial estar preparado para lo inesperado.`,
                 `Cuando viaja a México con un vehículo con licencia estadounidense o canadiense, necesita un seguro de automóvil mexicano antes
-                cruzando la frontera`
+                de cruzar la frontera`
             ],
         },
     },
     largeVerticalCard: {
         body: {
-            en: [`Whether you drive a brand-new car or an older model, auto insurance protects your investment`],
-            es: [`Ya sea que conduzca un automóvil nuevo o un modelo más antiguo, el seguro de automóvil protege su inversión`]
+            en: [`Ai United helps you find the best coverage during your travels`],
+            es: [`Ai United lo ayuda a encontrar la mejor cobertura durante sus viajes`]
         },
         img: { src: MexicoImg2, alt: "car" }
     },
@@ -86,7 +88,7 @@ const contentSection1 = {
 const contentSection2 = {
     title: {
         en: "Exploring Mexico Insurance Coverage Options",
-        es: "Explorando Las Opciones De Cobertura De Seguro De México"
+        es: "Explorando las Opciones de Cobertura de Seguro De México"
     },
     body: {
         en: [
@@ -100,13 +102,27 @@ const contentSection2 = {
             `En Ai United, entendemos que cada conductor es único. Es por eso que ofrecemos una variedad de coberturas de seguro de auto para satisfacer sus necesidades.`,
             `• Seguro de Responsabilidad Civil`,
             `• Seguro de Colisión`,
-            `• Seguro Integral`,
+            `• Seguro a Todo Riesgo`,
             `• Y Más`
         ],
     },
     img: { src: MexicoImg3, alt: "car" },
 }
+
+const quoteText = {
+    title: {
+        en: "Mexico Insurance Quote",
+        es: "Cotización de Seguro de México"
+    },
+    subtitle: {
+        en: "Start a free Mexico insurance quote to see the savings",
+        es: "Comience una cotización gratuita de seguro de México para ver los ahorros"
+    }
+}
 export default function () {
+    const router = useRouter()
+    const { locale } = router
+    const currentLang = Lang[locale ?? 'en']
     return <>
         <HeadComponent title={'Mexico Insurance | Get a Free Mexican Insurance Quote'}
             metaData={'Get a Free Mexico Tourist Insurance Quote with Ai United Insurnace Today'} />
@@ -127,8 +143,8 @@ export default function () {
                     color: "white"
                 }}
             >
-                <Typography variant="h2">Mexico Insurance Quote</Typography>
-                <Typography variant="h5">Start a free renters insurance quote to see the savings</Typography>
+                <Typography variant="h2"> {quoteText.title[currentLang]} </Typography>
+                <Typography variant="h5">{quoteText.subtitle[currentLang]}</Typography>
             </Box>
             <Box
                 sx={{ width: "90%", margin: "auto", padding: "2rem" }}

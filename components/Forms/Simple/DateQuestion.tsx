@@ -8,7 +8,10 @@ import dayjs, { Dayjs } from 'dayjs';
 import validationText from './validationText'
 //const DateField = lazy(() => import('@mui/x-date-pickers').then(({ DateField }) => ({ default: DateField })));
 //const LocalizationProvider = lazy(() => import('@mui/x-date-pickers').then(({ LocalizationProvider }) => ({ default: LocalizationProvider })));
-
+const dateLabel = {
+    en: "Date",
+    es: "Fecha"
+}
 export default function DateQuestion(props) {
     const [value, setValue] = useState<Dayjs | null>(null);
     const [error, setError] = useState("");
@@ -96,7 +99,7 @@ export default function DateQuestion(props) {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DateField
                         sx={{ width: "100%" }}
-                        label={"Date"}
+                        label={dateLabel[props.lang]}
                         value={value}
                         helperText={error}
                         onChange={(newValue: Dayjs | null) => {

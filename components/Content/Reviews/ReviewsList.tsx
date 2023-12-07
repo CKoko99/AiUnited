@@ -10,15 +10,15 @@ import StarRateIcon from '@mui/icons-material/StarRate';
 const text = {
     title: {
         en: "Read Our Reviews",
-        es: "Lea nuestras reseñas"
+        es: "Lea Nuestras Reseñas"
     },
     readFull: {
         en: "Read Full Review",
-        es: "Leer reseña completa"
+        es: "Leer Reseña Completa"
     },
     showMore: {
         en: "Show More",
-        es: "Mostrar más"
+        es: "Mostrar Más"
     },
 }
 interface ReviewsListProps {

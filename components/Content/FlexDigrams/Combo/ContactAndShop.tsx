@@ -16,18 +16,18 @@ const textContent = {
     },
     subtitle: {
         en: "Ai United has helped over 200,000 Texans insure their loved possessions since 2007",
-        es: "Ai United ha ayudado a más de 200,000 tejanos a asegurar sus posesiones queridas desde 2007"
+        es: "Ai United ha ayudado a más de 200,000 tejanos a asegurar sus más preciadas posesiones"
     },
     shopOnline: {
         title: {
             en: "Shop Online",
-            es: "Comprar en linea"
+            es: "Comprar en Linea"
         },
         body: {
             en: `Convenience at your fingertips. Browse, select, and purchase from the comfort of your home with our
              seamless online shopping experience.`,
-            es: `Conveniencia al alcance de su mano. Explore, seleccione y compre desde la comodidad de su hogar con nuestra
-                experiencia de compra en línea perfecta.`,
+            es: `Conveniencia al alcance de su mano. Explore, seleccione y compre desde la comodidad de su hogar con nuestro
+            mejor servicio de compra en línea.`,
         },
         img: {
             src: ShopOnlineImg,
@@ -36,7 +36,7 @@ const textContent = {
         CtaButton: {
             text: {
                 en: "Get a Quote",
-                es: "Obtener una cotización"
+                es: "Obtener una Cotización"
             },
             color: "primary",
             variant: "contained",
@@ -45,13 +45,13 @@ const textContent = {
     Contact: {
         title: {
             en: "Contact a Representative",
-            es: "Contacte a un representante"
+            es: "Contacte a un Representante"
         },
         body: {
             en: `Are you prepared to receive a quote, or do you have inquiries regarding your insurance options? 
             Our team of seasoned experts is poised to guide you in discovering the ideal coverage for your needs.`,
             es: `¿Está preparado para recibir una cotización o tiene consultas sobre sus opciones de seguro?
-            Nuestro equipo de expertos experimentados está preparado para guiarlo en el descubrimiento de la cobertura ideal para sus necesidades.`,
+            Nuestro equipo de expertos está preparado para guiarlo en el descubrimiento de la cobertura ideal para sus necesidades.`,
         },
         img: {
             src: ContactImg,
@@ -69,7 +69,7 @@ const textContent = {
         {
             text: {
                 en: "Find a Store!",
-                es: "Encuentra una tienda!"
+                es: "Encuentra una Tienda"
             },
             color: "secondary",
             variant: "outlined",

@@ -39,7 +39,7 @@ const bannerContent = {
     },
     subtitle: {
         en: "Fast, Easy, and Affordable Coverage for All Your Needs!",
-        es: "¡Cobertura rápida, fácil y asequible para todas sus necesidades!"
+        es: "¡Cobertura rápida, fácil y accesible para todas sus necesidades!"
     },
     image: {
         src: BannerImage,
@@ -49,7 +49,7 @@ const bannerContent = {
         {
             text: {
                 en: "Auto Insurance",
-                es: "Seguro de auto"
+                es: "Seguro de Auto"
             },
             img: {
                 src: autoPlainImg,
@@ -61,7 +61,7 @@ const bannerContent = {
         {
             text: {
                 en: "Home Insurance",
-                es: "Seguro de casa"
+                es: "Seguro de Casa"
             },
             img: {
                 src: homePlainImg,
@@ -73,7 +73,7 @@ const bannerContent = {
         {
             text: {
                 en: "Renters Insurance",
-                es: "Seguro de motocicleta"
+                es: "Seguro de Inquilinos"
             },
             img: {
                 src: rentersPlainImg,
@@ -86,7 +86,7 @@ const bannerContent = {
         {
             text: {
                 en: "Motorcycle Insurance",
-                es: "Seguro de motocicleta"
+                es: "Seguro de Motocicleta"
             },
             img: {
                 src: motorcyclePlainImg,
@@ -101,7 +101,7 @@ const bannerContent = {
 const picturesWithListContent = {
     title: {
         en: `Your 3 Step Insurance Solution`,
-        es: `Su solución de seguro de 3 pasos`
+        es: `Su solución de seguro en 3 pasos`
     },
 
     img: {
@@ -113,7 +113,7 @@ const picturesWithListContent = {
         {
             title: {
                 en: "Complete Our Easy Online Form",
-                es: "Complete nuestro formulario en línea fácil"
+                es: "Complete Nuestro Formulario en Línea Fácil"
             },
             body: {
                 en: "We'll ask you a few simple questions about your insurance needs through our online quoting form",
@@ -123,7 +123,7 @@ const picturesWithListContent = {
         {
             title: {
                 en: "Review Insurance Options",
-                es: "Revisar opciones de seguro"
+                es: "Revisar Opciones de Seguro"
             },
             body: {
                 en: "These options are carefully curated, considering factors like your preferences, budget, and coverage requirements.",
@@ -132,12 +132,12 @@ const picturesWithListContent = {
         },
         {
             title: {
-                en: "Choose the coverage that suits you best",
-                es: "Elija la cobertura que mejor se adapte a sus necesidades"
+                en: "Choose the Coverage That Suits You Best",
+                es: "Elija la Cobertura Que Mejor Se Adapte a Sus Necesidades"
             },
             body: {
                 en: "When you're satisfied with your selection, you can proceed to secure the coverage right then and there.",
-                es: "Cuando esté satisfecho con su selección, puede proceder a asegurar la cobertura en ese momento."
+                es: "Cuando esté satisfecho con su selección, puede proceder a obtener la cobertura en ese momento."
             }
         },
     ]
@@ -185,7 +185,7 @@ const partnerCompanies = {
 const onlineQuotesContent = {
     title: {
         en: "Shop Online",
-        es: "Comprar en línea"
+        es: "Comprar en Línea"
     },
     content: [
         {
@@ -195,7 +195,7 @@ const onlineQuotesContent = {
             },
             title: {
                 en: "Auto Insurance",
-                es: "Seguro de auto"
+                es: "Seguro de Auto"
             },
             link: PATHCONSTANTS.QUOTES.AUTO.INDEX
         },
@@ -206,7 +206,7 @@ const onlineQuotesContent = {
             },
             title: {
                 en: "Home Insurance",
-                es: "Seguro de casa"
+                es: "Seguro de Casa"
             },
             link: PATHCONSTANTS.QUOTES.HOME.INDEX
         },
@@ -217,7 +217,7 @@ const onlineQuotesContent = {
             },
             title: {
                 en: "Motorcycle Insurance",
-                es: "Seguro de motocicleta"
+                es: "Seguro de Motocicleta"
             },
             link: PATHCONSTANTS.QUOTES.MOTORCYCLE.INDEX
         },
@@ -239,7 +239,7 @@ const onlineQuotesContent = {
             },
             title: {
                 en: "Renters Insurance",
-                es: "Seguro de inquilinos"
+                es: "Seguro de Inquilinos"
             },
             link: PATHCONSTANTS.QUOTES.RENTER.INDEX
         },
@@ -261,7 +261,7 @@ const onlineQuotesContent = {
             },
             title: {
                 en: "Surety Bonds",
-                es: "Fianzas"
+                es: "Seguro de Fianza"
             },
             link: PATHCONSTANTS.QUOTES.SURETY.INDEX
         },
@@ -287,15 +287,15 @@ const callQuoteContent = {
     cta2: {
         text: {
             en: "Get in Touch!",
-            es: "Ponerse en contacto!"
+            es: "Ponerse en contacto"
         },
         link: PATHCONSTANTS.ABOUT.CONTACT
     }
 }
 const reviewContent = {
     title: {
-        en: "See What Our Customers Are Saying about Ai United",
-        es: "Vea lo que nuestros clientes dicen sobre Ai United"
+        en: "See What Our Customers Are Saying About Ai United",
+        es: "Vea Lo Que Nuestros Clientes Dicen Sobre Ai United"
     },
     content: {
         name: {
@@ -328,13 +328,13 @@ const aboutContent = {
     },
     subtitle: {
         en: "Insights, Information, and Beyond",
-        es: "Información y más"
+        es: "Información"
     },
     content: [
         {
             title: {
                 en: "Our Policies",
-                es: "Nuestras políticas"
+                es: "Nuestras Políticas"
             },
 
             img: {
@@ -346,7 +346,7 @@ const aboutContent = {
         {
             title: {
                 en: "About Us",
-                es: "Sobre nosotros"
+                es: "Sobre Nosotros"
             },
             img: {
                 src: AboutImg,
