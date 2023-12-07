@@ -83,7 +83,7 @@ const section3content = {
 }
 const copyright = {
   en: "© 2023 Ai United Insurance. All Rights Reserved.",
-  es: "© 2023 Ai United Insurance. Todos los derechos reservados."
+  es: "© 2023 Ai United Insurance. Todos Los Derechos Reservados."
 }
 const text = {
   terms: {
@@ -177,9 +177,13 @@ export default function Footer() {
           <Box
             sx={{ ...classes.section1content }}
           >
-            <Box>
-              {PATHCONSTANTS.PHONETEXT}
-            </Box>
+            <Typography
+              variant="h5"
+            >
+              <Link href={PATHCONSTANTS.PHONE}>
+                {PATHCONSTANTS.PHONETEXT}
+              </Link>
+            </Typography>
             <Box
             >
               <a

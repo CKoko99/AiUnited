@@ -99,7 +99,7 @@ const contentSection2 = {
 const contentSection3 = {
     title: {
         en: "Exploring Home Insurance Coverage Options",
-        es: "Explorando las opciones de cobertura de seguro de casa"
+        es: "Explorando las Opciones de Cobertura de Seguro de Casa"
     },
     body: {
         en: [`Your home represents your greatest financial asset, and at Ai United Insurance we are committed to assisting you in
@@ -127,7 +127,7 @@ const formContent = {
     id: "Home-quote",
     conversion: "Home",
     title: {
-        en: "Home Insurance Quote", es: "Cotización de seguro de casa"
+        en: "Home Insurance Quote", es: "Cotización de Seguro de Casa"
     },
     subtitle: { en: "Start a free home insurance quote to see the savings", es: `Comience una cotización gratuita de seguro de casa para ver los ahorros` },
     questions: [

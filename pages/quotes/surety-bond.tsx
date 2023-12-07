@@ -38,7 +38,7 @@ const contentSection1 = {
     largeHorizontalCard: {
         title: {
             en: "Why Surety Bond Insurance Matters",
-            es: "¿Por qué es importante tener seguro de fianza?"
+            es: "¿Por Qué es Importante Tener Seguro de Fianza?"
         },
         body: {
             en: [`Surety Bond insurance is an essential safeguard that provides financial security and peace of mind. It 

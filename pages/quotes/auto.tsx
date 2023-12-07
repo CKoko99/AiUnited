@@ -14,7 +14,7 @@ import HeadComponent from '../../components/Head';
 import VerticleAutoBanner from '@/components/Content/Hero/VerticleAutoBanner';
 import BannerImage from '@/public/assets/images/quotes/auto/Banner.png';
 const heroContent = {
-    title: { en: "Auto Insurance", es: "Seguro De Auto" },
+    title: { en: "Auto Insurance", es: "Seguro de Auto" },
     subtitle: {
         en: "Enter your zip code to get started with a free auto quote",
         es: "Ingrese su código postal para comenzar una cotización de seguro de auto gratuita"
@@ -71,7 +71,7 @@ const slideData = {
         afterNumber: "minutes",
         body: {
             en: "Quoting Process",
-            es: "Proceso De Cotización"
+            es: "Proceso de Cotización"
         }
     },]
 }
@@ -79,7 +79,7 @@ const contentSection2 = {
     largeHorizontalCard: {
         title: {
             en: "Protecting What Matters Most",
-            es: "Protegiendo Lo Que Más Importa"
+            es: "Protegiendo lo Que Más Importa"
         },
         body: {
             en: [`In today's fast paced world, auto insurance is a crucial safeguard for you, and your financial well being`,

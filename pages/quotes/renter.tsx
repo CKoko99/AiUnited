@@ -38,7 +38,7 @@ const contentSection2 = {
     largeHorizontalCard: {
         title: {
             en: "Why you need renters insurance",
-            es: `¿Por qué necesita un seguro de inquilinos?`
+            es: `¿Por Qué Necesita un Seguro de Inquilinos?`
         },
         body: {
             en: [`Many landlords through America require tenants to purchase rental insurance`,
@@ -80,7 +80,7 @@ const contentSection2 = {
 const contentSection3 = {
     title: {
         en: "What does renters insurance cover?",
-        es: "¿Qué cubre el seguro de inquilinos?"
+        es: "¿Qué Cubre el Seguro de Inquilinos?"
     },
     body: {
         en: [
@@ -101,7 +101,7 @@ const formContent = {
     id: "Renter-quote",
     conversion: "Renters",
     title: {
-        en: "Renters Insurance Quote", es: "Cotización de seguro de inquilinos"
+        en: "Renters Insurance Quote", es: "Cotización de Seguro de Inquilinos"
     },
     subtitle: { en: "Start a free renters insurance quote to see the savings", es: `Comience una cotización gratuita de seguro de inquilinos para ver los ahorros` },
     questions: [

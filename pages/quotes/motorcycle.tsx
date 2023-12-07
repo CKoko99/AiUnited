@@ -26,7 +26,7 @@ const bannerContent = {
     CTA: {
         text: {
             en: "Get a Quote",
-            es: "Obtenga una cotización"
+            es: "Obtenga una Cotización"
         },
         link: `${PATHCONSTANTS.QUOTES.MOTORCYCLE.FORM}`,
     },
@@ -36,7 +36,7 @@ const contentSection2 = {
     largeHorizontalCard: {
         title: {
             en: "Protecting Your Passion and Your Pocket",
-            es: "Protegiendo su pasión y su bolsillo"
+            es: "Protegiendo su Pasión y Su Bolsillo"
         },
         body: {
             en: [`Whether you're a seasoned rider or a beginner, having the right insurance coverage is not just a legal requirement in many places,
@@ -87,7 +87,7 @@ const contentSection2 = {
 const contentSection3 = {
     title: {
         en: "Covering Every Curve: Motorcycle Insurance Options",
-        es: "Cubriendo cada curva: opciones de seguro de motocicleta"
+        es: "Cubriendo Cada Curva: Opciones de Seguro de Motocicleta"
     },
     body: {
         en: [`At Ai United, we understand that every driver is unique. That's why we offer a variety of motorcycle insurance coverages to match your needs.`,
@@ -95,8 +95,8 @@ const contentSection3 = {
             `• Collision Coverage`, `• Comprehensive Coverage`, `• And More`
         ],
         es: [`En Ai United, entendemos que cada conductor es único. Es por eso que ofrecemos una variedad de coberturas de seguro de motocicleta para satisfacer sus necesidades.`,
-            `• Seguro de responsabilidad`, `• Cobertura de colisión`, `• Seguro a Todo Riesgo`,
-            , `• Y más`
+            `• Seguro de Responsabilidad`, `• Cobertura de Colisión`, `• Seguro a Todo Riesgo`,
+            , `• Y Más`
         ]
     },
     img: {
@@ -107,7 +107,7 @@ const contentSection3 = {
 const formContent = {
     id: "Motorcycle-quote",
     conversion: "Motorcycle",
-    title: { en: "Motorcycle Insurance Quote", es: "Cotización de seguro de motocicleta" },
+    title: { en: "Motorcycle Insurance Quote", es: "Cotización de Seguro de Motocicleta" },
     subtitle: { en: "Start a free motorcycle insurance quote to see the savings", es: `Comience una cotización gratuita de seguro de motocicleta para ver los ahorros` },
     questions: [
         {

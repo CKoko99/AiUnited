@@ -42,7 +42,7 @@ const contentSection1 = {
     largeHorizontalCard: {
         title: {
             en: "Mexico Insurance is Your Shield Against the Unexpected",
-            es: "El Seguro De México Es Su Escudo Contra Lo Inesperado"
+            es: "El Seguro de México es Su Escudo Contra Lo Inesperado"
         },
         body: {
             en: [`Traveling to Mexico can be an exciting adventure, but it's essential to be prepared for the unexpected.`,
@@ -88,7 +88,7 @@ const contentSection1 = {
 const contentSection2 = {
     title: {
         en: "Exploring Mexico Insurance Coverage Options",
-        es: "Explorando Las Opciones De Cobertura De Seguro De México"
+        es: "Explorando las Opciones de Cobertura de Seguro De México"
     },
     body: {
         en: [
@@ -112,7 +112,7 @@ const contentSection2 = {
 const quoteText = {
     title: {
         en: "Mexico Insurance Quote",
-        es: "Cotización de seguro de México"
+        es: "Cotización de Seguro de México"
     },
     subtitle: {
         en: "Start a free Mexico insurance quote to see the savings",

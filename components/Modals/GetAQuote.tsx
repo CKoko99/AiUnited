@@ -35,7 +35,7 @@ const products = [
     {
         title: {
             en: "Auto Insurance",
-            es: "Seguro de auto"
+            es: "Seguro de Auto"
         },
         main: true,
         id: "Auto",
@@ -44,7 +44,7 @@ const products = [
         link: PATHCONSTANTS.QUOTES.AUTO.FORM,
     },
     {
-        title: { en: "Home Insurance", es: "Seguro de casa" },
+        title: { en: "Home Insurance", es: "Seguro de Casa" },
         main: true,
         id: "Home",
         img: homeQuoteImg,
@@ -52,7 +52,7 @@ const products = [
         link: PATHCONSTANTS.QUOTES.HOME.FORM,
     },
     {
-        title: { en: "Motorcycle Insurance", es: "Seguro de motocicleta" },
+        title: { en: "Motorcycle Insurance", es: "Seguro de Motocicleta" },
         id: "Motorcycle",
         img: motorcycleQuoteImg,
         plainImg: motorcyclePlainImg,
@@ -66,7 +66,7 @@ const products = [
         link: PATHCONSTANTS.QUOTES.SR22.FORM,
     },
     {
-        title: { en: "Renters Insurance", es: "Seguro de inquilinos" },
+        title: { en: "Renters Insurance", es: "Seguro de Inquilinos" },
         id: "Renters",
         img: rentersQuoteImg,
         plainImg: rentersPlainImg,
@@ -80,7 +80,7 @@ const products = [
         link: PATHCONSTANTS.QUOTES.MEXICO.FORM,
     },
     {
-        title: { en: "Surety Bonds", es: "Seguro de fianza" },
+        title: { en: "Surety Bonds", es: "Seguro de Fianza" },
         id: "Surety",
         img: suretyQuoteImg,
         plainImg: suretyPlainImg,

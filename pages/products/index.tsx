@@ -76,7 +76,7 @@ const navContent = [
 ]
 const content = [
     {
-        title: { en: "Auto Insurance", es: "Seguro de auto" },
+        title: { en: "Auto Insurance", es: "Seguro de Auto" },
         id: "Auto",
         body: {
             en: `At Ai United, we understand that every driver is unique. That's why we offer a variety 
@@ -88,7 +88,7 @@ const content = [
         img: AutoImg
     },
     {
-        title: { en: "Home Insurance", es: "Seguro de casa" },
+        title: { en: "Home Insurance", es: "Seguro de Casa" },
         id: "Home",
         body: {
             en: `Having home insurance offers peace of mind. You can rest easy knowing that your home and belongings 
@@ -100,7 +100,7 @@ const content = [
         img: HomeImg
     },
     {
-        title: { en: "Motorcycle Insurance", es: "Seguro de motocicleta" },
+        title: { en: "Motorcycle Insurance", es: "Seguro de Motocicleta" },
         id: "Motorcycle",
         body: {
             en: `Accidents happen, and when they do, you want to ensure you're financially protected. Motorcycle 
@@ -124,7 +124,7 @@ const content = [
         img: SR22Img
     },
     {
-        title: { en: "Renters Insurance", es: "Seguro de inquilinos" },
+        title: { en: "Renters Insurance", es: "Seguro de Inquilinos" },
         id: "Renters",
         body: {
             en: `Protect yourself and your valuables by getting low cost renters insurance that will cover the 
@@ -151,7 +151,7 @@ const content = [
         img: MexicoImg
     },
     {
-        title: { en: "Surety Bonds", es: "Fianzas" },
+        title: { en: "Surety Bonds", es: "Seguro de Fianza" },
         id: "SuretyBonds",
         body: {
             en: `Ai United is dedicated to simplifying the world of Surety Bonds, ensuring you have

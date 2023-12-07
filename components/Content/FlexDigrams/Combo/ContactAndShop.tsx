@@ -21,7 +21,7 @@ const textContent = {
     shopOnline: {
         title: {
             en: "Shop Online",
-            es: "Comprar en linea"
+            es: "Comprar en Linea"
         },
         body: {
             en: `Convenience at your fingertips. Browse, select, and purchase from the comfort of your home with our
@@ -36,7 +36,7 @@ const textContent = {
         CtaButton: {
             text: {
                 en: "Get a Quote",
-                es: "Obtener una cotización"
+                es: "Obtener una Cotización"
             },
             color: "primary",
             variant: "contained",
@@ -45,7 +45,7 @@ const textContent = {
     Contact: {
         title: {
             en: "Contact a Representative",
-            es: "Contacte a un representante"
+            es: "Contacte a un Representante"
         },
         body: {
             en: `Are you prepared to receive a quote, or do you have inquiries regarding your insurance options? 
@@ -69,7 +69,7 @@ const textContent = {
         {
             text: {
                 en: "Find a Store!",
-                es: "Encuentra una tienda"
+                es: "Encuentra una Tienda"
             },
             color: "secondary",
             variant: "outlined",
