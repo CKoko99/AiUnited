@@ -90,13 +90,15 @@ const contentSection3 = {
         es: "Cubriendo Cada Curva: Opciones de Seguro de Motocicleta"
     },
     body: {
-        en: [`At Ai United, we understand that every driver is unique. That's why we offer a variety of motorcycle insurance coverages to match your needs.`,
+        en: [
+            `At Ai United, we understand that every driver is unique. That's why we offer a variety of motorcycle insurance coverages to match your needs.`,
             `• Liability Insurance`,
             `• Collision Coverage`, `• Comprehensive Coverage`, `• And More`
         ],
-        es: [`En Ai United, entendemos que cada conductor es único. Es por eso que ofrecemos una variedad de coberturas de seguro de motocicleta para satisfacer sus necesidades.`,
+        es: [
+            `En Ai United, entendemos que cada conductor es único. Es por eso que ofrecemos una variedad de coberturas de seguro de motocicleta para satisfacer sus necesidades.`,
             `• Seguro de Responsabilidad`, `• Cobertura de Colisión`, `• Seguro a Todo Riesgo`,
-            , `• Y Más`
+            `• Y Más`
         ]
     },
     img: {
