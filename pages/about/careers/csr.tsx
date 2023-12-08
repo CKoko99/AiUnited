@@ -7,7 +7,7 @@ const Simple = dynamic(() => import('../../../components/Forms/Simple/Simple'), 
 const heroContent = {
     title: {
         en: "Customer Service Representative / Insurance Agent",
-        es: "Representante de servicio al cliente / Agente de seguros"
+        es: "Representante de Servicio al Cliente / Agente de Seguros"
     },
     image: {
         src: BannerImg,
@@ -21,7 +21,7 @@ const textContent = {
             fontWeight: "bold",
             text: {
                 en: [`Customer Service Representative / Insurance Agent`],
-                es: [`Representante de servicio al cliente / Agente de seguros`]
+                es: [`Representante de Servicio al Cliente / Agente de Seguros`]
             },
         },
         {
@@ -39,7 +39,7 @@ const textContent = {
             fontWeight: "bold",
             text: {
                 en: [`Responsibilities and Duties`],
-                es: [`Responsabilidades y deberes`]
+                es: [`Responsabilidades y Deberes`]
             },
         },
         {
@@ -66,10 +66,10 @@ const textContent = {
                     `Comunicarse con los clientes a través de llamadas telefónicas, mensajes de texto, correo electrónico y otras formas de comunicación`,
                     `Comunicarse con los departamentos de suscripción y enviar formularios`,
                     `Personalizar programas de seguros para adaptarse a clientes individuales`,
-                    `Asegurarse de que se cumplan los requisitos de la póliza, incluida la cumplimentación de los formularios correspondientes`,
+                    `Asegurarse de que se cumplan los requisitos de la póliza, incluyendo el cumplimiento de los formularios correspondientes`,
                     `Explicar las características, ventajas y desventajas de varias pólizas`,
-                    `Buscar nuevos clientes y desarrollar una clientela mediante la creación de redes para encontrar nuevos clientes y generar listas de clientes potenciales`,
-                    `Obtener licencias u obtener cursos de educación continua para fines de licencias`,
+                    `Buscar nuevos clientes y desarrollar una clientela mediante la creación de redes para generar listas de clientes potenciales`,
+                    `Obtener licencias u obtener cursos de educación contínua para fines de licencias`,
                 ]
             },
         },
@@ -86,10 +86,11 @@ const textContent = {
             fontWeight: "bold",
             text: {
                 en: [`Qualifications and Requirements`],
-                es: [`Calificaciones y requisitos`]
+                es: [`Calificaciones y Requisitos`]
             },
         },
         {
+            type: "bulletedList",
             text: {
                 en: [`Bilingual (Spanish/English) Required`,
                     `Basic computer knowledge; ability to type 20+ WPM`,
@@ -102,13 +103,13 @@ const textContent = {
                     `Reliable transportation`,
                 ],
                 es: [`Bilingüe (español / inglés) requerido`,
-                    `Conocimientos básicos de informática; capacidad para escribir a máquina 20+ WPM`,
+                    `Conocimientos básicos de informática; habilidad para escribir con el teclado a una velocidad de más de 20 palabras por minuto`,
                     `Poseer fuertes habilidades interpersonales`,
                     `Ser capaz de comunicarse claramente, tanto por escrito como oralmente`,
-                    `Ser capaz de priorizar planificar las actividades de trabajo para utilizar el tiempo de manera eficiente`,
+                    `Ser capaz de priorizar las actividades de trabajo para utilizar el tiempo de manera eficiente`,
                     `Ser organizado, preciso, minucioso y capaz de controlar el trabajo con calidad`,
-                    `Ser confiable, capaz de seguir instrucciones, responder a la dirección de la gerencia y debe poder mejorar
-        el rendimiento a través de la retroalimentación de la gerencia`,
+                    `Ser confiable, capaz de seguir instrucciones, responder a la dirección de la gerencia y 
+                    deberá tener la capacidad de mejorar el desempeño a través de la retroalimentación de la gerencia`,
                     `Transporte confiable`,]
             }
         },
@@ -117,7 +118,7 @@ const textContent = {
             fontWeight: "bold",
             text: {
                 en: [`Education and Licensing`],
-                es: [`Educación y licencias`]
+                es: [`Educación y Licencias`]
             }
         },
         {
@@ -134,14 +135,13 @@ const textContent = {
         {
             text: {
                 en: [
-                    `While performing the duties of this job, employee is regularly required to sit; use hands to finger, handle, or 
-                feel and talk or hear. The employee is frequently required to reach with hands and arms. The employee is occasionally required
+                    `While performing the duties of this job, employee is regularly required to sit.  The employee is occasionally required
                 to stand, walk, stoop, kneel, or crouch. The employee must occasionally lift and/or move up to 20 pounds.`
                 ],
                 es: [
-                    `Mientras realiza las tareas de este trabajo, el empleado debe sentarse regularmente; usar las manos para 
-                dedo, manejar o sentir y hablar u oír. Se requiere con frecuencia que el empleado alcance con las manos y los brazos. El empleado
-                ocasionalmente debe pararse, caminar, agacharse, arrodillarse o agacharse. El empleado debe levantar y / o mover ocasionalmente hasta 20 libras.`
+                    `Al desempeñar las funciones de este trabajo, se requiere que el empleado se siente regularmente. 
+                El empleado ocasionalmente debe pararse, caminar, agacharse, arrodillarse o agacharse. El empleado debe ocasionalmente
+                levantar y / o mover hasta 20 libras.`
                 ]
             }
         },
@@ -149,7 +149,7 @@ const textContent = {
             text: {
                 en: [
                     `This job description in no way states or implies that these are the only duties to be performed by the employee occupying this position. 
-                Employees will be required to follow any other job-related instructions and to perform any other job-related 
+                Employees will be required to follow any other job - related instructions and to perform any other job - related 
                 dutiesrequested by their supervisor.`
                 ]
             }
@@ -157,10 +157,10 @@ const textContent = {
         {
             text: {
                 en: [
-                    `This job description may be revised upon development of other duties and changes in responsibilities.`
+                    `This job description may be revised due to new responsibilities or duties.`
                 ],
                 es: [
-                    `Esta descripción del trabajo puede revisarse al desarrollar otras tareas y cambios en las responsabilidades.`
+                    `Esta descripción del trabajo puede ser revisada debido a nuevas responsabilidades o deberes implementadas.`
                 ]
             }
         }
@@ -170,7 +170,7 @@ const formContent = {
     sheetTitle: "CSR Application",
     title: {
         en: "Customer Service Representative / Insurance Agent",
-        es: "Representante de servicio al cliente / Agente de seguros",
+        es: "Representante de Servicio al Cliente / Agente de Seguros",
     },
     subtitle: {
         en: "Please fill out the form below and we will get back to you as soon as possible.",
@@ -297,7 +297,7 @@ const formContent = {
         {
             title: {
                 en: "Are you computer literate?",
-                es: "¿Eres alfabetizado en computación?"
+                es: "¿Tienes habilidades informáticas?"
             },
             type: "radio",
             required: true,
@@ -313,7 +313,7 @@ const formContent = {
                 es: "¿Cuál es tu velocidad de escritura?"
             },
             type: "input",
-            label: { en: "WPM", es: "WPM" },
+            label: { en: "WPM", es: "Palabras Por Minuto" },
             validation: "number",
             outsideLabel: true,
             required: true,

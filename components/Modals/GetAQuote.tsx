@@ -24,7 +24,7 @@ import { GTMEVENTS, GTMEventHandler } from "../Scripts/GoogleTag";
 const text = {
     title: {
         en: "Unlock your savings today!",
-        es: "¡Desbloquea tus ahorros hoy!"
+        es: "¡Desbloquea tus Ahorros Hoy!"
     },
     subtitle: {
         en: "Get a quote in minutes and see how much you can save!",

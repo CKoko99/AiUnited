@@ -58,7 +58,7 @@ const navContent = [
         link: "#Motorcycle"
     },
     {
-        title: { en: "SR22", es: "SR22" },
+        title: { en: "SR-22", es: "SR-22" },
         link: "#SR22"
     },
     {
@@ -105,14 +105,14 @@ const content = [
         body: {
             en: `Accidents happen, and when they do, you want to ensure you're financially protected. Motorcycle 
         insurance is essential to safeguard both you and your bike.`,
-            es: `Los accidentes ocurren y, cuando ocurren, desea asegurarse de estar protegido financieramente.
+            es: `Los accidentes ocurren y, cuando ocurren, es crucial asegurarse de estar protegido financieramente.
         El seguro de motocicleta es esencial para proteger tanto a usted como a su motocicleta.`},
         quote: PATHCONSTANTS.QUOTES.MOTORCYCLE.FORM,
         info: PATHCONSTANTS.QUOTES.MOTORCYCLE.INDEX,
         img: MotorcycleImg
     },
     {
-        title: { en: "SR22 Insurance", es: "Seguro SR22" },
+        title: { en: "SR-22 Insurance", es: "Seguro SR-22" },
         id: "SR22",
         body: {
             en: `SR-22 insurance is a unique type of coverage required by the state of reinstate your driving 
@@ -130,7 +130,7 @@ const content = [
             en: `Protect yourself and your valuables by getting low cost renters insurance that will cover the 
         content of an apartment or home that you'll be renting.`,
             es: `Protéjase a sí mismo y a sus objetos de valor obteniendo un seguro de inquilinos de bajo costo que cubrirá el
-        contenido de un apartamento o casa que alquilará.`},
+        contenido de un apartamento o casa que esté alquilando.`},
         quote: PATHCONSTANTS.QUOTES.RENTER.FORM,
         info: PATHCONSTANTS.QUOTES.RENTER.INDEX,
         img: RentersImg

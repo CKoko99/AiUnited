@@ -20,12 +20,16 @@ const text = {
     },
     thankYou: {
         en: "Thank You!",
-        es: "Gracias!"
+        es: "¡Gracias!"
     },
     thankYouMessage: {
         en: "Your Submission Has Been Recevied.",
-        es: "Su envío ha sido recibido."
+        es: "Su solicitud ha sido recibida."
     },
+    submit: {
+        en: "Submit",
+        es: "Enviar"
+    }
 }
 function getEmailProps(questions, answers) {
     let name = ["", ""]
@@ -218,7 +222,7 @@ export default function (props) {
                             <Button onClick={() => { setHandlingSubmit(true) }}
                                 disabled={loading || !valid}
                                 variant="contained" color="secondary">
-                                {!loading ? "Submit" : <CircularProgress style={{ width: "2rem", height: "2rem" }} />}</Button>
+                                {!loading ? text.submit[currentLang] : <CircularProgress style={{ width: "2rem", height: "2rem" }} />}</Button>
                         </Box>
                         <Box textAlign={"center"} sx={{ width: "80%", margin: "auto" }} >
                             <Typography variant="subtitle1">

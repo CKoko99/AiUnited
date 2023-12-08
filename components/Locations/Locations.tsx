@@ -34,15 +34,15 @@ interface Marker {
 const LocationText = {
     title: {
         en: "Find A Store",
-        es: "Encuentra una tienda"
+        es: "Encuentra una Tienda"
     },
     subtitle: {
         en: "Visit one of over 80 stores located across Texas to speak with our representatives and get insured today!",
-        es: "Visite una de las más de 80 tiendas ubicadas en Texas para hablar con nuestros representantes y obtener un seguro hoy mismo!"
+        es: "Visite una de las más de 80 tiendas ubicadas en Texas para hablar con nuestros representantes y obtener un seguro hoy mismo"
     },
     near: {
         "en": "Locations Near You",
-        "es": "Ubicaciones cerca de ti"
+        "es": "Ubicaciones Cerca de Ti"
     },
     miles: {
         "en": "miles",
@@ -51,6 +51,10 @@ const LocationText = {
     storeInfo: {
         en: "More Store Info",
         es: "Más información de la tienda"
+    },
+    placeholder: {
+        en: "Search by Zip Code, City or State",
+        es: "Buscar por código postal, ciudad o estado"
     }
 }
 export default function (props) {
@@ -151,7 +155,7 @@ export default function (props) {
                         >
                             <>
                                 <TextField
-                                    placeholder={"Search by Zip Code, City or State"}
+                                    placeholder={LocationText.placeholder[currentLang]}
                                     sx={{ ...styles.textfield }}
                                     fullWidth
                                     id="outlined-basic"

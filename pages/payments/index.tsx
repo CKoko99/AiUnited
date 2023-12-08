@@ -24,7 +24,7 @@ import trinityImg from '../../public/assets/images/payments/trinity.png'
 import westernImg from '../../public/assets/images/payments/western.png'
 import { Box, Button, FormControl, Modal, TextField, Typography } from '@mui/material'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StaticImageData } from 'next/image';
 import { useRouter } from 'next/router'
 import { Lang } from '@/components/locale/LocaleSwitcher'
@@ -32,7 +32,7 @@ import { Lang } from '@/components/locale/LocaleSwitcher'
 const paymentText = {
     payment: {
         en: "Make a Payment",
-        es: "Hacer un pago"
+        es: "Hacer un Pago"
     },
     enterPolicyNumber: {
         en: "Enter your policy number below to make a payment",
@@ -40,7 +40,7 @@ const paymentText = {
     },
     policyNumber: {
         en: "Policy Number",
-        es: "Número de póliza"
+        es: "Número de Póliza"
     },
     selectProvider: {
         en: "Select your insurance provider to make a payment",
@@ -50,6 +50,10 @@ const paymentText = {
         en: "Don't See Your Insurance Provider? Click Here to Select Others",
         es: "¿No ve su proveedor de seguros? Haga clic aquí para seleccionar otros"
     },
+    enterValidPolicyNumber: {
+        en: "Enter a Valid Policy Number",
+        es: "Ingrese un número de póliza válido"
+    }
 }
 const providers = [
     {
@@ -341,7 +345,7 @@ export default function () {
                     value={paymentInput}
                     onChange={(e) => setPaymentInput(e.target.value)}
                     error={error}
-                    helperText={error && "Enter a Valid Policy Number"}
+                    helperText={error && paymentText.enterValidPolicyNumber[currentLang]}
                     style={{
                         width: "12rem",
                         backgroundColor: "white"
@@ -379,7 +383,7 @@ export default function () {
                     >
 
                         {modalContent?.map((item, index) => {
-                            return <>
+                            return <React.Fragment key={index}>
                                 <Link
                                     style={{
                                         display: "flex", flexDirection: "column",
@@ -395,7 +399,7 @@ export default function () {
                                     </Box>
                                     <Typography variant="subtitle1">{item.title}</Typography>
                                 </Link>
-                            </>
+                            </React.Fragment>
                         })}
                     </Box>
                     {/*  <Button variant="contained" color="secondary"

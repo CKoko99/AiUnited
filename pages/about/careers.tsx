@@ -13,7 +13,7 @@ import WorkImg from "../../public/assets/images/about/careers/work.png";
 const heroContent = {
     title: {
         en: `Start Your Career At Ai United`,
-        es: `Comience su carrera en Ai United`,
+        es: `Comience su Carrera en Ai United`,
     },
     subtitle: {
         en: `At Ai United Insurance, you have the best of the best. Earn what you're worth!`,
@@ -27,7 +27,7 @@ const heroContent = {
 const textSection1 = {
     title: {
         en: `Join the Team!`,
-        es: `¡Únete al equipo!`,
+        es: `¡Únete al Equipo!`,
     },
     subtitle: {
         en: `Our workforce is our greatest asset, and we want to ensure that our employees have the 
@@ -46,7 +46,7 @@ const picturesWithListContent = {
         {
             title: {
                 en: "Positive Work Environment",
-                es: "Ambiente de trabajo positivo"
+                es: "Ambiente de Trabajo Positivo"
             },
             body: {
                 en: "We believe that the best ideas come from a collective effort, and we actively promote an environment where every team member feels comfortable sharing their thoughts and insights.",
@@ -56,21 +56,22 @@ const picturesWithListContent = {
         {
             title: {
                 en: "Equal Opportunity Employer",
-                es: "Empleador que ofrece igualdad de oportunidades"
+                es: "Empleador Que Ofrece Igualdad de Oportunidades"
             },
             body: {
                 en: "Diversity and belonging are not just goals; they are integral to our identity. We actively promote diversity within our team and strive to create an environment where everyone feels a sense of belonging.",
-                es: "La diversidad y la pertenencia no son solo objetivos; son parte integral de nuestra identidad. Promovemos activamente la diversidad dentro de nuestro equipo y nos esforzamos por crear un entorno donde todos se sientan parte."
+                es: `La diversidad y la pertenencia no son solo objetivos; son parte integral de nuestra identidad. Promovemos activamente la diversidad dentro de nuestro equipo y nos esforzamos por 
+                crear un ambiente en el que todos se sientan incluidos.`
             }
         },
         {
             title: {
                 en: "Company Overview",
-                es: "Descripción general de la compañía"
+                es: "Descripción General de la Compañía"
             },
             body: {
                 en: "Our mission is clear: to safeguard what matters most to our clients. We go beyond providing insurance policies; we strive to be a pillar of support during life's unexpected twists and turns.",
-                es: "Nuestra misión es clara: proteger lo que más importa a nuestros clientes. Vamos más allá de proporcionar pólizas de seguro; nos esforzamos por ser un pilar de apoyo durante los giros inesperados de la vida."
+                es: "Nuestra misión es clara: proteger lo que más les importa a nuestros clientes. Vamos más allá de proporcionar pólizas de seguro; nos esforzamos por ser un pilar de apoyo durante los giros inesperados de la vida."
             }
         },
     ]
@@ -78,7 +79,7 @@ const picturesWithListContent = {
 const cardsContent = {
     title: {
         en: 'Learn More',
-        es: 'Aprende más'
+        es: 'Aprende Más'
     },
     subtitle: {
         en: 'We offer a variety of opportunities for growth',
@@ -91,7 +92,7 @@ const cardsContent = {
         },
         title: {
             en: 'Customer Service Representative',
-            es: 'Representante de servicio al cliente'
+            es: 'Representante de Servicio al Cliente'
         },
         link: PATHCONSTANTS.ABOUT.CAREERS.CSR,
     }, {
@@ -111,7 +112,7 @@ const cardsContent = {
         },
         title: {
             en: "District Manager",
-            es: "Gerente de distrito"
+            es: "Gerente de Distrito"
         },
         link: PATHCONSTANTS.ABOUT.CAREERS.DM,
     }
