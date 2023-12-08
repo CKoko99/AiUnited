@@ -35,11 +35,11 @@ import rentersPlainImg from "public/assets/images/home/quotes/renterplain.png";
 const bannerContent = {
     title: {
         en: "Simplify Your Coverage and Save Money Today",
-        es: "Simplifique su cobertura y ahorre dinero hoy"
+        es: "Simplifique su Cobertura y Ahorre Dinero Hoy"
     },
     subtitle: {
         en: "Fast, Easy, and Affordable Coverage for All Your Needs!",
-        es: "¡Cobertura rápida, fácil y accesible para todas sus necesidades!"
+        es: "¡Cobertura Rápida, Fácil y Accesible para Todas sus Necesidades!"
     },
     image: {
         src: BannerImage,

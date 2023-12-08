@@ -26,8 +26,8 @@ const heroContent = {
 
 const textSectionContent = {
     subtitle: {
-        en: "We have earned HUNDREDS of reviews averaging over 4.5/5 stars across our 80+ locations located all across Texas.",
-        es: "Hemos ganado CIENTOS de reseñas con un promedio de más de 4.5 / 5 estrellas en nuestras más de 80 ubicaciones ubicadas en todo Texas.",
+        en: "We have earned HUNDREDS of reviews averaging over 4.5 stars across our 80+ locations located all across Texas.",
+        es: "Hemos ganado CIENTOS de reseñas con un promedio de más de 4.5 estrellas en nuestras más de 80 sucursales ubicadas en todo Texas.",
     },
 }
 
@@ -40,8 +40,8 @@ const reviews = [
         body: {
             en: `I was very impressed with the professionalism and customer service this place provides. 
             Customer service was second to none. I will definitely be recommending this place to family and friends.`,
-            es: `Me impresionó mucho el profesionalismo y el servicio al cliente que brinda este lugar. El servicio
-            al cliente de Karla fue insuperable. Definitivamente recomendaré este lugar a familiares y amigos.`,
+            es: `Me impresionó mucho el profesionalismo y el servicio al cliente que brinda este lugar.
+            El servicio al cliente fue insuperable. Definitivamente recomendaré este lugar a familiares y amigos.`,
         },
         author: "Paul R",
         reviewLink: "https://g.co/kgs/pzzSY4",
@@ -52,12 +52,12 @@ const reviews = [
             es: "Excelente Servicio"
         },
         body: {
-            en: `I definitely appreciated my agents service and her polite and professional mannerism and 
-            she was very helpful and she helped me understand things about insurance that I didn’t know. 
+            en: `I definitely appreciated my agents service and their polite and professional mannerism and 
+            they were very helpful and helped me understand things about insurance that I didn’t know. 
             Thanks Ai United!`,
-            es: `Definitivamente aprecié el servicio de mi agente y su educada y profesional manera de ser y
-        ella fue muy servicial y me ayudó a comprender cosas sobre el seguro que no sabía.
-        ¡Gracias Ai United!`,
+            es: `Definitivamente aprecié el servicio de mis agentes y su manera educada y profesional y
+            fueron muy serviciales y me ayudaron a entender cosas sobre el seguro que no sabía.
+            ¡Gracias Ai United!`,
         },
         author: "Robert B",
         reviewLink: "https://g.co/kgs/B3vmvs",
@@ -72,8 +72,8 @@ const reviews = [
             speak highly enough of their services. From the moment I signed up, their commitment
              to providing top-notch coverage and exceptional customer service has been consistently outstanding. `,
             es: `He sido un cliente leal de AI United durante varios años y no puedo
-                hablar lo suficientemente bien de sus servicios. Desde el momento en que me inscribí, su compromiso
-                para proporcionar una cobertura de primera categoría y un servicio al cliente excepcional ha sido consistentemente excepcional.`,
+            hablar lo suficientemente bien de sus servicios. Desde el momento en que me inscribí, su compromiso
+            para proporcionar una cobertura de primera categoría y un servicio al cliente excepcional ha sido consistentemente excepcional.`,
         },
         author: 'Dylan P',
         reviewLink: "https://g.co/kgs/qt5XVv",
@@ -89,10 +89,10 @@ const reviews = [
              They know what they’re doing and don’t just push some policy on customers to 
             make a commission, they actually advise and put serious effort into finding the right product 
             for their clients. If it was possible, I’d give more than 5 stars.`,
-            es: `He tratado con muchas agencias de seguros durante los 35 años que llevo conduciendo,
-            pero ninguna se compara con este lugar. Tienen el personal más amable y cortés.
-            Saben lo que están haciendo y no solo empujan alguna póliza a los clientes para
-            ganar una comisión, en realidad asesoran y hacen un esfuerzo serio para encontrar el producto adecuado
+            es: `He tratado con muchas agencias de seguros durante los 35 años que he estado conduciendo,
+            pero ninguno se compara con este lugar. Tienen el personal más amable y cortés.
+            Saben lo que están haciendo y no solo empujan alguna política sobre los clientes para
+            hacer una comisión, realmente asesoran y hacen un esfuerzo serio para encontrar el producto adecuado
             para sus clientes. Si fuera posible, daría más de 5 estrellas.`,
         },
         author: "David A",
@@ -125,8 +125,8 @@ const reviews = [
             Not only did they go above and beyond in finding a good insurance. But they also helped me 
             understand the terms and what I was signing up for. I would 100% go here again.`,
             es: `Obtuve un seguro el otro día y debo decir que su equipo tiene un excelente servicio al cliente.
-            No solo hicieron todo lo posible para encontrar un buen seguro. Pero también me ayudaron
-            a comprender los términos y lo que estaba contratando. Volvería aquí 100%.`,
+            No solo hicieron todo lo posible para encontrar un buen seguro, pero también me ayudaron
+            a entender los términos y lo que estaba firmando. Volvería aquí 100%.`,
         },
         author: "Paula C",
         reviewLink: "https://g.co/kgs/iADBir",

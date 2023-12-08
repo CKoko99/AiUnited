@@ -28,7 +28,7 @@ const heroContent = {
 const CenterVideoContent = {
   title: {
     en: "Experience peace of mind with Ai United Insurance",
-    es: "Experimente la tranquilidad con Ai United Insurance"
+    es: "Experimente la Tranquilidad con Ai United Insurance"
   },
   subtitle: {
     en: `At Ai United Insurance, we pride ourselves on delivering personalized service and comprehensive
@@ -53,7 +53,7 @@ const CenterVideoContent = {
 const VideoBannerContent = {
   title: {
     en: "Experience peace of mind with Ai United Insurance",
-    es: "Experimente la tranquilidad con Ai United Insurance"
+    es: "Experimente la Tranquilidad con Ai United Insurance"
   },
   subtitle: {
     en: `At Ai United Insurance, we pride ourselves on delivering personalized service and comprehensive
@@ -98,7 +98,7 @@ const textSectionContent = {
   },*/
   title: {
     en: `Celebrating Our Journey: Over 15 Years of Providing Trusted Insurance Coverage in Texas`,
-    es: `Celebrando nuestro viaje: más de 15 años brindando cobertura de seguros confiable en Texas`
+    es: `Celebrando Nuestro Viaje: Más de 15 Años Brindando Cobertura de Seguros Confiable en Texas`
   },
   subtitle: {
     en: `At Ai United Insurance, we have a rich history of growth and dedication to becoming the most trusted 
@@ -106,7 +106,7 @@ const textSectionContent = {
     coverage and exceptional customer service to our clients.`,
     es: `En Ai United Insurance, tenemos una rica historia de crecimiento y dedicación para 
     convertirnos en el proveedor de seguros más confiable de Texas. Nuestro viaje ha sido impulsado 
-    por un compromiso de brindar cobertura confiable y un servicio al cliente excepcional a nuestros clientes.`
+    por un compromiso de brindar cobertura fiable y un servicio al cliente excepcional a nuestros clientes.`
   },
   miniSections: [
     {
@@ -126,7 +126,7 @@ const textSectionContent = {
       },
       body: {
         en: "of our customers recommend us to friends and family.",
-        es: "de nuestros clientes nos recomiendan a amigos y familiares"
+        es: "de nuestros clientes nos recomiendan a amigos y familiares."
       }
     },
   ],

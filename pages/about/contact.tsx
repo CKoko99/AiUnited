@@ -7,17 +7,17 @@ const SimpleForm = dynamic(() => import('../../components/Forms/Simple/Simple'),
 const heroContent = {
   title: {
     en: "Contact Our Team",
-    es: "Contacte a nuestro equipo",
+    es: "Contacte a Nuestro Equipo",
   },
   subtitle: {
     en: `Ai United Insurance is independent agencies located in Texas. We service everything 
-    from auto and car insurance, motorcycle insurance, home insurance, Mexico insurance and 
+    from auto insurance, motorcycle insurance, home insurance, Mexico insurance and 
     much more. At Ai United Insurance we pride ourselves on being innovative and leading a 
-    new wave of change within the car insurance industry.`,
-    es: `Ai United Insurance son agencias independientes ubicadas en Texas. Servimos todo
-    desde seguros de auto y automóvil, seguros de motocicletas, seguros de vivienda, seguros de México y
+    new wave of change within the insurance industry.`,
+    es: `Ai United Insurance son agencias independientes ubicadas en Texas. Ofrecemos 
+    desde seguros de auto, hasta seguros de motocicletas, seguros de vivienda, seguros de México y
     mucho más. En Ai United Insurance nos enorgullecemos de ser innovadores y liderar un
-    nueva ola de cambio dentro de la industria del seguro de automóvil.`,
+    nueva ola de cambio dentro de la industria del seguro.`,
   },
   image: {
     src: BannerImg,

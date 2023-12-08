@@ -7,7 +7,7 @@ const Simple = dynamic(() => import('../../../components/Forms/Simple/Simple'), 
 const heroContent = {
     title: {
         en: "District Manager",
-        es: "Gerente de distrito"
+        es: "Gerente de Distrito"
     },
     image: {
         src: BannerImg,
@@ -21,7 +21,7 @@ const textContent = {
             fontWeight: "bold",
             text: {
                 en: [`District Manager`],
-                es: [`Gerente de distrito`]
+                es: [`Gerente de Distrito`]
             },
         },
         {
@@ -30,8 +30,10 @@ const textContent = {
                 in his/her designated zone. The District Manager is responsible for additional tasks delegated by and reports 
                 directly to the regional Manager and manages and directs a sales force to achieve sales and profit goals.`],
                 es: [`El gerente de distrito es responsable de garantizar que todas las tareas requeridas para todas las ubicaciones sean realizadas por todos los empleados
-                en su zona designada. El gerente de distrito es responsable de las tareas adicionales delegadas y los informes
-                directamente al gerente regional y administra y dirige una fuerza de ventas para lograr objetivos de ventas y ganancias.`]
+                en su zona designada. El gerente del distrito tiene la tarea de gestionar las responsabilidades
+                asignadas, informando directamente al gerente regional. Además, supervisa y guía a un equipo de agentes
+                con el objetivo de alcanzar metas de ventas y ganancias.`]
+
             }
         },
         {
@@ -39,7 +41,7 @@ const textContent = {
             fontWeight: "bold",
             text: {
                 en: [`Responsibilities and Duties`],
-                es: [`Responsabilidades y deberes`]
+                es: [`Responsabilidades y Deberes`]
             },
         },
         {
@@ -59,7 +61,6 @@ const textContent = {
                 es: [`Trabajar a tiempo completo disponible 5 días a la semana de lunes a sábados`,
                     `Capaz de viajar a otras ciudades cuando sea necesario pero no con frecuencia`,
                     `De vez en cuando se necesitan algunas actividades físicas como levantar, recoger, mover y limpiar`,
-                    `Otras tareas que surjan`,
                     `Grabación, procesamiento, verificación y mantenimiento de registros de transacciones financieras`,
                     `Grabación, procesamiento, verificación y mantenimiento de registros de tareas de mantenimiento`,
                     `Trabajar con agencias gubernamentales locales para obtener y mantener al día todas las inspecciones y permisos`,
@@ -68,7 +69,7 @@ const textContent = {
                     `Programar citas con proveedores para diferentes ubicaciones, como control de plagas, HVAC, contratistas, etc.`,
                     `Recibir, informar y asignar problemas técnicos`,
                     `Entrada de datos`,
-                    `Seguimiento e informe de todos los problemas de mantenimiento, seguridad o TI`,
+                    `Seguimiento e informe de todos los problemas de mantenimiento, seguridad o soporte técnico`,
                     `Mantener / renovar los arrendamientos de ubicación`,
                 ]
             },
@@ -78,7 +79,7 @@ const textContent = {
             fontWeight: "bold",
             text: {
                 en: [`Qualifications and Requirements`],
-                es: [`Calificaciones y requisitos`]
+                es: [`Calificaciones y Requisitos`]
             },
         },
         {
@@ -93,7 +94,7 @@ const textContent = {
                 es: [`Buenas habilidades organizativas e interpersonales`,
                     `Buen conocimiento informático`,
                     `Capaz de trabajar de forma independiente con supervisión mínima / nula`,
-                    `La capacidad de aprender rápidamente cualquier software de la compañía / patentado es necesaria`,
+                    `La capacidad de aprender rápidamente cualquier software de la compañía es necesaria`,
                     `Bilingüe (inglés / español)`
                 ]
             }
@@ -103,7 +104,7 @@ const textContent = {
             fontWeight: "bold",
             text: {
                 en: [`Education and Licensing`],
-                es: [`Educación y licencias`]
+                es: [`Educación y Licencias`]
             }
         },
         {
@@ -111,12 +112,12 @@ const textContent = {
             text: {
                 en: [`High School Diploma or GED`,
                     `6 months - 1 year of Customer Service`,
-                    `1-2 year of Lead/ Supervisory experience, preferred`,
+                    `1-2 year of Lead/ Supervisory experience preferred`,
 
                 ],
                 es: [`Diploma de escuela secundaria o GED`,
                     `6 meses - 1 año de servicio al cliente`,
-                    `1-2 años de experiencia de liderazgo / supervisión, preferido`,
+                    `1-2 años de experiencia de liderazgo / supervisión preferido`,
                 ]
             }
         },
@@ -124,14 +125,13 @@ const textContent = {
         {
             text: {
                 en: [
-                    `While performing the duties of this job, employee is regularly required to sit; use hands to finger, handle, or 
-                feel and talk or hear. The employee is frequently required to reach with hands and arms. The employee is occasionally required
-                to stand, walk, stoop, kneel, or crouch. The employee must occasionally lift and/or move up to 20 pounds.`
+                    `While performing the duties of this job, employee is regularly required to sit.  The employee is occasionally required
+                    to stand, walk, stoop, kneel, or crouch. The employee must occasionally lift and/or move up to 20 pounds.`
                 ],
                 es: [
-                    `Mientras realiza las tareas de este trabajo, el empleado debe sentarse regularmente; usar las manos para 
-                dedo, manejar o sentir y hablar u oír. Se requiere con frecuencia que el empleado alcance con las manos y los brazos. El empleado
-                ocasionalmente debe pararse, caminar, agacharse, arrodillarse o agacharse. El empleado debe levantar y / o mover ocasionalmente hasta 20 libras.`
+                    `Al desempeñar las funciones de este trabajo, se requiere que el empleado se siente regularmente.
+                    El empleado ocasionalmente debe pararse, caminar, agacharse, arrodillarse o agacharse. El empleado debe ocasionalmente
+                    levantar y / o mover hasta 20 libras.`
                 ]
             }
         },
@@ -140,12 +140,12 @@ const textContent = {
                 en: [
                     `This job description in no way states or implies that these are the only duties to be performed by the employee occupying this position. 
                 Employees will be required to follow any other job-related instructions and to perform any other job-related 
-                dutiesrequested by their supervisor.`
+                duties requested by their supervisor.`
                 ],
                 es: [
                     `Esta descripción del trabajo de ninguna manera establece o implica que estas son las únicas tareas que debe realizar el empleado que ocupa este puesto.
                 Se requerirá que los empleados sigan cualquier otra instrucción relacionada con el trabajo y realicen cualquier otra tarea relacionada con el trabajo
-                deberes solicitados por su supervisor.`
+                 solicitados por su supervisor.`
                 ]
             }
         },
@@ -156,7 +156,7 @@ const formContent = {
     sheetTitle: "DM Application",
     title: {
         en: "District Manager",
-        es: "Gerente de distrito",
+        es: "Gerente de Distrito",
     },
     subtitle: {
         en: "Please fill out the form below and we will get back to you as soon as possible.",
@@ -283,7 +283,7 @@ const formContent = {
         {
             title: {
                 en: "Are you computer literate?",
-                es: "¿Eres alfabetizado en computación?"
+                es: "¿Tienes habilidades informáticas?"
             },
             type: "radio",
             required: true,
@@ -299,7 +299,7 @@ const formContent = {
                 es: "¿Cuál es tu velocidad de escritura?"
             },
             type: "input",
-            label: { en: "WPM", es: "WPM" },
+            label: { en: "WPM", es: "Palabras Por Minuto" },
             validation: "number",
             outsideLabel: true,
             required: true,
