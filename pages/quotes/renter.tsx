@@ -16,7 +16,7 @@ const bannerContent = {
         es: "Obtenga Seguro De Inquilinos Hoy"
     },
     subtitle: {
-        en: `Protect yourself and your valuables by getting low cost rentetrs insurance that will cover the content of an apartment or home that you'll be renting.`,
+        en: `Protect yourself and your valuables by getting low cost renters insurance that will cover the content of an apartment or home that you'll be renting.`,
         es: `Protéjase a sí mismo y a sus objetos de valor obteniendo un seguro de inquilinos de bajo costo que cubrirá el contenido de un apartamento o casa que alquilará.`
     },
     CTA: {

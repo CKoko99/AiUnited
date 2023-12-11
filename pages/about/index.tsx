@@ -33,13 +33,13 @@ const CenterVideoContent = {
   subtitle: {
     en: `At Ai United Insurance, we pride ourselves on delivering personalized service and comprehensive
      coverage options to our valued customers.`,
-    es: `En Ai United Insurance, nos enorgullecemos de brindar un servicio personalizado y opciones de cobertura
+    es: `En Ai United Insurance, nos enorgullece brindar un servicio personalizado con opciones de cobertura
       integral a nuestros valiosos clientes. `,
   },
   body: {
     en: `At Ai United Insurance, we pride ourselves on delivering personalized service and comprehensive
      coverage options to our valued customers.`,
-    es: `En Ai United Insurance, nos enorgullecemos de brindar un servicio personalizado y opciones de cobertura
+    es: `En Ai United Insurance, nos enorgullece brindar un servicio personalizado con opciones de cobertura
       integral a nuestros valiosos clientes. `,
   },
   video: {
@@ -58,13 +58,13 @@ const VideoBannerContent = {
   subtitle: {
     en: `At Ai United Insurance, we pride ourselves on delivering personalized service and comprehensive
      coverage options to our valued customers.`,
-    es: `En Ai United Insurance, nos enorgullecemos de brindar un servicio personalizado y opciones de cobertura
+    es: `En Ai United Insurance, nos enorgullece brindar un servicio personalizado con opciones de cobertura
       integral a nuestros valiosos clientes. `,
   },
   body: {
     en: `At Ai United Insurance, we pride ourselves on delivering personalized service and comprehensive
      coverage options to our valued customers.`,
-    es: `En Ai United Insurance, nos enorgullecemos de brindar un servicio personalizado y opciones de cobertura
+    es: `En Ai United Insurance, nos enorgullece brindar un servicio personalizado con opciones de cobertura
       integral a nuestros valiosos clientes. `,
   },
   video: {
@@ -104,7 +104,7 @@ const textSectionContent = {
     en: `At Ai United Insurance, we have a rich history of growth and dedication to becoming the most trusted 
     insurance provider in Texas. Our Journey has been fueled by a commitment to providing reliable 
     coverage and exceptional customer service to our clients.`,
-    es: `En Ai United Insurance, tenemos una rica historia de crecimiento y dedicación para 
+    es: `En Ai United Insurance, tenemos una increíble historia de crecimiento y dedicación para 
     convertirnos en el proveedor de seguros más confiable de Texas. Nuestro viaje ha sido impulsado 
     por un compromiso de brindar cobertura fiable y un servicio al cliente excepcional a nuestros clientes.`
   },

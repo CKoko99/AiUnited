@@ -30,10 +30,8 @@ const textSection1 = {
         es: `¡Únete al Equipo!`,
     },
     subtitle: {
-        en: `Our workforce is our greatest asset, and we want to ensure that our employees have the 
-        opportunity to continue to grow their skills and experience and can progress in their careers.`,
-        es: `Nuestra fuerza laboral es nuestro mayor activo, y queremos asegurarnos de que nuestros empleados tengan la
-        oportunidad de seguir desarrollando sus habilidades y experiencia y puedan progresar en sus carreras.`,
+        en: `Our workforce is our greatest asset. We aim to ensure our employees have opportunities to grow their skills, gain experience, and advance in their careers.`,
+        es: `Nuestra fuerza laboral es nuestro mayor activo. Nuestro objetivo es garantizar que nuestros empleados tengan oportunidades para desarrollar sus habilidades, adquirir experiencia y avanzar en sus carreras.`,
     },
     titleVariant: "h2" as const,
     subtitleVariant: "h5" as const,

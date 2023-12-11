@@ -16,7 +16,7 @@ const bannerContent = {
         es: "Obtenga Seguro De Motocicleta Hoy"
     },
     subtitle: {
-        en: `Protect yourself and your valuables by getting low cost motorcycle insurance that will cover you in the event of an accident.`,
+        en: `Secure both yourself and your valuables with affordable motorcycle insurance, providing coverage in case of an accident.`,
         es: `Protéjase a sí mismo y a sus objetos de valor obteniendo un seguro de motocicleta de bajo costo que lo cubrirá en caso de un accidente.`
     },
     img: {
