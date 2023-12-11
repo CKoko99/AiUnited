@@ -28,6 +28,16 @@ Object.keys(languageMap).forEach((key) => {
     Lang[languageMap[key].locale] = key
 })
 export { Lang }
+
+function returnLocaleText(text) {
+    const router = useRouter();
+    const { locale } = router;
+    const currentLang = locale ? Lang[locale] : Lang['en'];
+    if (text[currentLang])
+        return text[currentLang];
+    else return text['en']
+};
+export { returnLocaleText }
 export default function LocaleSwitcher() {
     const router = useRouter()
     const { locales, locale: activeLocale } = router
