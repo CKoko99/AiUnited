@@ -8,6 +8,7 @@ import GetAQuote from "../../Modals/GetAQuote";
 import { GTMEVENTS, GTMEventHandler } from "@/components/Scripts/GoogleTag";
 import CategoryIcon from '@mui/icons-material/Category';
 import React from "react";
+import { returnLocaleText } from "@/components/locale/LocaleSwitcher";
 const text = {
     moreProducts: {
         en: "View more products",
@@ -94,12 +95,15 @@ const styles = {
         flexDirection: "column",
     }
 }
+
 function QuoteButton(props) {
     const router = useRouter()
+    const { locale } = router
+    const currentLang = Lang[locale ?? 'en']
     const [text, setText] = useState([] as string[]);
     const [hovering, setHovering] = useState(false);
+    const words = returnLocaleText(props.text).split(" ");
     useEffect(() => {
-        const words = props.text[props.lang].split(" ");
         let line = "";
         let i = 0;
         const newText: string[] = [];
@@ -122,7 +126,7 @@ function QuoteButton(props) {
 
         newText.push(line);
         setText(newText);
-    }, [props.lang]);
+    }, [currentLang]);
     function handleButtonClick() {
         GTMEventHandler(`${GTMEVENTS.audience}-${props.id}-main_banner`, { 'name': `${props.id}-Quote` })
         router.push(props.link)
@@ -183,7 +187,7 @@ function QuoteButton(props) {
 function MoreProducts(props) {
 
     const [hovering, setHovering] = useState(false);
-    const currentLang = props.lang
+
     return <Box
     >
         <Box
@@ -207,7 +211,7 @@ function MoreProducts(props) {
             }} variant="h6"
                 onClick={() => { props.openModal() }}
             >
-                {text.moreProducts[currentLang]}
+                {returnLocaleText(text.moreProducts)}
             </Typography>
         </Box>
         <Box sx={{
@@ -218,9 +222,6 @@ function MoreProducts(props) {
     </Box>
 }
 export default function Banner(props: BannerProps) {
-    const router = useRouter()
-    const { locale } = router
-    const currentLang = Lang[locale ?? 'en']
     const [openModal, setOpenModal] = useState(false);
 
     return (<>
@@ -230,10 +231,10 @@ export default function Banner(props: BannerProps) {
                     ...styles.textSection,
                 }}
             >
-                <Typography variant="h3" fontFamily={CustomFonts.Gustavo} component={"h1"} fontWeight="bold" gutterBottom>{props.title[currentLang]}</Typography>
+                <Typography variant="h3" fontFamily={CustomFonts.Gustavo} component={"h1"} fontWeight="bold" gutterBottom>{returnLocaleText(props.title)}</Typography>
                 <Typography variant="h5"
                     sx={{ margin: { xs: ".5rem auto", md: "0" }, }}
-                    gutterBottom>{props.subtitle && props.subtitle[currentLang]}</Typography>
+                    gutterBottom>{props.subtitle && returnLocaleText(props.subtitle)}</Typography>
                 {props.buttons &&
                     <Box
                         sx={{}}
@@ -246,10 +247,10 @@ export default function Banner(props: BannerProps) {
                             }}
                         >
                             {props.buttons.map((button, index) => {
-                                return <QuoteButton key={index} {...button} lang={currentLang} />
+                                return <QuoteButton key={index} {...button} />
                             })}
                         </Box>
-                        <MoreProducts lang={currentLang} openModal={() => { setOpenModal(true) }} />
+                        <MoreProducts openModal={() => { setOpenModal(true) }} />
                     </Box>
                 }
 
@@ -257,7 +258,7 @@ export default function Banner(props: BannerProps) {
                     <Button sx={{ ...styles.ctaButton }} variant="contained"
                         onClick={() => { setOpenModal(true) }}
                     >
-                        {props.ctaButton.text[currentLang]}
+                        {returnLocaleText(props.ctaButton.text)}
                     </Button>
                 )}
             </Box>
