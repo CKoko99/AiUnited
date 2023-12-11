@@ -1,3 +1,4 @@
+import TextSection from "@/components/Content/TextSection";
 import Hero from "../../../components/Content/Hero/Hero";
 import TextContent from "../../../components/Content/TextContent";
 import BannerImg from '../../../public/assets/images/about/careers/banner.png'
@@ -14,26 +15,23 @@ const heroContent = {
         alt: 'Ai United Insurance Careers',
     }
 }
+const textSection1 = {
+    title: {
+        en: `Customer Service Representative / Insurance Agent`,
+        es: `Representante de Servicio al Cliente / Agente de Seguros`,
+    },
+    subtitle: {
+        en: `Customer Service Representative / Insurance Agent are responsible for handling multiple types of customer experience
+        inquiries, resolving service concerns, documenting customer requests and completing changes to policies.`,
+        es: `Los representantes de servicio al cliente / agentes de seguros son responsables de manejar múltiples tipos de
+        consultas de experiencia del cliente, resolver problemas de servicio, documentar las solicitudes de los clientes y completar
+        cambios en las pólizas.`
+    },
+    titleVariant: "h2" as const,
+    subtitleVariant: "h5" as const,
+}
 const textContent = {
     content: [
-        {
-            variant: "h4",
-            fontWeight: "bold",
-            text: {
-                en: [`Customer Service Representative / Insurance Agent`],
-                es: [`Representante de Servicio al Cliente / Agente de Seguros`]
-            },
-        },
-        {
-            text: {
-                en: [`Customer Service Representative / Insurance Agent are responsible for handling multiple types of customer experience 
-            inquiries, resolving service concerns, documenting customer requests and completing changes to policies. Other 
-            responsibilities of a Customer Service Representative may also include:`],
-                es: [`Los representantes de servicio al cliente / agentes de seguros son responsables de manejar múltiples tipos de
-            consultas de experiencia del cliente, resolver problemas de servicio, documentar las solicitudes de los clientes y completar
-            cambios en las pólizas. Otras responsabilidades de un representante de servicio al cliente también pueden incluir:`]
-            },
-        },
         {
             variant: "h5",
             fontWeight: "bold",
@@ -357,7 +355,7 @@ const formContent = {
 
 export default function () {
     return <>
-        <Hero {...heroContent} />
+        <TextSection {...textSection1} />
         <TextContent {...textContent} />
 
         <Simple {...formContent} />

@@ -1,3 +1,4 @@
+import TextSection from "@/components/Content/TextSection";
 import Hero from "../../../components/Content/Hero/Hero";
 import TextContent from "../../../components/Content/TextContent";
 import BannerImg from '../../../public/assets/images/about/careers/banner.png'
@@ -14,6 +15,22 @@ const heroContent = {
     }
 }
 
+const textSection1 = {
+    title: {
+        en: "Operations",
+        es: "Operaciones"
+    },
+    subtitle: {
+        en: `An Operations Reoresentative is a professional who ensures that everything runs 
+        smoothly. They maximize processes
+         and procedures while meeting customer expectations in terms of cost-effectiveness.`,
+        es: `Un representante de operaciones es un profesional que se asegura de que todo funcione
+        sin problemas. Maximizan los procesos
+            y procedimientos al tiempo que satisfacen las expectativas del cliente en términos de rentabilidad.`
+    },
+    titleVariant: "h2" as const,
+    subtitleVariant: "h5" as const,
+}
 const textContent = {
     content: [
         {
@@ -341,7 +358,7 @@ const formContent = {
 };
 export default function () {
     return <>
-        <Hero {...heroContent} />
+        <TextSection {...textSection1} />
         <TextContent {...textContent} />
         <Simple {...formContent} />
     </>

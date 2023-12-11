@@ -14,11 +14,12 @@ interface ComponentProps {
         variant?: string;
     }[];
     subtitleVariant?: "h5" | "h6" | "subtitle1" | "subtitle2" | "body1" | "body2" | "caption" | "button" | "overline" | undefined;
+    titleVariant?: "h1" | "h2" | "h3" | "h5" | "h6" | "subtitle1" | "subtitle2" | "body1" | "body2" | "caption" | "button" | "overline" | undefined;
 }
 
 const classes = {
     root: {
-        width: { xs: "90%", sm: "80%", md: "70%", lg: "65%" },
+        width: { xs: "90%", sm: "80%", md: "70%", lg: "70%" },
         margin: "auto", padding: "1rem 0", display: "flex",
         flexDirection: "column", alignItems: "center",
         gap: "1rem",
@@ -35,7 +36,7 @@ export default function (props: ComponentProps) {
         <Box sx={{ ...classes.root, }}
         >
             {props.title ?
-                <Typography fontFamily={CustomFonts.Gustavo} variant="h4" fontWeight={600} sx={{ textAlign: "center", }}>
+                <Typography fontFamily={CustomFonts.Gustavo} variant={props.titleVariant ?? "h4"} fontWeight={600} sx={{ textAlign: "center", }}>
                     {props.title[currentLang]}
                 </Typography> : null}
             {props.subtitle ?
