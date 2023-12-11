@@ -16,8 +16,8 @@ import BannerImage from '@/public/assets/images/quotes/auto/Banner.png';
 const heroContent = {
     title: { en: "Auto Insurance", es: "Seguro de Auto" },
     subtitle: {
-        en: "Enter your zip code to get started with a free auto quote",
-        es: "Ingrese su código postal para comenzar una cotización de seguro de auto gratuita"
+        en: "Enter your zip code to get started with a free auto quote.",
+        es: "Ingrese su código postal para comenzar una cotización de seguro de auto gratuita."
     },
     img: {
         src: BannerImage,
