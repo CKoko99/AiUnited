@@ -2,8 +2,8 @@ import { Typography, Box } from "@mui/material";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
-import { Lang } from "../../locale/LocaleSwitcher";
+import React, { useEffect, useState } from "react";
+import { Lang, returnLocaleText } from "../../locale/LocaleSwitcher";
 
 //menu content prop will be an array of objects with title and img
 interface DiagramProps {
@@ -65,8 +65,36 @@ const styles = {
     }
 }
 function ContentItem(props: any) {
-    const [hovering, setHovering] = React.useState(false)
-    const currentLang = props.lang
+    const router = useRouter()
+    const { locale } = router
+    const currentLang = Lang[locale ?? 'en']
+    const [text, setText] = useState([] as string[]);
+    const [hovering, setHovering] = useState(false)
+    const words = returnLocaleText(props.item.title).split(" ");
+    useEffect(() => {
+        let line = "";
+        let i = 0;
+        const newText: string[] = [];
+
+        while (i < words.length) {
+            if (line.length + words[i].length < 10) {
+                if (line.length === 0) {
+                    line = words[i];
+                } else {
+                    line += " " + words[i];
+                }
+            } else {
+                if (line.length !== 0) {
+                    newText.push(line);
+                }
+                line = words[i];
+            }
+            i++;
+        }
+
+        newText.push(line);
+        setText(newText);
+    }, [currentLang]);
     return <>
         <Link
             href={props.item.link}
@@ -99,12 +127,16 @@ function ContentItem(props: any) {
                             lineHeight: "1.4rem",
                         }}
                     >
-                        {props.item.title[currentLang]?.split(' ').map((word: string, index: any) => (
-                            <React.Fragment key={index}>
-                                {word}
-                                <br />
+                        {text.map((line, index) => {
+                            return <React.Fragment key={index}>
+                                {line} {"  "}
+                                <Box
+                                    sx={{ height: "0px", display: { xs: "none", sm: "block" } }}
+                                >
+                                    <br />
+                                </Box>
                             </React.Fragment>
-                        ))}
+                        })}
                     </Typography>
                 )}
             </Box>
@@ -112,21 +144,19 @@ function ContentItem(props: any) {
     </>
 }
 export default function Diagram(props: DiagramProps) {
-    const router = useRouter()
-    const { locale } = router
-    const currentLang = Lang[locale ?? 'en']
+
 
     return (<>
         <Box sx={{ ...styles.root }}>
             <Typography variant="h4" component="h4" sx={{ textAlign: "center", margin: "1rem 0" }}>
-                {props.title[currentLang]}
+                {returnLocaleText(props.title)}
             </Typography>
             <Box
                 sx={{ ...styles.diagram }}
             >
                 {props.content?.map((item: any, index: number) => {
                     return (
-                        <ContentItem lang={currentLang} item={item} key={index} />
+                        <ContentItem item={item} key={index} />
                     )
                 })}
             </Box>
