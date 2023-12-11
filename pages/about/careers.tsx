@@ -34,7 +34,9 @@ const textSection1 = {
         opportunity to continue to grow their skills and experience and can progress in their careers.`,
         es: `Nuestra fuerza laboral es nuestro mayor activo, y queremos asegurarnos de que nuestros empleados tengan la
         oportunidad de seguir desarrollando sus habilidades y experiencia y puedan progresar en sus carreras.`,
-    }
+    },
+    titleVariant: "h2" as const,
+    subtitleVariant: "h5" as const,
 }
 
 const picturesWithListContent = {
@@ -119,11 +121,9 @@ const cardsContent = {
     ]
 }
 
-export default function (props) {
+export default function () {
     return <>
-        <Hero {...heroContent} />
         <TextSection {...textSection1} />
-
         <PictureWithList {...picturesWithListContent} />
         <Cards {...cardsContent} />
     </>
