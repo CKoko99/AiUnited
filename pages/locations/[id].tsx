@@ -55,12 +55,31 @@ const LocationText = {
         en: "Hours of Operation",
         es: "Horario de Atención",
     },
+    MonFri: {
+        en: "Monday - Friday",
+        es: "Lunes - Viernes",
+    },
+    Sat: {
+        en: "Saturday",
+        es: "Sábado",
+    },
+    Sun: {
+        en: "Sunday",
+        es: "Domingo",
+    },
 }
 export default function (props) {
     const router = useRouter()
     const { locale } = router
     const currentLang = Lang[locale ?? 'en']
 
+    // props.data.hours  = "Mon-Fri: 9:00am - 7:00pm | Saturday: 10:00am - 5:00pm | Sunday: Closed"
+    let monFriTime = props.data.hours.split("|")[0]
+    monFriTime = monFriTime.substring(monFriTime.indexOf(":") + 1)
+    let satTime = props.data.hours.split("|")[1]
+    satTime = satTime.substring(satTime.indexOf(":") + 1)
+    let sunTime = props.data.hours.split("|")[2]
+    sunTime = sunTime.substring(sunTime.indexOf(":") + 1)
     // console.log(props.data)
     return <>
         <Box
@@ -81,7 +100,9 @@ export default function (props) {
                 <Box>
                 </Box>
                 <Typography variant="h5" fontFamily={CustomFonts.Gustavo} fontWeight={"bold"} >{LocationText.info[currentLang]}</Typography>
-                <Typography variant="h6">{LocationText.hoursOfOperation[currentLang]}: {props.data.hours}</Typography>
+                <Typography variant="h6">{LocationText.hoursOfOperation[currentLang]}: {LocationText.MonFri[currentLang]}: {monFriTime} | {LocationText.Sat[currentLang]}: {satTime} | {LocationText.Sun[currentLang]}: {sunTime}
+
+                </Typography>
                 <Box
                     sx={{ display: "flex", gap: "1rem" }}
                 >
