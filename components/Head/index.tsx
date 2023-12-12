@@ -10,11 +10,30 @@ const HeadComponent = ({ title, metaData }: HeadComponentPropsType) => {
   return (
     <Head>
       <GTMHead />
-      <title>{title || "Ai United"}</title>
+      <title>{title || "Ai United Insurance"}</title>
       <meta name="creator" content="Ai United" />
       <meta name="publisher" content="Ai United" />
       <meta name="description" content={metaData || "Ai United Insurance provides you with coverage options, benefits and discounts at a price you can afford."} />
       <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/ai-favicon.ico?alt=media&token=192149a1-59c8-48d2-be99-5f751ab91e1a" />
+
+      {//<!-- Facebook Meta Tags -->
+      }
+      <meta property="og:url" content="https://aiunited.com/" />
+      <meta property="og:type" content="website" />
+      <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/og-fb.png?alt=media&token=580378a4-b1a3-473f-98cd-da5ef169513d" />
+
+      {//      <!-- Twitter Meta Tags -->
+      }
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta property="twitter:domain" content="aiunited.com" />
+      <meta property="twitter:url" content="https://aiunited.com/" />
+      <meta name="twitter:title" content="Ai United Insurance - Free Auto Insurance Quote - Car Insurance" />
+      <meta name="twitter:description" content="Ai United Insurance provides you with coverage options, benefits and discounts at a price you can afford." />
+      <meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/og-fb.png?alt=media&token=580378a4-b1a3-473f-98cd-da5ef169513d" />
+
+      {// <!-- Meta Tags Generated via https://www.opengraph.xyz -->
+      }
+
       <meta name="google-site-verification" content="eBcP0RUizk4nbWiQlzGJKWaFZaPuYTm9Fzo2S954WJE" />
     </Head>
   )
