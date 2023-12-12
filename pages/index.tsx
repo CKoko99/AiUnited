@@ -380,7 +380,11 @@ export default function () {
     }, [])
     return (
         <>
+<<<<<<< Updated upstream
             <HeadComponent title={'Ai United'} metaData={'Ai United Insurnace'} />
+=======
+            <HeadComponent title={'Ai United Insurance'} metaData={'Ai United Insurance provides you with coverage options, benefits and discounts at a price you can afford.'} />
+>>>>>>> Stashed changes
             <Banner {...bannerContent} />
             {//<FlexDiagram {...partnerCompanies} />
             }
