@@ -31,6 +31,9 @@
       "@/components/*": [
         "components/*"
       ],
+      "@/functions/*": [
+        "functions/*"
+      ],
       "@/public/*": [
         "public/*"
       ]
