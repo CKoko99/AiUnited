@@ -380,7 +380,9 @@ export default function () {
     }, [])
     return (
         <>
+
             <HeadComponent title={'Ai United Insurance'} metaData={'Ai United Insurance provides you with coverage options, benefits and discounts at a price you can afford.'} />
+
             <Banner {...bannerContent} />
             {//<FlexDiagram {...partnerCompanies} />
             }
