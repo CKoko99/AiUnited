@@ -299,8 +299,8 @@ const reviewContent = {
     },
     content: {
         name: {
-            en: "Jacob B",
-            es: "Jacob B"
+            en: "Jason C",
+            es: "Jason C"
         },
         review: {
             en: `I'd been shopping around for a better auto insurance rate with little success. Bethany saved me almost $100 per month with the same coverage!
@@ -380,7 +380,9 @@ export default function () {
     }, [])
     return (
         <>
-            <HeadComponent title={'Ai United'} metaData={'Ai United Insurance provides you with coverage options, benefits and discounts at a price you can afford.'} />
+
+            <HeadComponent title={'Ai United Insurance'} metaData={'Ai United Insurance provides you with coverage options, benefits and discounts at a price you can afford.'} />
+
             <Banner {...bannerContent} />
             {//<FlexDiagram {...partnerCompanies} />
             }
