@@ -21,8 +21,8 @@ const textSection1 = {
         es: `Representante de Servicio al Cliente / Agente de Seguros`,
     },
     subtitle: {
-        en: `Customer Service Representative / Insurance Agent are responsible for handling multiple types of customer experience
-        inquiries, resolving service concerns, documenting customer requests and completing changes to policies.`,
+        en: `Customer Service Representatives / Insurance Agents are responsible for handling multiple types of 
+        customer experience inquiries, resolving service concerns, documenting customer requests, and completing changes to policies.`,
         es: `Los representantes de servicio al cliente / agentes de seguros son responsables de manejar múltiples tipos de
         consultas de experiencia del cliente, resolver problemas de servicio, documentar las solicitudes de los clientes y completar
         cambios en las pólizas.`
@@ -53,7 +53,7 @@ const textContent = {
                     `Customizing insurance programs to suit individual customers`,
                     `Ensuring that policy requirements are fulfilled, including the completion of appropriate forms`,
                     `Explaining features, advantages and disadvantages of various policies`,
-                    `Seeking out new clients and developing clientele by networking to find new customers and generating lists of prospective clients`,
+                    `Seeking out new clients and developing clientele by networking, and generating lists of prospective clients`,
                     `Get licensed or obtain continuing education courses for licensing purposes`,
                 ],
                 es: [`Realizar tareas administrativas`,
@@ -72,14 +72,6 @@ const textContent = {
             },
         },
         {
-            text: {
-                en: [`To effectively perform the duties of a Customer Service Representative/ Insurance agent, individuals must be able to 
-            demonstrate a number of competencies that are essential to the position, which include:`],
-                es: [`Para desempeñar eficazmente las funciones de representante de servicio al cliente / agente de seguros, las personas deben poder
-            demostrar una serie de competencias que son esenciales para el puesto, que incluyen:`]
-            }
-        },
-        {
             variant: "h5",
             fontWeight: "bold",
             text: {
@@ -88,12 +80,20 @@ const textContent = {
             },
         },
         {
+            text: {
+                en: [`To effectively perform the duties of a Customer Service Representative/ Insurance agent, individuals must be able to 
+            demonstrate a number of competencies that are essential to the position, which include:`],
+                es: [`Para desempeñar eficazmente las funciones de representante de servicio al cliente / agente de seguros, las personas deben poder
+            demostrar una serie de competencias que son esenciales para el puesto, que incluyen:`]
+            }
+        },
+        {
             type: "bulletedList",
             text: {
                 en: [`Bilingual (Spanish/English) Required`,
                     `Basic computer knowledge; ability to type 20+ WPM`,
                     `Possess strong interpersonal skills`,
-                    `Be able to communicate clearly, both writtern and orally`,
+                    `Be able to communicate clearly, both written and orally`,
                     `Be able to prioritize  plan work activities as to use time efficiently`,
                     `Be organized, accurate, thorough, and able to monitor work for quality`,
                     `Be dependable, able to follow instructions, respond to management direction, and must be able to improve
@@ -148,7 +148,7 @@ const textContent = {
                 en: [
                     `This job description in no way states or implies that these are the only duties to be performed by the employee occupying this position. 
                 Employees will be required to follow any other job - related instructions and to perform any other job - related 
-                dutiesrequested by their supervisor.`
+                duties requested by their supervisor.`
                 ]
             }
         },

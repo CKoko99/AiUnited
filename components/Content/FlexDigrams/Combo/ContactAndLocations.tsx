@@ -15,7 +15,7 @@ const textContent = {
         es: "Contáctenos"
     },
     subtitle: {
-        en: `Feel free to reach out to us by giving us a call, locating a nearby store, and we'll promptly respond to your inquiry.`,
+        en: `Feel free to reach out to us by giving us a call, or locating a nearby store, and we'll promptly respond to your inquiry.`,
         es: `No dude en comunicarse con nosotros llamándonos o ubicando una tienda cercana, y le responderemos rápidamente a su consulta.`,
     },
     Contact: {

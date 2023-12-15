@@ -14,7 +14,9 @@ import HeadComponent from '../../components/Head';
 import VerticleAutoBanner from '@/components/Content/Hero/VerticleAutoBanner';
 import BannerImage from '@/public/assets/images/quotes/auto/Banner.png';
 const heroContent = {
-    title: { en: "Auto Insurance", es: "Seguro de Auto" },
+    title: {
+        en: "Get Auto Insurance Today", es: "Obtenga Seguro De Auto Hoy"
+    },
     subtitle: {
         en: "Enter your zip code to get started with a free auto quote.",
         es: "Ingrese su código postal para comenzar una cotización de seguro de auto gratuita."

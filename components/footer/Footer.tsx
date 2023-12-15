@@ -68,7 +68,7 @@ const section3content = {
       link: PATHCONSTANTS.QUOTES.RENTER.INDEX
     },
     {
-      text: { en: "Mexico Insruance", es: "Seguro de México" },
+      text: { en: "Mexico Insurance", es: "Seguro de México" },
       link: PATHCONSTANTS.QUOTES.MEXICO.INDEX
     },
     {

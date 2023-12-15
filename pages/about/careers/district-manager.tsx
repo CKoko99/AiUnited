@@ -35,26 +35,7 @@ const textSection1 = {
 }
 const textContent = {
     content: [
-        {
-            variant: "h4",
-            fontWeight: "bold",
-            text: {
-                en: [`District Manager`],
-                es: [`Gerente de Distrito`]
-            },
-        },
-        {
-            text: {
-                en: [`The District Manager is responsible for ensuring all required tasks for all locations are carried out by all employees 
-                in his/her designated zone. The District Manager is responsible for additional tasks delegated by and reports 
-                directly to the regional Manager and manages and directs a sales force to achieve sales and profit goals.`],
-                es: [`El gerente de distrito es responsable de garantizar que todas las tareas requeridas para todas las ubicaciones sean realizadas por todos los empleados
-                en su zona designada. El gerente del distrito tiene la tarea de gestionar las responsabilidades
-                asignadas, informando directamente al gerente regional. Además, supervisa y guía a un equipo de agentes
-                con el objetivo de alcanzar metas de ventas y ganancias.`]
 
-            }
-        },
         {
             variant: "h5",
             fontWeight: "bold",

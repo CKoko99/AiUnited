@@ -52,7 +52,7 @@ const CenterVideoContent = {
 }
 const VideoBannerContent = {
   title: {
-    en: "Experience peace of mind with Ai United Insurance",
+    en: "Experience Peace of Mind with Ai United Insurance",
     es: "Experimente la Tranquilidad con Ai United Insurance"
   },
   subtitle: {

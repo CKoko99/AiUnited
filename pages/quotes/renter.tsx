@@ -188,7 +188,7 @@ const formContent = {
         },
         {
             title: {
-                en: "What is the value of your personal property",
+                en: "What is the value of your personal property?",
                 es: "¿Cuál es el valor de su propiedad personal?"
             },
             outsideLabel: true,

@@ -1,8 +1,9 @@
 import { Box, Typography } from "@mui/material";
 import Image, { StaticImageData } from "next/image";
 import { useRouter } from "next/router";
-import { Lang } from "../../locale/LocaleSwitcher";
+import { Lang, returnLocaleText } from "../../locale/LocaleSwitcher";
 import { CustomFonts } from "../../../providers/theme";
+import { blogText } from "@/functions/functions";
 
 interface TwoColumnProps {
     title: { [lang: string]: string; };
@@ -55,11 +56,12 @@ export default function (props: TwoColumnProps) {
         >
             <Typography textAlign={"center"} fontFamily={CustomFonts.Gustavo} variant="h4">{props.title[currentLang]}</Typography>
             <Box>
-                {props.body[currentLang].map((paragraph, index) => {
-                    return <Typography key={index} variant="h5"
-                        sx={{ lineHeight: paragraph.length < 1 ? ".5rem" : "" }}
-                    > {paragraph} <br /> </Typography>
-                })}
+
+                {props.body && <>
+                    {blogText(returnLocaleText(props.body)).map((item, index) => (<Typography key={index} variant={"h5"}
+                        sx={{ minHeight: item.length < 1 ? ".5rem" : "" }}
+                        dangerouslySetInnerHTML={{ __html: item }} />))}
+                </>}
             </Box>
         </Box>
     </Box ></>

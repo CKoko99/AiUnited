@@ -17,7 +17,7 @@ const bannerContent = {
     },
     subtitle: {
         en: `Home insurance is a crucial safeguard for your most significant investment - your home.
-         It provdes financial protection against unforeseene events and disasters.`,
+         It provides financial protection against unforeseen events and disasters.`,
         es: `El seguro de casa es una protección crucial para su inversión más importante: su casa.
             Proporciona protección financiera contra eventos imprevistos y desastres.`
     },
@@ -105,16 +105,18 @@ const contentSection3 = {
         en: [`Your home represents your greatest financial asset, and at Ai United Insurance we are committed to assisting you in
         insuring it.
         `,
+            `That's why we offer a variety of home insurance coverages to match your needs.`,
             ``,
             `• Liability Insurance`,
             `• Dwelling Coverage`, `• Other Structures Coverage`, `• Personal Property Coverage`,
-            `* Loss of Use Coverage`,],
+            `• Loss of Use Coverage`,],
 
         es: [`Su hogar representasu principal recurso financiero, y en Ai United Insurance estamos comprometidos en 
         asistirle para asegurarlo.`,
+            `Es por eso que ofrecemos una variedad de coberturas de seguro de casa para satisfacer sus necesidades.`,
             ``,
             `• Cobertura de vivienda`, `• Cobertura de otras estructuras`, `• Cobertura de propiedad personal`,
-            `* Cobertura de pérdida de uso`,
+            `• Cobertura de pérdida de uso`,
             `• Seguro de responsabilidad`,
         ]
     },

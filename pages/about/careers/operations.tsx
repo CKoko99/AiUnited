@@ -21,7 +21,7 @@ const textSection1 = {
         es: "Operaciones"
     },
     subtitle: {
-        en: `An Operations Reoresentative is a professional who ensures that everything runs 
+        en: `An Operations Representative is a professional who ensures that everything runs 
         smoothly. They maximize processes
          and procedures while meeting customer expectations in terms of cost-effectiveness.`,
         es: `Un representante de operaciones es un profesional que se asegura de que todo funcione
@@ -34,24 +34,6 @@ const textSection1 = {
 const textContent = {
     content: [
         {
-            variant: "h4",
-            fontWeight: "bold",
-            text: {
-                en: [`Operations`],
-                es: [`Operaciones`]
-            },
-        },
-        {
-            text: {
-                en: [`An Operations Reoresentative is a professional who ensures that everything runs 
-                smoothly. They maximize processes
-                 and procedures while meeting customer expectations in terms of cost-effectiveness.`],
-                es: [`Un representante de operaciones es un profesional que se asegura de que todo funcione
-                sin problemas. Maximizan los procesos
-                    y procedimientos al tiempo que satisfacen las expectativas del cliente en términos de rentabilidad.`]
-            }
-        },
-        {
             variant: "h5",
             fontWeight: "bold",
             text: {
@@ -62,7 +44,7 @@ const textContent = {
         {
             type: "bulletedList",
             text: {
-                en: [`Work full-time available 5 days a week Monday- Saturdays`,
+                en: [`Work Full-time, Monday through Saturday, with availability spanning five days a week`,
                     `Able to travel to other cities when needed but not often`,
                     `Some physical activities are needed from time to time like lifting, picking up, moving and cleaning`,
                     `Recording, processing, verifying and maintaining records of financial transactions`,
@@ -76,7 +58,7 @@ const textContent = {
                     `Track and report all maintenance, security, or IT issues`,
                     `Maintain/ renew location leases`,
                 ],
-                es: [`Trabajar a tiempo completo disponible 5 días a la semana de lunes a sábados`,
+                es: [`Trabajar a tiempo completo, de lunes a sábado, con disponibilidad que abarque cinco días a la semana`,
                     `Capaz de viajar a otras ciudades cuando sea necesario pero no con frecuencia`,
                     `De vez en cuando se necesitan algunas actividades físicas como levantar, recoger, mover y limpiar`,
                     `Grabación, procesamiento, verificación y mantenimiento de registros de transacciones financieras`,
@@ -156,7 +138,7 @@ const textContent = {
                 en: [
                     `This job description in no way states or implies that these are the only duties to be performed by the employee occupying this position. 
                 Employees will be required to follow any other job-related instructions and to perform any other job-related 
-                dutiesrequested by their supervisor.`
+                duties requested by their supervisor.`
                 ],
                 es: [
                     `Esta descripción del trabajo de ninguna manera establece o implica que estas son las únicas tareas que debe realizar el empleado que ocupa este puesto.
