@@ -26,8 +26,8 @@ const heroContent = {
 
 const textSectionContent = {
     subtitle: {
-        en: "We have earned HUNDREDS of reviews averaging over 4.5 stars across our 80+ locations located all across Texas.",
-        es: "Hemos ganado CIENTOS de reseñas con un promedio de más de 4.5 estrellas en nuestras más de 80 sucursales ubicadas en todo Texas.",
+        en: "We have earned HUNDREDS of reviews averaging over 4.5 stars across our 80+ locations throughout Texas.",
+        es: "Hemos ganado CIENTOS de reseñas con un promedio de más de 4.5 estrellas en nuestras más de 80 ubicaciones en todo Texas.",
     },
 }
 

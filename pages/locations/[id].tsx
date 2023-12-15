@@ -46,7 +46,7 @@ const LocationText = {
         es: "Obtener Direcciones",
     },
     body: {
-        en: "We provide our customers with the best auto insurance quotes, from reputable insurers, that offer some of the most affordable rates in your area. Submit a quote request form for a free, no obligation review of your current policies or give us a call so that we can help you determine the types of coverage available that are best for you and your family.",
+        en: "We provide our customers with the best auto insurance quotes, from reputable insurers, that offer some of the most affordable rates in your area. Submit a quote request form for a free, no obligation review of your current policies, or give us a call so that we can help you determine the types of coverage available that are best for you and your family.",
         es: `Brindamos a nuestros clientes las mejores cotizaciones de seguro de automóvil, de aseguradoras acreditadas, que ofrecen algunas de las tarifas más económicas en su área. Envíe un formulario de solicitud de cotización para una revisión gratuita y sin compromiso de sus pólizas actuales, o llámenos 
         para que podamos asistirlo en identificar las opciones de cobertura más adecuadas para usted y su familia. 
         `

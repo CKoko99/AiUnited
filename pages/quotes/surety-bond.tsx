@@ -42,8 +42,7 @@ const contentSection1 = {
         },
         body: {
             en: [`Surety Bond insurance is an essential safeguard that provides financial security and peace of mind. It 
-            acts as a three-way agreement between you (the principal), the entity requiring the bond (the obligee) and 
-            the surety company.`,
+            acts as a three-way agreement between you (the principal), the entity requiring the bond (the obligee), and the surety company.`,
                 `Whether you're a construction professional, a business owner, or an individual seeking the protection and assurance 
             of Surety Bond insurance, we're here to be your unwavering partner.`
             ],

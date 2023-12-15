@@ -41,16 +41,16 @@ const contentSection2 = {
         es: `¿Por Qué Puede Necesitar un Seguro SR-22?`
     },
     body: {
-        en: [`• DUI/DWI Convictions: If you've been convicted of a DUI or DWI, you'll likely need SR-22 insurance to 
+        en: [`• **DUI/DWI Convictions:** If you've been convicted of a DUI or DWI, you'll likely need SR-22 insurance to 
             reinstate your driver's license`,
-            `• Multiple Traffic Violations: If you've received multiple traffic violations in a short period, you might need SR-22 insurance`,
-            `• Uninsured Accidents: If you've been involved in an accident while uninsured, you might require SR-22 insurance to demonstrate
+            `• **Multiple Traffic Violations:** If you've received multiple traffic violations in a short period, you might need SR-22 insurance`,
+            `• **Uninsured Accidents:** If you've been involved in an accident while uninsured, you might require SR-22 insurance to demonstrate
              your commitment to financial responsibility and compliance with the law`
         ],
-        es: [`• Condenas por DUI / DWI: si ha sido condenado por un DUI o DWI, es probable que necesite un seguro SR-22 para
+        es: [`• **Condenas por DUI / DWI:** si ha sido condenado por un DUI o DWI, es probable que necesite un seguro SR-22 para
             reactivar su licencia de conducir`,
-            `• Múltiples violaciones de tráfico: si ha recibido múltiples violaciones de tráfico en un corto período, es posible que necesite un seguro SR-22`,
-            `• Accidentes sin seguro: si ha estado involucrado en un accidente sin seguro, es posible que necesite un seguro SR-22 para demostrar
+            `• **Múltiples violaciones de tráfico:** si ha recibido múltiples violaciones de tráfico en un corto período, es posible que necesite un seguro SR-22`,
+            `• **Accidentes sin seguro:** si ha estado involucrado en un accidente sin seguro, es posible que necesite un seguro SR-22 para demostrar
             su compromiso con la responsabilidad financiera y el cumplimiento de la ley`
         ],
     },
