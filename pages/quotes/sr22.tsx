@@ -83,14 +83,14 @@ const contentSection3 = {
     },
     largeVerticalCard: {
         body: {
-            en: [`Join the thousands of Texans who switch to Ai United Insurance`],
+            en: [`Join the thousands of Texans who switch to Ai United Insurance.`],
             es: [`Únase a los miles de tejanos que cambian a Ai United Insurance`]
         },
         img: { src: Sr22Img3, alt: "apartment" }
     },
     smallCard1: {
         body: {
-            en: [`Visit one of our offices located throughout Texas`],
+            en: [`Visit one of our offices located throughout Texas.`],
             es: [`Visite una de nuestras oficinas ubicadas en todo Texas`]
         },
         CTA: {
@@ -101,7 +101,7 @@ const contentSection3 = {
     },
     smallCard2: {
         body: {
-            en: ['Get a free quote today from the comfort of your home'],
+            en: ['Get a free quote today from the comfort of your home.'],
             es: ['Obtenga una cotización gratuita hoy desde la comodidad de su hogar']
         },
         CTA: {
@@ -117,7 +117,7 @@ const formContent = {
     title: {
         en: "SR-22 Insurance Quote", es: "Cotización de Seguro de SR-22"
     },
-    subtitle: { en: "Start a free SR-22 insurance quote to see the savings", es: `Comience una cotización gratuita de seguro SR-22 para ver los ahorros` },
+    subtitle: { en: "Start a free SR-22 insurance quote to see the savings.", es: `Comience una cotización gratuita de seguro SR-22 para ver los ahorros` },
     questions: [
         {
             subGroup: { en: "Personal Information", es: "Información personal" },
@@ -235,7 +235,7 @@ const formContent = {
 export default function () {
     return <>
         <HeadComponent title={'SR-22 Insurance | Get a Free SR-22 Insurance Quote'}
-            metaData={'Get a Free SR-22 Insurance Quote with Ai United Insurnace Today'} />
+            metaData={'Get a Free SR-22 Insurance Quote with Ai United Insurance Today'} />
         <VerticalBanner {...bannerContent} />
         <MainGrid {...contentSection3} />
         <TwoColumn {...contentSection2} />

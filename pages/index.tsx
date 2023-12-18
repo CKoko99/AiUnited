@@ -100,7 +100,7 @@ const bannerContent = {
 }
 const picturesWithListContent = {
     title: {
-        en: `Your 3 Step Insurance Solution`,
+        en: `Your 3-Step Insurance Solution`,
         es: `Su solución de seguro en 3 pasos`
     },
 

@@ -16,7 +16,8 @@ const bannerContent = {
         es: "Obtenga Seguro De Inquilinos Hoy"
     },
     subtitle: {
-        en: `Protect yourself and your valuables by getting low cost renters insurance that will cover the content of an apartment or home that you'll be renting.`,
+        en: `Protect yourself and your valuables by getting low-cost renters insurance that covers the content of 
+        an apartment or home that you'll be renting.`,
         es: `Protéjase a sí mismo y a sus objetos de valor obteniendo un seguro de inquilinos de bajo costo que cubrirá el contenido de un apartamento o casa que alquilará.`
     },
     CTA: {
@@ -41,15 +42,15 @@ const contentSection2 = {
             es: `¿Por Qué Necesita un Seguro de Inquilinos?`
         },
         body: {
-            en: [`Many landlords through America require tenants to purchase rental insurance`,
-                `The good news is that we can help you find an affordable policy at the comfort of your home`],
+            en: [`Many landlords in America require tenants to purchase rental insurance.`,
+                `The good news is that we can help you find an affordable policy at the comfort of your home.`],
             es: [`Muchos propietarios en Estados Unidos requieren que los inquilinos compren un seguro de alquiler`,
                 `La buena noticia es que podemos ayudarlo a encontrar una póliza accesible desde la comodidad de su hogar`]
         },
     },
     largeVerticalCard: {
         body: {
-            en: [`Join the thousands of Texans who switch to Ai United Insurance`],
+            en: [`Join the thousands of Texans who switch to Ai United Insurance.`],
             es: [`Únase a los miles de tejanos que cambian a Ai United Insurance`]
         },
         img: { src: RentersImg2, alt: "apartment" }
@@ -84,9 +85,9 @@ const contentSection3 = {
     },
     body: {
         en: [
-            `Renters insurance is an insurance policy that can cover theft, water backup damages, certain natural disasters, bodily injuries and more in a rented property.`,
+            `Renters insurance is an insurance policy that can cover theft, water backup damages, certain natural disasters, bodily injuries, and more in a rented property.`,
             ``,
-            `If you rent an apartment, home or even a dorm, renters insurance is recommended for protecting your space and belongings in the event of a covered accident.`,
+            `If you rent an apartment, home or even a dorm, renters insurance is recommended for protecting your space and belongings in a covered accident.`,
         ],
 
         es: [
@@ -103,7 +104,7 @@ const formContent = {
     title: {
         en: "Renters Insurance Quote", es: "Cotización de Seguro de Inquilinos"
     },
-    subtitle: { en: "Start a free renters insurance quote to see the savings", es: `Comience una cotización gratuita de seguro de inquilinos para ver los ahorros` },
+    subtitle: { en: "Start a free renters insurance quote to see the savings.", es: `Comience una cotización gratuita de seguro de inquilinos para ver los ahorros` },
     questions: [
         {
             subGroup: { en: "Personal Information", es: "Información personal" },
@@ -235,7 +236,7 @@ const formContent = {
 export default function () {
     return <>
         <HeadComponent title={'Renter Insurance | Get a Free Renter Insurance Quote'}
-            metaData={'Get a Free Renter Insurance Quote with Ai United Insurnace Today'} />
+            metaData={'Get a Free Renter Insurance Quote with Ai United Insurance Today'} />
         <VerticalBanner {...bannerContent} />
         <MainGrid {...contentSection2} />
         <TwoColumn {...contentSection3} />

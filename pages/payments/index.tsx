@@ -35,7 +35,7 @@ const paymentText = {
         es: "Hacer un Pago"
     },
     enterPolicyNumber: {
-        en: "Enter your policy number below to make a payment",
+        en: "Enter your policy number below to make a payment.",
         es: "Ingrese su número de póliza a continuación para realizar un pago"
     },
     policyNumber: {

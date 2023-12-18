@@ -46,8 +46,7 @@ const contentSection1 = {
         },
         body: {
             en: [`Traveling to Mexico can be an exciting adventure, but it's essential to be prepared for the unexpected.`,
-                `When you travel into Mexico with an American or Canadian licensed vehicle, you need Mexican auto insurance before
-             crossing the border`
+                `When you travel to Mexico with an American or Canadian-licensed vehicle, you need Mexican auto insurance before crossing the border.`
             ],
             es: [`Viajar a México puede ser una aventura emocionante, pero es esencial estar preparado para lo inesperado.`,
                 `Cuando viaja a México con un vehículo con licencia estadounidense o canadiense, necesita un seguro de automóvil mexicano antes
@@ -57,14 +56,14 @@ const contentSection1 = {
     },
     largeVerticalCard: {
         body: {
-            en: [`Ai United helps you find the best coverage during your travels`],
+            en: [`Ai United helps you find the best coverage during your travels.`],
             es: [`Ai United lo ayuda a encontrar la mejor cobertura durante sus viajes`]
         },
         img: { src: MexicoImg2, alt: "car" }
     },
     smallCard1: {
         body: {
-            en: [`See what our customers have to say about Ai United`],
+            en: [`See what our customers have to say about Ai United.`],
             es: [`Vea lo que nuestros clientes tienen que decir sobre Ai United`]
         },
         CTA: {
@@ -75,7 +74,7 @@ const contentSection1 = {
     },
     smallCard2: {
         body: {
-            en: ['Get a free quote today from the comfort of your home'],
+            en: ['Get a free quote today from the comfort of your home.'],
             es: ['Obtenga una cotización gratuita hoy desde la comodidad de su hogar']
         },
         CTA: {
@@ -115,7 +114,7 @@ const quoteText = {
         es: "Cotización de Seguro de México"
     },
     subtitle: {
-        en: "Start a free Mexico insurance quote to see the savings",
+        en: "Start a free Mexico insurance quote to see the savings.",
         es: "Comience una cotización gratuita de seguro de México para ver los ahorros"
     }
 }
@@ -125,7 +124,7 @@ export default function () {
     const currentLang = Lang[locale ?? 'en']
     return <>
         <HeadComponent title={'Mexico Insurance | Get a Free Mexican Insurance Quote'}
-            metaData={'Get a Free Mexico Tourist Insurance Quote with Ai United Insurnace Today'} />
+            metaData={'Get a Free Mexico Tourist Insurance Quote with Ai United Insurance Today'} />
         <VerticalBanner {...bannerContent} />
         <MainGrid  {...contentSection1} />
         <TwoColumn {...contentSection2} />

@@ -21,8 +21,10 @@ const textSection1 = {
         es: `Representante de Servicio al Cliente / Agente de Seguros`,
     },
     subtitle: {
-        en: `Customer Service Representatives / Insurance Agents are responsible for handling multiple types of 
-        customer experience inquiries, resolving service concerns, documenting customer requests, and completing changes to policies.`,
+        en: `Customer Service Representatives / Insurance Agents are responsible for handling multiple 
+        types of customer experience inquiries, resolving service concerns, documenting customer 
+        requests, and completing policy changes.
+        `,
         es: `Los representantes de servicio al cliente / agentes de seguros son responsables de manejar múltiples tipos de
         consultas de experiencia del cliente, resolver problemas de servicio, documentar las solicitudes de los clientes y completar
         cambios en las pólizas.`

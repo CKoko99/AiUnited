@@ -1,7 +1,7 @@
 //import SimpleForm from '../../components/Forms/Simple/Simple';
 import VerticalBanner from '../../components/Content/Hero/VerticalBanner';
 import PATHCONSTANTS from '../../constants/sitemap';
-import SuretyImg1 from '../../public/assets/images/quotes/surety/surety1.png';
+import SuretyImg1 from "../../public/assets/images/quotes/surety/surety1.png";
 import SuretyImg2 from '../../public/assets/images/quotes/surety/surety2.png';
 import SuretyImg3 from '../../public/assets/images/quotes/surety/surety3.png';
 import MainGrid from '../../components/Content/Grids/MainGrid';
@@ -16,8 +16,8 @@ const bannerContent = {
         es: "Obtenga un Seguro de Fianza Hoy"
     },
     subtitle: {
-        en: `Ai United is dedicated to simplifying the world of Surety Bonds, ensuring you have the coverage you 
-        need, precisely when you need it.`,
+        en: `Ai United is dedicated to simplifying the world of Surety Bonds,
+         ensuring you have the coverage you need when you need it.`,
         es: `Ai United se dedica a simplificar el mundo de los bonos de garantía, asegurando que tenga la cobertura que
         necesitas, precisamente cuando lo necesitas.`
     },
@@ -56,14 +56,14 @@ const contentSection1 = {
     },
     largeVerticalCard: {
         body: {
-            en: [`Join the thousands of Texans who switch to Ai United Insurance`],
+            en: [`Join the thousands of Texans who switch to Ai United Insurance.`],
             es: [`Únase a los miles de tejanos que cambian a Ai United Insurance`]
         },
         img: { src: SuretyImg2, alt: "car" }
     },
     smallCard1: {
         body: {
-            en: [`See what our customers have to say about Ai United`],
+            en: [`See what our customers have to say about Ai United.`],
             es: [`Vea lo que nuestros clientes tienen que decir sobre Ai United`]
         },
         CTA: {
@@ -74,7 +74,7 @@ const contentSection1 = {
     },
     smallCard2: {
         body: {
-            en: ['Get a free quote today from the comfort of your home'],
+            en: ['Get a free quote today from the comfort of your home.'],
             es: ['Obtenga una cotización gratuita hoy desde la comodidad de su hogar']
         },
         CTA: {
@@ -115,7 +115,7 @@ const formContent = {
     title: {
         en: "Surety Bond Quote", es: "Cotización de Seguro de Fianza"
     },
-    subtitle: { en: "Start a free surety bond quote to see the savings", es: `Comience una cotización gratuita de seguro de fianza para ver los ahorros` },
+    subtitle: { en: "Start a free surety bond quote to see the savings.", es: `Comience una cotización gratuita de seguro de fianza para ver los ahorros` },
     questions: [
         {
             subGroup: { en: "Personal Information", es: "Información personal" },
@@ -225,7 +225,7 @@ const formContent = {
 export default function () {
     return <>
         <HeadComponent title={'Surety Bond | Get a Free Surety Bond Quote'}
-            metaData={'Get a Free Surety Bond Quote with Ai United Insurnace Today'} />
+            metaData={'Get a Free Surety Bond Quote with Ai United Insurance Today'} />
         <VerticalBanner {...bannerContent} />
         <MainGrid  {...contentSection1} />
         <TwoColumn {...contentSection2} />
