@@ -11,9 +11,10 @@ const heroContent = {
   },
   subtitle: {
     en: `Ai United Insurance is an independent agency located in Texas. We service everything 
-    from auto insurance, motorcycle insurance, home insurance, Mexico insurance and 
-    much more. At Ai United Insurance we pride ourselves on being innovative and leading a 
-    new wave of change within the insurance industry.`,
+    from auto insurance, motorcycle insurance, home insurance, Mexico insurance, and much more. 
+    At Ai United Insurance, we pride ourselves on being innovative and leading a new wave of change 
+    within the insurance industry.
+    `,
     es: `Ai United Insurance son agencias independientes ubicadas en Texas. Ofrecemos 
     desde seguros de auto, hasta seguros de motocicletas, seguros de vivienda, seguros de México y
     mucho más. En Ai United Insurance nos enorgullecemos de ser innovadores y liderar un

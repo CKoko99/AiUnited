@@ -41,8 +41,7 @@ const contentSection2 = {
             es: "El Seguro de Casa es su Escudo Contra lo Inesperado"
         },
         body: {
-            en: [`Home insurance covers your dwelling and personal belongings in case of damage or theft. This means your home 
-            and the things you value are protected.`,
+            en: [`Home insurance covers your dwelling and belongings in case of damage or theft. Your home and the things you value are protected.            `,
                 `Having home insurance offers peace of mind. You can rest easy knowing that your home and belongings are secure, and you won't
         face a financial crisis if disaster strikes.`
             ],
@@ -59,7 +58,7 @@ const contentSection2 = {
     },
     largeVerticalCard: {
         body: {
-            en: ['Join the thousands of people who switched to Ai United Insurance'],
+            en: ['Join the thousands of people who switched to Ai United Insurance.'],
             es: ['Únase a los miles de personas que cambiaron a Ai United Insurance']
         },
         img: {
@@ -102,9 +101,7 @@ const contentSection3 = {
         es: "Explorando las Opciones de Cobertura de Seguro de Casa"
     },
     body: {
-        en: [`Your home represents your greatest financial asset, and at Ai United Insurance we are committed to assisting you in
-        insuring it.
-        `,
+        en: [`Your home represents your most valuable financial asset. Ai United Insurance we are committed to assisting you in insuring it.`,
             `That's why we offer a variety of home insurance coverages to match your needs.`,
             ``,
             `• Liability Insurance`,
@@ -131,7 +128,7 @@ const formContent = {
     title: {
         en: "Home Insurance Quote", es: "Cotización de Seguro de Casa"
     },
-    subtitle: { en: "Start a free home insurance quote to see the savings", es: `Comience una cotización gratuita de seguro de casa para ver los ahorros` },
+    subtitle: { en: "Start a free home insurance quote to see the savings.", es: `Comience una cotización gratuita de seguro de casa para ver los ahorros` },
     questions: [
         {
             subGroup: { en: "Personal Information", es: "Información personal" },
@@ -245,7 +242,7 @@ const formContent = {
 
         },
         {
-            title: { en: "Have you reported any claims or losses within the past 3 years?", es: "¿Ha reportado algún reclamo o pérdida en los últimos 3 años?" },
+            title: { en: "Have you reported any claims or losses within the past three years?", es: "¿Ha reportado algún reclamo o pérdida en los últimos 3 años?" },
             type: "radio",
             required: true,
             answers: [
@@ -261,7 +258,7 @@ const formContent = {
 export default function () {
     return <>
         <HeadComponent title={'Home Insurance | Get a Free Home Insurance Quote'}
-            metaData={'Get a Free Home Insurance Quote with Ai United Insurnace Today'} />
+            metaData={'Get a Free Home Insurance Quote with Ai United Insurance Today'} />
         <VerticalBanner {...bannerContent} />
         <MainGrid {...contentSection2} />
         <TwoColumn {...contentSection3} />

@@ -39,8 +39,10 @@ const contentSection2 = {
             es: "Protegiendo su Pasión y Su Bolsillo"
         },
         body: {
-            en: [`Whether you're a seasoned rider or a beginner, having the right insurance coverage is not just a legal requirement in many places,
-             but it's also a smart decision to protect your investment and your well-being.`,],
+            en: [`Whether you're a seasoned rider or a beginner, having the right insurance coverage is not just a 
+            legal requirement in many places. It's also a great decision to protect your investment 
+            and your well-being.
+            `,],
             es: [`Ya sea que sea un motociclista experimentado o un principiante, tener la cobertura de seguro adecuada no es solo un requisito legal en muchos lugares,
                 sino que también es una decisión inteligente para proteger su inversión y su bienestar.`,]
         }
@@ -110,7 +112,7 @@ const formContent = {
     id: "Motorcycle-quote",
     conversion: "Motorcycle",
     title: { en: "Motorcycle Insurance Quote", es: "Cotización de Seguro de Motocicleta" },
-    subtitle: { en: "Start a free motorcycle insurance quote to see the savings", es: `Comience una cotización gratuita de seguro de motocicleta para ver los ahorros` },
+    subtitle: { en: "Start a free motorcycle insurance quote to see the savings.", es: `Comience una cotización gratuita de seguro de motocicleta para ver los ahorros` },
     questions: [
         {
             subGroup: { en: "Personal Information", es: "Información personal" },
@@ -266,7 +268,7 @@ const formContent = {
 export default function () {
     return <>
         <HeadComponent title={'Motorcycle Insurance | Get a Free Motorcycle Insurance Quote'}
-            metaData={'Get a Free Motorcycle Insurance Quote with Ai United Insurnace Today'} />
+            metaData={'Get a Free Motorcycle Insurance Quote with Ai United Insurance Today'} />
         <VerticalBanner {...bannerContent} />
         <MainGrid {...contentSection2} />
         <TwoColumn {...contentSection3} />

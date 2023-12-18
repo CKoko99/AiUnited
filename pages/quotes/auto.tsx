@@ -84,8 +84,8 @@ const contentSection2 = {
             es: "Protegiendo lo Que Más Importa"
         },
         body: {
-            en: [`In today's fast paced world, auto insurance is a crucial safeguard for you, and your financial well being`,
-                `The right auto insurance policy ensures that you're prepared to face the unexpected`
+            en: [`In today's fast-paced world, auto insurance is a crucial safeguard for you and your financial well-being.`,
+                `The right auto insurance policy ensures you're prepared to face the unexpected.`
             ],
             es: [`En el mundo de hoy, el seguro de auto es una protección crucial para usted y su bienestar financiero`,
                 `La póliza de seguro de auto adecuada asegura que esté preparado para enfrentar lo inesperado`],
@@ -93,14 +93,14 @@ const contentSection2 = {
     },
     largeVerticalCard: {
         body: {
-            en: [`Whether you drive a brand-new car or an older model, auto insurance protects your investment`],
+            en: [`Whether you drive a brand-new car or an older model, auto insurance protects your investment.`],
             es: [`Ya sea que conduzca un automóvil nuevo o un modelo más antiguo, el seguro de automóvil protege su inversión`]
         },
         img: { src: CarImg1, alt: "car" }
     },
     smallCard1: {
         body: {
-            en: [`See what our customers have to say about Ai United`],
+            en: [`See what our customers have to say about Ai United.`],
             es: [`Vea lo que nuestros clientes tienen que decir sobre Ai United`]
         },
         CTA: {
@@ -111,7 +111,7 @@ const contentSection2 = {
     },
     smallCard2: {
         body: {
-            en: ['Get a free quote today from the comfort of your home'],
+            en: ['Get a free quote today from the comfort of your home.'],
             es: ['Obtenga una cotización gratuita hoy desde la comodidad de su hogar']
         },
         CTA: {
@@ -148,7 +148,7 @@ const contentSection3 = {
 export default function () {
     return <>
         <HeadComponent title={'Car Insurance | Get a Free Auto Insurance Quote'}
-            metaData={'Get a Free Car Insurance Quote with Ai United Insurnace Today'} />
+            metaData={'Get a Free Car Insurance Quote with Ai United Insurance Today'} />
         <VerticleAutoBanner {...heroContent} />
         <NumbersSection {...slideData} menuContent={slideData.menuContent} />
         <MainGrid {...contentSection2} />
