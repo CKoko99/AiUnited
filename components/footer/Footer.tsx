@@ -177,13 +177,16 @@ export default function Footer() {
           <Box
             sx={{ ...classes.section1content }}
           >
-            <Typography
+            {/*
+
+              <Typography
               variant="h5"
-            >
+              >
               <Link href={PATHCONSTANTS.PHONE}>
                 {PATHCONSTANTS.PHONETEXT}
               </Link>
             </Typography>
+    */   }
             <Box
             >
               <a
