@@ -91,8 +91,7 @@ const content = [
         title: { en: "Home Insurance", es: "Seguro de Casa" },
         id: "Home",
         body: {
-            en: `Having home insurance offers peace of mind. You can rest easy knowing that your home and belongings 
-        are secure, and you won't face a financial crisis if disaster strikes.`,
+            en: `Having home insurance offers peace of mind. You can rest easy knowing that your home and belongings are secure and you won't face a financial crisis if disaster strikes.`,
             es: `Tener un seguro de hogar ofrece tranquilidad. Puede descansar tranquilo sabiendo que su hogar y sus pertenencias
         están seguros y que no se enfrentará a una crisis financiera si ocurre un desastre.`},
         quote: PATHCONSTANTS.QUOTES.HOME.FORM,
@@ -115,7 +114,7 @@ const content = [
         title: { en: "SR-22 Insurance", es: "Seguro SR-22" },
         id: "SR22",
         body: {
-            en: `SR-22 insurance is a unique type of coverage required by the state of reinstate your driving 
+            en: `SR-22 insurance is a unique type of coverage required by the state to reinstate your driving 
         privileges after certain violations.`,
             es: `El seguro SR-22 es un tipo de cobertura única requerida por el estado para restablecer sus privilegios de
         conducción después de ciertas violaciones.`},
@@ -127,7 +126,7 @@ const content = [
         title: { en: "Renters Insurance", es: "Seguro de Inquilinos" },
         id: "Renters",
         body: {
-            en: `Protect yourself and your valuables by getting low cost renters insurance that will cover the 
+            en: `Protect yourself and your valuables by getting low-cost renters insurance that will cover the 
         content of an apartment or home that you'll be renting.`,
             es: `Protéjase a sí mismo y a sus objetos de valor obteniendo un seguro de inquilinos de bajo costo que cubrirá el
         contenido de un apartamento o casa que esté alquilando.`},
