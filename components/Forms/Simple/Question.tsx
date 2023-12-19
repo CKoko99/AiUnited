@@ -86,14 +86,12 @@ function InputQuestion(props) {
             props.setAnswer(props.index, "")
         }
     }, [])
-    useEffect(() => {
-        props.setValid(props.index, valid)
-        props.setAnswer(props.index, value)
 
-    }, [valid, value])
     function setValueHandler(e) {
+        setOnceFocused(true)
         if (!props.validation || props.validation === 'email') {
             setValue(e.target.value)
+            console.log(e.target.value)
         }
         if (props.validation === 'number' || props.validation === 'phone' || props.validation === 'zip') {
             //filter out non-numeric characters
@@ -153,6 +151,13 @@ function InputQuestion(props) {
             }
         }
     }
+    useEffect(() => {
+        props.setValid(props.index, valid)
+        props.setAnswer(props.index, value)
+        if (onceFocused) {
+            checkValidation()
+        }
+    }, [valid, value])
     return <>
         <Box
             sx={{
