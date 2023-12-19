@@ -1,6 +1,6 @@
 import PATHCONSTANTS from '../constants/sitemap'
 
-const url = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://aiunited-uc3v53rceq-ue.a.run.app"
+const url = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://aiunited.com"
 export default async function sitemap() {
     let Pages = []
     //let sitemap = PathConstants minus pathconstants.backend
