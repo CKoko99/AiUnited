@@ -67,6 +67,10 @@ const LocationText = {
         en: "Sunday",
         es: "Domingo",
     },
+    TuesThurs: {
+        en: "Tuesday - Thursday",
+        es: "Martes - Jueves",
+    },
 }
 export default function (props) {
     const router = useRouter()
@@ -74,12 +78,29 @@ export default function (props) {
     const currentLang = Lang[locale ?? 'en']
 
     // props.data.hours  = "Mon-Fri: 9:00am - 7:00pm | Saturday: 10:00am - 5:00pm | Sunday: Closed"
-    let monFriTime = props.data.hours.split("|")[0]
-    monFriTime = monFriTime.substring(monFriTime.indexOf(":") + 1)
-    let satTime = props.data.hours.split("|")[1]
-    satTime = satTime.substring(satTime.indexOf(":") + 1)
-    let sunTime = props.data.hours.split("|")[2]
-    sunTime = sunTime.substring(sunTime.indexOf(":") + 1)
+    // props.data.hours = Mon & Fri: 9:00am - 7:00pm | Tue, Wed & Thur: 9am to 6pm  | Saturday: 10:00am - 3:00pm | Sunday: Closed
+    let monFriTime
+    let tuesThursTime
+    let satTime
+    let sunTime
+    if (props.data.hours.includes("Mon-Fri")) {
+        monFriTime = props.data.hours.split("|")[0]
+        monFriTime = monFriTime.substring(monFriTime.indexOf(":") + 1)
+        satTime = props.data.hours.split("|")[1]
+        satTime = satTime.substring(satTime.indexOf(":") + 1)
+        sunTime = props.data.hours.split("|")[2]
+        sunTime = sunTime.substring(sunTime.indexOf(":") + 1)
+    } else {
+        monFriTime = props.data.hours.split("|")[0]
+        monFriTime = monFriTime.substring(monFriTime.indexOf(":") + 1)
+        tuesThursTime = props.data.hours.split("|")[1]
+        tuesThursTime = tuesThursTime.substring(tuesThursTime.indexOf(":") + 1)
+        satTime = props.data.hours.split("|")[2]
+        satTime = satTime.substring(satTime.indexOf(":") + 1)
+        sunTime = props.data.hours.split("|")[3]
+        sunTime = sunTime.substring(sunTime.indexOf(":") + 1)
+    }
+
     // console.log(props.data)
     return <>
         <Box
@@ -100,9 +121,8 @@ export default function (props) {
                 <Box>
                 </Box>
                 <Typography variant="h5" fontFamily={CustomFonts.Gustavo} fontWeight={"bold"} >{LocationText.info[currentLang]}</Typography>
-                <Typography variant="h6">{LocationText.hoursOfOperation[currentLang]}: {LocationText.MonFri[currentLang]}: {monFriTime} | {LocationText.Sat[currentLang]}: {satTime} | {LocationText.Sun[currentLang]}: {sunTime}
-
-                </Typography>
+                {props.data.hours.includes("Mon-Fri") ? <Typography variant="h6">{LocationText.hoursOfOperation[currentLang]}: {LocationText.MonFri[currentLang]}: {monFriTime} | {LocationText.Sat[currentLang]}: {satTime} | {LocationText.Sun[currentLang]}: {sunTime}</Typography>
+                    : <Typography variant="h6">{LocationText.hoursOfOperation[currentLang]}: {LocationText.MonFri[currentLang]}: {monFriTime} | {LocationText.TuesThurs[currentLang]}: {tuesThursTime} | {LocationText.Sat[currentLang]}: {satTime} | {LocationText.Sun[currentLang]}: {sunTime}</Typography>}
                 <Box
                     sx={{ display: "flex", gap: "1rem" }}
                 >
