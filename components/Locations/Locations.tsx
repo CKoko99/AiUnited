@@ -9,7 +9,7 @@ import Link from 'next/link';
 import PhonelinkRingIcon from '@mui/icons-material/PhonelinkRing';
 import { CustomFonts } from '../../providers/theme';
 import { useRouter } from 'next/router';
-import { Lang } from '../locale/LocaleSwitcher';
+import { Lang, returnLocaleText } from '../locale/LocaleSwitcher';
 
 const styles = {
     textfield: {
@@ -181,9 +181,9 @@ export default function (props) {
                                 return <MarkerF
                                     key={index}
                                     position={...marker.position}
-                                    icon={markerimg.src}
+                            icon={markerimg.src}
 
-                                    onClick={() => setSelectedMarker(marker)} // Handle click event to show InfoWindow
+                            onClick={() => setSelectedMarker(marker)} // Handle click event to show InfoWindow
                                 />
                             }
                             )}
@@ -205,7 +205,7 @@ export default function (props) {
                                             <Typography variant='body2'>{selectedMarker.address}</Typography>
                                             <Typography variant='body2'>{selectedMarker.address2}</Typography>
                                             <Typography variant='body2'>{selectedMarker.city} {selectedMarker.state} {selectedMarker.zip}</Typography>
-                                            <Typography variant='body2'>{selectedMarker.distance}</Typography>
+                                            <Typography variant='body2'>{selectedMarker.distance} {returnLocaleText(LocationText.miles)}</Typography>
                                             <Typography variant='body2'>{selectedMarker.phone}</Typography>
                                             <Link
                                                 href={`/locations/${selectedMarker.id}`}
