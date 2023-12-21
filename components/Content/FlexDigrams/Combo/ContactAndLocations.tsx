@@ -33,8 +33,8 @@ const textContent = {
         },
         CtaButton: {
             text: {
-                en: `Call: ${PATHCONSTANTS.PHONETEXT}`,
-                es: `Llame: ${PATHCONSTANTS.PHONETEXT}`
+                en: `Call Now!`,
+                es: `¡Llame Ahora!`
             },
             color: "secondary",
             variant: "contained",

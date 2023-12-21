@@ -281,7 +281,7 @@ const callQuoteContent = {
         es: "Ya sea que nos llame o solicite una cotización en línea, nuestros expertos están aquí para brindarle una excelente asistencia."
     },
     cta1: {
-        text: { en: PATHCONSTANTS.PHONETEXT, es: PATHCONSTANTS.PHONETEXT },
+        text: { en: `Call Now!`, es: "¡Llama ahora!" },
         link: PATHCONSTANTS.PHONE
     },
     cta2: {

@@ -34,6 +34,10 @@ const validationText = {
         en: "Please enter a valid date.",
         es: "Por favor ingrese una fecha válida.",
     },
+    zip: {
+        en: "Please enter a valid 5 digit zip code.",
+        es: "Por favor ingrese un código postal válido de 5 dígitos.",
+    },
     file: {
         choose: {
             en: "Choose a file",
@@ -42,7 +46,7 @@ const validationText = {
         replace: {
             en: "Replace file",
             es: "Reemplazar archivo",
-        }
+        },
     }
 }
 const selectLabel = {
@@ -145,7 +149,7 @@ function InputQuestion(props) {
             setOnceValid(valid)
             setValid(valid)
             if (!valid) {
-                setError(validationText.phone[currentLang])
+                setError(validationText.zip[currentLang])
             } else {
                 setError("")
             }
