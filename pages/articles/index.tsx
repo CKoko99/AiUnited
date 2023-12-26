@@ -41,7 +41,7 @@ export async function getServerSideProps(context) {
     let tempData = data.data
     let articles = []
     for (let i = 0; i < 10; i++) {
-        articles.push(tempData[0])
+        articles.push(tempData[0] as never);
     }
     data.data = articles
     return {
