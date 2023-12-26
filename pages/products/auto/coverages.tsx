@@ -1,5 +1,5 @@
 import PATHCONSTANTS from "constants/sitemap";
-
+import AutoImg1 from "public/images/products/auto/suv.png";
 const pageLinks = {
     liability: {
         link: `${PATHCONSTANTS.PRODUCTS.AUTO.COVERAGES}#Liability-Insurance`,
