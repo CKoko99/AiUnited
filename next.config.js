@@ -5,6 +5,9 @@ const nextConfig = {
     locales: ['en-US', 'es',],
     defaultLocale: 'en-US',
   },
+  images: {
+    domains: ['storage.googleapis.com', 'localhost']
+  },
   output: 'standalone'
 }
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
