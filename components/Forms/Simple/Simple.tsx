@@ -140,6 +140,7 @@ export default function (props) {
                 questions: questionsArray,
                 answers: answersArray,
                 formTitle: props.title.en,
+                job: props.job ? true : false,
             }),
         })
     }
