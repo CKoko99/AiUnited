@@ -167,6 +167,7 @@ const textContent = {
     ]
 }
 const formContent = {
+    job: true,
     sheetTitle: "CSR Application",
     title: {
         en: "Customer Service Representative / Insurance Agent",

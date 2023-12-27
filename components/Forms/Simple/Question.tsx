@@ -347,6 +347,7 @@ function FileQuestion(props) {
         if (e.target.files[0]) {
             console.log(e.target.files[0].size / 1024 / 1024)
             props.setValid(props.index, true)
+            props.setAnswer(props.index, 'FILE_PLACEHOLDER')
             setValue(e.target.files[0])
         }
     }

@@ -153,6 +153,7 @@ const textContent = {
 }
 
 const formContent = {
+    job: true,
     sheetTitle: "DM Application",
     title: {
         en: "District Manager",

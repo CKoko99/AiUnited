@@ -151,6 +151,7 @@ const textContent = {
 }
 
 const formContent = {
+    job: true,
     sheetTitle: "Operations Application",
     title: {
         en: "Operations Representative",
