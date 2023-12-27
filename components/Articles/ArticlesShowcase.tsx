@@ -9,6 +9,7 @@ import Link from 'next/link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import PATHCONSTANTS from 'constants/sitemap';
 
 const categories = [
     `Auto Insurance`,
@@ -23,7 +24,7 @@ const categories = [
 function ArticleItem(props) {
     const [hover, setHover] = useState(false)
     console.log(props.attributes)
-    const imageUrl = "http://localhost:1337" + props.attributes.Thumbnail.data.attributes.url
+    const imageUrl = PATHCONSTANTS.STRAPI + props.attributes.Thumbnail.data.attributes.url
     return <Box
         sx={{
             width: { xs: "100%", sm: "45%", md: "30%" },

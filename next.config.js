@@ -6,7 +6,7 @@ const nextConfig = {
     defaultLocale: 'en-US',
   },
   images: {
-    domains: ['storage.googleapis.com', 'localhost']
+    domains: ['storage.googleapis.com', 'localhost', 'ai-united-strapi-uc3v53rceq-ue.a.run.app']
   },
   output: 'standalone'
 }

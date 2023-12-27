@@ -5,6 +5,7 @@ import { CustomFonts } from "providers/theme";
 import Image from "next/image";
 import CTAText from "../PrefilledCTA/CTAText";
 import CTAPicWText from "../PrefilledCTA/CTAPicWText";
+import PATHCONSTANTS from "constants/sitemap";
 
 function richTextReducer(rawRichText) {
     const renderer = new marked.Renderer();
@@ -23,7 +24,7 @@ function richTextReducer(rawRichText) {
 export default function (props) {
     console.log(props)
     let text = returnLocaleText(props.text)
-    let ImageUrl = props.Image.url ? `http://localhost:1337${props.Image.url}` : "/"
+    let ImageUrl = props.Image.url ? `${PATHCONSTANTS.STRAPI}${props.Image.url}` : "/"
     // console.log(props)
     return <>
         <Box
