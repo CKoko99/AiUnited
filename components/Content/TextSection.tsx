@@ -1,6 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useRouter } from "next/router";
-import { Lang } from "../locale/LocaleSwitcher";
+import { Lang, returnLocaleText } from "../locale/LocaleSwitcher";
 import { CustomFonts } from "../../providers/theme";
 import { OverridableStringUnion } from '@mui/types';
 
@@ -15,12 +15,15 @@ interface ComponentProps {
     }[];
     subtitleVariant?: "h5" | "h6" | "subtitle1" | "subtitle2" | "body1" | "body2" | "caption" | "button" | "overline" | undefined;
     titleVariant?: "h1" | "h2" | "h3" | "h5" | "h6" | "subtitle1" | "subtitle2" | "body1" | "body2" | "caption" | "button" | "overline" | undefined;
+    alignTitle?: string;
+    alignSubtitle?: string;
 }
 
 const classes = {
     root: {
         width: { xs: "90%", sm: "80%", md: "70%", lg: "70%" },
-        margin: "auto", padding: "1rem 0", display: "flex",
+        margin: "auto",
+        padding: "1rem 0", display: "flex",
         flexDirection: "column", alignItems: "center",
         gap: "1rem",
     }
@@ -35,13 +38,15 @@ export default function (props: ComponentProps) {
     return <>
         <Box sx={{ ...classes.root, }}
         >
-            {props.title ?
-                <Typography fontFamily={CustomFonts.Gustavo} variant={props.titleVariant ?? "h4"} fontWeight={600} sx={{ textAlign: "center", }}>
-                    {props.title[currentLang]}
-                </Typography> : null}
+            {props.title && <Typography variant={props.titleVariant ? props.titleVariant : "h4"} sx={{
+                textAlign: props.alignTitle ? props.alignTitle : "center",
+                fontFamily: CustomFonts.Gustavo, fontWeight: "800"
+            }}>{returnLocaleText(props.title)}</Typography>}
             {props.subtitle ?
-                <Typography variant={props.subtitleVariant ?? "h6"} sx={{ textAlign: "center", }}>
-                    {props.subtitle[currentLang]}
+                <Typography variant={props.subtitleVariant ?? "h6"}
+                    sx={{ textAlign: props.alignSubtitle ? props.alignSubtitle : "center" }}
+                >
+                    {returnLocaleText(props.subtitle)}
                 </Typography> : null}
             {props.ctaButtons ? <Box
                 sx={{

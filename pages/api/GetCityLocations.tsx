@@ -10,6 +10,7 @@ interface Location {
     }
 }
 
+
 export default async function (center, referer) {
     try {
         const res = await fetch(`${process.env.BACKEND}/locations/aiunited`,

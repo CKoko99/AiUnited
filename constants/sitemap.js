@@ -19,6 +19,10 @@ const PATHCONSTANTS = {
     },
     PRODUCTS: {
         INDEX: '/products',
+        AUTO: {
+            INDEX: '/products/auto',
+            COVERAGES: '/products/auto/coverages',
+        },
         /*     AUTO: '/products/auto',
              HOME: '/products/home',
              MEXICO: '/products/mexico',
@@ -47,6 +51,9 @@ const PATHCONSTANTS = {
             DM: '/about/careers/district-manager',
         },
         REVIEWS: '/about/reviews',
+    },
+    ARTICLES: {
+        INDEX: '/articles',
     },
     PAYMENTS: '/payments',
     PHONE: "tel:2819336333",

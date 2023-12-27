@@ -4,7 +4,10 @@
 /node_modules
 /.pnp
 .pnp.js
-
+admin.tsx
+contract.json
+errors.json
+new.json
 # testing
 /coverage
 .unlighthouse

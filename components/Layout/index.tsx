@@ -21,7 +21,7 @@ const Layout = ({ children }: LayoutProps) => {
         <LocaleSwitcher />
         <Navbar />
       </Box >
-      <Box sx={{ height: "6rem" }} />
+      <Box sx={{ height: "7rem" }} />
       <Box
         sx={{
           maxWidth: "1320px", margin: "auto",

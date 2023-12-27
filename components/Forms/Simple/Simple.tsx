@@ -63,9 +63,12 @@ export default function (props) {
     const [loading, setLoading] = useState(false)
     const [handlingSubmit, setHandlingSubmit] = useState(false)
     function setIndexValid(index: number, valid: boolean) {
-        const newArray = [...validArray]
-        newArray[index] = valid
-        setValidArray(newArray)
+        setValidArray((prevValidArray) => {
+            const newArray = [...prevValidArray];
+            newArray[index] = valid;
+            console.log(newArray);
+            return newArray;
+        });
     }
 
     function setIndexAnswer(index: number, answer: any) {
