@@ -6,6 +6,7 @@ export default async function sitemap() {
     //let sitemap = PathConstants minus pathconstants.backend
     let Sitemap = PATHCONSTANTS
     delete Sitemap.BACKEND
+    delete Sitemap.STRAPI
     delete Sitemap.PHONE
     delete Sitemap.PHONETEXT
     delete Sitemap.PRODUCTS.AUTO

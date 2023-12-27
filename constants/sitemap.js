@@ -60,6 +60,7 @@ const PATHCONSTANTS = {
     PHONETEXT: "(281)-933-6333",
     PRIVACY: '/privacy-policy',
     TERMS: '/terms-of-service',
-    BACKEND: process.env.NODE_ENV === "development" ? "http://localhost:8080" : "https://insurancehubbackend-uc3v53rceq-ue.a.run.app"
+    BACKEND: process.env.NODE_ENV === "development" ? "http://localhost:8080" : "https://insurancehubbackend-uc3v53rceq-ue.a.run.app",
+    STRAPI: process.env.NODE_ENV === "development" ? "http://localhost:1337" : "https://ai-united-strapi-uc3v53rceq-ue.a.run.app"
 };
 export default PATHCONSTANTS
