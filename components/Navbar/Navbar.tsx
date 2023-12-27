@@ -422,7 +422,7 @@ function DrawerAppBar(props: any) {
             fill
             style={{ objectFit: 'contain' }}
             src={LogoImg}
-            alt="Statewide Insurance" />
+            alt="Ai United Insurance" />
         </Box>
         <Box sx={{
           "@media (min-width: 880px)": {
