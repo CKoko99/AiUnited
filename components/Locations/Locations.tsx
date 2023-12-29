@@ -57,6 +57,14 @@ const LocationText = {
         es: "Buscar por código postal, ciudad o estado"
     }
 }
+function returnSubtitleText(city) {
+    if (!city) return LocationText.subtitle
+
+    return {
+        en: `Visit one of our ${city} stores to speak with our representatives and get insured today!`,
+        es: `Visite una de nuestras tiendas en ${city} para hablar con nuestros representantes y obtener un seguro hoy mismo`
+    }
+}
 export default function (props) {
     const router = useRouter()
     const { locale } = router
@@ -142,7 +150,7 @@ export default function (props) {
         >
             <Typography fontFamily={CustomFonts.Gustavo} variant="h2" component="h2" sx={{ textAlign: "center", margin: "1rem 0" }}>{LocationText.title[currentLang]} </Typography>
             <Typography variant='h6' sx={{ textAlign: "center", margin: "1rem auto", width: "80%" }}>
-                {LocationText.subtitle[currentLang]}</Typography>
+                {returnLocaleText(returnSubtitleText(props.city))}</Typography>
             <Box
                 sx={{ margin: "1rem 2rem" }}
             >

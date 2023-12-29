@@ -21,7 +21,7 @@ const ProductCategories = {
 }
 
 export default function (props) {
-    let trimmedCategory = props.catagory.trim().toLowerCase().split(" ")[0]
+    let trimmedCategory = props.category.trim().toLowerCase().split(" ")[0]
     let category
 
 

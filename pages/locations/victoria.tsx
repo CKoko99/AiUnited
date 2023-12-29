@@ -1,3 +1,4 @@
+import HeadComponent from "@/components/Head";
 import GetCityLocations from "../api/GetCityLocations"
 import dynamic from 'next/dynamic';
 
@@ -14,9 +15,12 @@ export async function getServerSideProps(context) {
 export default function (props) {
     // console.log(props.data.locations)
     return <>
+        <HeadComponent title={"Ai United Victoria Locations"}
+            metaData="Ai United Insurance Victoria Locations."
+        />
         <Locations
             locations={props.data}
-            placeholder={"Victoria, TX"}
+            city={"Victoria, TX"}
             center={center}
         />
     </>

@@ -3,6 +3,7 @@ import { CustomFonts } from "../../providers/theme"
 import { useRouter } from "next/router"
 import { Lang } from "../../components/locale/LocaleSwitcher"
 import dynamic from 'next/dynamic';
+import HeadComponent from "@/components/Head";
 
 const Single = dynamic(() => import('../../components/Locations/Single'), {
     loading: () => <p>Loading...</p>, // Optional loading component
@@ -103,6 +104,9 @@ export default function (props) {
 
     // console.log(props.data)
     return <>
+        <HeadComponent title={`Ai United Insurance ${props.data.address}`}
+            metaData="Ai United Insurance Location."
+        />
         <Box
             textAlign={"center"}
             sx={{ padding: "2rem 0" }}

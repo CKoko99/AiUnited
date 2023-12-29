@@ -53,8 +53,8 @@ export default function (props) {
                     __html: richTextReducer(text) as string // Cast the value to string
                 }}
             />
-            {props.CTA1 && <CTAText catagory={props.category} />}
-            {props.CTA2 && <CTAPicWText catagory={props.category} />}
+            {props.CTA1 && <CTAText category={props.category} />}
+            {props.CTA2 && <CTAPicWText article category={props.category} />}
         </Box>
     </>
 }

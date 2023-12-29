@@ -30,6 +30,7 @@ Object.keys(languageMap).forEach((key) => {
 export { Lang }
 
 function returnLocaleText(text) {
+    if (!text) return ""
     const router = useRouter();
     const { locale } = router;
     const currentLang = locale ? Lang[locale] : Lang['en'];

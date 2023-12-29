@@ -97,26 +97,32 @@ export default function (props) {
         }
         formData.append("SheetTitle", props.sheetTitle || props.title.en);
         formData.append("Spreadsheet", "AiUnited");
-        console.log(PATHCONSTANTS.BACKEND)
-        await fetch(`${PATHCONSTANTS.BACKEND}/forms`, {
+        try {
 
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(
-                [...formData.entries(),]
-            ),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-                setFormSubmitted(true)
+
+            await fetch(`${PATHCONSTANTS.BACKEND}/forms`, {
+
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(
+                    [...formData.entries(),]
+                ),
             })
-            .catch((error) => {
-                console.log(error);
-                setFormSubmitted(false)
-            });
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log(data);
+                    setFormSubmitted(true)
+                })
+                .catch((error) => {
+                    console.log(error);
+                    setFormSubmitted(false)
+                });
+        } catch (error) {
+            console.log(error)
+            setFormSubmitted(false)
+        }
     }
 
     async function sendEmail() {
@@ -128,21 +134,27 @@ export default function (props) {
         props.questions.forEach((question) => {
             questionsArray.push(question.title.en)
         })
-        await fetch(`${PATHCONSTANTS.BACKEND}/forms/email`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                to: emailProps.email,
-                company: "Ai United",
-                name: emailProps.name,
-                questions: questionsArray,
-                answers: answersArray,
-                formTitle: props.title.en,
-                job: props.job ? true : false,
-            }),
-        })
+        try {
+
+
+            await fetch(`${PATHCONSTANTS.BACKEND}/forms/email`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    to: emailProps.email,
+                    company: "Ai United",
+                    name: emailProps.name,
+                    questions: questionsArray,
+                    answers: answersArray,
+                    formTitle: props.title.en,
+                    job: props.job ? true : false,
+                }),
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
     async function handleSubmit() {
         console.log("HANDLE SUBMIT")
