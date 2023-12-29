@@ -37,7 +37,7 @@ export default function (props: ComponentProps) {
     const router = useRouter()
     const { locale } = router
     const currentLang = Lang[locale ?? 'en']
-    console.log(returnLocaleText(props.title) + " " + props.alignTitle)
+
     return <>
         <Box sx={{
             ...classes.root,
