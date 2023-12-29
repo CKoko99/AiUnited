@@ -8,7 +8,7 @@ export default function (props) {
         <Box
             sx={{
                 display: "flex", alignItems: "center",
-                width: "90%", margin: "auto", justifyContent: "space-around",
+                width: { xs: "100%", sm: "90%" }, margin: "auto", justifyContent: "space-around",
                 flexDirection: { xs: "column", md: "row" },
             }}
 
@@ -16,7 +16,8 @@ export default function (props) {
             <Box
                 sx={{
                     padding: { xs: "1rem", md: "3rem" },
-                    maxWidth: { xs: "90%", md: "50%" }
+                    maxWidth: { xs: "100%", md: "50%" },
+                    textAlign: { xs: "center", md: "left" },
                 }}
             >
                 <Typography sx={{
@@ -27,7 +28,7 @@ export default function (props) {
             </Box>
             <Box
                 sx={{
-                    position: "relative", height: "20rem", width: "30rem", maxWidth: "100vw",
+                    position: "relative", height: { xs: "15rem", sm: "20rem" }, width: "30rem", maxWidth: "100vw",
                     padding: "2rem"
                 }}
             >
