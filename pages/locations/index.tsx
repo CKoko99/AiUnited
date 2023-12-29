@@ -1,3 +1,4 @@
+import HeadComponent from '@/components/Head';
 import dynamic from 'next/dynamic';
 
 const Locations = dynamic(() => import('../../components/Locations/Locations'), {
@@ -58,6 +59,8 @@ export async function getServerSideProps(context) {
 export default function (props) {
     // console.log(props.data.locations)
     return <>
+        <HeadComponent title={'Find a Ai United Insurance Location'}
+            metaData={'Get a Free Insurance Quote with Ai United Insurance Today'} />
         <Locations
             locations={props.data}
             placeholder={"Texas"}
