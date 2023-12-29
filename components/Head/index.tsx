@@ -4,9 +4,10 @@ import { GTMHead } from "../Scripts/GoogleTag";
 type HeadComponentPropsType = {
   title?: string;
   metaData?: string;
+  canonical?: string;
 }
 
-const HeadComponent = ({ title, metaData }: HeadComponentPropsType) => {
+const HeadComponent = ({ title, metaData, canonical }: HeadComponentPropsType) => {
   return (
     <Head>
       <GTMHead />
@@ -15,7 +16,7 @@ const HeadComponent = ({ title, metaData }: HeadComponentPropsType) => {
       <meta name="publisher" content="Ai United" />
       <meta name="description" content={metaData || "Ai United Insurance provides you with coverage options, benefits and discounts at a price you can afford."} />
       <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/ai-favicon.ico?alt=media&token=192149a1-59c8-48d2-be99-5f751ab91e1a" />
-
+      {canonical && <link rel="canonical" href={canonical} />}
       {//<!-- Facebook Meta Tags -->
       }
       <meta property="og:url" content="https://aiunited.com/" />
