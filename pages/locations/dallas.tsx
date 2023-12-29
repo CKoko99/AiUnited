@@ -1,3 +1,4 @@
+import HeadComponent from "@/components/Head";
 import GetCityLocations from "../api/GetCityLocations"
 import dynamic from 'next/dynamic';
 
@@ -15,9 +16,12 @@ export default function (props) {
 
 
     return <>
+        <HeadComponent title={"Ai United Dallas Locations"}
+            metaData="Ai United Insurance Dallas Locations."
+        />
         <Locations
             locations={props.data}
-            placeholder={"Dallas, TX"}
+            city={"Dallas, TX"}
             center={center}
         />
     </>
