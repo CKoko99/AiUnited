@@ -381,8 +381,10 @@ export default function () {
     return (
         <>
 
-            <HeadComponent title={'Ai United Insurance'} metaData={'Ai United Insurance provides you with coverage options, benefits and discounts at a price you can afford.'} />
-
+            <HeadComponent
+                title={'Ai United Insurance'} metaData={'Ai United Insurance provides you with coverage options, benefits and discounts at a price you can afford.'}
+                canonical="https://www.aiunited.com/"
+            />
             <Banner {...bannerContent} />
             {//<FlexDiagram {...partnerCompanies} />
             }
