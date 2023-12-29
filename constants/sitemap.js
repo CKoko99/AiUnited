@@ -21,7 +21,9 @@ const PATHCONSTANTS = {
         INDEX: '/products',
         AUTO: {
             INDEX: '/products/auto',
-            COVERAGES: '/products/auto/coverages',
+            COVERAGE: '/products/auto/coverage',
+            AFFORDABLE: '/products/auto/affordable',
+            FAQ: '/products/auto/faq',
         },
         /*     AUTO: '/products/auto',
              HOME: '/products/home',

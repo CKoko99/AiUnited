@@ -15,6 +15,7 @@ import BannerImage1 from "../../public/assets/images/products/banner2.png"
 import VerticalBanner from "@/components/Content/Hero/VerticalBanner"
 import { useRouter } from "next/router"
 import { Lang } from "@/components/locale/LocaleSwitcher"
+import HeadComponent from "@/components/Head"
 // auto home motorcycle sr22, renters, mexico, surety bonds
 const bannerContent = {
     title: {
@@ -230,6 +231,7 @@ export default function () {
     const currentLang = Lang[locale ?? 'en']
 
     return <>
+        <HeadComponent title={'Discover Our Products | Ai United Insurance'} metaData={'Ai United Insurance offers a variety of insurance products to match your needs. Get a free quote today!'} />
         <VerticalBanner {...verticalBannerContent} />
         <Box
             sx={{
