@@ -9,7 +9,6 @@ export default async function sitemap() {
     delete Sitemap.STRAPI
     delete Sitemap.PHONE
     delete Sitemap.PHONETEXT
-    delete Sitemap.PRODUCTS.AUTO
     delete Sitemap.ARTICLES
     delete Sitemap.QUOTES.LIABILITY
     //loop through all the paths in PATHCONSTANTS
