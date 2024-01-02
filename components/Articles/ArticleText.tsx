@@ -24,7 +24,7 @@ function richTextReducer(rawRichText) {
 export default function (props) {
     console.log(props)
     let text = returnLocaleText(props.text)
-    let ImageUrl = props.Image.url ? `${PATHCONSTANTS.STRAPI}${props.Image.url}` : "/"
+    let ImageUrl = props.Image.url ? `${props.Image.url}` : "/"
     // console.log(props)
     return <>
         <Box
