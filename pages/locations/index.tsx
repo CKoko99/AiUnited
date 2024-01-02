@@ -9,10 +9,7 @@ const Locations = dynamic(() => import('../../components/Locations/Locations'), 
 
 export async function getServerSideProps(context) {
     try {
-        console.log("were here")
-        //console.log(context.req.headers)
-        console.log(context.req.headers.host)
-        console.log(context.req.headers.referer)
+
         const res = await fetch(`${process.env.BACKEND}/locations/aiunited`,
             {
                 method: "GET",
@@ -23,10 +20,10 @@ export async function getServerSideProps(context) {
                 },
 
             })
-        console.log(context.req.headers.host)
+
         const data = await res.json()
         //for every location give it a position attribute with lat and long combined
-        console.log("here")
+
         data.locations.forEach(location => {
             location.position = {
                 lat: parseFloat(location.lat),

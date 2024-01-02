@@ -24,7 +24,7 @@ const categories = [
 function ArticleItem(props) {
     const [hover, setHover] = useState(false)
     console.log(props.attributes)
-    const imageUrl = PATHCONSTANTS.STRAPI + props.attributes.Thumbnail.data.attributes.url
+    const imageUrl = props.attributes.Thumbnail.data.attributes.url
     return <Box
         sx={{
             width: { xs: "100%", sm: "45%", md: "30%" },

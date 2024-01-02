@@ -110,9 +110,10 @@ export default function (props) {
                 sx={{
                     position: "relative",
                 }}
-                id={"Auto-quote"}
+            //                id={"Auto-quote"}
             >
 
+                <Box id={"Auto-quote"} sx={{ position: "absolute", top: "-7rem" }} ></Box>
                 <Box
                     sx={{
                         backgroundColor: "black",

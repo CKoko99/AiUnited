@@ -30,6 +30,7 @@ interface Marker {
     distance?: string;
     phone?: string;
     id?: string;
+    link: string;
 }
 const LocationText = {
     title: {
@@ -216,7 +217,7 @@ export default function (props) {
                                             <Typography variant='body2'>{selectedMarker.distance} {returnLocaleText(LocationText.miles)}</Typography>
                                             <Typography variant='body2'>{selectedMarker.phone}</Typography>
                                             <Link
-                                                href={`/locations/${selectedMarker.id}`}
+                                                href={`/locations/${selectedMarker.link}`}
                                             >
                                                 <Button
                                                     variant='contained'
@@ -286,7 +287,7 @@ export default function (props) {
                                 <Typography fontWeight={600} variant='body2'>{location.phone}</Typography>
                             </Link>
                             <Link
-                                href={`/locations/${location.id}`}
+                                href={`/locations/${location.link}`}
                             >
                                 <Button
                                     variant='contained'

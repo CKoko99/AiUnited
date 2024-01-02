@@ -46,6 +46,27 @@ export default async function sitemap() {
     //filter pages for urls that don't have a # in them
     Pages = Pages.filter(page => !page.url.includes("#"))
 
+    //get all the locations from the backend and add them to the sitemap
+    try {
+        const res = await fetch(`${process.env.BACKEND}/locations/aiunited`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                },
+            })
+        const data = await res.json()
+        data.locations.forEach(location => {
+            Pages.push({
+                url: url + "/locations/" + location.link,
+                lastModified: new Date()
+            })
+        })
+    } catch (err) {
+        console.log(err)
+    }
+
     return [
         {
             url: url + "/",
