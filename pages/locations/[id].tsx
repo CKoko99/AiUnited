@@ -111,9 +111,9 @@ export default function (props) {
             textAlign={"center"}
             sx={{ padding: "2rem 0" }}
         >
-            <Typography fontFamily={CustomFonts.Gustavo} fontWeight={"bold"} variant="h4">{props.data.address}</Typography>
-            <Typography fontFamily={CustomFonts.Gustavo} fontWeight={"bold"} variant="h4">{props.data.address2}</Typography>
-            <Typography fontFamily={CustomFonts.Gustavo} fontWeight={"bold"} variant="h4">{props.data.city}, {props.data.state} {props.data.zip} </Typography>
+            <Typography fontFamily={CustomFonts.Gustavo} fontWeight={"bold"} component={"h1"} variant="h4">{props.data.address}</Typography>
+            <Typography fontFamily={CustomFonts.Gustavo} fontWeight={"bold"} component={"h1"} variant="h4">{props.data.address2}</Typography>
+            <Typography fontFamily={CustomFonts.Gustavo} fontWeight={"bold"} component={"h1"} variant="h4">{props.data.city}, {props.data.state} {props.data.zip} </Typography>
             <Single center={props.data.position} location={props.data} />
             <Box
                 sx={{

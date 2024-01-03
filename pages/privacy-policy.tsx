@@ -211,7 +211,9 @@ const privacy = {
 }
 export default function () {
     return <>
-        <TextSection title={{ en: "Privacy Policy", es: "Política de Privacidad" }} />
+        <TextSection title={{ en: "Privacy Policy", es: "Política de Privacidad" }}
+            titleComponent={"h1" as const}
+        />
         <Box
             sx={{ width: { xs: "100%", md: "90%" }, margin: "auto" }}
         >
