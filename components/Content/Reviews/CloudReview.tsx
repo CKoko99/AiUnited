@@ -139,7 +139,7 @@ export default function HomeReview(props: any) {
                                 <Box
                                     sx={{ ...styles.reviewSection, textAlign: "left" }}
                                 >
-                                    <Typography variant="h1"
+                                    <Typography variant="h1" component={"h6"}
                                         sx={{
                                             marginLeft: "-2rem",
                                             marginBottom: "1rem",

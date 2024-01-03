@@ -3,19 +3,54 @@ import PATHCONSTANTS from "constants/sitemap";
 import { returnLocaleText } from "../locale/LocaleSwitcher";
 
 const ProductCategories = {
-    Auto: {
+    auto: {
         subtitle: {
             en: `Explore Your Options and Secure Your Journey with a Comprehensive Auto Insurance Plan Today!`,
             es: `¡Explore sus opciones y asegure su viaje con un plan de seguro de auto integral hoy!`
         },
         quoteLink: PATHCONSTANTS.QUOTES.AUTO.INDEX,
     },
-    Home: {
+    home: {
         subtitle: {
             en: `Explore Your Options and Secure Your Journey with a Comprehensive Home Insurance Plan Today!`,
             es: `¡Explore sus opciones y asegure su viaje con un plan de seguro de hogar integral hoy!`
         },
         quoteLink: PATHCONSTANTS.QUOTES.HOME.INDEX,
+    },
+    motorcycle: {
+        subtitle: {
+            en: `Explore Your Options and Secure Your Journey with a Comprehensive Motorcycle Insurance Plan Today!`,
+            es: `¡Explore sus opciones y asegure su viaje con un plan de seguro de motocicleta integral hoy!`
+        },
+        quoteLink: PATHCONSTANTS.QUOTES.MOTORCYCLE.INDEX,
+    },
+    sr22: {
+        subtitle: {
+            en: `Explore Your Options and Secure Your Journey with a Comprehensive SR-22 Insurance Plan Today!`,
+            es: `¡Explore sus opciones y asegure su viaje con un plan de seguro SR-22 integral hoy!`
+        },
+        quoteLink: PATHCONSTANTS.QUOTES.SR22.INDEX,
+    },
+    renters: {
+        subtitle: {
+            en: `Explore Your Options and Secure Your Journey with a Comprehensive Renters Insurance Plan Today!`,
+            es: `¡Explore sus opciones y asegure su viaje con un plan de seguro de inquilinos integral hoy!`
+        },
+        quoteLink: PATHCONSTANTS.QUOTES.RENTER.INDEX,
+    },
+    mexico: {
+        subtitle: {
+            en: `Explore Your Options and Secure Your Journey with a Comprehensive Mexico Tourist Auto Insurance Plan Today!`,
+            es: `¡Explore sus opciones y asegure su viaje con un plan de seguro de auto para turistas en México integral hoy!`
+        },
+        quoteLink: PATHCONSTANTS.QUOTES.MEXICO.INDEX,
+    },
+    surety: {
+        subtitle: {
+            en: `Explore Your Options and Secure Your Journey with a Comprehensive Surety Bonds Plan Today!`,
+            es: `¡Explore sus opciones y asegure su viaje con un plan de bonos de garantía integral hoy!`
+        },
+        quoteLink: PATHCONSTANTS.QUOTES.SURETY.INDEX,
     },
 
 }
@@ -26,9 +61,20 @@ export default function (props) {
 
 
     if (trimmedCategory === "auto") {
-        category = ProductCategories.Auto
+        category = ProductCategories.auto
+    } else if (trimmedCategory === "home") {
+        category = ProductCategories.home
+    } else if (trimmedCategory === "motorcycle") {
+        category = ProductCategories.motorcycle
+    } else if (trimmedCategory === "sr22") {
+        category = ProductCategories.sr22
+    } else if (trimmedCategory === "renters") {
+        category = ProductCategories.renters
+    } else if (trimmedCategory === "mexico") {
+        category = ProductCategories.mexico
+    } else if (trimmedCategory === "surety") {
+        category = ProductCategories.surety
     }
-    console.log(category)
 
     return <>
         <Box

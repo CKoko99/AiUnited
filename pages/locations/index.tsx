@@ -56,7 +56,7 @@ export async function getServerSideProps(context) {
 export default function (props) {
     // console.log(props.data.locations)
     return <>
-        <HeadComponent title={'Find a Ai United Insurance Location'}
+        <HeadComponent title={'Find an Ai United Insurance Location'}
             metaData={'Get a Free Insurance Quote with Ai United Insurance Today'} />
         <Locations
             locations={props.data}
