@@ -9,6 +9,7 @@ import { GTMEVENTS, GTMEventHandler } from "@/components/Scripts/GoogleTag";
 import CategoryIcon from '@mui/icons-material/Category';
 import React from "react";
 import { returnLocaleText } from "@/components/locale/LocaleSwitcher";
+import Link from "next/link";
 const text = {
     moreProducts: {
         en: "View more products",
@@ -129,7 +130,6 @@ function QuoteButton(props) {
     }, [currentLang]);
     function handleButtonClick() {
         GTMEventHandler(`${GTMEVENTS.audience}-${props.id}-main_banner`, { 'name': `${props.id}-Quote` })
-        router.push(props.link)
     }
     return <Box sx={{
         //flex: "1",
@@ -148,40 +148,43 @@ function QuoteButton(props) {
         onClick={() => { handleButtonClick() }}
         onMouseEnter={() => { setHovering(true) }}
         onMouseLeave={() => { setHovering(false) }}
+    ><Link href={props.link}
+        style={{ display: "flex", gap: "1rem", alignItems: "center", }}
     >
-        <Box
-            sx={{
-                position: "relative", minWidth: "3.5rem", minHeight: "3.5rem",
-                transition: "all .3s ease-in-out",
-                transform: hovering ? "scale(1.1)" : "",
-            }}
-        >
-            <Image
-                src={props.img.src}
-                alt={props.img.alt}
-                style={{ objectFit: "contain" }}
-                fill />
-        </Box>
-        <Typography variant="h6" fontFamily={CustomFonts.Gustavo}
-            sx={{
-                // wordSpacing: { xs: "1rem", },
-                lineHeight: "1.5rem", textAlign: "left",
-                transition: "all .3s ease-in-out",
-                transform: hovering ? "scale(1.05)" : "",
-                color: hovering ? "black" : "#3c3c3c",
-            }}
-        >
-            {text.map((line, index) => {
-                return <React.Fragment key={index}>
-                    {line} {"  "}
-                    <Box
-                        sx={{ height: "0px", display: { xs: "none", sm: "block" } }}
-                    >
-                        <br />
-                    </Box>
-                </React.Fragment>
-            })}
-        </Typography>
+            <Box
+                sx={{
+                    position: "relative", minWidth: "3.5rem", minHeight: "3.5rem",
+                    transition: "all .3s ease-in-out",
+                    transform: hovering ? "scale(1.1)" : "",
+                }}
+            >
+                <Image
+                    src={props.img.src}
+                    alt={props.img.alt}
+                    style={{ objectFit: "contain" }}
+                    fill />
+            </Box>
+            <Typography variant="h6" fontFamily={CustomFonts.Gustavo}
+                sx={{
+                    // wordSpacing: { xs: "1rem", },
+                    lineHeight: "1.5rem", textAlign: "left",
+                    transition: "all .3s ease-in-out",
+                    transform: hovering ? "scale(1.05)" : "",
+                    color: hovering ? "black" : "#3c3c3c",
+                }}
+            >
+                {text.map((line, index) => {
+                    return <React.Fragment key={index}>
+                        {line} {"  "}
+                        <Box
+                            sx={{ height: "0px", display: { xs: "none", sm: "block" } }}
+                        >
+                            <br />
+                        </Box>
+                    </React.Fragment>
+                })}
+            </Typography>
+        </Link>
     </Box>
 }
 function MoreProducts(props) {
