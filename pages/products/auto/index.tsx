@@ -109,6 +109,7 @@ const contentSection4 = {
         {
             img: {
                 src: CardImg1,
+                alt: "Computer"
             },
             title: {
                 en: 'Get A Free Auto Insurance Quote',
@@ -123,6 +124,7 @@ const contentSection4 = {
         {
             img: {
                 src: CardImg2,
+                alt: "Car Crash"
             },
             title: {
                 en: "Explore Coverage Options",
@@ -137,6 +139,7 @@ const contentSection4 = {
         {
             img: {
                 src: CardImg3,
+                alt: "Discounts"
             },
             title: {
                 en: `Explore Affordable Auto Coverage`,
