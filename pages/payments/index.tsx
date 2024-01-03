@@ -336,7 +336,7 @@ export default function () {
                 display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2rem"
             }}
         >
-            <Typography variant="h2">{paymentText.payment[currentLang]}</Typography>
+            <Typography component={"h1"} variant="h2">{paymentText.payment[currentLang]}</Typography>
             <Typography variant="h5">{paymentText.enterPolicyNumber[currentLang]}</Typography>
             <FormControl
                 sx={{ display: "flex", flexDirection: "row", }}

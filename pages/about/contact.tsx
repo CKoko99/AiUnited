@@ -25,6 +25,7 @@ const heroContent = {
     alt: "Contact Us",
   },
   opacity: 0.4,
+  titleComponent: "h1" as const,
   align: "left",
 }
 const formContent = {

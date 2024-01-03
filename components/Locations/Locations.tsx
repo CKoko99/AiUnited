@@ -149,7 +149,7 @@ export default function (props) {
         <Box
             sx={{ maxWidth: "970px", margin: "auto", padding: "1rem 0" }}
         >
-            <Typography fontFamily={CustomFonts.Gustavo} variant="h2" component="h2" sx={{ textAlign: "center", margin: "1rem 0" }}>{LocationText.title[currentLang]} </Typography>
+            <Typography fontFamily={CustomFonts.Gustavo} variant="h2" component="h1" sx={{ textAlign: "center", margin: "1rem 0" }}>{LocationText.title[currentLang]} </Typography>
             <Typography variant='h6' sx={{ textAlign: "center", margin: "1rem auto", width: "80%" }}>
                 {returnLocaleText(returnSubtitleText(props.city))}</Typography>
             <Box

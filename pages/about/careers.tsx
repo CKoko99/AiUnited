@@ -34,6 +34,7 @@ const textSection1 = {
         es: `Nuestra fuerza laboral es nuestro mayor activo. Nuestro objetivo es garantizar que nuestros empleados tengan oportunidades para desarrollar sus habilidades, adquirir experiencia y avanzar en sus carreras.`,
     },
     titleVariant: "h2" as const,
+    titleComponent: "h1" as const,
     subtitleVariant: "h5" as const,
 }
 

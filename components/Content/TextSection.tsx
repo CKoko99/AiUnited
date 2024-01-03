@@ -16,6 +16,7 @@ interface ComponentProps {
     }[];
     subtitleVariant?: "h5" | "h6" | "subtitle1" | "subtitle2" | "body1" | "body2" | "caption" | "button" | "overline" | undefined;
     titleVariant?: "h1" | "h2" | "h3" | "h5" | "h6" | "subtitle1" | "subtitle2" | "body1" | "body2" | "caption" | "button" | "overline" | undefined;
+    titleComponent?: "h1" | "h2" | "h3" | "h5" | "h6" | undefined;
     alignTitle?: string;
     alignSubtitle?: string;
     noPadding?: boolean;
@@ -45,10 +46,12 @@ export default function (props: ComponentProps) {
         }}
         >
             <Box id={props.id} sx={{ position: "absolute", top: "-7rem" }}></Box>
-            {props.title && <Typography variant={props.titleVariant ? props.titleVariant : "h4"} sx={{
-                textAlign: props.alignTitle ? props.alignTitle : "center",
-                fontFamily: CustomFonts.Gustavo, fontWeight: "800", width: "100%"
-            }}>{returnLocaleText(props.title)}</Typography>}
+            {props.title && <Typography variant={props.titleVariant ? props.titleVariant : "h4"}
+                component={props.titleComponent ? props.titleComponent : "h4"}
+                sx={{
+                    textAlign: props.alignTitle ? props.alignTitle : "center",
+                    fontFamily: CustomFonts.Gustavo, fontWeight: "800", width: "100%"
+                }}>{returnLocaleText(props.title)}</Typography>}
             {props.subtitle ? <>
                 {blogText(returnLocaleText(props.subtitle)).map((item, index) => (<Typography key={index} variant={props.subtitleVariant ?? "h6"}
                     sx={{

@@ -31,6 +31,7 @@ const textSection1 = {
         con el objetivo de alcanzar metas de ventas y ganancias.`
     },
     titleVariant: "h2" as const,
+    titleComponent: "h1" as const,
     subtitleVariant: "h5" as const,
 }
 const textContent = {

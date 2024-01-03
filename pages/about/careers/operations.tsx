@@ -29,6 +29,7 @@ const textSection1 = {
             y procedimientos al tiempo que satisfacen las expectativas del cliente en términos de rentabilidad.`
     },
     titleVariant: "h2" as const,
+    titleComponent: "h1" as const,
     subtitleVariant: "h5" as const,
 }
 const textContent = {

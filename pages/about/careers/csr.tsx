@@ -30,6 +30,7 @@ const textSection1 = {
         cambios en las pólizas.`
     },
     titleVariant: "h2" as const,
+    titleComponent: "h1" as const,
     subtitleVariant: "h5" as const,
 }
 const textContent = {
