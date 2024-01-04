@@ -3,9 +3,8 @@ import { returnLocaleText } from "../locale/LocaleSwitcher"
 import Link from "next/link"
 import PATHCONSTANTS from "constants/sitemap"
 import Image from "next/image"
-import sampleImg from "public/assets/images/home/Laptop.png"
-import { relative } from "path"
 import { CustomFonts } from "providers/theme"
+import { useState } from "react"
 const TEXT = {
     discover: {
         en: "Discover Related Articles",
@@ -16,23 +15,72 @@ const TEXT = {
         es: "Lee Más Artículos"
     }
 }
-const SampleArticle = {
-    img: {
-        src: sampleImg,
-        alt: "sample-article"
+const classes = {
+    imageColor: {
+        opacity: 0,
+        minWidth: "100%",
+        minHeight: "100%",
+        position: "absolute",
+        top: 0, left: 0,
+        zIndex: 2,
+        backgroundColor: "primary.main",
+        transition: 'opacity 0.5s', // Add opacity transition
     },
-    title: {
-        en: "The Ultimate Guide to Cheap Auto Quotes",
-        es: "La Guía Definitiva para Cotizaciones de Auto Baratas"
+    imageHover: {
+        opacity: .15,
+        //transform: 'opacity 0.3s',
     },
-    uuid: '1234',
-    slug: 'the-ultimate-guide-to-cheap-auto-quotes'
+}
+function ContentItem(props) {
+    const [hover, setHover] = useState(false)
+    const { article } = props
+    const imageUrl = article.attributes.Thumbnail.data.attributes.url
+    const title = article.attributes.Title
+    const link = article.attributes.title_slug
+    return <>
+        <Link href={PATHCONSTANTS.ARTICLES.INDEX + "/" + link}>
+            <Box
+                sx={{
+                    display: "flex", flexDirection: "column", gap: "1rem",
+                    marginTop: "1rem", border: "1px solid black", width: "25rem", maxWidth: "100%",
+                    position: "relative",
+                }}
+                onMouseEnter={() => setHover(true)}
+                onMouseLeave={() => setHover(false)}
+            >
+                <Box
+                    sx={hover ? { ...classes.imageColor, ...classes.imageHover } : { ...classes.imageColor }}
+                ></Box>
+                <Box sx={{
+                    display: "flex", flexDirection: "row", gap: "1rem",
+                }}>
+                    <Box sx={{
+                        position: "relative",
+                        minWidth: "8rem", minHeight: "5rem",
+                        borderRight: "1px solid black",
+                    }}>
+
+                        <Image fill
+                            style={{ objectFit: "cover" }}
+                            src={imageUrl} alt={title} />
+                    </Box>
+                    <Typography
+                        sx={{
+                            color: hover ? "black" : "#5a5a5a",
+                            transition: 'color 0.5s',
+                        }}
+                        variant="h6" >{returnLocaleText(title)}</Typography>
+                </Box>
+            </Box>
+        </Link>
+    </>
 }
 export default function (props) {
+    const [moreHover, setMoreHover] = useState(false)
     return <>
         <Box
             sx={{
-                padding: "1rem 2rem",
+                padding: "1rem 1rem",
                 position: "sticky", top: "6rem",
                 maxWidth: "100%",
                 alignSelf: "flex-start",
@@ -42,35 +90,27 @@ export default function (props) {
                 fontWeight={"bold"}
                 textAlign={"center"} variant="h6" >{returnLocaleText(TEXT.discover)}</Typography>
             <hr />
-            {[1, 2, 3].map((item, index) => {
-                return <Link key={index} href={PATHCONSTANTS.ARTICLES.INDEX + "/" + SampleArticle.slug}>
-
-                    <Box key={index} sx={{
-                        display: "flex", flexDirection: "column", gap: "1rem",
-                        marginTop: "1rem", border: "1px solid black", width: "25rem", maxWidth: "100%"
-                    }}>
-                        <Box sx={{
-                            display: "flex", flexDirection: "row", gap: "1rem",
-                        }}>
-                            <Box sx={{
-                                position: "relative",
-                                minWidth: "8rem", minHeight: "5rem",
-                                borderRight: "1px solid black",
-                            }}>
-
-                                <Image fill
-                                    style={{ objectFit: "cover" }}
-                                    src={SampleArticle.img.src} alt={SampleArticle.img.alt} />
-                            </Box>
-                            <Typography fontWeight={"light"} variant="h6" >{returnLocaleText(SampleArticle.title)}</Typography>
-                        </Box>
-                    </Box>
-                </Link>
+            {props.articles.map((item, index) => {
+                return <ContentItem key={index} article={item} />
             })}
-            <Typography textAlign={"center"} variant="h6">
+            <Typography textAlign={"center"} variant="h6"
+                onMouseEnter={() => setMoreHover(true)}
+                onMouseLeave={() => setMoreHover(false)}
+                sx={{
+                    color: moreHover ? "black" : "#5a5a5a",
+                    transition: 'color 0.5s',
+                }}
+            >
                 <Link href={PATHCONSTANTS.ARTICLES.INDEX}>
                     {returnLocaleText(TEXT.readMore)}
                 </Link>
+                <Box sx={{
+                    width: moreHover ? "70%" : "0%",
+                    height: "1px",
+                    backgroundColor: "black",
+                    transition: 'width 0.5s',
+                    margin: "auto",
+                }} ></Box>
             </Typography>
         </Box >
     </>

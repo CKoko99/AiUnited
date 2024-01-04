@@ -66,6 +66,20 @@ export default async function sitemap() {
     } catch (err) {
         console.log(err)
     }
+    //get all the articles from the backend and add them to the sitemap
+    try {
+        const res = await fetch(`${process.env.BACKEND}/articles/`,)
+        const data = await res.json()
+        console.log(data.data)
+        data.data.forEach(article => {
+            Pages.push({
+                url: url + "/articles/" + article.attributes.title_slug,
+                lastModified: new Date(article.attributes.updatedAt)
+            })
+        })
+    } catch (err) {
+        console.log(err)
+    }
 
     return [
         {
