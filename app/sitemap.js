@@ -9,7 +9,6 @@ export default async function sitemap() {
     delete Sitemap.STRAPI
     delete Sitemap.PHONE
     delete Sitemap.PHONETEXT
-    delete Sitemap.ARTICLES
     delete Sitemap.QUOTES.LIABILITY
     //loop through all the paths in PATHCONSTANTS
     for (const path in Sitemap) {
@@ -70,7 +69,6 @@ export default async function sitemap() {
     try {
         const res = await fetch(`${process.env.BACKEND}/articles/`,)
         const data = await res.json()
-        console.log(data.data)
         data.data.forEach(article => {
             Pages.push({
                 url: url + "/articles/" + article.attributes.title_slug,
