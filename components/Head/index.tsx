@@ -19,7 +19,7 @@ const HeadComponent = ({ title, metaData, canonical }: HeadComponentPropsType) =
       {canonical && <link rel="canonical" href={canonical} />}
       {//<!-- Facebook Meta Tags -->
       }
-      <meta property="og:url" content="https://aiunited.com/" />
+      <meta property="og:url" content="https://www.aiunited.com/" />
       <meta property="og:type" content="website" />
       <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/og-fb.png?alt=media&token=580378a4-b1a3-473f-98cd-da5ef169513d" />
 
@@ -27,7 +27,7 @@ const HeadComponent = ({ title, metaData, canonical }: HeadComponentPropsType) =
       }
       <meta name="twitter:card" content="summary_large_image" />
       <meta property="twitter:domain" content="aiunited.com" />
-      <meta property="twitter:url" content="https://aiunited.com/" />
+      <meta property="twitter:url" content="https://www.aiunited.com/" />
       <meta name="twitter:title" content="Ai United Insurance - Free Auto Insurance Quote - Car Insurance" />
       <meta name="twitter:description" content="Ai United Insurance provides you with coverage options, benefits and discounts at a price you can afford." />
       <meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/og-fb.png?alt=media&token=580378a4-b1a3-473f-98cd-da5ef169513d" />
