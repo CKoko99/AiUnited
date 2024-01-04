@@ -29,7 +29,7 @@ const classes = {
         border: "1px solid #cacaca",
         position: "relative",
         width: { xs: "90%", sm: "80%", md: "45%", lg: "30%" },
-        alignSelf: "stretch",
+        alignSelf: { xs: "center", md: "stretch", }
     },
     imageColor: {
         opacity: 0,
