@@ -84,24 +84,30 @@ export default function (props) {
     let tuesThursTime
     let satTime
     let sunTime
-    if (props.data.hours.includes("Mon-Fri")) {
-        monFriTime = props.data.hours.split("|")[0]
-        monFriTime = monFriTime.substring(monFriTime.indexOf(":") + 1)
-        satTime = props.data.hours.split("|")[1]
-        satTime = satTime.substring(satTime.indexOf(":") + 1)
-        sunTime = props.data.hours.split("|")[2]
-        sunTime = sunTime.substring(sunTime.indexOf(":") + 1)
-    } else {
-        monFriTime = props.data.hours.split("|")[0]
-        monFriTime = monFriTime.substring(monFriTime.indexOf(":") + 1)
-        tuesThursTime = props.data.hours.split("|")[1]
-        tuesThursTime = tuesThursTime.substring(tuesThursTime.indexOf(":") + 1)
-        satTime = props.data.hours.split("|")[2]
-        satTime = satTime.substring(satTime.indexOf(":") + 1)
-        sunTime = props.data.hours.split("|")[3]
-        sunTime = sunTime.substring(sunTime.indexOf(":") + 1)
+    let failed = false
+    try {
+        if (props.data.hours.includes("Mon-Fri")) {
+            monFriTime = props.data.hours.split("|")[0]
+            monFriTime = monFriTime.substring(monFriTime.indexOf(":") + 1)
+            satTime = props.data.hours.split("|")[1]
+            satTime = satTime.substring(satTime.indexOf(":") + 1)
+            sunTime = props.data.hours.split("|")[2]
+            sunTime = sunTime.substring(sunTime.indexOf(":") + 1)
+        } else {
+            monFriTime = props.data.hours.split("|")[0]
+            monFriTime = monFriTime.substring(monFriTime.indexOf(":") + 1)
+            tuesThursTime = props.data.hours.split("|")[1]
+            tuesThursTime = tuesThursTime.substring(tuesThursTime.indexOf(":") + 1)
+            satTime = props.data.hours.split("|")[2]
+            satTime = satTime.substring(satTime.indexOf(":") + 1)
+            sunTime = props.data.hours.split("|")[3]
+            sunTime = sunTime.substring(sunTime.indexOf(":") + 1)
+        }
+    } catch (e) {
+        console.log(e)
+        console.log(props.data.link)
+        failed = true
     }
-
     // console.log(props.data)
     return <>
         <HeadComponent title={`Ai United Insurance ${props.data.address}`}
@@ -127,8 +133,8 @@ export default function (props) {
                 <Box>
                 </Box>
                 <Typography variant="h5" fontFamily={CustomFonts.Gustavo} fontWeight={"bold"} >{LocationText.info[currentLang]}</Typography>
-                {props.data.hours.includes("Mon-Fri") ? <Typography variant="h6">{LocationText.hoursOfOperation[currentLang]}: {LocationText.MonFri[currentLang]}: {monFriTime} | {LocationText.Sat[currentLang]}: {satTime} | {LocationText.Sun[currentLang]}: {sunTime}</Typography>
-                    : <Typography variant="h6">{LocationText.hoursOfOperation[currentLang]}: {LocationText.MonFri[currentLang]}: {monFriTime} | {LocationText.TuesThurs[currentLang]}: {tuesThursTime} | {LocationText.Sat[currentLang]}: {satTime} | {LocationText.Sun[currentLang]}: {sunTime}</Typography>}
+                {failed ? <>{props.data.hours}</> : <>{props.data.hours.includes("Mon-Fri") ? <Typography variant="h6">{LocationText.hoursOfOperation[currentLang]}: {LocationText.MonFri[currentLang]}: {monFriTime} | {LocationText.Sat[currentLang]}: {satTime} | {LocationText.Sun[currentLang]}: {sunTime}</Typography>
+                    : <Typography variant="h6">{LocationText.hoursOfOperation[currentLang]}: {LocationText.MonFri[currentLang]}: {monFriTime} | {LocationText.TuesThurs[currentLang]}: {tuesThursTime} | {LocationText.Sat[currentLang]}: {satTime} | {LocationText.Sun[currentLang]}: {sunTime}</Typography>}</>}
                 <Box
                     sx={{ display: "flex", gap: "1rem" }}
                 >
