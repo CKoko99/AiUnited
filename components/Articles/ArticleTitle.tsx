@@ -31,7 +31,7 @@ export default function (props) {
             maxWidth: 1076,
 
         }}>
-            {props.title && <Typography fontWeight={"bold"} fontFamily={CustomFonts.Gustavo} variant="h3">
+            {props.title && <Typography fontWeight={"bold"} component={"h1"} fontFamily={CustomFonts.Gustavo} variant="h3">
                 {returnLocaleText(props.title)}
             </Typography>}
             {props.date && <Typography variant="h6">
