@@ -1,6 +1,6 @@
 import Checkbox from '@mui/material/Checkbox';
 import { Box, Collapse, IconButton, List, ListItem, ListItemButton, ListItemText, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { returnLocaleText } from '../locale/LocaleSwitcher';
 import Image from 'next/image';
 import theme from 'providers/theme';
@@ -12,18 +12,12 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PATHCONSTANTS from 'constants/sitemap';
 
 const categories = [
-    `Auto Insurance`,
-    `Home Insurance`,
-    `Motorcycle Insurance`,
-    `Renters Insurance`,
-    `Mexico Insurance`,
-    `SR-22 Insurance`,
-    `Surety Bonds`,
+    'All Categories',
 ]
 
 function ArticleItem(props) {
     const [hover, setHover] = useState(false)
-    console.log(props.attributes)
+    //  console.log(props.attributes)
     const imageUrl = props.attributes.Thumbnail.data.attributes.url
     return <Box
         sx={{
@@ -31,6 +25,7 @@ function ArticleItem(props) {
             border: "1px solid #cacaca",
             minWidth: "13rem",
             cursor: "pointer",
+            display: "flex", flexDirection: "column",
         }}
         onClick={() => window.location.href = `/articles/${props.attributes.title_slug}`}
         onMouseEnter={() => setHover(true)}
@@ -51,6 +46,7 @@ function ArticleItem(props) {
             sx={{
                 backgroundColor: hover ? "rgba(14,118,188,.15)" : "white",
                 transition: "background-color 0.3s ease",
+                flex: 1,
             }}
         >
 
@@ -70,9 +66,29 @@ function ArticleItem(props) {
 export default function (props) {
     const { drawerWindow } = props;
     const [mobileOpen, setMobileOpen] = useState(false);
+    const [categories, setCategories] = useState(
+        [
+            'All Categories',
+        ]
+    )
     //const history = useHistory();
     const router = useRouter();
-
+    useEffect(() => {
+        //go through all the articles and get the categories
+        let fetchedCategories = []
+        props.articles.map((item: any) => {
+            if (item.attributes.Category) {
+                fetchedCategories.push(item.attributes.Category as never);
+            }
+        })
+        //remove duplicates
+        fetchedCategories = [...new Set(fetchedCategories)]
+        //sort alphabetically
+        fetchedCategories.sort()
+        //add all categories 
+        const newCategories = [...categories, ...fetchedCategories]
+        setCategories(newCategories)
+    }, [])
     const [openItem, setOpenItem] = useState(null);
 
     const handleDrawerToggle = () => {
@@ -83,7 +99,7 @@ export default function (props) {
 
     function handleCategoryClick(category) {
         if (selectedCategory === category) {
-            setSelectedCategory(``)
+            setSelectedCategory(categories[0])
         } else {
             setSelectedCategory(category)
         }
@@ -96,6 +112,9 @@ export default function (props) {
         setOpenItem((prevOpenItem) => (prevOpenItem === label ? null : label));
     };
 
+    useEffect(() => {
+        setSelectedCategory(categories[0])
+    }, [])
     return <>
         <Box
             sx={{
@@ -171,28 +190,48 @@ export default function (props) {
             >
                 <Typography fontWeight={"bold"} variant="h6">Filter Categories</Typography>
                 <hr />
-                {categories.map((item, index) => {
-                    return <Box
-                        key={index}
-                        onClick={() => handleCategoryClick(item)}
-                        sx={{
-                            display: "flex", alignItems: "center", cursor: "pointer",
-                        }}
-                    >
-                        <Typography key={index} variant="h6">{item}</Typography>
-                        <Checkbox checked={selectedCategory === item} />
-                    </Box>
-                })}
+                <Box
+                    sx={{
+                        display: "flex", flexDirection: "column", gap: ".5rem",
+                    }}
+                >
+
+                    {categories.map((item, index) => {
+                        return <Box
+                            key={index}
+                            sx={{
+                                display: "flex", alignItems: "center",
+                                //    backgroundColor: "red",
+                                justifyContent: "space-between",
+                            }}
+                            onClick={() => handleCategoryClick(item)}
+                        >
+                            <Typography key={index}
+                                sx={{
+                                    cursor: "pointer",
+                                }} variant="h6">{item}</Typography>
+                            <Checkbox checked={selectedCategory === item}
+
+                                sx={{
+                                    padding: "0",
+                                    cursor: "pointer",
+
+                                }}
+                            />
+                        </Box>
+                    })}
+                </Box>
             </Box>
+            <hr style={{ margin: "0 1rem" }} />
             <Box
                 sx={{
                     width: "100%", padding: { xs: "1rem 2rem", md: "3rem 2rem" },
                     display: "flex", flexWrap: "wrap", gap: "1.5rem",
-                    justifyContent: { xs: "center", md: "center" },
+                    justifyContent: { xs: "center", md: "flex-start" },
                 }}
             >
                 {props.articles && props.articles.map((item, index) => {
-                    if (selectedCategory === item.attributes.Category || selectedCategory === ``) {
+                    if (selectedCategory === item.attributes.Category || selectedCategory === categories[0]) {
                         return <ArticleItem key={index} {...item} />
                     }
                 })}

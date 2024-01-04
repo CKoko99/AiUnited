@@ -16,9 +16,15 @@ const months = [
     { en: "November", es: "Noviembre" },
     { en: "December", es: "Diciembre" },
 ]
+const text = {
+    lastUpdated: {
+        en: "Last Updated",
+        es: "Última Actualización"
 
+    }
+}
 export default function (props) {
-    //console.log(props)
+    console.log(props)
     return <>
         <Box sx={{
             display: "flex", flexDirection: "column", gap: "1rem", padding: "2rem",
@@ -29,7 +35,7 @@ export default function (props) {
                 {returnLocaleText(props.title)}
             </Typography>}
             {props.date && <Typography variant="h6">
-                {returnLocaleText(months[props.date.month])} {props.date.day}, {props.date.year}
+                {returnLocaleText(text.lastUpdated)}: {returnLocaleText(months[props.date.month])} {props.date.day}, {props.date.year}
             </Typography>
             }
             {props.summary && <Typography variant="h6">

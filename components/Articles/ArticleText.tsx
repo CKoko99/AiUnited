@@ -22,16 +22,11 @@ function richTextReducer(rawRichText) {
 }
 
 export default function (props) {
-    console.log(props)
     let text = returnLocaleText(props.text)
     let ImageUrl = props.Image.url ? `${props.Image.url}` : "/"
     // console.log(props)
     return <>
         <Box
-            sx={{
-                maxWidth: 804,
-                padding: "0rem 2rem ",
-            }}
         >
             {props.Image.url ? <Box sx={{
                 position: "relative",
