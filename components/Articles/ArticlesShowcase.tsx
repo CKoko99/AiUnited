@@ -14,6 +14,23 @@ import PATHCONSTANTS from 'constants/sitemap';
 const categories = [
     'All Categories',
 ]
+const classes = {
+
+    imageColor: {
+        opacity: 0,
+        minWidth: "100%",
+        minHeight: "100%",
+        position: "absolute",
+        top: 0, left: 0,
+        zIndex: 2,
+        backgroundColor: "primary.main",
+        transition: 'opacity 0.5s', // Add opacity transition
+    },
+    imageHover: {
+        opacity: .15,
+        //transform: 'opacity 0.3s',
+    },
+}
 
 function ArticleItem(props) {
     const [hover, setHover] = useState(false)
@@ -25,41 +42,43 @@ function ArticleItem(props) {
             border: "1px solid #cacaca",
             minWidth: "13rem",
             cursor: "pointer",
-            display: "flex", flexDirection: "column",
+            position: "relative",
         }}
-        onClick={() => window.location.href = `/articles/${props.attributes.title_slug}`}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
     >
-        <Box
-            sx={{
-                position: "relative",
-                minWidth: "10rem",
-                minHeight: { xs: "12rem", sm: "10rem" },
-            }}
-        >
-            <Image src={imageUrl} alt="article-image"
-                fill style={{ objectFit: "cover" }}
-            />
-        </Box>
-        <Box
-            sx={{
-                backgroundColor: hover ? "rgba(14,118,188,.15)" : "white",
-                transition: "background-color 0.3s ease",
-                flex: 1,
-            }}
-        >
-
-            <Typography
-                variant="h6"
+        <Link href={`/articles/${props.attributes.title_slug}`}>
+            <Box
+                sx={hover ? { ...classes.imageColor, ...classes.imageHover } : { ...classes.imageColor }}
+            ></Box>
+            <Box
                 sx={{
-                    padding: "0.5rem",
-                    opacity: 1
+                    position: "relative",
+                    minWidth: "10rem",
+                    minHeight: { xs: "12rem", sm: "10rem" },
                 }}
             >
-                {returnLocaleText(props.attributes.Title)}
-            </Typography>
-        </Box>
+                <Image src={imageUrl} alt="article-image"
+                    fill style={{ objectFit: "cover" }}
+                />
+            </Box>
+            <Box
+                sx={{
+                    flex: 1,
+                }}
+            >
+
+                <Typography
+                    variant="h6"
+                    sx={{
+                        padding: "0.5rem",
+                        opacity: 1
+                    }}
+                >
+                    {returnLocaleText(props.attributes.Title)}
+                </Typography>
+            </Box>
+        </Link>
     </Box>
 }
 
