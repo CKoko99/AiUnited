@@ -4,6 +4,8 @@ import { useRouter } from "next/router"
 import { Lang } from "../../components/locale/LocaleSwitcher"
 import dynamic from 'next/dynamic';
 import HeadComponent from "@/components/Head";
+import PATHCONSTANTS from "constants/sitemap";
+import { useEffect } from "react";
 
 const Single = dynamic(() => import('../../components/Locations/Single'), {
     loading: () => <p>Loading...</p>, // Optional loading component
@@ -11,30 +13,39 @@ const Single = dynamic(() => import('../../components/Locations/Single'), {
 });
 
 export async function getServerSideProps({ params, req }) {
+    try {
+        const locationId = params.id
+        const res = await fetch(`${process.env.BACKEND}/locations/aiunited/${locationId}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "origin": req.headers.referer
+            },
 
-    const locationId = params.id
-    const res = await fetch(`${process.env.BACKEND}/locations/aiunited/${locationId}`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            "origin": req.headers.referer
-        },
+        })
+        const data = await res.json()
+        //for every location give it a position attribute with lat and long combined
 
-    })
-    const data = await res.json()
-    //for every location give it a position attribute with lat and long combined
-
-    data.position = {
-        lat: parseFloat(data.lat),
-        lng: parseFloat(data.lng)
-    }
+        data.position = {
+            lat: parseFloat(data.lat),
+            lng: parseFloat(data.lng)
+        }
 
 
-    return {
-        props: {
-            data: data, // This passes the fetched data as a prop to your component
-        },
+        return {
+            props: {
+                data: data, // This passes the fetched data as a prop to your component
+            },
+        }
+    } catch (err) {
+        console.log("err")
+        console.log(err)
+        return {
+            props: {
+                data: {}, // This passes the fetched data as a prop to your component
+            },
+        }
     }
 }
 const LocationText = {
@@ -77,7 +88,15 @@ export default function (props) {
     const router = useRouter()
     const { locale } = router
     const currentLang = Lang[locale ?? 'en']
-
+    useEffect(() => {
+        console.log(props.data.link)
+        if (!props.data.link) {
+            router.push(PATHCONSTANTS.LOCATIONS.INDEX)
+        }
+    }, [])
+    if (!props.data.link) {
+        return <></>
+    }
     // props.data.hours  = "Mon-Fri: 9:00am - 7:00pm | Saturday: 10:00am - 5:00pm | Sunday: Closed"
     // props.data.hours = Mon & Fri: 9:00am - 7:00pm | Tue, Wed & Thur: 9am to 6pm  | Saturday: 10:00am - 3:00pm | Sunday: Closed
     let monFriTime
@@ -86,7 +105,7 @@ export default function (props) {
     let sunTime
     let failed = false
     try {
-        if (props.data.hours.includes("Mon-Fri")) {
+        if (props.data.hours?.includes("Mon-Fri")) {
             monFriTime = props.data.hours.split("|")[0]
             monFriTime = monFriTime.substring(monFriTime.indexOf(":") + 1)
             satTime = props.data.hours.split("|")[1]
@@ -108,6 +127,7 @@ export default function (props) {
         console.log(props.data.link)
         failed = true
     }
+
     // console.log(props.data)
     return <>
         <HeadComponent title={`Ai United Insurance ${props.data.address}`}
