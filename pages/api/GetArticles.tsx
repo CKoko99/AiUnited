@@ -1,7 +1,7 @@
 
 
 
-export default async function (id, referer) {
+export async function GetArticle(id, referer) {
     try {
         const res = await fetch(`${process.env.BACKEND}/articles/${id}`,
             {
@@ -17,8 +17,8 @@ export default async function (id, referer) {
             //for every location give it a position attribute with lat and long combined
             return {
                 props: {
-                    data: data.data, // This passes the fetched data as a prop to your component
-                    ArticleContent: data.ArticleContent
+                    articleData: data.data, // This passes the fetched data as a prop to your component
+                    articleContent: data.ArticleContent
                 },
             }
         } else {
@@ -35,5 +35,15 @@ export default async function (id, referer) {
                 data: [], // This passes the fetched data as a prop to your component
             },
         }
+    }
+}
+export async function GetAllArticles() {
+    const res = await fetch(`${process.env.BACKEND}/articles/`,)
+    const data = await res.json()
+
+    return {
+        props: {
+            data: data.data, // This passes the fetched data as a prop to your component
+        },
     }
 }
