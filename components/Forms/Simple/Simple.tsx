@@ -97,9 +97,8 @@ export default function (props) {
         }
         formData.append("SheetTitle", props.sheetTitle || props.title.en);
         formData.append("Spreadsheet", "AiUnited");
+        formData.append("Device Info", window.navigator.userAgent);
         try {
-
-
             await fetch(`${PATHCONSTANTS.BACKEND}/forms`, {
 
                 method: "POST",
