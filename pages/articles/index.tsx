@@ -40,6 +40,7 @@ export async function getServerSideProps(context) {
         data.data = articles
         */
     const popularArticles = data.data.filter((article) => article.attributes.PopularRank > 0)
+    popularArticles.sort((b, a) => a.attributes.PopularRank - b.attributes.PopularRank)
     return {
         props: {
             popularArticles: popularArticles,
