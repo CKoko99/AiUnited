@@ -6,6 +6,7 @@ import Image from "next/image";
 import CTAText from "../PrefilledCTA/CTAText";
 import CTAPicWText from "../PrefilledCTA/CTAPicWText";
 import PATHCONSTANTS from "constants/sitemap";
+import Link from "next/link";
 
 function richTextReducer(rawRichText) {
     const renderer = new marked.Renderer();
@@ -14,7 +15,13 @@ function richTextReducer(rawRichText) {
     renderer.link = (href, title, text) => {
         // Modify the style attribute as needed
         const style = 'color: #0070f3; text-decoration: underline;';
+        const locales = { en: "eng", es: "esp" }
+
+        if (returnLocaleText(locales) === "esp") {
+            return `<a href="/es/${href}" title="${title || ''}" style="${style}">${text}</a>`;
+        }
         return `<a href="${href}" title="${title || ''}" style="${style}">${text}</a>`;
+
     };
 
     const parsedRichText = marked(rawRichText, { renderer });
