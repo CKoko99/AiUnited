@@ -11,8 +11,21 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PATHCONSTANTS from 'constants/sitemap';
 
-const categories = [
-    'All Categories',
+const TEXT = {
+    filterCategories: {
+        en: "Filter Categories",
+        es: "Filtrar Categorías",
+    }
+}
+const ALLCATEGORIES = [
+    { en: "All Categories", es: "Todas las Categorías" },
+    { en: "Auto Insurance", es: "Seguro de Auto" },
+    { en: "Home Insurance", es: "Seguro de Casa" },
+    { en: "Renters Insurance", es: "Seguro de Inquilinos" },
+    { en: "Motorcycle Insurance", es: "Seguro de Motocicleta" },
+    { en: "Mexico Insurance", es: "Seguro de México" },
+    { en: "SR-22 Insurance", es: "Seguro SR-22" },
+    { en: "Surety Bonds", es: "Seguro de Fianzas" },
 ]
 const classes = {
 
@@ -87,7 +100,7 @@ export default function (props) {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [categories, setCategories] = useState(
         [
-            'All Categories',
+            ALLCATEGORIES[0]
         ]
     )
     //const history = useHistory();
@@ -105,8 +118,19 @@ export default function (props) {
         //sort alphabetically
         fetchedCategories.sort()
         //add all categories 
-        const newCategories = [...categories, ...fetchedCategories]
-        setCategories(newCategories)
+        const newCategories = [ALLCATEGORIES[0].en, ...fetchedCategories]
+        //using ALLCATEGORIES get spanish translations
+        const newCategories2 = []
+        //go through newCategories and find where ALLCATEGORIES.en === newCategories
+        newCategories.map((item) => {
+            ALLCATEGORIES.map((item2) => {
+                if (item === item2.en) {
+                    newCategories2.push(item2 as never)
+                }
+            })
+        })
+
+        setCategories(newCategories2)
     }, [])
     const [openItem, setOpenItem] = useState(null);
 
@@ -114,9 +138,10 @@ export default function (props) {
         setMobileOpen((prevState) => !prevState);
         setOpenItem(null);
     };
-    const [selectedCategory, setSelectedCategory] = useState(``)
+    const [selectedCategory, setSelectedCategory] = useState(categories[0])
 
     function handleCategoryClick(category) {
+        console.log(category)
         if (selectedCategory === category) {
             setSelectedCategory(categories[0])
         } else {
@@ -160,7 +185,7 @@ export default function (props) {
                                 <Typography
                                     style={{ display: "flex", fontWeight: "700", justifyContent: "center" }}
                                 >
-                                    Filter Categories {categories.length > 0 ? openItem === props.shortTitle ? <ExpandLessIcon /> : <ExpandMoreIcon /> : ""}
+                                    {returnLocaleText(TEXT.filterCategories)} {categories.length > 0 ? openItem === props.shortTitle ? <ExpandLessIcon /> : <ExpandMoreIcon /> : ""}
                                 </Typography>
                             }
                         />
@@ -170,10 +195,10 @@ export default function (props) {
                     <List component="div"
                         sx={{ padding: "1rem" }}
                     >
-                        {categories.map((item) => (
+                        {categories.map((item, index) => (
 
                             <Box
-                                key={item}
+                                key={index}
                                 onClick={() => {
                                     handleCategoryClick(item)
                                     setOpenItem(null)
@@ -182,7 +207,7 @@ export default function (props) {
                                     display: "flex", alignItems: "center", cursor: "pointer",
                                 }}
                             >
-                                <Typography variant="h6">{item}</Typography>
+                                <Typography variant="h6">{returnLocaleText(item)}</Typography>
                                 <Checkbox checked={selectedCategory === item} />
                             </Box>
 
@@ -207,7 +232,7 @@ export default function (props) {
                     display: { xs: "none", md: "block", },
                 }}
             >
-                <Typography fontWeight={"bold"} variant="h6">Filter Categories</Typography>
+                <Typography fontWeight={"bold"} variant="h6"> {returnLocaleText(TEXT.filterCategories)}</Typography>
                 <hr />
                 <Box
                     sx={{
@@ -228,7 +253,7 @@ export default function (props) {
                             <Typography key={index}
                                 sx={{
                                     cursor: "pointer",
-                                }} variant="h6">{item}</Typography>
+                                }} variant="h6">{returnLocaleText(item)}</Typography>
                             <Checkbox checked={selectedCategory === item}
 
                                 sx={{
@@ -250,7 +275,7 @@ export default function (props) {
                 }}
             >
                 {props.articles && props.articles.map((item, index) => {
-                    if (selectedCategory === item.attributes.Category || selectedCategory === categories[0]) {
+                    if (selectedCategory.en === item.attributes.Category || selectedCategory === categories[0]) {
                         return <ArticleItem key={index} {...item} />
                     }
                 })}
