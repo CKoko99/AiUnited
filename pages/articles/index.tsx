@@ -9,7 +9,8 @@ const bannerContent = {
         alt: "articles-banner"
     },
     title: {
-        en: 'Beyond the Basics: Navigating the Insurance Maze with Expert Advice'
+        en: 'Beyond the Basics: Navigating the Insurance Maze with Expert Advice',
+        es: 'Más allá de lo básico: navegando por el laberinto de los seguros con consejos de expertos'
     }
 }
 const contentSection2 = {
