@@ -1,5 +1,6 @@
 import Article from "@/components/Articles/Article"
 import ArticleTitle from "@/components/Articles/ArticleTitle"
+import HeadComponent from "@/components/Head"
 import { Box, Typography } from "@mui/material"
 import PATHCONSTANTS from "constants/sitemap"
 import Link from "next/link"
@@ -75,12 +76,16 @@ export default function (props) {
                     </Typography>
                 </Link>
             </Box>
-            :
-            <Article articleTitle={articleTitle} summary={articleData.attributes.Summary}
-                date={date} category={articleData.attributes.Category}
-                articleContent={articleContent} relatedArticles={relatedArticles}
-                thumbnail={articleData.attributes.Thumbnail.data.attributes.url}
-            />
+            : <>
+                <HeadComponent
+                    title={articleData.attributes.Title.en} metaData={articleData.attributes.Summary.en}
+                />
+                <Article articleTitle={articleTitle} summary={articleData.attributes.Summary}
+                    date={date} category={articleData.attributes.Category}
+                    articleContent={articleContent} relatedArticles={relatedArticles}
+                    thumbnail={articleData.attributes.Thumbnail.data.attributes.url}
+                />
+            </>
         }
     </>
 }
