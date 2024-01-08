@@ -137,7 +137,7 @@ export default function () {
         {/*
         <Hero {...heroContent} />
      */}
-        <TextSection subtitleVariant="h5" title={heroContent.title} {...textSectionContent} />
+        <TextSection titleComponent="h1" subtitleVariant="h5" title={heroContent.title} {...textSectionContent} />
         <Ratings />
         <ReviewsList reviews={reviews} />
         <ContactAndShop />

@@ -26,26 +26,35 @@ const contentSection2 = {
 }
 
 export async function getServerSideProps(context) {
-
-    const res = await fetch(`${process.env.BACKEND}/articles/`,)
-    const data = await res.json()
-    /*
-        let tempData = data.data
-        let articles = []
-        for (let j = 0; j < data.data.length; j++) {
-            for (let i = 0; i < 4; i++) {
-                articles.push(tempData[j] as never);
+    try {
+        const res = await fetch(`${process.env.BACKEND}/articles/`,)
+        const data = await res.json()
+        /*
+            let tempData = data.data
+            let articles = []
+            for (let j = 0; j < data.data.length; j++) {
+                for (let i = 0; i < 4; i++) {
+                    articles.push(tempData[j] as never);
+                }
             }
+            data.data = articles
+            */
+        const popularArticles = data.data.filter((article) => article.attributes.PopularRank > 0)
+        popularArticles.sort((b, a) => a.attributes.PopularRank - b.attributes.PopularRank)
+        return {
+            props: {
+                popularArticles: popularArticles,
+                allArticles: data.data, // This passes the fetched data as a prop to your component
+            },
         }
-        data.data = articles
-        */
-    const popularArticles = data.data.filter((article) => article.attributes.PopularRank > 0)
-    popularArticles.sort((b, a) => a.attributes.PopularRank - b.attributes.PopularRank)
-    return {
-        props: {
-            popularArticles: popularArticles,
-            allArticles: data.data, // This passes the fetched data as a prop to your component
-        },
+    } catch (err) {
+        console.log(err)
+        return {
+            props: {
+                popularArticles: [],
+                allArticles: [], // This passes the fetched data as a prop to your component
+            },
+        }
     }
 }
 

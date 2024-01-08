@@ -80,7 +80,7 @@ export default function () {
     return <>
         <Box sx={classes.root}>
             <Box>
-                <Box><Typography sx={{ fontSize: "7rem !important" }} variant="h1">4.5</Typography></Box>
+                <Box><Typography sx={{ fontSize: "7rem !important" }} component={"h4"} variant="h1">4.5</Typography></Box>
                 <Box>{componentText.stars[currentLang]}</Box>
             </Box>
             <Box sx={{ ...classes.reviewSections }}>
