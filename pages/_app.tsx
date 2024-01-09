@@ -5,10 +5,18 @@ import Layout from "../components/Layout";
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "../providers/theme";
 import GoogleAnalytics from "../components/Scripts/GoogleAnalytics";
+import { useEffect } from 'react';
+import PATHCONSTANTS from 'constants/sitemap';
 
 
 function MyApp({ Component, pageProps }: AppProps) {
-
+  async function fetchArticles() {
+    await fetch(`${PATHCONSTANTS.BACKEND}/articles`,).then(
+      () => { }).catch((err) => { console.log(err) })
+  }
+  useEffect(() => {
+    fetchArticles()
+  }, [])
   return (
     <ThemeProvider theme={theme}>
       <Layout>
