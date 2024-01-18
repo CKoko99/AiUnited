@@ -77,6 +77,7 @@ function ContentItem(props) {
 }
 export default function (props) {
     const [moreHover, setMoreHover] = useState(false)
+    const articles = props.articles.slice(0, 3)
     return <>
         <Box
             sx={{
@@ -90,7 +91,7 @@ export default function (props) {
                 fontWeight={"bold"}
                 textAlign={"center"} variant="h6" >{returnLocaleText(TEXT.discover)}</Typography>
             <hr />
-            {props.articles.map((item, index) => {
+            {articles.map((item, index) => {
                 return <ContentItem key={index} article={item} />
             })}
             <Typography textAlign={"center"} variant="h6"
