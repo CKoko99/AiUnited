@@ -107,25 +107,26 @@ function InputQuestion(props) {
     function checkValidation() {
 
         if (props.required) {
-            const valid = value.length > 0
-            setOnceValid(valid)
-            setValid(valid)
-            if (!valid) {
+            const isValid = value.length > 0
+            setOnceValid(isValid)
+            setValid(isValid)
+            if (!isValid) {
                 setError(validationText.required[currentLang])
             } else {
                 setError("")
             }
         } else {
             setValid(true)
+            return
         }
 
         if (props.validation === 'email') {
             //check to see if it's a valid email
             //includes @ before a . and at least 1 character before and after
-            const valid = value.includes('@') && value.includes('.') && value.length > 3
-            setOnceValid(valid)
-            setValid(valid)
-            if (!valid) {
+            const isValid = value.includes('@') && value.includes('.') && value.length > 3
+            setOnceValid(isValid)
+            setValid(isValid)
+            if (!isValid) {
                 setError(validationText.email[currentLang])
             } else {
                 setError("")
@@ -134,10 +135,10 @@ function InputQuestion(props) {
 
         if (props.validation === 'phone') {
             //check if 10 characters
-            const valid = value.length === 10
-            setOnceValid(valid)
-            setValid(valid)
-            if (!valid) {
+            const isValid = value.length === 10
+            setOnceValid(isValid)
+            setValid(isValid)
+            if (!isValid) {
                 setError(validationText.phone[currentLang])
             } else {
                 setError("")
@@ -145,10 +146,10 @@ function InputQuestion(props) {
         }
 
         if (props.validation === 'zip') {
-            const valid = value.length === 5
-            setOnceValid(valid)
-            setValid(valid)
-            if (!valid) {
+            const isValid = value.length === 5
+            setOnceValid(isValid)
+            setValid(isValid)
+            if (!isValid) {
                 setError(validationText.zip[currentLang])
             } else {
                 setError("")
