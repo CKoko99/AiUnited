@@ -95,12 +95,14 @@ function InputQuestion(props) {
         setOnceFocused(true)
         if (!props.validation || props.validation === 'email') {
             setValue(e.target.value)
+            props.setAnswer(props.index, e.target.value)
             console.log(e.target.value)
         }
         if (props.validation === 'number' || props.validation === 'phone' || props.validation === 'zip') {
             //filter out non-numeric characters
             const filtered = e.target.value.replace(/\D/g, '')
             setValue(filtered)
+            props.setAnswer(props.index, filtered)
         }
     }
 
