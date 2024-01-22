@@ -2,8 +2,8 @@ import TextSection from "@/components/Content/TextSection";
 import Hero from "../../../components/Content/Hero/Hero";
 import TextContent from "../../../components/Content/TextContent";
 import BannerImg from '../../../public/assets/images/about/careers/banner.png'
-import dynamic from 'next/dynamic';
-const Simple = dynamic(() => import('../../../components/Forms/Simple/Simple'), { ssr: false });
+import Simple from 'components/Forms/Simple/Simple';
+
 
 const heroContent = {
     title: {

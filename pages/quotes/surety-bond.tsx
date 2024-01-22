@@ -8,8 +8,7 @@ import MainGrid from '../../components/Content/Grids/MainGrid';
 import ContactAndShop from '../../components/Content/FlexDigrams/Combo/ContactAndShop';
 import TwoColumn from '../../components/Content/Grids/TwoColumn';
 import HeadComponent from '../../components/Head';
-import dynamic from 'next/dynamic';
-const SimpleForm = dynamic(() => import('../../components/Forms/Simple/Simple'), { ssr: false });
+import SimpleForm from 'components/Forms/Simple/Simple';
 const bannerContent = {
     title: {
         en: "Get a Surety Bond Today",

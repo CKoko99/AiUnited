@@ -8,6 +8,8 @@ import DmImg from '../../public/assets/images/about/careers/dm.png'
 import BannerImg from '../../public/assets/images/about/careers/banner.png'
 import PictureWithList from "../../components/Content/PictureWithList";
 import WorkImg from "../../public/assets/images/about/careers/work.png";
+import Link from "next/link";
+import { Box, Typography } from "@mui/material";
 
 
 const heroContent = {
@@ -125,5 +127,12 @@ export default function () {
         <TextSection {...textSection1} />
         <PictureWithList {...picturesWithListContent} />
         <Cards {...cardsContent} />
+        <Box sx={{ textAlign: "center", width: "100%", marginBottom: "1rem" }}>
+            <Link style={{ color: "blue", }} target="_blank" href={"https://drive.google.com/file/d/1xFQ71e9eC0nj0h2gmmkeyQC46BkB93YB/preview"}>
+                <Typography variant="h6" component="h1" sx={{ color: "blue", textDecoration: "underline" }}>
+                    Ai United Employment Application
+                </Typography>
+            </Link>
+        </Box>
     </>
 }

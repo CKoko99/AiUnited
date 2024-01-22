@@ -2,8 +2,7 @@ import TextSection from '@/components/Content/TextSection';
 import ContactAndLocations from '../../components/Content/FlexDigrams/Combo/ContactAndLocations';
 import Hero from '../../components/Content/Hero/Hero';
 import BannerImg from '../../public/assets/images/about/contact/banner.png';
-import dynamic from 'next/dynamic';
-const SimpleForm = dynamic(() => import('../../components/Forms/Simple/Simple'), { ssr: false });
+import SimpleForm from 'components/Forms/Simple/Simple';
 const heroContent = {
   title: {
     en: "Contact Our Team",

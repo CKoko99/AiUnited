@@ -7,8 +7,7 @@ import MotoImg2 from '../../public/assets/images/quotes/motorcycle/helmet2.png';
 import MotoImg3 from '../../public/assets/images/quotes/motorcycle/motorcycle3.png';
 import ContactAndShop from '../../components/Content/FlexDigrams/Combo/ContactAndShop';
 import HeadComponent from '../../components/Head';
-import dynamic from 'next/dynamic';
-const SimpleForm = dynamic(() => import('../../components/Forms/Simple/Simple'), { ssr: false });
+import SimpleForm from 'components/Forms/Simple/Simple';
 
 const bannerContent = {
     title: {

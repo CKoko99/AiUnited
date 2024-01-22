@@ -7,9 +7,7 @@ import Sr22Img1 from "../../public/assets/images/quotes/sr22/sr1.png";
 import Sr22Img2 from "../../public/assets/images/quotes/sr22/sr2.png";
 import Sr22Img3 from "../../public/assets/images/quotes/home/home2.png";
 import HeadComponent from '../../components/Head';
-
-import dynamic from 'next/dynamic';
-const SimpleForm = dynamic(() => import('../../components/Forms/Simple/Simple'), { ssr: false });
+import SimpleForm from 'components/Forms/Simple/Simple';
 
 const bannerContent = {
     title: {

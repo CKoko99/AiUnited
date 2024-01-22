@@ -8,8 +8,7 @@ import RentersImg1 from "../../public/assets/images/quotes/renters/renter1.png";
 import RentersImg2 from "../../public/assets/images/quotes/renters/renter2.png";
 import RentersImg3 from "../../public/assets/images/quotes/renters/renter3.png";
 
-import dynamic from 'next/dynamic';
-const SimpleForm = dynamic(() => import('../../components/Forms/Simple/Simple'), { ssr: false });
+import SimpleForm from 'components/Forms/Simple/Simple';
 const bannerContent = {
     title: {
         en: "Get Renters Insurance Today",
