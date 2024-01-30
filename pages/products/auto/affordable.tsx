@@ -10,7 +10,8 @@ import CardImg2 from "public/assets/images/products/auto/card1.png";
 import CardImg3 from "public/assets/images/products/auto/card2.png";
 import Cards2 from "@/components/Content/Cards/Cards2";
 import HeadComponent from "@/components/Head";
-
+import ArticleImg from "public/assets/images/products/article1.png";
+import AutoImg2 from "public/assets/images/products/auto/traffic2.png";
 const pageLinks = {
     liability: {
         link: `${PATHCONSTANTS.PRODUCTS.AUTO.AFFORDABLE}#Minimum`,
@@ -56,7 +57,7 @@ const contentSection2 = {
         ]
     },
     img: {
-        src: AutoImg1,
+        src: AutoImg2,
         alt: "Woman driving"
     },
     alignBody: "left",
@@ -177,19 +178,19 @@ const contentSection7 = {
         },
         {
             img: {
-                src: CardImg3,
-                alt: "Discounts"
+                src: ArticleImg,
+                alt: "Blog Articles"
             },
             title: {
-                en: `Explore Affordable Auto Coverage`,
-                es: `Explore la cobertura de auto asequible`
+                en: "Explore Auto Insurance Articles",
+                es: "Explore artículos de seguro de auto"
             },
             body: {
-                en: `See your options for finding affordable coverages.`,
-                es: `Vea sus opciones para encontrar coberturas asequibles.`
+                en: `Learn more about auto insurance and how to protect yourself.`,
+                es: `Aprenda más sobre el seguro de auto y cómo protegerse.`
             },
-            link: PATHCONSTANTS.PRODUCTS.AUTO.AFFORDABLE
-        }
+            link: PATHCONSTANTS.ARTICLES.INDEX
+        },
     ]
 }
 export default function () {

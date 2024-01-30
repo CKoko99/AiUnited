@@ -14,6 +14,8 @@ import CarCrashImg from "public/assets/images/products/auto/crash.png";
 import BorderBoxContent from "@/components/Content/BorderBoxContent";
 import CTAPicWText from "@/components/PrefilledCTA/CTAPicWText";
 import HeadComponent from "@/components/Head";
+import ArticleImg from "public/assets/images/products/article1.png";
+
 const pageLinks = {
     liability: {
         link: `${PATHCONSTANTS.PRODUCTS.AUTO.COVERAGE}#Liability-Insurance`,
@@ -234,21 +236,6 @@ const contentSection11 = {
         },
         {
             img: {
-                src: CardImg2,
-                alt: "Car Crash"
-            },
-            title: {
-                en: "Explore Coverage Options",
-                es: "Explore las opciones de cobertura"
-            },
-            body: {
-                en: `Read more information to see what coverage is right for you.`,
-                es: `Lea más información para ver qué cobertura es la adecuada para usted.`
-            },
-            link: PATHCONSTANTS.PRODUCTS.AUTO.COVERAGE
-        },
-        {
-            img: {
                 src: CardImg3,
                 alt: "Discounts"
             },
@@ -261,7 +248,22 @@ const contentSection11 = {
                 es: `Vea sus opciones para encontrar coberturas asequibles.`
             },
             link: PATHCONSTANTS.PRODUCTS.AUTO.AFFORDABLE
-        }
+        },
+        {
+            img: {
+                src: ArticleImg,
+                alt: "Car Crash"
+            },
+            title: {
+                en: "Explore Auto Insurance Articles",
+                es: "Explore artículos de seguro de auto"
+            },
+            body: {
+                en: `Learn more about auto insurance and how to protect yourself.`,
+                es: `Aprenda más sobre el seguro de auto y cómo protegerse.`
+            },
+            link: PATHCONSTANTS.ARTICLES.INDEX
+        },
     ]
 }
 export default function () {
