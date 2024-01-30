@@ -5,6 +5,8 @@
 /.pnp
 .pnp.js
 admin.tsx
+/json
+
 contract.json
 errors.json
 new.json
