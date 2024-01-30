@@ -25,6 +25,37 @@ const PATHCONSTANTS = {
             AFFORDABLE: '/products/auto/affordable',
             FAQ: '/products/auto/faq',
         },
+        HOME: {
+            INDEX: '/products/home',
+            COVERAGE: '/products/home/coverage',
+            AFFORDABLE: '/products/home/affordable',
+            FAQ: '/products/home/faq',
+        },
+        MEXICO: {
+            INDEX: '/products/mexico',
+            COVERAGE: '/products/mexico/coverage',
+            FAQ: '/products/mexico/faq',
+        },
+        MOTORCYCLE: {
+            INDEX: '/products/motorcycle',
+            COVERAGE: '/products/motorcycle/coverage',
+            FAQ: '/products/motorcycle/faq',
+        },
+        RENTER: {
+            INDEX: '/products/renter',
+            COVERAGE: '/products/renter/coverage',
+            FAQ: '/products/renter/faq',
+        },
+        SURETY: {
+            INDEX: '/products/surety-bond',
+            COVERAGE: '/products/surety-bond/coverage',
+            FAQ: '/products/surety-bond/faq',
+        },
+        SR22: {
+            INDEX: '/products/sr22',
+            COVERAGE: '/products/sr22/coverage',
+            FAQ: '/products/sr22/faq',
+        },
         /*     AUTO: '/products/auto',
              HOME: '/products/home',
              MEXICO: '/products/mexico',
