@@ -2,6 +2,11 @@ import { Box, Button, Typography } from "@mui/material";
 import PATHCONSTANTS from "constants/sitemap";
 import { returnLocaleText } from "../locale/LocaleSwitcher";
 
+interface ComponentProps {
+    category: string
+    contained?: boolean
+}
+
 const ProductCategories = {
     auto: {
         subtitle: {
@@ -78,9 +83,12 @@ export default function (props) {
 
     return <>
         <Box
-            sx={{ textAlign: "center", }}
+            sx={{
+                textAlign: "center",
+                width: !props.contained ? "100%" : { xs: "90%", sm: "80%", md: "80%", lg: "80%" },
+                margin: "auto",
+            }}
         >
-
             <Typography variant="h6">
                 {returnLocaleText(category.subtitle)}
             </Typography>
