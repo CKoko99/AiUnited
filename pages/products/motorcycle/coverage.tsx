@@ -18,8 +18,8 @@ import MotorcycleSubNav from "@/components/SubNavBar/products/motorcycle"
 import CenterImage from "@/components/Content/CenterImage"
 
 const headContent = {
-    title: 'Ai United Mexico Insurance Coverage Guide',
-    metaData: `Dive into the intricacies of Mexico tourist auto insurance coverage with our comprehensive overview.`,
+    title: 'Ai United Motorcycle Insurance Coverage Guide',
+    metaData: `Dive into the intricacies of Motorcycle Insurance with Ai United's comprehensive guide. Learn about the different types of coverage and how to protect yourself and your bike.`,
 }
 
 const pageLinks = {
