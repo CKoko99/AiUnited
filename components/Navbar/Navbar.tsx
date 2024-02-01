@@ -106,49 +106,49 @@ const navItems = [
           en: "Auto Insurance",
           es: "Seguro de Auto"
         },
-        link: PATHCONSTANTS.QUOTES.AUTO.INDEX
+        link: PATHCONSTANTS.PRODUCTS.AUTO.INDEX
       },
       {
         title: {
           en: "Motorcycle Insurance",
           es: "Seguro de Motocicleta"
         },
-        link: PATHCONSTANTS.QUOTES.MOTORCYCLE.INDEX
+        link: PATHCONSTANTS.PRODUCTS.MOTORCYCLE.INDEX
       },
       {
         title: {
           en: "Mexico Insurance",
           es: "Seguro de México"
         },
-        link: PATHCONSTANTS.QUOTES.MEXICO.INDEX
+        link: PATHCONSTANTS.PRODUCTS.MEXICO.INDEX
       },
       {
         title: {
           en: "Home Insurance",
           es: "Seguro de Casa"
         },
-        link: PATHCONSTANTS.QUOTES.HOME.INDEX
+        link: PATHCONSTANTS.PRODUCTS.HOME.INDEX
       },
       {
         title: {
           en: "Renters Insurance",
           es: "Seguro de Inquilinos"
         },
-        link: PATHCONSTANTS.QUOTES.RENTER.INDEX
+        link: PATHCONSTANTS.PRODUCTS.RENTER.INDEX
       },
       {
         title: {
           en: "SR-22 Insurance",
           es: "Seguro SR-22"
         },
-        link: PATHCONSTANTS.QUOTES.SR22.INDEX
+        link: PATHCONSTANTS.PRODUCTS.SR22.INDEX
       },
       {
         title: {
           en: "Surety Bonds",
           es: "Seguro de Fianza"
         },
-        link: PATHCONSTANTS.QUOTES.SURETY.INDEX
+        link: PATHCONSTANTS.PRODUCTS.SURETY.INDEX
       },
     ]
   },

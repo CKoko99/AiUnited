@@ -85,7 +85,7 @@ const content = [
             es: `En Ai United, entendemos que cada conductor es único. Es por eso que ofrecemos una variedad
             de coberturas de seguro de auto para satisfacer sus necesidades.`},
         quote: PATHCONSTANTS.QUOTES.AUTO.FORM,
-        info: PATHCONSTANTS.QUOTES.AUTO.INDEX,
+        info: PATHCONSTANTS.PRODUCTS.AUTO.INDEX,
         img: AutoImg
     },
     {
@@ -96,7 +96,7 @@ const content = [
             es: `Tener un seguro de hogar ofrece tranquilidad. Puede descansar tranquilo sabiendo que su hogar y sus pertenencias
         están seguros y que no se enfrentará a una crisis financiera si ocurre un desastre.`},
         quote: PATHCONSTANTS.QUOTES.HOME.FORM,
-        info: PATHCONSTANTS.QUOTES.HOME.INDEX,
+        info: PATHCONSTANTS.PRODUCTS.HOME.INDEX,
         img: HomeImg
     },
     {
@@ -108,7 +108,7 @@ const content = [
             es: `Los accidentes ocurren y, cuando ocurren, es crucial asegurarse de estar protegido financieramente.
         El seguro de motocicleta es esencial para proteger tanto a usted como a su motocicleta.`},
         quote: PATHCONSTANTS.QUOTES.MOTORCYCLE.FORM,
-        info: PATHCONSTANTS.QUOTES.MOTORCYCLE.INDEX,
+        info: PATHCONSTANTS.PRODUCTS.MOTORCYCLE.INDEX,
         img: MotorcycleImg
     },
     {
@@ -120,7 +120,7 @@ const content = [
             es: `El seguro SR-22 es un tipo de cobertura única requerida por el estado para restablecer sus privilegios de
         conducción después de ciertas violaciones.`},
         quote: PATHCONSTANTS.QUOTES.SR22.FORM,
-        info: PATHCONSTANTS.QUOTES.SR22.INDEX,
+        info: PATHCONSTANTS.PRODUCTS.SR22.INDEX,
         img: SR22Img
     },
     {
@@ -132,7 +132,7 @@ const content = [
             es: `Protéjase a sí mismo y a sus objetos de valor obteniendo un seguro de inquilinos de bajo costo que cubrirá el
         contenido de un apartamento o casa que esté alquilando.`},
         quote: PATHCONSTANTS.QUOTES.RENTER.FORM,
-        info: PATHCONSTANTS.QUOTES.RENTER.INDEX,
+        info: PATHCONSTANTS.PRODUCTS.RENTER.INDEX,
         img: RentersImg
     },
     {
@@ -147,7 +147,7 @@ const content = [
             es: `Viajar a México puede ser una aventura emocionante, pero es esencial estar preparado para lo inesperado.
         Es importante tener un seguro de turista de México en su vehículo.`},
         quote: PATHCONSTANTS.QUOTES.MEXICO.FORM,
-        info: PATHCONSTANTS.QUOTES.MEXICO.INDEX,
+        info: PATHCONSTANTS.PRODUCTS.MEXICO.INDEX,
         img: MexicoImg
     },
     {
@@ -159,7 +159,7 @@ const content = [
             es: `Ai United se dedica a simplificar el mundo de las fianzas, asegurándose de tener
         la cobertura que necesita, precisamente cuando la necesita.`},
         quote: PATHCONSTANTS.QUOTES.SURETY.FORM,
-        info: PATHCONSTANTS.QUOTES.SURETY.INDEX,
+        info: PATHCONSTANTS.PRODUCTS.SURETY.INDEX,
         img: SuretyImg
     }
 ]
