@@ -9,8 +9,8 @@ import PATHCONSTANTS from "constants/sitemap";
 import HomeImg1 from "public/assets/images/products/home/home1.png"
 
 const headContent = {
-    title: "Home Insurance Frequently Asked Questions",
-    metaData: "Learn more about home insurance and how it can protect your home and belongings. Get answers to frequently asked questions about home insurance.",
+    title: "Renter Insurance Frequently Asked Questions",
+    metaData: "Learn more about renter insurance and get answers to frequently asked questions about coverage, requirements, and more.",
 }
 const verticalBannerContent = {
     title: {

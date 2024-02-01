@@ -17,8 +17,8 @@ import SR22SubNav from "@/components/SubNavBar/products/sr22";
 import CTAText from "@/components/PrefilledCTA/CTAText";
 
 const headContent = {
-    title: 'Ai United Home Insurance Coverage Guide',
-    metaData: `Dive into the intricacies of home insurance coverage with our comprehensive overview. Explore detailed policies, including property, liability, and personal belongings coverage. Uncover the nuances of deductible options, policy limits, and additional endorsements to customize protection for your unique needs.`,
+    title: 'Ai United SR-22 Insurance Coverage',
+    metaData: `Learn more about SR-22 insurance coverage details and requirements. Find out why you need SR-22 insurance and how to get the right coverage for your needs.`,
 }
 
 const pageLinks = {

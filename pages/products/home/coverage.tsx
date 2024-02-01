@@ -15,7 +15,7 @@ import CardImg2 from "public/assets/images/products/home/livingroom.png";
 import Cards2 from "@/components/Content/Cards/Cards2";
 const headContent = {
     title: 'Ai United Home Insurance Coverage Guide',
-    metaData: `Dive into the intricacies of home insurance coverage with our comprehensive overview. Explore detailed policies, including property, liability, and personal belongings coverage. Uncover the nuances of deductible options, policy limits, and additional endorsements to customize protection for your unique needs.`,
+    metaData: `Dive into the intricacies of home insurance coverage with our comprehensive overview. Explore detailed policies, including property, liability, and personal belongings coverage.`
 }
 
 const pageLinks = {

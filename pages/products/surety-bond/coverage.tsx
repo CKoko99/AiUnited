@@ -17,8 +17,8 @@ import SuretyImg2 from "public/assets/images/products/surety/surety2.png"
 import SuretySubNav from "@/components/SubNavBar/products/surety";
 import ThinkingImg from "public/assets/images/products/thinking.png";
 const headContent = {
-    title: 'Ai United Home Insurance Coverage Guide',
-    metaData: `Dive into the intricacies of home insurance coverage with our comprehensive overview. Explore detailed policies, including property, liability, and personal belongings coverage. Uncover the nuances of deductible options, policy limits, and additional endorsements to customize protection for your unique needs.`,
+    title: 'Ai United Surety Bonds Coverage',
+    metaData: `Dive into the intricacies of surety bonds and learn how they can protect your business, construction project, or legal interests.`
 }
 
 const pageLinks = {

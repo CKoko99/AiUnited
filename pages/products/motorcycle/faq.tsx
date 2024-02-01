@@ -9,8 +9,8 @@ import PATHCONSTANTS from "constants/sitemap";
 import MotorcycleImg1 from "public/assets/images/products/motorcycle/motorcycle1.png"
 
 const headContent = {
-    title: "Home Insurance Frequently Asked Questions",
-    metaData: "Learn more about home insurance and how it can protect your home and belongings. Get answers to frequently asked questions about home insurance.",
+    title: "Motorcycle Insurance Frequently Asked Questions",
+    metaData: "Learn more about motorcycle insurance and get answers to frequently asked questions about coverage, requirements, and more.",
 }
 const verticalBannerContent = {
     title: {
