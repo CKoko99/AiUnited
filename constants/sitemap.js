@@ -94,6 +94,7 @@ const PATHCONSTANTS = {
     PRIVACY: '/privacy-policy',
     TERMS: '/terms-of-service',
     BACKEND: process.env.NODE_ENV === "development" ? "http://192.168.20.122:8080" : "https://insurancehubbackend-uc3v53rceq-ue.a.run.app",
+    BACKEND2: process.env.NODE_ENV === "development" ? "http://localhost:8081" : "https://spring-backend-uc3v53rceq-ue.a.run.app",
     STRAPI: process.env.NODE_ENV === "development" ? "http://localhost:1337" : "https://ai-united-strapi-uc3v53rceq-ue.a.run.app"
 };
 export default PATHCONSTANTS
