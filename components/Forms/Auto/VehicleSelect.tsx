@@ -30,7 +30,7 @@ async function getYears() {
 
 async function getMakes(year) {
     try {
-        const res = await fetch(`http://localhost:8081/vehicles/makes?year=${year}`,
+        const res = await fetch(`${PATHCONSTANTS.BACKEND2}/vehicles/makes?year=${year}`,
             { method: 'GET', }
         );
         const data = await res.json();
@@ -44,7 +44,7 @@ async function getMakes(year) {
 
 async function getModels(year, make) {
     try {
-        const res = await fetch(`http://localhost:8081/vehicles/models?year=${year}&make=${make}`,
+        const res = await fetch(`${PATHCONSTANTS.BACKEND2}/vehicles/models?year=${year}&make=${make}`,
             { method: 'GET', }
         );
         const data = await res.json();
@@ -56,7 +56,7 @@ async function getModels(year, make) {
 }
 async function getVIN(year, make, model,) {
     try {
-        const res = await fetch(`http://localhost:8081/vehicles/VIN?year=${year}&make=${make}&model=${model}`,
+        const res = await fetch(`${PATHCONSTANTS.BACKEND2}/vehicles/VIN?year=${year}&make=${make}&model=${model}`,
             { method: 'GET', }
         );
         const data = await res.json();
@@ -68,7 +68,7 @@ async function getVIN(year, make, model,) {
 }
 async function getVINDetails(VIN) {
     try {
-        const res = await fetch(`http://localhost:8081/vehicles/VINdetails?VIN=${VIN}`,
+        const res = await fetch(`${PATHCONSTANTS.BACKEND2}/vehicles/VINdetails?VIN=${VIN}`,
             { method: 'GET', }
         );
         const data = await res.json();
