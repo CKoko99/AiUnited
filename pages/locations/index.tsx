@@ -61,6 +61,7 @@ export default function (props) {
         <Locations
             locations={props.data}
             placeholder={"Texas"}
+            fullList
             zoom={6}
             center={{ lat: 29.7433, lng: -95.3085, }}
         />

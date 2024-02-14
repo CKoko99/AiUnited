@@ -73,7 +73,7 @@ export default function (props) {
     const [mapCenter, setMapCenter] = useState(props.center);
     const [selectedMarker, setSelectedMarker] = useState<Marker | null>(null);
     const [locations, setLocations] = useState(props.locations)
-    const [maxLocations, setMaxLocations] = useState(5)
+    const [maxLocations, setMaxLocations] = useState(props.fullList ? props.locations.length : 5)
     const [zoom, setZoom] = useState(props.zoom || 10)
     const googleMapRef = useRef(null)
 
