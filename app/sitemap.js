@@ -81,10 +81,6 @@ export default async function sitemap() {
     }
 
     return [
-        {
-            url: url + "/",
-            lastModified: new Date()
-        },
         ...Pages
     ]
 }
