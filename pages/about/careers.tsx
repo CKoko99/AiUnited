@@ -129,7 +129,7 @@ export default function () {
         <Cards {...cardsContent} />
         <Box sx={{ textAlign: "center", width: "100%", marginBottom: "1rem" }}>
             <Link style={{ color: "blue", }} target="_blank" href={"https://drive.google.com/file/d/1xFQ71e9eC0nj0h2gmmkeyQC46BkB93YB/preview"}>
-                <Typography variant="h6" component="h1" sx={{ color: "blue", textDecoration: "underline" }}>
+                <Typography variant="h6" component="h6" sx={{ color: "blue", textDecoration: "underline" }}>
                     Ai United Employment Application
                 </Typography>
             </Link>
