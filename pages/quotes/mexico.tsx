@@ -124,7 +124,8 @@ export default function () {
     const currentLang = Lang[locale ?? 'en']
     return <>
         <HeadComponent title={'Mexico Insurance | Get a Free Mexican Insurance Quote'}
-            metaData={'Get a Free Mexico Tourist Insurance Quote with Ai United Insurance Today'} />
+            metaData={"Embark on worry-free travels! Get your free Mexico Tourist Insurance quote with Ai United Insurance today and ensure a safe journey."}
+        />
         <VerticalBanner {...bannerContent} />
         <MainGrid  {...contentSection1} />
         <TwoColumn {...contentSection2} />

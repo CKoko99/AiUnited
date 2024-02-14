@@ -258,7 +258,8 @@ const formContent = {
 export default function () {
     return <>
         <HeadComponent title={'Home Insurance | Get a Free Home Insurance Quote'}
-            metaData={'Get a Free Home Insurance Quote with Ai United Insurance Today'} />
+            metaData={"Protect your haven! Get a free Home Insurance quote from Ai United Insurance today and safeguard your family's security."}
+        />
         <VerticalBanner {...bannerContent} />
         <MainGrid {...contentSection2} />
         <TwoColumn {...contentSection3} />

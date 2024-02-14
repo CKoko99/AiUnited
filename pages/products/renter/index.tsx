@@ -12,7 +12,7 @@ import ThinkingImg from "public/assets/images/products/thinking.png";
 import RenterSubNav from "@/components/SubNavBar/products/renter";
 const headContent = {
     title: 'Ai United Renter Insurance Guide',
-    metaData: `Learn more about Renter Insurance and how it can protect you and your family.`
+    metaData: "Discover the value of Renter Insurance in safeguarding your family. Learn more about comprehensive protection today.",
 }
 
 const verticalBannerContent = {

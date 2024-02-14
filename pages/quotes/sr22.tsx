@@ -233,7 +233,8 @@ const formContent = {
 export default function () {
     return <>
         <HeadComponent title={'SR-22 Insurance | Get a Free SR-22 Insurance Quote'}
-            metaData={'Get a Free SR-22 Insurance Quote with Ai United Insurance Today'} />
+            metaData={"Get your SR-22 insurance quote free! Ai United Insurance offers hassle-free solutions. Get covered today!"}
+        />
         <VerticalBanner {...bannerContent} />
         <MainGrid {...contentSection3} />
         <TwoColumn {...contentSection2} />

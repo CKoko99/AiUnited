@@ -13,7 +13,7 @@ import SR22SubNav from "@/components/SubNavBar/products/sr22";
 
 const headContent = {
     title: 'Ai United SR22 Insurance Guide',
-    metaData: `Learn more about SR22 Insurance and how it can get you back on the road.`
+    metaData: "Unlock the benefits of SR22 Insurance and hit the road with confidence. Learn more today for a smoother journey ahead.",
 }
 
 const verticalBannerContent = {

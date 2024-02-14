@@ -12,7 +12,7 @@ import ThinkingImg from "public/assets/images/products/thinking.png";
 import MotorcycleSubNav from "@/components/SubNavBar/products/motorcycle";
 const headContent = {
     title: 'Ai United Motorcycle Insurance Guide',
-    metaData: `Learn more about Motorcycle Insurance and how it can protect you and your family.`
+    metaData: "Explore Motorcycle Insurance options for reliable family protection. Learn more about coverage benefits today.",
 }
 
 const verticalBannerContent = {

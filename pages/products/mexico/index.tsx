@@ -13,7 +13,7 @@ import MexicoSubNav from "@/components/SubNavBar/products/mexico";
 import ThinkingImg from "public/assets/images/products/thinking.png";
 const headContent = {
     title: 'Ai United Mexico Tourism Insurance Guide',
-    metaData: `Learn more about Mexico Auto Tourist Insurance and how it can protect you and your family.`
+    metaData: "Discover peace of mind with Mexico Auto Tourist Insurance. Learn how it safeguards your family and explore coverage benefits today."
 }
 
 const verticalBannerContent = {

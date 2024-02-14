@@ -235,7 +235,8 @@ const formContent = {
 export default function () {
     return <>
         <HeadComponent title={'Renter Insurance | Get a Free Renter Insurance Quote'}
-            metaData={'Get a Free Renter Insurance Quote with Ai United Insurance Today'} />
+            metaData={"Secure your home with a free Renter Insurance quote from Ai United Insurance. Protect your family's peace of mind today."}
+        />
         <VerticalBanner {...bannerContent} />
         <MainGrid {...contentSection2} />
         <TwoColumn {...contentSection3} />

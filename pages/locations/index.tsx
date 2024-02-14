@@ -57,7 +57,8 @@ export default function (props) {
     // console.log(props.data.locations)
     return <>
         <HeadComponent title={'Find an Ai United Insurance Location'}
-            metaData={'Get a Free Insurance Quote with Ai United Insurance Today'} />
+            metaData={"Secure your peace of mind with a free insurance quote from Ai United Insurance today. Get covered with confidence."}
+        />
         <Locations
             locations={props.data}
             placeholder={"Texas"}

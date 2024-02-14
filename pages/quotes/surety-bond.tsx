@@ -224,7 +224,8 @@ const formContent = {
 export default function () {
     return <>
         <HeadComponent title={'Surety Bond | Get a Free Surety Bond Quote'}
-            metaData={'Get a Free Surety Bond Quote with Ai United Insurance Today'} />
+            metaData={"Get your free Surety Bond quote today with Ai United Insurance. Protect your business with confidence."}
+        />
         <VerticalBanner {...bannerContent} />
         <MainGrid  {...contentSection1} />
         <TwoColumn {...contentSection2} />

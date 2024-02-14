@@ -148,7 +148,8 @@ const contentSection3 = {
 export default function () {
     return <>
         <HeadComponent title={'Car Insurance | Get a Free Auto Insurance Quote'}
-            metaData={'Get a Free Car Insurance Quote with Ai United Insurance Today'} />
+            metaData={"Secure your ride with a free car insurance quote from Ai United Insurance today. Drive confidently with tailored coverage."}
+        />
         <VerticleAutoBanner {...heroContent} />
         <NumbersSection {...slideData} menuContent={slideData.menuContent} />
         <MainGrid {...contentSection2} />

@@ -267,7 +267,8 @@ const formContent = {
 export default function () {
     return <>
         <HeadComponent title={'Motorcycle Insurance | Get a Free Motorcycle Insurance Quote'}
-            metaData={'Get a Free Motorcycle Insurance Quote with Ai United Insurance Today'} />
+            metaData={"Rev up your savings! Get a free Motorcycle Insurance quote from Ai United Insurance today and hit the road with confidence."}
+        />
         <VerticalBanner {...bannerContent} />
         <MainGrid {...contentSection2} />
         <TwoColumn {...contentSection3} />
