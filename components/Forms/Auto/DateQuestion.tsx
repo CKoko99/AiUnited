@@ -41,7 +41,8 @@ export default function (props) {
         setShowDays(true);
         //check if the day value is valid for the month if not then set it to ""
         try {
-            if (dayValue > months.find(month => month?.value === value).maxDays) {
+            const selectedMonth = months.find(month => month?.value === value);
+            if (selectedMonth && dayValue > selectedMonth.maxDays) {
                 setDayValue("");
             }
         } catch (e) {

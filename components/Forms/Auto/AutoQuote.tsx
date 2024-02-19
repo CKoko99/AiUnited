@@ -95,8 +95,8 @@ export default function (props) {
     const [navigationIcons, setNavigationIcons] = useState([]);
     const [quotePageIndex, setQuotePageIndex] = useState(DEFAULTS.quotePageIndex);
     const [subPageIndex, setSubPageIndex] = useState(DEFAULTS.subPageIndex);
-    const [activeQuestionsArray, setActiveQuestionsArray] = useState([]);
-    const [errorQuestions, setErrorQuestions] = useState([]);
+    const [activeQuestionsArray, setActiveQuestionsArray] = useState<string[]>([]);
+    const [errorQuestions, setErrorQuestions] = useState<string[]>([]);
 
     useEffect(() => {
         async function wakeServer() {
@@ -366,7 +366,7 @@ export default function (props) {
         // if any are false, return false
         // if all are true, return true
         let returnValue = true
-        let listOfErrors = []
+        let listOfErrors = [] as string[]
         for (let i = 0; i < activeQuestionsArray.length; i++) {
             const id = activeQuestionsArray[i]
             if (!formValues[id]) {
@@ -374,8 +374,13 @@ export default function (props) {
                 returnValue = false
                 break
             }
-            for (let j = 0; j < formValues[id].length; j++) {
-                if (!formValues[id][j].valid) {
+            //create a formValueQuestion as array
+            const formValueQuestion = formValues[id] as Array<{ questionId: string, value: string, valid: boolean }>
+
+
+
+            for (let j = 0; j < formValueQuestion.length; j++) {
+                if (!formValueQuestion[j].valid) {
                     returnValue = false
                     listOfErrors.push(id)
                 }
@@ -418,14 +423,16 @@ export default function (props) {
     //when the shownIdList changes, or the subPageIndex changes, or the quotePageIndex changes, update the activeQuestionsArray to contain the question ids
     // only add the question ids that are in the shownIdList and the subPageIndex
     useEffect(() => {
-        const activeQuestionsArray = []
+        const activeQuestionsArray = [] as string[]
         for (let i = 0; i < props.Form.QuotePages.length; i++) {
             if (i === quotePageIndex) {
                 for (let j = 0; j < props.Form.QuotePages[i].SubPages.length; j++) {
                     if (j === subPageIndex) {
-                        props.Form.QuotePages[i].SubPages[j].Questions.forEach((question) => {
-                            if (shownIdList.includes(question.id)) {
-                                activeQuestionsArray.push(question.id)
+                        const activePageQuestions = props.Form.QuotePages[i].SubPages[j].Questions as Array<{ id: string }>
+                        activePageQuestions.forEach((question) => {
+                            const questionId = question.id as string
+                            if (shownIdList.includes(questionId)) {
+                                activeQuestionsArray.push(questionId)
                             }
                         })
                     }
