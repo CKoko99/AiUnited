@@ -1,10 +1,10 @@
 import { returnLocaleText } from "@/components/locale/LocaleSwitcher";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, FormHelperText, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 
 export default function (props) {
     const [selected, setSelected] = useState(null)
-
+    const [hidden, setHidden] = useState(true)
 
     function handleIdList(value) {
         //loop through props.answers
@@ -54,7 +54,8 @@ export default function (props) {
             handleIdList(value)
         }
         setSelected(value)
-        props.updateFormValues(props.id, [{ questionId: props.questionId, value: value }])
+        props.updateFormValues(props.id, [{ questionId: props.questionId, value: value, valid: true }])
+        props.clearError()
     }
 
 
@@ -62,15 +63,29 @@ export default function (props) {
         if (props.defaultValue) {
             handleButtonSelect(props.defaultValue)
         }
+        setHidden(false)
     }, [])
     return <>
-        <Box>
+        <Box
+            sx={{
+                opacity: hidden ? 0 : 1,
+                transition: "opacity 1s",
+                display: "flex", flexDirection: "column", gap: "1rem"
+            }}
+        >
             <Box>
-                <Typography variant="h6">
+                <Typography
+                    variant="h6"
+                    textAlign={"center"}
+
+                >
                     {returnLocaleText(props.question)}
                 </Typography>
             </Box>
-            <Box sx={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+            <Box sx={{
+                display: "flex", gap: "1rem", flexWrap: "wrap",
+                justifyContent: "center"
+            }}>
                 {props.answers.map((answer, index) => {
                     return <Button key={index}
                         variant={selected === answer.value ? "contained" : "outlined"}
@@ -83,6 +98,9 @@ export default function (props) {
                     </Button>
                 })}
             </Box>
+            {props.passedError && <FormHelperText
+                error={true}
+            >{returnLocaleText(props.validationError)}</FormHelperText>}
         </Box>
     </>
 }

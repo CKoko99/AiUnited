@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 const TEXT = {
     industry: { en: "Industry", es: "Industria" },
     occupation: { en: "Occupation", es: "Ocupación" },
+    validationError: { en: "Please select an industry and occupation", es: "Por favor seleccione una industria y ocupación" }
 }
 
 
@@ -2892,20 +2893,26 @@ const WorkSelectOptions = [
 
 export default function (props) {
     const ref = useRef(null)
-    const [industryValue, setIndustryValue] = useState(props.defaultValue ? props.defaultValue[0] : "");
+    const [hidden, setHidden] = useState(true);
+    const [industryValue, setIndustryValue] = useState("");
     const [showOccupation, setShowOccupation] = useState(false);
-    const [occupationValue, setOccupationValue] = useState(props.defaultValue ? props.defaultValue[1] : "");
+    const [occupationValue, setOccupationValue] = useState("");
 
     const [completeValue, setCompleteValue] = useState([industryValue, occupationValue]);
+    const [validOnce, setValidOnce] = useState(false);
     const [isValid, setIsValid] = useState(false);
 
     function handleIndustryChange(value) {
+        console.log("Setting industry value to ", value)
         setIndustryValue(value);
         setShowOccupation(true);
+        setOccupationValue("");
     }
     function handleOccupationChange(value) {
+        console.log("Setting occupation value to ", value)
         setOccupationValue(value);
         props.addIdToList(props.nextQuestionId);
+        setValidOnce(true);
     }
 
     function handleValueChange() {
@@ -2924,66 +2931,94 @@ export default function (props) {
     useEffect(() => {
         const newValue = handleValueChange();
         props.setFormValue(`${props.questionId}`, newValue);
-        props.updateFormValues(props.id, [{ questionId: "Industry", value: newValue[0] }, { questionId: "Occupation", value: newValue[1] }])
+        props.updateFormValues(props.id, [{ questionId: "Industry", value: newValue[0], valid: isValidHandler() },
+        { questionId: "Occupation", value: newValue[1], valid: isValidHandler() }])
     }, [industryValue, occupationValue])
 
     useEffect(() => {
+        setHidden(false);
         props.register(`${props.questionId}`, { value: completeValue });
-    }, [])
-
-    useEffect(() => {
+        if (props.formValues[props.id]) {
+            console.log(props.formValues[props.id]);
+            console.log(props.formValues[props.id][0].value);
+            handleIndustryChange(props.formValues[props.id][0].value);
+            handleOccupationChange(props.formValues[props.id][1].value);
+            return;
+        }
         if (props.defaultValue) {
             handleIndustryChange(props.defaultValue[0]);
             handleOccupationChange(props.defaultValue[1]);
         }
     }, [])
+
+
     return <>
         <Box
-            sx={{ display: "flex", alignItems: "center", gap: "1rem", width: "100%", margin: "1rem auto" }}
+            sx={{
+                opacity: hidden ? 0 : 1,
+                transition: "opacity 1s",
+                display: "flex", flexDirection: "column", gap: "1rem"
+            }}
         >
-            <Typography sx={{ whiteSpace: "nowrap" }} variant="h6" >{returnLocaleText(props.question)}</Typography>
             <Box
                 sx={{
-                    display: "flex", gap: "1rem", justifyContent: "space-around",
-                    width: props.fullWidth ? { xs: "100%", md: '49%' } : "100%"
+                    display: "flex", alignItems: "center", gap: "1rem", width: "100%",
+                    flexWrap: "wrap", justifyContent: "center",
+                    flexDirection: { xs: "column", md: "row" },
                 }}
             >
-                <FormControl fullWidth
+                <Typography sx={{ whiteSpace: "nowrap" }} variant="h6" >{returnLocaleText(props.question)}:</Typography>
+                <Box
+                    sx={{
+                        display: "flex", gap: "1rem", justifyContent: "space-around",
+                        width: props.fullWidth ? { xs: "100%", md: '49%' } : "100%"
+                    }}
                 >
-                    <InputLabel id={`month-label-${props.questionId}`}>{returnLocaleText(TEXT.industry)}</InputLabel>
-                    <Select
-                        value={industryValue}
-                        onChange={(e) => {
-                            handleIndustryChange(e.target.value)
-                        }}
-                        ref={ref}
-                        onBlur={() => {
+                    <FormControl
+                        error={props.passedError || (!isValid && validOnce)}
+                        fullWidth
+                    >
+                        <InputLabel id={`month-label-${props.questionId}`}>{returnLocaleText(TEXT.industry)}</InputLabel>
+                        <Select
+                            value={industryValue}
+                            onChange={(e) => {
+                                handleIndustryChange(e.target.value)
+                            }}
+                            ref={ref}
+                            onBlur={() => {
 
-                        }}
-                        label={returnLocaleText(TEXT.industry)}
+                            }}
+                            label={returnLocaleText(TEXT.industry)}
+                        >
+                            {WorkSelectOptions.map((occupation, index) => {
+                                return <MenuItem key={index} value={occupation.value}>{returnLocaleText(occupation.text)}</MenuItem>
+                            })}
+                        </Select>
+                    </FormControl>
+                    <FormControl fullWidth
+                        error={props.passedError || (!isValid && validOnce)}
+
                     >
-                        {WorkSelectOptions.map((occupation, index) => {
-                            return <MenuItem key={index} value={occupation.value}>{returnLocaleText(occupation.text)}</MenuItem>
-                        })}
-                    </Select>
-                </FormControl>
-                <FormControl fullWidth
-                >
-                    <InputLabel id={`day-label-${props.questionId}`}>{returnLocaleText(TEXT.occupation)}</InputLabel>
-                    <Select
-                        disabled={!showOccupation}
-                        value={occupationValue}
-                        onChange={(e) => {
-                            handleOccupationChange(e.target.value)
-                        }}
-                        label={returnLocaleText(TEXT.occupation)}
-                    >
-                        {WorkSelectOptions.find((occupation) => occupation.value === industryValue)?.Occupations.map((occupation, index) => {
-                            return <MenuItem key={index} value={occupation.value}>{returnLocaleText(occupation.text)}</MenuItem>
-                        })}
-                    </Select>
-                </FormControl>
+                        <InputLabel id={`day-label-${props.questionId}`}>{returnLocaleText(TEXT.occupation)}</InputLabel>
+                        <Select
+                            disabled={!showOccupation}
+                            value={occupationValue}
+                            onChange={(e) => {
+                                handleOccupationChange(e.target.value)
+                            }}
+                            label={returnLocaleText(TEXT.occupation)}
+                        >
+                            {WorkSelectOptions.find((occupation) => occupation.value === industryValue)?.Occupations.map((occupation, index) => {
+                                return <MenuItem key={index} value={occupation.value}>{returnLocaleText(occupation.text)}</MenuItem>
+                            })}
+                        </Select>
+                    </FormControl>
+                </Box>
             </Box>
+            {(props.passedError || (!isValid && validOnce))
+                && <FormHelperText
+                    error={true}
+                >{returnLocaleText(TEXT.validationError)}</FormHelperText>}
         </Box>
     </>
 }
