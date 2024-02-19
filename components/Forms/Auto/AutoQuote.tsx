@@ -80,7 +80,7 @@ const DEFAULTS = {
     shownIdList: process.env.NODE_ENV === "development" ? [QUESTION_IDS.FIRST_NAME] : [QUESTION_IDS.FIRST_NAME,],
     quotePageIndex: process.env.NODE_ENV === "development" ? 3 : 0,
     subPageIndex: process.env.NODE_ENV === "development" ? 1 : 0,
-    showDefaultValues: process.env.NODE_ENV === "development" ? true : false,
+    showDefaultValues: process.env.NODE_ENV === "development" ? false : false,
 }
 
 export default function (props) {
@@ -445,45 +445,54 @@ export default function (props) {
         setActiveQuestionsArray(activeQuestionsArray)
     }, [shownIdList, subPageIndex, quotePageIndex])
 
-    return <Box>
-        <>
-            {quotePageIndex <= props.Form.QuotePages.length - 1 && <>
-                <Box
-                    sx={{ display: "flex", justifyContent: "space-around", gap: "1rem", width: "50%", margin: "1rem auto" }}
-                >
-                    {navigationIcons.map((page: {
-                        title: { [lang: string]: string; };
-                        gray: StaticImageData;
-                        color: StaticImageData;
-                    }, i) => {
-                        return <Box key={i}
-                            sx={{
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                flexDirection: "column",
-                                cursor: quotePageIndex >= i ? "pointer" : "not-allowed",
-                            }}
-                            onClick={() => {
-                                if (quotePageIndex >= i) {
-                                    setQuotePageIndex(i)
-                                    setSubPageIndex(0)
-                                }
-                            }}
+    return <>
+        {!showResults && <Box
+            sx={{
+                minHeight: "80vh",
+                display: "flex", flexDirection: "column", justifyContent: "space-between",
+            }}
+        >
+            <Box>
+                {quotePageIndex <= props.Form.QuotePages.length - 1 &&
+                    <>
+                        <Box
+                            sx={{ display: "flex", justifyContent: "space-around", gap: "1rem", width: "50%", margin: "1rem auto" }}
                         >
-                            <Box
-                                sx={{
-                                    height: "3rem",
-                                    width: "3rem",
-                                    position: "relative",
-                                }}
-                            >
-                                <Image fill style={{ objectFit: "contain" }} src={quotePageIndex < i ? page.gray : page.color} alt={page.title.en} />
-                            </Box>
-                            <Typography variant="subtitle1">{returnLocaleText(page.title)}</Typography>
+                            {navigationIcons.map((page: {
+                                title: { [lang: string]: string; };
+                                gray: StaticImageData;
+                                color: StaticImageData;
+                            }, i) => {
+                                return <Box key={i}
+                                    sx={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        flexDirection: "column",
+                                        cursor: quotePageIndex >= i ? "pointer" : "not-allowed",
+                                    }}
+                                    onClick={() => {
+                                        if (quotePageIndex >= i) {
+                                            setQuotePageIndex(i)
+                                            setSubPageIndex(0)
+                                        }
+                                    }}
+                                >
+                                    <Box
+                                        sx={{
+                                            height: "3rem",
+                                            width: "3rem",
+                                            position: "relative",
+                                        }}
+                                    >
+                                        <Image fill style={{ objectFit: "contain" }} src={quotePageIndex < i ? page.gray : page.color} alt={page.title.en} />
+                                    </Box>
+                                    <Typography variant="subtitle1">{returnLocaleText(page.title)}</Typography>
+                                </Box>
+                            })}
                         </Box>
-                    })}
-                </Box>
+                    </>}
+
                 {props.Form.QuotePages.map((page, pageIndex) => {
                     if (pageIndex !== quotePageIndex) return null;
                     return <>
@@ -508,12 +517,11 @@ export default function (props) {
                                     </Box>
                                 })}
                             </Box>
-                        })
-                        }
+                        })}
                     </>
-                })
-                }
-
+                })}
+            </Box>
+            <Box>
                 <Box
                     sx={{ display: "flex", justifyContent: "space-around", gap: "1rem", width: "100%", margin: "2rem auto" }}
                 >
@@ -543,8 +551,21 @@ export default function (props) {
                         variant="contained"
                     >Submit</Button>}
                 </Box>
-            </>}
-        </>
+                <>
+                    {(!showDefaultValues && !showResults) && <Box
+                        sx={{ display: "flex", justifyContent: "center", gap: "1rem", margin: "1rem auto" }}
+                    >
+                        {
+                            !showResults && <Button onClick={() => setShowDefaultValues(!showDefaultValues)}
+                                disabled={showDefaultValues}
+                            >Add Default Input Values</Button>
+                        }
+                    </Box>}
+                </>
+            </Box>
+        </Box >}
+
+
         <AutoResults id={showResults ? QuoteId :
             //"669badcb-af30-4e82-ab92-89be7c9d2d68"
             undefined
@@ -557,16 +578,5 @@ export default function (props) {
             }}
         // "511a63bf-da44-4dca-8234-47929da63a67"} 
         />
-        <>
-            {!showDefaultValues && <Box
-                sx={{ display: "flex", justifyContent: "center", gap: "1rem", margin: "1rem auto" }}
-            >
-                {
-                    !showResults && <Button onClick={() => setShowDefaultValues(!showDefaultValues)}
-                        disabled={showDefaultValues}
-                    >Show Default Values</Button>
-                }
-            </Box>}
-        </>
-    </Box >
+    </>
 }
