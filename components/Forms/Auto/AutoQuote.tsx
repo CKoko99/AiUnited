@@ -221,6 +221,8 @@ export default function (props) {
             GapCoverage,
             CustomEquipmentValue
         }
+        const IsDriver2 = (strippedFormValues[QUESTION_IDS.DRIVER_2_ADD] && strippedFormValues[QUESTION_IDS.DRIVER_2_ADD][0] && strippedFormValues[QUESTION_IDS.DRIVER_2_ADD][0].value === "true")
+        const IsVehicle2 = (strippedFormValues[QUESTION_IDS.VEHICLE_2_ADD] && strippedFormValues[QUESTION_IDS.VEHICLE_2_ADD][0] && strippedFormValues[QUESTION_IDS.VEHICLE_2_ADD][0].value === "true")
 
         const data = {
             Identifier: QuoteId,
@@ -276,7 +278,7 @@ export default function (props) {
                     },
                     "Violations": []
                 },
-                (strippedFormValues[QUESTION_IDS.DRIVER_2_ADD] && strippedFormValues[QUESTION_IDS.DRIVER_2_ADD][0].value === "true") ? {
+                IsDriver2 ? {
                     "DriverId": 2,
                     Attributes: {
                         "PropertyInsurance": false,
@@ -310,7 +312,7 @@ export default function (props) {
                         ...returnFormObject(strippedFormValues, [QUESTION_IDS.ADDRESS_LINE_1, QUESTION_IDS.CITY, QUESTION_IDS.STATE, QUESTION_IDS.ZIP_CODE]),
                     },
                 },
-                (strippedFormValues[QUESTION_IDS.DRIVER_2_ADD] && strippedFormValues[QUESTION_IDS.DRIVER_2_ADD][0].value === "true") ? {
+                IsVehicle2 ? {
                     ...returnFormObject(strippedFormValues, [QUESTION_IDS.VEHICLE_2, QUESTION_IDS.VEHICLE_2_PURCHASE_DATE, QUESTION_IDS.VEHICLE_2_USAGE, QUESTION_IDS.VEHICLE_2_ANNUAL_MILES,]),
                     "HomingDevice": false,
                     AssignedDriverId: 1,
