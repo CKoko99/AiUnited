@@ -80,6 +80,7 @@ const DEFAULTS = {
     shownIdList: process.env.NODE_ENV === "development" ? [QUESTION_IDS.FIRST_NAME] : [QUESTION_IDS.FIRST_NAME,],
     quotePageIndex: process.env.NODE_ENV === "development" ? 3 : 0,
     subPageIndex: process.env.NODE_ENV === "development" ? 1 : 0,
+    showDefaultValues: process.env.NODE_ENV === "development" ? true : false,
 }
 
 export default function (props) {
@@ -90,7 +91,7 @@ export default function (props) {
     );
     const { register, handleSubmit, setValue, formState } = useForm();
     const [formValues, setFormValues] = useState({});
-    const [showDefaultValues, setShowDefaultValues] = useState(true);
+    const [showDefaultValues, setShowDefaultValues] = useState(DEFAULTS.showDefaultValues);
     const [showResults, setShowResults] = useState(false);
     const [navigationIcons, setNavigationIcons] = useState([]);
     const [quotePageIndex, setQuotePageIndex] = useState(DEFAULTS.quotePageIndex);
@@ -556,12 +557,16 @@ export default function (props) {
             }}
         // "511a63bf-da44-4dca-8234-47929da63a67"} 
         />
-        {false && <>
-            {
-                !showResults && <Button onClick={() => setShowDefaultValues(!showDefaultValues)}
-                    disabled={showDefaultValues}
-                >Show Default Values</Button>
-            }
-        </>}
+        <>
+            {!showDefaultValues && <Box
+                sx={{ display: "flex", justifyContent: "center", gap: "1rem", margin: "1rem auto" }}
+            >
+                {
+                    !showResults && <Button onClick={() => setShowDefaultValues(!showDefaultValues)}
+                        disabled={showDefaultValues}
+                    >Show Default Values</Button>
+                }
+            </Box>}
+        </>
     </Box >
 }
