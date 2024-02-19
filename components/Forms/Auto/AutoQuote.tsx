@@ -76,25 +76,38 @@ function returnFormObject(formValues, idList) {
     return formObject
 }
 
+const DEFAULTS = {
+    shownIdList: process.env.NODE_ENV === "development" ? [QUESTION_IDS.FIRST_NAME] : [QUESTION_IDS.FIRST_NAME,],
+    quotePageIndex: process.env.NODE_ENV === "development" ? 3 : 0,
+    subPageIndex: process.env.NODE_ENV === "development" ? 1 : 0,
+}
+
 export default function (props) {
     // Use UUID to generate QuoteId
     const [QuoteId, setQuoteId] = useState(uuid());
-    const [shownIdList, setShownIdList] = useState([
-        //QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM
-        QUESTION_IDS.FIRST_NAME,
-        //        QUESTION_IDS.VEHICLE_1,
-        QUESTION_IDS.DATE_OF_BIRTH,
-        //  QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
-    ]);
+    const [shownIdList, setShownIdList] = useState(
+        DEFAULTS.shownIdList
+    );
     const { register, handleSubmit, setValue, formState } = useForm();
     const [formValues, setFormValues] = useState({});
     const [showDefaultValues, setShowDefaultValues] = useState(true);
     const [showResults, setShowResults] = useState(false);
     const [navigationIcons, setNavigationIcons] = useState([]);
-    const [quotePageIndex, setQuotePageIndex] = useState(3);
-    const [subPageIndex, setSubPageIndex] = useState(1);
+    const [quotePageIndex, setQuotePageIndex] = useState(DEFAULTS.quotePageIndex);
+    const [subPageIndex, setSubPageIndex] = useState(DEFAULTS.subPageIndex);
     const [activeQuestionsArray, setActiveQuestionsArray] = useState([]);
     const [errorQuestions, setErrorQuestions] = useState([]);
+
+    useEffect(() => {
+        async function wakeServer() {
+            await fetch(`${PATHCONSTANTS.BACKEND2}/`)
+                .then(
+                    () => { console.log("success") })
+                .catch((err) => { console.log(err) })
+        }
+        wakeServer()
+    }, [])
+
     useEffect(() => {
         const icons = props.Form.QuotePages.map((page) => {
             return {
