@@ -1,5 +1,5 @@
 import { returnLocaleText } from "@/components/locale/LocaleSwitcher";
-import { Box, Button, Modal, Typography } from "@mui/material";
+import { Box, Button, LinearProgress, Modal, Typography } from "@mui/material";
 import PATHCONSTANTS from "constants/sitemap";
 import { CustomFonts } from "providers/theme";
 import { useEffect, useState } from "react";
@@ -340,6 +340,12 @@ export default function (props) {
                         <Typography variant="h6">
                             {loadingPercent} %
                         </Typography>
+                        <Box
+                            sx={{ margin: "auto", width: { xs: "80%", sm: "70%", md: "60%", lg: "50%" } }}
+                        >
+
+                            <LinearProgress variant="determinate" value={loadingPercent || 0} />
+                        </Box>
                     </Box>
                 </> :
                     <>

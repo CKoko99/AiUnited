@@ -221,12 +221,7 @@ export default function (props) {
             GapCoverage,
             CustomEquipmentValue
         }
-        console.log("IM LOOKING FOR")
-        console.log(strippedFormValues[QUESTION_IDS.VEHICLE_2_ADD])
-        console.log(strippedFormValues[QUESTION_IDS.VEHICLE_2_ADD][0].value)
-        console.log(strippedFormValues[QUESTION_IDS.VEHICLE_2_ADD][0].value === "true")
-        console.log(strippedFormValues[QUESTION_IDS.DRIVER_2_ADD])
-        console.log(strippedFormValues[QUESTION_IDS.DRIVER_2_ADD] === "true")
+
         const data = {
             Identifier: QuoteId,
             Customer: {
@@ -281,7 +276,7 @@ export default function (props) {
                     },
                     "Violations": []
                 },
-                strippedFormValues[QUESTION_IDS.DRIVER_2_ADD][0].value === "true" ? {
+                (strippedFormValues[QUESTION_IDS.DRIVER_2_ADD] && strippedFormValues[QUESTION_IDS.DRIVER_2_ADD][0].value === "true") ? {
                     "DriverId": 2,
                     Attributes: {
                         "PropertyInsurance": false,
@@ -315,7 +310,7 @@ export default function (props) {
                         ...returnFormObject(strippedFormValues, [QUESTION_IDS.ADDRESS_LINE_1, QUESTION_IDS.CITY, QUESTION_IDS.STATE, QUESTION_IDS.ZIP_CODE]),
                     },
                 },
-                strippedFormValues[QUESTION_IDS.VEHICLE_2_ADD][0].value === "true" ? {
+                (strippedFormValues[QUESTION_IDS.DRIVER_2_ADD] && strippedFormValues[QUESTION_IDS.DRIVER_2_ADD][0].value === "true") ? {
                     ...returnFormObject(strippedFormValues, [QUESTION_IDS.VEHICLE_2, QUESTION_IDS.VEHICLE_2_PURCHASE_DATE, QUESTION_IDS.VEHICLE_2_USAGE, QUESTION_IDS.VEHICLE_2_ANNUAL_MILES,]),
                     "HomingDevice": false,
                     AssignedDriverId: 1,
