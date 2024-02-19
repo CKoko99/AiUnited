@@ -10,6 +10,12 @@ import Image, { StaticImageData } from "next/image";
 import GrayFinishImg from "../../../public/assets/images/get-a-quote/auto/finishgray.png";
 import ColorFinishImg from "../../../public/assets/images/get-a-quote/auto/finishcolor.png";
 
+const TEXT = {
+    submit: { en: "Submit", es: "Enviar" },
+    next: { en: "Next", es: "Siguiente" },
+    back: { en: "Back", es: "Atrás" },
+
+}
 
 export const QUESTION_IDS = {
     FIRST_NAME: "FIRST_NAME",
@@ -528,13 +534,16 @@ export default function (props) {
                     {quotePageIndex !== props.Form.QuotePages.length && <Button onClick={() => { backPageHandler() }}
                         disabled={quotePageIndex === 0 && subPageIndex === 0}
                         variant="outlined" color="secondary"
-                    >Back</Button>}
+                    >{returnLocaleText(TEXT.back)}
+                    </Button>}
                     {quotePageIndex !== props.Form.QuotePages.length &&
                         !(quotePageIndex === props.Form.QuotePages.length - 1 && subPageIndex === props.Form.QuotePages[quotePageIndex].SubPages.length - 1
                         ) && <Button onClick={() => { nextPageHandler() }}
                             variant="contained"
                             disabled={quotePageIndex === props.Form.QuotePages.length}
-                        >Next</Button>}
+                        >
+                            {returnLocaleText(TEXT.next)}
+                        </Button>}
                     {(quotePageIndex === props.Form.QuotePages.length - 1 && subPageIndex === props.Form.QuotePages[quotePageIndex].SubPages.length - 1
                     ) && <Button
                         sx={{
@@ -549,7 +558,7 @@ export default function (props) {
                             handleSave()
                         }}
                         variant="contained"
-                    >Submit</Button>}
+                    >{returnLocaleText(TEXT.submit)}</Button>}
                 </Box>
                 <>
                     {(!showDefaultValues && !showResults) && <Box
