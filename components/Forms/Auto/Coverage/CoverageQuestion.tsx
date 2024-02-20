@@ -38,13 +38,13 @@ const OPTIONS = [
             title: { en: "Personal Injury Protection", es: "Protección contra Lesiones Personales" }
         },
         {
-            key: "UninsuredMotoristPdLimit", valueText: { en: "None", es: "Ninguno" },
-            value: "None",
+            key: "UninsuredMotoristPdLimit", value: "25000",
+            valueText: { en: "25k", es: "25k" },
             title: { en: "Uninsured Motorist Property Damage", es: "Daños a la Propiedad de un Conductor Sin Seguro" }
         },
         {
-            key: "UninsuredMotoristBiLimit", valueText: { en: "None", es: "Ninguno" },
-            value: "None",
+            key: "UninsuredMotoristBiLimit", valueText: { en: "30k/60k", es: "30k/60k" },
+            value: "30000/60000",
             title: { en: "Uninsured Motorist Bodily Injury", es: "Lesiones Corporales de un Conductor Sin Seguro" }
         },
         {
@@ -92,14 +92,14 @@ const OPTIONS = [
             es: "Esta opción proporciona un equilibrio entre cobertura y asequibilidad, ofreciendo un nivel de protección más alto que el mínimo."
         },
         coverages: [{
-            key: "LiabilityBiLimit", value: "50000/100000",
-            valueText: { en: "50k/100k", es: "50k/100k" },
+            key: "LiabilityBiLimit", valueText: { en: "30k/60k", es: "30k/60k" },
+            value: "30000/60000",
             title: { en: "Bodily Injury", es: "Lesiones Corporales" },
         },
         {
             key: "LiabilityPdLimit",
-            valueText: { en: "50k", es: "50k" },
-            value: "50000", title: { en: "Property Damage", es: "Daños a la Propiedad" }
+            value: "25000",
+            valueText: { en: "25k", es: "25k" }, title: { en: "Property Damage", es: "Daños a la Propiedad" }
         },
         {
             key: "MedPayLimit",
@@ -111,26 +111,26 @@ const OPTIONS = [
             value: "None", title: { en: "Personal Injury Protection", es: "Protección contra Lesiones Personales" }
         },
         {
-            key: "UninsuredMotoristPdLimit", valueText: { en: "None", es: "Ninguno" },
-            value: "None", title: { en: "Uninsured Motorist Property Damage", es: "Daños a la Propiedad de un Conductor Sin Seguro" }
+            key: "UninsuredMotoristPdLimit", value: "25000",
+            valueText: { en: "25k", es: "25k" }, title: { en: "Uninsured Motorist Property Damage", es: "Daños a la Propiedad de un Conductor Sin Seguro" }
         },
         {
-            key: "UninsuredMotoristBiLimit", valueText: { en: "None", es: "Ninguno" },
-            value: "None", title: { en: "Uninsured Motorist Bodily Injury", es: "Lesiones Corporales de un Conductor Sin Seguro" }
+            key: "UninsuredMotoristBiLimit", valueText: { en: "30k/60k", es: "30k/60k" },
+            value: "30000/60000", title: { en: "Uninsured Motorist Bodily Injury", es: "Lesiones Corporales de un Conductor Sin Seguro" }
         },
         {
             key: "AccidentalDeathLimit", valueText: { en: "None", es: "Ninguno" },
             value: "None", title: { en: "Accidental Death", es: "Muerte Accidental" }
         },
         {
-            key: "ComprehensiveDeductible",
-            valueText: { en: "500", es: "500" },
-            value: "500", title: { en: "Comprehensive Deductible", es: "Deducible Comprensivo" }
+            key: "ComprehensiveDeductible", valueText: { en: "None", es: "Ninguno" },
+            value: "None",
+            title: { en: "Comprehensive Deductible", es: "Deducible Comprensivo" }
         },
         {
-            key: "CollisionDeductible",
-            valueText: { en: "500", es: "500" },
-            value: "500", title: { en: "Collision Deductible", es: "Deducible de Colisión" }
+            key: "CollisionDeductible", valueText: { en: "None", es: "Ninguno" },
+            value: "None",
+            title: { en: "Collision Deductible", es: "Deducible de Colisión" }
         },
         {
             key: "TowingLimit", valueText: { en: "None", es: "Ninguno" },
@@ -159,13 +159,13 @@ const OPTIONS = [
         coverages: [
             {
                 key: "LiabilityBiLimit",
-                valueText: { en: "100k/300k", es: "100k/300k" },
-                value: "100000/300000", title: { en: "Bodily Injury", es: "Lesiones Corporales" }
+                valueText: { en: "30k/60k", es: "30k/60k" },
+                value: "30000/60000", title: { en: "Bodily Injury", es: "Lesiones Corporales" }
             },
             {
                 key: "LiabilityPdLimit",
-                valueText: { en: "100k", es: "100k" },
-                value: "100000", title: { en: "Property Damage", es: "Daños a la Propiedad" }
+                value: "25000",
+                valueText: { en: "25k", es: "25k" }, title: { en: "Property Damage", es: "Daños a la Propiedad" }
             },
             {
                 key: "MedPayLimit", valueText: { en: "None", es: "Ninguno" },
@@ -178,13 +178,13 @@ const OPTIONS = [
             },
             {
                 key: "UninsuredMotoristPdLimit",
-                valueText: { en: "100000", es: "100000" },
-                value: "100000", title: { en: "Uninsured Motorist Property Damage", es: "Daños a la Propiedad de un Conductor Sin Seguro" }
+                value: "25000",
+                valueText: { en: "25k", es: "25k" }, title: { en: "Uninsured Motorist Property Damage", es: "Daños a la Propiedad de un Conductor Sin Seguro" }
             },
             {
                 key: "UninsuredMotoristBiLimit",
-                valueText: { en: "100000/300000", es: "100000/300000" },
-                value: "100000/300000", title: { en: "Uninsured Motorist Bodily Injury", es: "Lesiones Corporales de un Conductor Sin Seguro" }
+                valueText: { en: "30k/60k", es: "30k/60k" },
+                value: "30000/60000", title: { en: "Uninsured Motorist Bodily Injury", es: "Lesiones Corporales de un Conductor Sin Seguro" }
             },
             {
                 key: "AccidentalDeathLimit",
