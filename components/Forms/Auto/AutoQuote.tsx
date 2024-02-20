@@ -83,7 +83,10 @@ function returnFormObject(formValues, idList) {
 }
 
 const DEFAULTS = {
-    shownIdList: process.env.NODE_ENV === "development" ? [QUESTION_IDS.FIRST_NAME] : [QUESTION_IDS.FIRST_NAME,],
+    shownIdList: process.env.NODE_ENV === "development" ? [
+        QUESTION_IDS.FIRST_NAME,
+        QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
+    ] : [QUESTION_IDS.FIRST_NAME,],
     quotePageIndex: process.env.NODE_ENV === "development" ? 3 : 0,
     subPageIndex: process.env.NODE_ENV === "development" ? 1 : 0,
     showDefaultValues: process.env.NODE_ENV === "development" ? false : false,

@@ -9,7 +9,7 @@ const TEXT = {
     hello: { en: "Hello", es: "Hola" },
     takeALook: { en: "Take a look at your personalized quotes!", es: "¡Eche un vistazo a sus cotizaciones personalizadas!" },
     carrier: { en: "Carrier", es: "Compañía" },
-    dueToday: { en: "Amount Due Today", es: "Cantidad a pagar" },
+    dueToday: { en: "Due Today", es: "Vence hoy" },
     monthlyPayment: { en: "Monthly Payment", es: "Pago mensual" },
     buyOnline: { en: "Buy Online", es: "Comprar en línea" },
     callToGetPrice: { en: "Call to Buy", es: "Llame para comprar" },
@@ -21,6 +21,9 @@ const TEXT = {
     numberPayments: { en: "Number of Payments", es: "Número de pagos" },
     monthsOfCoverage: { en: "Months of Coverage", es: "Meses de cobertura" },
     totalPremium: { en: "Total Premium", es: "Prima total" },
+    term: { en: "Term", es: "Plazo" },
+    months: { en: "Months", es: "Meses" },
+    month: { en: "Month", es: "Mes" },
 }
 
 const LOADINGTEXT = [
@@ -82,15 +85,19 @@ async function getResults(id) {
             let filteredResults = data?.carrierResults?.filter(result => result.totalPremium > 0);
             //sort by totalPremium
             filteredResults.sort((a, b) => a.totalPremium - b.totalPremium)
+
             console.log("filteredResults:")
             console.log(filteredResults)
+
             //group elements of filteredResults by carrierTransactionID
             let groupedResults = filteredResults.reduce((accumulator, currentValue) => {
                 (accumulator[currentValue.carrierTransactionID] = accumulator[currentValue.carrierTransactionID] || []).push(currentValue);
                 return accumulator;
             }, {})
+
             console.log("groupedResults:")
             console.log(groupedResults)
+
             const finalList: Array<any> = [];
             for (const [key, value] of Object.entries(groupedResults)) {
                 finalList.push(value);
@@ -114,14 +121,7 @@ function ContentItem(props) {
     const [showModal, setShowModal] = useState(false);
     const carrierName = props.results[0].productName;
     const monthTerm = props.results[0].term;
-    let dueToday = props.results[0].paymentOptions[0].downPaymentAmount;
-    const totalPremium = props.results[0].totalPremium;
-    const numberOfPayments = props.results[0].paymentOptions[0].numberOfPayments;
-    let monthlyPayment = ((totalPremium - dueToday) / numberOfPayments).toFixed(2);
-    if (dueToday === 0 && numberOfPayments === 1) {
-        monthlyPayment = "0";
-        dueToday = totalPremium;
-    }
+
     function returnBuyNowUrl(results) {
         let returnLink = "";
         for (let i = 0; i < results.length; i++) {
@@ -132,7 +132,15 @@ function ContentItem(props) {
         return returnLink;
     }
     const buyNowURL = returnBuyNowUrl(props.results);
-
+    let serviceFee = buyNowURL !== "" ? 25 : 0;
+    let dueToday = props.results[0].paymentOptions[0].downPaymentAmount + serviceFee;
+    let totalPremium = props.results[0].totalPremium + serviceFee;
+    const numberOfPayments = props.results[0].paymentOptions[0].numberOfPayments;
+    let monthlyPayment = ((totalPremium - dueToday) / numberOfPayments).toFixed(2);
+    if (dueToday === 0 && numberOfPayments === 1) {
+        monthlyPayment = "0";
+        dueToday = totalPremium;
+    }
     useEffect(() => {
         //if carrierName contains "Alinsco" log the results
         if (carrierName.includes("Alinsco")) {
@@ -161,7 +169,7 @@ function ContentItem(props) {
             <Typography
                 fontFamily={CustomFonts.Gustavo}
                 variant="subtitle1"
-            >{monthTerm} {returnLocaleText(TEXT.monthTerm)}</Typography>
+            >{returnLocaleText(TEXT.term)}: {monthTerm} {monthTerm > 1 ? returnLocaleText(TEXT.months) : returnLocaleText(TEXT.month)}</Typography>
         </Box>
         <Box
             sx={{ textAlign: "left" }}
@@ -198,6 +206,8 @@ function ContentItem(props) {
                 }}
                 color={buyNowURL !== "" ? "secondary" : "primary"}
                 variant="contained"
+                href={buyNowURL !== "" ? buyNowURL : PATHCONSTANTS.PHONE}
+                target={buyNowURL !== "" ? "_blank" : "_self"}
             >
                 {buyNowURL !== "" ? returnLocaleText(TEXT.buyOnline) : returnLocaleText(TEXT.callToGetPrice)}
             </Button>

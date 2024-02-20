@@ -36,7 +36,7 @@ const classes = {
     },
 }
 
-export function Disclaimer() {
+export function Disclaimer(props) {
     const Text = {
         legalDisclaimer: {
             en: "Legal Disclaimer",
@@ -92,7 +92,11 @@ function ModalBase(props) {
         <Modal
             open={openModal}
             onClose={() => setOpenModal(false)}
-            sx={{ ...classes.modalRoot }}
+            sx={{
+                ...classes.modalRoot,
+                backgroundColor: props.inModal ? "rgba(0,0,0,0)" : "rgba(0,0,0,0.5)",
+
+            }}
         >
             <Box
                 sx={{ ...classes.modal }}
@@ -104,7 +108,7 @@ function ModalBase(props) {
 
     </>
 }
-export function BodilyInjury() {
+export function BodilyInjury(props) {
     const TEXT = {
         title: {
             en: "Bodily Injury",
@@ -120,7 +124,9 @@ export function BodilyInjury() {
         },
     }
 
-    return <ModalBase>
+    return <ModalBase
+        {...props}
+    >
 
         <Typography variant="h4"
             sx={{
@@ -147,7 +153,7 @@ export function BodilyInjury() {
 
     </ModalBase>
 }
-export function PropertyDamage() {
+export function PropertyDamage(props) {
     const TEXT = {
         title: {
             en: "Property Damage",
@@ -162,7 +168,7 @@ export function PropertyDamage() {
             es: `Al evaluar la cobertura de responsabilidad por daños a la propiedad, a menudo encontrará cifras como "$50k." Este número representa la cantidad máxima que la póliza de seguro pagará por daños a la propiedad por accidente. Por ejemplo, con un límite de daños a la propiedad de $50,000, su aseguradora cubriría hasta esa cantidad por cualquier daño a la propiedad causado por el accidente. Si el costo de reparar o reemplazar la propiedad dañada supera los $50,000, usted sería responsable de cubrir los gastos restantes de su bolsillo. Por lo tanto, es crucial seleccionar límites de responsabilidad por daños a la propiedad que protejan adecuadamente sus activos y bienestar financiero en caso de un accidente.`,
         },
     }
-    return <ModalBase>
+    return <ModalBase {...props}>
         <Box>
             <Typography variant="h4"
                 sx={{
@@ -189,7 +195,7 @@ export function PropertyDamage() {
         </Box>
     </ModalBase>
 }
-export function PersonalInjuryProtection() {
+export function PersonalInjuryProtection(props) {
     const TEXT = {
         title: {
             en: `Personal Injury Protection`,
@@ -205,7 +211,7 @@ export function PersonalInjuryProtection() {
         },
     }
 
-    return <ModalBase>
+    return <ModalBase {...props}>
         <Box>
             <Typography variant="h4"
                 sx={{
@@ -232,7 +238,7 @@ export function PersonalInjuryProtection() {
         </Box>
     </ModalBase>
 }
-export function ComprehensiveDeductible() {
+export function ComprehensiveDeductible(props) {
     const TEXT = {
         title: {
             en: `Comprehensive Deductible`,
@@ -247,7 +253,7 @@ export function ComprehensiveDeductible() {
             es: `Los deducibles son un aspecto importante del seguro comprensivo (así como de la cobertura de colisión). Un deducible es la cantidad con la que usted acepta pagar de su bolsillo antes de que su seguro entre en vigencia para cubrir los costos restantes de un reclamo. Por ejemplo, si tiene un deducible comprensivo de $500 y su vehículo sufre daños por valor de $2,000 debido a una tormenta de granizo, pagaría los primeros $500, y su seguro cubriría los $1,500 restantes. Los deducibles generalmente se establecen al comprar su póliza de seguro, y a menudo puede elegir un deducible más alto para reducir su prima o un deducible más bajo para una mayor cobertura con una prima ligeramente más alta. Comprender su deducible es esencial porque afecta directamente cuánto tendrá que pagar en caso de un reclamo y puede influir en sus costos generales de seguro.`,
         },
     }
-    return <ModalBase>
+    return <ModalBase {...props}>
         <Box>
             <Typography variant="h4"
                 sx={{
@@ -275,7 +281,7 @@ export function ComprehensiveDeductible() {
     </ModalBase>
 }
 
-export function CollisionDeductible() {
+export function CollisionDeductible(props) {
     const TEXT = {
         title: {
             en: `Collision Deductible`,
@@ -288,7 +294,7 @@ export function CollisionDeductible() {
             en: `Similar to comprehensive insurance, collision coverage also involves deductibles. A deductible is the amount you agree to pay out of pocket before your insurance kicks in to cover the remaining costs of a claim. For instance, if you have a collision deductible of $1,000 and your vehicle sustains $5,000 worth of damage from a collision, you would pay the first $1,000, and your insurance would cover the remaining $4,000. Deductibles are typically chosen when you purchase your insurance policy, and you can often adjust them to suit your preferences. Opting for a higher deductible can lower your premium, while a lower deductible may result in a slightly higher premium but provides more coverage in the event of a claim. Understanding your collision deductible is crucial as it directly impacts your out-of-pocket expenses in case of an accident and can influence your overall insurance costs.`,
         },
     }
-    return <ModalBase>
+    return <ModalBase {...props}>
         <Box>
             <Typography variant="h4"
                 sx={{
@@ -315,14 +321,330 @@ export function CollisionDeductible() {
         </Box>
     </ModalBase>
 }
-const TEXT = {
-    title: {
-        en: ``,
-    },
-    section1: {
-        en: ``,
-    },
-    section2: {
-        en: ``,
-    },
+export function MedicalPayments(props) {
+    const TEXT = {
+        title: {
+            en: `Medical Payments`,
+            es: `Pagos Médicos`,
+        },
+        section1: {
+            en: `Medical payments coverage is designed to provide financial assistance for medical expenses incurred by you or your passengers as a result of a car accident, regardless of who is at fault. This coverage typically extends to medical bills, ambulance fees, and even funeral expenses in the unfortunate event of a fatality resulting from the accident. Medical payments coverage is particularly valuable for individuals who lack health insurance or have high deductibles, as it can help cover immediate medical costs without the need to wait for a liability determination or legal proceedings to conclude.`,
+        },
+        section2: {
+            en: `When evaluating medical payments coverage, you'll often encounter different coverage limits and options. These limits vary depending on the insurer and the state regulations. Some policies may offer a range of coverage options, such as $5,000, $10,000, or higher, allowing you to select the level of protection that best suits your needs. Medical payments coverage is typically designed to provide immediate financial assistance without the need to determine fault or wait for legal proceedings to conclude. However, it's essential to review the specifics of your policy and understand any limitations or exclusions to ensure that you have adequate coverage in the event of an accident.`,
+        },
+    }
+    return <ModalBase {...props}>
+        <Box>
+            <Typography variant="h4"
+                sx={{
+                    fontWeight: "600",
+                }}
+            >
+                {returnLocaleText(TEXT.title)}
+            </Typography>
+            <Box
+                sx={{
+                    textAlign: "left",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                }}
+            >
+                <Typography variant="body1">
+                    {returnLocaleText(TEXT.section1)}
+                </Typography>
+                <Typography variant="body1">
+                    {returnLocaleText(TEXT.section2)}
+                </Typography>
+            </Box>
+        </Box>
+    </ModalBase>
+}
+
+export function UninsuredMotoristPD(props) {
+    const TEXT = {
+        title: {
+            en: `Uninsured Motorist Property Damage`,
+            es: `Daños a la propiedad por conductor no asegurado`,
+        },
+        section1: {
+            en: `Uninsured Motorist Property Damage (UMPD) coverage is designed to provide financial protection if your vehicle is damaged by an uninsured or underinsured driver. This coverage typically extends to repairs or replacement of your vehicle and can also include coverage for personal property damaged in the accident. UMPD is particularly valuable for individuals who lack collision coverage or have high deductibles, as it can help cover the costs of repairs or replacement without the need to wait for a liability determination or legal proceedings to conclude.`,
+        },
+        section2: {
+            en: `When considering UMPD coverage, you'll often encounter different coverage limits and options. These limits vary depending on the insurer and the state regulations. Some policies may offer a range of coverage options, such as $10,000, $20,000, or higher, allowing you to select the level of protection that best suits your needs. UMPD coverage is typically designed to provide immediate financial assistance without the need to determine fault or wait for legal proceedings to conclude. However, it's essential to review the specifics of your policy and understand any limitations or exclusions to ensure that you have adequate coverage in the event of an accident.`,
+        },
+    }
+    return <ModalBase {...props}>
+        <Box>
+            <Typography variant="h4"
+                sx={{
+                    fontWeight: "600",
+                }}
+            >
+                {returnLocaleText(TEXT.title)}
+            </Typography>
+            <Box
+                sx={{
+                    textAlign: "left",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                }}
+            >
+                <Typography variant="body1">
+                    {returnLocaleText(TEXT.section1)}
+                </Typography>
+                <Typography variant="body1">
+                    {returnLocaleText(TEXT.section2)}
+                </Typography>
+            </Box>
+        </Box>
+    </ModalBase>
+}
+
+export function UninsuredMotoristBI(props) {
+    const TEXT = {
+        title: {
+            en: `Uninsured Motorist Bodily Injury`,
+            es: `Lesiones corporales por conductor no asegurado`,
+        },
+        section1: {
+            en: `Uninsured Motorist Bodily Injury (UMBI) coverage is designed to provide financial protection if you or your passengers are injured by an uninsured or underinsured driver. This coverage typically extends to medical expenses, lost wages, and essential services if you're injured in a car accident, regardless of fault. UMBI can also cover funeral expenses in the unfortunate event of a fatality resulting from the accident. Essentially, it provides peace of mind by ensuring that you and your passengers receive necessary medical treatment and support in the aftermath of a collision, regardless of who caused the accident.`,
+        },
+        section2: {
+            en: `When evaluating UMBI coverage, you'll often encounter different coverage limits and options. These limits vary depending on the insurer and the state regulations. Some policies may offer a range of coverage options, such as $10,000, $20,000, or higher, allowing you to select the level of protection that best suits your needs. UMBI coverage is typically designed to provide immediate financial assistance without the need to determine fault or wait for legal proceedings to conclude. However, it's essential to review the specifics of your policy and understand any limitations or exclusions to ensure that you have adequate coverage in the event of an accident.`,
+        },
+    }
+    return <ModalBase {...props}>
+        <Box>
+            <Typography variant="h4"
+                sx={{
+                    fontWeight: "600",
+                }}
+            >
+                {returnLocaleText(TEXT.title)}
+            </Typography>
+            <Box
+                sx={{
+                    textAlign: "left",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                }}
+            >
+                <Typography variant="body1">
+                    {returnLocaleText(TEXT.section1)}
+                </Typography>
+                <Typography variant="body1">
+                    {returnLocaleText(TEXT.section2)}
+                </Typography>
+            </Box>
+        </Box>
+    </ModalBase>
+}
+
+export function AccidentalDeath(props) {
+    const TEXT = {
+        title: {
+            en: `Accidental Death`,
+            es: `Muerte accidental`,
+        },
+        section1: {
+            en: `Accidental death coverage is designed to provide financial protection for your loved ones in the unfortunate event of a fatal accident. This coverage typically provides a lump-sum payment to your beneficiaries if you die as a result of an accident, regardless of whether it occurs in a vehicle or elsewhere. Accidental death coverage can help ensure that your family has the financial resources to cover immediate expenses and maintain their standard of living in the aftermath of a tragic accident.`,
+        },
+        section2: {
+            en: `When considering accidental death coverage, you'll often encounter different coverage limits and options. These limits vary depending on the insurer and the state regulations. Some policies may offer a range of coverage options, such as $50,000, $100,000, or higher, allowing you to select the level of protection that best suits your needs. Accidental death coverage is typically designed to provide immediate financial assistance without the need to determine fault or wait for legal proceedings to conclude. However, it's essential to review the specifics of your policy and understand any limitations or exclusions to ensure that you have adequate coverage in the event of a fatal accident.`,
+        },
+    }
+    return <ModalBase {...props}>
+        <Box>
+            <Typography variant="h4"
+                sx={{
+                    fontWeight: "600",
+                }}
+            >
+                {returnLocaleText(TEXT.title)}
+            </Typography>
+            <Box
+                sx={{
+                    textAlign: "left",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                }}
+            >
+                <Typography variant="body1">
+                    {returnLocaleText(TEXT.section1)}
+                </Typography>
+                <Typography variant="body1">
+                    {returnLocaleText(TEXT.section2)}
+                </Typography>
+            </Box>
+        </Box>
+    </ModalBase>
+}
+
+export function TowingLimit(props) {
+    const TEXT = {
+        title: {
+            en: `Towing Limit`,
+            es: `Límite de remolque`,
+        },
+        section1: {
+            en: `Towing limit coverage is designed to provide financial assistance for towing services if your vehicle becomes disabled or inoperable due to an accident. This coverage typically extends to the cost of towing your vehicle to a repair facility or another location, ensuring that you have the resources to transport your vehicle to a safe and secure location in the event of an accident.`,
+        },
+        section2: {
+            en: `When evaluating towing limit coverage, you'll often encounter different coverage limits and options. These limits vary depending on the insurer and the state regulations. Some policies may offer a range of coverage options, such as $100, $200, or higher, allowing you to select the level of protection that best suits your needs. Towing limit coverage is typically designed to provide immediate financial assistance without the need to determine fault or wait for legal proceedings to conclude. However, it's essential to review the specifics of your policy and understand any limitations or exclusions to ensure that you have adequate coverage in the event of a disabled vehicle.`,
+        },
+    }
+    return <ModalBase {...props}>
+        <Box>
+            <Typography variant="h4"
+                sx={{
+                    fontWeight: "600",
+                }}
+            >
+                {returnLocaleText(TEXT.title)}
+            </Typography>
+            <Box
+                sx={{
+                    textAlign: "left",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                }}
+            >
+                <Typography variant="body1">
+                    {returnLocaleText(TEXT.section1)}
+                </Typography>
+                <Typography variant="body1">
+                    {returnLocaleText(TEXT.section2)}
+                </Typography>
+            </Box>
+        </Box>
+    </ModalBase>
+}
+
+export function RentalLimit(props) {
+    const TEXT = {
+        title: {
+            en: `Rental Limit`,
+            es: `Límite de alquiler`,
+        },
+        section1: {
+            en: `Rental limit coverage is designed to provide financial assistance for rental vehicles if your vehicle becomes disabled or inoperable due to an accident. This coverage typically extends to the cost of renting a vehicle while yours is being repaired, ensuring that you have the resources to maintain your mobility and daily routine in the event of an accident.`,
+        },
+        section2: {
+            en: `When evaluating rental limit coverage, you'll often encounter different coverage limits and options. These limits vary depending on the insurer and the state regulations. Some policies may offer a range of coverage options, such as $30 per day, $50 per day, or higher, allowing you to select the level of protection that best suits your needs. Rental limit coverage is typically designed to provide immediate financial assistance without the need to determine fault or wait for legal proceedings to conclude. However, it's essential to review the specifics of your policy and understand any limitations or exclusions to ensure that you have adequate coverage in the event of a disabled vehicle.`,
+        },
+    }
+    return <ModalBase {...props}>
+        <Box>
+            <Typography variant="h4"
+                sx={{
+                    fontWeight: "600",
+                }}
+            >
+                {returnLocaleText(TEXT.title)}
+            </Typography>
+            <Box
+                sx={{
+                    textAlign: "left",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                }}
+            >
+                <Typography variant="body1">
+                    {returnLocaleText(TEXT.section1)}
+                </Typography>
+                <Typography variant="body1">
+                    {returnLocaleText(TEXT.section2)}
+                </Typography>
+            </Box>
+        </Box>
+    </ModalBase>
+}
+
+export function GapCoverage(props) {
+    const TEXT = {
+        title: {
+            en: `Gap Coverage`,
+            es: `Cobertura de brecha`,
+        },
+        section1: {
+            en: `Gap coverage is designed to provide financial protection for the difference between the actual cash value of your vehicle and the amount you owe on a loan or lease. This coverage typically extends to the cost of replacing your vehicle if it's totaled in an accident, ensuring that you're not left with a significant financial burden if your vehicle is declared a total loss.`,
+        },
+        section2: {
+            en: `When evaluating gap coverage, you'll often encounter different coverage limits and options. These limits vary depending on the insurer and the state regulations. Some policies may offer a range of coverage options, such as $5,000, $10,000, or higher, allowing you to select the level of protection that best suits your needs. Gap coverage is typically designed to provide immediate financial assistance without the need to determine fault or wait for legal proceedings to conclude. However, it's essential to review the specifics of your policy and understand any limitations or exclusions to ensure that you have adequate coverage in the event of a total loss.`,
+        },
+    }
+    return <ModalBase {...props}>
+        <Box>
+            <Typography variant="h4"
+                sx={{
+                    fontWeight: "600",
+                }}
+            >
+                {returnLocaleText(TEXT.title)}
+            </Typography>
+            <Box
+                sx={{
+                    textAlign: "left",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                }}
+            >
+                <Typography variant="body1">
+                    {returnLocaleText(TEXT.section1)}
+                </Typography>
+                <Typography variant="body1">
+                    {returnLocaleText(TEXT.section2)}
+                </Typography>
+            </Box>
+        </Box>
+    </ModalBase>
+}
+
+export function CustomEquipmentValue(props) {
+    const TEXT = {
+        title: {
+            en: `Custom Equipment Value`,
+            es: `Valor del equipo personalizado`,
+        },
+        section1: {
+            en: `Custom equipment value coverage is designed to provide financial protection for aftermarket parts and accessories installed on your vehicle. This coverage typically extends to the cost of repairing or replacing custom equipment if it's damaged in an accident, ensuring that you can maintain the unique appearance and functionality of your vehicle.`,
+        },
+        section2: {
+            en: `When evaluating custom equipment value coverage, you'll often encounter different coverage limits and options. These limits vary depending on the insurer and the state regulations. Some policies may offer a range of coverage options, such as $2,000, $5,000, or higher, allowing you to select the level of protection that best suits your needs. Custom equipment value coverage is typically designed to provide immediate financial assistance without the need to determine fault or wait for legal proceedings to conclude. However, it's essential to review the specifics of your policy and understand any limitations or exclusions to ensure that you have adequate coverage in the event of damage to custom equipment.`,
+        },
+    }
+    return <ModalBase {...props}>
+        <Box>
+            <Typography variant="h4"
+                sx={{
+                    fontWeight: "600",
+                }}
+            >
+                {returnLocaleText(TEXT.title)}
+            </Typography>
+            <Box
+                sx={{
+                    textAlign: "left",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                }}
+            >
+                <Typography variant="body1">
+                    {returnLocaleText(TEXT.section1)}
+                </Typography>
+                <Typography variant="body1">
+                    {returnLocaleText(TEXT.section2)}
+                </Typography>
+            </Box>
+        </Box>
+    </ModalBase>
 }

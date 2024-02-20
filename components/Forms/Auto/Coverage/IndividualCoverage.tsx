@@ -3,7 +3,11 @@ import { Box, Button, Modal, Typography } from "@mui/material";
 import { CustomFonts } from "providers/theme";
 import { useState } from "react";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import { BodilyInjury, PropertyDamage, CollisionDeductible, ComprehensiveDeductible, PersonalInjuryProtection } from "./Modals";
+import {
+    BodilyInjury, PropertyDamage, CollisionDeductible, ComprehensiveDeductible, PersonalInjuryProtection,
+    AccidentalDeath, MedicalPayments, CustomEquipmentValue,
+    GapCoverage, RentalLimit, TowingLimit, UninsuredMotoristBI, UninsuredMotoristPD
+} from "./Modals";
 const TEXT = {
     selectCoverage: { en: "Select Your Coverage Option", es: "Seleccione su opción de cobertura" },
     validationError: { en: "Please select a coverage option", es: "Por favor seleccione una opción de cobertura" },
@@ -25,7 +29,6 @@ const classes = {
         left: "0",
         width: "100%",
         height: "100%",
-        backgroundColor: "rgba(0,0,0,0.5)",
         zIndex: "1102",
         textAlign: "center",
         // overflow: "hidden",
@@ -207,11 +210,19 @@ export default function (props) {
                                     [lang: string]: string;
                                 })}
                             </Typography>
-                            {coverage.key === "LiabilityBiLimit" && <BodilyInjury />}
-                            {coverage.key === "LiabilityPdLimit" && <PropertyDamage />}
-                            {coverage.key === "PipLimit" && <PersonalInjuryProtection />}
-                            {coverage.key === "ComprehensiveDeductible" && <ComprehensiveDeductible />}
-                            {coverage.key === "CollisionDeductible" && <CollisionDeductible />}
+                            {coverage.key === "LiabilityBiLimit" && <BodilyInjury inModal />}
+                            {coverage.key === "LiabilityPdLimit" && <PropertyDamage inModal />}
+                            {coverage.key === "PipLimit" && <PersonalInjuryProtection inModal />}
+                            {coverage.key === "ComprehensiveDeductible" && <ComprehensiveDeductible inModal />}
+                            {coverage.key === "CollisionDeductible" && <CollisionDeductible inModal />}
+                            {coverage.key === "MedPayLimit" && <MedicalPayments inModal />}
+                            {coverage.key === "AccidentalDeathLimit" && <AccidentalDeath inModal />}
+                            {coverage.key === "CustomEquipmentValue" && <CustomEquipmentValue inModal />}
+                            {coverage.key === "GapCoverage" && <GapCoverage inModal />}
+                            {coverage.key === "RentalLimit" && <RentalLimit inModal />}
+                            {coverage.key === "TowingLimit" && <TowingLimit inModal />}
+                            {coverage.key === "UninsuredMotoristBiLimit" && <UninsuredMotoristBI inModal />}
+                            {coverage.key === "UninsuredMotoristPdLimit" && <UninsuredMotoristPD inModal />}
                         </Box>
                     </Box>
                 })}
