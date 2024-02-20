@@ -15,6 +15,14 @@ async function getPriorCompanies() {
             { method: 'GET', }
         );
         const data = await res.json();
+        console.log(data)
+        //data is an array of objects
+        //find where carrierName is OTHER and move it to the end of the array
+        const otherIndex = data.findIndex((company: any) => company.carrierName === "OTHER");
+        if (otherIndex > -1) {
+            const other = data.splice(otherIndex, 1);
+            data.push(other[0]);
+        }
 
         return data; // Optionally return data if needed elsewhere
     } catch (err) {
