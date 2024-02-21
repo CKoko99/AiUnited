@@ -336,6 +336,7 @@ export default function (props) {
             "EffectiveDate": new Date().toISOString(),
             "CustomerDeclinedCredit": false,
             "BumpLimits": "Bump Up"
+            //"BumpLimits": "No Bumping"
         }
         //console log length of formValues
 
