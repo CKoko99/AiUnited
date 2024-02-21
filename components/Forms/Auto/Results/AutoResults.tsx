@@ -3,7 +3,8 @@ import { Box, Button, LinearProgress, Modal, Typography } from "@mui/material";
 import PATHCONSTANTS from "constants/sitemap";
 import { CustomFonts } from "providers/theme";
 import { useEffect, useState } from "react";
-
+import ResultItem from "./ResultItem";
+import CircularProgress from '@mui/material/CircularProgress';
 
 const TEXT = {
     hello: { en: "Hello", es: "Hola" },
@@ -40,6 +41,7 @@ const LOADINGTEXT = [
         es: "Cargando opciones de pago"
     },
 ]
+
 const classes = {
     modalRoot: {
         position: "fixed",
@@ -58,9 +60,9 @@ const classes = {
         left: "50%",
         transform: "translate(-50%,-50%)",
         zIndex: 1002,
-        width: "50%",
+        width: { xs: "90%", sm: "75%", md: "55%", lg: "50%", xl: "40%" },
         maxHeight: "90%",
-        overflow: "scroll",
+        //  overflow: "scroll",
         backgroundColor: "white",
         borderRadius: "10px",
         display: "flex",
@@ -107,7 +109,7 @@ async function getResults(id) {
             //      console.log(resultsData.carrierResults[0].carrierTransactionID.length !== 0)
             //we only want results where total premium is greater than 0
             let filteredResults = data?.carrierResults?.filter(result => result.totalPremium > 0);
-
+            filteredResults = filteredResults.filter(result => result.term > 1)
             //we only want results where number of payments is greater than 1 or the term is 1
             filteredResults = filteredResults.filter(result => result.paymentOptions[0].numberOfPayments > 1 || result.term === 1);
 
@@ -160,143 +162,8 @@ async function getResults(id) {
         return [];
     }
 }
-function ContentItem(props) {
-    const [paymentOptions, setPaymentOptions] = useState(props.paymentOptions || []);
-    const [showModal, setShowModal] = useState(false);
-    const carrierName = props.results[0].productName;
-    const monthTerm = props.results[0].term;
+const totalWaitTime = 10000;
 
-    function returnBuyNowUrl(results) {
-        let returnLink = "";
-        for (let i = 0; i < results.length; i++) {
-            if (results[i].buyNowURL !== "") {
-                returnLink = results[i].buyNowURL;
-            }
-        }
-        return returnLink;
-    }
-    const buyNowURL = returnBuyNowUrl(props.results);
-    let serviceFee = buyNowURL !== "" ? 0 : 25;
-    let dueToday = props.results[0].paymentOptions[0].downPaymentAmount + serviceFee;
-    let totalPremium = Number(props.results[0].totalPremium) + serviceFee;
-    const numberOfPayments = props.results[0].paymentOptions[0].numberOfPayments;
-    let monthlyPayment = Number(((totalPremium - dueToday) / numberOfPayments).toFixed(2))
-    if (numberOfPayments === 1) {
-        monthlyPayment = 0
-        dueToday = totalPremium.toFixed(2);
-    }
-    useEffect(() => {
-        //if carrierName contains "Alinsco" log the results
-        if (carrierName.includes("Alinsco")) {
-            console.log("Alinsco Results:")
-            console.log(props.results)
-        }
-    }, [])
-
-    return <Box
-        sx={{
-            width: 335,
-            minHeight: 200,
-            border: 1, borderColor: 'primary.main', borderRadius: 3, padding: "1rem",
-            display: "flex", flexDirection: "column", justifyContent: "space-between",
-            fontFamily: CustomFonts.Gustavo,
-        }}
-    >
-        <Box
-            sx={{ textAlign: "center" }}
-        >
-            <Typography
-                variant="h5"
-                fontWeight={700}
-                fontFamily={CustomFonts.Gustavo}
-            > {carrierName}</Typography>
-            <Typography
-                fontFamily={CustomFonts.Gustavo}
-                variant="subtitle1"
-            >{returnLocaleText(TEXT.term)}: {monthTerm} {monthTerm > 1 ? returnLocaleText(TEXT.months) : returnLocaleText(TEXT.month)}</Typography>
-        </Box>
-        <Box
-            sx={{ textAlign: "left" }}
-        >
-            <Typography variant="h6"
-                fontFamily={CustomFonts.Gustavo}
-            >{returnLocaleText(TEXT.dueToday)}: ${dueToday}</Typography>
-            <Typography
-                fontFamily={CustomFonts.Gustavo} variant="h6"
-            >{returnLocaleText(TEXT.monthlyPayment)}: ${monthlyPayment}</Typography>
-        </Box>
-        <Box
-            sx={{
-                display: "flex", gap: ".5rem", marginTop: ".5rem",
-                alignItems: "center", justifyContent: "space-between",
-            }}
-        >
-            <Button
-                sx={{
-                    flex: 1,
-                    fontSize: 13,
-                    whiteSpace: "nowrap",
-                    padding: "6px 16px"
-                }}
-                variant="outlined" color="secondary"
-                onClick={() => setShowModal(true)}
-            >{returnLocaleText(TEXT.paymentOptions)}</Button>
-            <Button
-                sx={{
-                    flex: 1,
-                    fontSize: 13,
-                    whiteSpace: "nowrap",
-
-                }}
-                color={buyNowURL !== "" ? "secondary" : "primary"}
-                variant="contained"
-                href={buyNowURL !== "" ? buyNowURL : PATHCONSTANTS.PHONE}
-                target={buyNowURL !== "" ? "_blank" : "_self"}
-            >
-                {buyNowURL !== "" ? returnLocaleText(TEXT.buyOnline) : returnLocaleText(TEXT.callToGetPrice)}
-            </Button>
-        </Box>
-        <Modal
-            open={showModal}
-            onClose={() => setShowModal(false)}
-            sx={{ ...classes.modalRoot }}
-        >
-            <Box
-                sx={{ ...classes.modal }}
-            >
-                {props.results.map((result, i) => {
-                    return <Box
-                        sx={{
-                            backgroundColor: i % 2 === 1 ? "primary.light" : "white", padding: 1,
-                            border: "1px solid #cacaca", margin: ".5rem 0"
-                        }}
-                    >
-                        {result.paymentOptions.map((option, i) => {
-                            return <Box key={i}>
-                                <Typography>{returnLocaleText(TEXT.description)}: {option.description}</Typography>
-                                <Typography>{returnLocaleText(TEXT.dueToday)}: {option.downPaymentAmount}</Typography>
-                                <Typography>{returnLocaleText(TEXT.numberPayments)}: {option.numberOfPayments}</Typography>
-                            </Box>
-                        })}
-                        <Typography>{returnLocaleText(TEXT.monthsOfCoverage)}: {result.term} </Typography>
-                        <Typography>{returnLocaleText(TEXT.totalPremium)}: {result.totalPremium}</Typography>
-                    </Box>
-                })}
-            </Box>
-        </Modal>
-        {/*  {props.buyNowURL ? <Button
-            variant="contained"
-            color="primary"
-            href={props.buyNowURL}
-            target="_blank"
-        >Buy Now</Button> :
-            <Button variant="contained" color="secondary"
-                href={PATHCONSTANTS.PHONE}
-            >Call To Get This Price</Button>
-        }
-    */}
-    </Box>
-}
 export default function (props) {
 
     const [results, setResults] = useState<Array<any>>([]);
@@ -304,6 +171,7 @@ export default function (props) {
     const [loadingText, setLoadingText] = useState({})
     const [loadingPercent, setLoadingPercent] = useState(0);
     const [loading, setLoading] = useState(false);
+    const [secondLoading, setSecondLoading] = useState(false);
     const [maxResults, setMaxResults] = useState(5);
     const [fetched, setFetched] = useState(false);
     async function fetchResultsHandler(id) {
@@ -331,7 +199,7 @@ export default function (props) {
                         console.log("Single Result:")
                         console.log(resultsData[5])
                     }, 3000)
-                }, 10000)
+                }, totalWaitTime)
             } else {
                 let resultsData = await getResults(props.id);
                 setResults(resultsData);
@@ -346,11 +214,11 @@ export default function (props) {
             //filter results where carrierTransactionId is not ''
         };
         fetchResults();
+
     }, [props.id])
     useEffect(() => {
         //over the course of 8 seconds, increase loadingPercent to 100
         //change loading text based on loadingPercent and amount of items in array
-        const totalWaitTime = 10000;
         const intervalTime = totalWaitTime / 100;
         if (props.disableLoading) {
             setLoadingPercent(100);
@@ -365,9 +233,19 @@ export default function (props) {
                 });
 
             }, intervalTime);
-            setTimeout(() => {
+            setTimeout(async () => {
                 clearInterval(interval);
                 setLoadingPercent(100);
+                setTimeout(async () => {
+                    let resultsData = await getResults(props.id);
+                    if (resultsData.length > results.length) {
+                        setSecondLoading(true);
+                        setTimeout(async () => {
+                            setResults(resultsData);
+                            setSecondLoading(false);
+                        }, 2000)
+                    }
+                }, 10000)
 
             }, totalWaitTime)
         }
@@ -381,6 +259,20 @@ export default function (props) {
     return <>
         {props.id &&
             <>
+                {secondLoading && <Box sx={{ ...classes.modalRoot }}>
+                    <Box sx={{ ...classes.modal }}>
+                        <Typography variant="h4">
+                            Loading New Results
+                        </Typography>
+                        <CircularProgress
+                            sx={{
+                                margin: "auto",
+                                textAlign: "center"
+                            }}
+                        />
+                    </Box>
+                </Box>
+                }
                 {(loading && !fetched) ? <>
                     <Box
                         sx={{
@@ -459,10 +351,10 @@ export default function (props) {
                                             if (i > maxResults) {
                                                 return null;
                                             }
-                                            return <ContentItem key={i} results={result} />
+                                            return <ResultItem key={i} results={result} />
                                         })}
                                     </Box>
-                                    {maxResults <= results.length && <Box
+                                    {maxResults < results.length - 1 && <Box
                                         sx={{
                                             display: "flex", justifyContent: "center"
                                         }}>
