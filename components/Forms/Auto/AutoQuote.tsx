@@ -89,7 +89,7 @@ const DEFAULTS = {
     ] : [QUESTION_IDS.FIRST_NAME,],
     quotePageIndex: process.env.NODE_ENV === "development" ? 3 : 0,
     subPageIndex: process.env.NODE_ENV === "development" ? 1 : 0,
-    showDefaultValues: process.env.NODE_ENV === "development" ? false : false,
+    showDefaultValues: process.env.NODE_ENV === "development" ? true : false,
 }
 
 export default function (props) {
@@ -265,15 +265,16 @@ export default function (props) {
                     },
                     ...returnFormObject(strippedFormValues, [QUESTION_IDS.FIRST_NAME, QUESTION_IDS.LAST_NAME, QUESTION_IDS.DATE_OF_BIRTH, QUESTION_IDS.GENDER, QUESTION_IDS.MARITAL_STATUS, QUESTION_IDS.WORK]),
                     "Discounts": {
-                        "DistantStudent": "None",
-                        "DriversTraining": false,
-                        "DrugAwareness": false,
                         "GoodStudent": false,
                         "SingleParent": false,
-                        "SeniorDriverDiscount": false,
-                        "MultiplePolicies": false,
+                        "DrugAwareness": false,
+                        "DriversTraining": false,
+                        "DistantStudent": "None",
                         "DefensiveDriving": true,
+                        "MultiplePolicies": false,
+                        "SeniorDriverDiscount": false,
                         "DefensiveDrivingCourseDate": "2022-10-31T05:00:00Z"
+                        //"{"status":"Request Parameter Validated Failed","errors":["Payload is not valid based on requested contract","Required properties are missing from object: SeniorDriverCourseDate. : RatedDrivers[0].Discounts","Required properties are missing from object: AccidentPreventionCourseDate. : RatedDrivers[0].Discounts"],"accountId":"00000000-0000-0000-0000-000000000000","tT2Output":""}"
                     },
                     "FinancialResponsibilityInformation": {
                         "Sr22": false,

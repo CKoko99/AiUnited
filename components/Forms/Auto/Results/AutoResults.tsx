@@ -70,6 +70,29 @@ const classes = {
         boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
     },
 }
+
+function reduceCompanysList(BaseList, Companies) {
+    let newBaseList = BaseList;
+
+    for (let i = 0; i < Companies.length; i++) {
+        let companyList = newBaseList.filter(result => result[0].productName.includes(Companies[i]));
+        newBaseList = newBaseList.filter(result => !result[0].productName.includes(Companies[i]));
+
+        if (companyList.length > 0) {
+            let combined = companyList.reduce((acc, cur) => {
+                return acc.concat(cur);
+            }, [])
+
+            for (let j = 0; j < combined.length; j++) {
+                combined[j].productName = Companies[i]
+            }
+
+            newBaseList.push(combined);
+        }
+    }
+    return newBaseList;
+}
+
 async function getResults(id) {
     try {
         const resLink = `${PATHCONSTANTS.BACKEND2}/rates/?id=${id}`;
@@ -82,7 +105,12 @@ async function getResults(id) {
         console.log(data)
         if (data.carrierResults) {
             //      console.log(resultsData.carrierResults[0].carrierTransactionID.length !== 0)
+            //we only want results where total premium is greater than 0
             let filteredResults = data?.carrierResults?.filter(result => result.totalPremium > 0);
+
+            //we only want results where number of payments is greater than 1 or the term is 1
+            filteredResults = filteredResults.filter(result => result.paymentOptions[0].numberOfPayments > 1 || result.term === 1);
+
             //sort by totalPremium
             filteredResults.sort((a, b) => a.totalPremium - b.totalPremium)
 
@@ -95,15 +123,31 @@ async function getResults(id) {
                 return accumulator;
             }, {})
 
+            //group elements by company name
+            //group all elements that contain "Alinsco" in the carrierName
+
+
             console.log("groupedResults:")
             console.log(groupedResults)
 
-            const finalList: Array<any> = [];
+
+            let finalList: Array<any> = [];
             for (const [key, value] of Object.entries(groupedResults)) {
                 finalList.push(value);
             }
+            console.log("finalList:")
+            console.log(finalList)
+
+            finalList = reduceCompanysList(finalList, ["Alinsco", "Apollo", "Aguila Dorada", "Bluefire",
+                "Excellent Insurance", "United Auto"
+
+            ]);
+
             //sort finalList by totalPremium
             finalList.sort((a, b) => (a[0] as { totalPremium: number }).totalPremium - (b[0] as { totalPremium: number }).totalPremium);
+            console.log("sorted finalList:")
+            console.log(finalList)
+
 
             return finalList;
         } else {
@@ -132,14 +176,14 @@ function ContentItem(props) {
         return returnLink;
     }
     const buyNowURL = returnBuyNowUrl(props.results);
-    let serviceFee = buyNowURL !== "" ? 25 : 0;
+    let serviceFee = buyNowURL !== "" ? 0 : 25;
     let dueToday = props.results[0].paymentOptions[0].downPaymentAmount + serviceFee;
-    let totalPremium = props.results[0].totalPremium + serviceFee;
+    let totalPremium = Number(props.results[0].totalPremium) + serviceFee;
     const numberOfPayments = props.results[0].paymentOptions[0].numberOfPayments;
-    let monthlyPayment = ((totalPremium - dueToday) / numberOfPayments).toFixed(2);
-    if (dueToday === 0 && numberOfPayments === 1) {
-        monthlyPayment = "0";
-        dueToday = totalPremium;
+    let monthlyPayment = Number(((totalPremium - dueToday) / numberOfPayments).toFixed(2))
+    if (numberOfPayments === 1) {
+        monthlyPayment = 0
+        dueToday = totalPremium.toFixed(2);
     }
     useEffect(() => {
         //if carrierName contains "Alinsco" log the results
