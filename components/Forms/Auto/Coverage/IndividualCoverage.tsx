@@ -64,6 +64,7 @@ export default function (props) {
                 backgroundColor: selected ? "#0e76bc2b" : "white",
                 transition: "all .4s",
                 borderRadius: "10px",
+                boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.3)",
             }}
         >
             <Box>

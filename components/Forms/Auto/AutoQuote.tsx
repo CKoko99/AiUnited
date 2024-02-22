@@ -87,8 +87,8 @@ const DEFAULTS = {
         QUESTION_IDS.FIRST_NAME,
         QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
     ] : [QUESTION_IDS.FIRST_NAME,],
-    quotePageIndex: process.env.NODE_ENV === "development" ? 3 : 0,
-    subPageIndex: process.env.NODE_ENV === "development" ? 1 : 0,
+    quotePageIndex: process.env.NODE_ENV === "development" ? 0 : 0,
+    subPageIndex: process.env.NODE_ENV === "development" ? 0 : 0,
     showDefaultValues: process.env.NODE_ENV === "development" ? true : false,
 }
 
@@ -454,135 +454,137 @@ export default function (props) {
     }, [shownIdList, subPageIndex, quotePageIndex])
 
     return <>
-        {!showResults && <Box
-            sx={{
-                minHeight: "80vh",
-                display: "flex", flexDirection: "column", justifyContent: "space-between",
-            }}
-        >
-            <Box>
-                {quotePageIndex <= props.Form.QuotePages.length - 1 &&
-                    <>
-                        <Box
-                            sx={{ display: "flex", justifyContent: "space-around", gap: "1rem", width: "50%", margin: "1rem auto" }}
-                        >
-                            {navigationIcons.map((page: {
-                                title: { [lang: string]: string; };
-                                gray: StaticImageData;
-                                color: StaticImageData;
-                            }, i) => {
-                                return <Box key={i}
-                                    sx={{
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                        flexDirection: "column",
-                                        cursor: quotePageIndex >= i ? "pointer" : "not-allowed",
-                                    }}
-                                    onClick={() => {
-                                        if (quotePageIndex >= i) {
-                                            setQuotePageIndex(i)
-                                            setSubPageIndex(0)
-                                        }
-                                    }}
-                                >
-                                    <Box
+        {quotePageIndex < props.Form.QuotePages.length
+            && <Box
+                sx={{
+                    minHeight: "80vh",
+                    display: "flex", flexDirection: "column", justifyContent: "space-between",
+                }}
+            >
+                <Box>
+                    {quotePageIndex <= props.Form.QuotePages.length - 1 &&
+                        <>
+                            <Box
+                                sx={{ display: "flex", justifyContent: "space-around", gap: "1rem", width: "50%", margin: "1rem auto" }}
+                            >
+                                {navigationIcons.map((page: {
+                                    title: { [lang: string]: string; };
+                                    gray: StaticImageData;
+                                    color: StaticImageData;
+                                }, i) => {
+                                    return <Box key={i}
                                         sx={{
-                                            height: "3rem",
-                                            width: "3rem",
-                                            position: "relative",
+                                            display: "flex",
+                                            justifyContent: "center",
+                                            alignItems: "center",
+                                            flexDirection: "column",
+                                            cursor: quotePageIndex >= i ? "pointer" : "not-allowed",
+                                        }}
+                                        onClick={() => {
+                                            if (quotePageIndex >= i) {
+                                                setQuotePageIndex(i)
+                                                setSubPageIndex(0)
+                                            }
                                         }}
                                     >
-                                        <Image fill style={{ objectFit: "contain" }} src={quotePageIndex < i ? page.gray : page.color} alt={page.title.en} />
-                                    </Box>
-                                    <Typography variant="subtitle1">{returnLocaleText(page.title)}</Typography>
-                                </Box>
-                            })}
-                        </Box>
-                    </>}
-
-                {props.Form.QuotePages.map((page, pageIndex) => {
-                    if (pageIndex !== quotePageIndex) return null;
-                    return <>
-                        {page.SubPages?.map((subPage, subIndex) => {
-                            if (subIndex !== subPageIndex) return null;
-                            return <Box key={subIndex}>
-                                {subPage.Questions?.map((question) => {
-                                    if (!shownIdList.includes(question.id)) return null;
-                                    return <Box key={question.id}>
-                                        <Question addIdToList={addIdToList} removeIdFromList={removeIdFromList} {...question} register={register}
-                                            setFormValue={setValue}
-                                            updateFormValues={updateFormValues}
-                                            defaultValue={showDefaultValues ? (formValues[question.id] !== undefined ? formValues[question.id][0].value : question.defaultValue) : (formValues[question.id] !== undefined ? formValues[question.id][0].value : undefined)}
-                                            buttonAddIdToList={buttonAddIdToList}
-                                            shownIdList={shownIdList}
-                                            formValues={formValues}
-                                            passedError={errorQuestions.includes(question.id)}
-                                            clearError={() => {
-                                                setErrorQuestions((prev) => prev.filter((item) => item !== question.id))
+                                        <Box
+                                            sx={{
+                                                height: "3rem",
+                                                width: "3rem",
+                                                position: "relative",
                                             }}
-                                        />
+                                        >
+                                            <Image fill style={{ objectFit: "contain" }} src={quotePageIndex < i ? page.gray : page.color} alt={page.title.en} />
+                                        </Box>
+                                        <Typography variant="subtitle1">{returnLocaleText(page.title)}</Typography>
                                     </Box>
                                 })}
                             </Box>
-                        })}
-                    </>
-                })}
-            </Box>
-            <Box>
-                <Box
-                    sx={{ display: "flex", justifyContent: "space-around", gap: "1rem", width: "100%", margin: "2rem auto" }}
-                >
-                    {quotePageIndex !== props.Form.QuotePages.length && <Button onClick={() => { backPageHandler() }}
-                        disabled={quotePageIndex === 0 && subPageIndex === 0}
-                        variant="outlined" color="secondary"
-                    >{returnLocaleText(TEXT.back)}
-                    </Button>}
-                    {quotePageIndex !== props.Form.QuotePages.length &&
-                        !(quotePageIndex === props.Form.QuotePages.length - 1 && subPageIndex === props.Form.QuotePages[quotePageIndex].SubPages.length - 1
-                        ) && <Button onClick={() => { nextPageHandler() }}
-                            variant="contained"
-                            disabled={quotePageIndex === props.Form.QuotePages.length}
-                        >
-                            {returnLocaleText(TEXT.next)}
-                        </Button>}
-                    {(quotePageIndex === props.Form.QuotePages.length - 1 && subPageIndex === props.Form.QuotePages[quotePageIndex].SubPages.length - 1
-                    ) && <Button
-                        sx={{
-                        }}
-                        onClick={() => {
-                            window.scrollTo(0, 0)
-                            if (checkValidity() === false) {
-                                return
-                            }
-                            console.log("SUBMITTING")
-                            setQuotePageIndex((prev) => prev + 1)
-                            handleSave()
-                        }}
-                        variant="contained"
-                    >{returnLocaleText(TEXT.submit)}</Button>}
+                        </>}
+
+                    {props.Form.QuotePages.map((page, pageIndex) => {
+                        if (pageIndex !== quotePageIndex) return null;
+                        return <>
+                            {page.SubPages?.map((subPage, subIndex) => {
+                                if (subIndex !== subPageIndex) return null;
+                                return <Box key={subIndex}>
+                                    {subPage.Questions?.map((question) => {
+                                        if (!shownIdList.includes(question.id)) return null;
+                                        return <Box key={question.id}>
+                                            <Question addIdToList={addIdToList} removeIdFromList={removeIdFromList} {...question} register={register}
+                                                setFormValue={setValue}
+                                                updateFormValues={updateFormValues}
+                                                defaultValue={showDefaultValues ? (formValues[question.id] !== undefined ? formValues[question.id][0].value : question.defaultValue) : (formValues[question.id] !== undefined ? formValues[question.id][0].value : undefined)}
+                                                buttonAddIdToList={buttonAddIdToList}
+                                                shownIdList={shownIdList}
+                                                formValues={formValues}
+                                                passedError={errorQuestions.includes(question.id)}
+                                                clearError={() => {
+                                                    setErrorQuestions((prev) => prev.filter((item) => item !== question.id))
+                                                }}
+                                            />
+                                        </Box>
+                                    })}
+                                </Box>
+                            })}
+                        </>
+                    })}
                 </Box>
-                <>
-                    {(!showDefaultValues && !showResults) && <Box
-                        sx={{ display: "flex", justifyContent: "center", gap: "1rem", margin: "1rem auto" }}
+                {quotePageIndex < props.Form.QuotePages.length && <Box>
+                    <Box
+                        sx={{ display: "flex", justifyContent: "space-around", gap: "1rem", width: "100%", margin: "2rem auto" }}
                     >
-                        {
-                            !showResults && <Button onClick={() => setShowDefaultValues(!showDefaultValues)}
-                                disabled={showDefaultValues}
-                            >Add Default Input Values</Button>
-                        }
-                    </Box>}
-                </>
-            </Box>
-        </Box >}
+                        {quotePageIndex !== props.Form.QuotePages.length && <Button onClick={() => { backPageHandler() }}
+                            disabled={quotePageIndex === 0 && subPageIndex === 0}
+                            variant="outlined" color="secondary"
+                        >{returnLocaleText(TEXT.back)}
+                        </Button>}
+                        {quotePageIndex !== props.Form.QuotePages.length &&
+                            !(quotePageIndex === props.Form.QuotePages.length - 1 && subPageIndex === props.Form.QuotePages[quotePageIndex].SubPages.length - 1
+                            ) && <Button onClick={() => { nextPageHandler() }}
+                                variant="contained"
+                                disabled={quotePageIndex === props.Form.QuotePages.length}
+                            >
+                                {returnLocaleText(TEXT.next)}
+                            </Button>}
+                        {(quotePageIndex === props.Form.QuotePages.length - 1 && subPageIndex === props.Form.QuotePages[quotePageIndex].SubPages.length - 1
+                        ) && <Button
+                            sx={{
+                            }}
+                            onClick={() => {
+                                window.scrollTo(0, 0)
+                                if (checkValidity() === false) {
+                                    return
+                                }
+                                console.log("SUBMITTING")
+                                setQuotePageIndex((prev) => prev + 1)
+                                handleSave()
+                            }}
+                            variant="contained"
+                        >{returnLocaleText(TEXT.submit)}</Button>}
+                    </Box>
+                    <>
+                        {(!showDefaultValues && !showResults) && <Box
+                            sx={{ display: "flex", justifyContent: "center", gap: "1rem", margin: "1rem auto" }}
+                        >
+                            {
+                                !showResults && <Button onClick={() => setShowDefaultValues(!showDefaultValues)}
+                                    disabled={showDefaultValues}
+                                >Add Default Input Values</Button>
+                            }
+                        </Box>}
+                    </>
+                </Box>}
+            </Box >}
 
 
         <AutoResults id={showResults ? QuoteId :
-            //"669badcb-af30-4e82-ab92-89be7c9d2d68"
+            //"858433cb-fdb2-49cc-8237-64b095833e35"
+            //            "858433cb-fdb-49cc-8237-64b095833e35"
             undefined
         }
-            name={formValues[QUESTION_IDS.FIRST_NAME] ? formValues[QUESTION_IDS.FIRST_NAME][0].value : "John Jode"}
-            //   disableLoading
+            name={formValues[QUESTION_IDS.FIRST_NAME] ? formValues[QUESTION_IDS.FIRST_NAME][0].value : "John"}
+            // disableLoading
             goBack={() => {
                 setShowResults(false)
                 setQuotePageIndex((prev) => prev - 1)
