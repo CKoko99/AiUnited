@@ -5,16 +5,19 @@ import { CustomFonts } from "providers/theme";
 import { useEffect, useState } from "react";
 import ResultItem from "./ResultItem";
 import CircularProgress from '@mui/material/CircularProgress';
-
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 const TEXT = {
     hello: { en: "Hello", es: "Hola" },
-    takeALook: { en: "Take a look at your personalized quotes!", es: "¡Eche un vistazo a sus cotizaciones personalizadas!" },
+    takeALook: { en: "You're Almost There – Let's Cross the Finish Line Together!", es: "¡Casi lo logramos! ¡Vamos a cruzar la línea de meta juntos!" },
     carrier: { en: "Carrier", es: "Compañía" },
     dueToday: { en: "Due Today", es: "Vence hoy" },
     monthlyPayment: { en: "Monthly Payment", es: "Pago mensual" },
     buyOnline: { en: "Buy Online", es: "Comprar en línea" },
     callToGetPrice: { en: "Call to Buy", es: "Llame para comprar" },
-    unfortunately: { en: "Unfortunately we couldn't find any results for you online.", es: "Desafortunadamente no pudimos encontrar ningún resultado para usted en línea." },
+    unfortunately: { en: "Oops! It seems like there was a hiccup on our end, and we couldn't retrieve quotes for you.", es: "¡Vaya! Parece que hubo un problema en nuestro sistema y no pudimos obtener cotizaciones para usted." },
+    sorry: {
+        en: "Sorry for the inconvenience. Our dedicated team will assist you in getting a precise quote tailored to your needs.", es: "Lamentamos la molestia. Nuestro equipo dedicado lo ayudará a obtener una cotización precisa adaptada a sus necesidades."
+    },
     pleaseCall: { en: "Please call us to get a quote, or visit a nearby store.", es: "Llámenos para obtener una cotización o visite una tienda cercana." },
     monthTerm: { en: "Month Term", es: "Plazo de meses" },
     paymentOptions: { en: "Payment Options", es: "Opciones de pago" },
@@ -25,6 +28,7 @@ const TEXT = {
     term: { en: "Term", es: "Plazo" },
     months: { en: "Months", es: "Meses" },
     month: { en: "Month", es: "Mes" },
+    loadingNewResults: { en: "Loading New Results", es: "Cargando nuevos resultados" },
 }
 
 const LOADINGTEXT = [
@@ -109,7 +113,7 @@ async function getResults(id) {
             //      console.log(resultsData.carrierResults[0].carrierTransactionID.length !== 0)
             //we only want results where total premium is greater than 0
             let filteredResults = data?.carrierResults?.filter(result => result.totalPremium > 0);
-            filteredResults = filteredResults.filter(result => result.term > 1)
+
             //we only want results where number of payments is greater than 1 or the term is 1
             filteredResults = filteredResults.filter(result => result.paymentOptions[0].numberOfPayments > 1 || result.term === 1);
 
@@ -147,10 +151,21 @@ async function getResults(id) {
 
             //sort finalList by totalPremium
             finalList.sort((a, b) => (a[0] as { totalPremium: number }).totalPremium - (b[0] as { totalPremium: number }).totalPremium);
-            console.log("sorted finalList:")
-            console.log(finalList)
 
-
+            //sort finalList by if buyNowUrl is not '' then set it to the front
+            finalList.sort((a, b) => {
+                if ((a[0] as { buyNowURL: string }).buyNowURL !== "" && (b[0] as { buyNowURL: string }).buyNowURL === "") {
+                    return -1;
+                } else if ((a[0] as { buyNowURL: string }).buyNowURL === "" && (b[0] as { buyNowURL: string }).buyNowURL !== "") {
+                    return 1;
+                }
+                return 0;
+            })
+            /*
+                 const firstItem = finalList.shift();
+                 finalList.sort((a, b) => (a[0] as { totalPremium: number }).totalPremium - (b[0] as { totalPremium: number }).totalPremium);
+                 finalList.unshift(firstItem);
+     */
             return finalList;
         } else {
             return [];
@@ -162,7 +177,7 @@ async function getResults(id) {
         return [];
     }
 }
-const totalWaitTime = 10000;
+const totalWaitTime = 12000;
 
 export default function (props) {
 
@@ -262,7 +277,7 @@ export default function (props) {
                 {secondLoading && <Box sx={{ ...classes.modalRoot }}>
                     <Box sx={{ ...classes.modal }}>
                         <Typography variant="h4">
-                            Loading New Results
+                            {returnLocaleText(TEXT.loadingNewResults)}
                         </Typography>
                         <CircularProgress
                             sx={{
@@ -301,13 +316,17 @@ export default function (props) {
                                 margin: "auto",
                             }}
                         >
-                            {(results.length === 0 && fetchedOnce && !loading) ? <>
+                            {(results.length === 0 && fetchedOnce && !loading) ? <Box
+                                sx={{
+                                    display: "flex", flexDirection: "column", gap: "1rem",
+                                }}
+                            >
                                 <Typography variant="h4"
                                 >
                                     {returnLocaleText(TEXT.unfortunately)}
                                 </Typography>
                                 <Typography variant="h6">
-                                    {returnLocaleText(TEXT.pleaseCall)}
+                                    {returnLocaleText(TEXT.sorry)}
                                 </Typography>
                                 <Box
                                     sx={{
@@ -327,7 +346,7 @@ export default function (props) {
                                         href={PATHCONSTANTS.LOCATIONS.INDEX}
                                     >Find a Store</Button>
                                 </Box>
-                            </>
+                            </Box>
                                 :
                                 <>    <Box
                                     sx={{
@@ -366,7 +385,7 @@ export default function (props) {
                                     </Box>}
                                 </>}
                             <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
-                                {fetchedOnce && <Button onClick={() => {
+                                {(false && fetchedOnce) && <Button onClick={() => {
                                     fetchResultsHandler(props.id)
                                 }}>refetch
                                 </Button>}
@@ -374,8 +393,11 @@ export default function (props) {
                                     props.goBack()
                                     setFetchedOnce(false)
                                 }}
+                                    sx={{ margin: "1rem auto" }}
                                     color="secondary"
-                                >Edit Coverages</Button>}
+                                >
+                                    <ArrowBackIcon />
+                                    Edit Coverages</Button>}
                             </Box>
                         </Box>
                     </>}
