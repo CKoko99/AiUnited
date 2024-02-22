@@ -157,6 +157,7 @@ const OPTIONS = [
             es: "Para aquellos que buscan el más alto nivel de protección, esta opción proporciona la cobertura más completa disponible."
         },
         coverages: [
+
             {
                 key: "LiabilityBiLimit",
                 valueText: { en: "30k/60k", es: "30k/60k" },
@@ -187,9 +188,8 @@ const OPTIONS = [
                 value: "30000/60000", title: { en: "Uninsured Motorist Bodily Injury", es: "Lesiones Corporales de un Conductor Sin Seguro" }
             },
             {
-                key: "AccidentalDeathLimit",
-                valueText: { en: "10000", es: "10000" },
-                value: "10000", title: { en: "Accidental Death", es: "Muerte Accidental" }
+                key: "AccidentalDeathLimit", valueText: { en: "None", es: "Ninguno" },
+                value: "None", title: { en: "Accidental Death", es: "Muerte Accidental" }
             },
             {
                 key: "ComprehensiveDeductible",
@@ -202,25 +202,23 @@ const OPTIONS = [
                 value: "500", title: { en: "Collision Deductible", es: "Deducible de Colisión" }
             },
             {
-                key: "TowingLimit",
-                valueText: { en: "250", es: "250" },
-                value: "250", title: { en: "Towing Limit", es: "Límite de Remolque" }
+                key: "TowingLimit", valueText: { en: "None", es: "Ninguno" },
+                value: "None", title: { en: "Towing Limit", es: "Límite de Remolque" }
             },
             {
-                key: "RentalLimit",
-                valueText: { en: "100", es: "100" },
-                value: "100", title: { en: "Rental Limit", es: "Límite de Alquiler" }
+                key: "RentalLimit", valueText: { en: "None", es: "Ninguno" },
+                value: "None", title: { en: "Rental Limit", es: "Límite de Alquiler" }
             },
             {
-                key: "GapCoverage",
-                valueText: { en: "Included", es: "Incluido" },
-                value: true, title: { en: "Gap Coverage", es: "Cobertura de Brecha" }
+                key: "GapCoverage", valueText: { en: "None", es: "Ninguno" },
+                value: false, title: { en: "Gap Coverage", es: "Cobertura de Brecha" }
             },
             {
                 key: "CustomEquipmentValue",
                 valueText: { en: "None", es: "Ninguno" },
                 value: 0, title: { en: "Custom Equipment Value", es: "Valor del Equipo Personalizado" }
-            }]
+            }
+        ]
     }
 ]
 //"{"status":"Request Parameter Validated Failed","errors":["Payload is not valid based on requested contract","Value \"300000\" is not defined in enum. : PolicyCoverages.UninsuredMotoristBiLimit"],"accountId":"00000000-0000-0000-0000-000000000000","tT2Output":""}"
