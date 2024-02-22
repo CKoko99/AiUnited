@@ -3,7 +3,12 @@ import { useEffect, useState } from "react";
 import { CustomFonts } from "providers/theme";
 import PATHCONSTANTS from "constants/sitemap";
 import { returnLocaleText } from "@/components/locale/LocaleSwitcher";
-
+import {
+    BodilyInjury, PropertyDamage, CollisionDeductible, ComprehensiveDeductible, PersonalInjuryProtection,
+    AccidentalDeath, MedicalPayments, CustomEquipmentValue,
+    GapCoverage, RentalLimit, TowingLimit, UninsuredMotoristBI, UninsuredMotoristPD
+} from "../Coverage/Modals";
+import React from "react";
 const TEXT = {
     hello: { en: "Hello", es: "Hola" },
     takeALook: { en: "Take a look at your personalized quotes!", es: "¡Eche un vistazo a sus cotizaciones personalizadas!" },
@@ -11,7 +16,7 @@ const TEXT = {
     dueToday: { en: "Due Today", es: "Vence hoy" },
     monthlyPayment: { en: "Monthly Payment", es: "Pago mensual" },
     buyOnline: { en: "Buy Online", es: "Comprar en línea" },
-    callToGetPrice: { en: "Call to Buy", es: "Llame para comprar" },
+    callToGetPrice: { en: "Call to Buy", es: "llama ahora" },
     unfortunately: { en: "Unfortunately we couldn't find any results for you online.", es: "Desafortunadamente no pudimos encontrar ningún resultado para usted en línea." },
     pleaseCall: { en: "Please call us to get a quote, or visit a nearby store.", es: "Llámenos para obtener una cotización o visite una tienda cercana." },
     monthTerm: { en: "Month Term", es: "Plazo de meses" },
@@ -59,7 +64,7 @@ const classes = {
 }
 
 const COVERAGE_LIMITS = [
-    ["BI", "Bodily Injury"],
+    ["BI", "Bodily Injury",],
     ["PD", "Property Damage"],
     ["UM", "Uninsured Motorist"],
     ["UMPD", "Uninsured Motorist Property Damage"],
@@ -106,18 +111,38 @@ function CoverageDetails(props) {
                             <Typography
                                 textAlign={"left"}
                             >
-                                {COVERAGE_LIMITS.find(cov => cov[0] === coverage.name)?.[1]}:
+                                {String(COVERAGE_LIMITS.find(cov => cov[0] === coverage.name)?.[1])}:
                             </Typography>
                             <Box
-                                sx={{ display: "flex", }}
+                                sx={{
+                                    display: "flex",
+                                    alignItems: "center", gap: ".25rem",
+                                    margin: ".35rem 0",
+                                }}
                             >
-                                {coverage.limits.map((limit, limitIndex) => {
-                                    if (limit.value === "0") return null;
-                                    return <Typography key={limitIndex}>
-                                        {limitIndex === 0 ? "" : " /"}
-                                        {limit.value > 10000 ? limit.value / 1000 + "k" : limit.value}
-                                    </Typography>
-                                })}
+                                <Typography
+                                    sx={{
+                                        whiteSpace: "nowrap",
+                                    }}
+                                >
+                                    {coverage.limits.map((limit, limitIndex) => {
+                                        if (limit.value === "0") return null;
+                                        if (limit.value === 0) return null;
+                                        return <React.Fragment key={limitIndex}>
+                                            {limitIndex === 0 ? "" : " / "}
+                                            {limit.value > 10000 ? (limit.value / 1000).toFixed(0) + "k" : limit.value}
+                                        </React.Fragment>
+                                    })}
+                                </Typography>
+                                {coverage.name === "BI" && <BodilyInjury inModal />}
+                                {coverage.name === "PD" && <PropertyDamage inModal />}
+                                {coverage.name === "UM" && <UninsuredMotoristBI inModal />}
+                                {coverage.name === "UMPD" && <UninsuredMotoristPD inModal />}
+                                {coverage.name === "PIP" && <PersonalInjuryProtection inModal />}
+                                {coverage.name === "MP" && <MedicalPayments inModal />}
+                                {coverage.name === "GAP" && <GapCoverage inModal />}
+                                {coverage.name === "R" && <RentalLimit inModal />}
+                                {coverage.name === "T" && <TowingLimit inModal />}
                             </Box>
                         </>}
                         {COVERAGE_DEDUCTIBLES.find(cov => cov[0] === coverage.name)?.[1] && <>
@@ -127,11 +152,23 @@ function CoverageDetails(props) {
                                 {COVERAGE_DEDUCTIBLES.find(cov => cov[0] === coverage.name)?.[1]}:
                             </Typography>
                             <Box
-                                sx={{ display: "flex", }}
+                                sx={{
+                                    display: "flex",
+                                    alignItems: "center", gap: ".25rem",
+                                    margin: ".35rem 0",
+                                }}
                             >
-                                {coverage.deductible.map((deductible, deductibleIndex) => {
-                                    return <Typography key={deductibleIndex}>${deductible.value}</Typography>
-                                })}
+                                <Typography
+                                    sx={{
+                                        whiteSpace: "nowrap",
+                                    }}>
+
+                                    {coverage.deductible.map((deductible, deductibleIndex) => {
+                                        return <React.Fragment key={deductibleIndex}>${deductible.value}</React.Fragment >
+                                    })}
+                                </Typography>
+                                {coverage.name === "COLL" && <CollisionDeductible inModal />}
+                                {coverage.name === "COMP" && <ComprehensiveDeductible inModal />}
                             </Box>
                         </>}
                     </Box>
@@ -172,65 +209,81 @@ export default function ContentItem(props) {
         sx={{
             width: 335,
             minHeight: 200,
-            border: 1, borderColor: 'primary.main', borderRadius: 3, padding: "1rem",
+            border: 1, borderColor: 'primary.main', borderRadius: 3,
             display: "flex", flexDirection: "column", justifyContent: "space-between",
             fontFamily: CustomFonts.Gustavo,
             boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.4)",
         }}
     >
         <Box
-            sx={{ textAlign: "center" }}
+            sx={{
+                textAlign: "center",
+
+            }}
         >
             <Typography
                 variant="h5"
                 fontWeight={700}
                 fontFamily={CustomFonts.Gustavo}
+                sx={{
+                    borderBottom: "1px solid #0E76BC",
+                    padding: ".5rem 0 .5rem",
+                    width: "100%"
+                }}
             > {carrierName}</Typography>
-            <Typography
-                fontFamily={CustomFonts.Gustavo}
-                variant="subtitle1"
-            >{returnLocaleText(TEXT.term)}: {monthTerm} {monthTerm > 1 ? returnLocaleText(TEXT.months) : returnLocaleText(TEXT.month)}</Typography>
-        </Box>
-        <Box
-            sx={{ textAlign: "left" }}
-        >
-            <Typography variant="h6"
-                fontFamily={CustomFonts.Gustavo}
-            >{returnLocaleText(TEXT.dueToday)}: ${dueToday}</Typography>
-            <Typography
-                fontFamily={CustomFonts.Gustavo} variant="h6"
-            >{returnLocaleText(TEXT.monthlyPayment)}: ${monthlyPayment}</Typography>
         </Box>
         <Box
             sx={{
-                display: "flex", gap: ".5rem", marginTop: ".5rem",
-                alignItems: "center", justifyContent: "space-between",
+                padding: ".5rem 1rem 1rem 1rem",
             }}
         >
-            <Button
+            <Box
                 sx={{
-                    flex: 1,
-                    fontSize: 13,
-                    whiteSpace: "nowrap",
-                    padding: "6px 16px"
+                    textAlign: "left",
                 }}
-                variant="outlined" color="secondary"
-                onClick={() => setShowModal(true)}
-            >{returnLocaleText(TEXT.coverages)}</Button>
-            <Button
-                sx={{
-                    flex: 1,
-                    fontSize: 13,
-                    whiteSpace: "nowrap",
-
-                }}
-                color={buyNowURL !== "" ? "secondary" : "primary"}
-                variant="contained"
-                href={buyNowURL !== "" ? buyNowURL : PATHCONSTANTS.PHONE}
-                target={buyNowURL !== "" ? "_blank" : "_self"}
             >
-                {buyNowURL !== "" ? returnLocaleText(TEXT.buyOnline) : returnLocaleText(TEXT.callToGetPrice)}
-            </Button>
+                <Typography
+                    fontFamily={CustomFonts.Gustavo}
+                    variant="subtitle1" textAlign={"center"}
+                >{returnLocaleText(TEXT.term)}: {monthTerm} {monthTerm > 1 ? returnLocaleText(TEXT.months) : returnLocaleText(TEXT.month)}</Typography>
+                <Typography variant="h6"
+                    fontFamily={CustomFonts.Gustavo}
+                >{returnLocaleText(TEXT.dueToday)}: ${dueToday}</Typography>
+                <Typography
+                    fontFamily={CustomFonts.Gustavo} variant="h6"
+                >{returnLocaleText(TEXT.monthlyPayment)}: ${monthlyPayment}</Typography>
+            </Box>
+            <Box
+                sx={{
+                    display: "flex", gap: ".5rem", marginTop: ".5rem",
+                    alignItems: "center", justifyContent: "space-between",
+                }}
+            >
+                <Button
+                    sx={{
+                        flex: 1,
+                        fontSize: 13,
+                        whiteSpace: "nowrap",
+                        padding: "6px 16px"
+                    }}
+                    variant="outlined" color="secondary"
+                    onClick={() => setShowModal(true)}
+                >{returnLocaleText(TEXT.coverages)}</Button>
+                <Button
+                    sx={{
+                        flex: 1,
+                        fontSize: 13,
+                        whiteSpace: "nowrap",
+
+                    }}
+                    color={buyNowURL !== "" ? "secondary" : "primary"}
+                    variant="contained"
+                    href={buyNowURL !== "" ? buyNowURL : PATHCONSTANTS.PHONE}
+                    target={buyNowURL !== "" ? "_blank" : "_self"}
+                >
+                    {buyNowURL !== "" ? returnLocaleText(TEXT.buyOnline) : returnLocaleText(TEXT.callToGetPrice)}
+                </Button>
+            </Box>
         </Box>
         <Modal
             open={showModal}
@@ -273,5 +326,5 @@ export default function ContentItem(props) {
             >Call To Get This Price</Button>
         }
     */}
-    </Box>
+    </Box >
 }
