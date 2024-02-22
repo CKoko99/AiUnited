@@ -107,6 +107,7 @@ export default function (props) {
     const [subPageIndex, setSubPageIndex] = useState(DEFAULTS.subPageIndex);
     const [activeQuestionsArray, setActiveQuestionsArray] = useState<string[]>([]);
     const [errorQuestions, setErrorQuestions] = useState<string[]>([]);
+    const [submittedOnce, setSubmittedOnce] = useState(false);
 
     useEffect(() => {
         async function wakeServer() {
@@ -265,6 +266,7 @@ export default function (props) {
                     },
                     ...returnFormObject(strippedFormValues, [QUESTION_IDS.FIRST_NAME, QUESTION_IDS.LAST_NAME, QUESTION_IDS.DATE_OF_BIRTH, QUESTION_IDS.GENDER, QUESTION_IDS.MARITAL_STATUS, QUESTION_IDS.WORK]),
                     "Discounts": {
+
                         "GoodStudent": false,
                         "SingleParent": false,
                         "DrugAwareness": false,
@@ -274,6 +276,7 @@ export default function (props) {
                         "MultiplePolicies": false,
                         "SeniorDriverDiscount": false,
                         "DefensiveDrivingCourseDate": "2022-10-31T05:00:00Z"
+
                         //"{"status":"Request Parameter Validated Failed","errors":["Payload is not valid based on requested contract","Required properties are missing from object: SeniorDriverCourseDate. : RatedDrivers[0].Discounts","Required properties are missing from object: AccidentPreventionCourseDate. : RatedDrivers[0].Discounts"],"accountId":"00000000-0000-0000-0000-000000000000","tT2Output":""}"
                     },
                     "FinancialResponsibilityInformation": {
@@ -361,40 +364,57 @@ export default function (props) {
             })
             const rateData = await rateResponse.json()
             console.log(rateData)
+            if (rateData.error) {
+                const emailFormData = {
+                    error: rateData.error,
+                    requestString: JSON.stringify(completeFormData),
+                    company: "Ai United",
+                    formTitle: "TurboRater Auto Quote",
+                    name: formValues[QUESTION_IDS.FIRST_NAME][0].value + " " + formValues[QUESTION_IDS.LAST_NAME][0].value,
+                }
+
+                await fetch(`${PATHCONSTANTS.BACKEND}/rates/email-error`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(emailFormData)
+                })
+            }
         } catch (e) {
             console.log(e)
         }
-        try {
-            const emailFormData = {
-                company: "Ai United",
-                name: formValues[QUESTION_IDS.FIRST_NAME][0].value + " " + formValues[QUESTION_IDS.LAST_NAME][0].value,
-                questions: [
-                    "First Name",
-                    "Last Name",
-
-                    "Phone Number",
-                    "Email",
-
-
-                ],
-                answers: [
-                    formValues[QUESTION_IDS.FIRST_NAME][0].value,
-                    formValues[QUESTION_IDS.LAST_NAME][0].value,
-                    formValues[QUESTION_IDS.PHONE_NUMBER][0].value,
-                    formValues[QUESTION_IDS.EMAIL][0].value,
-                ],
-                formTitle: "TurboRater Auto Quote",
-            }
-            const emailResponse = await fetch(`${PATHCONSTANTS.BACKEND}/rates/email`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(emailFormData)
-            })
-            const emailData = await emailResponse.json()
-            console.log(emailData)
-        } catch (e) { console.log(e) }
+        if (!submittedOnce) {
+            try {
+                const emailFormData = {
+                    company: "Ai United",
+                    name: formValues[QUESTION_IDS.FIRST_NAME][0].value + " " + formValues[QUESTION_IDS.LAST_NAME][0].value,
+                    questions: [
+                        "First Name",
+                        "Last Name",
+                        "Phone Number",
+                        "Email",
+                    ],
+                    answers: [
+                        formValues[QUESTION_IDS.FIRST_NAME][0].value,
+                        formValues[QUESTION_IDS.LAST_NAME][0].value,
+                        formValues[QUESTION_IDS.PHONE_NUMBER][0].value,
+                        formValues[QUESTION_IDS.EMAIL][0].value,
+                    ],
+                    formTitle: "TurboRater Auto Quote",
+                }
+                const emailResponse = await fetch(`${PATHCONSTANTS.BACKEND}/rates/email`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(emailFormData)
+                })
+                const emailData = await emailResponse.json()
+                console.log(emailData)
+            } catch (e) { console.log(e) }
+        }
+        setSubmittedOnce(true)
     }
 
     function checkValidity() {
