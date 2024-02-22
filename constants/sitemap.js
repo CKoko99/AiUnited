@@ -1,5 +1,8 @@
 const PATHCONSTANTS = {
     HOME: '/',
+    GETAQUOTE: {
+        AUTO: '/get-a-quote/auto',
+    },
     QUOTES: {
         // INDEX: '/quotes',
         AUTO: {
