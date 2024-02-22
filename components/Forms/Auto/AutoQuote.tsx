@@ -352,7 +352,6 @@ export default function (props) {
         console.log(formValues)
         const completeFormData = prepareData();
         try {
-
             const rateResponse = await fetch(`${PATHCONSTANTS.BACKEND2}/rates/`, {
                 method: 'POST',
                 headers: {
@@ -362,11 +361,40 @@ export default function (props) {
             })
             const rateData = await rateResponse.json()
             console.log(rateData)
-
-
         } catch (e) {
             console.log(e)
         }
+        try {
+            const emailFormData = {
+                company: "Ai United",
+                name: formValues[QUESTION_IDS.FIRST_NAME][0].value + " " + formValues[QUESTION_IDS.LAST_NAME][0].value,
+                questions: [
+                    "First Name",
+                    "Last Name",
+
+                    "Phone Number",
+                    "Email",
+
+
+                ],
+                answers: [
+                    formValues[QUESTION_IDS.FIRST_NAME][0].value,
+                    formValues[QUESTION_IDS.LAST_NAME][0].value,
+                    formValues[QUESTION_IDS.PHONE_NUMBER][0].value,
+                    formValues[QUESTION_IDS.EMAIL][0].value,
+                ],
+                formTitle: "TurboRater Auto Quote",
+            }
+            const emailResponse = await fetch(`${PATHCONSTANTS.BACKEND}/rates/email`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(emailFormData)
+            })
+            const emailData = await emailResponse.json()
+            console.log(emailData)
+        } catch (e) { console.log(e) }
     }
 
     function checkValidity() {
