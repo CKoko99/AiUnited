@@ -36,7 +36,7 @@ const HeadComponent = ({ title, metaData, canonical, graphImg }: HeadComponentPr
       <meta name="twitter:card" content="summary_large_image" />
       <meta property="twitter:domain" content="aiunited.com" />
       <meta property="twitter:url" content="https://www.aiunited.com/" />
-      <meta name="twitter:title" content="Ai United Insurance - Free Auto Insurance Quote - Car Insurance" />
+      <meta name="twitter:title" content={title || "Ai United Insurance - Free Auto Insurance Quote - Car Insurance"} />
       <meta name="twitter:description" content={metaData || "Ai United Insurance provides you with coverage options, benefits and discounts at a price you can afford."} />
       <meta name="twitter:image" content={graphImg || "https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/og-fb.png?alt=media&token=580378a4-b1a3-473f-98cd-da5ef169513d"} />
 
