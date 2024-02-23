@@ -253,7 +253,7 @@ export default function (props) {
             let interval = setInterval(() => {
                 setLoadingPercent((prev) => {
                     setLoadingText(LOADINGTEXT[Math.floor(LOADINGTEXT.length * (prev / 100))]);
-                    setEllipsisCount(Math.floor(prev / 6) % 4);
+                    setEllipsisCount(Math.floor(prev / LOADINGTEXT.length) % 4);
                     return prev + 1
                 });
 
