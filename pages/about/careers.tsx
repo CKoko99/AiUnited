@@ -11,8 +11,6 @@ import WorkImg from "../../public/assets/images/about/careers/work.png";
 import Link from "next/link";
 import { Box, Typography } from "@mui/material";
 import HeadComponent from "@/components/Head";
-import Head from "next/head";
-import { GTMHead } from "@/components/Scripts/GoogleTag";
 
 const headContent = {
     metaData: undefined,

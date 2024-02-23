@@ -3,7 +3,11 @@ import Hero from "../../../components/Content/Hero/Hero";
 import TextContent from "../../../components/Content/TextContent";
 import BannerImg from '../../../public/assets/images/about/careers/banner.png'
 import Simple from 'components/Forms/Simple/Simple';
+import HeadComponent from "@/components/Head";
 
+const headContent = {
+    graphImg: "https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/CareersGraphImg.png?alt=media&token=61346c2e-44fe-47b5-abb0-2dc79d32262d",
+}
 
 const heroContent = {
     title: {
@@ -347,6 +351,8 @@ const formContent = {
 
 export default function () {
     return <>
+        <HeadComponent {...headContent}
+        />
         <TextSection    {...textSection1} />
         <TextContent {...textContent} />
         <Simple {...formContent} />
