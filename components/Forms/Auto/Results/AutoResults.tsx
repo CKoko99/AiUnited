@@ -33,8 +33,16 @@ const TEXT = {
 
 const LOADINGTEXT = [
     {
-        en: "Contacting Carriers",
-        es: "Contactando a las compañías"
+        en: "Finding the best coverage options",
+        es: "Encontrando las mejores opciones de cobertura"
+    },
+    {
+        en: "Fetching personalized quotes just for you.",
+        es: "Obteniendo cotizaciones personalizadas solo para ti."
+    },
+    {
+        en: "Loading available discounts",
+        es: "Cargando descuentos disponibles"
     },
     {
         en: "Loading Results",
@@ -189,6 +197,7 @@ export default function (props) {
     const [secondLoading, setSecondLoading] = useState(false);
     const [maxResults, setMaxResults] = useState(5);
     const [fetched, setFetched] = useState(false);
+    const [ellipsisCount, setEllipsisCount] = useState(0);
     async function fetchResultsHandler(id) {
         let resultsData = await getResults(id);
         setResults(resultsData);
@@ -243,7 +252,8 @@ export default function (props) {
         if (loading) {
             let interval = setInterval(() => {
                 setLoadingPercent((prev) => {
-                    setLoadingText(LOADINGTEXT[Math.floor(LOADINGTEXT.length * (prev / 100))])
+                    setLoadingText(LOADINGTEXT[Math.floor(LOADINGTEXT.length * (prev / 100))]);
+                    setEllipsisCount(Math.floor(prev / 6) % 4);
                     return prev + 1
                 });
 
@@ -253,7 +263,7 @@ export default function (props) {
                 setLoadingPercent(100);
                 setTimeout(async () => {
                     let resultsData = await getResults(props.id);
-                    if (resultsData.length > results.length) {
+                    if (resultsData.length > results.length && !loading) {
                         setSecondLoading(true);
                         setTimeout(async () => {
                             setResults(resultsData);
@@ -292,11 +302,11 @@ export default function (props) {
                     <Box
                         sx={{
                             display: "flex", justifyContent: "center", flexDirection: "column", gap: "1rem",
-                            margin: "auto", width: "100%", textAlign: "center"
+                            margin: "auto", width: "100%", textAlign: "center", padding: "2rem"
                         }}
                     >
                         <Typography variant="h4">
-                            {returnLocaleText(loadingText)}
+                            {returnLocaleText(loadingText)}{Array(ellipsisCount).fill(".").join("")}
                         </Typography>
                         <Typography variant="h6">
                             {loadingPercent} %
