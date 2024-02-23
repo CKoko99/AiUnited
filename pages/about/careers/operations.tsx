@@ -6,7 +6,7 @@ import Simple from 'components/Forms/Simple/Simple';
 import HeadComponent from "@/components/Head";
 
 const headContent = {
-    metaData: undefined,
+    title: `Ai United Insurance - Careers`,
     graphImg: "https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/CareersGraphImg.png?alt=media&token=61346c2e-44fe-47b5-abb0-2dc79d32262d",
 }
 const heroContent = {
