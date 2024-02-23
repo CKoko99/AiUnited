@@ -13,7 +13,10 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <>
-      <HeadComponent />
+      {
+        // <HeadComponent />
+        //removed since it didn't work with opengraph images
+      }
       <GTMBody />
       <Box
         sx={{ position: "fixed", width: "100%", zIndex: 1000 }}

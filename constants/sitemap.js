@@ -93,6 +93,7 @@ const PATHCONSTANTS = {
     PHONETEXT: "(281)-933-6333",
     PRIVACY: '/privacy-policy',
     TERMS: '/terms-of-service',
+    HOMEFULL: process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://aiunited.com",
     BACKEND: process.env.NODE_ENV === "development" ? "http://192.168.20.122:8080" : "https://insurancehubbackend-uc3v53rceq-ue.a.run.app",
     BACKEND2: process.env.NODE_ENV === "development" ? "http://localhost:8081" : "https://spring-backend-uc3v53rceq-ue.a.run.app",
     STRAPI: process.env.NODE_ENV === "development" ? "http://localhost:1337" : "https://ai-united-strapi-uc3v53rceq-ue.a.run.app"

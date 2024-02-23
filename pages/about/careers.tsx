@@ -16,7 +16,7 @@ import { GTMHead } from "@/components/Scripts/GoogleTag";
 
 const headContent = {
     metaData: undefined,
-    graphImg: "https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/CareersGraphImg.png?alt=media&token=07e51e08-5127-414b-a5b4-98a58fbc39cb"
+    graphImg: "https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/CareersGraphImg.png?alt=media&token=61346c2e-44fe-47b5-abb0-2dc79d32262d",
 }
 const heroContent = {
     title: {
@@ -128,27 +128,11 @@ const cardsContent = {
     ]
 }
 
-export default function () {
-    return <>
-        <Head>
-            <GTMHead />
-            <title>{"Ai United Insurance"}</title>
-            <meta name="creator" content="Ai United" />
-            <meta name="publisher" content="Ai United" />
-            <meta name="description" content={"Ai United Insurance provides you with coverage options, benefits and discounts at a price you can afford."} />
-            <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/ai-favicon.ico?alt=media&token=192149a1-59c8-48d2-be99-5f751ab91e1a" />
-            <meta property="og:url" content="https://www.aiunited.com/" />
-            <meta property="og:type" content="website" />
-            <meta property="og:image" content={headContent.graphImg || "https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/og-fb.png?alt=media&token=580378a4-b1a3-473f-98cd-da5ef169513d"} />
+export default function (props) {
 
-            <meta name="twitter:card" content="summary_large_image" />
-            <meta property="twitter:domain" content="aiunited.com" />
-            <meta property="twitter:url" content="https://www.aiunited.com/" />
-            <meta name="twitter:title" content="Ai United Insurance - Free Auto Insurance Quote - Car Insurance" />
-            <meta name="twitter:description" content={headContent.metaData || "Ai United Insurance provides you with coverage options, benefits and discounts at a price you can afford."} />
-            <meta name="twitter:image" content={headContent.graphImg || "https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/og-fb.png?alt=media&token=580378a4-b1a3-473f-98cd-da5ef169513d"} />
-            <meta name="google-site-verification" content="eBcP0RUizk4nbWiQlzGJKWaFZaPuYTm9Fzo2S954WJE" />
-        </Head>
+    return <>
+        <HeadComponent {...headContent}
+        />
         <TextSection {...textSection1} />
         <PictureWithList {...picturesWithListContent} />
         <Cards {...cardsContent} />
