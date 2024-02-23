@@ -169,6 +169,10 @@ async function getResults(id) {
                 }
                 return 0;
             })
+
+            const cheapestBuyNow = finalList.find(result => (result[0] as { buyNowURL: string }).buyNowURL !== "");
+            const cheapestNotBuyNow = finalList.find(result => (result[0] as { buyNowURL: string }).buyNowURL === "");
+            return [cheapestBuyNow, cheapestNotBuyNow]
             /*
                  const firstItem = finalList.shift();
                  finalList.sort((a, b) => (a[0] as { totalPremium: number }).totalPremium - (b[0] as { totalPremium: number }).totalPremium);
@@ -324,6 +328,10 @@ export default function (props) {
                             sx={{
                                 width: { xs: "90%", sm: "80%", md: "80%", lg: "80%" },
                                 margin: "auto",
+                                minHeight: "80vh",
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "space-between",
                             }}
                         >
                             {(results.length === 0 && fetchedOnce && !loading) ? <Box
@@ -358,41 +366,50 @@ export default function (props) {
                                 </Box>
                             </Box>
                                 :
-                                <>    <Box
-                                    sx={{
-                                        textAlign: "left",
-                                        padding: "1rem 0", display: "flex",
-                                        flexDirection: "column",
-                                    }}
-                                >
-                                    <Typography sx={{
-                                        fontFamily: CustomFonts.Gustavo, fontSize: 44
-                                    }}>{returnLocaleText(TEXT.hello)} {props.name},</Typography>
-                                    <Typography sx={{ fontFamily: CustomFonts.Gustavo, fontSize: 44 }}>{returnLocaleText(TEXT.takeALook)}</Typography>
-                                </Box>
-                                    <Box
-                                        sx={{
-                                            display: 'flex', flexWrap: 'wrap', gap: "1rem",
-                                            justifyContent: "center"
-                                        }}
-                                    >
-                                        {results.map((result: any, i) => {
-                                            if (i > maxResults) {
-                                                return null;
-                                            }
-                                            return <ResultItem key={i} results={result} />
-                                        })}
-                                    </Box>
-                                    {maxResults < results.length - 1 && <Box
-                                        sx={{
-                                            display: "flex", justifyContent: "center"
-                                        }}>
-                                        <Button
-                                            onClick={() => {
-                                                setMaxResults(maxResults + 6)
+                                <>
+                                    <Box>
+                                        <Box
+                                            sx={{
+                                                textAlign: "left",
+                                                padding: "1rem 0", display: "flex",
+                                                flexDirection: "column",
+                                                width: { xs: "90%", sm: "90%", md: "80%", lg: "80%" },
+                                                margin: "auto"
                                             }}
-                                        >Load More</Button>
-                                    </Box>}
+                                        >
+                                            <Typography sx={{
+                                                fontFamily: CustomFonts.Gustavo, fontSize: 44,
+                                                textAlign: "center"
+                                            }}>{returnLocaleText(TEXT.hello)} {props.name},</Typography>
+                                            <Typography sx={{
+                                                fontFamily: CustomFonts.Gustavo, fontSize: 44,
+                                                textAlign: "center"
+                                            }}>{returnLocaleText(TEXT.takeALook)}</Typography>
+                                        </Box>
+                                        <Box
+                                            sx={{
+                                                display: 'flex', flexWrap: 'wrap', gap: "1rem 3rem",
+                                                justifyContent: "center"
+                                            }}
+                                        >
+                                            {results.map((result: any, i) => {
+                                                if (i > maxResults) {
+                                                    return null;
+                                                }
+                                                return <ResultItem key={i} results={result} />
+                                            })}
+                                        </Box>
+                                        {maxResults < results.length - 1 && <Box
+                                            sx={{
+                                                display: "flex", justifyContent: "center"
+                                            }}>
+                                            <Button
+                                                onClick={() => {
+                                                    setMaxResults(maxResults + 6)
+                                                }}
+                                            >Load More</Button>
+                                        </Box>}
+                                    </Box>
                                 </>}
                             <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
                                 {(false && fetchedOnce) && <Button onClick={() => {
@@ -411,6 +428,7 @@ export default function (props) {
                             </Box>
                         </Box>
                     </>}
-            </>}
+            </>
+        }
     </>
 }
