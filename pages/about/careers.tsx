@@ -10,8 +10,11 @@ import PictureWithList from "../../components/Content/PictureWithList";
 import WorkImg from "../../public/assets/images/about/careers/work.png";
 import Link from "next/link";
 import { Box, Typography } from "@mui/material";
+import HeadComponent from "@/components/Head";
 
-
+const headContent = {
+    graphImg: "https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/CareersGraphImg.png?alt=media&token=07e51e08-5127-414b-a5b4-98a58fbc39cb"
+}
 const heroContent = {
     title: {
         en: `Start Your Career At Ai United`,
@@ -124,6 +127,9 @@ const cardsContent = {
 
 export default function () {
     return <>
+        <HeadComponent {...headContent}
+
+        />
         <TextSection {...textSection1} />
         <PictureWithList {...picturesWithListContent} />
         <Cards {...cardsContent} />
