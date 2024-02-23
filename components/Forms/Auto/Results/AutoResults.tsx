@@ -153,7 +153,8 @@ async function getResults(id) {
             console.log(finalList)
 
             finalList = reduceCompanysList(finalList, ["Alinsco", "Apollo", "Aguila Dorada", "Bluefire",
-                "Excellent Insurance", "United Auto"
+                "Excellent Insurance", "United Auto",
+                "Connect Banner", "Amwins"
 
             ]);
 
@@ -219,14 +220,24 @@ export default function (props) {
                 setLoading(true);
                 setLoadingPercent(0);
                 setTimeout(async () => {
-                    let resultsData = await getResults(props.id);
-                    setResults(resultsData);
-                    setFetchedOnce(true);
-                    setFetched(true);
-                    setTimeout(() => {
-                        console.log("Single Result:")
-                        console.log(resultsData[5])
-                    }, 3000)
+                    try {
+                        let resultsData = await getResults(props.id);
+                        setResults(resultsData);
+                        console.log("resultsData:")
+                        console.log(resultsData)
+                        props.sendConfirmationEmail(
+                            resultsData[0][0].phoneCode,
+                            resultsData[1][0].phoneCode,
+                        )
+                        setFetchedOnce(true);
+                        setFetched(true);
+                        setTimeout(() => {
+                            console.log("Single Result:")
+                            console.log(resultsData[5])
+                        }, 3000)
+                    } catch (err) {
+                        console.log(err)
+                    }
                 }, totalWaitTime)
             } else {
                 let resultsData = await getResults(props.id);
@@ -371,20 +382,24 @@ export default function (props) {
                                         <Box
                                             sx={{
                                                 textAlign: "left",
-                                                padding: "1rem 0", display: "flex",
+                                                padding: "1rem 0 2rem", display: "flex",
                                                 flexDirection: "column",
                                                 width: { xs: "90%", sm: "90%", md: "80%", lg: "80%" },
                                                 margin: "auto"
                                             }}
                                         >
-                                            <Typography sx={{
-                                                fontFamily: CustomFonts.Gustavo, fontSize: 44,
-                                                textAlign: "center"
-                                            }}>{returnLocaleText(TEXT.hello)} {props.name},</Typography>
-                                            <Typography sx={{
-                                                fontFamily: CustomFonts.Gustavo, fontSize: 44,
-                                                textAlign: "center"
-                                            }}>{returnLocaleText(TEXT.takeALook)}</Typography>
+                                            <Typography
+                                                variant="h3"
+                                                sx={{
+                                                    fontFamily: CustomFonts.Gustavo,
+                                                    textAlign: "center"
+                                                }}>{returnLocaleText(TEXT.hello)} {props.name},</Typography>
+                                            <Typography
+                                                variant="h3"
+                                                sx={{
+                                                    fontFamily: CustomFonts.Gustavo,
+                                                    textAlign: "center"
+                                                }}>{returnLocaleText(TEXT.takeALook)}</Typography>
                                         </Box>
                                         <Box
                                             sx={{

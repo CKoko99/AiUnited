@@ -384,6 +384,8 @@ export default function (props) {
         } catch (e) {
             console.log(e)
         }
+    }
+    async function sendConfirmationEmail(onlinePhoneCode, callPhoneCode) {
         if (!submittedOnce) {
             try {
                 const emailFormData = {
@@ -394,12 +396,16 @@ export default function (props) {
                         "Last Name",
                         "Phone Number",
                         "Email",
+                        "Buy Online Code",
+                        "Call Code",
                     ],
                     answers: [
                         formValues[QUESTION_IDS.FIRST_NAME][0].value,
                         formValues[QUESTION_IDS.LAST_NAME][0].value,
                         formValues[QUESTION_IDS.PHONE_NUMBER][0].value,
                         formValues[QUESTION_IDS.EMAIL][0].value,
+                        onlinePhoneCode,
+                        callPhoneCode,
                     ],
                     formTitle: "TurboRater Auto Quote",
                 }
@@ -637,6 +643,7 @@ export default function (props) {
                 setShowResults(false)
                 setQuotePageIndex((prev) => prev - 1)
             }}
+            sendConfirmationEmail={sendConfirmationEmail}
         // "511a63bf-da44-4dca-8234-47929da63a67"} 
         />
     </>
