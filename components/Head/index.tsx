@@ -9,6 +9,7 @@ type HeadComponentPropsType = {
 }
 
 const HeadComponent = ({ title, metaData, canonical, graphImg }: HeadComponentPropsType) => {
+
   return (
     <Head>
       <GTMHead />
