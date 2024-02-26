@@ -204,6 +204,7 @@ export default function (props) {
     const [maxResults, setMaxResults] = useState(5);
     const [fetched, setFetched] = useState(false);
     const [ellipsisCount, setEllipsisCount] = useState(0);
+    const [noResults, setNoResults] = useState(true);
     async function fetchResultsHandler(id) {
         let resultsData = await getResults(id);
         setResults(resultsData);
@@ -307,6 +308,14 @@ export default function (props) {
         }
     }, [fetched, loadingPercent])
 
+    useEffect(() => {
+        // if length of results is 2 and both aren't undefined, set noResults to false
+        if (results.length === 2 && results[0] !== undefined && results[1] !== undefined) {
+            setNoResults(false);
+        } else {
+            setNoResults(true);
+        }
+    }, [results])
     return <>
         {props.id &&
             <>
@@ -367,9 +376,10 @@ export default function (props) {
                                 justifyContent: "space-between",
                             }}
                         >
-                            {(results.length === 0 && fetchedOnce && !loading) ? <Box
+                            {(noResults && fetchedOnce && !loading) ? <Box
                                 sx={{
                                     display: "flex", flexDirection: "column", gap: "1rem",
+                                    padding: "2rem",
                                 }}
                             >
                                 <Typography variant="h4"

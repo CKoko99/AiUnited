@@ -90,6 +90,7 @@ const DEFAULTS = {
     quotePageIndex: process.env.NODE_ENV === "development" ? 0 : 0,
     subPageIndex: process.env.NODE_ENV === "development" ? 0 : 0,
     showDefaultValues: process.env.NODE_ENV === "development" ? true : false,
+    showDefaultsButton: process.env.NODE_ENV === "development" ? true : false,
 }
 
 export default function (props) {
@@ -421,6 +422,50 @@ export default function (props) {
             } catch (e) { console.log(e) }
         }
         setSubmittedOnce(true)
+        async function uploadToSheet() {
+            const timestamp = new Date().toLocaleString();
+
+            //prepare data to be sent to google sheet
+            //Numbering system to make sure the data is in the correct order
+            const answersArray = [
+                ["First Name", formValues[QUESTION_IDS.FIRST_NAME][0].value],
+                ["Last Name", formValues[QUESTION_IDS.LAST_NAME][0].value],
+                ["Phone Number", formValues[QUESTION_IDS.PHONE_NUMBER][0].value],
+                ["Email", formValues[QUESTION_IDS.EMAIL][0].value],
+                ["Buy Online Code", onlinePhoneCode],
+                ["Call Code", callPhoneCode],
+            ]
+            const formData = new FormData();
+            formData.append("1 Timestamp", timestamp);
+
+            for (let i = 0; i < answersArray.length; i++) {
+                formData.append(`${2 + i} ${i + 1} ${answersArray[i][0]}`, answersArray[i][1]);
+            }
+            formData.append("SheetTitle", "TurboRater Auto Quote");
+            formData.append("Spreadsheet", "Ai United");
+            formData.append("Device Info", window.navigator.userAgent);
+            try {
+                await fetch(`${PATHCONSTANTS.BACKEND}/rates/phone-code`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(
+                        [...formData.entries(),]
+                    ),
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        console.log(data);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        uploadToSheet()
     }
 
     function checkValidity() {
@@ -618,7 +663,7 @@ export default function (props) {
                         >{returnLocaleText(TEXT.submit)}</Button>}
                     </Box>
                     <>
-                        {(!showDefaultValues && !showResults) && <Box
+                        {(DEFAULTS.showDefaultsButton && (!showDefaultValues && !showResults)) && <Box
                             sx={{ display: "flex", justifyContent: "center", gap: "1rem", margin: "1rem auto" }}
                         >
                             {

@@ -15,6 +15,9 @@ const TEXT = {
     model: { en: "Model", es: "Modelo" },
     validationError: { en: "Please select a vehicle", es: "Por favor seleccione un vehículo" }
 }
+const DEFAULTS = {
+    waitTime: process.env.NODE_ENV === "development" ? 500 : 1000
+}
 
 async function getYears() {
     try {
@@ -269,9 +272,9 @@ export default function (props) {
                 setTimeout(() => {
                     console.log("Handle Model: " + model)
                     handleModelChange(model)
-                }, 500)
-            }, 500)
-        }, 500)
+                }, DEFAULTS.waitTime)
+            }, DEFAULTS.waitTime)
+        }, DEFAULTS.waitTime)
     }
 
     useEffect(() => {
