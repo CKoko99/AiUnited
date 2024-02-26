@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import ResultItem from "./ResultItem";
 import CircularProgress from '@mui/material/CircularProgress';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { LoadingContentItem } from "./ResultItem";
 const TEXT = {
     hello: { en: "Hello", es: "Hola" },
     takeALook: { en: "You're Almost There – Let's Cross the Finish Line Together!", es: "¡Casi lo logramos! ¡Vamos a cruzar la línea de meta juntos!" },
@@ -225,10 +226,20 @@ export default function (props) {
                         setResults(resultsData);
                         console.log("resultsData:")
                         console.log(resultsData)
-                        props.sendConfirmationEmail(
-                            resultsData[0][0].phoneCode,
-                            resultsData[1][0].phoneCode,
-                        )
+                        let phonecode1 = undefined;
+                        let phonecode2 = undefined;
+                        try {
+                            phonecode1 = resultsData[0][0]?.phoneCode;
+                        } catch (err) {
+                            console.log(err);
+                        }
+                        try {
+                            phonecode2 = resultsData[1][0]?.phoneCode;
+                        }
+                        catch (err) {
+                            console.log(err);
+                        }
+                        props.sendConfirmationEmail(phonecode1, phonecode2);
                         setFetchedOnce(true);
                         setFetched(true);
                         setTimeout(() => {
@@ -314,23 +325,34 @@ export default function (props) {
                 </Box>
                 }
                 {(loading && !fetched) ? <>
-                    <Box
-                        sx={{
-                            display: "flex", justifyContent: "center", flexDirection: "column", gap: "1rem",
-                            margin: "auto", width: "100%", textAlign: "center", padding: "2rem"
-                        }}
-                    >
-                        <Typography variant="h4">
-                            {returnLocaleText(loadingText)}{Array(ellipsisCount).fill(".").join("")}
-                        </Typography>
-                        <Typography variant="h6">
-                            {loadingPercent} %
-                        </Typography>
-                        <Box
-                            sx={{ margin: "auto", width: { xs: "80%", sm: "70%", md: "60%", lg: "50%" } }}
-                        >
+                    <Box>
 
-                            <LinearProgress variant="determinate" value={loadingPercent || 0} />
+                        <Box
+                            sx={{
+                                display: "flex", justifyContent: "center", flexDirection: "column", gap: "1rem",
+                                margin: "auto", width: "100%", textAlign: "center", padding: "2rem"
+                            }}
+                        >
+                            <Typography variant="h4">
+                                {returnLocaleText(loadingText)}{Array(ellipsisCount).fill(".").join("")}
+                            </Typography>
+                            <Typography variant="h6">
+                                {loadingPercent} %
+                            </Typography>
+                            <Box
+                                sx={{ margin: "auto", width: { xs: "80%", sm: "70%", md: "60%", lg: "50%" } }}
+                            >
+                                <LinearProgress variant="determinate" value={loadingPercent || 0} />
+                            </Box>
+                        </Box>
+                        <Box
+                            sx={{
+                                display: 'flex', flexWrap: 'wrap', gap: "1rem 3rem",
+                                justifyContent: "center", padding: "2rem"
+                            }}
+                        >
+                            <LoadingContentItem />
+                            <LoadingContentItem />
                         </Box>
                     </Box>
                 </> :
@@ -409,6 +431,9 @@ export default function (props) {
                                         >
                                             {results.map((result: any, i) => {
                                                 if (i > maxResults) {
+                                                    return null;
+                                                }
+                                                if (result === undefined) {
                                                     return null;
                                                 }
                                                 return <ResultItem key={i} results={result} />

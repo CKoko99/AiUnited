@@ -1,4 +1,4 @@
-import { Box, Button, Modal, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Modal, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { CustomFonts } from "providers/theme";
 import PATHCONSTANTS from "constants/sitemap";
@@ -9,6 +9,7 @@ import {
     GapCoverage, RentalLimit, TowingLimit, UninsuredMotoristBI, UninsuredMotoristPD
 } from "../Coverage/Modals";
 import React from "react";
+import { use } from "marked";
 const TEXT = {
     hello: { en: "Hello", es: "Hola" },
     takeALook: { en: "Take a look at your personalized quotes!", es: "¡Eche un vistazo a sus cotizaciones personalizadas!" },
@@ -80,7 +81,104 @@ const COVERAGE_DEDUCTIBLES = [
     ["COLL", "Collision Deductible"],
     ["COMP", "Comprehensive Deductible"],
 ]
+export function LoadingContentItem() {
+    const [ellipsisCount, setEllipsisCount] = useState(1);
+    const [random] = useState(Math.random() + 1);
+    useEffect(() => {
+        setTimeout(() => {
+            setEllipsisCount((prev) => {
+                if (prev === 4) return 1;
+                return prev + 1
+            });
+        }, 750);
+    }, [ellipsisCount]);
 
+    return <Box
+        sx={{
+            width: 335,
+            minHeight: 200,
+            border: 1, borderColor: '#cacaca', borderRadius: 3,
+            display: "flex", flexDirection: "column", justifyContent: "space-between",
+            fontFamily: CustomFonts.Gustavo,
+            boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.15)",
+            //animation: `opacity 1.5s infinite alternate`,
+            //the animation a random number between 1 and 2 seconds
+            animation: `opacity ${random}s infinite alternate`,
+            "@keyframes opacity": {
+                "0%": { opacity: 0.7 },
+                "100%": { opacity: 1 }
+            }
+        }}
+    >
+
+        <Box
+            sx={{
+                textAlign: "center",
+                display: "flex", justifyContent: "center", alignItems: "center",
+                minHeight: 120,
+            }}
+        >
+            <CircularProgress
+                sx={{
+                    color: "#cacaca",
+                    height: 120,
+                    width: 120,
+                    //make opacity go up and down from .5 to 1 every 1.5 seconds
+                    animation: `opacity 2s infinite alternate`,
+                    "@keyframes opacity": {
+                        "0%": { opacity: 0.1 },
+                        "100%": { opacity: 1 }
+                    }
+                }} size={50}
+            />
+        </Box>
+        <Box
+            sx={{
+                padding: ".5rem 1rem 1rem 1rem",
+            }}
+        >
+            <Box
+                sx={{
+                    display: "flex", gap: ".5rem", marginTop: ".5rem",
+                    alignItems: "center", justifyContent: "space-between",
+                }}
+            >
+                <Button
+                    sx={{
+                        flex: 1,
+                        fontSize: 13,
+                        whiteSpace: "nowrap",
+                        padding: "6px 16px",
+                        animation: `opacity 1s infinite alternate`,
+                        "@keyframes opacity": {
+                            "0%": { opacity: 0.2 },
+                            "100%": { opacity: .7 }
+                        }
+                    }}
+                    disabled
+                    variant="outlined" color="secondary"
+                >Loading...</Button>
+                <Button
+                    sx={{
+                        flex: 1,
+                        fontSize: 13,
+                        whiteSpace: "nowrap",
+                        animation: `opacity 1s infinite alternate`,
+                        "@keyframes opacity": {
+                            "0%": { opacity: 0.2 },
+                            "100%": { opacity: .7 }
+                        }
+                    }}
+                    disabled
+                    color="primary"
+                    variant="contained"
+                >
+                    Loading...
+                </Button>
+            </Box>
+        </Box>
+    </Box >
+}
 function CoverageDetails(props) {
 
     useEffect(() => {
