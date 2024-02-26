@@ -107,8 +107,9 @@ const OPTIONS = [
             value: "None", title: { en: "Medical Payments", es: "Pagos Médicos" }
         },
         {
-            key: "PipLimit", valueText: { en: "None", es: "Ninguno" },
-            value: "None", title: { en: "Personal Injury Protection", es: "Protección contra Lesiones Personales" }
+            key: "PipLimit",
+            valueText: { en: "2500", es: "2500" },
+            value: "2500", title: { en: "Personal Injury Protection", es: "Protección contra Lesiones Personales" }
         },
         {
             key: "UninsuredMotoristPdLimit", value: "25000",
