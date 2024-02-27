@@ -92,7 +92,7 @@ export default function (props) {
                         color={selected === answer.value ? "primary" : "secondary"}
                         onClick={(e: React.MouseEvent<HTMLButtonElement>) => { handleButtonSelect(e.currentTarget.value) }}
                         value={answer.value}
-                        sx={{ minWidth: "12rem" }}
+                        sx={{ minWidth: "12rem", width: props.buttonWidth === "half" ? "45%" : "", }}
                     >
                         {returnLocaleText(answer.text)}
                     </Button>

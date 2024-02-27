@@ -32,6 +32,12 @@ export const QUESTION_IDS = {
     GENDER: "GENDER",
     MARITAL_STATUS: "MARITAL_STATUS",
     WORK: "WORK",
+    DRIVER_1_LICENSE_NUMBER: "DRIVER_1_LICENSE_NUMBER",
+    DRIVER_1_LICENSE_STATUS: "DRIVER_1_LICENSE_STATUS",
+    DRIVER_1_MONTHS_LICENSED: "DRIVER_1_MONTHS_LICENSED",
+    DRIVER_1_MONTHS_STATE_LICENSED: "DRIVER_1_MONTHS_STATE_LICENSED",
+    DRIVER_1_MONTHS_SUSPENDED: "DRIVER_1_MONTHS_SUSPENDED",
+    DRIVER_1_STATE_LICENSED: "DRIVER_1_STATE_LICENSED",
     EDUCATION_LEVEL: "EDUCATION_LEVEL",
     RESIDENCY_TYPE: "RESIDENCY_TYPE",
     RESIDENCY_STATUS: "RESIDENCY_STATUS",
@@ -86,6 +92,7 @@ const DEFAULTS = {
     shownIdList: process.env.NODE_ENV === "development" ? [
         QUESTION_IDS.FIRST_NAME,
         QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
+
     ] : [QUESTION_IDS.FIRST_NAME,],
     quotePageIndex: process.env.NODE_ENV === "development" ? 0 : 0,
     subPageIndex: process.env.NODE_ENV === "development" ? 0 : 0,
@@ -159,6 +166,8 @@ export default function (props) {
             }
             return newIdList
         })
+
+
     }
     function removeIdFromList(id: String) {
         setShownIdList((prev) => prev.filter((item) => item !== id))
@@ -252,17 +261,25 @@ export default function (props) {
                         "Relation": "Insured",
                         ...returnFormObject(strippedFormValues, [QUESTION_IDS.EDUCATION_LEVEL, QUESTION_IDS.RESIDENCY_STATUS, QUESTION_IDS.RESIDENCY_TYPE,]),
                     },
+                    //"{"status":"Request Parameter Validated Failed","errors":["Payload is not valid based on requested contract","Required properties are missing from object: Street1, City, ZipCode. : Customer.Address","Required properties are missing from object: LastName, MonthsAtResidence. : Customer","Required properties are missing from object: Street1, City, ZipCode. : Vehicles[0].GaragingAddress","Required properties are missing from object: Vin, Usage. : Vehicles[0]","Required properties are missing from object: ResidencyStatus, ResidencyType. : RatedDrivers[0].Attributes","Required properties are missing from object: LastName, DateOfBirth, Gender, MaritalStatus. : RatedDrivers[0]"],"accountId":"00000000-0000-0000-0000-000000000000","tT2Output":""}"
                     LicenseInformation: {
-                        "LicenseNumber": "",
-                        "LicenseStatus": "Valid",
+                        ...returnFormObject(strippedFormValues,
+                            [QUESTION_IDS.DRIVER_1_LICENSE_NUMBER,
+                            QUESTION_IDS.DRIVER_1_LICENSE_STATUS,
+                            QUESTION_IDS.DRIVER_1_MONTHS_LICENSED,
+                            QUESTION_IDS.DRIVER_1_MONTHS_STATE_LICENSED,
+                            QUESTION_IDS.DRIVER_1_MONTHS_SUSPENDED,
+                            QUESTION_IDS.DRIVER_1_STATE_LICENSED]),
+                        //   "LicenseNumber": "",// max 20 characters
+                        //  "LicenseStatus": "Valid",// Valid, Unlicensed, Permit, Suspended
                         "MonthsForeignLicense": 0,
-                        "MonthsLicensed": 310,
-                        "MonthsStateLicensed": 310,
+                        //   "MonthsLicensed": 310,//Use a select box for this max 1200 months
+                        //     "MonthsStateLicensed": 310,// Months licensed in state
                         "MonthsMvrExperience": 60,
-                        "MonthsSuspended": 0,
-                        "StateLicensed": "Texas",
-                        "CountryOfOrigin": "None",
-                        "ForeignNational": false,
+                        //       "MonthsSuspended": 0, //If licenseStatus is suspended open this question if not set to 0
+                        //     "StateLicensed": "Texas",//State selection
+                        "CountryOfOrigin": "None", //?
+                        "ForeignNational": false, //?
                         "InternationalDriversLicense": false
                     },
                     ...returnFormObject(strippedFormValues, [QUESTION_IDS.FIRST_NAME, QUESTION_IDS.LAST_NAME, QUESTION_IDS.DATE_OF_BIRTH, QUESTION_IDS.GENDER, QUESTION_IDS.MARITAL_STATUS, QUESTION_IDS.WORK]),

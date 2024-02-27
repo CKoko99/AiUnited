@@ -117,7 +117,7 @@ async function getResults(id) {
         )
         const data = await res.json();
 
-        console.log(data)
+        //  console.log(data)
         if (data.carrierResults) {
             //      console.log(resultsData.carrierResults[0].carrierTransactionID.length !== 0)
             //we only want results where total premium is greater than 0
@@ -129,8 +129,8 @@ async function getResults(id) {
             //sort by totalPremium
             filteredResults.sort((a, b) => a.totalPremium - b.totalPremium)
 
-            console.log("filteredResults:")
-            console.log(filteredResults)
+            // console.log("filteredResults:")
+            // console.log(filteredResults)
 
             //group elements of filteredResults by carrierTransactionID
             let groupedResults = filteredResults.reduce((accumulator, currentValue) => {
@@ -142,8 +142,8 @@ async function getResults(id) {
             //group all elements that contain "Alinsco" in the carrierName
 
 
-            console.log("groupedResults:")
-            console.log(groupedResults)
+            //console.log("groupedResults:")
+            //console.log(groupedResults)
 
 
             let finalList: Array<any> = [];
@@ -174,6 +174,8 @@ async function getResults(id) {
 
             const cheapestBuyNow = finalList.find(result => (result[0] as { buyNowURL: string }).buyNowURL !== "");
             const cheapestNotBuyNow = finalList.find(result => (result[0] as { buyNowURL: string }).buyNowURL === "");
+            console.log("Cheapest Options:")
+            console.log([cheapestBuyNow, cheapestNotBuyNow])
             return [cheapestBuyNow, cheapestNotBuyNow]
             /*
                  const firstItem = finalList.shift();
@@ -232,21 +234,23 @@ export default function (props) {
                         try {
                             phonecode1 = resultsData[0][0]?.phoneCode;
                         } catch (err) {
-                            console.log(err);
+                            // console.log(err);
                         }
                         try {
                             phonecode2 = resultsData[1][0]?.phoneCode;
                         }
                         catch (err) {
-                            console.log(err);
+                            // console.log(err);
                         }
                         props.sendConfirmationEmail(phonecode1, phonecode2);
                         setFetchedOnce(true);
                         setFetched(true);
-                        setTimeout(() => {
-                            console.log("Single Result:")
-                            console.log(resultsData[5])
-                        }, 3000)
+                        /*
+                            setTimeout(() => {
+                                console.log("Single Result:")
+                                console.log(resultsData[5])
+                            }, 3000)
+                        */
                     } catch (err) {
                         console.log(err)
                     }
@@ -289,13 +293,56 @@ export default function (props) {
                 clearInterval(interval);
                 setLoadingPercent(100);
                 setTimeout(async () => {
-                    let resultsData = await getResults(props.id);
-                    if (resultsData.length > results.length && !loading) {
-                        setSecondLoading(true);
-                        setTimeout(async () => {
-                            setResults(resultsData);
-                            setSecondLoading(false);
-                        }, 2000)
+                    let secondResultsData
+                    try {
+                        secondResultsData = await getResults(props.id);
+                        let resetResults = false;
+                        //console.log("results: " + results)
+                        //console.log("results length: " + results.length)
+                        for (let i = 0; i < secondResultsData.length; i++) {
+                            //console.log("results[i]:")
+                            //console.log(results[i])
+                            //console.log(secondResultsData[i])
+                            console.log(results[i] === undefined && secondResultsData[i] !== undefined)
+
+                            if (results[i] === undefined && secondResultsData[i] !== undefined) {
+                                resetResults = true;
+                            }
+                        }
+                        if (!resetResults) {
+                            for (let i = 0; i < secondResultsData.length; i++) {
+                                let currentResultPresent = Number(results[i][0].totalPremium)
+                                let newResultPresent = Number(secondResultsData[i][0].totalPremium)
+                                if (results[i] !== undefined && (newResultPresent < currentResultPresent)) {
+                                    resetResults = true;
+                                }
+                            }
+                        }
+                        let phonecode1 = undefined;
+                        let phonecode2 = undefined;
+                        //   console.log("resetResults: " + resetResults)
+                        if (resetResults) {
+                            try {
+                                phonecode1 = secondResultsData[0][0]?.phoneCode;
+                            } catch (err) {
+                            }
+                            try {
+                                phonecode2 = secondResultsData[1][0]?.phoneCode;
+                            }
+                            catch (err) {
+                            }
+                            props.sendConfirmationEmail(phonecode1, phonecode2);
+                            setSecondLoading(true);
+                            setTimeout(async () => {
+                                setResults(secondResultsData);
+                                setSecondLoading(false);
+                            }, 2000)
+                        }
+                    } catch (err) {
+                        if (secondResultsData) {
+                            setResults(secondResultsData);
+                        }
+                        setSecondLoading(false);
                     }
                 }, 10000)
 
@@ -309,10 +356,14 @@ export default function (props) {
     }, [fetched, loadingPercent])
 
     useEffect(() => {
-        // if length of results is 2 and both aren't undefined, set noResults to false
-        if (results.length === 2 && results[0] !== undefined && results[1] !== undefined) {
+        // if length of results is 2 and either aren't undefined, set noResults to false
+
+
+        if (results.length === 2 && (results[0] !== undefined || results[1] !== undefined)) {
+            //console.log("Setting noResults to false")
             setNoResults(false);
         } else {
+            //console.log("Setting noResults to true")
             setNoResults(true);
         }
     }, [results])
