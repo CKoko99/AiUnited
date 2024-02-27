@@ -9,6 +9,7 @@ import PriorInsuranceQuestion from "./PriorInsuranceQuestion"
 import CoverageQuestion from "./Coverage/CoverageQuestion"
 import { returnLocaleText } from "@/components/locale/LocaleSwitcher"
 import { CustomFonts } from "providers/theme"
+import StateSelect from "./StateSelect"
 export default function (props) {
     return <>
         <Box
@@ -29,6 +30,9 @@ export default function (props) {
             </>}
             {props.type.toLowerCase() === "select" && <>
                 <SelectQuestion  {...props} />
+            </>}
+            {props.type.toLowerCase() === "state-select" && <>
+                <StateSelect  {...props} />
             </>}
             {props.type.toLowerCase() === "date" && <>
                 <DateQuestion  {...props} />

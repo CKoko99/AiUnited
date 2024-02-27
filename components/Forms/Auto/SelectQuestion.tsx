@@ -9,6 +9,7 @@ export default function (props) {
     const [valid, setValid] = useState(false)
     const [validOnce, setValidOnce] = useState(false)
     const [hidden, setHidden] = useState(true)
+    const [answers, setAnswers] = useState(props.answers)
     function handleValueChange(passedValue) {
         setValue(passedValue)
         if (passedValue) {
@@ -30,7 +31,11 @@ export default function (props) {
         }
         setHidden(false)
     }, [])
-
+    useEffect(() => {
+        if (value !== "") {
+            props.addIdToList(props.nextQuestionId);
+        }
+    }, [props.shownIdList])
 
     return <>
         <Box
@@ -74,7 +79,7 @@ export default function (props) {
                         inputProps={{ ...props.register(props.questionId) }}
                         label={returnLocaleText(props.question)}
                     >
-                        {props.answers.map((option, index) => {
+                        {answers.map((option, index) => {
                             return <MenuItem key={index} value={option.value}>{returnLocaleText(option.text)}</MenuItem>
                         })}
                     </Select>
