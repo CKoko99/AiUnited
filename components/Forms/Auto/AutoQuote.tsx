@@ -262,26 +262,39 @@ export default function (props) {
                         ...returnFormObject(strippedFormValues, [QUESTION_IDS.EDUCATION_LEVEL, QUESTION_IDS.RESIDENCY_STATUS, QUESTION_IDS.RESIDENCY_TYPE,]),
                     },
                     //"{"status":"Request Parameter Validated Failed","errors":["Payload is not valid based on requested contract","Required properties are missing from object: Street1, City, ZipCode. : Customer.Address","Required properties are missing from object: LastName, MonthsAtResidence. : Customer","Required properties are missing from object: Street1, City, ZipCode. : Vehicles[0].GaragingAddress","Required properties are missing from object: Vin, Usage. : Vehicles[0]","Required properties are missing from object: ResidencyStatus, ResidencyType. : RatedDrivers[0].Attributes","Required properties are missing from object: LastName, DateOfBirth, Gender, MaritalStatus. : RatedDrivers[0]"],"accountId":"00000000-0000-0000-0000-000000000000","tT2Output":""}"
-                    LicenseInformation: {
-                        ...returnFormObject(strippedFormValues,
-                            [QUESTION_IDS.DRIVER_1_LICENSE_NUMBER,
-                            QUESTION_IDS.DRIVER_1_LICENSE_STATUS,
-                            QUESTION_IDS.DRIVER_1_MONTHS_LICENSED,
-                            QUESTION_IDS.DRIVER_1_MONTHS_STATE_LICENSED,
-                            QUESTION_IDS.DRIVER_1_MONTHS_SUSPENDED,
-                            QUESTION_IDS.DRIVER_1_STATE_LICENSED]),
-                        //   "LicenseNumber": "",// max 20 characters
-                        //  "LicenseStatus": "Valid",// Valid, Unlicensed, Permit, Suspended
-                        "MonthsForeignLicense": 0,
-                        //   "MonthsLicensed": 310,//Use a select box for this max 1200 months
-                        //     "MonthsStateLicensed": 310,// Months licensed in state
-                        "MonthsMvrExperience": 60,
-                        //       "MonthsSuspended": 0, //If licenseStatus is suspended open this question if not set to 0
-                        //     "StateLicensed": "Texas",//State selection
-                        "CountryOfOrigin": "None", //?
-                        "ForeignNational": false, //?
-                        "InternationalDriversLicense": false
-                    },
+                    LicenseInformation:
+                        process.env.NODE_ENV === "development" ? {
+                            ...returnFormObject(strippedFormValues,
+                                [QUESTION_IDS.DRIVER_1_LICENSE_NUMBER,
+                                QUESTION_IDS.DRIVER_1_LICENSE_STATUS,
+                                QUESTION_IDS.DRIVER_1_MONTHS_LICENSED,
+                                QUESTION_IDS.DRIVER_1_MONTHS_STATE_LICENSED,
+                                QUESTION_IDS.DRIVER_1_MONTHS_SUSPENDED,
+                                QUESTION_IDS.DRIVER_1_STATE_LICENSED]),
+                            //   "LicenseNumber": "",// max 20 characters
+                            //  "LicenseStatus": "Valid",// Valid, Unlicensed, Permit, Suspended
+                            "MonthsForeignLicense": 0,
+                            //   "MonthsLicensed": 310,//Use a select box for this max 1200 months
+                            //     "MonthsStateLicensed": 310,// Months licensed in state
+                            "MonthsMvrExperience": 60,
+                            //       "MonthsSuspended": 0, //If licenseStatus is suspended open this question if not set to 0
+                            //     "StateLicensed": "Texas",//State selection
+                            "CountryOfOrigin": "None", //?
+                            "ForeignNational": false, //?
+                            "InternationalDriversLicense": false
+                        } : {
+                            "LicenseNumber": "",
+                            "LicenseStatus": "Valid",
+                            "MonthsForeignLicense": 0,
+                            "MonthsLicensed": 310,
+                            "MonthsStateLicensed": 310,
+                            "MonthsMvrExperience": 60,
+                            "MonthsSuspended": 0,
+                            "StateLicensed": "Texas",
+                            "CountryOfOrigin": "None",
+                            "ForeignNational": false,
+                            "InternationalDriversLicense": false
+                        },
                     ...returnFormObject(strippedFormValues, [QUESTION_IDS.FIRST_NAME, QUESTION_IDS.LAST_NAME, QUESTION_IDS.DATE_OF_BIRTH, QUESTION_IDS.GENDER, QUESTION_IDS.MARITAL_STATUS, QUESTION_IDS.WORK]),
                     "Discounts": {
 
