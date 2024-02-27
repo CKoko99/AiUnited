@@ -111,7 +111,7 @@ function reduceCompanysList(BaseList, Companies) {
 async function getResults(id) {
     try {
         const resLink = `${PATHCONSTANTS.BACKEND2}/rates/?id=${id}`;
-        console.log(resLink)
+        //   console.log(resLink)
         const res = await fetch(resLink,
             { method: 'GET', }
         )
@@ -150,8 +150,8 @@ async function getResults(id) {
             for (const [key, value] of Object.entries(groupedResults)) {
                 finalList.push(value);
             }
-            console.log("finalList:")
-            console.log(finalList)
+            //   console.log("finalList:")
+            //   console.log(finalList)
 
             finalList = reduceCompanysList(finalList, ["Alinsco", "Apollo", "Aguila Dorada", "Bluefire",
                 "Excellent Insurance", "United Auto",
@@ -174,8 +174,10 @@ async function getResults(id) {
 
             const cheapestBuyNow = finalList.find(result => (result[0] as { buyNowURL: string }).buyNowURL !== "");
             const cheapestNotBuyNow = finalList.find(result => (result[0] as { buyNowURL: string }).buyNowURL === "");
-            console.log("Cheapest Options:")
-            console.log([cheapestBuyNow, cheapestNotBuyNow])
+            if (process.env.NODE_ENV === "development") {
+                console.log("Cheapest Options:")
+                console.log([cheapestBuyNow, cheapestNotBuyNow])
+            }
             return [cheapestBuyNow, cheapestNotBuyNow]
             /*
                  const firstItem = finalList.shift();
@@ -227,8 +229,8 @@ export default function (props) {
                     try {
                         let resultsData = await getResults(props.id);
                         setResults(resultsData);
-                        console.log("resultsData:")
-                        console.log(resultsData)
+                        //           console.log("resultsData:")
+                        //           console.log(resultsData)
                         let phonecode1 = undefined;
                         let phonecode2 = undefined;
                         try {
@@ -260,10 +262,6 @@ export default function (props) {
                 setResults(resultsData);
                 setFetchedOnce(true);
                 setFetched(true);
-                setTimeout(() => {
-                    console.log("Single Result:")
-                    console.log(resultsData[5])
-                }, 3000)
             }
             //        console.log(resultsData.carrierResults)
             //filter results where carrierTransactionId is not ''
@@ -300,11 +298,6 @@ export default function (props) {
                         //console.log("results: " + results)
                         //console.log("results length: " + results.length)
                         for (let i = 0; i < secondResultsData.length; i++) {
-                            //console.log("results[i]:")
-                            //console.log(results[i])
-                            //console.log(secondResultsData[i])
-                            console.log(results[i] === undefined && secondResultsData[i] !== undefined)
-
                             if (results[i] === undefined && secondResultsData[i] !== undefined) {
                                 resetResults = true;
                             }

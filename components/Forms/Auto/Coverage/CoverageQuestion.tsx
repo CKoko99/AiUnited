@@ -243,9 +243,6 @@ export default function (props) {
         }
     }
     useEffect(() => {
-        console.log("props.defaultValue")
-        console.log(props.defaultValue)
-        console.log(props.formValues[props.id])
         //loop through options and find the one that matches the formValues
         //if found, set the selectedIndex to that index
         //if not found, set the selectedIndex to -1

@@ -86,7 +86,7 @@ async function getVINDetails(VIN) {
 function returnInitialValues(formValues, id, defaultValue) {
     const returnValues = { year: "", make: "", model: "" }
     if (formValues[id]) {
-        console.log("Form Values: ", formValues[id])
+        //   console.log("Form Values: ", formValues[id])
 
         for (let i = 0; i < formValues[id].length; i++) {
             const element = formValues[id][i];
@@ -154,9 +154,7 @@ export default function (props) {
             try {
                 // Asynchronous logic here
                 let newMakesList = await getMakes(yearValue);
-                console.log("newMakesList");
-                console.log(newMakesList);
-                // console.log(newMakesList);
+
                 setMakes(newMakesList.makes);
                 setDisableMake(false);
                 //if make value is not in newMakesList.makes, set make value to ""
@@ -181,9 +179,7 @@ export default function (props) {
             try {
                 // Asynchronous logic here
                 let newModelsList = await getModels(yearValue, makeValue);
-                console.log("newModelsList");
-                console.log(newModelsList);
-                // console.log(newMakesList);
+
                 setModels(newModelsList.models);
                 setDisableModel(false);
                 //if make value is not in newMakesList.makes, set make value to ""
@@ -213,9 +209,7 @@ export default function (props) {
             try {
 
                 let newVINList = await getVIN(yearValue, makeValue, modelValue);
-                console.log("newVINList");
-                console.log(newVINList);
-                // console.log(newMakesList);
+
                 setVINValue(newVINList.VINs[0].VIN);
                 props.addIdToList(props.nextQuestionId);
             } catch (error) {
@@ -242,8 +236,6 @@ export default function (props) {
         const newValue = [yearValue, makeValue, modelValue, VINValue];
         setCompleteValue(newValue);
         props.setFormValue(`${props.questionId}`, newValue);
-
-        console.log(VINValue)
         props.updateFormValues(props.id, [
             { questionId: "Year", value: yearValue, valid: yearValue !== "" },
             { questionId: "Make", value: makeValue, valid: makeValue !== "" },
@@ -262,15 +254,15 @@ export default function (props) {
     }, [])
 
     async function defaultValuesHandler(year, make, model) {
-        console.log("Default Values: " + year + " " + make + " " + model)
+
         setTimeout(() => {
             handleYearChange(year)
-            console.log("Handle Year: " + year)
+
             setTimeout(() => {
-                console.log("Handle Make: " + make)
+
                 handleMakeChange(make)
                 setTimeout(() => {
-                    console.log("Handle Model: " + model)
+
                     handleModelChange(model)
                 }, DEFAULTS.waitTime)
             }, DEFAULTS.waitTime)

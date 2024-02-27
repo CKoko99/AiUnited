@@ -121,7 +121,8 @@ export default function (props) {
         async function wakeServer() {
             await fetch(`${PATHCONSTANTS.BACKEND2}/`)
                 .then(
-                    () => { console.log("success") })
+                    () => { //console.log("success")
+                    })
                 .catch((err) => { console.log(err) })
         }
         wakeServer()
@@ -373,17 +374,20 @@ export default function (props) {
             //"BumpLimits": "No Bumping"
         }
         //console log length of formValues
-
-        console.log(data)
-        //stringify data
-        console.log(JSON.stringify(data))
+        if (process.env.NODE_ENV === "development") {
+            console.log(data)
+            //stringify data
+            console.log(JSON.stringify(data))
+        }
         return data
     }
 
     async function handleSave() {
         //   console.log(data);
         setShowResults(true)
-        console.log(formValues)
+        if (process.env.NODE_ENV === "development") {
+            console.log(formValues)
+        }
         const completeFormData = prepareData();
         try {
             const rateResponse = await fetch(`${PATHCONSTANTS.BACKEND2}/rates/`, {
@@ -394,7 +398,9 @@ export default function (props) {
                 body: JSON.stringify(completeFormData)
             })
             const rateData = await rateResponse.json()
-            console.log(rateData)
+            if (process.env.NODE_ENV === "development") {
+                console.log(rateData)
+            }
             if (rateData.error) {
                 const emailFormData = {
                     error: rateData.error,
@@ -447,8 +453,8 @@ export default function (props) {
                     },
                     body: JSON.stringify(emailFormData)
                 })
-                const emailData = await emailResponse.json()
-                console.log(emailData)
+                await emailResponse.json()
+
             } catch (e) { console.log(e) }
         }
         setSubmittedOnce(true)
@@ -486,7 +492,7 @@ export default function (props) {
                 })
                     .then((res) => res.json())
                     .then((data) => {
-                        console.log(data);
+                        //    console.log(data);
                     })
                     .catch((error) => {
                         console.log(error);
@@ -524,8 +530,8 @@ export default function (props) {
                 }
             }
         }
-        console.log("Active Questions Validity: " + returnValue)
-        console.log("Error Questions: " + listOfErrors)
+        //   console.log("Active Questions Validity: " + returnValue)
+        // console.log("Error Questions: " + listOfErrors)
         setErrorQuestions(listOfErrors)
         return returnValue
     }
@@ -685,7 +691,7 @@ export default function (props) {
                                 if (checkValidity() === false) {
                                     return
                                 }
-                                console.log("SUBMITTING")
+                                //     console.log("SUBMITTING")
                                 setQuotePageIndex((prev) => prev + 1)
                                 handleSave()
                             }}

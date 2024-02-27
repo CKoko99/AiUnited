@@ -2903,13 +2903,11 @@ export default function (props) {
     const [isValid, setIsValid] = useState(false);
 
     function handleIndustryChange(value) {
-        console.log("Setting industry value to ", value)
         setIndustryValue(value);
         setShowOccupation(true);
         setOccupationValue("");
     }
     function handleOccupationChange(value) {
-        console.log("Setting occupation value to ", value)
         setOccupationValue(value);
         props.addIdToList(props.nextQuestionId);
         setValidOnce(true);
@@ -2939,8 +2937,6 @@ export default function (props) {
         setHidden(false);
         props.register(`${props.questionId}`, { value: completeValue });
         if (props.formValues[props.id]) {
-            console.log(props.formValues[props.id]);
-            console.log(props.formValues[props.id][0].value);
             handleIndustryChange(props.formValues[props.id][0].value);
             handleOccupationChange(props.formValues[props.id][1].value);
             return;

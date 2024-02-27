@@ -182,7 +182,7 @@ export function LoadingContentItem() {
 function CoverageDetails(props) {
 
     useEffect(() => {
-        console.log(props.coverages)
+        //  console.log(props.coverages)
     }, [])
 
     return <>

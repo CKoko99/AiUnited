@@ -19,10 +19,8 @@ const Layout = ({ children }: LayoutProps) => {
     //when the page changes if the page link contains "get-a-quote" then show the quote navbar
     if (router.pathname.includes("get-a-quote")) {
       setShowQuoteNavbar(true)
-      console.log("showing quote navbar")
     } else {
       setShowQuoteNavbar(false)
-      console.log("hiding quote navbar")
     }
   }, [router.pathname])
 
