@@ -244,7 +244,7 @@ export default function (props) {
                         catch (err) {
                             // console.log(err);
                         }
-                        props.sendConfirmationEmail(phonecode1, phonecode2);
+                        props.sendConfirmationEmail(phonecode1, phonecode2, true);
                         setFetchedOnce(true);
                         setFetched(true);
                         /*

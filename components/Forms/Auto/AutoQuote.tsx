@@ -272,14 +272,14 @@ export default function (props) {
                                 QUESTION_IDS.DRIVER_1_MONTHS_STATE_LICENSED,
                                 QUESTION_IDS.DRIVER_1_MONTHS_SUSPENDED,
                                 QUESTION_IDS.DRIVER_1_STATE_LICENSED]),
-                            //   "LicenseNumber": "",// max 20 characters
-                            //  "LicenseStatus": "Valid",// Valid, Unlicensed, Permit, Suspended
+                            //"LicenseNumber": "",// max 20 characters
+                            //"LicenseStatus": "Valid",// Valid, Unlicensed, Permit, Suspended
+                            //"MonthsLicensed": 310,//Use a select box for this max 1200 months
+                            //"MonthsStateLicensed": 310,// Months licensed in state
+                            //"MonthsSuspended": 0, //If licenseStatus is suspended open this question if not set to 0
+                            //"StateLicensed": "Texas",//State selection
                             "MonthsForeignLicense": 0,
-                            //   "MonthsLicensed": 310,//Use a select box for this max 1200 months
-                            //     "MonthsStateLicensed": 310,// Months licensed in state
                             "MonthsMvrExperience": 60,
-                            //       "MonthsSuspended": 0, //If licenseStatus is suspended open this question if not set to 0
-                            //     "StateLicensed": "Texas",//State selection
                             "CountryOfOrigin": "None", //?
                             "ForeignNational": false, //?
                             "InternationalDriversLicense": false
@@ -296,7 +296,8 @@ export default function (props) {
                             "ForeignNational": false,
                             "InternationalDriversLicense": false
                         },
-                    ...returnFormObject(strippedFormValues, [QUESTION_IDS.FIRST_NAME, QUESTION_IDS.LAST_NAME, QUESTION_IDS.DATE_OF_BIRTH, QUESTION_IDS.GENDER, QUESTION_IDS.MARITAL_STATUS, QUESTION_IDS.WORK]),
+                    ...returnFormObject(strippedFormValues, [QUESTION_IDS.FIRST_NAME, QUESTION_IDS.LAST_NAME, QUESTION_IDS.DATE_OF_BIRTH, QUESTION_IDS.GENDER, QUESTION_IDS.MARITAL_STATUS,]),
+                    IndustryOccupation: strippedFormValues[QUESTION_IDS.WORK] ? strippedFormValues[QUESTION_IDS.WORK][1].value : "Other",
                     "Discounts": {
 
                         "GoodStudent": false,
@@ -345,6 +346,7 @@ export default function (props) {
                     ...returnFormObject(strippedFormValues, [QUESTION_IDS.VEHICLE_1, QUESTION_IDS.VEHICLE_1_PURCHASE_DATE, QUESTION_IDS.VEHICLE_1_USAGE, QUESTION_IDS.VEHICLE_1_ANNUAL_MILES,]),
                     "HomingDevice": false,
                     AssignedDriverId: 1,
+                    MilesToWork: strippedFormValues[QUESTION_IDS.VEHICLE_1_ANNUAL_MILES] ? (parseInt((Number(strippedFormValues[QUESTION_IDS.VEHICLE_1_ANNUAL_MILES][0].value) / 365 / 3).toString())) : "0",
                     CoverageInformation,
                     GaragingAddress: {
                         State: "Texas",
@@ -355,6 +357,7 @@ export default function (props) {
                     ...returnFormObject(strippedFormValues, [QUESTION_IDS.VEHICLE_2, QUESTION_IDS.VEHICLE_2_PURCHASE_DATE, QUESTION_IDS.VEHICLE_2_USAGE, QUESTION_IDS.VEHICLE_2_ANNUAL_MILES,]),
                     "HomingDevice": false,
                     AssignedDriverId: 1,
+                    MilesToWork: strippedFormValues[QUESTION_IDS.VEHICLE_2_ANNUAL_MILES] ? (parseInt((Number(strippedFormValues[QUESTION_IDS.VEHICLE_2_ANNUAL_MILES][0].value) / 365 / 3).toString())) : "0",
                     CoverageInformation,
                     GaragingAddress: {
                         State: "Texas",
@@ -370,6 +373,7 @@ export default function (props) {
             "PaperlessDiscount": false,
             "EffectiveDate": new Date().toISOString(),
             "CustomerDeclinedCredit": false,
+            "AllowCreditScore": false,
             "BumpLimits": "Bump Up"
             //"BumpLimits": "No Bumping"
         }
@@ -422,8 +426,10 @@ export default function (props) {
             console.log(e)
         }
     }
-    async function sendConfirmationEmail(onlinePhoneCode, callPhoneCode) {
-        if (!submittedOnce) {
+    async function sendConfirmationEmail(onlinePhoneCode, callPhoneCode, email) {
+
+        if (email) {
+
             try {
                 const emailFormData = {
                     company: "Ai United",
@@ -457,7 +463,7 @@ export default function (props) {
 
             } catch (e) { console.log(e) }
         }
-        setSubmittedOnce(true)
+
         async function uploadToSheet() {
             const timestamp = new Date().toLocaleString();
 
