@@ -7,6 +7,7 @@ import AutoResults from "./Results/AutoResults";
 import { v4 as uuid } from 'uuid';
 import PATHCONSTANTS from "constants/sitemap";
 import Image, { StaticImageData } from "next/image";
+import { GTMEVENTS, GTMEventHandler } from "../../Scripts/GoogleTag";
 import GrayFinishImg from "../../../public/assets/images/get-a-quote/auto/finishgray.png";
 import ColorFinishImg from "../../../public/assets/images/get-a-quote/auto/finishcolor.png";
 
@@ -115,7 +116,7 @@ export default function (props) {
     const [subPageIndex, setSubPageIndex] = useState(DEFAULTS.subPageIndex);
     const [activeQuestionsArray, setActiveQuestionsArray] = useState<string[]>([]);
     const [errorQuestions, setErrorQuestions] = useState<string[]>([]);
-    const [submittedOnce, setSubmittedOnce] = useState(false);
+    const [farthestPage, setFarthestPage] = useState(DEFAULTS.quotePageIndex);
 
     useEffect(() => {
         async function wakeServer() {
@@ -570,6 +571,19 @@ export default function (props) {
         }
         //window scroll to top with smooth behavior
     }
+    useEffect(() => {
+        //if farthestPage is the last page consolelog hi
+
+        if (farthestPage < quotePageIndex) {
+            let newFarthestPage = quotePageIndex
+            setFarthestPage(newFarthestPage)
+            if (newFarthestPage === props.Form.QuotePages.length) {
+                GTMEventHandler(`${GTMEVENTS.conversion}-TR-Auto`, { 'name': `Auto-Quote` })
+                return
+            }
+            GTMEventHandler(`${GTMEVENTS.audience}-TR-Auto-${(navigationIcons[newFarthestPage] as { title: { en: string } }).title.en}-reached`, { 'name': `Auto-Quote` })
+        }
+    }, [quotePageIndex])
     //when the shownIdList changes, or the subPageIndex changes, or the quotePageIndex changes, update the activeQuestionsArray to contain the question ids
     // only add the question ids that are in the shownIdList and the subPageIndex
     useEffect(() => {

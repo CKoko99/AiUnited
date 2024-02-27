@@ -183,7 +183,7 @@ async function getResults(id) {
                  const firstItem = finalList.shift();
                  finalList.sort((a, b) => (a[0] as { totalPremium: number }).totalPremium - (b[0] as { totalPremium: number }).totalPremium);
                  finalList.unshift(firstItem);
-     */
+             */
             return finalList;
         } else {
             return [];
