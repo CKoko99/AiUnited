@@ -39,6 +39,8 @@ export const QUESTION_IDS = {
     DRIVER_1_MONTHS_STATE_LICENSED: "DRIVER_1_MONTHS_STATE_LICENSED",
     DRIVER_1_MONTHS_SUSPENDED: "DRIVER_1_MONTHS_SUSPENDED",
     DRIVER_1_STATE_LICENSED: "DRIVER_1_STATE_LICENSED",
+    DRIVER_1_HAS_VIOLATIONS: "DRIVER_1_HAS_VIOLATIONS",
+    DRIVER_1_VIOLATIONS: "DRIVER_1_VIOLATIONS",
     EDUCATION_LEVEL: "EDUCATION_LEVEL",
     RESIDENCY_TYPE: "RESIDENCY_TYPE",
     RESIDENCY_STATUS: "RESIDENCY_STATUS",
@@ -90,14 +92,14 @@ function returnFormObject(formValues, idList) {
 }
 
 const DEFAULTS = {
-    shownIdList: process.env.NODE_ENV === "development" ? [
+    shownIdList: process.env.NODE_ENV !== "development" ? [
         QUESTION_IDS.FIRST_NAME,
         QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
-
+        QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS,
     ] : [QUESTION_IDS.FIRST_NAME,],
-    quotePageIndex: process.env.NODE_ENV === "development" ? 0 : 0,
-    subPageIndex: process.env.NODE_ENV === "development" ? 0 : 0,
-    showDefaultValues: process.env.NODE_ENV === "development" ? true : false,
+    quotePageIndex: process.env.NODE_ENV === "development" ? 2 : 0,
+    subPageIndex: process.env.NODE_ENV === "development" ? 1 : 0,
+    showDefaultValues: process.env.NODE_ENV === "development" ? true : true,
     showDefaultsButton: process.env.NODE_ENV === "development" ? true : false,
 }
 
@@ -563,12 +565,34 @@ export default function (props) {
             window.scrollTo({ top: 0, behavior: "smooth" })
         }, 100)
         if (checkValidity() === false) return
+        let newSubPageIndex = subPageIndex
+        let newQuotePageIndex = quotePageIndex
         if (props.Form.QuotePages[quotePageIndex].SubPages.length - 1 > subPageIndex) {
-            setSubPageIndex((prev) => prev + 1)
+            newSubPageIndex = subPageIndex + 1
+            setSubPageIndex(newSubPageIndex)
         } else {
-            setQuotePageIndex((prev) => prev + 1)
-            setSubPageIndex(0)
+            newQuotePageIndex = quotePageIndex + 1
+            newSubPageIndex = 0
+            setQuotePageIndex(newQuotePageIndex)
+            setSubPageIndex(newSubPageIndex)
         }
+        //check newest page and make sure there is atleast one question in the shownIdList if not call nextPageHandler again
+        let questionInNewPage = false
+        for (let i = 0; i < props.Form.QuotePages[newQuotePageIndex].SubPages[newSubPageIndex].Questions.length; i++) {
+            if (shownIdList.includes(props.Form.QuotePages[newQuotePageIndex].SubPages[newSubPageIndex].Questions[i].id)) {
+                console.log("Question in new page")
+                questionInNewPage = true
+                break
+            }
+        }
+        if (!questionInNewPage) {
+            console.log("No question in new page")
+            console.log(newQuotePageIndex + " " + newSubPageIndex)
+            setTimeout(() => {
+                nextPageHandler()
+            }, 100)
+        }
+
         //window scroll to top with smooth behavior
     }
     useEffect(() => {
