@@ -432,7 +432,7 @@ export default function (props) {
         }
     }
     async function sendConfirmationEmail(onlinePhoneCode, callPhoneCode, email) {
-
+        if (!onlinePhoneCode && !callPhoneCode) return
         if (email) {
 
             try {
