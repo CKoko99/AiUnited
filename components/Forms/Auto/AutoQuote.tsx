@@ -241,9 +241,11 @@ export default function (props) {
         }
         const IsDriver2 = (strippedFormValues[QUESTION_IDS.DRIVER_2_ADD] && strippedFormValues[QUESTION_IDS.DRIVER_2_ADD][0] && strippedFormValues[QUESTION_IDS.DRIVER_2_ADD][0].value === "true")
         const IsVehicle2 = (strippedFormValues[QUESTION_IDS.VEHICLE_2_ADD] && strippedFormValues[QUESTION_IDS.VEHICLE_2_ADD][0] && strippedFormValues[QUESTION_IDS.VEHICLE_2_ADD][0].value === "true")
-
+        const newQuoteId = uuid()
+        setQuoteId(newQuoteId)
+        console.log(strippedFormValues)
         const data = {
-            Identifier: QuoteId,
+            Identifier: newQuoteId,
             Customer: {
                 ...returnFormObject(strippedFormValues, [QUESTION_IDS.FIRST_NAME, QUESTION_IDS.LAST_NAME, QUESTION_IDS.TIME_AT_ADDRESS]),
                 Identifier: String(Math.floor(Math.random() * 1000000000)),
@@ -607,7 +609,6 @@ export default function (props) {
                 }
             }
         }
-
 
         //window scroll to top with smooth behavior
     }
