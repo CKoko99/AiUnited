@@ -81,6 +81,7 @@ export default function (props) {
                         variant="contained"
                         color="secondary"
                         href={PATHCONSTANTS.GETAQUOTE.AUTO}
+                        onClick={() => { GTMEventHandler(`${GTMEVENTS.audience}-TR-Auto-Start`, { 'name': "Auto-Quote" }) }}
                         sx={{
                             minWidth: "10rem", minHeight: "3.5rem"
                         }}
