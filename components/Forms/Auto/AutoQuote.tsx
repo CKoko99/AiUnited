@@ -92,7 +92,7 @@ function returnFormObject(formValues, idList) {
 }
 
 const DEFAULTS = {
-    shownIdList: process.env.NODE_ENV !== "development" ? [
+    shownIdList: process.env.NODE_ENV === "development" ? [
         QUESTION_IDS.FIRST_NAME,
         QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
         QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS,
@@ -549,11 +549,32 @@ export default function (props) {
         //if there isn't another subpage, go to the next quotePageIndex
         //and set the subPageIndex to 0
         //if decrementing the quotePageIndex then set the subPageIndex to the highest possible
-        if (subPageIndex === 0) {
-            setQuotePageIndex((prev) => prev - 1)
-            setSubPageIndex(props.Form.QuotePages[quotePageIndex - 1].SubPages.length - 1)
-        } else {
-            setSubPageIndex((prev) => prev - 1)
+
+        let newSubPageIndex = subPageIndex
+        let newQuotePageIndex = quotePageIndex
+        let questionInNewPage = false
+        while (!questionInNewPage) {
+            if (newSubPageIndex === 0) {
+                newQuotePageIndex = newQuotePageIndex - 1
+                newSubPageIndex = props.Form.QuotePages[newQuotePageIndex].SubPages.length - 1
+                setQuotePageIndex((prev) => prev - 1)
+                setSubPageIndex((prev) => props.Form.QuotePages[newQuotePageIndex].SubPages.length - 1)
+            } else {
+                newSubPageIndex = newSubPageIndex - 1
+                setSubPageIndex((prev) => prev - 1)
+            }
+            //check newest page and make sure there is atleast one question in the shownIdList if not call nextPageHandler again
+            for (let i = 0; i < props.Form.QuotePages[newQuotePageIndex]?.SubPages[newSubPageIndex]?.Questions.length; i++) {
+                if (shownIdList.includes(props.Form.QuotePages[newQuotePageIndex].SubPages[newSubPageIndex]?.Questions[i].id)) {
+                    questionInNewPage = true
+                }
+            }
+            if (newQuotePageIndex === 0 && newSubPageIndex === 0) questionInNewPage = true
+
+            console.log(newQuotePageIndex + " " + newSubPageIndex)
+            setTimeout(() => {
+            }, 1000)
+
         }
     }
 
@@ -567,34 +588,30 @@ export default function (props) {
         if (checkValidity() === false) return
         let newSubPageIndex = subPageIndex
         let newQuotePageIndex = quotePageIndex
-        if (props.Form.QuotePages[quotePageIndex].SubPages.length - 1 > subPageIndex) {
-            newSubPageIndex = subPageIndex + 1
-            setSubPageIndex(newSubPageIndex)
-        } else {
-            newQuotePageIndex = quotePageIndex + 1
-            newSubPageIndex = 0
-            setQuotePageIndex(newQuotePageIndex)
-            setSubPageIndex(newSubPageIndex)
-        }
-        //check newest page and make sure there is atleast one question in the shownIdList if not call nextPageHandler again
         let questionInNewPage = false
-        for (let i = 0; i < props.Form.QuotePages[newQuotePageIndex].SubPages[newSubPageIndex].Questions.length; i++) {
-            if (shownIdList.includes(props.Form.QuotePages[newQuotePageIndex].SubPages[newSubPageIndex].Questions[i].id)) {
-                console.log("Question in new page")
-                questionInNewPage = true
-                break
+        while (!questionInNewPage) {
+            if (props.Form.QuotePages[newQuotePageIndex]?.SubPages[newSubPageIndex]?.Questions.length - 1 > newSubPageIndex) {
+                newSubPageIndex = subPageIndex + 1
+                setSubPageIndex((prev) => prev + 1)
+            } else {
+                newQuotePageIndex = quotePageIndex + 1
+                newSubPageIndex = 0
+                setQuotePageIndex((prev) => prev + 1)
+                setSubPageIndex((prev) => 0)
+            }
+            //check newest page and make sure there is atleast one question in the shownIdList if not call nextPageHandler again
+            for (let i = 0; i < props.Form.QuotePages[newQuotePageIndex]?.SubPages[newSubPageIndex]?.Questions.length; i++) {
+                if (shownIdList.includes(props.Form.QuotePages[newQuotePageIndex].SubPages[newSubPageIndex]?.Questions[i].id)) {
+                    questionInNewPage = true
+                    break
+                }
             }
         }
-        if (!questionInNewPage) {
-            console.log("No question in new page")
-            console.log(newQuotePageIndex + " " + newSubPageIndex)
-            setTimeout(() => {
-                nextPageHandler()
-            }, 100)
-        }
+
 
         //window scroll to top with smooth behavior
     }
+
     useEffect(() => {
         //if farthestPage is the last page consolelog hi
 
