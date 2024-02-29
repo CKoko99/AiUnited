@@ -13,9 +13,7 @@ import CardImg1 from "public/assets/images/products/discount.png";
 
 const headContent = {
     title: 'Ai United Home Insurance Guide',
-    metaData: `Explore tailored home insurance policies for comprehensive protection. 
-    Discover standard and specialized coverage options to safeguard your property and belongings. 
-    Find the perfect insurance solution for your peace of mind.`
+    metaData: `Explore tailored home insurance policies for comprehensive protection. Discover standard and tailored coverage options to protect your property and belongings.`,
 }
 
 const verticalBannerContent = {

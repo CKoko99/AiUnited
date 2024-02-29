@@ -7,7 +7,7 @@ import HeadComponent from "@/components/Head";
 
 const headContent = {
     title: "Ai United Insurance - Articles",
-    metaData: "Learn more about insurance and how to protect your assets. We provide valuable insights, tips, and expert advice to help you navigate the complex world of insurance and make choices that align with your unique needs.",
+    metaData: "We provide valuable insights, tips, and expert advice to help you navigate the complex world of insurance and make choices that align with your unique needs.",
 }
 
 const bannerContent = {

@@ -269,7 +269,7 @@ const contentSection11 = {
 export default function () {
     return <>
         <HeadComponent title={'Types of Auto Insurance Coverage'}
-            metaData={'Our comprehensive guide breaks down the intricacies of auto insurance coverage, providing you with a roadmap to confidently choose the protection that suits your needs.'}
+            metaData={'Our comprehensive guide breaks down the details of auto insurance coverage, providing you with a roadmap to confidently choose the protection that suits you.'}
         />
         <HorizontalBanner {...verticalBannerContent} />
         <AutoSubNav />

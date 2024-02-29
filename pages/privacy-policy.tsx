@@ -5,7 +5,7 @@ import HeadComponent from "@/components/Head";
 
 const headContent = {
     title: "Ai United Insurance - Privacy Policy",
-    metaData: "Ai United Insurance is the sole owner of the information collected on this site. We will not sell, share, or rent this information to others in ways different from what is disclosed in this statement. Ai United Insurance collects information from our users at several different points on our website.",
+    metaData: "Ai United Insurance is the sole owner of the information collected on this site. Please read our privacy policy to learn more.",
 }
 
 const privacy = {

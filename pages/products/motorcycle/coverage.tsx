@@ -19,7 +19,7 @@ import CenterImage from "@/components/Content/CenterImage"
 
 const headContent = {
     title: 'Ai United Motorcycle Insurance Coverage Guide',
-    metaData: `Dive into the intricacies of Motorcycle Insurance with Ai United's comprehensive guide. Learn about the different types of coverage and how to protect yourself and your bike.`,
+    metaData: `Dive into the details of Motorcycle Insurance with Ai United's guide. Learn about the different types of coverage and how to protect yourself and your bike.`,
 }
 
 const pageLinks = {

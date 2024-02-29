@@ -9,7 +9,7 @@ import MexicoImg1 from "public/assets/images/products/mexico/mexico1.png"
 
 const headContent = {
     title: "Mexico Tourist Auto Insurance Frequently Asked Questions",
-    metaData: "Learn more about Mexico tourist auto insurance and how it can protect you while driving in Mexico. Get answers to frequently asked questions about Mexico tourist auto insurance.",
+    metaData: "Learn more about Mexico tourist auto insurance and how it can protect you while driving in Mexico by exploring our frequently asked questions.",
 }
 const verticalBannerContent = {
     title: {

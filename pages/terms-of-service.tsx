@@ -5,7 +5,7 @@ import HeadComponent from "@/components/Head";
 
 const headContent = {
     title: "Ai United Insurance - Terms of Use",
-    metaData: "Please read the following terms and conditions carefully. Your use of the services provided in the www.getaiu.com domain are specifically conditioned upon your agreement to the terms contained in this terms of use agreement (the 'Agreement'). By using the service, you are agreeing to all of the terms contained in this agreement.",
+    metaData: "Please read the following terms and conditions carefully. Please read these conditions carefully before using this web site.",
 }
 
 const term = {

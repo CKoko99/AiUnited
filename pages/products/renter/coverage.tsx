@@ -17,7 +17,7 @@ import RenterSubNav from "@/components/SubNavBar/products/renter";
 import ThinkingImg from "public/assets/images/products/thinking.png";
 const headContent = {
     title: 'Ai United Renters Insurance Coverage',
-    metaData: `Dive into the intricacies of renters insurance coverage with our comprehensive overview. Explore detailed policies, including property, liability, and personal belongings coverage.`,
+    metaData: `Dive into the details of renters insurance coverage with our guide. Explore detailed policies, including property, liability, and personal belongings coverage.`,
 }
 
 const pageLinks = {
