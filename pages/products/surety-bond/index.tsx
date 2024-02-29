@@ -15,7 +15,7 @@ import SuretyImg1 from "public/assets/images/products/surety/surety.png"
 
 const headContent = {
     title: 'Ai United Surety Bond Insurance Guide',
-    metaData: `Learn more about Surety Bond Insurance and how it can protect you and your business.`
+    metaData: `Discover Surety Bond Insurance's protection for you and your business. Learn more to safeguard your assets and operations.`,
 }
 
 const verticalBannerContent = {
