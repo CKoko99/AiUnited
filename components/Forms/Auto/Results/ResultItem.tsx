@@ -376,7 +376,7 @@ export default function ContentItem(props) {
                     }}
                     color={buyNowURL !== "" ? "secondary" : "primary"}
                     variant="contained"
-                    href={buyNowURL !== "" ? buyNowURL : PATHCONSTANTS.PHONE}
+                    href={buyNowURL !== "" ? buyNowURL : PATHCONSTANTS.SALESPHONE}
                     target={buyNowURL !== "" ? "_blank" : "_self"}
                 >
                     {buyNowURL !== "" ? returnLocaleText(TEXT.buyOnline) : returnLocaleText(TEXT.callToGetPrice)}

@@ -94,6 +94,7 @@ const PATHCONSTANTS = {
     PAYMENTS: '/payments',
     PHONE: "tel:2819336333",
     PHONETEXT: "(281)-933-6333",
+    SALESPHONE: "tel:2814429555",
     PRIVACY: '/privacy-policy',
     TERMS: '/terms-of-service',
     BACKEND: process.env.NODE_ENV === "development" ? "http://192.168.20.122:8080" : "https://insurancehubbackend-uc3v53rceq-ue.a.run.app",
