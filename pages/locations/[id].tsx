@@ -131,7 +131,7 @@ export default function (props) {
     // console.log(props.data)
     return <>
         <HeadComponent title={`Ai United Insurance ${props.data.address}`}
-            metaData={`Ai United Insurance Location | ${props.data.address} ${props.data.city}, ${props.data.state}`}
+            metaData={`Visit AI United Insurance at ${props.data.address} ${props.data.city}, ${props.data.state} for reliable insurance solutions. Protect your assets with peace of mind.`}
         />
         <Box
             textAlign={"center"}
