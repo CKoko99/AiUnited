@@ -1,6 +1,12 @@
 import { Box } from "@mui/material"
 import TextContent from "../components/Content/TextContent"
 import TextSection from "../components/Content/TextSection"
+import HeadComponent from "@/components/Head";
+
+const headContent = {
+    title: "Ai United Insurance - Terms of Use",
+    metaData: "Please read the following terms and conditions carefully. Your use of the services provided in the www.getaiu.com domain are specifically conditioned upon your agreement to the terms contained in this terms of use agreement (the 'Agreement'). By using the service, you are agreeing to all of the terms contained in this agreement.",
+}
 
 const term = {
     content: [
@@ -157,6 +163,7 @@ const term = {
 }
 export default function () {
     return <>
+        <HeadComponent {...headContent} />
         <TextSection title={{ en: "Terms of Service", es: "Términos de servicio" }}
             titleComponent={"h1" as const}
         />

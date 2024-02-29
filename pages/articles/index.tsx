@@ -3,6 +3,13 @@ import PopularArtices from "@/components/Articles/PopularArtices";
 import HorizontalBanner from "@/components/Content/Hero/HorizontalBanner";
 import TextSection from "@/components/Content/TextSection";
 import ArticlesBanner from "@/public/assets/images/articles/banner.png"
+import HeadComponent from "@/components/Head";
+
+const headContent = {
+    title: "Ai United Insurance - Articles",
+    metaData: "Learn more about insurance and how to protect your assets. We provide valuable insights, tips, and expert advice to help you navigate the complex world of insurance and make choices that align with your unique needs.",
+}
+
 const bannerContent = {
     img: {
         src: ArticlesBanner,
@@ -61,6 +68,7 @@ export async function getServerSideProps(context) {
 export default function (props) {
 
     return <>
+        <HeadComponent {...headContent} />
         <HorizontalBanner {...bannerContent} />
         <hr />
         <PopularArtices articles={props.popularArticles} />

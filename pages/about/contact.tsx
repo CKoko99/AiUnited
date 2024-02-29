@@ -3,6 +3,13 @@ import ContactAndLocations from '../../components/Content/FlexDigrams/Combo/Cont
 import Hero from '../../components/Content/Hero/Hero';
 import BannerImg from '../../public/assets/images/about/contact/banner.png';
 import SimpleForm from 'components/Forms/Simple/Simple';
+import HeadComponent from "@/components/Head";
+
+const headContent = {
+  title: "Ai United Insurance - Contact Us",
+  metaData: "Contact Ai United Insurance for all your insurance needs. We are here to help you with all your insurance needs.",
+}
+
 const heroContent = {
   title: {
     en: "Contact Our Team",
@@ -89,6 +96,7 @@ export default function () {
       {/*
       <Hero {...heroContent} />
       */}
+      <HeadComponent {...headContent} />
       <TextSection {...heroContent} />
       <ContactAndLocations hideTitle />
       <SimpleForm {...formContent} />

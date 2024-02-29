@@ -28,6 +28,13 @@ import React, { useEffect, useState } from 'react'
 import { StaticImageData } from 'next/image';
 import { useRouter } from 'next/router'
 import { Lang } from '@/components/locale/LocaleSwitcher'
+import HeadComponent from "@/components/Head";
+
+const headContent = {
+    title: "Ai United Insurance - Payments",
+    metaData: "Make a payment on your insurance policy. Ai United Insurance provides you with coverage options, benefits and discounts at a price you can afford.",
+}
+
 
 const paymentText = {
     payment: {
@@ -330,6 +337,7 @@ export default function () {
         })}
     </Box>
     return <>
+        <HeadComponent {...headContent} />
         <Box
             sx={{
                 width: "90%", maxWidth: "1000px", margin: "auto", padding: "2rem 0", textAlign: "center",
