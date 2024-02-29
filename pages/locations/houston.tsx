@@ -16,7 +16,7 @@ export default function (props) {
     // console.log(props.data.locations)
     return <>
         <HeadComponent title={"Ai United Houston Locations"}
-            metaData="Ai United Insurance Houston Locations."
+            metaData="Visit AI United Insurance in Houston, Texas for reliable insurance solutions. Protect your assets with peace of mind."
         />
         <Locations
             locations={props.data}

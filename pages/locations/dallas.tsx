@@ -17,7 +17,7 @@ export default function (props) {
 
     return <>
         <HeadComponent title={"Ai United Dallas Locations"}
-            metaData="Ai United Insurance Dallas Locations."
+            metaData="Visit AI United Insurance in Dallas, Texas for reliable insurance solutions. Protect your assets with peace of mind."
         />
         <Locations
             locations={props.data}

@@ -18,7 +18,7 @@ export default function (props) {
 
     return <>
         <HeadComponent title={"Ai United Corpus Christi Locations"}
-            metaData="Ai United Insurance Corpus Christi Locations."
+            metaData="Visit AI United Insurance in Corpus Christi, Texas for reliable insurance solutions. Protect your assets with peace of mind."
         />
         <Locations
             locations={props.data}

@@ -15,7 +15,7 @@ export async function getServerSideProps(context) {
 export default function (props) {
     return <>
         <HeadComponent title={"Ai United Austin Locations"}
-            metaData="Ai United Insurance Austin Locations."
+            metaData="Visit AI United Insurance in Austin, Texas for reliable insurance solutions. Protect your assets with peace of mind."
         />
         <Locations
             locations={props.data}
