@@ -99,7 +99,7 @@ const DEFAULTS = {
     ] : [QUESTION_IDS.FIRST_NAME,],
     quotePageIndex: process.env.NODE_ENV === "development" ? 2 : 0,
     subPageIndex: process.env.NODE_ENV === "development" ? 1 : 0,
-    showDefaultValues: process.env.NODE_ENV === "development" ? true : true,
+    showDefaultValues: process.env.NODE_ENV === "development" ? true : false,
     showDefaultsButton: process.env.NODE_ENV === "development" ? true : false,
 }
 
