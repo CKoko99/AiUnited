@@ -10,6 +10,7 @@ import CoverageQuestion from "./Coverage/CoverageQuestion"
 import { returnLocaleText } from "@/components/locale/LocaleSwitcher"
 import { CustomFonts } from "providers/theme"
 import StateSelect from "./StateSelect"
+import Violations from "./Violations"
 export default function (props) {
     return <>
         <Box
@@ -45,6 +46,9 @@ export default function (props) {
             </>}
             {props.type.toLowerCase() === "button" && <>
                 <ButtonQuestion  {...props} />
+            </>}
+            {props.type.toLowerCase() === "violations" && <>
+                <Violations  {...props} />
             </>}
             {props.type.toLowerCase() === "prior-insurance" && <>
                 <PriorInsuranceQuestion  {...props} />

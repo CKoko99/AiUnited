@@ -97,8 +97,8 @@ const DEFAULTS = {
         QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
         QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS,
     ] : [QUESTION_IDS.FIRST_NAME,],
-    quotePageIndex: process.env.NODE_ENV === "development" ? 2 : 0,
-    subPageIndex: process.env.NODE_ENV === "development" ? 1 : 0,
+    quotePageIndex: process.env.NODE_ENV === "development" ? 0 : 0,
+    subPageIndex: process.env.NODE_ENV === "development" ? 0 : 0,
     showDefaultValues: process.env.NODE_ENV === "development" ? true : false,
     showDefaultsButton: process.env.NODE_ENV === "development" ? true : false,
 }
@@ -186,7 +186,6 @@ export default function (props) {
     }
 
     function prepareData() {
-
         const strippedFormValues = {}
         for (let i = 0; i < shownIdList.length; i++) {
             const id = shownIdList[i]
@@ -239,6 +238,19 @@ export default function (props) {
             GapCoverage,
             CustomEquipmentValue
         }
+
+        let hasViolations = false
+        let violationsData = []
+        if (process.env.NODE_ENV === "development") {
+            hasViolations = formValues[QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS] ? formValues[QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS][0].value : false
+            console.log("Has Violations: " + hasViolations)
+            if (formValues[QUESTION_IDS.DRIVER_1_VIOLATIONS]) {
+                console.log(formValues[QUESTION_IDS.DRIVER_1_VIOLATIONS][0].value)
+                violationsData = hasViolations ? formValues[QUESTION_IDS.DRIVER_1_VIOLATIONS][0].value : []
+            }
+        }
+        console.log("Violations Data: " + violationsData)
+
         const IsDriver2 = (strippedFormValues[QUESTION_IDS.DRIVER_2_ADD] && strippedFormValues[QUESTION_IDS.DRIVER_2_ADD][0] && strippedFormValues[QUESTION_IDS.DRIVER_2_ADD][0].value === "true")
         const IsVehicle2 = (strippedFormValues[QUESTION_IDS.VEHICLE_2_ADD] && strippedFormValues[QUESTION_IDS.VEHICLE_2_ADD][0] && strippedFormValues[QUESTION_IDS.VEHICLE_2_ADD][0].value === "true")
         const newQuoteId = uuid()
@@ -321,7 +333,7 @@ export default function (props) {
                         "Sr22": false,
                         "Sr22A": false
                     },
-                    "Violations": []
+                    "Violations": violationsData
                 },
                 IsDriver2 ? {
                     "DriverId": 2,
@@ -541,8 +553,8 @@ export default function (props) {
                 }
             }
         }
-        //   console.log("Active Questions Validity: " + returnValue)
-        // console.log("Error Questions: " + listOfErrors)
+        console.log("Active Questions Validity: " + returnValue)
+        console.log("Error Questions: " + listOfErrors)
         setErrorQuestions(listOfErrors)
         return returnValue
     }
@@ -646,7 +658,6 @@ export default function (props) {
             }
         }
         // using the activeQuestionsArray log the values from formValues
-
         setActiveQuestionsArray(activeQuestionsArray)
     }, [shownIdList, subPageIndex, quotePageIndex])
 

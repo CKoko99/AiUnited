@@ -304,9 +304,9 @@ export default function (props) {
                         }
                         if (!resetResults) {
                             for (let i = 0; i < secondResultsData.length; i++) {
-                                let currentResultPresent = Number(results[i][0].totalPremium)
-                                let newResultPresent = Number(secondResultsData[i][0].totalPremium)
-                                if (results[i] !== undefined && (newResultPresent < currentResultPresent)) {
+                                let currentResultPremium = Number(results[i][0].totalPremium)
+                                let newResultPremium = Number(secondResultsData[i][0].totalPremium)
+                                if (results[i] !== undefined && (newResultPremium < currentResultPremium)) {
                                     resetResults = true;
                                 }
                             }

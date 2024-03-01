@@ -2575,7 +2575,7 @@ const DevAutoForm = {
                                     es: "No",
                                 },
                                 value: "false",
-                                nextQuestionId: QUESTION_IDS.PRIOR_INSURANCE,
+                                nextQuestionId: QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS,
                             },
                         ]
                     },
@@ -2750,7 +2750,50 @@ const DevAutoForm = {
 
 
                 ]
-            }]
+            },
+            {
+                Questions: [
+                    {
+                        id: QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS,
+                        type: "button",
+                        questionId: "Driver1Violations",
+                        defaultValue: "false",
+                        question: {
+                            en: "Do you have any violations or accidents in the last 3 years?",
+                            es: "¿Tiene alguna violación o accidente en los últimos 3 años?",
+                        },
+                        validationError: {
+                            en: "Please select an option",
+                            es: "Por favor seleccione una opción",
+                        },
+                        answers: [
+                            {
+                                text: {
+                                    en: "Yes",
+                                    es: "Sí",
+                                },
+                                value: "true",
+                                nextQuestionId: QUESTION_IDS.DRIVER_1_VIOLATIONS,
+                            },
+                            {
+                                text: {
+                                    en: "No",
+                                    es: "No",
+                                },
+                                value: "false",
+                                nextQuestionId: QUESTION_IDS.PRIOR_INSURANCE,
+                            },
+                        ]
+                    },
+                    {
+                        id: QUESTION_IDS.DRIVER_1_VIOLATIONS,
+                        nextQuestionId: QUESTION_IDS.PRIOR_INSURANCE,
+                        questionId: "Driver1Violations",
+                        type: "violations",
+                    },
+                ]
+            }
+            ]
         },
         {
             title: { en: "Coverage", es: "Cobertura" },
