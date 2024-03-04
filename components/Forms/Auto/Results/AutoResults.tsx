@@ -195,7 +195,7 @@ async function getResults(id) {
         return [];
     }
 }
-const totalWaitTime = 12000;
+const totalWaitTime = 5120;
 
 export default function (props) {
 
@@ -294,37 +294,50 @@ export default function (props) {
                     let secondResultsData
                     try {
                         secondResultsData = await getResults(props.id);
-                        let resetResults = false;
-                        //console.log("results: " + results)
-                        //console.log("results length: " + results.length)
-                        for (let i = 0; i < secondResultsData.length; i++) {
-                            if (results[i] === undefined && secondResultsData[i] !== undefined) {
-                                resetResults = true;
-                            }
-                        }
-                        if (!resetResults) {
-                            for (let i = 0; i < secondResultsData.length; i++) {
-                                let currentResultPremium = Number(results[i][0].totalPremium)
-                                let newResultPremium = Number(secondResultsData[i][0].totalPremium)
-                                if (results[i] !== undefined && (newResultPremium < currentResultPremium)) {
-                                    resetResults = true;
+                        let phoneCodeIsDifferent = false;
+                        let oldPhoneCodes: Array<string> = [];
+                        let newPhoneCodes: Array<string> = [];
+                        console.log("old results:")
+                        console.log(results)
+                        //length is results.length or secondResultsData.length, whichever is greater
+                        const length = results.length > secondResultsData.length ? results.length : secondResultsData.length;
+                        for (let i = 0; i < length; i++) {
+                            let pushed = false;
+                            if (results[i]) {
+                                if (results[i][0]) {
+                                    if (results[i][0].phoneCode) {
+                                        oldPhoneCodes.push(results[i][0].phoneCode)
+                                        pushed = true;
+                                    }
                                 }
                             }
+                            if (!pushed) {
+                                oldPhoneCodes.push("undefined")
+                            }
                         }
-                        let phonecode1 = undefined;
-                        let phonecode2 = undefined;
-                        //   console.log("resetResults: " + resetResults)
-                        if (resetResults) {
-                            try {
-                                phonecode1 = secondResultsData[0][0]?.phoneCode;
-                            } catch (err) {
+                        for (let i = 0; i < length; i++) {
+                            let pushed = false;
+                            if (secondResultsData[i]) {
+                                if (secondResultsData[i][0]) {
+                                    if (secondResultsData[i][0].phoneCode) {
+                                        newPhoneCodes.push(secondResultsData[i][0].phoneCode)
+                                        pushed = true;
+                                    }
+                                }
                             }
-                            try {
-                                phonecode2 = secondResultsData[1][0]?.phoneCode;
+                            if (!pushed) {
+                                newPhoneCodes.push("undefined")
                             }
-                            catch (err) {
+                        }
+                        for (let i = 0; i < length; i++) {
+                            if (oldPhoneCodes[i] !== newPhoneCodes[i]) {
+                                phoneCodeIsDifferent = true;
                             }
-                            props.sendConfirmationEmail(phonecode1, phonecode2);
+                        }
+
+                        if (phoneCodeIsDifferent) {
+
+                            props.sendConfirmationEmail(newPhoneCodes[0], newPhoneCodes[1])
                             setSecondLoading(true);
                             setTimeout(async () => {
                                 setResults(secondResultsData);
