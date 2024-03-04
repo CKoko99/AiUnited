@@ -38,13 +38,13 @@ const OPTIONS = [
             title: { en: "Personal Injury Protection", es: "Protección contra Lesiones Personales" }
         },
         {
-            key: "UninsuredMotoristPdLimit", value: "25000",
-            valueText: { en: "25k", es: "25k" },
+            key: "UninsuredMotoristPdLimit", value: "None",
+            valueText: { en: "None", es: "Ninguno" },
             title: { en: "Uninsured Motorist Property Damage", es: "Daños a la Propiedad de un Conductor Sin Seguro" }
         },
         {
-            key: "UninsuredMotoristBiLimit", valueText: { en: "30k/60k", es: "30k/60k" },
-            value: "30000/60000",
+            key: "UninsuredMotoristBiLimit", valueText: { en: "None", es: "Ninguno" },
+            value: "None",
             title: { en: "Uninsured Motorist Bodily Injury", es: "Lesiones Corporales de un Conductor Sin Seguro" }
         },
         {
