@@ -195,7 +195,7 @@ async function getResults(id) {
         return [];
     }
 }
-const totalWaitTime = 5120;
+const totalWaitTime = 12000;
 
 export default function (props) {
 
