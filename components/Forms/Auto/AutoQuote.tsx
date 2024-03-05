@@ -91,11 +91,13 @@ function returnFormObject(formValues, idList) {
     return formObject
 }
 
+
 const DEFAULTS = {
     shownIdList: process.env.NODE_ENV === "development" ? [
         QUESTION_IDS.FIRST_NAME,
-        QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
-        QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS,
+        //QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
+        //QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS,
+
     ] : [QUESTION_IDS.FIRST_NAME,],
     quotePageIndex: process.env.NODE_ENV === "development" ? 0 : 0,
     subPageIndex: process.env.NODE_ENV === "development" ? 0 : 0,
@@ -103,12 +105,41 @@ const DEFAULTS = {
     showDefaultsButton: process.env.NODE_ENV === "development" ? true : false,
 }
 
+const PAGE_FORM_VALUES = [
+    {
+        quotePageIndex: 0,
+        subPageIndex: 0,
+        formValues: [
+            { question: "First Name:", value: QUESTION_IDS.FIRST_NAME },
+            { question: "Last Name:", value: QUESTION_IDS.LAST_NAME },
+            { question: "Phone Number:", value: QUESTION_IDS.PHONE_NUMBER },
+            { question: "Email:", value: QUESTION_IDS.EMAIL },
+        ]
+    },
+    {
+        quotePageIndex: 0,
+        subPageIndex: 1,
+        formValues: [
+            { question: "Address Line 1:", value: QUESTION_IDS.ADDRESS_LINE_1 },
+            { question: "City:", value: QUESTION_IDS.CITY },
+            { question: "State:", value: QUESTION_IDS.ZIP_CODE },
+            { question: "Zip Code:", value: QUESTION_IDS.TIME_AT_ADDRESS },
+        ]
+    },
+    {
+        quotePageIndex: 1,
+        subPageIndex: 0,
+        formValues: [
+            { question: "Vehicle:", value: QUESTION_IDS.VEHICLE_1 },
+        ]
+    },
+]
+
 export default function (props) {
+
     // Use UUID to generate QuoteId
     const [QuoteId, setQuoteId] = useState(uuid());
-    const [shownIdList, setShownIdList] = useState(
-        DEFAULTS.shownIdList
-    );
+    const [shownIdList, setShownIdList] = useState(DEFAULTS.shownIdList);
     const { register, handleSubmit, setValue, formState } = useForm();
     const [formValues, setFormValues] = useState({});
     const [showDefaultValues, setShowDefaultValues] = useState(DEFAULTS.showDefaultValues);
@@ -118,7 +149,7 @@ export default function (props) {
     const [subPageIndex, setSubPageIndex] = useState(DEFAULTS.subPageIndex);
     const [activeQuestionsArray, setActiveQuestionsArray] = useState<string[]>([]);
     const [errorQuestions, setErrorQuestions] = useState<string[]>([]);
-    const [farthestPage, setFarthestPage] = useState(DEFAULTS.quotePageIndex);
+    const [farthestPage, setFarthestPage] = useState([DEFAULTS.quotePageIndex, DEFAULTS.subPageIndex]);
 
     useEffect(() => {
         async function wakeServer() {
@@ -144,12 +175,14 @@ export default function (props) {
         })
         setNavigationIcons(icons)
     }, [props.Form.QuotePages])
+
     function addIdToList(id) {
         setShownIdList((prev) => {
             if (prev.includes(id)) return prev
             return [...prev, id]
         })
     }
+
     function buttonAddIdToList(questionId, nextQuestionIds: String[]) {
         setShownIdList((prev) => {
             //find where the questionId is in the array
@@ -173,6 +206,7 @@ export default function (props) {
 
 
     }
+
     function removeIdFromList(id: String) {
         setShownIdList((prev) => prev.filter((item) => item !== id))
     }
@@ -543,9 +577,6 @@ export default function (props) {
             }
             //create a formValueQuestion as array
             const formValueQuestion = formValues[id] as Array<{ questionId: string, value: string, valid: boolean }>
-
-
-
             for (let j = 0; j < formValueQuestion.length; j++) {
                 if (!formValueQuestion[j].valid) {
                     returnValue = false
@@ -553,11 +584,12 @@ export default function (props) {
                 }
             }
         }
-        console.log("Active Questions Validity: " + returnValue)
-        console.log("Error Questions: " + listOfErrors)
+        //    console.log("Active Questions Validity: " + returnValue)
+        //    console.log("Error Questions: " + listOfErrors)
         setErrorQuestions(listOfErrors)
         return returnValue
     }
+
     function backPageHandler() {
         //based on the quotePageIndex if there is another subpage, go to the next subpage
         //if there isn't another subpage, go to the next quotePageIndex
@@ -584,11 +616,9 @@ export default function (props) {
                 }
             }
             if (newQuotePageIndex === 0 && newSubPageIndex === 0) questionInNewPage = true
-
             console.log(newQuotePageIndex + " " + newSubPageIndex)
             setTimeout(() => {
             }, 1000)
-
         }
     }
 
@@ -622,22 +652,92 @@ export default function (props) {
             }
         }
 
-        //window scroll to top with smooth behavior
     }
 
     useEffect(() => {
-        //if farthestPage is the last page consolelog hi
+        //find quotePageIndex and subPageIndex that matches from the PAGE_FORM_VALUES
+        // log the formValues
+        function getPreviousPage(passedQuotePageIndex, passedSubPageIndex) {
+            //function to get the previous page
+            //skips over pages that don't have any questions in the shownIdList just like the backPageHandler
+            if (passedQuotePageIndex === 0 && passedSubPageIndex === 0) return [-1, -1]
+            let newSubPageIndex = passedSubPageIndex
+            let newQuotePageIndex = passedQuotePageIndex
+            let questionInNewPage = false
+            while (!questionInNewPage) {
+                if (newSubPageIndex === 0) {
+                    newQuotePageIndex = newQuotePageIndex - 1
+                    newSubPageIndex = props.Form.QuotePages[newQuotePageIndex].SubPages.length - 1
+                } else {
+                    newSubPageIndex = newSubPageIndex - 1
+                }
+                //check newest page and make sure there is atleast one question in the shownIdList if not call nextPageHandler again
+                for (let i = 0; i < props.Form.QuotePages[newQuotePageIndex]?.SubPages[newSubPageIndex]?.Questions.length; i++) {
+                    if (shownIdList.includes(props.Form.QuotePages[newQuotePageIndex].SubPages[newSubPageIndex]?.Questions[i].id)) {
+                        questionInNewPage = true
+                    }
+                }
+                if (newQuotePageIndex === 0 && newSubPageIndex === 0) questionInNewPage = true
+            }
+            return [newQuotePageIndex, newSubPageIndex]
+        }
+        const previousPage = getPreviousPage(quotePageIndex, subPageIndex)
+        function logTheValues(passedQuotePageIndex, passedSubPageIndex) {
+            //find if there is a quotePageIndex and subPageIndex that match the PAGE_FORM_VALUES
+            let returnValues: Array<[string, string]> = []
+            let found = false;
+            let maxLength = 0
+            for (let i = 0; i < PAGE_FORM_VALUES.length; i++) {
+                if (PAGE_FORM_VALUES[i].quotePageIndex === passedQuotePageIndex && PAGE_FORM_VALUES[i].subPageIndex === passedSubPageIndex) {
+                    found = true
+                    maxLength = i + 1
+                    break
+                }
+            }
+            if (!found) return returnValues
+            for (let i = 0; i < maxLength; i++) {
+                for (let j = 0; j < PAGE_FORM_VALUES[i].formValues.length; j++) {
+                    const id = PAGE_FORM_VALUES[i].formValues[j].value
+                    if (formValues[id]) {
+                        for (let k = 0; k < formValues[id].length; k++) {
+                            returnValues.push([PAGE_FORM_VALUES[i].formValues[j].question, formValues[id][k].value])
+                        }
+                    }
+                }
+            }
+            return returnValues
+        }
+        console.log(logTheValues(previousPage[0], previousPage[1]))
+    }, [farthestPage])
 
-        if (farthestPage < quotePageIndex) {
-            let newFarthestPage = quotePageIndex
-            setFarthestPage(newFarthestPage)
-            if (newFarthestPage === props.Form.QuotePages.length) {
+    useEffect(() => {
+        //check farthest page for GTM purposes
+
+        let isFarthestPage = false
+        if (quotePageIndex > farthestPage[0]) {
+            isFarthestPage = true
+        }
+        if (isFarthestPage) {
+            let newFarthestPage = [quotePageIndex, farthestPage[1]]
+            //   setFarthestPage(newFarthestPage)
+            if (newFarthestPage[0] === props.Form.QuotePages.length) {
                 GTMEventHandler(`${GTMEVENTS.conversion}-TR-Auto`, { 'name': `Auto-Quote` })
                 return
             }
-            GTMEventHandler(`${GTMEVENTS.audience}-TR-Auto-${(navigationIcons[newFarthestPage] as { title: { en: string } }).title.en}-reached`, { 'name': `Auto-Quote` })
+            GTMEventHandler(`${GTMEVENTS.audience}-TR-Auto-${(navigationIcons[newFarthestPage[0]] as { title: { en: string } }).title.en}-reached`, { 'name': `Auto-Quote` })
         }
-    }, [quotePageIndex])
+        let newFarthestPage
+        if (isFarthestPage) {
+            newFarthestPage = [quotePageIndex, 0]
+            setFarthestPage(newFarthestPage)
+        } else {
+            if (subPageIndex > farthestPage[1] && quotePageIndex === farthestPage[0]) {
+                newFarthestPage = [quotePageIndex, subPageIndex]
+                setFarthestPage(newFarthestPage)
+            }
+        }
+
+    }, [quotePageIndex, subPageIndex])
     //when the shownIdList changes, or the subPageIndex changes, or the quotePageIndex changes, update the activeQuestionsArray to contain the question ids
     // only add the question ids that are in the shownIdList and the subPageIndex
     useEffect(() => {
