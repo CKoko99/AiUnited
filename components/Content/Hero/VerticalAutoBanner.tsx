@@ -26,6 +26,37 @@ export default function (props) {
     let alinscoLink = `https://customers.empowerins.com/Fn/Quotes/PrimaryDriver.aspx?AgentNo=p1cLqpHj4s4fcL2mzmkBvA&zipcode=${inputValue}`
 
 
+    async function uploadToSheet() {
+        const timestamp = new Date().toLocaleString();
+
+        const formData = new FormData();
+        formData.append("1 Timestamp", timestamp);
+        formData.append("2 Device", window.navigator.userAgent);
+        formData.append("SheetTitle", "Ai United Turborater Start");
+        formData.append("Spreadsheet", "AiUnited");
+        try {
+            await fetch(`${PATHCONSTANTS.BACKEND}/forms`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(
+                    [...formData.entries(),]
+                ),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log(data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
     const handleValueChange = (targetValue) => {
         if (props.validation?.toLowerCase() === "zipcode") {
             targetValue = targetValue.replace(/\D/g, '')
@@ -81,7 +112,10 @@ export default function (props) {
                         variant="contained"
                         color="secondary"
                         href={PATHCONSTANTS.GETAQUOTE.AUTO}
-                        onClick={() => { GTMEventHandler(`${GTMEVENTS.audience}-TR-Auto-Start`, { 'name': "Auto-Quote" }) }}
+                        onClick={() => {
+                            uploadToSheet()
+                            GTMEventHandler(`${GTMEVENTS.audience}-TR-Auto-Start`, { 'name': "Auto-Quote" })
+                        }}
                         sx={{
                             minWidth: "10rem", minHeight: "3.5rem"
                         }}
