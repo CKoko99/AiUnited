@@ -10,6 +10,7 @@ import Image, { StaticImageData } from "next/image";
 import { GTMEVENTS, GTMEventHandler } from "../../Scripts/GoogleTag";
 import GrayFinishImg from "../../../public/assets/images/get-a-quote/auto/finishgray.png";
 import ColorFinishImg from "../../../public/assets/images/get-a-quote/auto/finishcolor.png";
+import { msToTime } from "@/functions/functions";
 
 const TEXT = {
     submit: { en: "Submit", es: "Enviar" },
@@ -129,6 +130,7 @@ const PAGE_FORM_VALUES = [
     {
         quotePageIndex: 1,
         subPageIndex: 0,
+        useQuestionID: true,
         formValues: [
             { question: "Vehicle:", value: QUESTION_IDS.VEHICLE_1 },
         ]
@@ -150,6 +152,7 @@ export default function (props) {
     const [activeQuestionsArray, setActiveQuestionsArray] = useState<string[]>([]);
     const [errorQuestions, setErrorQuestions] = useState<string[]>([]);
     const [farthestPage, setFarthestPage] = useState([DEFAULTS.quotePageIndex, DEFAULTS.subPageIndex]);
+    const [timeStarted, setTimeStarted] = useState(new Date().getTime());
 
     useEffect(() => {
         async function wakeServer() {
@@ -480,7 +483,6 @@ export default function (props) {
     async function sendConfirmationEmail(onlinePhoneCode, callPhoneCode, email) {
         if (!onlinePhoneCode && !callPhoneCode) return
         if (email) {
-
             try {
                 const emailFormData = {
                     company: "Ai United",
@@ -492,6 +494,7 @@ export default function (props) {
                         "Email",
                         "Buy Online Code",
                         "Call Code",
+                        "Time Spent on Form"
                     ],
                     answers: [
                         formValues[QUESTION_IDS.FIRST_NAME][0].value,
@@ -500,6 +503,7 @@ export default function (props) {
                         formValues[QUESTION_IDS.EMAIL][0].value,
                         onlinePhoneCode,
                         callPhoneCode,
+                        msToTime(new Date().getTime() - timeStarted),
                     ],
                     formTitle: "TurboRater Auto Quote",
                 }
@@ -521,6 +525,7 @@ export default function (props) {
             //prepare data to be sent to google sheet
             //Numbering system to make sure the data is in the correct order
             const answersArray = [
+                ["Time Spent on Form", msToTime(new Date().getTime() - timeStarted)],
                 ["First Name", formValues[QUESTION_IDS.FIRST_NAME][0].value],
                 ["Last Name", formValues[QUESTION_IDS.LAST_NAME][0].value],
                 ["Phone Number", formValues[QUESTION_IDS.PHONE_NUMBER][0].value],
@@ -682,11 +687,12 @@ export default function (props) {
             return [newQuotePageIndex, newSubPageIndex]
         }
         const previousPage = getPreviousPage(quotePageIndex, subPageIndex)
+
+        let maxLength = 0
         function logTheValues(passedQuotePageIndex, passedSubPageIndex) {
             //find if there is a quotePageIndex and subPageIndex that match the PAGE_FORM_VALUES
             let returnValues: Array<[string, string]> = []
             let found = false;
-            let maxLength = 0
             for (let i = 0; i < PAGE_FORM_VALUES.length; i++) {
                 if (PAGE_FORM_VALUES[i].quotePageIndex === passedQuotePageIndex && PAGE_FORM_VALUES[i].subPageIndex === passedSubPageIndex) {
                     found = true
@@ -700,7 +706,11 @@ export default function (props) {
                     const id = PAGE_FORM_VALUES[i].formValues[j].value
                     if (formValues[id]) {
                         for (let k = 0; k < formValues[id].length; k++) {
-                            returnValues.push([PAGE_FORM_VALUES[i].formValues[j].question, formValues[id][k].value])
+                            if (PAGE_FORM_VALUES[i].useQuestionID) {
+                                returnValues.push([`${PAGE_FORM_VALUES[i].formValues[j].question} ${formValues[id][k].questionId}`, formValues[id][k].value])
+                            } else {
+                                returnValues.push([`${PAGE_FORM_VALUES[i].formValues[j].question}`, formValues[id][k].value])
+                            }
                         }
                     }
                 }
@@ -708,6 +718,36 @@ export default function (props) {
             return returnValues
         }
         console.log(logTheValues(previousPage[0], previousPage[1]))
+        if (previousPage[0] === -1) return
+
+        const newFormData = new FormData()
+        newFormData.append("Company", "Ai United");
+        newFormData.append("SheetTitle", String(maxLength));
+        const moreData = [
+            ["Time Spent on Form", msToTime(new Date().getTime() - timeStarted)],
+        ]
+        for (let i = 0; i < moreData.length; i++) {
+            newFormData.append(`${i} ${moreData[i][0]}`, moreData[i][1])
+        }
+        for (let i = 0; i < logTheValues(previousPage[0], previousPage[1]).length; i++) {
+            newFormData.append(`${i + moreData.length} ${logTheValues(previousPage[0], previousPage[1])[i][0]}`, logTheValues(previousPage[0], previousPage[1])[i][1])
+        }
+        fetch(`${PATHCONSTANTS.BACKEND}/forms/unfinished-quote`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(
+                [...newFormData.entries(),]
+            ),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
     }, [farthestPage])
 
     useEffect(() => {
@@ -760,6 +800,7 @@ export default function (props) {
         // using the activeQuestionsArray log the values from formValues
         setActiveQuestionsArray(activeQuestionsArray)
     }, [shownIdList, subPageIndex, quotePageIndex])
+
 
     return <>
         {quotePageIndex < props.Form.QuotePages.length
