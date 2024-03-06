@@ -20,6 +20,7 @@ export default function (props) {
     const currentLang = Lang[locale ?? 'en']
 
     const [inputValue, setInputValue] = useState("")
+    const [userIP, setUserIP] = useState("")
     const [isValid, setIsValid] = useState(false)
     const [errorText, setErrorText] = useState("")
     const [onceValid, setOnceValid] = useState(false)
@@ -32,6 +33,7 @@ export default function (props) {
         formData.append("1 Timestamp", timestamp);
         formData.append("2 Device", window.navigator.userAgent);
         formData.append("3 ZipCode", inputValue);
+        formData.append("4 User IP", userIP);
         formData.append("SheetTitle", "Ai United Alinsco Auto Banner");
         formData.append("Spreadsheet", "AiUnited");
         try {
@@ -87,6 +89,19 @@ export default function (props) {
             }
         }
     }, [inputValue])
+
+    useEffect(() => {
+        const fetchIPAddress = async () => {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                setUserIP(data.ip || "");
+            } catch (error) {
+                console.error('Error fetching IP address:', error);
+            }
+        };
+        fetchIPAddress();
+    }, [])
     return <>
         <Box
             textAlign={"center"}
