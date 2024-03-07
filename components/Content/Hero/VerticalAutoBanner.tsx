@@ -23,6 +23,7 @@ export default function (props) {
     const [isValid, setIsValid] = useState(false)
     const [errorText, setErrorText] = useState("")
     const [onceValid, setOnceValid] = useState(false)
+    const [userIP, setUserIP] = useState("")
     let alinscoLink = `https://customers.empowerins.com/Fn/Quotes/PrimaryDriver.aspx?AgentNo=p1cLqpHj4s4fcL2mzmkBvA&zipcode=${inputValue}`
 
 
@@ -32,6 +33,7 @@ export default function (props) {
         const formData = new FormData();
         formData.append("1 Timestamp", timestamp);
         formData.append("2 Device", window.navigator.userAgent);
+        formData.append("3 User IP", userIP);
         formData.append("SheetTitle", "Ai United Turborater Start");
         formData.append("Spreadsheet", "AiUnited");
         try {
@@ -85,6 +87,19 @@ export default function (props) {
             }
         }
     }, [inputValue])
+
+    useEffect(() => {
+        const fetchIPAddress = async () => {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                setUserIP(data.ip || "");
+            } catch (error) {
+                console.error('Error fetching IP address:', error);
+            }
+        };
+        fetchIPAddress();
+    }, [])
     return <>
         <Box
             textAlign={"center"}
