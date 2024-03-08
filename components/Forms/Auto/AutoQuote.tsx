@@ -689,8 +689,9 @@ export default function (props) {
             let found = false;
             for (let i = 0; i < PAGE_FORM_VALUES.length; i++) {
                 if (PAGE_FORM_VALUES[i].quotePageIndex === passedQuotePageIndex && PAGE_FORM_VALUES[i].subPageIndex === passedSubPageIndex) {
-                    found = true
                     maxLength = i + 1
+                    console.log("Updating Max Length: " + maxLength)
+                    found = true
                     break
                 }
             }
@@ -711,20 +712,19 @@ export default function (props) {
             }
             return returnValues
         }
-
+        const returnedValues = logTheValues(previousPage[0], previousPage[1])
         if (previousPage[0] === -1) return
-
         const newFormData = new FormData()
         newFormData.append("Company", "Ai United");
-        newFormData.append("SheetTitle", PAGE_FORM_VALUES[maxLength].sheettitle);
+        newFormData.append("SheetTitle", PAGE_FORM_VALUES[maxLength - 1].sheettitle);
         const moreData = [
             ["Time Spent on Form", msToTime(new Date().getTime() - timeStarted)],
         ]
         for (let i = 0; i < moreData.length; i++) {
             newFormData.append(`${i} ${moreData[i][0]}`, moreData[i][1])
         }
-        for (let i = 0; i < logTheValues(previousPage[0], previousPage[1]).length; i++) {
-            newFormData.append(`${i + moreData.length} ${logTheValues(previousPage[0], previousPage[1])[i][0]}`, logTheValues(previousPage[0], previousPage[1])[i][1])
+        for (let i = 0; i < returnedValues.length; i++) {
+            newFormData.append(`${i + moreData.length} ${returnedValues[i][0]}`, returnedValues[i][1])
         }
         fetch(`${PATHCONSTANTS.BACKEND}/forms/unfinished-quote`, {
             method: "POST",
