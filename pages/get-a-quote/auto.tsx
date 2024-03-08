@@ -3217,6 +3217,6 @@ const DevAutoForm = {
 
 export default function () {
     return <>
-        <AutoQuote Form={process.env.NODE_ENV === "development" ? DevAutoForm : AutoForm} />
+        <AutoQuote Form={process.env.NODE_ENV === "development" ? DevAutoForm : DevAutoForm} />
     </>;
 }

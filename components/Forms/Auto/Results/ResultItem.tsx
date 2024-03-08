@@ -316,7 +316,9 @@ export default function ContentItem(props) {
         <Box
             sx={{
                 textAlign: "center",
-
+                height: "100%",
+                display: "flex",
+                alignItems: "center"
             }}
         >
             <Typography
@@ -324,7 +326,6 @@ export default function ContentItem(props) {
                 fontWeight={700}
                 fontFamily={CustomFonts.Gustavo}
                 sx={{
-                    borderBottom: "1px solid #0E76BC",
                     padding: ".5rem 0 .5rem",
                     width: "100%"
                 }}
@@ -333,6 +334,7 @@ export default function ContentItem(props) {
         <Box
             sx={{
                 padding: ".5rem 1rem 1rem 1rem",
+                borderTop: "1px solid #0E76BC",
             }}
         >
             <Box
