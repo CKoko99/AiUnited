@@ -126,8 +126,7 @@ const PAGE_FORM_VALUES = [
         formValues: [
             { question: "Address Line 1:", value: QUESTION_IDS.ADDRESS_LINE_1 },
             { question: "City:", value: QUESTION_IDS.CITY },
-            { question: "State:", value: QUESTION_IDS.ZIP_CODE },
-            { question: "Zip Code:", value: QUESTION_IDS.TIME_AT_ADDRESS },
+            { question: "Zip Code:", value: QUESTION_IDS.ZIP_CODE },
         ]
     },
     {
