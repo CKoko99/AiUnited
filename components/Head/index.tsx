@@ -11,10 +11,6 @@ type HeadComponentPropsType = {
 
 const HeadComponent = ({ title, metaData, canonical, graphImg }: HeadComponentPropsType) => {
 
-  useEffect(() => {
-    console.log('HeadComponent', title, metaData, canonical, graphImg);
-    console.log('GraphImg', (graphImg ? graphImg : "https://firebasestorage.googleapis.com/v0/b/insurance-hub-397016.appspot.com/o/og-fb.png?alt=media&token=580378a4-b1a3-473f-98cd-da5ef169513d"))
-  }, [])
 
   return (
     <Head>
