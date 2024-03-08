@@ -663,6 +663,13 @@ const AutoForm = {
                         answers: [
                             {
                                 text: {
+                                    en: "None",
+                                    es: "Ninguno",
+                                },
+                                value: "None",
+                            },
+                            {
+                                text: {
                                     en: "Bachelors Degree",
                                     es: "Licenciatura",
                                 },
@@ -680,7 +687,7 @@ const AutoForm = {
                                     en: "Ph. D / Doctorate",
                                     es: "Ph. D / Doctorado",
                                 },
-                                value: "Ph. D/Doctorate",
+                                value: "Doctorate Degree",
                             },
                             {
                                 text: {
@@ -722,14 +729,14 @@ const AutoForm = {
                                     en: "Some College",
                                     es: "Algo de universidad",
                                 },
-                                value: "Some College - No Degree",
+                                value: "Some College",
                             },
                             {
                                 text: {
                                     en: "Vocational/Technical Degree",
                                     es: "Título vocacional / técnico",
                                 },
-                                value: "Vocational/Technical Degree",
+                                value: "Vocational Degree",
                             },
                         ]
                     },
@@ -2098,6 +2105,13 @@ const DevAutoForm = {
                         answers: [
                             {
                                 text: {
+                                    en: "None",
+                                    es: "Ninguno",
+                                },
+                                value: "None",
+                            },
+                            {
+                                text: {
                                     en: "Bachelors Degree",
                                     es: "Licenciatura",
                                 },
@@ -2115,7 +2129,7 @@ const DevAutoForm = {
                                     en: "Ph. D / Doctorate",
                                     es: "Ph. D / Doctorado",
                                 },
-                                value: "Ph. D/Doctorate",
+                                value: "Doctorate Degree",
                             },
                             {
                                 text: {
@@ -2157,14 +2171,14 @@ const DevAutoForm = {
                                     en: "Some College",
                                     es: "Algo de universidad",
                                 },
-                                value: "Some College - No Degree",
+                                value: "Some College",
                             },
                             {
                                 text: {
                                     en: "Vocational/Technical Degree",
                                     es: "Título vocacional / técnico",
                                 },
-                                value: "Vocational/Technical Degree",
+                                value: "Vocational Degree",
                             },
                         ]
                     },
