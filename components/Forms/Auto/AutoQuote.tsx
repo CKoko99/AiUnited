@@ -718,6 +718,7 @@ export default function (props) {
         newFormData.append("Company", "Ai United");
         newFormData.append("SheetTitle", PAGE_FORM_VALUES[maxLength - 1].sheettitle);
         const moreData = [
+            ["Time Stamp", new Date().toLocaleString()],
             ["Time Spent on Form", msToTime(new Date().getTime() - timeStarted)],
         ]
         for (let i = 0; i < moreData.length; i++) {
