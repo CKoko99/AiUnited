@@ -108,6 +108,7 @@ const DEFAULTS = {
 
 const PAGE_FORM_VALUES = [
     {
+        sheettitle: "Contact Information",
         quotePageIndex: 0,
         subPageIndex: 0,
         formValues: [
@@ -118,6 +119,7 @@ const PAGE_FORM_VALUES = [
         ]
     },
     {
+        sheettitle: "Address Information",
         quotePageIndex: 0,
         subPageIndex: 1,
         formValues: [
@@ -128,6 +130,7 @@ const PAGE_FORM_VALUES = [
         ]
     },
     {
+        sheettitle: "Vehicle Information",
         quotePageIndex: 1,
         subPageIndex: 0,
         useQuestionID: true,
@@ -712,7 +715,7 @@ export default function (props) {
 
         const newFormData = new FormData()
         newFormData.append("Company", "Ai United");
-        newFormData.append("SheetTitle", String(maxLength));
+        newFormData.append("SheetTitle", PAGE_FORM_VALUES[maxLength - 1].sheettitle);
         const moreData = [
             ["Time Spent on Form", msToTime(new Date().getTime() - timeStarted)],
         ]
