@@ -1,16 +1,29 @@
 import Box from "@mui/material/Box";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../footer/Footer";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import LocaleSwitcher from "../locale/LocaleSwitcher";
 import HeadComponent from "../Head";
 import { GTMBody } from "../Scripts/GoogleTag";
+import { useRouter } from "next/router";
+import QuoteNavbar from "../Navbar/QuoteNavbar";
 
 interface LayoutProps {
   children: ReactNode; // Define the children prop with ReactNode type
 }
 
 const Layout = ({ children }: LayoutProps) => {
+  const [showQuoteNavbar, setShowQuoteNavbar] = useState(false)
+  const router = useRouter()
+  useEffect(() => {
+    //when the page changes if the page link contains "get-a-quote" then show the quote navbar
+    if (router.pathname.includes("get-a-quote")) {
+      setShowQuoteNavbar(true)
+    } else {
+      setShowQuoteNavbar(false)
+    }
+  }, [router.pathname])
+
   return (
     <>
       {
@@ -22,7 +35,7 @@ const Layout = ({ children }: LayoutProps) => {
         sx={{ position: "fixed", width: "100%", zIndex: 1000 }}
       >
         <LocaleSwitcher />
-        <Navbar />
+        {showQuoteNavbar ? <QuoteNavbar /> : <Navbar />}
       </Box >
       <Box sx={{ height: "7rem" }} />
       <Box

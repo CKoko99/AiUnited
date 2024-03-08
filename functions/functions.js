@@ -38,3 +38,12 @@ export function blogText(inputStrings) {
     }
     return formattedStrings;
 }
+
+//create a function to change time from ms to a readable format
+export function msToTime(duration) {
+    let seconds = parseInt((duration / 1000) % 60),
+        minutes = parseInt((duration / (1000 * 60)) % 60),
+        hours = parseInt((duration / (1000 * 60 * 60)) % 24);
+
+    return hours + 'h ' + minutes + 'm ' + seconds + 's';
+}

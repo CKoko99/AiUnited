@@ -6,7 +6,7 @@ export default function (props) {
 
     const [value, setValue] = useState(props.defaultValue ? String(props.defaultValue) : "")
     const [blurred, setBlurred] = useState(false)
-
+    const [hidden, setHidden] = useState(true)
     const validation = props.validation || {}
     const validationRules = {
         required: validation.required === false ? false : true,
@@ -54,6 +54,9 @@ export default function (props) {
         }
 
         setIsValid(!errorFound)
+        if (!errorFound) {
+            props.clearError()
+        }
         return !errorFound
     }
 
@@ -61,9 +64,9 @@ export default function (props) {
         setValue(e.target.value)
         const newIsValid = validateInput(e.target.value)
         if (props.convertToNumber) {
-            props.updateFormValues(props.id, [{ questionId: props.questionId, value: Number(e.target.value) }])
+            props.updateFormValues(props.id, [{ questionId: props.questionId, value: Number(e.target.value), valid: newIsValid }])
         } else {
-            props.updateFormValues(props.id, [{ questionId: props.questionId, value: e.target.value }])
+            props.updateFormValues(props.id, [{ questionId: props.questionId, value: e.target.value, valid: newIsValid }])
         }
         if (newIsValid) {
             props.addIdToList(props.nextQuestionId)
@@ -79,9 +82,14 @@ export default function (props) {
         if (props.defaultValue) {
             handleChange({ target: { value: String(props.defaultValue) } })
         }
+        setHidden(false)
     }, [])
     return <>
         <Box
+            sx={{
+                opacity: hidden ? 0 : 1,
+                transition: "opacity 1s",
+            }}
         >
             <FormControl fullWidth>
                 <TextField
@@ -95,8 +103,8 @@ export default function (props) {
                         setBlurred(true)
                     }
                     }
-                    error={!isValid && blurred}
-                    helperText={!isValid && blurred ? returnLocaleText(props.validationError) : ""}
+                    error={props.passedError || (!isValid && blurred)}
+                    helperText={props.passedError || (!isValid && blurred) ? returnLocaleText(props.validationError) : ""}
                 />
             </FormControl>
         </Box>

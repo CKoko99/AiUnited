@@ -1,9 +1,10 @@
 'use client'
 import { returnLocaleText } from "@/components/locale/LocaleSwitcher";
-import { Box, FormControl, InputLabel, MenuItem, Select, Typography } from "@mui/material";
+import { Box, FormControl, FormHelperText, InputLabel, MenuItem, Select, Typography } from "@mui/material";
 import { yearCalendarClasses } from "@mui/x-date-pickers";
 import PATHCONSTANTS from "constants/sitemap"
 import { get } from "http"
+import { use } from "marked";
 import { useEffect, useState } from "react"
 import { set, useFormContext } from "react-hook-form";
 
@@ -12,6 +13,10 @@ const TEXT = {
     years: { en: "Years", es: "Años" },
     make: { en: "Make", es: "Marca" },
     model: { en: "Model", es: "Modelo" },
+    validationError: { en: "Please select a vehicle", es: "Por favor seleccione un vehículo" }
+}
+const DEFAULTS = {
+    waitTime: process.env.NODE_ENV === "development" ? 500 : 1000
 }
 
 async function getYears() {
@@ -78,18 +83,53 @@ async function getVINDetails(VIN) {
         return { details: [] }; // Return an empty array or handle the error accordingly
     }
 }
+function returnInitialValues(formValues, id, defaultValue) {
+    const returnValues = { year: "", make: "", model: "" }
+    if (formValues[id]) {
+        //   console.log("Form Values: ", formValues[id])
+
+        for (let i = 0; i < formValues[id].length; i++) {
+            const element = formValues[id][i];
+            switch (element.questionId) {
+                case "Year":
+                    returnValues.year = element.value;
+                    break;
+                case "Make":
+                    returnValues.make = element.value;
+                    break;
+                case "Model":
+                    returnValues.model = element.value;
+                    break;
+                default:
+                    break;
+            }
+        }
+        return returnValues;
+    }
+
+    if (defaultValue) {
+        returnValues.year = defaultValue[0];
+        returnValues.make = defaultValue[1];
+        returnValues.model = defaultValue[2];
+        return returnValues;
+    }
+    return returnValues;
+}
+
+
 export default function (props) {
 
+    const [hidden, setHidden] = useState(true);
     const [years, setYears] = useState([])
-    const [yearValue, setYearValue] = useState(props.defaultValue ? props.defaultValue[0] : "");
+    const [yearValue, setYearValue] = useState('');
     const [disableMake, setDisableMake] = useState(true);
 
     const [makes, setMakes] = useState([]);
-    const [makeValue, setMakeValue] = useState(props.defaultValue ? props.defaultValue[1] : "");
+    const [makeValue, setMakeValue] = useState('')
     const [disableModel, setDisableModel] = useState(true);
 
     const [models, setModels] = useState([]);
-    const [modelValue, setModelValue] = useState(props.defaultValue ? props.defaultValue[2] : "");
+    const [modelValue, setModelValue] = useState('')
 
     const [VINValue, setVINValue] = useState("");
     const [isValid, setIsValid] = useState(false);
@@ -108,38 +148,79 @@ export default function (props) {
 
     async function handleYearChange(value) {
         setYearValue(value);
-
-        const newMakesList = await getMakes(value);
-        // console.log(newMakesList);
-        setMakes(newMakesList.makes);
-        setDisableMake(false);
-        setMakeValue("");
-        setModelValue("");
-
     }
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                // Asynchronous logic here
+                let newMakesList = await getMakes(yearValue);
+
+                setMakes(newMakesList.makes);
+                setDisableMake(false);
+                //if make value is not in newMakesList.makes, set make value to ""
+                if (!newMakesList.makes.includes(makeValue)) {
+                    setMakeValue("");
+                    setModelValue("");
+                }
+            } catch (error) {
+                // Error handling
+            }
+        };
+        fetchData();
+    }, [yearValue])
+
+
     async function handleMakeChange(value) {
-        setMakeValue(value);
-        const newModelsList = await getModels(yearValue, value);
-        console.log(newModelsList);
-        console.log("yearValue: ", yearValue)
+        setMakeValue(value)
 
-        setModels(newModelsList.models);
-        setDisableModel(false);
-        setModelValue("");
     }
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                // Asynchronous logic here
+                let newModelsList = await getModels(yearValue, makeValue);
 
+                setModels(newModelsList.models);
+                setDisableModel(false);
+                //if make value is not in newMakesList.makes, set make value to ""
+                if (!newModelsList.models.includes(modelValue)) {
+                    setModelValue("");
+                } else {
+                    setMakeValue(makeValue);
+                }
+            } catch (error) {
+                // Error handling
+            }
+        };
+        fetchData();
+    }, [makeValue])
 
     async function handleModelChange(value) {
+        //use new Promise to check if the model value is set
+
         setModelValue(value);
-        //get and set vin value to be the first vin in the list
-        const VINResponse = await getVIN(yearValue, makeValue, value);
-        const newVinValue = VINResponse.VINs[0].VIN;
-        const VINDetailsResponse = await getVINDetails(newVinValue);
-        console.log(newVinValue)
-        console.log(VINDetailsResponse)
-        setVINValue(VINDetailsResponse.VIN);
-        props.addIdToList(props.nextQuestionId);
     }
+    useEffect(() => {
+        async function fetchData() {
+            if (yearValue === "" || makeValue === "" || modelValue === "") {
+                return;
+            }
+            // Asynchronous logic here
+            try {
+
+                let newVINList = await getVIN(yearValue, makeValue, modelValue);
+
+                setVINValue(newVINList.VINs[0].VIN);
+                props.addIdToList(props.nextQuestionId);
+            } catch (error) {
+                console.log("ERROR: YEAR, MAKE, MODEL" + " " + yearValue + " " + makeValue + " " + modelValue)
+                console.log(error)   // Error handling
+            }
+
+        }
+        fetchData();
+
+    }, [yearValue, makeValue, modelValue])
 
     function isValidHandler() {
         if (yearValue !== null && makeValue !== null && modelValue !== null) {
@@ -155,52 +236,64 @@ export default function (props) {
         const newValue = [yearValue, makeValue, modelValue, VINValue];
         setCompleteValue(newValue);
         props.setFormValue(`${props.questionId}`, newValue);
-
-        console.log(VINValue)
         props.updateFormValues(props.id, [
-            { questionId: "Year", value: yearValue },
-            { questionId: "Make", value: makeValue },
-            { questionId: "Model", value: modelValue },
-            { questionId: "Vin", value: VINValue }
+            { questionId: "Year", value: yearValue, valid: yearValue !== "" },
+            { questionId: "Make", value: makeValue, valid: makeValue !== "" },
+            { questionId: "Model", value: modelValue, valid: modelValue !== "" },
+            { questionId: "Vin", value: VINValue, valid: VINValue !== "" }
         ])
-
+        if (yearValue !== "" && makeValue !== "" && modelValue !== "" && VINValue !== "") {
+            props.clearError()
+        }
 
     }, [yearValue, makeValue, modelValue, VINValue])
 
     useEffect(() => {
         props.register(`${props.questionId}`, { value: completeValue, });
+        setHidden(false)
     }, [])
 
-    async function defaultValuesHandler() {
-        console.log("Default Values: ", props.defaultValue)
+    async function defaultValuesHandler(year, make, model) {
+
         setTimeout(() => {
-            handleYearChange(props.defaultValue[0])
+            handleYearChange(year)
+
             setTimeout(() => {
-                handleMakeChange(props.defaultValue[1])
+
+                handleMakeChange(make)
                 setTimeout(() => {
-                    handleModelChange(props.defaultValue[2])
-                }, 500)
-            }, 500)
-        }, 500)
+
+                    handleModelChange(model)
+                }, DEFAULTS.waitTime)
+            }, DEFAULTS.waitTime)
+        }, DEFAULTS.waitTime)
     }
 
     useEffect(() => {
-        if (props.defaultValue) {
-            defaultValuesHandler()
-        }
+        const initialValues = returnInitialValues(props.formValues, props.id, props.defaultValue)
+        //   setYearValue(initialValues.year);
+        defaultValuesHandler(initialValues.year, initialValues.make, initialValues.model)
     }, [])
+
+
     return <>
         <Box
-            sx={{ display: "flex", alignItems: "center", gap: "1rem", width: "100%", margin: "1rem auto" }}
+            sx={{
+                opacity: hidden ? 0 : 1,
+                transition: "opacity 1s",
+                display: "flex", alignItems: "center", gap: "1rem", width: "100%", margin: "1rem auto",
+                flexDirection: "column"
+            }}
+
         >
             {props.question && <Typography sx={{ whiteSpace: "nowrap" }} variant="h6" >{returnLocaleText(props.question)}</Typography>}
-            <Box
+            < Box
                 sx={{
                     display: "flex", gap: "1rem", justifyContent: "space-around",
                     width: props.fullWidth ? { xs: "100%", md: '49%' } : "100%"
                 }}
             >
-                <FormControl fullWidth
+                <FormControl error={props.passedError} fullWidth
                 >
                     <InputLabel id={`year-label-${props.questionId}`}>{returnLocaleText(TEXT.years)}</InputLabel>
                     <Select
@@ -218,7 +311,7 @@ export default function (props) {
                         })}
                     </Select>
                 </FormControl>
-                <FormControl fullWidth
+                <FormControl error={props.passedError} fullWidth
                 >
                     <InputLabel id={`make-label-${props.questionId}`}>{returnLocaleText(TEXT.make)}</InputLabel>
                     <Select
@@ -234,7 +327,7 @@ export default function (props) {
                         })}
                     </Select>
                 </FormControl>
-                <FormControl fullWidth
+                <FormControl error={props.passedError} fullWidth
                 >
                     <InputLabel id={`model-label-${props.questionId}`}>{returnLocaleText(TEXT.model)}</InputLabel>
                     <Select
@@ -250,7 +343,11 @@ export default function (props) {
                         })}
                     </Select>
                 </FormControl>
-            </Box>
-        </Box>
+
+            </Box >
+            {props.passedError && <FormHelperText
+                error={true}
+            >{returnLocaleText(TEXT.validationError)}</FormHelperText>}
+        </Box >
     </>
 }

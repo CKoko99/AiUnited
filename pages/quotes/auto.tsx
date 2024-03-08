@@ -11,7 +11,7 @@ import CarImg2 from "../../public/assets/images/quotes/auto/car2.png";
 import TwoColumn from '../../components/Content/Grids/TwoColumn';
 import ContactAndShop from '../../components/Content/FlexDigrams/Combo/ContactAndShop';
 import HeadComponent from '../../components/Head';
-import VerticleAutoBanner from '@/components/Content/Hero/VerticleAutoBanner';
+import VerticalAutoBanner from '@/components/Content/Hero/VerticalAutoBanner';
 import BannerImage from '@/public/assets/images/quotes/auto/Banner.png';
 const heroContent = {
     title: {
@@ -150,10 +150,10 @@ export default function () {
         <HeadComponent title={'Car Insurance | Get a Free Auto Insurance Quote'}
             metaData={"Secure your ride with a free car insurance quote from Ai United Insurance today. Drive confidently with tailored coverage."}
         />
-        <VerticleAutoBanner {...heroContent} />
+        <VerticalAutoBanner {...heroContent} />
         <NumbersSection {...slideData} menuContent={slideData.menuContent} />
         <MainGrid {...contentSection2} />
         <TwoColumn {...contentSection3} />
-        <ContactAndShop quoteLink={PATHCONSTANTS.QUOTES.AUTO.FORM} />
+        <ContactAndShop quoteLink={PATHCONSTANTS.GETAQUOTE.AUTO} />
     </>
 }

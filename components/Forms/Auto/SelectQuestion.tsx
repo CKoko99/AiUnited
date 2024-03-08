@@ -8,15 +8,17 @@ export default function (props) {
     const [value, setValue] = useState(props.defaultValue || '')
     const [valid, setValid] = useState(false)
     const [validOnce, setValidOnce] = useState(false)
-
+    const [hidden, setHidden] = useState(true)
+    const [answers, setAnswers] = useState(props.answers)
     function handleValueChange(passedValue) {
         setValue(passedValue)
         if (passedValue) {
             setValid(true)
             setValidOnce(true)
+            props.clearError()
             //     props.setValid(props.index, true)
             //   props.setAnswer(props.index, value)
-            props.updateFormValues(props.id, [{ questionId: props.questionId, value: passedValue }])
+            props.updateFormValues(props.id, [{ questionId: props.questionId, value: passedValue, valid: true }])
             props.addIdToList(props.nextQuestionId)
         } else {
             setValid(false)
@@ -27,12 +29,21 @@ export default function (props) {
         if (props.defaultValue) {
             handleValueChange(props.defaultValue)
         }
+        setHidden(false)
     }, [])
-
+    useEffect(() => {
+        if (value !== "") {
+            props.addIdToList(props.nextQuestionId);
+        }
+    }, [props.shownIdList])
 
     return <>
         <Box
             sx={{
+                opacity: hidden ? 0 : 1,
+                transition: "opacity 1s",
+
+
                 width: "100%",
                 display: "flex", flexDirection: props.fullWidth ? { xs: "column", md: 'row' } : "column",
                 justifyContent: "space-between", alignItems: "center"
@@ -52,7 +63,7 @@ export default function (props) {
                     width: props.fullWidth ? { xs: "100%", md: '49%' } : "100%"
                 }}
             >
-                <FormControl error={!valid && validOnce} fullWidth
+                <FormControl error={props.passedError || (!valid && validOnce)} fullWidth
                 >
                     <InputLabel id={"select-label"}>{returnLocaleText(props.question)}</InputLabel>
                     <Select
@@ -68,11 +79,11 @@ export default function (props) {
                         inputProps={{ ...props.register(props.questionId) }}
                         label={returnLocaleText(props.question)}
                     >
-                        {props.answers.map((option, index) => {
+                        {answers.map((option, index) => {
                             return <MenuItem key={index} value={option.value}>{returnLocaleText(option.text)}</MenuItem>
                         })}
                     </Select>
-                    {(validOnce && !valid) && <FormHelperText>error</FormHelperText>}
+                    {(props.passedError || (validOnce && !valid)) && <FormHelperText>{returnLocaleText(props.validationError)}</FormHelperText>}
                 </FormControl>
             </Box >
         </Box >

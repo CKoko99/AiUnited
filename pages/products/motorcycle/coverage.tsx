@@ -26,22 +26,22 @@ const pageLinks = {
 
 
     liabilityCoverage: {
-        link: `${PATHCONSTANTS.PRODUCTS.MEXICO.COVERAGE}#Liability-Coverage`, id: "Liability-Coverage"
+        link: `${PATHCONSTANTS.PRODUCTS.MOTORCYCLE.COVERAGE}#Liability-Coverage`, id: "Liability-Coverage"
     },
     collisionCoverage: {
-        link: `${PATHCONSTANTS.PRODUCTS.MEXICO.COVERAGE}#Collision-Coverage`, id: "Collision-Coverage"
+        link: `${PATHCONSTANTS.PRODUCTS.MOTORCYCLE.COVERAGE}#Collision-Coverage`, id: "Collision-Coverage"
     },
     ComprehensizeCoverage: {
-        link: `${PATHCONSTANTS.PRODUCTS.MEXICO.COVERAGE}#Comprehensive-Coverage`, id: "Comprehensive-Coverage"
+        link: `${PATHCONSTANTS.PRODUCTS.MOTORCYCLE.COVERAGE}#Comprehensive-Coverage`, id: "Comprehensive-Coverage"
     },
     uiuimCoverage: {
-        link: `${PATHCONSTANTS.PRODUCTS.MEXICO.COVERAGE}#UIUIM-Coverage`, id: "UIUIM-Coverage"
+        link: `${PATHCONSTANTS.PRODUCTS.MOTORCYCLE.COVERAGE}#UIUIM-Coverage`, id: "UIUIM-Coverage"
     },
     medicalCoverage: {
-        link: `${PATHCONSTANTS.PRODUCTS.MEXICO.COVERAGE}#Medical-Coverage`, id: "Medical-Coverage"
+        link: `${PATHCONSTANTS.PRODUCTS.MOTORCYCLE.COVERAGE}#Medical-Coverage`, id: "Medical-Coverage"
     },
     additionalCoverage: {
-        link: `${PATHCONSTANTS.PRODUCTS.MEXICO.COVERAGE}#Additional-Coverage`, id: "Additional-Coverage"
+        link: `${PATHCONSTANTS.PRODUCTS.MOTORCYCLE.COVERAGE}#Additional-Coverage`, id: "Additional-Coverage"
     },
 }
 

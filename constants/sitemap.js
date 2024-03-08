@@ -1,5 +1,8 @@
 const PATHCONSTANTS = {
     HOME: '/',
+    GETAQUOTE: {
+        AUTO: '/get-a-quote/auto',
+    },
     QUOTES: {
         // INDEX: '/quotes',
         AUTO: {
@@ -91,11 +94,12 @@ const PATHCONSTANTS = {
     PAYMENTS: '/payments',
     PHONE: "tel:2819336333",
     PHONETEXT: "(281)-933-6333",
+    SALESPHONE: "tel:2814429555",
     PRIVACY: '/privacy-policy',
     TERMS: '/terms-of-service',
     HOMEFULL: process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://aiunited.com",
     BACKEND: process.env.NODE_ENV === "development" ? "http://192.168.20.122:8080" : "https://insurancehubbackend-uc3v53rceq-ue.a.run.app",
-    BACKEND2: process.env.NODE_ENV === "development" ? "http://localhost:8081" : "https://spring-backend-uc3v53rceq-ue.a.run.app",
+    BACKEND2: process.env.NODE_ENV === "development" ? "http://192.168.20.122:8081" : "https://spring-backend-uc3v53rceq-ue.a.run.app",
     STRAPI: process.env.NODE_ENV === "development" ? "http://localhost:1337" : "https://ai-united-strapi-uc3v53rceq-ue.a.run.app"
 };
 export default PATHCONSTANTS

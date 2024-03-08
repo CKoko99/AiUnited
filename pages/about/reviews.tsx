@@ -4,12 +4,7 @@ import TextSection from "../../components/Content/TextSection"
 import ReviewsList from "../../components/Content/Reviews/ReviewsList"
 import ContactAndShop from "../../components/Content/FlexDigrams/Combo/ContactAndShop"
 import BannerImg from "../../public/assets/images/about/reviews/Banner.png"
-import HeadComponent from "@/components/Head";
-
-const headContent = {
-    title: "Ai United Insurance - Reviews",
-    metaData: "We take pride in the quality of our products and services. We are thrilled to share what our valued customers have to say about their experiences",
-}
+import HeadComponent from "@/components/Head"
 
 
 const heroContent = {
@@ -140,10 +135,9 @@ const reviews = [
 ]
 export default function () {
     return <>
-        {/*
-        <Hero {...heroContent} />
-     */}
-        <HeadComponent {...headContent} />
+        <HeadComponent title="Ai United Insurance - Reviews"
+            metaData="We take pride in the quality of our products and services. We are thrilled to share what our valued customers have to say about their experiences."
+        />
         <TextSection titleComponent="h1" subtitleVariant="h5" title={heroContent.title} {...textSectionContent} />
         <Ratings />
         <ReviewsList reviews={reviews} />
