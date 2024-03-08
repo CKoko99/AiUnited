@@ -11,6 +11,7 @@ import { GTMEVENTS, GTMEventHandler } from "../../Scripts/GoogleTag";
 import GrayFinishImg from "../../../public/assets/images/get-a-quote/auto/finishgray.png";
 import ColorFinishImg from "../../../public/assets/images/get-a-quote/auto/finishcolor.png";
 import { msToTime } from "@/functions/functions";
+import React from "react";
 
 const TEXT = {
     submit: { en: "Submit", es: "Enviar" },
@@ -715,7 +716,7 @@ export default function (props) {
 
         const newFormData = new FormData()
         newFormData.append("Company", "Ai United");
-        newFormData.append("SheetTitle", PAGE_FORM_VALUES[maxLength - 1].sheettitle);
+        newFormData.append("SheetTitle", PAGE_FORM_VALUES[maxLength].sheettitle);
         const moreData = [
             ["Time Spent on Form", msToTime(new Date().getTime() - timeStarted)],
         ]
@@ -846,7 +847,8 @@ export default function (props) {
 
                     {props.Form.QuotePages.map((page, pageIndex) => {
                         if (pageIndex !== quotePageIndex) return null;
-                        return <>
+                        return <React.Fragment key={pageIndex}
+                        >
                             {page.SubPages?.map((subPage, subIndex) => {
                                 if (subIndex !== subPageIndex) return null;
                                 return <Box key={subIndex}>
@@ -869,7 +871,7 @@ export default function (props) {
                                     })}
                                 </Box>
                             })}
-                        </>
+                        </React.Fragment>
                     })}
                 </Box>
                 {quotePageIndex < props.Form.QuotePages.length && <Box>
