@@ -713,6 +713,8 @@ export default function (props) {
         }
         const returnedValues = logTheValues(previousPage[0], previousPage[1])
         if (previousPage[0] === -1) return
+        //if there isn't anything at maxLength return
+        if (PAGE_FORM_VALUES[maxLength - 1] === undefined) return
         const newFormData = new FormData()
         newFormData.append("Company", "Ai United");
         newFormData.append("SheetTitle", PAGE_FORM_VALUES[maxLength - 1].sheettitle);
