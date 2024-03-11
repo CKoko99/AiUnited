@@ -279,6 +279,8 @@ export default function (props) {
             return
         }
         if (loading) {
+            console.log("old results for state stuff:")
+            console.log(results)
             let interval = setInterval(() => {
                 setLoadingPercent((prev) => {
                     setLoadingText(LOADINGTEXT[Math.floor(LOADINGTEXT.length * (prev / 100))]);
@@ -297,53 +299,64 @@ export default function (props) {
                         let phoneCodeIsDifferent = false;
                         let oldPhoneCodes: Array<string> = [];
                         let newPhoneCodes: Array<string> = [];
-                        console.log("old results:")
-                        console.log(results)
-                        //length is results.length or secondResultsData.length, whichever is greater
-                        const length = results.length > secondResultsData.length ? results.length : secondResultsData.length;
-                        for (let i = 0; i < length; i++) {
-                            let pushed = false;
-                            if (results[i]) {
-                                if (results[i][0]) {
-                                    if (results[i][0].phoneCode) {
-                                        oldPhoneCodes.push(results[i][0].phoneCode)
-                                        pushed = true;
+                        setResults(oldResults => {
+                            console.log("old results:")
+                            console.log(oldResults)
+                            //length is results.length or secondResultsData.length, whichever is greater
+                            const length = oldResults.length > secondResultsData.length ? oldResults.length : secondResultsData.length;
+                            for (let i = 0; i < length; i++) {
+                                let pushed = false;
+                                if (oldResults[i]) {
+                                    if (oldResults[i][0]) {
+                                        if (oldResults[i][0].phoneCode) {
+                                            oldPhoneCodes.push(oldResults[i][0].phoneCode)
+                                            pushed = true;
+                                        }
                                     }
                                 }
-                            }
-                            if (!pushed) {
-                                oldPhoneCodes.push("undefined")
-                            }
-                        }
-                        for (let i = 0; i < length; i++) {
-                            let pushed = false;
-                            if (secondResultsData[i]) {
-                                if (secondResultsData[i][0]) {
-                                    if (secondResultsData[i][0].phoneCode) {
-                                        newPhoneCodes.push(secondResultsData[i][0].phoneCode)
-                                        pushed = true;
-                                    }
+                                if (!pushed) {
+                                    oldPhoneCodes.push("undefined")
                                 }
                             }
-                            if (!pushed) {
-                                newPhoneCodes.push("undefined")
+                            for (let i = 0; i < length; i++) {
+                                let pushed = false;
+                                if (secondResultsData[i]) {
+                                    if (secondResultsData[i][0]) {
+                                        if (secondResultsData[i][0].phoneCode) {
+                                            newPhoneCodes.push(secondResultsData[i][0].phoneCode)
+                                            pushed = true;
+                                        }
+                                    }
+                                }
+                                if (!pushed) {
+                                    newPhoneCodes.push("undefined")
+                                }
                             }
-                        }
-                        for (let i = 0; i < length; i++) {
-                            if (oldPhoneCodes[i] !== newPhoneCodes[i]) {
-                                phoneCodeIsDifferent = true;
+                            for (let i = 0; i < length; i++) {
+                                if (oldPhoneCodes[i] !== newPhoneCodes[i]) {
+                                    if (process.env.NODE_ENV === "development") {
+                                        console.log("Phone Codes are different")
+                                        console.log(oldPhoneCodes[i])
+                                        console.log(newPhoneCodes[i])
+                                    }
+                                    phoneCodeIsDifferent = true;
+                                }
                             }
-                        }
 
-                        if (phoneCodeIsDifferent) {
+                            if (phoneCodeIsDifferent) {
 
-                            props.sendConfirmationEmail(newPhoneCodes[0], newPhoneCodes[1])
-                            setSecondLoading(true);
-                            setTimeout(async () => {
-                                setResults(secondResultsData);
-                                setSecondLoading(false);
-                            }, 2000)
-                        }
+                                props.sendConfirmationEmail(newPhoneCodes[0], newPhoneCodes[1])
+                                setSecondLoading(true);
+                                setTimeout(async () => {
+                                    setSecondLoading(false);
+                                }, 2000)
+                            } else {
+                                if (process.env.NODE_ENV === "development") {
+                                    console.log("Phone Codes are the same")
+                                }
+                            }
+                            return secondResultsData;
+                        })
                     } catch (err) {
                         if (secondResultsData) {
                             setResults(secondResultsData);
