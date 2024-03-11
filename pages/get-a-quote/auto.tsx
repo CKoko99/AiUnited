@@ -7,6 +7,7 @@ import GrayDriversImg from "../../public/assets/images/get-a-quote/auto/driversg
 import ColorDriversImg from "../../public/assets/images/get-a-quote/auto/driverscolor.png";
 import GrayCoverageImg from "../../public/assets/images/get-a-quote/auto/coveragegray.png";
 import ColorCoverageImg from "../../public/assets/images/get-a-quote/auto/coveragecolor.png";
+import HeadComponent from "@/components/Head";
 
 //_f errors are due to duplicate IDs or missing questionId
 
@@ -3231,6 +3232,9 @@ const DevAutoForm = {
 
 export default function () {
     return <>
+        <HeadComponent title={'Car Insurance | Get a Free Auto Insurance Quote'}
+            metaData={"Secure your ride with a free car insurance quote from Ai United Insurance today. Drive confidently with tailored coverage."}
+        />
         <AutoQuote Form={process.env.NODE_ENV === "development" ? DevAutoForm : DevAutoForm} />
     </>;
 }
