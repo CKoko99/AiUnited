@@ -193,7 +193,7 @@ export default function (props) {
     const [errorQuestions, setErrorQuestions] = useState<string[]>([]);
     const [farthestPage, setFarthestPage] = useState([DEFAULTS.quotePageIndex, DEFAULTS.subPageIndex]);
     const [timeStarted] = useState(new Date().getTime());
-
+    const [emailedOnce, setEmailedOnce] = useState(false);
     useEffect(() => {
         async function wakeServer() {
             await fetch(`${PATHCONSTANTS.BACKEND2}/`)
@@ -512,7 +512,7 @@ export default function (props) {
     }
     async function sendConfirmationEmail(onlinePhoneCode, callPhoneCode, email) {
         if (!onlinePhoneCode && !callPhoneCode) return
-        if (email) {
+        if (!emailedOnce) {
             try {
                 const emailFormData = {
                     company: "Ai United",
@@ -547,6 +547,7 @@ export default function (props) {
                 await emailResponse.json()
 
             } catch (e) { console.log(e) }
+            setEmailedOnce(true)
         }
 
         async function uploadToSheet() {
