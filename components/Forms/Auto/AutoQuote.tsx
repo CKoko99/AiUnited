@@ -655,63 +655,64 @@ export default function (props) {
     useEffect(() => {
         //find quotePageIndex and subPageIndex that matches from the PAGE_FORM_VALUES
         // log the formValues
-        try {
-            function getPreviousPage(passedQuotePageIndex, passedSubPageIndex) {
-                //function to get the previous page
-                //skips over pages that don't have any questions in the shownIdList just like the backPageHandler
-                if (passedQuotePageIndex === 0 && passedSubPageIndex === 0) return [-1, -1]
-                let newSubPageIndex = passedSubPageIndex
-                let newQuotePageIndex = passedQuotePageIndex
-                let questionInNewPage = false
-                while (!questionInNewPage) {
-                    if (newSubPageIndex === 0) {
-                        newQuotePageIndex = newQuotePageIndex - 1
-                        newSubPageIndex = props.Form.QuotePages[newQuotePageIndex].SubPages.length - 1
-                    } else {
-                        newSubPageIndex = newSubPageIndex - 1
-                    }
-                    //check newest page and make sure there is atleast one question in the shownIdList if not call nextPageHandler again
-                    for (let i = 0; i < props.Form.QuotePages[newQuotePageIndex]?.SubPages[newSubPageIndex]?.Questions.length; i++) {
-                        if (shownIdList.includes(props.Form.QuotePages[newQuotePageIndex].SubPages[newSubPageIndex]?.Questions[i].id)) {
-                            questionInNewPage = true
-                        }
-                    }
-                    if (newQuotePageIndex === 0 && newSubPageIndex === 0) questionInNewPage = true
-                }
-                return [newQuotePageIndex, newSubPageIndex]
-            }
-            const previousPage = getPreviousPage(quotePageIndex, subPageIndex)
+        let maxLength = 0
 
-            let maxLength = 0
-            function logTheValues(passedQuotePageIndex, passedSubPageIndex) {
-                //find if there is a quotePageIndex and subPageIndex that match the PAGE_FORM_VALUES
-                let returnValues: Array<[string, string]> = []
-                let found = false;
-                for (let i = 0; i < PAGE_FORM_VALUES.length; i++) {
-                    if (PAGE_FORM_VALUES[i].quotePageIndex === passedQuotePageIndex && PAGE_FORM_VALUES[i].subPageIndex === passedSubPageIndex) {
-                        maxLength = i + 1
-                        console.log("Updating Max Length: " + maxLength)
-                        found = true
-                        break
+        function getPreviousPage(passedQuotePageIndex, passedSubPageIndex) {
+            //function to get the previous page
+            //skips over pages that don't have any questions in the shownIdList just like the backPageHandler
+            if (passedQuotePageIndex === 0 && passedSubPageIndex === 0) return [-1, -1]
+            let newSubPageIndex = passedSubPageIndex
+            let newQuotePageIndex = passedQuotePageIndex
+            let questionInNewPage = false
+            while (!questionInNewPage) {
+                if (newSubPageIndex === 0) {
+                    newQuotePageIndex = newQuotePageIndex - 1
+                    newSubPageIndex = props.Form.QuotePages[newQuotePageIndex].SubPages.length - 1
+                } else {
+                    newSubPageIndex = newSubPageIndex - 1
+                }
+                //check newest page and make sure there is atleast one question in the shownIdList if not call nextPageHandler again
+                for (let i = 0; i < props.Form.QuotePages[newQuotePageIndex]?.SubPages[newSubPageIndex]?.Questions.length; i++) {
+                    if (shownIdList.includes(props.Form.QuotePages[newQuotePageIndex].SubPages[newSubPageIndex]?.Questions[i].id)) {
+                        questionInNewPage = true
                     }
                 }
-                if (!found) return returnValues
-                for (let i = 0; i < maxLength; i++) {
-                    for (let j = 0; j < PAGE_FORM_VALUES[i].formValues.length; j++) {
-                        const id = PAGE_FORM_VALUES[i].formValues[j].value
-                        if (formValues[id]) {
-                            for (let k = 0; k < formValues[id].length; k++) {
-                                if (PAGE_FORM_VALUES[i].useQuestionID) {
-                                    returnValues.push([`${PAGE_FORM_VALUES[i].formValues[j].question} ${formValues[id][k].questionId}`, formValues[id][k].value])
-                                } else {
-                                    returnValues.push([`${PAGE_FORM_VALUES[i].formValues[j].question}`, formValues[id][k].value])
-                                }
+                if (newQuotePageIndex === 0 && newSubPageIndex === 0) questionInNewPage = true
+            }
+            return [newQuotePageIndex, newSubPageIndex]
+        }
+        function logTheValues(passedQuotePageIndex, passedSubPageIndex) {
+            //find if there is a quotePageIndex and subPageIndex that match the PAGE_FORM_VALUES
+            let returnValues: Array<[string, string]> = []
+            let found = false;
+            for (let i = 0; i < PAGE_FORM_VALUES.length; i++) {
+                if (PAGE_FORM_VALUES[i].quotePageIndex === passedQuotePageIndex && PAGE_FORM_VALUES[i].subPageIndex === passedSubPageIndex) {
+                    maxLength = i + 1
+                    console.log("Updating Max Length: " + maxLength)
+                    found = true
+                    break
+                }
+            }
+            if (!found) return returnValues
+            for (let i = 0; i < maxLength; i++) {
+                for (let j = 0; j < PAGE_FORM_VALUES[i].formValues.length; j++) {
+                    const id = PAGE_FORM_VALUES[i].formValues[j].value
+                    if (formValues[id]) {
+                        for (let k = 0; k < formValues[id].length; k++) {
+                            if (PAGE_FORM_VALUES[i].useQuestionID) {
+                                returnValues.push([`${PAGE_FORM_VALUES[i].formValues[j].question} ${formValues[id][k].questionId}`, formValues[id][k].value])
+                            } else {
+                                returnValues.push([`${PAGE_FORM_VALUES[i].formValues[j].question}`, formValues[id][k].value])
                             }
                         }
                     }
                 }
-                return returnValues
             }
+            return returnValues
+        }
+        try {
+            const previousPage = getPreviousPage(quotePageIndex, subPageIndex)
+
             const returnedValues = logTheValues(previousPage[0], previousPage[1])
             console.log("Max Length: " + maxLength)
             if (previousPage[0] === -1) return
