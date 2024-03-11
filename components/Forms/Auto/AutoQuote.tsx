@@ -135,7 +135,14 @@ const PAGE_FORM_VALUES = [
         subPageIndex: 0,
         useQuestionID: true,
         formValues: [
-            { question: "Vehicle:", value: QUESTION_IDS.VEHICLE_1 },
+            { question: "Vehicle 1:", value: QUESTION_IDS.VEHICLE_1 },
+            { question: "Vehicle 1:", value: QUESTION_IDS.VEHICLE_1_OWNERSHIP },
+            { question: "Vehicle 1:", value: QUESTION_IDS.VEHICLE_1_USAGE },
+            { question: "Vehicle 1:", value: QUESTION_IDS.VEHICLE_1_ANNUAL_MILES },
+            { question: "Vehicle 2:", value: QUESTION_IDS.VEHICLE_2 },
+            { question: "Vehicle 2:", value: QUESTION_IDS.VEHICLE_2_OWNERSHIP },
+            { question: "Vehicle 2:", value: QUESTION_IDS.VEHICLE_2_USAGE },
+            { question: "Vehicle 2:", value: QUESTION_IDS.VEHICLE_2_ANNUAL_MILES },
         ]
     },
 ]
