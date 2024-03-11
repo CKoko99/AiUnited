@@ -145,6 +145,36 @@ const PAGE_FORM_VALUES = [
             { question: "Vehicle 2:", value: QUESTION_IDS.VEHICLE_2_ANNUAL_MILES },
         ]
     },
+    {
+        sheettitle: "Driver Information",
+        quotePageIndex: 2,
+        subPageIndex: 0,
+        useQuestionID: true,
+        formValues: [
+            { question: "Driver 1:", value: QUESTION_IDS.DATE_OF_BIRTH },
+            { question: "Driver 1:", value: QUESTION_IDS.GENDER },
+            { question: "Driver 1:", value: QUESTION_IDS.MARITAL_STATUS },
+            { question: "Driver 1:", value: QUESTION_IDS.WORK },
+            { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_LICENSE_NUMBER },
+            { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_LICENSE_STATUS },
+            { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_MONTHS_LICENSED },
+            { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_MONTHS_STATE_LICENSED },
+            { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_MONTHS_SUSPENDED },
+            { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_STATE_LICENSED },
+            { question: "Driver 1:", value: QUESTION_IDS.EDUCATION_LEVEL },
+            { question: "Driver 1:", value: QUESTION_IDS.RESIDENCY_TYPE },
+            { question: "Driver 1:", value: QUESTION_IDS.RESIDENCY_STATUS },
+            { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS },
+            { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_VIOLATIONS },
+            { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_ADD },
+            { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_FIRST_NAME },
+            { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_LAST_NAME },
+            { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_DATE_OF_BIRTH },
+            { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_GENDER },
+            { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_MARITAL_STATUS },
+            { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_RELATION },
+        ]
+    }
 ]
 
 export default function (props) {
@@ -152,7 +182,7 @@ export default function (props) {
     // Use UUID to generate QuoteId
     const [QuoteId, setQuoteId] = useState(uuid());
     const [shownIdList, setShownIdList] = useState(DEFAULTS.shownIdList);
-    const { register, handleSubmit, setValue, formState } = useForm();
+    const { register, setValue, } = useForm();
     const [formValues, setFormValues] = useState({});
     const [showDefaultValues, setShowDefaultValues] = useState(DEFAULTS.showDefaultValues);
     const [showResults, setShowResults] = useState(false);
@@ -162,7 +192,7 @@ export default function (props) {
     const [activeQuestionsArray, setActiveQuestionsArray] = useState<string[]>([]);
     const [errorQuestions, setErrorQuestions] = useState<string[]>([]);
     const [farthestPage, setFarthestPage] = useState([DEFAULTS.quotePageIndex, DEFAULTS.subPageIndex]);
-    const [timeStarted, setTimeStarted] = useState(new Date().getTime());
+    const [timeStarted] = useState(new Date().getTime());
 
     useEffect(() => {
         async function wakeServer() {
