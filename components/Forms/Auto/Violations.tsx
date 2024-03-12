@@ -176,7 +176,15 @@ const codes = [
     "Use of Wireless Dev for Text-Based Comm. While Driving",
     "Failure to Use Ignition Interlock Device"
 ]
-
+function isDateValidHandler(dayValue, monthValue, yearValue) {
+    if (dayValue === "NaN" || monthValue === "NaN" || yearValue === "NaN") {
+        return false;
+    }
+    if (dayValue !== "" && monthValue !== "" && yearValue !== "") {
+        return true;
+    }
+    return false;
+}
 function returnDefaultViolationItem(defaultValues) {
     let newDefaultValues = {
         codeValue: "",
@@ -200,7 +208,10 @@ function returnDefaultViolationItem(defaultValues) {
             if (dayInt < 10) {
                 day = "0" + day
             }
-            let year = date.getFullYear()
+            let year = String(date.getFullYear())
+            month = month === "NaN" ? "" : month
+            day = day === "NaN" ? "" : day
+            year = year === "NaN" ? "" : year
             newDefaultValues.month = month
             newDefaultValues.day = day
             newDefaultValues.year = String(year)
@@ -219,11 +230,11 @@ function ViolationItem(props) {
     const [monthValue, setMonthValue] = useState(returnDefaultViolationItem(props.initialValue).month);
     const [dayValue, setDayValue] = useState(returnDefaultViolationItem(props.initialValue).day);
     const [yearValue, setYearValue] = useState(returnDefaultViolationItem(props.initialValue).year);
-    const [completeValue, setCompleteValue] = useState("");
+
     const [isValid, setIsValid] = useState(false);
     const [error, setError] = useState(false);
-
-    const showDays = monthValue !== "";
+    const completeDateValue = `${yearValue}-${monthValue}-${dayValue}T05:00:00Z`;
+    const showDays = monthValue !== ""
     const showYears = dayValue !== "";
 
     function handleMonthChange(value) {
@@ -249,28 +260,17 @@ function ViolationItem(props) {
         //  props.addIdToList(props.nextQuestionId);
     }
 
-    function handleValueChange() {
-        //add a 0 to the month value if it is less than 10
 
-        setCompleteValue(`${yearValue}-${monthValue}-${dayValue}T05:00:00Z`);
-        return `${yearValue}-${monthValue}-${dayValue}T05:00:00Z`;
-    }
-    function isDateValidHandler() {
-        if (dayValue !== "" && monthValue !== "" && yearValue !== "") {
-            return true;
-        }
-        return false;
-    }
+
 
     useEffect(() => {
-        const newValue = handleValueChange();
 
         props.updateViolationData(props.index, {
             value: {
-                OccurredAt: newValue,
+                OccurredAt: completeDateValue,
                 Code: codeValue
             },
-            isValid: isDateValidHandler() && codeValue !== ""
+            isValid: isDateValidHandler(dayValue, monthValue, yearValue) && codeValue !== ""
         });
 
         /*
@@ -340,6 +340,13 @@ function ViolationItem(props) {
          }*/
         console.log("props.initialValue")
         console.log(returnDefaultViolationItem(props.initialValue))
+        props.updateViolationData(props.index, {
+            value: {
+                OccurredAt: completeDateValue,
+                Code: codeValue
+            },
+            isValid: isDateValidHandler(dayValue, monthValue, yearValue) && codeValue !== ""
+        });
         return
         if (props.initialValue) {
             console.log("props.initialValue")
@@ -481,15 +488,34 @@ function ViolationItem(props) {
     </>
 }
 function returnDefaultViolation(defaultValues) {
-    const newDefaultValues = []
+    const newDefaultValues: {
+        value: { Code: string, OccurredAt: string },
+        isValid: boolean
+    }[] = []
     try {
         if (defaultValues) {
             defaultValues.forEach((violation, index) => {
+                let defaultCodeValue = violation.Code
+                const date = new Date(violation.OccurredAt)
+                let defaultMonthValue = String(date.getMonth() + 1)
+
+                let defaultDayValue = String(date.getDate())
+
+                let defaultYearValue = String(date.getFullYear())
+                //if any equal "NaN" then set to ""
+
+                let isValid = isDateValidHandler(defaultDayValue, defaultMonthValue, defaultYearValue) && defaultCodeValue !== ""
+                if (defaultDayValue === "NaN" || defaultMonthValue === "NaN" || defaultYearValue === "NaN") {
+                    defaultDayValue = ""
+                    defaultMonthValue = ""
+                    defaultYearValue = ""
+                }
                 const newViolation = {
                     value: {
-                        ...violation
+                        Code: violation.Code,
+                        OccurredAt: violation.OccurredAt
                     },
-                    isValid: true
+                    isValid
                 }
                 newDefaultValues.push(newViolation);
 

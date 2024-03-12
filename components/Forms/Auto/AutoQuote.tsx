@@ -98,7 +98,8 @@ const DEFAULTS = {
     shownIdList: process.env.NODE_ENV === "development" ? [
         QUESTION_IDS.FIRST_NAME,
         //QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
-        //  QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS,
+        // QUESTION_IDS.DRIVER_2_ADD,
+        // QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS,
 
     ] : [QUESTION_IDS.FIRST_NAME,],
     quotePageIndex: process.env.NODE_ENV === "development" ? 0 : 0,
