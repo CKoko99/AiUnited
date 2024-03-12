@@ -1,5 +1,6 @@
 import { returnLocaleText } from "@/components/locale/LocaleSwitcher";
 import { Box, Button, FormControl, FormHelperText, InputLabel, MenuItem, Select, Typography } from "@mui/material";
+import { use } from "marked";
 import { useState, useEffect } from "react";
 const TEXT = {
     month: { en: "Month", es: "Mes" },
@@ -176,25 +177,61 @@ const codes = [
     "Failure to Use Ignition Interlock Device"
 ]
 
+function returnDefaultViolationItem(defaultValues) {
+    let newDefaultValues = {
+        codeValue: "",
+        month: "",
+        day: "",
+        year: ""
+    }
+    try {
+        if (defaultValues) {
+            console.log("defaultValues")
+            console.log(defaultValues)
+            newDefaultValues.codeValue = defaultValues.value.Code;
+            const date = new Date(defaultValues.value.OccurredAt)
+            let monthInt = date.getMonth() + 1
+            let month = String(monthInt)
+            if (monthInt < 10) {
+                month = "0" + month
+            }
+            let dayInt = date.getDate()
+            let day = String(dayInt)
+            if (dayInt < 10) {
+                day = "0" + day
+            }
+            let year = date.getFullYear()
+            newDefaultValues.month = month
+            newDefaultValues.day = day
+            newDefaultValues.year = String(year)
+        }
+    } catch (e) {
+        console.error("Error setting default values")
+        console.error(e)
+    } finally {
+        return newDefaultValues
+    }
+}
+
 function ViolationItem(props) {
-    const [codeValue, setCodeValue] = useState("")
+    const [codeValue, setCodeValue] = useState(returnDefaultViolationItem(props.initialValue).codeValue);
     const [hidden, setHidden] = useState(true)
-    const [monthValue, setMonthValue] = useState(props.defaultValue ? props.defaultValue[0] : "");
-    const [showDays, setShowDays] = useState(false);
-    const [dayValue, setDayValue] = useState(props.defaultValue ? props.defaultValue[1] : "");
-    const [showYears, setShowYears] = useState(false);
-    const [yearValue, setYearValue] = useState(props.defaultValue ? props.defaultValue[2] : "");
+    const [monthValue, setMonthValue] = useState(returnDefaultViolationItem(props.initialValue).month);
+    const [dayValue, setDayValue] = useState(returnDefaultViolationItem(props.initialValue).day);
+    const [yearValue, setYearValue] = useState(returnDefaultViolationItem(props.initialValue).year);
     const [completeValue, setCompleteValue] = useState("");
     const [isValid, setIsValid] = useState(false);
     const [error, setError] = useState(false);
 
+    const showDays = monthValue !== "";
+    const showYears = dayValue !== "";
+
     function handleMonthChange(value) {
         setMonthValue(value);
-        setShowDays(true);
         //check if the day value is valid for the month if not then set it to ""
         try {
             const selectedMonth = months.find(month => month?.value === value);
-            if (selectedMonth && dayValue > selectedMonth.maxDays) {
+            if (selectedMonth && Number(dayValue) > selectedMonth.maxDays) {
                 setDayValue("");
             }
         } catch (e) {
@@ -206,7 +243,6 @@ function ViolationItem(props) {
     }
     function handleDayChange(value) {
         setDayValue(value);
-        setShowYears(true);
     }
     function handleYearChange(value) {
         setYearValue(value);
@@ -262,9 +298,54 @@ function ViolationItem(props) {
         }
     }, [isValid])
     useEffect(() => {
-        if (props.passedValue) {
-            setCodeValue(props.passedValue.value.code)
-            const date = new Date(props.passedValue.value.OccuredAt)
+        /* if (props.passedValue) {
+             setCodeValue(props.passedValue.value.code)
+             const date = new Date(props.passedValue.value.OccuredAt)
+             let monthInt = date.getMonth() + 1
+             let month = String(monthInt)
+             if (monthInt < 10) {
+                 month = "0" + month
+             }
+             let dayInt = date.getDate()
+             let day = String(dayInt)
+             if (dayInt < 10) {
+                 day = "0" + day
+             }
+             let year = date.getFullYear()
+             handleMonthChange(month)
+             handleDayChange(day)
+             handleYearChange(year)
+         }*/
+    }, [props.passedvalue])
+    useEffect(() => {
+        /* if (props.defaultValue) {
+             console.log("props.defaultValue")
+             console.log(props.defaultValue)
+             const defaultDate = new Date(props.defaultValue)
+             let monthInt = defaultDate.getMonth() + 1
+             let month = String(monthInt)
+             if (monthInt < 10) {
+                 month = "0" + month
+             }
+             let dayInt = defaultDate.getDate()
+             let day = String(dayInt)
+             if (dayInt < 10) {
+                 day = "0" + day
+             }
+             let year = defaultDate.getFullYear()
+ 
+             handleMonthChange(month)
+             handleDayChange(day)
+             handleYearChange(year)
+         }*/
+        console.log("props.initialValue")
+        console.log(returnDefaultViolationItem(props.initialValue))
+        return
+        if (props.initialValue) {
+            console.log("props.initialValue")
+            console.log(props.initialValue)
+            setCodeValue(props.initialValue.code)
+            const date = new Date(props.initialValue.OccuredAt)
             let monthInt = date.getMonth() + 1
             let month = String(monthInt)
             if (monthInt < 10) {
@@ -280,27 +361,6 @@ function ViolationItem(props) {
             handleDayChange(day)
             handleYearChange(year)
         }
-    }, [props.passedvalue])
-    useEffect(() => {
-        if (props.defaultValue) {
-
-            const defaultDate = new Date(props.defaultValue)
-            let monthInt = defaultDate.getMonth() + 1
-            let month = String(monthInt)
-            if (monthInt < 10) {
-                month = "0" + month
-            }
-            let dayInt = defaultDate.getDate()
-            let day = String(dayInt)
-            if (dayInt < 10) {
-                day = "0" + day
-            }
-            let year = defaultDate.getFullYear()
-
-            handleMonthChange(month)
-            handleDayChange(day)
-            handleYearChange(year)
-        }
     }, [])
 
     useEffect(() => {
@@ -308,6 +368,9 @@ function ViolationItem(props) {
             props.addIdToList(props.nextQuestionId);
         }
     }, [props.shownIdList])
+
+
+
     return <>
         <Box
             sx={{
@@ -338,7 +401,8 @@ function ViolationItem(props) {
             <Box
                 sx={{
                     display: "flex", gap: "1rem", justifyContent: "space-around",
-                    width: props.fullWidth ? { xs: "100%", md: '49%' } : "100%"
+                    width: props.fullWidth ? { xs: "100%", md: '49%' } : "100%",
+                    marginBottom: "3rem"
                 }}
             >
                 <FormControl fullWidth
@@ -416,15 +480,37 @@ function ViolationItem(props) {
         </Box>
     </>
 }
-export default function Violations(props) {
-    const [violationsCount, setViolationsCount] = useState(0)
-    const [violationsData, setViolationsData] = useState<any[]>([])
+function returnDefaultViolation(defaultValues) {
+    const newDefaultValues = []
+    try {
+        if (defaultValues) {
+            defaultValues.forEach((violation, index) => {
+                const newViolation = {
+                    value: {
+                        ...violation
+                    },
+                    isValid: true
+                }
+                newDefaultValues.push(newViolation);
 
+            })
+        }
+    } catch (e) {
+        console.error("Error setting default values")
+        console.error(e)
+    } finally {
+        return newDefaultValues
+    }
+}
+export default function Violations(props) {
+    const [violationsCount, setViolationsCount] = useState(returnDefaultViolation(props.defaultValue).length || 1)
+    const [violationsData, setViolationsData] = useState<any[]>(returnDefaultViolation(props.defaultValue))
+    const [defaultViolations] = useState<any[]>(returnDefaultViolation(props.defaultValue))
     function handleViolationsUpdate(id, data) {
         setViolationsData((prevState: any[]) => {
             const newState: any[] = [...prevState]
             newState[id] = data
-            console.log("new state", newState)
+            //   console.log("new state", newState)
             return newState
         })
     }
@@ -455,6 +541,7 @@ export default function Violations(props) {
     }, [violationsData])
 
     useEffect(() => {
+        return
         if (props.defaultValue) {
             const defaultViolations = props.defaultValue
             console.log("props.defaultValue")
@@ -504,6 +591,7 @@ export default function Violations(props) {
                     passedValue={violationsData[i]}
                     lastIndex={i === violationsCount - 1}
                     passedError={props.passedError}
+                    initialValue={defaultViolations[i] ? defaultViolations[i] : null}
                 />
             })}
             {(violationsData[violationsCount - 1] as any)?.isValid && <Button

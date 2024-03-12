@@ -98,7 +98,7 @@ const DEFAULTS = {
     shownIdList: process.env.NODE_ENV === "development" ? [
         QUESTION_IDS.FIRST_NAME,
         //QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
-        //QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS,
+        //  QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS,
 
     ] : [QUESTION_IDS.FIRST_NAME,],
     quotePageIndex: process.env.NODE_ENV === "development" ? 0 : 0,
@@ -319,8 +319,13 @@ export default function (props) {
         let hasViolations = false
         let violationsData = []
 
-        hasViolations = formValues[QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS] ? formValues[QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS][0].value : false
-        if (formValues[QUESTION_IDS.DRIVER_1_VIOLATIONS]) {
+        if (formValues[QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS]) {
+            if (formValues[QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS][0].value === "true") {
+                hasViolations = true
+            }
+        }
+
+        if (hasViolations && formValues[QUESTION_IDS.DRIVER_1_VIOLATIONS]) {
             console.log(formValues[QUESTION_IDS.DRIVER_1_VIOLATIONS][0].value)
             violationsData = hasViolations ? formValues[QUESTION_IDS.DRIVER_1_VIOLATIONS][0].value : []
         }
@@ -727,7 +732,7 @@ export default function (props) {
             for (let i = 0; i < PAGE_FORM_VALUES.length; i++) {
                 if (PAGE_FORM_VALUES[i].quotePageIndex === passedQuotePageIndex && PAGE_FORM_VALUES[i].subPageIndex === passedSubPageIndex) {
                     maxLength = i + 1
-                    console.log("Updating Max Length: " + maxLength)
+                    //    console.log("Updating Max Length: " + maxLength)
                     found = true
                     break
                 }
@@ -753,8 +758,11 @@ export default function (props) {
             const previousPage = getPreviousPage(quotePageIndex, subPageIndex)
 
             const returnedValues = logTheValues(previousPage[0], previousPage[1])
-            console.log("Max Length: " + maxLength)
+            //  console.log("Max Length: " + maxLength)
             if (previousPage[0] === -1) return
+            if (formValues[QUESTION_IDS.FIRST_NAME][0]?.value === "test" && formValues[QUESTION_IDS.LAST_NAME][0]?.value === "test") {
+                return
+            }
             //if there isn't anything at maxLength return
             if (PAGE_FORM_VALUES[maxLength - 1] === undefined) return
             const newFormData = new FormData()
@@ -786,7 +794,7 @@ export default function (props) {
                     console.log(error);
                 });
         } catch (e) {
-            console.log(e)
+            //     console.log(e)
         }
 
     }, [farthestPage])

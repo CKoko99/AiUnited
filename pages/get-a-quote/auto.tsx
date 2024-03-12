@@ -1465,7 +1465,7 @@ const DevAutoForm = {
                         id: QUESTION_IDS.FIRST_NAME,
                         nextQuestionId: QUESTION_IDS.LAST_NAME,
                         type: "input",
-                        defaultValue: "Long",
+                        defaultValue: "test",
                         heading: { en: "Let's get started", es: "Comencemos" },
                         question: {
                             en: "First Name",
@@ -1484,7 +1484,7 @@ const DevAutoForm = {
                         id: QUESTION_IDS.LAST_NAME,
                         nextQuestionId: QUESTION_IDS.PHONE_NUMBER,
                         type: "input",
-                        defaultValue: "John",
+                        defaultValue: "test",
                         question: {
                             en: "Last Name",
                             es: "Apellido",
