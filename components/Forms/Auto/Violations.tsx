@@ -194,8 +194,6 @@ function returnDefaultViolationItem(defaultValues) {
     }
     try {
         if (defaultValues) {
-            console.log("defaultValues")
-            console.log(defaultValues)
             newDefaultValues.codeValue = defaultValues.value.Code;
             const date = new Date(defaultValues.value.OccurredAt)
             let monthInt = date.getMonth() + 1
@@ -338,8 +336,6 @@ function ViolationItem(props) {
              handleDayChange(day)
              handleYearChange(year)
          }*/
-        console.log("props.initialValue")
-        console.log(returnDefaultViolationItem(props.initialValue))
         props.updateViolationData(props.index, {
             value: {
                 OccurredAt: completeDateValue,
