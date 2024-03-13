@@ -120,86 +120,96 @@ const DEFAULTS = {
     showDefaultsButton: process.env.NODE_ENV === "development" ? true : false,
 }
 
-const PAGE_FORM_VALUES = [
-    {
-        sheettitle: "Contact Information",
-        quotePageIndex: 0,
-        subPageIndex: 0,
-        formValues: [
-            { question: "First Name:", value: QUESTION_IDS.FIRST_NAME },
-            { question: "Last Name:", value: QUESTION_IDS.LAST_NAME },
-            { question: "Phone Number:", value: QUESTION_IDS.PHONE_NUMBER },
-            { question: "Email:", value: QUESTION_IDS.EMAIL },
-        ]
-    },
-    {
-        sheettitle: "Address Information",
-        quotePageIndex: 0,
-        subPageIndex: 1,
-        formValues: [
-            { question: "Address Line 1:", value: QUESTION_IDS.ADDRESS_LINE_1 },
-            { question: "City:", value: QUESTION_IDS.CITY },
-            { question: "Zip Code:", value: QUESTION_IDS.ZIP_CODE },
-        ]
-    },
-    {
-        sheettitle: "Vehicle Information",
-        quotePageIndex: 1,
-        subPageIndex: 0,
-        useQuestionID: true,
-        formValues: [
-            { question: "Vehicle 1:", value: QUESTION_IDS.VEHICLE_1 },
-            { question: "Vehicle 1:", value: QUESTION_IDS.VEHICLE_1_OWNERSHIP },
-            { question: "Vehicle 1:", value: QUESTION_IDS.VEHICLE_1_USAGE },
-            { question: "Vehicle 1:", value: QUESTION_IDS.VEHICLE_1_ANNUAL_MILES },
-            { question: "Vehicle 2:", value: QUESTION_IDS.VEHICLE_2 },
-            { question: "Vehicle 2:", value: QUESTION_IDS.VEHICLE_2_OWNERSHIP },
-            { question: "Vehicle 2:", value: QUESTION_IDS.VEHICLE_2_USAGE },
-            { question: "Vehicle 2:", value: QUESTION_IDS.VEHICLE_2_ANNUAL_MILES },
-            { question: "Vehicle 3:", value: QUESTION_IDS.VEHICLE_3 },
-            { question: "Vehicle 3:", value: QUESTION_IDS.VEHICLE_3_OWNERSHIP },
-            { question: "Vehicle 3:", value: QUESTION_IDS.VEHICLE_3_USAGE },
-            { question: "Vehicle 3:", value: QUESTION_IDS.VEHICLE_3_ANNUAL_MILES },
-            { question: "Vehicle 4:", value: QUESTION_IDS.VEHICLE_4 },
-            { question: "Vehicle 4:", value: QUESTION_IDS.VEHICLE_4_OWNERSHIP },
-            { question: "Vehicle 4:", value: QUESTION_IDS.VEHICLE_4_USAGE },
-            { question: "Vehicle 4:", value: QUESTION_IDS.VEHICLE_4_ANNUAL_MILES },
-        ]
-    },
-    {
-        sheettitle: "Driver Information",
-        quotePageIndex: 2,
-        subPageIndex: 0,
-        useQuestionID: true,
-        formValues: [
-            { question: "Driver 1:", value: QUESTION_IDS.DATE_OF_BIRTH },
-            { question: "Driver 1:", value: QUESTION_IDS.GENDER },
-            { question: "Driver 1:", value: QUESTION_IDS.MARITAL_STATUS },
-            { question: "Driver 1:", value: QUESTION_IDS.WORK },
-            { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_LICENSE_NUMBER },
-            { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_LICENSE_STATUS },
-            { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_MONTHS_LICENSED },
-            { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_MONTHS_STATE_LICENSED },
-            { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_MONTHS_SUSPENDED },
-            { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_STATE_LICENSED },
-            { question: "Driver 1:", value: QUESTION_IDS.EDUCATION_LEVEL },
-            { question: "Driver 1:", value: QUESTION_IDS.RESIDENCY_TYPE },
-            { question: "Driver 1:", value: QUESTION_IDS.RESIDENCY_STATUS },
-            { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS },
-            { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_VIOLATIONS },
-            { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_ADD },
-            { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_FIRST_NAME },
-            { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_LAST_NAME },
-            { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_DATE_OF_BIRTH },
-            { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_GENDER },
-            { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_MARITAL_STATUS },
-            { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_RELATION },
+const PAGE_FORM_VALUES: {
+    sheettitle: string,
+    quotePageIndex: number,
+    subPageIndex: number,
+    useQuestionID?: boolean,
+    formValues: {
+        question: string,
+        value: string,
+        backupIds?: string[]
+    }[]
+}[] = [
+        {
+            sheettitle: "Contact Information",
+            quotePageIndex: 0,
+            subPageIndex: 0,
+            formValues: [
+                { question: "First Name:", value: QUESTION_IDS.FIRST_NAME },
+                { question: "Last Name:", value: QUESTION_IDS.LAST_NAME },
+                { question: "Phone Number:", value: QUESTION_IDS.PHONE_NUMBER },
+                { question: "Email:", value: QUESTION_IDS.EMAIL },
+            ]
+        },
+        {
+            sheettitle: "Address Information",
+            quotePageIndex: 0,
+            subPageIndex: 1,
+            formValues: [
+                { question: "Address Line 1:", value: QUESTION_IDS.ADDRESS_LINE_1 },
+                { question: "City:", value: QUESTION_IDS.CITY },
+                { question: "Zip Code:", value: QUESTION_IDS.ZIP_CODE },
+            ]
+        },
+        {
+            sheettitle: "Vehicle Information",
+            quotePageIndex: 1,
+            subPageIndex: 0,
+            useQuestionID: true,
+            formValues: [
+                { question: "Vehicle 1:", value: QUESTION_IDS.VEHICLE_1 },
+                { question: "Vehicle 1:", value: QUESTION_IDS.VEHICLE_1_OWNERSHIP },
+                { question: "Vehicle 1:", value: QUESTION_IDS.VEHICLE_1_USAGE },
+                { question: "Vehicle 1:", value: QUESTION_IDS.VEHICLE_1_ANNUAL_MILES },
+                { question: "Vehicle 2:", value: QUESTION_IDS.VEHICLE_2, backupIds: ["Year", "Make", "Model", "Vin"] },
+                { question: "Vehicle 2:", value: QUESTION_IDS.VEHICLE_2_OWNERSHIP, backupIds: ["Ownership"] },
+                { question: "Vehicle 2:", value: QUESTION_IDS.VEHICLE_2_USAGE, backupIds: ["Usage"], },
+                { question: "Vehicle 2:", value: QUESTION_IDS.VEHICLE_2_ANNUAL_MILES, backupIds: ["AnnualMiles"], },
+                { question: "Vehicle 3:", value: QUESTION_IDS.VEHICLE_3, backupIds: ["Year", "Make", "Model", "Vin"] },
+                { question: "Vehicle 3:", value: QUESTION_IDS.VEHICLE_3_OWNERSHIP, backupIds: ["Ownership"] },
+                { question: "Vehicle 3:", value: QUESTION_IDS.VEHICLE_3_USAGE, backupIds: ["Usage"], },
+                { question: "Vehicle 3:", value: QUESTION_IDS.VEHICLE_3_ANNUAL_MILES, backupIds: ["AnnualMiles"], },
+                { question: "Vehicle 4:", value: QUESTION_IDS.VEHICLE_4, backupIds: ["Year", "Make", "Model", "Vin"] },
+                { question: "Vehicle 4:", value: QUESTION_IDS.VEHICLE_4_OWNERSHIP, backupIds: ["Ownership"] },
+                { question: "Vehicle 4:", value: QUESTION_IDS.VEHICLE_4_USAGE, backupIds: ["Usage"], },
+                { question: "Vehicle 4:", value: QUESTION_IDS.VEHICLE_4_ANNUAL_MILES, backupIds: ["AnnualMiles"], },
+            ]
+        },
+        {
+            sheettitle: "Driver Information",
+            quotePageIndex: 2,
+            subPageIndex: 0,
+            useQuestionID: true,
+            formValues: [
+                { question: "Driver 1:", value: QUESTION_IDS.DATE_OF_BIRTH },
+                { question: "Driver 1:", value: QUESTION_IDS.GENDER },
+                { question: "Driver 1:", value: QUESTION_IDS.MARITAL_STATUS },
+                { question: "Driver 1:", value: QUESTION_IDS.WORK },
+                { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_LICENSE_NUMBER },
+                { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_LICENSE_STATUS },
+                { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_MONTHS_LICENSED },
+                { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_MONTHS_STATE_LICENSED },
+                { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_MONTHS_SUSPENDED },
+                { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_STATE_LICENSED },
+                { question: "Driver 1:", value: QUESTION_IDS.EDUCATION_LEVEL },
+                { question: "Driver 1:", value: QUESTION_IDS.RESIDENCY_TYPE },
+                { question: "Driver 1:", value: QUESTION_IDS.RESIDENCY_STATUS },
+                { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS },
+                { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_VIOLATIONS },
+                { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_ADD },
+                { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_FIRST_NAME },
+                { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_LAST_NAME },
+                { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_DATE_OF_BIRTH },
+                { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_GENDER },
+                { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_MARITAL_STATUS },
+                { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_RELATION },
 
 
 
-        ]
-    }
-]
+            ]
+        }
+    ]
 
 export default function (props) {
 
@@ -801,6 +811,16 @@ export default function (props) {
                                 returnValues.push([`${PAGE_FORM_VALUES[i].formValues[j].question}`, formValues[id][k].value])
                             }
                         }
+                    } else {
+                        console.log("Form Value Not Found: " + id)
+                        // loop through Page_Form_Values backupIds and add the value to returnValues with empty string
+                        if (PAGE_FORM_VALUES[i].formValues[j].backupIds === undefined) continue
+
+                        const backupIds = PAGE_FORM_VALUES[i].formValues[j].backupIds as string[] ?? []
+
+                        for (let k = 0; k < backupIds.length; k++) {
+                            returnValues.push([`${PAGE_FORM_VALUES[i].formValues[j].question} ${backupIds[k]}`, " "])
+                        }
                     }
                 }
             }
@@ -812,9 +832,8 @@ export default function (props) {
             const returnedValues = logTheValues(previousPage[0], previousPage[1])
             //  console.log("Max Length: " + maxLength)
             if (previousPage[0] === -1) return
-            if (formValues[QUESTION_IDS.FIRST_NAME][0]?.value === "test" && formValues[QUESTION_IDS.LAST_NAME][0]?.value === "test") {
-                return
-            }
+            //    if (formValues[QUESTION_IDS.FIRST_NAME][0]?.value === "test" && formValues[QUESTION_IDS.LAST_NAME][0]?.value === "test") return
+
             //if there isn't anything at maxLength return
             if (PAGE_FORM_VALUES[maxLength - 1] === undefined) return
             const newFormData = new FormData()
@@ -846,7 +865,7 @@ export default function (props) {
                     console.log(error);
                 });
         } catch (e) {
-            //     console.log(e)
+            console.log(e)
         }
 
     }, [farthestPage])
@@ -901,10 +920,6 @@ export default function (props) {
         // using the activeQuestionsArray log the values from formValues
         setActiveQuestionsArray(activeQuestionsArray)
     }, [shownIdList, subPageIndex, quotePageIndex])
-
-    useEffect(() => {
-        console.log(window)
-    }, [])
 
     return <>
         {quotePageIndex < props.Form.QuotePages.length
