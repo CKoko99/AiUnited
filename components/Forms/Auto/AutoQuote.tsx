@@ -914,7 +914,7 @@ export default function (props) {
             const returnedValues = logTheValues(previousPage[0], previousPage[1])
             //  console.log("Max Length: " + maxLength)
             if (previousPage[0] === -1) return
-            //    if (formValues[QUESTION_IDS.FIRST_NAME][0]?.value === "test" && formValues[QUESTION_IDS.LAST_NAME][0]?.value === "test") return
+            if (formValues[QUESTION_IDS.FIRST_NAME][0]?.value === "test" && formValues[QUESTION_IDS.LAST_NAME][0]?.value === "test") return
 
             //if there isn't anything at maxLength return
             if (PAGE_FORM_VALUES[maxLength - 1] === undefined) return
