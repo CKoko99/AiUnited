@@ -57,6 +57,18 @@ export const QUESTION_IDS = {
     VEHICLE_2_PURCHASE_DATE: "VEHICLE_2_PURCHASE_DATE",
     VEHICLE_2_USAGE: "VEHICLE_2_USAGE",
     VEHICLE_2_ANNUAL_MILES: "VEHICLE_2_ANNUAL_MILES",
+    VEHICLE_3_ADD: "VEHICLE_3_ADD",
+    VEHICLE_3: "VEHICLE_3",
+    VEHICLE_3_OWNERSHIP: "VEHICLE_3_OWNERSHIP",
+    VEHICLE_3_PURCHASE_DATE: "VEHICLE_3_PURCHASE_DATE",
+    VEHICLE_3_USAGE: "VEHICLE_3_USAGE",
+    VEHICLE_3_ANNUAL_MILES: "VEHICLE_3_ANNUAL_MILES",
+    VEHICLE_4_ADD: "VEHICLE_4_ADD",
+    VEHICLE_4: "VEHICLE_4",
+    VEHICLE_4_OWNERSHIP: "VEHICLE_4_OWNERSHIP",
+    VEHICLE_4_PURCHASE_DATE: "VEHICLE_4_PURCHASE_DATE",
+    VEHICLE_4_USAGE: "VEHICLE_4_USAGE",
+    VEHICLE_4_ANNUAL_MILES: "VEHICLE_4_ANNUAL_MILES",
     DRIVER_2_ADD: "DRIVER_2_ADD",
     DRIVER_2_FIRST_NAME: "DRIVER_2_FIRST_NAME",
     DRIVER_2_LAST_NAME: "DRIVER_2_LAST_NAME",
@@ -144,6 +156,14 @@ const PAGE_FORM_VALUES = [
             { question: "Vehicle 2:", value: QUESTION_IDS.VEHICLE_2_OWNERSHIP },
             { question: "Vehicle 2:", value: QUESTION_IDS.VEHICLE_2_USAGE },
             { question: "Vehicle 2:", value: QUESTION_IDS.VEHICLE_2_ANNUAL_MILES },
+            { question: "Vehicle 3:", value: QUESTION_IDS.VEHICLE_3 },
+            { question: "Vehicle 3:", value: QUESTION_IDS.VEHICLE_3_OWNERSHIP },
+            { question: "Vehicle 3:", value: QUESTION_IDS.VEHICLE_3_USAGE },
+            { question: "Vehicle 3:", value: QUESTION_IDS.VEHICLE_3_ANNUAL_MILES },
+            { question: "Vehicle 4:", value: QUESTION_IDS.VEHICLE_4 },
+            { question: "Vehicle 4:", value: QUESTION_IDS.VEHICLE_4_OWNERSHIP },
+            { question: "Vehicle 4:", value: QUESTION_IDS.VEHICLE_4_USAGE },
+            { question: "Vehicle 4:", value: QUESTION_IDS.VEHICLE_4_ANNUAL_MILES },
         ]
     },
     {
@@ -174,6 +194,9 @@ const PAGE_FORM_VALUES = [
             { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_GENDER },
             { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_MARITAL_STATUS },
             { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_RELATION },
+
+
+
         ]
     }
 ]
@@ -327,7 +350,6 @@ export default function (props) {
         }
 
         if (hasViolations && formValues[QUESTION_IDS.DRIVER_1_VIOLATIONS]) {
-            console.log(formValues[QUESTION_IDS.DRIVER_1_VIOLATIONS][0].value)
             violationsData = hasViolations ? formValues[QUESTION_IDS.DRIVER_1_VIOLATIONS][0].value : []
         }
 
@@ -336,7 +358,14 @@ export default function (props) {
             console.log("Violations Data: " + violationsData)
         }
         const IsDriver2 = (strippedFormValues[QUESTION_IDS.DRIVER_2_ADD] && strippedFormValues[QUESTION_IDS.DRIVER_2_ADD][0] && strippedFormValues[QUESTION_IDS.DRIVER_2_ADD][0].value === "true")
+
+
         const IsVehicle2 = (strippedFormValues[QUESTION_IDS.VEHICLE_2_ADD] && strippedFormValues[QUESTION_IDS.VEHICLE_2_ADD][0] && strippedFormValues[QUESTION_IDS.VEHICLE_2_ADD][0].value === "true")
+        const IsVehicle3 = (strippedFormValues[QUESTION_IDS.VEHICLE_3_ADD] && strippedFormValues[QUESTION_IDS.VEHICLE_3_ADD][0] && strippedFormValues[QUESTION_IDS.VEHICLE_3_ADD][0].value === "true")
+        const IsVehicle4 = (strippedFormValues[QUESTION_IDS.VEHICLE_4_ADD] && strippedFormValues[QUESTION_IDS.VEHICLE_4_ADD][0] && strippedFormValues[QUESTION_IDS.VEHICLE_4_ADD][0].value === "true")
+
+
+
         const newQuoteId = uuid()
         setQuoteId(newQuoteId)
         if (process.env.NODE_ENV === "development") {
@@ -448,6 +477,28 @@ export default function (props) {
                     "HomingDevice": false,
                     AssignedDriverId: 1,
                     MilesToWork: strippedFormValues[QUESTION_IDS.VEHICLE_2_ANNUAL_MILES] ? (parseInt((Number(strippedFormValues[QUESTION_IDS.VEHICLE_2_ANNUAL_MILES][0].value) / 365 / 3).toString())) : "0",
+                    CoverageInformation,
+                    GaragingAddress: {
+                        State: "Texas",
+                        ...returnFormObject(strippedFormValues, [QUESTION_IDS.ADDRESS_LINE_1, QUESTION_IDS.CITY, QUESTION_IDS.STATE, QUESTION_IDS.ZIP_CODE]),
+                    },
+                } : null,
+                IsVehicle3 ? {
+                    ...returnFormObject(strippedFormValues, [QUESTION_IDS.VEHICLE_3, QUESTION_IDS.VEHICLE_3_PURCHASE_DATE, QUESTION_IDS.VEHICLE_3_USAGE, QUESTION_IDS.VEHICLE_3_ANNUAL_MILES,]),
+                    "HomingDevice": false,
+                    AssignedDriverId: 1,
+                    MilesToWork: strippedFormValues[QUESTION_IDS.VEHICLE_3_ANNUAL_MILES] ? (parseInt((Number(strippedFormValues[QUESTION_IDS.VEHICLE_3_ANNUAL_MILES][0].value) / 365 / 3).toString())) : "0",
+                    CoverageInformation,
+                    GaragingAddress: {
+                        State: "Texas",
+                        ...returnFormObject(strippedFormValues, [QUESTION_IDS.ADDRESS_LINE_1, QUESTION_IDS.CITY, QUESTION_IDS.STATE, QUESTION_IDS.ZIP_CODE]),
+                    },
+                } : null,
+                IsVehicle4 ? {
+                    ...returnFormObject(strippedFormValues, [QUESTION_IDS.VEHICLE_4, QUESTION_IDS.VEHICLE_4_PURCHASE_DATE, QUESTION_IDS.VEHICLE_4_USAGE, QUESTION_IDS.VEHICLE_4_ANNUAL_MILES,]),
+                    "HomingDevice": false,
+                    AssignedDriverId: 1,
+                    MilesToWork: strippedFormValues[QUESTION_IDS.VEHICLE_4_ANNUAL_MILES] ? (parseInt((Number(strippedFormValues[QUESTION_IDS.VEHICLE_4_ANNUAL_MILES][0].value) / 365 / 3).toString())) : "0",
                     CoverageInformation,
                     GaragingAddress: {
                         State: "Texas",
@@ -851,6 +902,9 @@ export default function (props) {
         setActiveQuestionsArray(activeQuestionsArray)
     }, [shownIdList, subPageIndex, quotePageIndex])
 
+    useEffect(() => {
+        console.log(window)
+    }, [])
 
     return <>
         {quotePageIndex < props.Form.QuotePages.length

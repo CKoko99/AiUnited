@@ -212,7 +212,7 @@ function returnDefaultViolationItem(defaultValues) {
             year = year === "NaN" ? "" : year
             newDefaultValues.month = month
             newDefaultValues.day = day
-            newDefaultValues.year = String(year)
+            newDefaultValues.year = year
         }
     } catch (e) {
         console.error("Error setting default values")

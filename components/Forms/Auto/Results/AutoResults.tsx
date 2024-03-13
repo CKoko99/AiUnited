@@ -279,8 +279,6 @@ export default function (props) {
             return
         }
         if (loading) {
-            console.log("old results for state stuff:")
-            console.log(results)
             let interval = setInterval(() => {
                 setLoadingPercent((prev) => {
                     setLoadingText(LOADINGTEXT[Math.floor(LOADINGTEXT.length * (prev / 100))]);
@@ -300,8 +298,6 @@ export default function (props) {
                         let oldPhoneCodes: Array<string> = [];
                         let newPhoneCodes: Array<string> = [];
                         setResults(oldResults => {
-                            console.log("old results:")
-                            console.log(oldResults)
                             //length is results.length or secondResultsData.length, whichever is greater
                             const length = oldResults.length > secondResultsData.length ? oldResults.length : secondResultsData.length;
                             for (let i = 0; i < length; i++) {

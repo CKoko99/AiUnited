@@ -1951,6 +1951,333 @@ const DevAutoForm = {
                     },
                     {
                         id: QUESTION_IDS.VEHICLE_2_ANNUAL_MILES,
+                        nextQuestionId: QUESTION_IDS.VEHICLE_3_ADD,
+                        questionId: "AnnualMiles",
+                        type: "input",
+                        defaultValue: "10000",
+                        question: {
+                            en: "Annual Miles",
+                            es: "Millas anuales",
+                        },
+                        validationError: {
+                            en: "Please enter a valid annual mileage",
+                            es: "Por favor ingrese un kilometraje anual válido",
+                        },
+                        validation: {
+                            required: true,
+                            minLength: 1,
+                            pattern: /\D/g
+                        },
+                        convertToNumber: true,
+                    },
+                    //Add up to 4 vehicles
+                    {
+                        id: QUESTION_IDS.VEHICLE_3_ADD,
+                        question: {
+                            en: "Would you like to add another vehicle?",
+                            es: "¿Le gustaría agregar otro vehículo?",
+                        },
+                        type: "button",
+                        questionId: "AddAnotherVehicle",
+                        defaultValue: "false",
+                        validationError: {
+                            en: "Please select an option",
+                            es: "Por favor seleccione una opción",
+                        },
+                        answers: [
+                            {
+                                text: {
+                                    en: "Yes",
+                                    es: "Sí",
+                                },
+                                value: "true",
+                                nextQuestionId: QUESTION_IDS.VEHICLE_3,
+                            },
+                            {
+                                text: {
+                                    en: "No",
+                                    es: "No",
+                                },
+                                value: "false",
+                                nextQuestionId: QUESTION_IDS.DATE_OF_BIRTH,
+                            },
+                        ]
+                    },
+                    {
+                        id: QUESTION_IDS.VEHICLE_3,
+                        nextQuestionId: QUESTION_IDS.VEHICLE_3_OWNERSHIP,
+                        questionId: "Vehicle",
+                        type: "vehicle",
+                        defaultValue: ["2008", "HONDA", "CIVIC EX"],
+                    },
+                    {
+                        id: QUESTION_IDS.VEHICLE_3_OWNERSHIP,
+                        questionId: "Ownership",
+                        type: "button",
+                        defaultValue: "Owned",
+                        question: {
+                            en: "Ownership",
+                            es: "Propiedad",
+                        },
+                        validationError: {
+                            en: "Please select an ownership type",
+                            es: "Por favor seleccione un tipo de propiedad",
+                        },
+                        answers: [
+                            {
+                                text: {
+                                    en: "Owned",
+                                    es: "Propio",
+                                },
+                                value: "Owned",
+                                nextQuestionId: [QUESTION_IDS.VEHICLE_3_PURCHASE_DATE, QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM],
+                            },
+                            {
+                                text: {
+                                    en: "Financed",
+                                    es: "Financiado",
+                                },
+                                value: "Financed",
+                                nextQuestionId: [QUESTION_IDS.VEHICLE_3_PURCHASE_DATE, QUESTION_IDS.SELECTED_COVERAGES.FULL_COVERAGE],
+                            },
+                            {
+                                text: {
+                                    en: "Leased",
+                                    es: "Arrendado",
+                                },
+                                value: "Leased",
+                                nextQuestionId: [QUESTION_IDS.VEHICLE_3_PURCHASE_DATE, QUESTION_IDS.SELECTED_COVERAGES.FULL_COVERAGE],
+                            },
+                        ],
+                    },
+                    {
+                        id: QUESTION_IDS.VEHICLE_3_PURCHASE_DATE,
+                        nextQuestionId: QUESTION_IDS.VEHICLE_3_USAGE,
+                        questionId: "PurchaseDate",
+                        defaultValue: "2023-06-30T05:00:00Z",
+                        type: "date",
+                        question: {
+                            en: "Purchase Date",
+                            es: "Fecha de compra",
+                        },
+                    },
+                    {
+                        id: QUESTION_IDS.VEHICLE_3_USAGE,
+                        nextQuestionId: QUESTION_IDS.VEHICLE_3_ANNUAL_MILES,
+                        questionId: "Usage",
+                        type: "select",
+                        defaultValue: "Work School",
+                        question: {
+                            en: "What is the primary use of this vehicle?",
+                            es: "¿Cuál es el uso principal de este vehículo?",
+                        },
+                        validationError: {
+                            en: "Please select a usage type",
+                            es: "Por favor seleccione un tipo de uso",
+                        },
+                        answers: [
+                            {
+                                text: {
+                                    en: "Work School",
+                                    es: "Trabajo escuela",
+                                },
+                                value: "Work School",
+                            },
+                            {
+                                text: {
+                                    en: "Artisan Use",
+                                    es: "Uso artesanal",
+                                },
+                                value: "Artisan Use",
+                            },
+                            {
+                                text: {
+                                    en: "Business Use",
+                                    es: "Uso comercial",
+                                },
+                                value: "Business Use",
+                            },
+                            {
+                                text: {
+                                    en: "Farm",
+                                    es: "Granja",
+                                },
+                                value: "Farm",
+                            },
+                            {
+                                text: {
+                                    en: "Pleasure",
+                                    es: "Placer",
+                                },
+                                value: "Pleasure",
+                            },
+                        ]
+                    },
+                    {
+                        id: QUESTION_IDS.VEHICLE_3_ANNUAL_MILES,
+                        nextQuestionId: QUESTION_IDS.VEHICLE_4_ADD,
+                        questionId: "AnnualMiles",
+                        type: "input",
+                        defaultValue: "10000",
+                        question: {
+                            en: "Annual Miles",
+                            es: "Millas anuales",
+                        },
+                        validationError: {
+                            en: "Please enter a valid annual mileage",
+                            es: "Por favor ingrese un kilometraje anual válido",
+                        },
+                        validation: {
+                            required: true,
+                            minLength: 1,
+                            pattern: /\D/g
+                        },
+                        convertToNumber: true,
+                    },
+                    {
+                        id: QUESTION_IDS.VEHICLE_4_ADD,
+                        question: {
+                            en: "Would you like to add another vehicle?",
+                            es: "¿Le gustaría agregar otro vehículo?",
+                        },
+                        type: "button",
+                        questionId: "AddAnotherVehicle",
+                        defaultValue: "false",
+                        validationError: {
+                            en: "Please select an option",
+                            es: "Por favor seleccione una opción",
+                        },
+                        answers: [
+                            {
+                                text: {
+                                    en: "Yes",
+                                    es: "Sí",
+                                },
+                                value: "true",
+                                nextQuestionId: QUESTION_IDS.VEHICLE_4,
+                            },
+                            {
+                                text: {
+                                    en: "No",
+                                    es: "No",
+                                },
+                                value: "false",
+                                nextQuestionId: QUESTION_IDS.DATE_OF_BIRTH,
+                            },
+                        ]
+                    },
+                    {
+                        id: QUESTION_IDS.VEHICLE_4,
+                        nextQuestionId: QUESTION_IDS.VEHICLE_4_OWNERSHIP,
+                        questionId: "Vehicle",
+                        type: "vehicle",
+                        defaultValue: ["2008", "HONDA", "CIVIC EX"],
+                    },
+                    {
+                        id: QUESTION_IDS.VEHICLE_4_OWNERSHIP,
+                        questionId: "Ownership",
+                        type: "button",
+                        defaultValue: "Owned",
+                        question: {
+                            en: "Ownership",
+                            es: "Propiedad",
+                        },
+                        validationError: {
+                            en: "Please select an ownership type",
+                            es: "Por favor seleccione un tipo de propiedad",
+                        },
+                        answers: [
+                            {
+                                text: {
+                                    en: "Owned",
+                                    es: "Propio",
+                                },
+                                value: "Owned",
+                                nextQuestionId: [QUESTION_IDS.VEHICLE_4_PURCHASE_DATE, QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM],
+                            },
+                            {
+                                text: {
+                                    en: "Financed",
+                                    es: "Financiado",
+                                },
+                                value: "Financed",
+                                nextQuestionId: [QUESTION_IDS.VEHICLE_4_PURCHASE_DATE, QUESTION_IDS.SELECTED_COVERAGES.FULL_COVERAGE],
+                            },
+                            {
+                                text: {
+                                    en: "Leased",
+                                    es: "Arrendado",
+                                },
+                                value: "Leased",
+                                nextQuestionId: [QUESTION_IDS.VEHICLE_4_PURCHASE_DATE, QUESTION_IDS.SELECTED_COVERAGES.FULL_COVERAGE],
+                            },
+                        ],
+                    },
+                    {
+                        id: QUESTION_IDS.VEHICLE_4_PURCHASE_DATE,
+                        nextQuestionId: QUESTION_IDS.VEHICLE_4_USAGE,
+                        questionId: "PurchaseDate",
+                        defaultValue: "2023-06-30T05:00:00Z",
+                        type: "date",
+                        question: {
+                            en: "Purchase Date",
+                            es: "Fecha de compra",
+                        },
+                    },
+                    {
+                        id: QUESTION_IDS.VEHICLE_4_USAGE,
+                        nextQuestionId: QUESTION_IDS.VEHICLE_4_ANNUAL_MILES,
+                        questionId: "Usage",
+                        type: "select",
+                        defaultValue: "Work School",
+                        question: {
+                            en: "What is the primary use of this vehicle?",
+                            es: "¿Cuál es el uso principal de este vehículo?",
+                        },
+                        validationError: {
+                            en: "Please select a usage type",
+                            es: "Por favor seleccione un tipo de uso",
+                        },
+                        answers: [
+                            {
+                                text: {
+                                    en: "Work School",
+                                    es: "Trabajo escuela",
+                                },
+                                value: "Work School",
+                            },
+                            {
+                                text: {
+                                    en: "Artisan Use",
+                                    es: "Uso artesanal",
+                                },
+                                value: "Artisan Use",
+                            },
+                            {
+                                text: {
+                                    en: "Business Use",
+                                    es: "Uso comercial",
+                                },
+                                value: "Business Use",
+                            },
+                            {
+                                text: {
+                                    en: "Farm",
+                                    es: "Granja",
+                                },
+                                value: "Farm",
+                            },
+                            {
+                                text: {
+                                    en: "Pleasure",
+                                    es: "Placer",
+                                },
+                                value: "Pleasure",
+                            },
+                        ]
+                    },
+                    {
+                        id: QUESTION_IDS.VEHICLE_4_ANNUAL_MILES,
                         nextQuestionId: QUESTION_IDS.DATE_OF_BIRTH,
                         questionId: "AnnualMiles",
                         type: "input",
