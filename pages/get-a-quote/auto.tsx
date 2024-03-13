@@ -3041,9 +3041,10 @@ const DevAutoForm = {
                             }
                         ],
                     },
+                    //Add up to 4 drivers
                     {
                         id: QUESTION_IDS.DRIVER_2_MARITAL_STATUS,
-                        nextQuestionId: QUESTION_IDS.PRIOR_INSURANCE,
+                        nextQuestionId: QUESTION_IDS.DRIVER_3_ADD,
                         type: "select",
                         questionId: "MaritalStatus",
                         defaultValue: "Married",
@@ -3093,8 +3094,406 @@ const DevAutoForm = {
                             }
                         ],
                     },
-
-
+                    {
+                        id: QUESTION_IDS.DRIVER_3_ADD,
+                        question: {
+                            en: "Would you like to add another driver?",
+                            es: "¿Le gustaría agregar otro conductor?",
+                        },
+                        validationError: {
+                            en: "Please select an option",
+                            es: "Por favor seleccione una opción",
+                        },
+                        type: "button",
+                        questionId: "AddAnotherDriver",
+                        defaultValue: "false",
+                        answers: [
+                            {
+                                text: {
+                                    en: "Yes",
+                                    es: "Sí",
+                                },
+                                value: "true",
+                                nextQuestionId: QUESTION_IDS.DRIVER_3_FIRST_NAME,
+                            },
+                            {
+                                text: {
+                                    en: "No",
+                                    es: "No",
+                                },
+                                value: "false",
+                                nextQuestionId: QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS,
+                            },
+                        ]
+                    },
+                    {
+                        id: QUESTION_IDS.DRIVER_3_FIRST_NAME,
+                        nextQuestionId: QUESTION_IDS.DRIVER_3_LAST_NAME,
+                        type: "input",
+                        defaultValue: "Longerest",
+                        question: {
+                            en: "First Name",
+                            es: "Nombre",
+                        },
+                        questionId: "FirstName",
+                        validationError: {
+                            en: "Please enter a valid first name",
+                            es: "Por favor ingrese un nombre válido",
+                        },
+                        validation: {
+                            required: true,
+                        },
+                    },
+                    {
+                        id: QUESTION_IDS.DRIVER_3_LAST_NAME,
+                        nextQuestionId: QUESTION_IDS.DRIVER_3_DATE_OF_BIRTH,
+                        type: "input",
+                        defaultValue: "Johnerest",
+                        question: {
+                            en: "Last Name",
+                            es: "Apellido",
+                        },
+                        questionId: "LastName",
+                        validationError: {
+                            en: "Please enter a valid last name",
+                            es: "Por favor ingrese un apellido válido",
+                        },
+                        validation: {
+                            required: true,
+                        },
+                    },
+                    {
+                        id: QUESTION_IDS.DRIVER_3_DATE_OF_BIRTH,
+                        nextQuestionId: QUESTION_IDS.DRIVER_3_GENDER,
+                        type: "date",
+                        defaultValue: ["01", "01", 1990],
+                        question: {
+                            en: "Date of Birth",
+                            es: "Fecha de nacimiento",
+                        },
+                        questionId: "DateOfBirth",
+                    },
+                    {
+                        id: QUESTION_IDS.DRIVER_3_GENDER,
+                        nextQuestionId: QUESTION_IDS.DRIVER_3_RELATION,
+                        type: "select",
+                        questionId: "Gender",
+                        defaultValue: "Male",
+                        question: {
+                            en: "Gender",
+                            es: "Género",
+                        },
+                        validationError: {
+                            en: "Please select a gender",
+                            es: "Por favor seleccione un género",
+                        },
+                        answers: [
+                            {
+                                text: {
+                                    en: "Male",
+                                    es: "Masculino",
+                                },
+                                value: "Male",
+                            },
+                            {
+                                text: {
+                                    en: "Female",
+                                    es: "Femenino",
+                                },
+                                value: "Female",
+                            }
+                        ],
+                    },
+                    {
+                        id: QUESTION_IDS.DRIVER_3_RELATION,
+                        nextQuestionId: QUESTION_IDS.DRIVER_3_MARITAL_STATUS,
+                        type: "select",
+                        defaultValue: "Spouse",
+                        question: {
+                            en: "Relationship",
+                            es: "Relación",
+                        },
+                        validationError: {
+                            en: "Please select a relationship",
+                            es: "Por favor seleccione una relación",
+                        },
+                        questionId: "Relationship",
+                        answers: [
+                            {
+                                text: {
+                                    en: "Spouse",
+                                    es: "Cónyuge",
+                                },
+                                value: "Spouse",
+                            },
+                            {
+                                text: {
+                                    en: "Child",
+                                    es: "Niño",
+                                },
+                                value: "Child",
+                            },
+                            {
+                                text: {
+                                    en: "Other",
+                                    es: "Otro",
+                                },
+                                value: "Other",
+                            }
+                        ],
+                    },
+                    {
+                        id: QUESTION_IDS.DRIVER_3_MARITAL_STATUS,
+                        nextQuestionId: QUESTION_IDS.DRIVER_4_ADD,
+                        type: "select",
+                        questionId: "MaritalStatus",
+                        defaultValue: "Married",
+                        question: {
+                            en: "Marital Status",
+                            es: "Estado civil",
+                        },
+                        validationError: {
+                            en: "Please select a marital status",
+                            es: "Por favor seleccione un estado civil",
+                        },
+                        answers: [
+                            {
+                                text: {
+                                    en: "Single",
+                                    es: "Soltero",
+                                },
+                                value: "Single",
+                            },
+                            {
+                                text: {
+                                    en: "Married",
+                                    es: "Casado",
+                                },
+                                value: "Married",
+                            },
+                            {
+                                text: {
+                                    en: "Divorced",
+                                    es: "Divorciado",
+                                },
+                                value: "Divorced",
+                            },
+                            {
+                                text: {
+                                    en: "Widowed",
+                                    es: "Viudo",
+                                },
+                                value: "Widowed",
+                            },
+                            {
+                                text: {
+                                    en: "Separated",
+                                    es: "Separado",
+                                },
+                                value: "Separated",
+                            }
+                        ],
+                    },
+                    {
+                        id: QUESTION_IDS.DRIVER_4_ADD,
+                        question: {
+                            en: "Would you like to add another driver?",
+                            es: "¿Le gustaría agregar otro conductor?",
+                        },
+                        validationError: {
+                            en: "Please select an option",
+                            es: "Por favor seleccione una opción",
+                        },
+                        type: "button",
+                        questionId: "AddAnotherDriver",
+                        defaultValue: "false",
+                        answers: [
+                            {
+                                text: {
+                                    en: "Yes",
+                                    es: "Sí",
+                                },
+                                value: "true",
+                                nextQuestionId: QUESTION_IDS.DRIVER_4_FIRST_NAME,
+                            },
+                            {
+                                text: {
+                                    en: "No",
+                                    es: "No",
+                                },
+                                value: "false",
+                                nextQuestionId: QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS,
+                            },
+                        ]
+                    },
+                    {
+                        id: QUESTION_IDS.DRIVER_4_FIRST_NAME,
+                        nextQuestionId: QUESTION_IDS.DRIVER_4_LAST_NAME,
+                        type: "input",
+                        defaultValue: "Longest",
+                        question: {
+                            en: "First Name",
+                            es: "Nombre",
+                        },
+                        questionId: "FirstName",
+                        validationError: {
+                            en: "Please enter a valid first name",
+                            es: "Por favor ingrese un nombre válido",
+                        },
+                        validation: {
+                            required: true,
+                        },
+                    },
+                    {
+                        id: QUESTION_IDS.DRIVER_4_LAST_NAME,
+                        nextQuestionId: QUESTION_IDS.DRIVER_4_DATE_OF_BIRTH,
+                        type: "input",
+                        defaultValue: "Johnest",
+                        question: {
+                            en: "Last Name",
+                            es: "Apellido",
+                        },
+                        questionId: "LastName",
+                        validationError: {
+                            en: "Please enter a valid last name",
+                            es: "Por favor ingrese un apellido válido",
+                        },
+                        validation: {
+                            required: true,
+                        },
+                    },
+                    {
+                        id: QUESTION_IDS.DRIVER_4_DATE_OF_BIRTH,
+                        nextQuestionId: QUESTION_IDS.DRIVER_4_GENDER,
+                        type: "date",
+                        defaultValue: ["01", "01", 1990],
+                        question: {
+                            en: "Date of Birth",
+                            es: "Fecha de nacimiento",
+                        },
+                        questionId: "DateOfBirth",
+                    },
+                    {
+                        id: QUESTION_IDS.DRIVER_4_GENDER,
+                        nextQuestionId: QUESTION_IDS.DRIVER_4_RELATION,
+                        type: "select",
+                        questionId: "Gender",
+                        defaultValue: "Male",
+                        question: {
+                            en: "Gender",
+                            es: "Género",
+                        },
+                        validationError: {
+                            en: "Please select a gender",
+                            es: "Por favor seleccione un género",
+                        },
+                        answers: [
+                            {
+                                text: {
+                                    en: "Male",
+                                    es: "Masculino",
+                                },
+                                value: "Male",
+                            },
+                            {
+                                text: {
+                                    en: "Female",
+                                    es: "Femenino",
+                                },
+                                value: "Female",
+                            }
+                        ],
+                    },
+                    {
+                        id: QUESTION_IDS.DRIVER_4_RELATION,
+                        nextQuestionId: QUESTION_IDS.DRIVER_4_MARITAL_STATUS,
+                        type: "select",
+                        defaultValue: "Spouse",
+                        question: {
+                            en: "Relationship",
+                            es: "Relación",
+                        },
+                        validationError: {
+                            en: "Please select a relationship",
+                            es: "Por favor seleccione una relación",
+                        },
+                        questionId: "Relationship",
+                        answers: [
+                            {
+                                text: {
+                                    en: "Spouse",
+                                    es: "Cónyuge",
+                                },
+                                value: "Spouse",
+                            },
+                            {
+                                text: {
+                                    en: "Child",
+                                    es: "Niño",
+                                },
+                                value: "Child",
+                            },
+                            {
+                                text: {
+                                    en: "Other",
+                                    es: "Otro",
+                                },
+                                value: "Other",
+                            }
+                        ],
+                    },
+                    {
+                        id: QUESTION_IDS.DRIVER_4_MARITAL_STATUS,
+                        nextQuestionId: QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS,
+                        type: "select",
+                        questionId: "MaritalStatus",
+                        defaultValue: "Married",
+                        question: {
+                            en: "Marital Status",
+                            es: "Estado civil",
+                        },
+                        validationError: {
+                            en: "Please select a marital status",
+                            es: "Por favor seleccione un estado civil",
+                        },
+                        answers: [
+                            {
+                                text: {
+                                    en: "Single",
+                                    es: "Soltero",
+                                },
+                                value: "Single",
+                            },
+                            {
+                                text: {
+                                    en: "Married",
+                                    es: "Casado",
+                                },
+                                value: "Married",
+                            },
+                            {
+                                text: {
+                                    en: "Divorced",
+                                    es: "Divorciado",
+                                },
+                                value: "Divorced",
+                            },
+                            {
+                                text: {
+                                    en: "Widowed",
+                                    es: "Viudo",
+                                },
+                                value: "Widowed",
+                            },
+                            {
+                                text: {
+                                    en: "Separated",
+                                    es: "Separado",
+                                },
+                                value: "Separated",
+                            }
+                        ],
+                    },
                 ]
             },
             {
