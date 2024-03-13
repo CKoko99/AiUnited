@@ -272,7 +272,6 @@ function ViolationItem(props) {
         });
 
         /*
-          props.setFormValue(`${props.questionId}`, newValue);
           props.updateFormValues(props.id, [{ questionId: props.questionId, value: newValue, valid: isValidHandler() }])
           if (isValidHandler()) {
               props.clearError();

@@ -235,7 +235,6 @@ export default function (props) {
     useEffect(() => {
         const newValue = [yearValue, makeValue, modelValue, VINValue];
         setCompleteValue(newValue);
-        props.setFormValue(`${props.questionId}`, newValue);
         props.updateFormValues(props.id, [
             { questionId: "Year", value: yearValue, valid: yearValue !== "" },
             { questionId: "Make", value: makeValue, valid: makeValue !== "" },
@@ -249,7 +248,6 @@ export default function (props) {
     }, [yearValue, makeValue, modelValue, VINValue])
 
     useEffect(() => {
-        props.register(`${props.questionId}`, { value: completeValue, });
         setHidden(false)
     }, [])
 

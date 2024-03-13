@@ -76,7 +76,6 @@ export default function (props) {
                             setValidOnce(true)
                         }}
                         ref={ref}
-                        inputProps={{ ...props.register(props.questionId) }}
                         label={returnLocaleText(props.question)}
                     >
                         {answers.map((option, index) => {

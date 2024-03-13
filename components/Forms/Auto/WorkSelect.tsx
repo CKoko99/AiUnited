@@ -2928,14 +2928,12 @@ export default function (props) {
     }
     useEffect(() => {
         const newValue = handleValueChange();
-        props.setFormValue(`${props.questionId}`, newValue);
         props.updateFormValues(props.id, [{ questionId: "Industry", value: newValue[0], valid: isValidHandler() },
         { questionId: "Occupation", value: newValue[1], valid: isValidHandler() }])
     }, [industryValue, occupationValue])
 
     useEffect(() => {
         setHidden(false);
-        props.register(`${props.questionId}`, { value: completeValue });
         if (props.formValues[props.id]) {
             handleIndustryChange(props.formValues[props.id][0].value);
             handleOccupationChange(props.formValues[props.id][1].value);

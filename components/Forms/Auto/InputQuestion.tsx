@@ -93,7 +93,6 @@ export default function (props) {
         >
             <FormControl fullWidth>
                 <TextField
-                    {...props.register(props.questionId)}
                     multiline={props.largeText}
                     rows={props.largeText ? 6 : 1}
                     label={returnLocaleText(props.question)}

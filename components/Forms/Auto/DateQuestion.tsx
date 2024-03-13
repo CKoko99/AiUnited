@@ -105,7 +105,6 @@ export default function (props) {
 
     useEffect(() => {
         const newValue = handleValueChange();
-        props.setFormValue(`${props.questionId}`, newValue);
         props.updateFormValues(props.id, [{ questionId: props.questionId, value: newValue, valid: isValid }])
         if (isValid) {
             props.clearError();
@@ -113,7 +112,6 @@ export default function (props) {
     }, [monthValue, dayValue, yearValue])
 
     useEffect(() => {
-        props.register(`${props.questionId}`, { value: completeValue });
         setHidden(false);
     }, [])
 
@@ -162,7 +160,6 @@ export default function (props) {
                             onBlur={() => {
 
                             }}
-                            inputProps={{ ...props.register(`select-month-${props.questionId}`) }}
                             label={"month"}
                         >
                             {months.map((option, index) => {
