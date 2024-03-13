@@ -24,25 +24,60 @@ const months = [
     { value: "12", text: { en: "December", es: "Diciembre" }, maxDays: 31 },
 ];
 
+function returnDefaultDate(defaultValue) {
+    let newDefaultValues = {
+        month: "",
+        day: "",
+        year: ""
+    }
+    try {
+        if (defaultValue) {
+            const date = new Date(defaultValue)
+            let monthInt = date.getMonth() + 1
+            let month = String(monthInt)
+            if (monthInt < 10) {
+                month = "0" + month
+            }
+            let dayInt = date.getDate()
+            let day = String(dayInt)
+            if (dayInt < 10) {
+                day = "0" + day
+            }
+            let year = String(date.getFullYear())
+            month = month === "NaN" ? "" : month
+            day = day === "NaN" ? "" : day
+            year = year === "NaN" ? "" : year
+            newDefaultValues.month = month
+            newDefaultValues.day = day
+            newDefaultValues.year = year
+        }
+    } catch (e) {
+        console.error("Error setting default values")
+        console.error(e)
+    } finally {
+        return newDefaultValues
+    }
+}
+
 export default function (props) {
     const ref = useRef(null)
     const [hidden, setHidden] = useState(true)
-    const [monthValue, setMonthValue] = useState(props.defaultValue ? props.defaultValue[0] : "");
-    const [showDays, setShowDays] = useState(false);
-    const [dayValue, setDayValue] = useState(props.defaultValue ? props.defaultValue[1] : "");
-    const [showYears, setShowYears] = useState(false);
-    const [yearValue, setYearValue] = useState(props.defaultValue ? props.defaultValue[2] : "");
+    const [monthValue, setMonthValue] = useState(returnDefaultDate(props.defaultValue).month);
+    const [dayValue, setDayValue] = useState(returnDefaultDate(props.defaultValue).day);
+    const [yearValue, setYearValue] = useState(returnDefaultDate(props.defaultValue).year);
     const [completeValue, setCompleteValue] = useState("");
-    const [isValid, setIsValid] = useState(false);
 
+    const showDays = monthValue !== ""
+    const showYears = dayValue !== "";
+
+    const isValid = dayValue !== "" && monthValue !== "" && yearValue !== "";
 
     function handleMonthChange(value) {
         setMonthValue(value);
-        setShowDays(true);
         //check if the day value is valid for the month if not then set it to ""
         try {
             const selectedMonth = months.find(month => month?.value === value);
-            if (selectedMonth && dayValue > selectedMonth.maxDays) {
+            if (selectedMonth && Number(dayValue) > selectedMonth.maxDays) {
                 setDayValue("");
             }
         } catch (e) {
@@ -54,7 +89,6 @@ export default function (props) {
     }
     function handleDayChange(value) {
         setDayValue(value);
-        setShowYears(true);
     }
     function handleYearChange(value) {
         setYearValue(value);
@@ -67,20 +101,13 @@ export default function (props) {
         setCompleteValue(`${yearValue}-${monthValue}-${dayValue}T05:00:00Z`);
         return `${yearValue}-${monthValue}-${dayValue}T05:00:00Z`;
     }
-    function isValidHandler() {
-        if (dayValue !== "" && monthValue !== "" && yearValue !== "") {
-            setIsValid(true);
-            return true;
-        }
-        setIsValid(false);
-        return false;
-    }
+
 
     useEffect(() => {
         const newValue = handleValueChange();
         props.setFormValue(`${props.questionId}`, newValue);
-        props.updateFormValues(props.id, [{ questionId: props.questionId, value: newValue, valid: isValidHandler() }])
-        if (isValidHandler()) {
+        props.updateFormValues(props.id, [{ questionId: props.questionId, value: newValue, valid: isValid }])
+        if (isValid) {
             props.clearError();
         }
     }, [monthValue, dayValue, yearValue])
@@ -91,25 +118,7 @@ export default function (props) {
     }, [])
 
     useEffect(() => {
-        if (props.defaultValue) {
 
-            const defaultDate = new Date(props.defaultValue)
-            let monthInt = defaultDate.getMonth() + 1
-            let month = String(monthInt)
-            if (monthInt < 10) {
-                month = "0" + month
-            }
-            let dayInt = defaultDate.getDate()
-            let day = String(dayInt)
-            if (dayInt < 10) {
-                day = "0" + day
-            }
-            let year = defaultDate.getFullYear()
-
-            handleMonthChange(month)
-            handleDayChange(day)
-            handleYearChange(year)
-        }
     }, [])
 
     useEffect(() => {
