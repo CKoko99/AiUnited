@@ -1803,6 +1803,7 @@ const DevAutoForm = {
                         validation: {
                             required: true,
                             minLength: 1,
+                            maxLength: 6,
                             pattern: /\D/g
                         },
                         convertToNumber: true,
@@ -1966,6 +1967,7 @@ const DevAutoForm = {
                         validation: {
                             required: true,
                             minLength: 1,
+                            maxLength: 6,
                             pattern: /\D/g
                         },
                         convertToNumber: true,
@@ -2130,6 +2132,7 @@ const DevAutoForm = {
                         validation: {
                             required: true,
                             minLength: 1,
+                            maxLength: 6,
                             pattern: /\D/g
                         },
                         convertToNumber: true,
@@ -2293,6 +2296,7 @@ const DevAutoForm = {
                         validation: {
                             required: true,
                             minLength: 1,
+                            maxLength: 6,
                             pattern: /\D/g
                         },
                         convertToNumber: true,
