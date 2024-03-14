@@ -6,7 +6,7 @@ import ArticleImage from "./ArticleImage";
 import Image from "next/image";
 
 export default function (props) {
-    console.log(props)
+    //  console.log(props)
     return <>
         <ArticleTitle {...props.articleTitle}
             date={props.date}

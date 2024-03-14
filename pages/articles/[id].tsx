@@ -47,7 +47,7 @@ export default function (props) {
     const { articleData, articleContent, relatedArticles, updatedAt } = props
     // console.log(props.articleData.data.attributes.ArticleContent)
     const ArticleNotFound = articleData.attributes === undefined || articleContent.length < 0
-    console.log(articleData.attributes.updatedAt)
+    //   console.log(articleData.attributes.updatedAt)
     //2024-01-03T18:55:54.569Z
     const updatedDate = new Date(articleData.attributes.updatedAt)
     const date = {

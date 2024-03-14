@@ -24,7 +24,7 @@ const text = {
     }
 }
 export default function (props) {
-    console.log(props)
+    // console.log(props)
     return <>
         <Box sx={{
             display: "flex", flexDirection: "column", gap: "1rem", padding: "2rem",
