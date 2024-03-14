@@ -246,6 +246,13 @@ const navItems = [
         },
         link: PATHCONSTANTS.ABOUT.REVIEWS
       },
+      {
+        title: {
+          en: "Articles",
+          es: "Artículos"
+        },
+        link: PATHCONSTANTS.ARTICLES.INDEX
+      }
     ]
 
   },
