@@ -96,8 +96,7 @@ function ArticleItem(props) {
 }
 
 export default function (props) {
-    const { drawerWindow } = props;
-    const [mobileOpen, setMobileOpen] = useState(false);
+
     const [categories, setCategories] = useState(
         [
             ALLCATEGORIES[0]
@@ -105,6 +104,15 @@ export default function (props) {
     )
     //const history = useHistory();
     const router = useRouter();
+    let { page, category } = router.query
+
+    if (page === undefined) {
+        page = "1"
+    }
+    if (category === undefined) {
+        category = "All Categories"
+    }
+
     useEffect(() => {
         //go through all the articles and get the categories
         let fetchedCategories = []
@@ -134,12 +142,9 @@ export default function (props) {
     }, [])
     const [openItem, setOpenItem] = useState(null);
 
-    const handleDrawerToggle = () => {
-        setMobileOpen((prevState) => !prevState);
-        setOpenItem(null);
-    };
-    const [selectedCategory, setSelectedCategory] = useState(categories[0])
 
+    const [selectedCategory1, setSelectedCategory] = useState(categories[0])
+    const selectedCategory = category
     function handleCategoryClick(category) {
         console.log(category)
         if (selectedCategory === category) {
@@ -159,8 +164,34 @@ export default function (props) {
     useEffect(() => {
         setSelectedCategory(categories[0])
     }, [])
+
+
+    //check for search parameter page
+
+    const pageInt = parseInt(page as string)
+    // if page = 1 then show the first 9 articles
+    // if page = 2 then show the next 9 articles
+
+    //filtered articles based on category
+    let filterArticles = props.articles.filter((item) => {
+        return selectedCategory === item.attributes.Category || selectedCategory === categories[0].en
+    })
+    const shownArticles = filterArticles.slice((pageInt - 1) * 9, pageInt * 9)
+    const pageCount = Math.ceil(filterArticles.length / 10)
+
+    useEffect(() => {
+        //if search parameter in url the scroll to id = Articles
+        if (router.query.page || router.query.category) {
+            const articlesElement = document.getElementById("Articles");
+            if (articlesElement) {
+                window.scrollTo(0, articlesElement.offsetTop - 200);
+            }
+        }
+    }, [router.query.page, router.query.category])
+
     return <>
         <Box
+            id="Articles"
             sx={{
                 bgcolor: "white", width: "100%", zIndex: 999,
             }}
@@ -196,21 +227,23 @@ export default function (props) {
                         sx={{ padding: "1rem" }}
                     >
                         {categories.map((item, index) => (
-
-                            <Box
+                            <Link
                                 key={index}
                                 onClick={() => {
                                     handleCategoryClick(item)
                                     setOpenItem(null)
                                 }}
-                                sx={{
+                                style={{
                                     display: "flex", alignItems: "center", cursor: "pointer",
+                                }}
+                                href={{
+                                    pathname: PATHCONSTANTS.ARTICLES.INDEX,
+                                    query: { page: 1, category: item.en }
                                 }}
                             >
                                 <Typography variant="h6">{returnLocaleText(item)}</Typography>
-                                <Checkbox checked={selectedCategory === item} />
-                            </Box>
-
+                                <Checkbox checked={selectedCategory === item.en} />
+                            </Link>
                         ))}
                     </List>
                 </Collapse>
@@ -241,20 +274,24 @@ export default function (props) {
                 >
 
                     {categories.map((item, index) => {
-                        return <Box
+                        return <Link
                             key={index}
-                            sx={{
+                            style={{
                                 display: "flex", alignItems: "center",
                                 //    backgroundColor: "red",
                                 justifyContent: "space-between",
                             }}
                             onClick={() => handleCategoryClick(item)}
+                            href={{
+                                pathname: PATHCONSTANTS.ARTICLES.INDEX,
+                                query: { page: 1, category: item.en }
+                            }}
                         >
                             <Typography key={index}
                                 sx={{
                                     cursor: "pointer",
                                 }} variant="h6">{returnLocaleText(item)}</Typography>
-                            <Checkbox checked={selectedCategory === item}
+                            <Checkbox checked={selectedCategory === item.en}
 
                                 sx={{
                                     padding: "0",
@@ -262,7 +299,7 @@ export default function (props) {
 
                                 }}
                             />
-                        </Box>
+                        </Link>
                     })}
                 </Box>
             </Box>
@@ -274,12 +311,47 @@ export default function (props) {
                     justifyContent: { xs: "center", md: "flex-start" },
                 }}
             >
-                {props.articles && props.articles.map((item, index) => {
-                    if (selectedCategory.en === item.attributes.Category || selectedCategory === categories[0]) {
+                {shownArticles && shownArticles.map((item, index) => {
+                    if (selectedCategory === item.attributes.Category || selectedCategory === categories[0].en) {
                         return <ArticleItem key={index} {...item} />
                     }
                 })}
             </Box>
+        </Box >
+        <Box
+            sx={{
+                margin: "auto",
+                width: "100%",
+                textAlign: "center",
+            }}
+        >
+            {(Array.from({ length: pageCount }, (_, i) => i + 1)).map((item, index) => {
+                return <Link key={index}
+                    href={{
+                        pathname: PATHCONSTANTS.ARTICLES.INDEX,
+                        query: {
+                            page: index + 1, category: selectedCategory
+                        }
+                    }}
+
+                >
+                    <Typography
+                        sx={{
+                            cursor: "pointer",
+                            display: "inline-block",
+                            padding: "0.5rem",
+                            margin: "0.5rem",
+                            fontWeight: Number(props.currentPage) === index + 1 ? "600" : "normal",
+                            border: Number(props.currentPage) === index + 1 ? "2px solid black" : "1px solid #cacaca",
+                            borderColor: Number(props.currentPage) === index + 1 ? theme.palette.primary.main : "#cacaca",
+                            //  color: Number(props.currentPage) === index + 1 ? theme.palette.primary.main : "black",
+                            borderRadius: "0.5rem",
+                        }}
+                    >
+                        {item}
+                    </Typography>
+                </Link>
+            })}
         </Box >
     </>
 }

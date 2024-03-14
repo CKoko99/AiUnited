@@ -4,6 +4,7 @@ import HorizontalBanner from "@/components/Content/Hero/HorizontalBanner";
 import TextSection from "@/components/Content/TextSection";
 import ArticlesBanner from "@/public/assets/images/articles/banner.png"
 import HeadComponent from "@/components/Head";
+import { useRouter } from "next/router";
 
 const headContent = {
     title: "Ai United Insurance - Articles",
@@ -66,6 +67,19 @@ export async function getServerSideProps(context) {
 }
 
 export default function (props) {
+    let articlesList = props.allArticles
+    //check for search parameter page
+    const router = useRouter()
+    let { page } = router.query
+
+    if (page === undefined) {
+        page = "1"
+    }
+    const pageInt = parseInt(page as string)
+    // if page = 1 then show the first 9 articles
+    // if page = 2 then show the next 9 articles
+
+    const shownArticles = articlesList.slice((pageInt - 1) * 9, pageInt * 9)
 
     return <>
         <HeadComponent {...headContent} />
@@ -73,6 +87,8 @@ export default function (props) {
         <hr />
         <PopularArtices articles={props.popularArticles} />
         <TextSection {...contentSection2} />
-        <ArticlesShowcase articles={props.allArticles} />
+        <ArticlesShowcase articles={articlesList}
+            currentPage={page} shownArticles={shownArticles}
+        />
     </>
 }
