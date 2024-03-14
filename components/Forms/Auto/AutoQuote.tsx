@@ -256,6 +256,19 @@ const PAGE_FORM_VALUES: {
             formValues: [
                 { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_VIOLATIONS, backupIds: ["Violations"], json: true },
             ]
+        },
+        {
+            sheettitle: "Prior Insurance Information",
+            quotePageIndex: 3,
+            subPageIndex: 0,
+            formValues: [
+                { question: "Prior Insurance:", value: QUESTION_IDS.PRIOR_INSURANCE },
+                { question: "Prior Insurance Company:", value: QUESTION_IDS.PRIOR_INSURANCE_COMPANY },
+                { question: "Prior Liability Limit:", value: QUESTION_IDS.PRIOR_LIABILITY_LIMIT },
+                { question: "Prior Insurance Expiration:", value: QUESTION_IDS.PRIOR_INSURANCE_EXPIRATION },
+                { question: "Prior Months Coverage:", value: QUESTION_IDS.PRIOR_MONTHS_COVERAGE },
+                { question: "Reason for No Insurance:", value: QUESTION_IDS.REASON_FOR_NO_INSURANCE },
+            ]
         }
     ]
 
