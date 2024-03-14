@@ -149,6 +149,7 @@ const PAGE_FORM_VALUES: {
         value: string,
         backupIds?: string[] // necessary for optional questions to prevent sheets from merging into wrong cells
         json?: boolean
+        skipIfNull?: boolean
     }[]
 }[] = [
         {
@@ -261,6 +262,7 @@ const PAGE_FORM_VALUES: {
             sheettitle: "Prior Insurance Information",
             quotePageIndex: 3,
             subPageIndex: 0,
+            useQuestionID: true,
             formValues: [
                 { question: "Prior Insurance:", value: QUESTION_IDS.PRIOR_INSURANCE },
                 { question: "Prior Insurance Company:", value: QUESTION_IDS.PRIOR_INSURANCE_COMPANY },
@@ -268,6 +270,16 @@ const PAGE_FORM_VALUES: {
                 { question: "Prior Insurance Expiration:", value: QUESTION_IDS.PRIOR_INSURANCE_EXPIRATION },
                 { question: "Prior Months Coverage:", value: QUESTION_IDS.PRIOR_MONTHS_COVERAGE },
                 { question: "Reason for No Insurance:", value: QUESTION_IDS.REASON_FOR_NO_INSURANCE },
+            ]
+        },
+        {
+            sheettitle: "Coverage Information",
+            quotePageIndex: 3,
+            subPageIndex: 1,
+            useQuestionID: true,
+            formValues: [
+                { question: "Coverage:", skipIfNull: true, value: QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM },
+                { question: "Coverage:", skipIfNull: true, value: QUESTION_IDS.SELECTED_COVERAGES.FULL_COVERAGE },
             ]
         }
     ]
@@ -928,6 +940,8 @@ export default function (props) {
                     } else {
                         //console.log("Form Value Not Found: " + id)
                         // loop through Page_Form_Values backupIds and add the value to returnValues with empty string
+                        if (PAGE_FORM_VALUES[i].formValues[j].skipIfNull) continue
+
                         if (PAGE_FORM_VALUES[i].formValues[j].backupIds === undefined) continue
 
                         const backupIds = PAGE_FORM_VALUES[i].formValues[j].backupIds as string[] ?? []
@@ -996,9 +1010,10 @@ export default function (props) {
             //   setFarthestPage(newFarthestPage)
             if (newFarthestPage[0] === props.Form.QuotePages.length) {
                 GTMEventHandler(`${GTMEVENTS.conversion}-TR-Auto`, { 'name': `Auto-Quote` })
-                return
+
+            } else {
+                GTMEventHandler(`${GTMEVENTS.audience}-TR-Auto-${(navigationIcons[newFarthestPage[0]] as { title: { en: string } }).title.en}-reached`, { 'name': `Auto-Quote` })
             }
-            GTMEventHandler(`${GTMEVENTS.audience}-TR-Auto-${(navigationIcons[newFarthestPage[0]] as { title: { en: string } }).title.en}-reached`, { 'name': `Auto-Quote` })
         }
         let newFarthestPage
         if (isFarthestPage) {
@@ -1046,8 +1061,8 @@ export default function (props) {
             return results;
         }
         const investmentPerYear = 75000 * .2
-        console.log(investmentPerYear)
-        console.log(calculateMoney(investmentPerYear, 25))
+        //  console.log(investmentPerYear)
+        //  console.log(calculateMoney(investmentPerYear, 25))
     }, [])
 
     return <>
@@ -1155,6 +1170,7 @@ export default function (props) {
                                 }
                                 //     console.log("SUBMITTING")
                                 setQuotePageIndex((prev) => prev + 1)
+                                //      setFarthestPage([props.Form.QuotePages.length, 0])
                                 handleSave()
                             }}
                             variant="contained"

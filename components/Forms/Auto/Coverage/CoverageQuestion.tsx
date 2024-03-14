@@ -234,10 +234,15 @@ export default function (props) {
         if (index === -1) {
             return
         } else {
+            const name = { questionId: "CoverageOption", value: OPTIONS[index].text.en, valid: true }
+
+            const selectedCoverageOptions = OPTIONS[index].coverages.map((coverage) => {
+                return { questionId: coverage.key, value: coverage.value, valid: true }
+            })
+            //add name to the front of the array
+            const updatedFormValue = [name, ...selectedCoverageOptions]
             props.updateFormValues(props.id, //[{ questionId: props.questionId, value: value }])
-                OPTIONS[index].coverages.map((coverage, index) => {
-                    return { questionId: coverage.key, value: coverage.value, valid: true }
-                })
+                updatedFormValue
             )
             props.clearError()
         }
