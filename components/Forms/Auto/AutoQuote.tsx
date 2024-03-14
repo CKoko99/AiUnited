@@ -148,6 +148,7 @@ const PAGE_FORM_VALUES: {
         question: string,
         value: string,
         backupIds?: string[] // necessary for optional questions to prevent sheets from merging into wrong cells
+        json?: boolean
     }[]
 }[] = [
         {
@@ -245,6 +246,15 @@ const PAGE_FORM_VALUES: {
                 { question: "Driver 4:", value: QUESTION_IDS.DRIVER_4_MARITAL_STATUS, backupIds: ["MaritalStatus"] },
                 { question: "Driver 4:", value: QUESTION_IDS.DRIVER_4_RELATION, backupIds: ["Relation"] },
 
+            ]
+        },
+        {
+            sheettitle: "Violations Information",
+            quotePageIndex: 2,
+            subPageIndex: 1,
+            useQuestionID: true,
+            formValues: [
+                { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_VIOLATIONS, backupIds: ["Violations"], json: true },
             ]
         }
     ]
@@ -887,10 +897,19 @@ export default function (props) {
                     const id = PAGE_FORM_VALUES[i].formValues[j].value
                     if (formValues[id]) {
                         for (let k = 0; k < formValues[id].length; k++) {
-                            if (PAGE_FORM_VALUES[i].useQuestionID) {
-                                returnValues.push([`${PAGE_FORM_VALUES[i].formValues[j].question} ${formValues[id][k].questionId}`, formValues[id][k].value])
+
+                            let value
+
+                            if (PAGE_FORM_VALUES[i].formValues[j].json) {
+                                value = JSON.stringify(formValues[id][k].value)
                             } else {
-                                returnValues.push([`${PAGE_FORM_VALUES[i].formValues[j].question}`, formValues[id][k].value])
+                                value = formValues[id][k].value
+                            }
+
+                            if (PAGE_FORM_VALUES[i].useQuestionID) {
+                                returnValues.push([`${PAGE_FORM_VALUES[i].formValues[j].question} ${formValues[id][k].questionId}`, value])
+                            } else {
+                                returnValues.push([`${PAGE_FORM_VALUES[i].formValues[j].question}`, value])
                             }
                         }
                     } else {
