@@ -163,9 +163,7 @@ export default function (props) {
     useEffect(() => {
         //when year value changes, fetch makes and models
         fetchMakes();
-        console.log("Fetching Makes")
         fetchModels();
-        console.log("Fetching Models")
     }, [yearValue])
 
     useEffect(() => {
@@ -199,7 +197,6 @@ export default function (props) {
 
 
     useEffect(() => {
-        console.log("Complete Value: ", completeValue)
         props.updateFormValues(props.id, [
             { questionId: "Year", value: yearValue, valid: isValid },
             { questionId: "Make", value: makeValue, valid: isValid },
