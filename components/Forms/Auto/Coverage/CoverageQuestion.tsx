@@ -238,8 +238,9 @@ export default function (props) {
         if (!defaultValue) return
         let found = false
         for (let i = 0; i < options.length; i++) {
-            const option = OPTIONS[options[i]]
+            // if (!options.includes(i)) continue
 
+            const option = OPTIONS[options[i]]
             defaultValue = defaultValue.filter((coverage) => coverage.questionId !== "CoverageOption")
             let match = true
             for (let j = 0; j < option.coverages.length; j++) {
@@ -250,7 +251,7 @@ export default function (props) {
                 }
             }
             if (match) {
-                setSelectedIndex(i)
+                setSelectedIndex(options[i])
                 found = true
                 break
             } else {
@@ -275,14 +276,8 @@ export default function (props) {
             props.updateFormValues(props.id, //[{ questionId: props.questionId, value: value }])
                 updatedFormValue
             )
-            console.log("Updated form values", updatedFormValue)
             props.clearError()
         }
-    }, [selectedIndex])
-
-
-    useEffect(() => {
-        console.log("New Selected Index", selectedIndex,)
     }, [selectedIndex])
 
     return (<>
