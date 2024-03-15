@@ -352,9 +352,14 @@ export default function (props) {
             }
             return newIdList
         })
-
-
     }
+
+    useEffect(() => {
+        //when shownIdList changes if Liability Minimum and Full Coverage are both selected, remove Liability Minimum
+        if (shownIdList.includes(QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM) && shownIdList.includes(QUESTION_IDS.SELECTED_COVERAGES.FULL_COVERAGE)) {
+            setShownIdList((prev) => prev.filter((item) => item !== QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM))
+        }
+    }, [shownIdList])
 
     function removeIdFromList(id: String) {
         setShownIdList((prev) => prev.filter((item) => item !== id))

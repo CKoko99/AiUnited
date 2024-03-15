@@ -229,34 +229,18 @@ export default function (props) {
     const [options] = useState(props.options as number[])
     //const [options] = useState([0])
 
-    function handleSelect(index: number) {
-        setSelectedIndex(index)
-        if (index === -1) {
-            return
-        } else {
-            const name = { questionId: "CoverageOption", value: OPTIONS[index].text.en, valid: true }
-
-            const selectedCoverageOptions = OPTIONS[index].coverages.map((coverage) => {
-                return { questionId: coverage.key, value: coverage.value, valid: true }
-            })
-            //add name to the front of the array
-            const updatedFormValue = [name, ...selectedCoverageOptions]
-            props.updateFormValues(props.id, //[{ questionId: props.questionId, value: value }])
-                updatedFormValue
-            )
-            props.clearError()
-        }
-    }
     useEffect(() => {
         //loop through options and find the one that matches the formValues
         //if found, set the selectedIndex to that index
         //if not found, set the selectedIndex to -1
 
-        const defaultValue = props.formValues[props.id]
+        let defaultValue = props.formValues[props.id]
         if (!defaultValue) return
         let found = false
         for (let i = 0; i < options.length; i++) {
             const option = OPTIONS[options[i]]
+
+            defaultValue = defaultValue.filter((coverage) => coverage.questionId !== "CoverageOption")
             let match = true
             for (let j = 0; j < option.coverages.length; j++) {
                 const coverage = option.coverages[j]
@@ -275,6 +259,31 @@ export default function (props) {
         }
 
     }, [])
+
+    useEffect(() => {
+        if (selectedIndex === -1) {
+            return
+        } else {
+            const name = { questionId: "CoverageOption", value: OPTIONS[selectedIndex].text.en, valid: true }
+
+            const selectedCoverageOptions = OPTIONS[selectedIndex].coverages.map((coverage) => {
+                return { questionId: coverage.key, value: coverage.value, valid: true }
+            })
+            //add name to the front of the array
+            const updatedFormValue = [name, ...selectedCoverageOptions]
+            props.updateFormValues(props.id, //[{ questionId: props.questionId, value: value }])
+                updatedFormValue
+            )
+            console.log("Updated form values", updatedFormValue)
+            props.clearError()
+        }
+    }, [selectedIndex])
+
+
+    useEffect(() => {
+        console.log("New Selected Index", selectedIndex,)
+    }, [selectedIndex])
+
     return (<>
         <Box>
             {props.passedError && <Typography
@@ -292,7 +301,7 @@ export default function (props) {
                 }}
             >
                 {options.map((option, index) => {
-                    return <IndividualCoverage key={index} index={index} selected={index === selectedIndex} handleSelect={handleSelect} {...OPTIONS[option]} />
+                    return <IndividualCoverage key={index} index={index} selected={index === selectedIndex} handleSelect={setSelectedIndex} {...OPTIONS[option]} />
                 })}
             </Box>
         </Box>
