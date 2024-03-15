@@ -142,28 +142,13 @@ export default function (props) {
     }, [])
     const [openItem, setOpenItem] = useState(null);
 
-
-    const [selectedCategory1, setSelectedCategory] = useState(categories[0])
     const selectedCategory = category
-    function handleCategoryClick(category) {
-        console.log(category)
-        if (selectedCategory === category) {
-            setSelectedCategory(categories[0])
-        } else {
-            setSelectedCategory(category)
-        }
-    }
-
 
     // Function to toggle the menu item's open/close state
     const handleMenuItemToggle = (label: any, event: any) => {
         event.stopPropagation();
         setOpenItem((prevOpenItem) => (prevOpenItem === label ? null : label));
     };
-
-    useEffect(() => {
-        setSelectedCategory(categories[0])
-    }, [])
 
 
     //check for search parameter page
@@ -230,7 +215,6 @@ export default function (props) {
                             <Link
                                 key={index}
                                 onClick={() => {
-                                    handleCategoryClick(item)
                                     setOpenItem(null)
                                 }}
                                 style={{
@@ -281,7 +265,7 @@ export default function (props) {
                                 //    backgroundColor: "red",
                                 justifyContent: "space-between",
                             }}
-                            onClick={() => handleCategoryClick(item)}
+
                             href={{
                                 pathname: PATHCONSTANTS.ARTICLES.INDEX,
                                 query: { page: 1, category: item.en }
