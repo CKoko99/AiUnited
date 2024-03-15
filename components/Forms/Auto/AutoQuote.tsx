@@ -1065,9 +1065,13 @@ export default function (props) {
             const results = [total, total * .04 / 12]
             return results;
         }
-        const investmentPerYear = 75000 * .2
-        //  console.log(investmentPerYear)
-        //  console.log(calculateMoney(investmentPerYear, 25))
+        if (process.env.NODE_ENV === "development") {
+            const salary = 75000
+            const investmentPerYear = salary * .2
+            console.log(investmentPerYear)
+            console.log(((salary / 1.1875) - 15000) / 12)
+            console.log(calculateMoney(investmentPerYear, 25))
+        }
     }, [])
 
     return <>

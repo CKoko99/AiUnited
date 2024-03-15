@@ -300,8 +300,10 @@ export default function (props) {
                     flexDirection: "column",
                 }}
             >
-                {options.map((option, index) => {
-                    return <IndividualCoverage key={index} index={index} selected={index === selectedIndex} handleSelect={setSelectedIndex} {...OPTIONS[option]} />
+                {OPTIONS.map((option, index) => {
+                    //if index is not in the options array, return null
+                    if (!options.includes(index)) return null
+                    return <IndividualCoverage key={index} index={index} selected={index === selectedIndex} handleSelect={setSelectedIndex} {...OPTIONS[index]} />
                 })}
             </Box>
         </Box>
