@@ -262,7 +262,8 @@ export default function (props) {
 
     useEffect(() => {
         if (selectedIndex === -1) {
-            return
+            const name = { questionId: "CoverageOption", value: "None", valid: false }
+            props.updateFormValues(props.id, [name])
         } else {
             const name = { questionId: "CoverageOption", value: OPTIONS[selectedIndex].text.en, valid: true }
 
