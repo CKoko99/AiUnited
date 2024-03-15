@@ -265,11 +265,11 @@ const PAGE_FORM_VALUES: {
             useQuestionID: true,
             formValues: [
                 { question: "Prior Insurance:", value: QUESTION_IDS.PRIOR_INSURANCE },
-                { question: "Prior Insurance Company:", value: QUESTION_IDS.PRIOR_INSURANCE_COMPANY },
-                { question: "Prior Liability Limit:", value: QUESTION_IDS.PRIOR_LIABILITY_LIMIT },
-                { question: "Prior Insurance Expiration:", value: QUESTION_IDS.PRIOR_INSURANCE_EXPIRATION },
-                { question: "Prior Months Coverage:", value: QUESTION_IDS.PRIOR_MONTHS_COVERAGE },
-                { question: "Reason for No Insurance:", value: QUESTION_IDS.REASON_FOR_NO_INSURANCE },
+                { question: "Prior Insurance Company:", value: QUESTION_IDS.PRIOR_INSURANCE_COMPANY, backupIds: ["PriorCarrierId", "PriorCarrierName"], },
+                { question: "Prior Liability Limit:", value: QUESTION_IDS.PRIOR_LIABILITY_LIMIT, backupIds: ["PriorLiabilityLimit"], },
+                { question: "Prior Insurance Expiration:", value: QUESTION_IDS.PRIOR_INSURANCE_EXPIRATION, backupIds: ["PriorExpirationDate"], },
+                { question: "Prior Months Coverage:", value: QUESTION_IDS.PRIOR_MONTHS_COVERAGE, backupIds: ["PriorMonthsCoverage"], },
+                { question: "Reason for No Insurance:", value: QUESTION_IDS.REASON_FOR_NO_INSURANCE, backupIds: ["Reason for No Insurance"], },
             ]
         },
         {
