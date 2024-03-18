@@ -94,6 +94,7 @@ const AutoForm = {
                             required: true,
                             minLength: 3,
                             type: "email"
+
                         },
                     },
                 ]
@@ -1535,7 +1536,8 @@ const DevAutoForm = {
                         validation: {
                             required: true,
                             minLength: 3,
-                            type: "email"
+                            type: "email",
+                            pattern: /\s+/g
                         },
                     },
                 ]
