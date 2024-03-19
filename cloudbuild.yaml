@@ -18,14 +18,15 @@ steps:
       [
         "artifacts",
         "repositories",
-        "create",
+        "describe",
         "us-central1-docker.pkg.dev/insurance-hub-397016/${_SERVICE_NAME}",
       ]
     id: create_repository
     entrypoint: bash
-    waitFor:
-      - check_repository
-      - create_repository
+    env:
+      - "CLOUDSDK_CORE_DISABLE_PROMPTS=1" # Disable prompts to avoid blocking
+    waitFor: ["check_repository"]
+    continueOnError: true # Continue even if the repository creation fails
   # Build and push the Docker image
   - name: "gcr.io/cloud-builders/docker"
     args:
