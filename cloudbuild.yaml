@@ -9,7 +9,7 @@ steps:
           echo "Repository exists."
         else
           echo "Repository does not exist. Creating..."
-          gcloud artifacts repositories create ${_SERVICE_NAME} --repository-format=docker \
+          gcloud artifacts repositories create us-central1-docker.pkg.dev/insurance-hub-397016/${_SERVICE_NAME} --repository-format=docker \
             --location=us-central1 --project=insurance-hub-397016
         fi
   # Build and push the Docker image
