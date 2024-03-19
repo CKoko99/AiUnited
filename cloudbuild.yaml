@@ -1,4 +1,32 @@
 steps:
+  # Check if the Artifact Registry repository exists
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      [
+        "artifacts",
+        "repositories",
+        "describe",
+        "us-central1-docker.pkg.dev/insurance-hub-397016/${_SERVICE_NAME}",
+      ]
+    id: check_repository
+    entrypoint: bash
+    env:
+      - "CLOUDSDK_CORE_DISABLE_PROMPTS=1" # Disable prompts to avoid blocking
+  # If repository doesn't exist, create it
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      [
+        "artifacts",
+        "repositories",
+        "create",
+        "us-central1-docker.pkg.dev/insurance-hub-397016/${_SERVICE_NAME}",
+      ]
+    id: create_repository
+    entrypoint: bash
+    waitFor:
+      - check_repository
+      - create_repository
+  # Build and push the Docker image
   - name: "gcr.io/cloud-builders/docker"
     args:
       [
@@ -13,6 +41,7 @@ steps:
         "push",
         "us-central1-docker.pkg.dev/insurance-hub-397016/${_SERVICE_NAME}/${_SERVICE_NAME}:$SHORT_SHA",
       ]
+  # Deploy the image to Cloud Run
   - name: "gcr.io/cloud-builders/gcloud"
     args:
       [
