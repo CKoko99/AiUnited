@@ -5,7 +5,7 @@ steps:
     args:
       - "-c"
       - |
-        if gcloud artifacts repositories describe ${_SERVICE_NAME} >/dev/null 2>&1; then
+        if gcloud artifacts repositories describe ${_SERVICE_NAME} --location=us-central1 --project=insurance-hub-397016 >/dev/null 2>&1; then
           echo "Repository exists."
         else
           echo "Repository does not exist. Creating..."
