@@ -4,14 +4,14 @@ steps:
       [
         "build",
         "-t",
-        "us-central1-docker.pkg.dev/insurance-hub-397016/${_SERVICE_NAME}:$SHORT_SHA",
+        "us-central1-docker.pkg.dev/insurance-hub-397016/aiunited/${_SERVICE_NAME}:$SHORT_SHA",
         ".",
       ]
   - name: "gcr.io/cloud-builders/docker"
     args:
       [
         "push",
-        "us-central1-docker.pkg.dev/insurance-hub-397016/${_SERVICE_NAME}:$SHORT_SHA",
+        "us-central1-docker.pkg.dev/insurance-hub-397016/aiunited/${_SERVICE_NAME}:$SHORT_SHA",
       ]
   - name: "gcr.io/cloud-builders/gcloud"
     args:
@@ -22,5 +22,5 @@ steps:
         "${_SERVICE_NAME}",
         "--region=us-east1",
         "--platform=managed",
-        "--image=us-central1-docker.pkg.dev/insurance-hub-397016/${_SERVICE_NAME}:$SHORT_SHA",
+        "--image=us-central1-docker.pkg.dev/insurance-hub-397016/aiunited/${_SERVICE_NAME}:$SHORT_SHA",
       ]
