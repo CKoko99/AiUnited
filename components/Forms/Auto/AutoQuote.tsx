@@ -128,6 +128,7 @@ function returnFormObject(formValues, idList) {
 const DEFAULTS = {
     shownIdList: process.env.NODE_ENV === "development" ? [
         QUESTION_IDS.FIRST_NAME,
+        //       QUESTION_IDS.VEHICLE_1,
         //QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
         // QUESTION_IDS.DRIVER_2_ADD,
         // QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS,
