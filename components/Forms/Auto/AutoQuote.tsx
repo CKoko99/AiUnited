@@ -971,25 +971,35 @@ export default function (props) {
             //if there isn't anything at maxLength return
             if (PAGE_FORM_VALUES[maxLength - 1] === undefined) return
             const newFormData = new FormData()
-            newFormData.append("Company", "Ai United");
-            newFormData.append("SheetTitle", PAGE_FORM_VALUES[maxLength - 1].sheettitle);
+
+            const sheetData: [string, string][] = [];
             const moreData = [
                 ["Time Stamp", new Date().toLocaleString()],
                 ["Time Spent on Form", msToTime(new Date().getTime() - timeStarted)],
-            ]
+            ];
+            console.log("Max Length: " + maxLength);
+            console.log("Page Form Values Length: " + PAGE_FORM_VALUES.length);
             for (let i = 0; i < moreData.length; i++) {
-                newFormData.append(`${i} ${moreData[i][0]}`, moreData[i][1])
+                sheetData.push([`${i} ${moreData[i][0]}`, moreData[i][1]]);
             }
             for (let i = 0; i < returnedValues.length; i++) {
-                newFormData.append(`${i + moreData.length} ${returnedValues[i][0]}`, returnedValues[i][1])
+                sheetData.push([`${i + moreData.length} ${returnedValues[i][0]}`, returnedValues[i][1]])
             }
-            fetch(`${PATHCONSTANTS.BACKEND}/forms/unfinished-quote`, {
+
+            const quoteProgressData = {
+                "Company": "Ai United",
+                "SheetTitle": PAGE_FORM_VALUES[maxLength - 1].sheettitle,
+                "finishedQuote": maxLength === PAGE_FORM_VALUES.length ? "true" : "false",
+                sheetData
+            }
+
+            fetch(`${PATHCONSTANTS.BACKEND}/rates/unfinished-quote`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(
-                    [...newFormData.entries(),]
+                    quoteProgressData
                 ),
             })
                 .then((res) => res.json())
