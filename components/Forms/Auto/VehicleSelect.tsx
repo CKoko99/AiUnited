@@ -248,10 +248,6 @@ export default function (props) {
                 if (!newVinValue) {
                     newVinValue = ""
                 }
-                console.log("Using Entered VIN: ", usingEnteredVIN)
-                console.log("New VIN Value: ", newVinValue)
-                console.log("Initial Vin")
-                console.log(returnInitialValues(props.formValues, props.id, props.defaultValue))
                 setVINValue(newVinValue);
                 props.addIdToList(props.nextQuestionId);
             } catch (error) {
