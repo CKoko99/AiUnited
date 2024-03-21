@@ -129,7 +129,8 @@ const DEFAULTS = {
     shownIdList: process.env.NODE_ENV === "development" ? [
         QUESTION_IDS.FIRST_NAME,
         //       QUESTION_IDS.VEHICLE_1,
-        //QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
+        //    QUESTION_IDS.PRIOR_INSURANCE,
+        QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
         // QUESTION_IDS.DRIVER_2_ADD,
         // QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS,
 
@@ -660,6 +661,89 @@ export default function (props) {
         }
         return data
     }
+    async function sendConfirmationEmail(quoteLink) {
+        if (!emailedOnce) {
+            try {
+                const emailFormData = {
+                    company: "Ai United",
+                    name: formValues[QUESTION_IDS.FIRST_NAME][0].value + " " + formValues[QUESTION_IDS.LAST_NAME][0].value,
+                    questions: [
+                        "First Name",
+                        "Last Name",
+                        "Phone Number",
+                        "Email",
+                        "Quote Link",
+                        "Time Spent on Form"
+                    ],
+                    answers: [
+                        formValues[QUESTION_IDS.FIRST_NAME][0].value,
+                        formValues[QUESTION_IDS.LAST_NAME][0].value,
+                        formValues[QUESTION_IDS.PHONE_NUMBER][0].value,
+                        formValues[QUESTION_IDS.EMAIL][0].value,
+                        quoteLink,
+                        msToTime(new Date().getTime() - timeStarted),
+                    ],
+                    formTitle: "TurboRater Auto Quote",
+                }
+                const emailResponse = await fetch(`${PATHCONSTANTS.BACKEND}/rates/email`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(emailFormData)
+                })
+                await emailResponse.json()
+
+            } catch (e) { console.log(e) }
+            setEmailedOnce(true)
+        }
+
+        async function uploadToSheet() {
+            const timestamp = new Date().toLocaleString();
+
+            //prepare data to be sent to google sheet
+            //Numbering system to make sure the data is in the correct order
+            const answersArray = [
+                ["Time Spent on Form", msToTime(new Date().getTime() - timeStarted)],
+                ["First Name", formValues[QUESTION_IDS.FIRST_NAME][0].value],
+                ["Last Name", formValues[QUESTION_IDS.LAST_NAME][0].value],
+                ["Quote ID", QuoteId],
+                ["Phone Number", formValues[QUESTION_IDS.PHONE_NUMBER][0].value],
+                ["Email", formValues[QUESTION_IDS.EMAIL][0].value],
+                ["Quote Link", quoteLink],
+            ]
+            const formData = new FormData();
+            formData.append("1 Timestamp", timestamp);
+
+            for (let i = 0; i < answersArray.length; i++) {
+                formData.append(`${2 + i} ${i + 1} ${answersArray[i][0]}`, answersArray[i][1]);
+            }
+            formData.append("SheetTitle", "TurboRater Auto Quote");
+            formData.append("Spreadsheet", "Ai United");
+            formData.append("Device Info", window.navigator.userAgent);
+            try {
+                await fetch(`${PATHCONSTANTS.BACKEND}/rates/phone-code`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(
+                        [...formData.entries(),]
+                    ),
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        //    console.log(data);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        uploadToSheet()
+    }
 
     async function handleSave() {
         //   console.log(data);
@@ -696,97 +780,30 @@ export default function (props) {
                     },
                     body: JSON.stringify(emailFormData)
                 })
-            }
-        } catch (e) {
-            console.log(e)
-        }
-    }
-    async function sendConfirmationEmail(onlinePhoneCode, callPhoneCode, email) {
-        if (!onlinePhoneCode && !callPhoneCode) return
-        if (!emailedOnce) {
-            try {
-                const emailFormData = {
-                    company: "Ai United",
-                    name: formValues[QUESTION_IDS.FIRST_NAME][0].value + " " + formValues[QUESTION_IDS.LAST_NAME][0].value,
-                    questions: [
-                        "First Name",
-                        "Last Name",
-                        "Phone Number",
-                        "Email",
-                        "Buy Online Code",
-                        "Call Code",
-                        "Time Spent on Form"
-                    ],
-                    answers: [
-                        formValues[QUESTION_IDS.FIRST_NAME][0].value,
-                        formValues[QUESTION_IDS.LAST_NAME][0].value,
-                        formValues[QUESTION_IDS.PHONE_NUMBER][0].value,
-                        formValues[QUESTION_IDS.EMAIL][0].value,
-                        onlinePhoneCode,
-                        callPhoneCode,
-                        msToTime(new Date().getTime() - timeStarted),
-                    ],
-                    formTitle: "TurboRater Auto Quote",
+            } else {
+                //send post to storage API
+                const storageData = {
+                    requestId: rateData.requestId,
                 }
-                const emailResponse = await fetch(`${PATHCONSTANTS.BACKEND}/rates/email`, {
+                const storageResponse = await fetch(`${PATHCONSTANTS.BACKEND2}/storage/`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(emailFormData)
+                    body: JSON.stringify(storageData)
                 })
-                await emailResponse.json()
-
-            } catch (e) { console.log(e) }
-            setEmailedOnce(true)
-        }
-
-        async function uploadToSheet() {
-            const timestamp = new Date().toLocaleString();
-
-            //prepare data to be sent to google sheet
-            //Numbering system to make sure the data is in the correct order
-            const answersArray = [
-                ["Time Spent on Form", msToTime(new Date().getTime() - timeStarted)],
-                ["First Name", formValues[QUESTION_IDS.FIRST_NAME][0].value],
-                ["Last Name", formValues[QUESTION_IDS.LAST_NAME][0].value],
-                ["Quote ID", QuoteId],
-                ["Phone Number", formValues[QUESTION_IDS.PHONE_NUMBER][0].value],
-                ["Email", formValues[QUESTION_IDS.EMAIL][0].value],
-                ["Buy Online Code", onlinePhoneCode],
-                ["Call Code", callPhoneCode],
-            ]
-            const formData = new FormData();
-            formData.append("1 Timestamp", timestamp);
-
-            for (let i = 0; i < answersArray.length; i++) {
-                formData.append(`${2 + i} ${i + 1} ${answersArray[i][0]}`, answersArray[i][1]);
+                const storageJson = await storageResponse.json()
+                if (storageJson.storageRequestId) {
+                    const storageGet = await fetch(`${PATHCONSTANTS.BACKEND2}/storage/?storageRequestId=${storageJson.storageRequestId}`)
+                    const storageGetJson = await storageGet.json()
+                    if (storageGetJson.quoteUrl) {
+                        sendConfirmationEmail(storageGetJson.quoteUrl)
+                    }
+                }
             }
-            formData.append("SheetTitle", "TurboRater Auto Quote");
-            formData.append("Spreadsheet", "Ai United");
-            formData.append("Device Info", window.navigator.userAgent);
-            try {
-                await fetch(`${PATHCONSTANTS.BACKEND}/rates/phone-code`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(
-                        [...formData.entries(),]
-                    ),
-                })
-                    .then((res) => res.json())
-                    .then((data) => {
-                        //    console.log(data);
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-            } catch (error) {
-                console.log(error)
-            }
+        } catch (e) {
+            console.log(e)
         }
-        uploadToSheet()
     }
 
     function checkValidity() {
@@ -1014,7 +1031,6 @@ export default function (props) {
         } catch (e) {
             console.log(e)
         }
-
     }, [farthestPage])
 
     useEffect(() => {
@@ -1044,7 +1060,6 @@ export default function (props) {
                 setFarthestPage(newFarthestPage)
             }
         }
-
     }, [quotePageIndex, subPageIndex])
     //when the shownIdList changes, or the subPageIndex changes, or the quotePageIndex changes, update the activeQuestionsArray to contain the question ids
     // only add the question ids that are in the shownIdList and the subPageIndex

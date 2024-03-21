@@ -244,7 +244,6 @@ export default function (props) {
                         catch (err) {
                             // console.log(err);
                         }
-                        props.sendConfirmationEmail(phonecode1, phonecode2, true);
                         setFetchedOnce(true);
                         setFetched(true);
                         /*
@@ -340,8 +339,6 @@ export default function (props) {
                             }
 
                             if (phoneCodeIsDifferent) {
-
-                                props.sendConfirmationEmail(newPhoneCodes[0], newPhoneCodes[1])
                                 setSecondLoading(true);
                                 setTimeout(async () => {
                                     setSecondLoading(false);
