@@ -301,6 +301,7 @@ export default function (props) {
     const [farthestPage, setFarthestPage] = useState([DEFAULTS.quotePageIndex, DEFAULTS.subPageIndex]);
     const [timeStarted] = useState(new Date().getTime());
     const [emailedOnce, setEmailedOnce] = useState(false);
+    const [timeSpentOnPageTracker, setTimeSpentOnPageTracker] = useState<number>(new Date().getTime());
     useEffect(() => {
         async function wakeServer() {
             await fetch(`${PATHCONSTANTS.BACKEND2}/`)
@@ -976,7 +977,9 @@ export default function (props) {
             const moreData = [
                 ["Time Stamp", new Date().toLocaleString()],
                 ["Time Spent on Form", msToTime(new Date().getTime() - timeStarted)],
+                ["Time Spent on Page", msToTime(new Date().getTime() - timeSpentOnPageTracker)]
             ];
+            setTimeSpentOnPageTracker(new Date().getTime())
             console.log("Max Length: " + maxLength);
             console.log("Page Form Values Length: " + PAGE_FORM_VALUES.length);
             for (let i = 0; i < moreData.length; i++) {
