@@ -373,7 +373,7 @@ export default function (props) {
                         sx={{ display: "flex", flexDirection: "column", gap: "1rem", alignItems: "center" }}
                     >
                         <Typography variant="h6">
-                            {returnLocaleText({ en: "Enter A Vehicle Identifcation Number", es: "Ingrese un número de identificación del vehículo" })}
+                            {returnLocaleText({ en: "Enter A Vehicle Identification Number", es: "Ingrese un número de identificación del vehículo" })}
                         </Typography>
                         <FormControl fullWidth>
                             <TextField
