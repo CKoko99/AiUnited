@@ -712,7 +712,7 @@ export default function (props) {
                 ["Email", formValues[QUESTION_IDS.EMAIL][0].value],
                 ["Buy Online Code", ""],
                 ["Call Code", ""],
-                ["Quote Link", quoteLink],
+                ["Quote Link", `=HYPERLINK("${quoteLink}")`],
             ]
             const formData = new FormData();
             formData.append("1 Timestamp", timestamp);
