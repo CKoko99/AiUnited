@@ -710,6 +710,8 @@ export default function (props) {
                 ["Quote ID", QuoteId],
                 ["Phone Number", formValues[QUESTION_IDS.PHONE_NUMBER][0].value],
                 ["Email", formValues[QUESTION_IDS.EMAIL][0].value],
+                ["Buy Online Code", ""],
+                ["Call Code", ""],
                 ["Quote Link", quoteLink],
             ]
             const formData = new FormData();
