@@ -161,7 +161,7 @@ export default function (props) {
     let filterArticles = props.articles.filter((item) => {
         return selectedCategory === item.attributes.Category || selectedCategory === categories[0].en
     })
-    const shownArticles = filterArticles.slice((pageInt - 1) * 9, pageInt * 9)
+    const shownArticles = filterArticles.slice((pageInt - 1) * 12, pageInt * 12)
     const pageCount = Math.ceil(filterArticles.length / 10)
 
     useEffect(() => {

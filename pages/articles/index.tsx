@@ -79,7 +79,7 @@ export default function (props) {
     // if page = 1 then show the first 9 articles
     // if page = 2 then show the next 9 articles
 
-    const shownArticles = articlesList.slice((pageInt - 1) * 9, pageInt * 9)
+    const shownArticles = articlesList.slice((pageInt - 1) * 12, pageInt * 12)
 
     return <>
         <HeadComponent {...headContent} />
