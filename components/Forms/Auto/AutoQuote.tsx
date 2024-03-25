@@ -220,7 +220,7 @@ const PAGE_FORM_VALUES: {
                 { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_LICENSE_STATUS },
                 { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_MONTHS_LICENSED },
                 { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_MONTHS_STATE_LICENSED },
-                { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_MONTHS_SUSPENDED },
+                { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_MONTHS_SUSPENDED, backupIds: ["MonthsSuspended"] },
                 { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_STATE_LICENSED },
                 { question: "Driver 1:", value: QUESTION_IDS.EDUCATION_LEVEL },
                 { question: "Driver 1:", value: QUESTION_IDS.RESIDENCY_TYPE },
