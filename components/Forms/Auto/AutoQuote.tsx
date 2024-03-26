@@ -715,7 +715,7 @@ export default function (props) {
                 ["Quote Link", `=HYPERLINK("${quoteLink}")`],
             ]
             const formData = new FormData();
-            formData.append("1 Timestamp", timestamp);
+
 
             for (let i = 0; i < answersArray.length; i++) {
                 formData.append(`${2 + i} ${i + 1} ${answersArray[i][0]}`, answersArray[i][1]);
