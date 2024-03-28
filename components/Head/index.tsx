@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { GTMHead } from "../Scripts/GoogleTag";
 import { useEffect } from "react";
+import FacebookPixel from "../Scripts/FacebookPixel";
 
 type HeadComponentPropsType = {
   title?: string;
@@ -15,6 +16,7 @@ const HeadComponent = ({ title, metaData, canonical, graphImg }: HeadComponentPr
   return (
     <Head>
       <GTMHead />
+      <FacebookPixel />
       <title>{title || "Ai United Insurance"}</title>
       <meta name="creator" content="Ai United" />
       <meta name="publisher" content="Ai United" />

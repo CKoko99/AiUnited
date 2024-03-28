@@ -349,7 +349,7 @@ function DrawerAppBar(props: any) {
                       />
                     </ListItemButton>
                   </ListItem>
-                  <Collapse in={openItem === item.label} timeout="auto" unmountOnExit>
+                  <Collapse in={openItem === item.label} timeout="auto" >
                     <List component="div" disablePadding>
                       {item.menuItems.map((menu, itemIndex) => (
                         <Link key={itemIndex} href={menu.link} style={{ color: "inherit", textDecoration: "none" }}>
