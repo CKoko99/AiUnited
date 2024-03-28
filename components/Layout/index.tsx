@@ -7,6 +7,7 @@ import HeadComponent from "../Head";
 import { GTMBody } from "../Scripts/GoogleTag";
 import { useRouter } from "next/router";
 import QuoteNavbar from "../Navbar/QuoteNavbar";
+import FacebookPixel from "../Scripts/FacebookPixel";
 
 interface LayoutProps {
   children: ReactNode; // Define the children prop with ReactNode type
@@ -30,6 +31,7 @@ const Layout = ({ children }: LayoutProps) => {
         // <HeadComponent />
         //removed since it didn't work with opengraph images
       }
+      <FacebookPixel />
       <GTMBody />
       <Box
         sx={{ position: "fixed", width: "100%", zIndex: 1000 }}
