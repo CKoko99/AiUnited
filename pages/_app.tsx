@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }
   useEffect(() => {
     fetchArticles()
-    fbq.event("Site Visit")
+    fbq.event("SiteVisit")
   }, [])
   return (
     <ThemeProvider theme={theme}>
