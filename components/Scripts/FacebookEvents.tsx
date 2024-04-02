@@ -7,7 +7,7 @@ declare global {
 
 export const event = (name: string, options = {}) => {
     function performAction() {
-        window.fbq('track', name, options)
+        window.fbq('trackCustom', name, options)
     }
     if (window.fbq) {
         performAction()
