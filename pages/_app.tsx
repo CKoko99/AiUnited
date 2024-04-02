@@ -7,7 +7,7 @@ import theme from "../providers/theme";
 import GoogleAnalytics from "../components/Scripts/GoogleAnalytics";
 import { useEffect } from 'react';
 import PATHCONSTANTS from 'constants/sitemap';
-
+import * as fbq from "components/Scripts/FacebookEvents";
 
 function MyApp({ Component, pageProps }: AppProps) {
   async function fetchArticles() {
@@ -16,6 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }
   useEffect(() => {
     fetchArticles()
+    fbq.event("Site Visit")
   }, [])
   return (
     <ThemeProvider theme={theme}>

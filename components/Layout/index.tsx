@@ -14,16 +14,9 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  const [showQuoteNavbar, setShowQuoteNavbar] = useState(false)
+
   const router = useRouter()
-  useEffect(() => {
-    //when the page changes if the page link contains "get-a-quote" then show the quote navbar
-    if (router.pathname.includes("get-a-quote")) {
-      setShowQuoteNavbar(true)
-    } else {
-      setShowQuoteNavbar(false)
-    }
-  }, [router.pathname])
+  const showQuoteNavbar = router.pathname.includes("get-a-quote")
 
   return (
     <>

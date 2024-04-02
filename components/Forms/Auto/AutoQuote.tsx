@@ -13,6 +13,7 @@ import ColorFinishImg from "../../../public/assets/images/get-a-quote/auto/finis
 import { msToTime } from "@/functions/functions";
 import React from "react";
 import { use } from "marked";
+import * as fbq from "components/Scripts/FacebookEvents";
 
 const TEXT = {
     submit: { en: "Submit", es: "Enviar" },
@@ -1047,7 +1048,7 @@ export default function (props) {
             //   setFarthestPage(newFarthestPage)
             if (newFarthestPage[0] === props.Form.QuotePages.length) {
                 GTMEventHandler(`${GTMEVENTS.conversion}-TR-Auto`, { 'name': `Auto-Quote` })
-
+                fbq.event('AutoQuote')
             } else {
                 GTMEventHandler(`${GTMEVENTS.audience}-TR-Auto-${(navigationIcons[newFarthestPage[0]] as { title: { en: string } }).title.en}-reached`, { 'name': `Auto-Quote` })
             }
