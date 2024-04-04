@@ -102,7 +102,8 @@ const cardsContent = {
             es: 'Representante de Servicio al Cliente'
         },
         link: PATHCONSTANTS.ABOUT.CAREERS.CSR,
-    }, {
+    },
+    /* {
         img: {
             src: OpsImg,
             alt: "Operations"
@@ -112,7 +113,8 @@ const cardsContent = {
             es: "Operaciones"
         },
         link: PATHCONSTANTS.ABOUT.CAREERS.OPERATIONS,
-    }, {
+    },*/
+    {
         img: {
             src: DmImg,
             alt: "District Manager"
