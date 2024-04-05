@@ -324,6 +324,7 @@ const formContent = {
                 { en: "Facebook Ad", es: "Facebook Ad" },
                 { en: "Instagram Ad", es: "Instagram Ad" },
                 { en: "Walk-in", es: "Walk-in" },
+                { en: "Mail", es: "Correo" },
             ],
         },
         {
