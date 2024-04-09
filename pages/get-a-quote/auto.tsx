@@ -118,6 +118,7 @@ const DevAutoForm = {
                         },
                         validation: {
                             required: true,
+                            maxLength: 50,
                         },
                     },
                     {
