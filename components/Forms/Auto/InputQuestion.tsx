@@ -39,6 +39,11 @@ export default function (props) {
                 if (!passedValue.includes('@') || !passedValue.includes('.') || passedValue.length < 5) {
                     errorFound = true
                 }
+                //remove unnecessary characters
+                let newPassedValue = passedValue.replace(/[^a-zA-Z0-9@.]/g, "")
+                if (newPassedValue !== passedValue) {
+                    setValue(passedValue.replace(/[^a-zA-Z0-9@.]/g, ""))
+                }
             }
         }
         if (passedValue.length < validationRules.minLength) {
