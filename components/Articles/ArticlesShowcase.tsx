@@ -126,17 +126,17 @@ export default function (props) {
         //sort alphabetically
         fetchedCategories.sort()
         //add all categories 
-        const newCategories = [ALLCATEGORIES[0].en, ...fetchedCategories]
         //using ALLCATEGORIES get spanish translations
-        const newCategories2 = []
-        //go through newCategories and find where ALLCATEGORIES.en === newCategories
-        newCategories.map((item) => {
-            ALLCATEGORIES.map((item2) => {
-                if (item === item2.en) {
-                    newCategories2.push(item2 as never)
-                }
-            })
-        })
+        const newCategories2: {
+            en: string,
+            es: string
+        }[] = [
+                ALLCATEGORIES[0],
+                ALLCATEGORIES[1],
+                ALLCATEGORIES[2],
+                ALLCATEGORIES[3],
+                ALLCATEGORIES[4],
+            ]
 
         setCategories(newCategories2)
     }, [])
