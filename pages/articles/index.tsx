@@ -35,8 +35,14 @@ const contentSection2 = {
 
 export async function getServerSideProps(context) {
     try {
-        const res = await fetch(`${process.env.BACKEND}/articles/`,)
+        console.log(context.query)
+
+        const category = context.query.category || 'All Categories'
+        const page = context.query.page || 1
+
+        const res = await fetch(`${process.env.BACKEND}/articles?category=${category}&page=${page}`)
         const data = await res.json()
+        console.log(data)
         /*
             let tempData = data.data
             let articles = []
@@ -47,12 +53,14 @@ export async function getServerSideProps(context) {
             }
             data.data = articles
             */
+
         const popularArticles = data.data.filter((article) => article.attributes.PopularRank > 0)
         popularArticles.sort((b, a) => a.attributes.PopularRank - b.attributes.PopularRank)
         return {
             props: {
                 popularArticles: popularArticles,
                 allArticles: data.data, // This passes the fetched data as a prop to your component
+                total: data.total
             },
         }
     } catch (err) {
@@ -89,6 +97,7 @@ export default function (props) {
         <TextSection {...contentSection2} />
         <ArticlesShowcase articles={articlesList}
             currentPage={page} shownArticles={shownArticles}
+            totalPages={Math.ceil(props.total / 12)}
         />
     </>
 }

@@ -161,7 +161,7 @@ export default function (props) {
     let filterArticles = props.articles.filter((item) => {
         return selectedCategory === item.attributes.Category || selectedCategory === categories[0].en
     })
-    const shownArticles = filterArticles.slice((pageInt - 1) * 12, pageInt * 12)
+    const shownArticles = filterArticles
     const pageCount = Math.ceil(filterArticles.length / 10)
 
     useEffect(() => {
@@ -309,7 +309,7 @@ export default function (props) {
                 textAlign: "center",
             }}
         >
-            {(Array.from({ length: pageCount }, (_, i) => i + 1)).map((item, index) => {
+            {(Array.from({ length: props.totalPages }, (_, i) => i + 1)).map((item, index) => {
                 return <Link key={index}
                     href={{
                         pathname: PATHCONSTANTS.ARTICLES.INDEX,
