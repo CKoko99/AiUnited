@@ -327,6 +327,7 @@ const formContent = {
                 { en: "Instagram Ad", es: "Instagram Ad" },
                 { en: "Walk-in", es: "Walk-in" },
                 { en: "Mail", es: "Correo" },
+                { en: "QR Code", es: "Código QR" },
 
             ],
         },
