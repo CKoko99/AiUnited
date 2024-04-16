@@ -174,6 +174,7 @@ const PAGE_FORM_VALUES: {
                 { question: "Address Line 1:", value: QUESTION_IDS.ADDRESS_LINE_1 },
                 { question: "City:", value: QUESTION_IDS.CITY },
                 { question: "Zip Code:", value: QUESTION_IDS.ZIP_CODE },
+                { question: "State:", value: QUESTION_IDS.STATE },
             ]
         },
         {
@@ -470,7 +471,7 @@ export default function (props) {
                 Identifier: String(Math.floor(Math.random() * 1000000000)),
                 Address: {
                     State: "Texas",
-                    ...returnFormObject(strippedFormValues, [QUESTION_IDS.ADDRESS_LINE_1, QUESTION_IDS.CITY, QUESTION_IDS.STATE, QUESTION_IDS.ZIP_CODE]),
+                    ...returnFormObject(strippedFormValues, [QUESTION_IDS.ADDRESS_LINE_1, QUESTION_IDS.CITY, QUESTION_IDS.STATE, QUESTION_IDS.ZIP_CODE, QUESTION_IDS.STATE]),
                 },
                 ContactInformation: {
                     ...returnFormObject(strippedFormValues, [QUESTION_IDS.PHONE_NUMBER, QUESTION_IDS.EMAIL]),
@@ -604,8 +605,7 @@ export default function (props) {
                     MilesToWork: strippedFormValues[QUESTION_IDS.VEHICLE_1_ANNUAL_MILES] ? (parseInt((Number(strippedFormValues[QUESTION_IDS.VEHICLE_1_ANNUAL_MILES][0].value) / 365 / 3).toString())) : "0",
                     CoverageInformation,
                     GaragingAddress: {
-                        State: "Texas",
-                        ...returnFormObject(strippedFormValues, [QUESTION_IDS.ADDRESS_LINE_1, QUESTION_IDS.CITY, QUESTION_IDS.STATE, QUESTION_IDS.ZIP_CODE]),
+                        ...returnFormObject(strippedFormValues, [QUESTION_IDS.ADDRESS_LINE_1, QUESTION_IDS.CITY, QUESTION_IDS.STATE, QUESTION_IDS.ZIP_CODE, QUESTION_IDS.STATE]),
                     },
                 },
                 IsVehicle2 ? {
@@ -615,8 +615,7 @@ export default function (props) {
                     MilesToWork: strippedFormValues[QUESTION_IDS.VEHICLE_2_ANNUAL_MILES] ? (parseInt((Number(strippedFormValues[QUESTION_IDS.VEHICLE_2_ANNUAL_MILES][0].value) / 365 / 3).toString())) : "0",
                     CoverageInformation,
                     GaragingAddress: {
-                        State: "Texas",
-                        ...returnFormObject(strippedFormValues, [QUESTION_IDS.ADDRESS_LINE_1, QUESTION_IDS.CITY, QUESTION_IDS.STATE, QUESTION_IDS.ZIP_CODE]),
+                        ...returnFormObject(strippedFormValues, [QUESTION_IDS.ADDRESS_LINE_1, QUESTION_IDS.CITY, QUESTION_IDS.STATE, QUESTION_IDS.ZIP_CODE, QUESTION_IDS.STATE]),
                     },
                 } : null,
                 IsVehicle3 ? {
@@ -626,8 +625,7 @@ export default function (props) {
                     MilesToWork: strippedFormValues[QUESTION_IDS.VEHICLE_3_ANNUAL_MILES] ? (parseInt((Number(strippedFormValues[QUESTION_IDS.VEHICLE_3_ANNUAL_MILES][0].value) / 365 / 3).toString())) : "0",
                     CoverageInformation,
                     GaragingAddress: {
-                        State: "Texas",
-                        ...returnFormObject(strippedFormValues, [QUESTION_IDS.ADDRESS_LINE_1, QUESTION_IDS.CITY, QUESTION_IDS.STATE, QUESTION_IDS.ZIP_CODE]),
+                        ...returnFormObject(strippedFormValues, [QUESTION_IDS.ADDRESS_LINE_1, QUESTION_IDS.CITY, QUESTION_IDS.STATE, QUESTION_IDS.ZIP_CODE, QUESTION_IDS.STATE]),
                     },
                 } : null,
                 IsVehicle4 ? {
@@ -637,8 +635,7 @@ export default function (props) {
                     MilesToWork: strippedFormValues[QUESTION_IDS.VEHICLE_4_ANNUAL_MILES] ? (parseInt((Number(strippedFormValues[QUESTION_IDS.VEHICLE_4_ANNUAL_MILES][0].value) / 365 / 3).toString())) : "0",
                     CoverageInformation,
                     GaragingAddress: {
-                        State: "Texas",
-                        ...returnFormObject(strippedFormValues, [QUESTION_IDS.ADDRESS_LINE_1, QUESTION_IDS.CITY, QUESTION_IDS.STATE, QUESTION_IDS.ZIP_CODE]),
+                        ...returnFormObject(strippedFormValues, [QUESTION_IDS.ADDRESS_LINE_1, QUESTION_IDS.CITY, QUESTION_IDS.STATE, QUESTION_IDS.ZIP_CODE, QUESTION_IDS.STATE]),
                     },
                 } : null,
             ].filter(vehicle => vehicle !== null),

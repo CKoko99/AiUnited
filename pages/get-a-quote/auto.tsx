@@ -143,7 +143,7 @@ const DevAutoForm = {
                     },
                     {
                         id: QUESTION_IDS.CITY,
-                        nextQuestionId: QUESTION_IDS.TIME_AT_ADDRESS,
+                        nextQuestionId: QUESTION_IDS.STATE,
                         defaultValue: "Dallas",
                         type: "input",
                         question: {
@@ -158,6 +158,380 @@ const DevAutoForm = {
                         validation: {
                             required: true,
                         },
+                    },
+                    {
+                        id: QUESTION_IDS.STATE,
+                        nextQuestionId: QUESTION_IDS.TIME_AT_ADDRESS,
+                        // defaultValue: "Texas",
+                        type: "select",
+                        question: {
+                            en: "State",
+                            es: "Estado",
+                        },
+                        questionId: "State",
+                        validationError: {
+                            en: "Please select a state",
+                            es: "Por favor seleccione un estado",
+                        },
+                        answers: [
+                            {
+                                text: {
+                                    en: "Texas",
+                                    es: "Texas",
+                                },
+                                value: "Texas",
+                            },
+                            {
+                                text: {
+                                    en: "Alabama",
+                                    es: "Alabama",
+                                },
+                                value: "Alabama",
+                            },
+                            {
+                                text: {
+                                    en: "Alaska",
+                                    es: "Alaska",
+                                },
+                                value: "Alaska",
+                            },
+                            {
+                                text: {
+                                    en: "Arizona",
+                                    es: "Arizona",
+                                },
+                                value: "Arizona",
+                            },
+                            {
+                                text: {
+                                    en: "Arkansas",
+                                    es: "Arkansas",
+                                },
+                                value: "Arkansas",
+                            },
+                            {
+                                text: {
+                                    en: "California",
+                                    es: "California",
+                                },
+                                value: "California",
+                            },
+                            {
+                                text: {
+                                    en: "Colorado",
+                                    es: "Colorado",
+                                },
+                                value: "Colorado",
+                            },
+                            {
+                                text: {
+                                    en: "Connecticut",
+                                    es: "Connecticut",
+                                },
+                                value: "Connecticut",
+                            },
+                            {
+                                text: {
+                                    en: "Delaware",
+                                    es: "Delaware",
+                                },
+                                value: "Delaware",
+                            },
+                            {
+                                text: {
+                                    en: "Florida",
+                                    es: "Florida",
+                                },
+                                value: "Florida",
+                            },
+                            {
+                                text: {
+                                    en: "Georgia",
+                                    es: "Georgia",
+                                },
+                                value: "Georgia",
+                            },
+                            {
+                                text: {
+                                    en: "Hawaii",
+                                    es: "Hawaii",
+                                },
+                                value: "Hawaii",
+                            },
+                            {
+                                text: {
+                                    en: "Idaho",
+                                    es: "Idaho",
+                                },
+                                value: "Idaho",
+                            },
+                            {
+                                text: {
+                                    en: "Illinois",
+                                    es: "Illinois",
+                                },
+                                value: "Illinois",
+                            },
+                            {
+                                text: {
+                                    en: "Indiana",
+                                    es: "Indiana",
+                                },
+                                value: "Indiana",
+                            },
+                            {
+                                text: {
+                                    en: "Iowa",
+                                    es: "Iowa",
+                                },
+                                value: "Iowa",
+                            },
+                            {
+                                text: {
+                                    en: "Kansas",
+                                    es: "Kansas",
+                                },
+                                value: "Kansas",
+                            },
+                            {
+                                text: {
+                                    en: "Kentucky",
+                                    es: "Kentucky",
+                                },
+                                value: "Kentucky",
+                            },
+                            {
+                                text: {
+                                    en: "Louisiana",
+                                    es: "Louisiana",
+                                },
+                                value: "Louisiana",
+                            },
+                            {
+                                text: {
+                                    en: "Maine",
+                                    es: "Maine",
+                                },
+                                value: "Maine",
+                            },
+                            {
+                                text: {
+                                    en: "Maryland",
+                                    es: "Maryland",
+                                },
+                                value: "Maryland",
+                            },
+                            {
+                                text: {
+                                    en: "Massachusetts",
+                                    es: "Massachusetts",
+                                },
+                                value: "Massachusetts",
+                            },
+                            {
+                                text: {
+                                    en: "Michigan",
+                                    es: "Michigan",
+                                },
+                                value: "Michigan",
+                            },
+                            {
+                                text: {
+                                    en: "Minnesota",
+                                    es: "Minnesota",
+                                },
+                                value: "Minnesota",
+                            },
+                            {
+                                text: {
+                                    en: "Mississippi",
+                                    es: "Mississippi",
+                                },
+                                value: "Mississippi",
+                            },
+                            {
+                                text: {
+                                    en: "Missouri",
+                                    es: "Missouri",
+                                },
+                                value: "Missouri",
+                            },
+                            {
+                                text: {
+                                    en: "Montana",
+                                    es: "Montana",
+                                },
+                                value: "Montana",
+                            },
+                            {
+                                text: {
+                                    en: "Nebraska",
+                                    es: "Nebraska",
+                                },
+                                value: "Nebraska",
+                            },
+                            {
+                                text: {
+                                    en: "Nevada",
+                                    es: "Nevada",
+                                },
+                                value: "Nevada",
+                            },
+                            {
+                                text: {
+                                    en: "New Hampshire",
+                                    es: "New Hampshire",
+                                },
+                                value: "New Hampshire",
+                            },
+                            {
+                                text: {
+                                    en: "New Jersey",
+                                    es: "New Jersey",
+                                },
+                                value: "New Jersey",
+                            },
+                            {
+                                text: {
+                                    en: "New Mexico",
+                                    es: "New Mexico",
+                                },
+                                value: "New Mexico",
+                            },
+                            {
+                                text: {
+                                    en: "New York",
+                                    es: "New York",
+                                },
+                                value: "New York",
+                            },
+                            {
+                                text: {
+                                    en: "North Carolina",
+                                    es: "North Carolina",
+                                },
+                                value: "North Carolina",
+                            },
+                            {
+                                text: {
+                                    en: "North Dakota",
+                                    es: "North Dakota",
+                                },
+                                value: "North Dakota",
+                            },
+                            {
+                                text: {
+                                    en: "Ohio",
+                                    es: "Ohio",
+                                },
+                                value: "Ohio",
+                            },
+                            {
+                                text: {
+                                    en: "Oklahoma",
+                                    es: "Oklahoma",
+                                },
+                                value: "Oklahoma",
+                            },
+                            {
+                                text: {
+                                    en: "Oregon",
+                                    es: "Oregon",
+                                },
+                                value: "Oregon",
+                            },
+                            {
+                                text: {
+                                    en: "Pennsylvania",
+                                    es: "Pennsylvania",
+                                },
+                                value: "Pennsylvania",
+                            },
+                            {
+                                text: {
+                                    en: "Rhode Island",
+                                    es: "Rhode Island",
+                                },
+                                value: "Rhode Island",
+                            },
+                            {
+                                text: {
+                                    en: "South Carolina",
+                                    es: "South Carolina",
+                                },
+                                value: "South Carolina",
+                            },
+                            {
+                                text: {
+                                    en: "South Dakota",
+                                    es: "South Dakota",
+                                },
+                                value: "South Dakota",
+                            },
+                            {
+                                text: {
+                                    en: "Tennessee",
+                                    es: "Tennessee",
+                                },
+                                value: "Tennessee",
+                            },
+                            {
+                                text: {
+                                    en: "Texas",
+                                    es: "Texas",
+                                },
+                                value: "Texas",
+                            },
+                            {
+                                text: {
+                                    en: "Utah",
+                                    es: "Utah",
+                                },
+                                value: "Utah",
+                            },
+                            {
+                                text: {
+                                    en: "Vermont",
+                                    es: "Vermont",
+                                },
+                                value: "Vermont",
+                            },
+                            {
+                                text: {
+                                    en: "Virginia",
+                                    es: "Virginia",
+                                },
+                                value: "Virginia",
+                            },
+                            {
+                                text: {
+                                    en: "Washington",
+                                    es: "Washington",
+                                },
+                                value: "Washington",
+                            },
+                            {
+                                text: {
+                                    en: "West Virginia",
+                                    es: "West Virginia",
+                                },
+                                value: "West Virginia",
+                            },
+                            {
+                                text: {
+                                    en: "Wisconsin",
+                                    es: "Wisconsin",
+                                },
+                                value: "Wisconsin",
+                            },
+                            {
+                                text: {
+                                    en: "Wyoming",
+                                    es: "Wyoming",
+                                },
+                                value: "Wyoming",
+                            },
+                        ],
                     },
                     {
 

@@ -35,14 +35,13 @@ const contentSection2 = {
 
 export async function getServerSideProps(context) {
     try {
-        console.log(context.query)
 
         const category = context.query.category || 'All Categories'
         const page = context.query.page || 1
 
         const res = await fetch(`${process.env.BACKEND}/articles?category=${category}&page=${page}`)
         const data = await res.json()
-        console.log(data)
+
         /*
             let tempData = data.data
             let articles = []
