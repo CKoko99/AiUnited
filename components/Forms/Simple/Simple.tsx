@@ -7,7 +7,7 @@ import PATHCONSTANTS from "../../../constants/sitemap";
 import Image from "next/image";
 import checkmarkImg from "../../../public/assets/images/components/checkmark.png"
 import Question from "./Question";
-import { GTMEVENTS, GTMEventHandler } from "../../Scripts/GoogleTag";
+import { GTMEVENTS, GTMEventHandler } from "../../Scripts/Google/GoogleTag";
 
 const text = {
     secured: {

@@ -5,9 +5,10 @@ import { CustomFonts } from "../../../providers/theme";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import theme from "../../../providers/theme";
-import { GTMEVENTS, GTMEventHandler } from "../../Scripts/GoogleTag";
+import { GTMEVENTS, GTMEventHandler } from "../../Scripts/Google/GoogleTag";
 import { useEffect, useState } from "react";
 import PATHCONSTANTS from "constants/sitemap";
+import * as ttq from "@/components/Scripts/TikTok/TikTokEvents";
 
 const errorValidationText = {
     en: "Please enter a valid zipcode",
@@ -129,6 +130,7 @@ export default function (props) {
                             onClick={() => {
                                 uploadToSheet()
                                 GTMEventHandler(`${GTMEVENTS.audience}-TR-Auto-Start`, { 'name': "Auto-Quote" })
+                                ttq.event('StartAutoQuote')
                             }}
                             sx={{
                                 minWidth: "10rem", minHeight: "3.5rem"

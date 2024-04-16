@@ -4,7 +4,7 @@ import Image, { StaticImageData } from "next/image";
 import { useEffect, useState } from "react";
 import { Lang } from "../../locale/LocaleSwitcher";
 import { useRouter } from "next/router";
-import { GTMEVENTS, GTMEventHandler } from "../../Scripts/GoogleTag";
+import { GTMEVENTS, GTMEventHandler } from "../../Scripts/Google/GoogleTag";
 
 
 interface VerticalBannerProps {

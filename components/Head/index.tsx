@@ -1,7 +1,7 @@
 import Head from "next/head";
-import { GTMHead } from "../Scripts/GoogleTag";
+import { GTMHead } from "../Scripts/Google/GoogleTag";
 import { useEffect } from "react";
-import FacebookPixel from "../Scripts/FacebookPixel";
+import FacebookPixel from "../Scripts/Facebook/FacebookPixel";
 
 type HeadComponentPropsType = {
   title?: string;

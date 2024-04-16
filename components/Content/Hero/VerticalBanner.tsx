@@ -5,7 +5,8 @@ import { CustomFonts } from "../../../providers/theme";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import theme from "../../../providers/theme";
-import { GTMEVENTS, GTMEventHandler } from "../../Scripts/GoogleTag";
+import { GTMEVENTS, GTMEventHandler } from "../../Scripts/Google/GoogleTag";
+import * as ttq from "@/components/Scripts/TikTok/TikTokEvents";
 
 interface VerticalBannerProps {
     title?: {

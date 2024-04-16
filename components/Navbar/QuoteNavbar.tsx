@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { returnLocaleText } from "../locale/LocaleSwitcher";
-import * as fbq from "../Scripts/FacebookEvents";
+import * as fbq from "../Scripts/Facebook/FacebookEvents";
 const TEXT = {
     modalHeading: { en: "Exit Free Quote?", es: "¿Salir de la cotización gratuita?" },
     modalBody: { en: "You are about to exit the quoting process and return to the home page are you sure you want to continue?", es: "Estás a punto de salir del proceso de cotización y regresar a la página de inicio, ¿estás seguro de que quieres continuar?" },

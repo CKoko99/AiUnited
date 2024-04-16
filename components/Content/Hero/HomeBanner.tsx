@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { Lang } from "../../locale/LocaleSwitcher";
 import { useEffect, useState } from "react";
 import GetAQuote from "../../Modals/GetAQuote";
-import { GTMEVENTS, GTMEventHandler } from "@/components/Scripts/GoogleTag";
+import { GTMEVENTS, GTMEventHandler } from "@/components/Scripts/Google/GoogleTag";
 import CategoryIcon from '@mui/icons-material/Category';
 import React from "react";
 import { returnLocaleText } from "@/components/locale/LocaleSwitcher";

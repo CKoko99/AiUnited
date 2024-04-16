@@ -7,13 +7,13 @@ import AutoResults from "./Results/AutoResults";
 import { v4 as uuid } from 'uuid';
 import PATHCONSTANTS from "constants/sitemap";
 import Image, { StaticImageData } from "next/image";
-import { GTMEVENTS, GTMEventHandler } from "../../Scripts/GoogleTag";
+import { GTMEVENTS, GTMEventHandler } from "../../Scripts/Google/GoogleTag";
 import GrayFinishImg from "../../../public/assets/images/get-a-quote/auto/finishgray.png";
 import ColorFinishImg from "../../../public/assets/images/get-a-quote/auto/finishcolor.png";
 import { msToTime } from "@/functions/functions";
 import React from "react";
 import { use } from "marked";
-import * as fbq from "components/Scripts/FacebookEvents";
+import * as fbq from "@/components/Scripts/Facebook/FacebookEvents";
 
 const TEXT = {
     submit: { en: "Submit", es: "Enviar" },

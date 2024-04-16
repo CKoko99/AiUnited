@@ -4,10 +4,10 @@ import Layout from "../components/Layout";
 //import { ThemeProvider } from '@emotion/react';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "../providers/theme";
-import GoogleAnalytics from "../components/Scripts/GoogleAnalytics";
+import GoogleAnalytics from "../components/Scripts/Google/GoogleAnalytics";
 import { useEffect } from 'react';
 import PATHCONSTANTS from 'constants/sitemap';
-import * as fbq from "components/Scripts/FacebookEvents";
+import * as fbq from "@/components/Scripts/Facebook/FacebookEvents";
 
 function MyApp({ Component, pageProps }: AppProps) {
   async function fetchArticles() {

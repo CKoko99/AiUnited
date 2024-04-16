@@ -20,7 +20,7 @@ import React, { forwardRef, useEffect, useState } from "react";
 import Link from "next/link";
 import PATHCONSTANTS from "../../constants/sitemap";
 import CloseIcon from '@mui/icons-material/Close';
-import { GTMEVENTS, GTMEventHandler } from "../Scripts/GoogleTag";
+import { GTMEVENTS, GTMEventHandler } from "../Scripts/Google/GoogleTag";
 const text = {
     title: {
         en: "Unlock your savings today!",

@@ -4,10 +4,11 @@ import Footer from "../footer/Footer";
 import { ReactNode, useEffect, useState } from "react";
 import LocaleSwitcher from "../locale/LocaleSwitcher";
 import HeadComponent from "../Head";
-import { GTMBody } from "../Scripts/GoogleTag";
+import { GTMBody } from "../Scripts/Google/GoogleTag";
 import { useRouter } from "next/router";
 import QuoteNavbar from "../Navbar/QuoteNavbar";
-import FacebookPixel from "../Scripts/FacebookPixel";
+import FacebookPixel from "../Scripts/Facebook/FacebookPixel";
+import TikTokPixel from "../Scripts/TikTok/TikTokPixel";
 
 interface LayoutProps {
   children: ReactNode; // Define the children prop with ReactNode type
@@ -24,6 +25,7 @@ const Layout = ({ children }: LayoutProps) => {
         // <HeadComponent />
         //removed since it didn't work with opengraph images
       }
+      <TikTokPixel />
       <FacebookPixel />
       <GTMBody />
       <Box
