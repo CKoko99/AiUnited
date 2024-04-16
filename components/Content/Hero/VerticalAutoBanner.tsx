@@ -122,22 +122,21 @@ export default function (props) {
                 }}
             >
                 <Box>
-
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        href={PATHCONSTANTS.GETAQUOTE.AUTO}
-                        onClick={() => {
-                            uploadToSheet()
-                            GTMEventHandler(`${GTMEVENTS.audience}-TR-Auto-Start`, { 'name': "Auto-Quote" })
-                        }}
-                        sx={{
-                            minWidth: "10rem", minHeight: "3.5rem"
-                        }}
-                    >
-                        {props.cta.buttonText[currentLang]}
-                    </Button>
-
+                    <Link href={PATHCONSTANTS.GETAQUOTE.AUTO}>
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            onClick={() => {
+                                uploadToSheet()
+                                GTMEventHandler(`${GTMEVENTS.audience}-TR-Auto-Start`, { 'name': "Auto-Quote" })
+                            }}
+                            sx={{
+                                minWidth: "10rem", minHeight: "3.5rem"
+                            }}
+                        >
+                            {props.cta.buttonText[currentLang]}
+                        </Button>
+                    </Link>
                 </Box>
             </Box>
             {props.img &&
@@ -150,6 +149,6 @@ export default function (props) {
                     <Image fill priority={true} style={{ objectFit: "contain" }} {...props.img} />
                 </Box>
             }
-        </Box>
+        </Box >
     </>
 }
