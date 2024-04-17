@@ -6,6 +6,8 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { returnLocaleText } from "../locale/LocaleSwitcher";
 import * as fbq from "../Scripts/Facebook/FacebookEvents";
+import * as ttq from "../Scripts/TikTok/TikTokEvents";
+import Link from "next/link";
 const TEXT = {
     modalHeading: { en: "Exit Free Quote?", es: "¿Salir de la cotización gratuita?" },
     modalBody: { en: "You are about to exit the quoting process and return to the home page are you sure you want to continue?", es: "Estás a punto de salir del proceso de cotización y regresar a la página de inicio, ¿estás seguro de que quieres continuar?" },
@@ -110,13 +112,17 @@ export default function () {
                     }}
                 >
                     <Button onClick={() => setShowModal(false)}>{returnLocaleText(TEXT.cancel)}</Button>
-                    <Button
-                        variant="contained"
+                    <Link
                         href={"/"}
-                        onClick={() => {
-                            fbq.event("ExitAutoQuote")
-                        }}
-                    >{returnLocaleText(TEXT.returnHome)}</Button>
+                    >
+                        <Button
+                            variant="contained"
+                            onClick={() => {
+                                fbq.event("ExitAutoQuote")
+                                ttq.event("ExitAutoQuote")
+                            }}
+                        >{returnLocaleText(TEXT.returnHome)}</Button>
+                    </Link>
                 </Box>
             </Box>
         </Modal>}

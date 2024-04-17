@@ -8,6 +8,7 @@ import GoogleAnalytics from "../components/Scripts/Google/GoogleAnalytics";
 import { useEffect } from 'react';
 import PATHCONSTANTS from 'constants/sitemap';
 import * as fbq from "@/components/Scripts/Facebook/FacebookEvents";
+import * as ttq from "@/components/Scripts/TikTok/TikTokEvents";
 
 function MyApp({ Component, pageProps }: AppProps) {
   async function fetchArticles() {
@@ -16,7 +17,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   }
   useEffect(() => {
     fetchArticles()
-    fbq.event("SiteVisit")
+    const siteVisit = "SiteVisit"
+    fbq.event(siteVisit)
+    ttq.event(siteVisit)
   }, [])
   return (
     <ThemeProvider theme={theme}>

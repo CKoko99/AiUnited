@@ -8,7 +8,8 @@ import Image from "next/image";
 import checkmarkImg from "../../../public/assets/images/components/checkmark.png"
 import Question from "./Question";
 import { GTMEVENTS, GTMEventHandler } from "../../Scripts/Google/GoogleTag";
-
+import * as ttq from "components/Scripts/TikTok/TikTokEvents";
+import * as fbq from "components/Scripts/Facebook/FacebookEvents";
 const text = {
     secured: {
         en: "Your information is secure and will never be shared.",
@@ -66,7 +67,6 @@ export default function (props) {
         setValidArray((prevValidArray) => {
             const newArray = [...prevValidArray];
             newArray[index] = valid;
-            console.log(newArray);
             return newArray;
         });
     }
@@ -84,7 +84,6 @@ export default function (props) {
     }, [validArray])
 
     async function uploadToSheet() {
-        console.log(answersArray)
         const timestamp = new Date().toLocaleString();
 
         //prepare data to be sent to google sheet
@@ -111,7 +110,6 @@ export default function (props) {
             })
                 .then((res) => res.json())
                 .then((data) => {
-                    console.log(data);
                     setFormSubmitted(true)
                 })
                 .catch((error) => {
@@ -125,7 +123,6 @@ export default function (props) {
     }
 
     async function sendEmail() {
-        console.log("send email")
         const emailProps = getEmailProps(props.questions, answersArray)
 
 
@@ -156,14 +153,18 @@ export default function (props) {
         }
     }
     async function handleSubmit() {
-        console.log("HANDLE SUBMIT")
         //send answers to backend
         setLoading(true)
         await uploadToSheet()
         setLoading(false)
         setHandlingSubmit(false)
         if (props.conversion) {
-            GTMEventHandler(`${GTMEVENTS.conversion}-${props.conversion}`, { 'name': `${props.conversion}-Quote` })
+            const eventName = props.job ? `Hiring-${props.conversion}` : `${props.conversion}-Quote`
+            if (!props.job) {
+                GTMEventHandler(`${GTMEVENTS.conversion}-${props.conversion}`, { 'name': eventName })
+            }
+            ttq.event(eventName)
+            fbq.event(eventName)
         }
         await sendEmail()
     }
@@ -178,7 +179,6 @@ export default function (props) {
         let Uploading = false
         for (let i = 0; i < answersArray.length; i++) {
             if (answersArray[i] === "FILE_PLACEHOLDER") {
-                console.log("FOUND PLACEHOLDER")
                 Uploading = true
             }
         }

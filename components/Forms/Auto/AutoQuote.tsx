@@ -14,6 +14,7 @@ import { msToTime } from "@/functions/functions";
 import React from "react";
 import { use } from "marked";
 import * as fbq from "@/components/Scripts/Facebook/FacebookEvents";
+import * as ttq from "@/components/Scripts/TikTok/TikTokEvents";
 
 const TEXT = {
     submit: { en: "Submit", es: "Enviar" },
@@ -1044,8 +1045,10 @@ export default function (props) {
             let newFarthestPage = [quotePageIndex, farthestPage[1]]
             //   setFarthestPage(newFarthestPage)
             if (newFarthestPage[0] === props.Form.QuotePages.length) {
-                GTMEventHandler(`${GTMEVENTS.conversion}-TR-Auto`, { 'name': `Auto-Quote` })
-                fbq.event('AutoQuote')
+                const eventName = `AutoQuote`
+                GTMEventHandler(`${GTMEVENTS.conversion}-TR-Auto`, { 'name': eventName })
+                fbq.event(eventName)
+                ttq.event(eventName)
             } else {
                 GTMEventHandler(`${GTMEVENTS.audience}-TR-Auto-${(navigationIcons[newFarthestPage[0]] as { title: { en: string } }).title.en}-reached`, { 'name': `Auto-Quote` })
             }
