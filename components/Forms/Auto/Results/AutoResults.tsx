@@ -7,6 +7,7 @@ import ResultItem from "./ResultItem";
 import CircularProgress from '@mui/material/CircularProgress';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { LoadingContentItem } from "./ResultItem";
+import { GTMEVENTS, GTMEventHandler } from "@/components/Scripts/Google/GoogleTag";
 const TEXT = {
     hello: { en: "Hello", es: "Hola" },
     takeALook: { en: "You're Almost There – Let's Cross the Finish Line Together!", es: "¡Casi lo logramos! ¡Vamos a cruzar la línea de meta juntos!" },
@@ -238,7 +239,7 @@ export default function (props) {
     const [maxResults, setMaxResults] = useState(5);
     const [fetched, setFetched] = useState(false);
     const [ellipsisCount, setEllipsisCount] = useState(0);
-
+    const [clickedIndexArray, setClickedIndexArray] = useState<string[]>([]);
     async function fetchResultsHandler(id) {
         let resultsData = await getResults(id);
         setResults(resultsData);
@@ -529,7 +530,39 @@ export default function (props) {
                                                 if (result === undefined) {
                                                     return null;
                                                 }
-                                                return <ResultItem key={i} results={result} />
+                                                return <ResultItem key={i} results={result}
+                                                    onClick={(conversionType: string) => {
+
+                                                        if (!clickedIndexArray.length) {
+                                                            if (conversionType === "buyOnline") {
+                                                                const eventText = `${GTMEVENTS.audience}-TR-BuyOnline-ClickedFirst`
+                                                                console.log(eventText)
+                                                                GTMEventHandler(eventText, { 'name': `Auto-Quote` })
+                                                            } else {
+                                                                const eventText = `${GTMEVENTS.audience}-TR-CallToBuy-ClickedFirst`
+                                                                console.log(eventText)
+                                                                GTMEventHandler(eventText, { 'name': `Auto-Quote` })
+                                                            }
+                                                        }
+                                                        if (conversionType === "buyOnline" && !clickedIndexArray.includes(conversionType)) {
+                                                            const eventText = `${GTMEVENTS.audience}-TR-BuyOnline`
+                                                            console.log(eventText)
+                                                            GTMEventHandler(eventText, { 'name': `Auto-Quote` })
+                                                        }
+                                                        if (conversionType === "callToBuy" && !clickedIndexArray.includes(conversionType)) {
+                                                            const eventText = `${GTMEVENTS.audience}-TR-CallToBuy`
+                                                            console.log(eventText)
+                                                            GTMEventHandler(eventText, { 'name': `Auto-Quote` })
+                                                        }
+                                                        setClickedIndexArray(prev => {
+                                                            if (prev.includes(conversionType)) {
+                                                                return prev
+                                                            }
+                                                            return [...prev, conversionType]
+                                                        })
+
+                                                    }}
+                                                />
                                             })}
                                         </Box>
                                         {maxResults < results.length - 1 && <Box

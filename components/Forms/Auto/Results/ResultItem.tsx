@@ -10,6 +10,7 @@ import {
 } from "../Coverage/Modals";
 import React from "react";
 import { use } from "marked";
+import { GTMEVENTS, GTMEventHandler } from "@/components/Scripts/Google/GoogleTag";
 const TEXT = {
     hello: { en: "Hello", es: "Hola" },
     takeALook: { en: "Take a look at your personalized quotes!", es: "¡Eche un vistazo a sus cotizaciones personalizadas!" },
@@ -380,6 +381,9 @@ export default function ContentItem(props) {
                     variant="contained"
                     href={buyNowURL !== "" ? buyNowURL : PATHCONSTANTS.SALESPHONE}
                     target={buyNowURL !== "" ? "_blank" : "_self"}
+                    onClick={() => {
+                        props.onClick(buyNowURL !== "" ? "callToBuy" : "buyOnline")
+                    }}
                 >
                     {buyNowURL !== "" ? returnLocaleText(TEXT.buyOnline) : returnLocaleText(TEXT.callToGetPrice)}
                 </Button>
