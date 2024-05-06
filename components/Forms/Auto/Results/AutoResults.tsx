@@ -85,6 +85,29 @@ const classes = {
         boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
     },
 }
+function isStoreOpen(dateTimeString: string) {
+    // Parse the date and time from the string
+    var dateTime = new Date(dateTimeString);
+
+    //check to see if it is monday thru friday
+    var day = dateTime.getDay();
+    var hour = dateTime.getHours();
+    if (day >= 1 && day <= 5) {
+        console.log("Monday thru Friday")
+        if (hour >= 9 && hour < 19) {
+            return true;
+        }
+        return false
+    }
+    if (day == 6) {
+        console.log("Saturday")
+        if (hour >= 10 && hour < 17) {
+            return true;
+        }
+        return false
+    }
+    return false
+}
 
 function reduceCompanysList(BaseList, Companies) {
     let newBaseList = BaseList;
@@ -122,6 +145,8 @@ async function getResults(id) {
             //      console.log(resultsData.carrierResults[0].carrierTransactionID.length !== 0)
             //we only want results where total premium is greater than 0
             let filteredResults = data?.carrierResults?.filter(result => result.totalPremium > 0);
+
+
 
             //we only want results where number of payments is greater than 1 or the term is 1
             filteredResults = filteredResults.filter(result => result.paymentOptions[0].numberOfPayments > 1 || result.term === 1);
@@ -178,7 +203,12 @@ async function getResults(id) {
                 console.log("Cheapest Options:")
                 console.log([cheapestBuyNow, cheapestNotBuyNow])
             }
-            return [cheapestBuyNow, cheapestNotBuyNow]
+            const returnedResults: Array<any> = []
+            returnedResults.push(cheapestBuyNow)
+            if (data.currentTime && isStoreOpen(data.currentTime)) {
+                returnedResults.push(cheapestNotBuyNow)
+            }
+            return returnedResults;
             /*
                  const firstItem = finalList.shift();
                  finalList.sort((a, b) => (a[0] as { totalPremium: number }).totalPremium - (b[0] as { totalPremium: number }).totalPremium);
@@ -208,7 +238,7 @@ export default function (props) {
     const [maxResults, setMaxResults] = useState(5);
     const [fetched, setFetched] = useState(false);
     const [ellipsisCount, setEllipsisCount] = useState(0);
-    const [noResults, setNoResults] = useState(true);
+
     async function fetchResultsHandler(id) {
         let resultsData = await getResults(id);
         setResults(resultsData);
@@ -367,18 +397,8 @@ export default function (props) {
         }
     }, [fetched, loadingPercent])
 
-    useEffect(() => {
-        // if length of results is 2 and either aren't undefined, set noResults to false
+    const noResults = results.length === 0;
 
-
-        if (results.length === 2 && (results[0] !== undefined || results[1] !== undefined)) {
-            //console.log("Setting noResults to false")
-            setNoResults(false);
-        } else {
-            //console.log("Setting noResults to true")
-            setNoResults(true);
-        }
-    }, [results])
     return <>
         {props.id &&
             <>
