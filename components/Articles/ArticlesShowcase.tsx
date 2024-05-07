@@ -162,7 +162,6 @@ export default function (props) {
         return selectedCategory === item.attributes.Category || selectedCategory === categories[0].en
     })
     const shownArticles = filterArticles
-    const pageCount = Math.ceil(filterArticles.length / 10)
 
     useEffect(() => {
         //if search parameter in url the scroll to id = Articles

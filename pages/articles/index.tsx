@@ -51,9 +51,10 @@ export async function getServerSideProps(context) {
                 }
             }
             data.data = articles
-            */
+        */
+        const popularArticlesResponse = await fetch(`${process.env.BACKEND}/articles/popular`)
+        const { data: popularArticles } = await popularArticlesResponse.json()
 
-        const popularArticles = data.data.filter((article) => article.attributes.PopularRank > 0)
         popularArticles.sort((b, a) => a.attributes.PopularRank - b.attributes.PopularRank)
         return {
             props: {
@@ -83,10 +84,11 @@ export default function (props) {
         page = "1"
     }
     const pageInt = parseInt(page as string)
+    const pageSize = 9
     // if page = 1 then show the first 9 articles
     // if page = 2 then show the next 9 articles
 
-    const shownArticles = articlesList.slice((pageInt - 1) * 12, pageInt * 12)
+    const shownArticles = articlesList.slice((pageInt - 1) * pageSize, pageInt * pageSize)
 
     return <>
         <HeadComponent {...headContent} />
@@ -96,7 +98,7 @@ export default function (props) {
         <TextSection {...contentSection2} />
         <ArticlesShowcase articles={articlesList}
             currentPage={page} shownArticles={shownArticles}
-            totalPages={Math.ceil(props.total / 12)}
+            totalPages={Math.ceil(props.total / pageSize)}
         />
     </>
 }
