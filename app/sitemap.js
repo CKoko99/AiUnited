@@ -12,6 +12,7 @@ export default async function sitemap() {
     delete Sitemap.PHONETEXT
     delete Sitemap.SALESPHONE
     delete Sitemap.QUOTES.LIABILITY
+    delete Sitemap.HOMEFULL
     //loop through all the paths in PATHCONSTANTS
     for (const path in Sitemap) {
         //if the path is an object, loop through the subpaths
