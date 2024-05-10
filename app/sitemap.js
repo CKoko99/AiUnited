@@ -69,14 +69,22 @@ export default async function sitemap() {
     }
     //get all the articles from the backend and add them to the sitemap
     try {
-        const res = await fetch(`${process.env.BACKEND}/articles/`,)
+        let page = 1
+        const pageSize = 9
+        const category = 'All Categories'
+        const res = await fetch(`${process.env.BACKEND}/articles?category=${category}&page=${page}`)
         const data = await res.json()
-        data.data.forEach(article => {
-            Pages.push({
-                url: url + "/articles/" + article.attributes.title_slug,
-                lastModified: new Date(article.attributes.updatedAt)
+        const totalPages = Math.ceil(data.total / pageSize)
+        for (let i = 1; i <= totalPages; i++) {
+            const res = await fetch(`${process.env.BACKEND}/articles?category=${category}&page=${i}`)
+            const data = await res.json()
+            data.data.forEach(article => {
+                Pages.push({
+                    url: url + "/articles/" + article.attributes.title_slug,
+                    lastModified: new Date(article.attributes.updatedAt)
+                })
             })
-        })
+        }
     } catch (err) {
         console.log(err)
     }

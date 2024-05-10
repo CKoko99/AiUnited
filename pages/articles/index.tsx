@@ -42,16 +42,6 @@ export async function getServerSideProps(context) {
         const res = await fetch(`${process.env.BACKEND}/articles?category=${category}&page=${page}`)
         const data = await res.json()
 
-        /*
-            let tempData = data.data
-            let articles = []
-            for (let j = 0; j < data.data.length; j++) {
-                for (let i = 0; i < 4; i++) {
-                    articles.push(tempData[j] as never);
-                }
-            }
-            data.data = articles
-        */
         const popularArticlesResponse = await fetch(`${process.env.BACKEND}/articles/popular`)
         const { data: popularArticles } = await popularArticlesResponse.json()
 
