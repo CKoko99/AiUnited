@@ -443,7 +443,7 @@ export default function (props) {
   //check if everyting in the results array is  undefined or the array is empty
   const noResults =
     results.every((result) => result === undefined) || results.length === 0;
-  console.log(`noResults: ${noResults}`);
+
   return (
     <>
       {props.id && (
