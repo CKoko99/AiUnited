@@ -78,6 +78,7 @@ export default function (props: {
     fullList?: boolean;
     zoom?: number;
     city?: string;
+    placeholder?: string;
 }) {
     const [mapCenter, setMapCenter] = useState(props.center);
     const [selectedMarker, setSelectedMarker] = useState<Marker | null>(null);
