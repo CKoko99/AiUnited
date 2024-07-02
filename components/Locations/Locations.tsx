@@ -78,6 +78,7 @@ export default function (props: {
     fullList?: boolean;
     zoom?: number;
     city?: string;
+    placeholder?: string;
 }) {
     const [mapCenter, setMapCenter] = useState(props.center);
     const [selectedMarker, setSelectedMarker] = useState<Marker | null>(null);
@@ -105,7 +106,7 @@ export default function (props: {
             location.distance = distance;
         });
         newLocations.sort((a, b) => {
-            return a.distance - b.distance;
+            return (a.distance || 0) - (b.distance || 0);
         });
         setLocations(newLocations);
         if (zoom === 11) {
