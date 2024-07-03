@@ -1,9 +1,15 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box, Modal, Typography } from "@mui/material";
+import {
+    Accordion,
+    AccordionDetails,
+    AccordionSummary,
+    Box,
+    Modal,
+    Typography,
+} from "@mui/material";
 import { useState } from "react";
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import { returnLocaleText } from "@/components/locale/LocaleSwitcher";
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const classes = {
     modalRoot: {
@@ -34,81 +40,78 @@ const classes = {
         padding: "2rem",
         boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
     },
-}
+};
 
-export function Disclaimer(props) {
+export function Disclaimer() {
     const Text = {
         legalDisclaimer: {
             en: "Legal Disclaimer",
             es: "Aviso Legal",
         },
         body: {
-            // state that the policy is descriptions are general information and not a contract 
+            // state that the policy is descriptions are general information and not a contract
             en: `The descriptions of coverages are general information and not a statement of contract. All coverages are subject to the terms, provisions, exclusions, and conditions in the policy itself and in any endorsements.`,
             es: `Las descripciones de las coberturas son información general y no una declaración de contrato. Todas las coberturas están sujetas a los términos, disposiciones, exclusiones y condiciones en la póliza misma y en cualquier endoso.`,
         },
-    }
+    };
 
-    return <Accordion
-        sx={{
-            minWidth: { xs: "90%", md: '47.5%' }, //padding: "rem",
-            border: "1px solid #cacaca",
-            alignSelf: { xs: "", md: "baseline" },
-
-            flex: "1",
-            // margin: "-16px 0 0 !important",
-        }}
-        TransitionProps={{ style: { margin: "-4px 0", } }}
-    >
-        <AccordionSummary
-            expandIcon={<ExpandMoreIcon fontWeight={"bold"} />}
-        >
-            <Typography
-                variant="h6" fontWeight={700}
-            >
-                {returnLocaleText(Text.legalDisclaimer)}
-            </Typography>
-
-        </AccordionSummary>
-        <AccordionDetails
-
-        >
-            <Typography
-                variant="body1"
-            >
-                {returnLocaleText(Text.body)}
-            </Typography>
-        </AccordionDetails>
-    </Accordion >
-}
-
-function ModalBase(props) {
-    const [openModal, setOpenModal] = useState(false)
-
-    return <>
-        <HelpOutlineIcon fontSize="small"
-            sx={{ cursor: "pointer" }}
-            onClick={() => setOpenModal(true)} />
-        <Modal
-            open={openModal}
-            onClose={() => setOpenModal(false)}
+    return (
+        <Accordion
             sx={{
-                ...classes.modalRoot,
-                backgroundColor: props.inModal ? "rgba(0,0,0,0)" : "rgba(0,0,0,0.5)",
+                minWidth: { xs: "90%", md: "47.5%" }, //padding: "rem",
+                border: "1px solid #cacaca",
+                alignSelf: { xs: "", md: "baseline" },
 
+                flex: "1",
+                // margin: "-16px 0 0 !important",
             }}
+            TransitionProps={{ style: { margin: "-4px 0" } }}
         >
-            <Box
-                sx={{ ...classes.modal }}
+            <AccordionSummary
+                expandIcon={<ExpandMoreIcon fontWeight={"bold"} />}
             >
-                {props.children}
-                <Disclaimer />
-            </Box>
-        </Modal>
-
-    </>
+                <Typography variant="h6" fontWeight={700}>
+                    {returnLocaleText(Text.legalDisclaimer)}
+                </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+                <Typography variant="body1">
+                    {returnLocaleText(Text.body)}
+                </Typography>
+            </AccordionDetails>
+        </Accordion>
+    );
 }
-export function BodilyInjury(props) {
+
+function ModalBase(props: { children: React.ReactNode; inModal?: boolean }) {
+    const [openModal, setOpenModal] = useState(false);
+
+    return (
+        <>
+            <HelpOutlineIcon
+                fontSize="small"
+                sx={{ cursor: "pointer" }}
+                onClick={() => setOpenModal(true)}
+            />
+            <Modal
+                open={openModal}
+                onClose={() => setOpenModal(false)}
+                sx={{
+                    ...classes.modalRoot,
+                    backgroundColor: props.inModal
+                        ? "rgba(0,0,0,0)"
+                        : "rgba(0,0,0,0.5)",
+                }}
+            >
+                <Box sx={{ ...classes.modal }}>
+                    {props.children}
+                    <Disclaimer />
+                </Box>
+            </Modal>
+        </>
+    );
+}
+export function BodilyInjury(props: { inModal?: boolean }) {
     const TEXT = {
         title: {
             en: "Bodily Injury",
@@ -122,38 +125,37 @@ export function BodilyInjury(props) {
             en: `Policy limits, often denoted as "$30k/$60k," represent the maximum coverage provided by the insurance policy. For instance, with limits of $30,000 per person and $60,000 per accident, your insurer would cover up to $30,000 for each injured individual, with a total cap of $60,000 for the entire accident. If medical costs surpass these limits, you'd be responsible for covering the remaining expenses out of pocket. Therefore, it's crucial to understand these limits when selecting coverage to ensure adequate protection in case of a severe accident.`,
             es: `Los límites de la póliza, a menudo denotados como "$30k/$60k," representan la cobertura máxima proporcionada por la póliza de seguro. Por ejemplo, con límites de $30,000 por persona y $60,000 por accidente, su aseguradora cubriría hasta $30,000 para cada individuo lesionado, con un tope total de $60,000 para todo el accidente. Si los costos médicos superan estos límites, usted sería responsable de cubrir los gastos restantes de su bolsillo. Por lo tanto, es crucial entender estos límites al seleccionar la cobertura para asegurar una protección adecuada en caso de un accidente grave.`,
         },
-    }
+    };
 
-    return <ModalBase
-        {...props}
-    >
-
-        <Typography variant="h4"
-            sx={{
-                fontWeight: "600",
-            }}
-        >
-            {returnLocaleText(TEXT.title)}
-        </Typography>
-        <Box
-            sx={{
-                textAlign: "left",
-                display: "flex",
-                flexDirection: "column",
-                gap: "1rem",
-            }}
-        >
-            <Typography variant="body1">
-                {returnLocaleText(TEXT.section1)}
+    return (
+        <ModalBase {...props}>
+            <Typography
+                variant="h4"
+                sx={{
+                    fontWeight: "600",
+                }}
+            >
+                {returnLocaleText(TEXT.title)}
             </Typography>
-            <Typography variant="body1">
-                {returnLocaleText(TEXT.section2)}
-            </Typography>
-        </Box>
-
-    </ModalBase>
+            <Box
+                sx={{
+                    textAlign: "left",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                }}
+            >
+                <Typography variant="body1">
+                    {returnLocaleText(TEXT.section1)}
+                </Typography>
+                <Typography variant="body1">
+                    {returnLocaleText(TEXT.section2)}
+                </Typography>
+            </Box>
+        </ModalBase>
+    );
 }
-export function PropertyDamage(props) {
+export function PropertyDamage(props: { inModal?: boolean }) {
     const TEXT = {
         title: {
             en: "Property Damage",
@@ -167,35 +169,38 @@ export function PropertyDamage(props) {
             en: `When evaluating property damage liability coverage, you'll often encounter figures like "$50k." This number represents the maximum amount the insurance policy will pay for property damage per accident. For example, with a property damage limit of $50,000, your insurer would cover up to that amount for any property damage caused by the accident. If the cost of repairing or replacing the damaged property exceeds $50,000, you would be responsible for covering the remaining expenses out of pocket. Therefore, it's crucial to select property damage liability limits that adequately protect your assets and financial well-being in the event of an accident.`,
             es: `Al evaluar la cobertura de responsabilidad por daños a la propiedad, a menudo encontrará cifras como "$50k." Este número representa la cantidad máxima que la póliza de seguro pagará por daños a la propiedad por accidente. Por ejemplo, con un límite de daños a la propiedad de $50,000, su aseguradora cubriría hasta esa cantidad por cualquier daño a la propiedad causado por el accidente. Si el costo de reparar o reemplazar la propiedad dañada supera los $50,000, usted sería responsable de cubrir los gastos restantes de su bolsillo. Por lo tanto, es crucial seleccionar límites de responsabilidad por daños a la propiedad que protejan adecuadamente sus activos y bienestar financiero en caso de un accidente.`,
         },
-    }
-    return <ModalBase {...props}>
-        <Box>
-            <Typography variant="h4"
-                sx={{
-                    fontWeight: "600",
-                }}
-            >
-                {returnLocaleText(TEXT.title)}
-            </Typography>
-            <Box
-                sx={{
-                    textAlign: "left",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1rem",
-                }}
-            >
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section1)}
+    };
+    return (
+        <ModalBase {...props}>
+            <Box>
+                <Typography
+                    variant="h4"
+                    sx={{
+                        fontWeight: "600",
+                    }}
+                >
+                    {returnLocaleText(TEXT.title)}
                 </Typography>
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section2)}
-                </Typography>
+                <Box
+                    sx={{
+                        textAlign: "left",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "1rem",
+                    }}
+                >
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section1)}
+                    </Typography>
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section2)}
+                    </Typography>
+                </Box>
             </Box>
-        </Box>
-    </ModalBase>
+        </ModalBase>
+    );
 }
-export function PersonalInjuryProtection(props) {
+export function PersonalInjuryProtection(props: { inModal?: boolean }) {
     const TEXT = {
         title: {
             en: `Personal Injury Protection`,
@@ -209,36 +214,39 @@ export function PersonalInjuryProtection(props) {
             en: `When considering PIP coverage, you'll often encounter different coverage limits and options. These limits vary depending on the insurer and the state regulations. Some policies may offer a range of coverage options allowing you to select the level of protection that best suits your needs. PIP coverage is typically designed to provide immediate financial assistance without the need to determine fault or wait for legal proceedings to conclude. However, it's essential to review the specifics of your policy and understand any limitations or exclusions to ensure that you have adequate coverage in the event of an accident.`,
             es: `Al considerar la cobertura de PIP, a menudo encontrará diferentes límites y opciones de cobertura. Estos límites varían según el asegurador y las regulaciones estatales. Algunas pólizas pueden ofrecer una variedad de opciones de cobertura lo que le permite seleccionar el nivel de protección que mejor se adapte a sus necesidades. La cobertura de PIP generalmente está diseñada para proporcionar asistencia financiera inmediata sin la necesidad de determinar la culpa o esperar a que concluyan los procedimientos legales. Sin embargo, es esencial revisar los detalles de su póliza y comprender cualquier limitación o exclusión para asegurarse de tener una cobertura adecuada en caso de un accidente.`,
         },
-    }
+    };
 
-    return <ModalBase {...props}>
-        <Box>
-            <Typography variant="h4"
-                sx={{
-                    fontWeight: "600",
-                }}
-            >
-                {returnLocaleText(TEXT.title)}
-            </Typography>
-            <Box
-                sx={{
-                    textAlign: "left",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1rem",
-                }}
-            >
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section1)}
+    return (
+        <ModalBase {...props}>
+            <Box>
+                <Typography
+                    variant="h4"
+                    sx={{
+                        fontWeight: "600",
+                    }}
+                >
+                    {returnLocaleText(TEXT.title)}
                 </Typography>
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section2)}
-                </Typography>
+                <Box
+                    sx={{
+                        textAlign: "left",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "1rem",
+                    }}
+                >
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section1)}
+                    </Typography>
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section2)}
+                    </Typography>
+                </Box>
             </Box>
-        </Box>
-    </ModalBase>
+        </ModalBase>
+    );
 }
-export function ComprehensiveDeductible(props) {
+export function ComprehensiveDeductible(props: { inModal?: boolean }) {
     const TEXT = {
         title: {
             en: `Comprehensive Deductible`,
@@ -252,36 +260,39 @@ export function ComprehensiveDeductible(props) {
             en: `Deductibles are an important aspect of comprehensive insurance (as well as collision coverage). A deductible is the amount you agree to pay out of pocket before your insurance kicks in to cover the remaining costs of a claim. For example, if you have a comprehensive deductible of $500 and your vehicle sustains $2,000 worth of damage from a hailstorm, you would pay the first $500, and your insurance would cover the remaining $1,500. Deductibles are usually set when you purchase your insurance policy, and you can often choose a higher deductible to lower your premium or a lower deductible for greater coverage with a slightly higher premium. Understanding your deductible is essential because it directly affects how much you'll need to pay in the event of a claim and can influence your overall insurance costs.`,
             es: `Los deducibles son un aspecto importante del seguro comprensivo (así como de la cobertura de colisión). Un deducible es la cantidad con la que usted acepta pagar de su bolsillo antes de que su seguro entre en vigencia para cubrir los costos restantes de un reclamo. Por ejemplo, si tiene un deducible comprensivo de $500 y su vehículo sufre daños por valor de $2,000 debido a una tormenta de granizo, pagaría los primeros $500, y su seguro cubriría los $1,500 restantes. Los deducibles generalmente se establecen al comprar su póliza de seguro, y a menudo puede elegir un deducible más alto para reducir su prima o un deducible más bajo para una mayor cobertura con una prima ligeramente más alta. Comprender su deducible es esencial porque afecta directamente cuánto tendrá que pagar en caso de un reclamo y puede influir en sus costos generales de seguro.`,
         },
-    }
-    return <ModalBase {...props}>
-        <Box>
-            <Typography variant="h4"
-                sx={{
-                    fontWeight: "600",
-                }}
-            >
-                {returnLocaleText(TEXT.title)}
-            </Typography>
-            <Box
-                sx={{
-                    textAlign: "left",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1rem",
-                }}
-            >
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section1)}
+    };
+    return (
+        <ModalBase {...props}>
+            <Box>
+                <Typography
+                    variant="h4"
+                    sx={{
+                        fontWeight: "600",
+                    }}
+                >
+                    {returnLocaleText(TEXT.title)}
                 </Typography>
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section2)}
-                </Typography>
+                <Box
+                    sx={{
+                        textAlign: "left",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "1rem",
+                    }}
+                >
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section1)}
+                    </Typography>
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section2)}
+                    </Typography>
+                </Box>
             </Box>
-        </Box>
-    </ModalBase>
+        </ModalBase>
+    );
 }
 
-export function CollisionDeductible(props) {
+export function CollisionDeductible(props: { inModal?: boolean }) {
     const TEXT = {
         title: {
             en: `Collision Deductible`,
@@ -293,35 +304,38 @@ export function CollisionDeductible(props) {
         section2: {
             en: `Similar to comprehensive insurance, collision coverage also involves deductibles. A deductible is the amount you agree to pay out of pocket before your insurance kicks in to cover the remaining costs of a claim. For instance, if you have a collision deductible of $1,000 and your vehicle sustains $5,000 worth of damage from a collision, you would pay the first $1,000, and your insurance would cover the remaining $4,000. Deductibles are typically chosen when you purchase your insurance policy, and you can often adjust them to suit your preferences. Opting for a higher deductible can lower your premium, while a lower deductible may result in a slightly higher premium but provides more coverage in the event of a claim. Understanding your collision deductible is crucial as it directly impacts your out-of-pocket expenses in case of an accident and can influence your overall insurance costs.`,
         },
-    }
-    return <ModalBase {...props}>
-        <Box>
-            <Typography variant="h4"
-                sx={{
-                    fontWeight: "600",
-                }}
-            >
-                {returnLocaleText(TEXT.title)}
-            </Typography>
-            <Box
-                sx={{
-                    textAlign: "left",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1rem",
-                }}
-            >
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section1)}
+    };
+    return (
+        <ModalBase {...props}>
+            <Box>
+                <Typography
+                    variant="h4"
+                    sx={{
+                        fontWeight: "600",
+                    }}
+                >
+                    {returnLocaleText(TEXT.title)}
                 </Typography>
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section2)}
-                </Typography>
+                <Box
+                    sx={{
+                        textAlign: "left",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "1rem",
+                    }}
+                >
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section1)}
+                    </Typography>
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section2)}
+                    </Typography>
+                </Box>
             </Box>
-        </Box>
-    </ModalBase>
+        </ModalBase>
+    );
 }
-export function MedicalPayments(props) {
+export function MedicalPayments(props: { inModal?: boolean }) {
     const TEXT = {
         title: {
             en: `Medical Payments`,
@@ -333,36 +347,39 @@ export function MedicalPayments(props) {
         section2: {
             en: `When evaluating medical payments coverage, you'll often encounter different coverage limits and options. These limits vary depending on the insurer and the state regulations. Some policies may offer a range of coverage options, such as $5,000, $10,000, or higher, allowing you to select the level of protection that best suits your needs. Medical payments coverage is typically designed to provide immediate financial assistance without the need to determine fault or wait for legal proceedings to conclude. However, it's essential to review the specifics of your policy and understand any limitations or exclusions to ensure that you have adequate coverage in the event of an accident.`,
         },
-    }
-    return <ModalBase {...props}>
-        <Box>
-            <Typography variant="h4"
-                sx={{
-                    fontWeight: "600",
-                }}
-            >
-                {returnLocaleText(TEXT.title)}
-            </Typography>
-            <Box
-                sx={{
-                    textAlign: "left",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1rem",
-                }}
-            >
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section1)}
+    };
+    return (
+        <ModalBase {...props}>
+            <Box>
+                <Typography
+                    variant="h4"
+                    sx={{
+                        fontWeight: "600",
+                    }}
+                >
+                    {returnLocaleText(TEXT.title)}
                 </Typography>
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section2)}
-                </Typography>
+                <Box
+                    sx={{
+                        textAlign: "left",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "1rem",
+                    }}
+                >
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section1)}
+                    </Typography>
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section2)}
+                    </Typography>
+                </Box>
             </Box>
-        </Box>
-    </ModalBase>
+        </ModalBase>
+    );
 }
 
-export function UninsuredMotoristPD(props) {
+export function UninsuredMotoristPD(props: { inModal?: boolean }) {
     const TEXT = {
         title: {
             en: `Uninsured Motorist Property Damage`,
@@ -374,36 +391,39 @@ export function UninsuredMotoristPD(props) {
         section2: {
             en: `When considering UMPD coverage, you'll often encounter different coverage limits and options. These limits vary depending on the insurer and the state regulations. Some policies may offer a range of coverage options, such as $10,000, $20,000, or higher, allowing you to select the level of protection that best suits your needs. UMPD coverage is typically designed to provide immediate financial assistance without the need to determine fault or wait for legal proceedings to conclude. However, it's essential to review the specifics of your policy and understand any limitations or exclusions to ensure that you have adequate coverage in the event of an accident.`,
         },
-    }
-    return <ModalBase {...props}>
-        <Box>
-            <Typography variant="h4"
-                sx={{
-                    fontWeight: "600",
-                }}
-            >
-                {returnLocaleText(TEXT.title)}
-            </Typography>
-            <Box
-                sx={{
-                    textAlign: "left",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1rem",
-                }}
-            >
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section1)}
+    };
+    return (
+        <ModalBase {...props}>
+            <Box>
+                <Typography
+                    variant="h4"
+                    sx={{
+                        fontWeight: "600",
+                    }}
+                >
+                    {returnLocaleText(TEXT.title)}
                 </Typography>
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section2)}
-                </Typography>
+                <Box
+                    sx={{
+                        textAlign: "left",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "1rem",
+                    }}
+                >
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section1)}
+                    </Typography>
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section2)}
+                    </Typography>
+                </Box>
             </Box>
-        </Box>
-    </ModalBase>
+        </ModalBase>
+    );
 }
 
-export function UninsuredMotoristBI(props) {
+export function UninsuredMotoristBI(props: { inModal?: boolean }) {
     const TEXT = {
         title: {
             en: `Uninsured Motorist Bodily Injury`,
@@ -415,36 +435,39 @@ export function UninsuredMotoristBI(props) {
         section2: {
             en: `When evaluating UMBI coverage, you'll often encounter different coverage limits and options. These limits vary depending on the insurer and the state regulations. Some policies may offer a range of coverage options, such as $10,000, $20,000, or higher, allowing you to select the level of protection that best suits your needs. UMBI coverage is typically designed to provide immediate financial assistance without the need to determine fault or wait for legal proceedings to conclude. However, it's essential to review the specifics of your policy and understand any limitations or exclusions to ensure that you have adequate coverage in the event of an accident.`,
         },
-    }
-    return <ModalBase {...props}>
-        <Box>
-            <Typography variant="h4"
-                sx={{
-                    fontWeight: "600",
-                }}
-            >
-                {returnLocaleText(TEXT.title)}
-            </Typography>
-            <Box
-                sx={{
-                    textAlign: "left",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1rem",
-                }}
-            >
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section1)}
+    };
+    return (
+        <ModalBase {...props}>
+            <Box>
+                <Typography
+                    variant="h4"
+                    sx={{
+                        fontWeight: "600",
+                    }}
+                >
+                    {returnLocaleText(TEXT.title)}
                 </Typography>
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section2)}
-                </Typography>
+                <Box
+                    sx={{
+                        textAlign: "left",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "1rem",
+                    }}
+                >
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section1)}
+                    </Typography>
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section2)}
+                    </Typography>
+                </Box>
             </Box>
-        </Box>
-    </ModalBase>
+        </ModalBase>
+    );
 }
 
-export function AccidentalDeath(props) {
+export function AccidentalDeath(props: { inModal?: boolean }) {
     const TEXT = {
         title: {
             en: `Accidental Death`,
@@ -456,36 +479,39 @@ export function AccidentalDeath(props) {
         section2: {
             en: `When considering accidental death coverage, you'll often encounter different coverage limits and options. These limits vary depending on the insurer and the state regulations. Some policies may offer a range of coverage options, such as $50,000, $100,000, or higher, allowing you to select the level of protection that best suits your needs. Accidental death coverage is typically designed to provide immediate financial assistance without the need to determine fault or wait for legal proceedings to conclude. However, it's essential to review the specifics of your policy and understand any limitations or exclusions to ensure that you have adequate coverage in the event of a fatal accident.`,
         },
-    }
-    return <ModalBase {...props}>
-        <Box>
-            <Typography variant="h4"
-                sx={{
-                    fontWeight: "600",
-                }}
-            >
-                {returnLocaleText(TEXT.title)}
-            </Typography>
-            <Box
-                sx={{
-                    textAlign: "left",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1rem",
-                }}
-            >
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section1)}
+    };
+    return (
+        <ModalBase {...props}>
+            <Box>
+                <Typography
+                    variant="h4"
+                    sx={{
+                        fontWeight: "600",
+                    }}
+                >
+                    {returnLocaleText(TEXT.title)}
                 </Typography>
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section2)}
-                </Typography>
+                <Box
+                    sx={{
+                        textAlign: "left",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "1rem",
+                    }}
+                >
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section1)}
+                    </Typography>
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section2)}
+                    </Typography>
+                </Box>
             </Box>
-        </Box>
-    </ModalBase>
+        </ModalBase>
+    );
 }
 
-export function TowingLimit(props) {
+export function TowingLimit(props: { inModal?: boolean }) {
     const TEXT = {
         title: {
             en: `Towing Limit`,
@@ -497,36 +523,39 @@ export function TowingLimit(props) {
         section2: {
             en: `When evaluating towing limit coverage, you'll often encounter different coverage limits and options. These limits vary depending on the insurer and the state regulations. Some policies may offer a range of coverage options, such as $100, $200, or higher, allowing you to select the level of protection that best suits your needs. Towing limit coverage is typically designed to provide immediate financial assistance without the need to determine fault or wait for legal proceedings to conclude. However, it's essential to review the specifics of your policy and understand any limitations or exclusions to ensure that you have adequate coverage in the event of a disabled vehicle.`,
         },
-    }
-    return <ModalBase {...props}>
-        <Box>
-            <Typography variant="h4"
-                sx={{
-                    fontWeight: "600",
-                }}
-            >
-                {returnLocaleText(TEXT.title)}
-            </Typography>
-            <Box
-                sx={{
-                    textAlign: "left",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1rem",
-                }}
-            >
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section1)}
+    };
+    return (
+        <ModalBase {...props}>
+            <Box>
+                <Typography
+                    variant="h4"
+                    sx={{
+                        fontWeight: "600",
+                    }}
+                >
+                    {returnLocaleText(TEXT.title)}
                 </Typography>
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section2)}
-                </Typography>
+                <Box
+                    sx={{
+                        textAlign: "left",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "1rem",
+                    }}
+                >
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section1)}
+                    </Typography>
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section2)}
+                    </Typography>
+                </Box>
             </Box>
-        </Box>
-    </ModalBase>
+        </ModalBase>
+    );
 }
 
-export function RentalLimit(props) {
+export function RentalLimit(props: { inModal?: boolean }) {
     const TEXT = {
         title: {
             en: `Rental Limit`,
@@ -538,36 +567,39 @@ export function RentalLimit(props) {
         section2: {
             en: `When evaluating rental limit coverage, you'll often encounter different coverage limits and options. These limits vary depending on the insurer and the state regulations. Some policies may offer a range of coverage options, such as $30 per day, $50 per day, or higher, allowing you to select the level of protection that best suits your needs. Rental limit coverage is typically designed to provide immediate financial assistance without the need to determine fault or wait for legal proceedings to conclude. However, it's essential to review the specifics of your policy and understand any limitations or exclusions to ensure that you have adequate coverage in the event of a disabled vehicle.`,
         },
-    }
-    return <ModalBase {...props}>
-        <Box>
-            <Typography variant="h4"
-                sx={{
-                    fontWeight: "600",
-                }}
-            >
-                {returnLocaleText(TEXT.title)}
-            </Typography>
-            <Box
-                sx={{
-                    textAlign: "left",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1rem",
-                }}
-            >
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section1)}
+    };
+    return (
+        <ModalBase {...props}>
+            <Box>
+                <Typography
+                    variant="h4"
+                    sx={{
+                        fontWeight: "600",
+                    }}
+                >
+                    {returnLocaleText(TEXT.title)}
                 </Typography>
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section2)}
-                </Typography>
+                <Box
+                    sx={{
+                        textAlign: "left",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "1rem",
+                    }}
+                >
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section1)}
+                    </Typography>
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section2)}
+                    </Typography>
+                </Box>
             </Box>
-        </Box>
-    </ModalBase>
+        </ModalBase>
+    );
 }
 
-export function GapCoverage(props) {
+export function GapCoverage(props: { inModal?: boolean }) {
     const TEXT = {
         title: {
             en: `Gap Coverage`,
@@ -579,36 +611,39 @@ export function GapCoverage(props) {
         section2: {
             en: `When evaluating gap coverage, you'll often encounter different coverage limits and options. These limits vary depending on the insurer and the state regulations. Some policies may offer a range of coverage options, such as $5,000, $10,000, or higher, allowing you to select the level of protection that best suits your needs. Gap coverage is typically designed to provide immediate financial assistance without the need to determine fault or wait for legal proceedings to conclude. However, it's essential to review the specifics of your policy and understand any limitations or exclusions to ensure that you have adequate coverage in the event of a total loss.`,
         },
-    }
-    return <ModalBase {...props}>
-        <Box>
-            <Typography variant="h4"
-                sx={{
-                    fontWeight: "600",
-                }}
-            >
-                {returnLocaleText(TEXT.title)}
-            </Typography>
-            <Box
-                sx={{
-                    textAlign: "left",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1rem",
-                }}
-            >
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section1)}
+    };
+    return (
+        <ModalBase {...props}>
+            <Box>
+                <Typography
+                    variant="h4"
+                    sx={{
+                        fontWeight: "600",
+                    }}
+                >
+                    {returnLocaleText(TEXT.title)}
                 </Typography>
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section2)}
-                </Typography>
+                <Box
+                    sx={{
+                        textAlign: "left",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "1rem",
+                    }}
+                >
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section1)}
+                    </Typography>
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section2)}
+                    </Typography>
+                </Box>
             </Box>
-        </Box>
-    </ModalBase>
+        </ModalBase>
+    );
 }
 
-export function CustomEquipmentValue(props) {
+export function CustomEquipmentValue(props: { inModal?: boolean }) {
     const TEXT = {
         title: {
             en: `Custom Equipment Value`,
@@ -620,31 +655,34 @@ export function CustomEquipmentValue(props) {
         section2: {
             en: `When evaluating custom equipment value coverage, you'll often encounter different coverage limits and options. These limits vary depending on the insurer and the state regulations. Some policies may offer a range of coverage options, such as $2,000, $5,000, or higher, allowing you to select the level of protection that best suits your needs. Custom equipment value coverage is typically designed to provide immediate financial assistance without the need to determine fault or wait for legal proceedings to conclude. However, it's essential to review the specifics of your policy and understand any limitations or exclusions to ensure that you have adequate coverage in the event of damage to custom equipment.`,
         },
-    }
-    return <ModalBase {...props}>
-        <Box>
-            <Typography variant="h4"
-                sx={{
-                    fontWeight: "600",
-                }}
-            >
-                {returnLocaleText(TEXT.title)}
-            </Typography>
-            <Box
-                sx={{
-                    textAlign: "left",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1rem",
-                }}
-            >
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section1)}
+    };
+    return (
+        <ModalBase {...props}>
+            <Box>
+                <Typography
+                    variant="h4"
+                    sx={{
+                        fontWeight: "600",
+                    }}
+                >
+                    {returnLocaleText(TEXT.title)}
                 </Typography>
-                <Typography variant="body1">
-                    {returnLocaleText(TEXT.section2)}
-                </Typography>
+                <Box
+                    sx={{
+                        textAlign: "left",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "1rem",
+                    }}
+                >
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section1)}
+                    </Typography>
+                    <Typography variant="body1">
+                        {returnLocaleText(TEXT.section2)}
+                    </Typography>
+                </Box>
             </Box>
-        </Box>
-    </ModalBase>
+        </ModalBase>
+    );
 }

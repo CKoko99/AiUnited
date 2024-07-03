@@ -16,7 +16,7 @@ import PhonelinkRingIcon from "@mui/icons-material/PhonelinkRing";
 import { CustomFonts } from "../../providers/theme";
 import { useRouter } from "next/router";
 import { Lang, returnLocaleText } from "../locale/LocaleSwitcher";
-
+import { Location as LocationInterface } from "@/api/GetCityLocations";
 const styles = {
     textfield: {
         margin: "1rem 0",
@@ -35,7 +35,7 @@ interface Marker {
     zip?: string;
     distance?: number;
     phone?: string;
-    id?: string;
+    id?: number;
     link: string;
 }
 const LocationText = {
@@ -74,7 +74,7 @@ function returnSubtitleText(city: string | undefined) {
 }
 export default function (props: {
     center: { lat: number; lng: number };
-    locations: Marker[];
+    locations: LocationInterface[];
     fullList?: boolean;
     zoom?: number;
     city?: string;

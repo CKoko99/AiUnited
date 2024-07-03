@@ -1,13 +1,13 @@
 import { Typography, Box } from "@mui/material";
 import Image, { StaticImageData } from "next/image";
 import { useRouter } from "next/router";
-import { Lang } from "../../locale/LocaleSwitcher";
+import { Lang, returnLocaleText } from "../../locale/LocaleSwitcher";
 
 //menu content prop will be an array of objects with title and img
 interface FlexDiagramProps {
     title: {
         [lang: string]: string;
-    }
+    };
     content: {
         img: {
             src: StaticImageData;
@@ -24,14 +24,17 @@ const styles = {
     diagram: {
         display: "flex",
         flexWrap: {
-            xs: "wrap", sm: "wrap", md: "nowrap", lg: "nowrap",
+            xs: "wrap",
+            sm: "wrap",
+            md: "nowrap",
+            lg: "nowrap",
         },
         flexDirection: "row",
         justifyContent: "center",
     },
     image: {
         position: "relative",
-        width: '90%',
+        width: "90%",
         margin: "auto",
         padding: "1rem",
         display: "flex",
@@ -41,46 +44,67 @@ const styles = {
     },
     contentItem: {
         width: {
-            xs: "100%", sm: "100%", md: "50%", lg: "50%",
+            xs: "100%",
+            sm: "100%",
+            md: "50%",
+            lg: "50%",
         },
         minWidth: {
-            xs: "50%", sm: "50%", md: "20%", lg: "20%",
+            xs: "50%",
+            sm: "50%",
+            md: "20%",
+            lg: "20%",
         },
         margin: 0,
         flex: 1,
         display: "flex",
         alignItems: "center",
-    }
-}
+    },
+};
 export default function FlexDiagram(props: FlexDiagramProps) {
-    const router = useRouter()
-    const { locale } = router
-    const currentLang = Lang[locale ?? 'en']
-    return (<>
-        <Box sx={{ ...styles.root }}>
-            <Typography variant="h4" component="h4" sx={{ textAlign: "center", fontWeight: "bold", margin: "1rem 0" }}>
-                {props.title[currentLang]}
-            </Typography>
-            <Box
-                sx={{ ...styles.diagram }}
-            >
-                {props.content?.map((item: any, index: number) => {
-                    return (
-                        <Box key={index} sx={{ ...styles.contentItem }}
-                        >
-                            <Box sx={{ ...styles.image }}>
-                                <Image fill
-                                    style={{ objectFit: "contain" }}
-                                    {...item.img}
-                                />
+    return (
+        <>
+            <Box sx={{ ...styles.root }}>
+                <Typography
+                    variant="h4"
+                    component="h4"
+                    sx={{
+                        textAlign: "center",
+                        fontWeight: "bold",
+                        margin: "1rem 0",
+                    }}
+                >
+                    {returnLocaleText(props.title)}
+                </Typography>
+                <Box sx={{ ...styles.diagram }}>
+                    {props.content?.map((item, index: number) => {
+                        return (
+                            <Box key={index} sx={{ ...styles.contentItem }}>
+                                <Box sx={{ ...styles.image }}>
+                                    <Image
+                                        fill
+                                        style={{ objectFit: "contain" }}
+                                        {...item.img}
+                                    />
+                                </Box>
+                                {item.title && (
+                                    <Typography
+                                        variant="h5"
+                                        component="h5"
+                                        sx={{
+                                            textAlign: "center",
+                                            fontWeight: "bold",
+                                            margin: "1rem 0",
+                                        }}
+                                    >
+                                        {item.title}
+                                    </Typography>
+                                )}
                             </Box>
-                            {item.title && <Typography variant="h5" component="h5" sx={{ textAlign: "center", fontWeight: "bold", margin: "1rem 0" }}>
-                                {item.title}
-                            </Typography>}
-                        </Box>
-                    )
-                })}
+                        );
+                    })}
+                </Box>
             </Box>
-        </Box>
-    </>)
+        </>
+    );
 }

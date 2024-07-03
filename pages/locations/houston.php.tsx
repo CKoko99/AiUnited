@@ -7,5 +7,5 @@ export default function () {
     useEffect(() => {
         router.push(PATHCONSTANTS.LOCATIONS.HOUSTON);
     }, []);
-    return <></>
+    return <></>;
 }

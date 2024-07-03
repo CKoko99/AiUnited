@@ -1,13 +1,23 @@
 import { returnLocaleText } from "@/components/locale/LocaleSwitcher";
-import { Box, FormControl, FormHelperText, InputLabel, MenuItem, Select, Typography } from "@mui/material";
+import {
+    Box,
+    FormControl,
+    FormHelperText,
+    InputLabel,
+    MenuItem,
+    Select,
+    Typography,
+} from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 
 const TEXT = {
     industry: { en: "Industry", es: "Industria" },
     occupation: { en: "Occupation", es: "Ocupación" },
-    validationError: { en: "Please select an industry and occupation", es: "Por favor seleccione una industria y ocupación" }
-}
-
+    validationError: {
+        en: "Please select an industry and occupation",
+        es: "Por favor seleccione una industria y ocupación",
+    },
+};
 
 const WorkSelectOptions = [
     {
@@ -136,7 +146,7 @@ const WorkSelectOptions = [
                 },
                 value: "Other",
             },
-        ]
+        ],
     },
     {
         text: {
@@ -293,7 +303,7 @@ const WorkSelectOptions = [
                 },
                 value: "Other",
             },
-        ]
+        ],
     },
     {
         text: {
@@ -492,7 +502,7 @@ const WorkSelectOptions = [
                 },
                 value: "Other",
             },
-        ]
+        ],
     },
     {
         text: {
@@ -683,7 +693,7 @@ const WorkSelectOptions = [
                 },
                 value: "Other",
             },
-        ]
+        ],
     },
     {
         text: {
@@ -895,7 +905,7 @@ const WorkSelectOptions = [
                 },
                 value: "Other",
             },
-        ]
+        ],
     },
     {
         text: {
@@ -1024,7 +1034,7 @@ const WorkSelectOptions = [
                 },
                 value: "Other",
             },
-        ]
+        ],
     },
     {
         text: {
@@ -1180,7 +1190,7 @@ const WorkSelectOptions = [
                 },
                 value: "Other",
             },
-        ]
+        ],
     },
     {
         text: {
@@ -1337,7 +1347,7 @@ const WorkSelectOptions = [
                 },
                 value: "Other",
             },
-        ]
+        ],
     },
     {
         text: {
@@ -1507,7 +1517,7 @@ const WorkSelectOptions = [
                 },
                 value: "Other",
             },
-        ]
+        ],
     },
     {
         text: {
@@ -1523,7 +1533,7 @@ const WorkSelectOptions = [
                 },
                 value: "Homemaker(full-time)",
             },
-        ]
+        ],
     },
     {
         text: {
@@ -1658,7 +1668,7 @@ const WorkSelectOptions = [
                 },
                 value: "Other",
             },
-        ]
+        ],
     },
     {
         text: {
@@ -1800,7 +1810,7 @@ const WorkSelectOptions = [
                 },
                 value: "Other",
             },
-        ]
+        ],
     },
     {
         text: {
@@ -1984,7 +1994,7 @@ const WorkSelectOptions = [
                 },
                 value: "Other",
             },
-        ]
+        ],
     },
     {
         text: {
@@ -2203,7 +2213,7 @@ const WorkSelectOptions = [
                 },
                 value: "Other",
             },
-        ]
+        ],
     },
     {
         text: {
@@ -2282,7 +2292,7 @@ const WorkSelectOptions = [
                 },
                 value: "Other",
             },
-        ]
+        ],
     },
     {
         text: {
@@ -2424,7 +2434,7 @@ const WorkSelectOptions = [
                 },
                 value: "Other",
             },
-        ]
+        ],
     },
     {
         text: {
@@ -2510,7 +2520,7 @@ const WorkSelectOptions = [
                 },
                 value: "Other",
             },
-        ]
+        ],
     },
     {
         text: {
@@ -2527,7 +2537,7 @@ const WorkSelectOptions = [
                 },
                 value: "Retired(full-time)",
             },
-        ]
+        ],
     },
     {
         text: {
@@ -2669,7 +2679,7 @@ const WorkSelectOptions = [
                 },
                 value: "Other",
             },
-        ]
+        ],
     },
     {
         text: {
@@ -2686,7 +2696,7 @@ const WorkSelectOptions = [
                 },
                 value: "Student(full-time)",
             },
-        ]
+        ],
     },
     {
         text: {
@@ -2870,7 +2880,7 @@ const WorkSelectOptions = [
                 },
                 value: "Other",
             },
-        ]
+        ],
     },
     {
         text: {
@@ -2886,28 +2896,43 @@ const WorkSelectOptions = [
                 },
                 value: "Unemployed",
             },
-        ]
+        ],
     },
+];
 
-]
-
-export default function (props) {
-    const ref = useRef(null)
+export default function (props: {
+    id: string;
+    questionId: string;
+    question?: { [lang: string]: string };
+    nextQuestionId?: string | string[];
+    addIdToList: Function;
+    updateFormValues: Function;
+    formValues: {
+        [key: string]: { questionId: string; value: string; valid: boolean }[];
+    };
+    defaultValue?: string[];
+    passedError?: boolean;
+    fullWidth?: boolean;
+}) {
+    const ref = useRef(null);
     const [hidden, setHidden] = useState(true);
     const [industryValue, setIndustryValue] = useState("");
     const [showOccupation, setShowOccupation] = useState(false);
     const [occupationValue, setOccupationValue] = useState("");
 
-    const [completeValue, setCompleteValue] = useState([industryValue, occupationValue]);
+    const [completeValue, setCompleteValue] = useState([
+        industryValue,
+        occupationValue,
+    ]);
     const [validOnce, setValidOnce] = useState(false);
     const [isValid, setIsValid] = useState(false);
 
-    function handleIndustryChange(value) {
+    function handleIndustryChange(value: string) {
         setIndustryValue(value);
         setShowOccupation(true);
         setOccupationValue("");
     }
-    function handleOccupationChange(value) {
+    function handleOccupationChange(value: string) {
         setOccupationValue(value);
         props.addIdToList(props.nextQuestionId);
         setValidOnce(true);
@@ -2928,9 +2953,19 @@ export default function (props) {
     }
     useEffect(() => {
         const newValue = handleValueChange();
-        props.updateFormValues(props.id, [{ questionId: "Industry", value: newValue[0], valid: isValidHandler() },
-        { questionId: "Occupation", value: newValue[1], valid: isValidHandler() }])
-    }, [industryValue, occupationValue])
+        props.updateFormValues(props.id, [
+            {
+                questionId: "Industry",
+                value: newValue[0],
+                valid: isValidHandler(),
+            },
+            {
+                questionId: "Occupation",
+                value: newValue[1],
+                valid: isValidHandler(),
+            },
+        ]);
+    }, [industryValue, occupationValue]);
 
     useEffect(() => {
         setHidden(false);
@@ -2943,76 +2978,109 @@ export default function (props) {
             handleIndustryChange(props.defaultValue[0]);
             handleOccupationChange(props.defaultValue[1]);
         }
-    }, [])
+    }, []);
 
-
-    return <>
-        <Box
-            sx={{
-                opacity: hidden ? 0 : 1,
-                transition: "opacity 1s",
-                display: "flex", flexDirection: "column", gap: "1rem"
-            }}
-        >
+    return (
+        <>
             <Box
                 sx={{
-                    display: "flex", alignItems: "center", gap: "1rem", width: "100%",
-                    flexWrap: "wrap", justifyContent: "center",
-                    flexDirection: { xs: "column", md: "row" },
+                    opacity: hidden ? 0 : 1,
+                    transition: "opacity 1s",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
                 }}
             >
-                <Typography sx={{ whiteSpace: "nowrap" }} variant="h6" >{returnLocaleText(props.question)}:</Typography>
                 <Box
                     sx={{
-                        display: "flex", gap: "1rem", justifyContent: "space-around",
-                        width: props.fullWidth ? { xs: "100%", md: '49%' } : "100%"
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "1rem",
+                        width: "100%",
+                        flexWrap: "wrap",
+                        justifyContent: "center",
+                        flexDirection: { xs: "column", md: "row" },
                     }}
                 >
-                    <FormControl
-                        error={props.passedError || (!isValid && validOnce)}
-                        fullWidth
+                    <Typography sx={{ whiteSpace: "nowrap" }} variant="h6">
+                        {returnLocaleText(props.question)}:
+                    </Typography>
+                    <Box
+                        sx={{
+                            display: "flex",
+                            gap: "1rem",
+                            justifyContent: "space-around",
+                            width: props.fullWidth
+                                ? { xs: "100%", md: "49%" }
+                                : "100%",
+                        }}
                     >
-                        <InputLabel id={`month-label-${props.questionId}`}>{returnLocaleText(TEXT.industry)}</InputLabel>
-                        <Select
-                            value={industryValue}
-                            onChange={(e) => {
-                                handleIndustryChange(e.target.value)
-                            }}
-                            ref={ref}
-                            onBlur={() => {
-
-                            }}
-                            label={returnLocaleText(TEXT.industry)}
+                        <FormControl
+                            error={props.passedError || (!isValid && validOnce)}
+                            fullWidth
                         >
-                            {WorkSelectOptions.map((occupation, index) => {
-                                return <MenuItem key={index} value={occupation.value}>{returnLocaleText(occupation.text)}</MenuItem>
-                            })}
-                        </Select>
-                    </FormControl>
-                    <FormControl fullWidth
-                        error={props.passedError || (!isValid && validOnce)}
-
-                    >
-                        <InputLabel id={`day-label-${props.questionId}`}>{returnLocaleText(TEXT.occupation)}</InputLabel>
-                        <Select
-                            disabled={!showOccupation}
-                            value={occupationValue}
-                            onChange={(e) => {
-                                handleOccupationChange(e.target.value)
-                            }}
-                            label={returnLocaleText(TEXT.occupation)}
+                            <InputLabel id={`month-label-${props.questionId}`}>
+                                {returnLocaleText(TEXT.industry)}
+                            </InputLabel>
+                            <Select
+                                value={industryValue}
+                                onChange={(e) => {
+                                    handleIndustryChange(e.target.value);
+                                }}
+                                ref={ref}
+                                onBlur={() => {}}
+                                label={returnLocaleText(TEXT.industry)}
+                            >
+                                {WorkSelectOptions.map((occupation, index) => {
+                                    return (
+                                        <MenuItem
+                                            key={index}
+                                            value={occupation.value}
+                                        >
+                                            {returnLocaleText(occupation.text)}
+                                        </MenuItem>
+                                    );
+                                })}
+                            </Select>
+                        </FormControl>
+                        <FormControl
+                            fullWidth
+                            error={props.passedError || (!isValid && validOnce)}
                         >
-                            {WorkSelectOptions.find((occupation) => occupation.value === industryValue)?.Occupations.map((occupation, index) => {
-                                return <MenuItem key={index} value={occupation.value}>{returnLocaleText(occupation.text)}</MenuItem>
-                            })}
-                        </Select>
-                    </FormControl>
+                            <InputLabel id={`day-label-${props.questionId}`}>
+                                {returnLocaleText(TEXT.occupation)}
+                            </InputLabel>
+                            <Select
+                                disabled={!showOccupation}
+                                value={occupationValue}
+                                onChange={(e) => {
+                                    handleOccupationChange(e.target.value);
+                                }}
+                                label={returnLocaleText(TEXT.occupation)}
+                            >
+                                {WorkSelectOptions.find(
+                                    (occupation) =>
+                                        occupation.value === industryValue,
+                                )?.Occupations.map((occupation, index) => {
+                                    return (
+                                        <MenuItem
+                                            key={index}
+                                            value={occupation.value}
+                                        >
+                                            {returnLocaleText(occupation.text)}
+                                        </MenuItem>
+                                    );
+                                })}
+                            </Select>
+                        </FormControl>
+                    </Box>
                 </Box>
+                {(props.passedError || (!isValid && validOnce)) && (
+                    <FormHelperText error={true}>
+                        {returnLocaleText(TEXT.validationError)}
+                    </FormHelperText>
+                )}
             </Box>
-            {(props.passedError || (!isValid && validOnce))
-                && <FormHelperText
-                    error={true}
-                >{returnLocaleText(TEXT.validationError)}</FormHelperText>}
-        </Box>
-    </>
+        </>
+    );
 }

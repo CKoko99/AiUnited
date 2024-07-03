@@ -1,13 +1,24 @@
 import { returnLocaleText } from "@/components/locale/LocaleSwitcher";
-import { Box, FormControl, FormHelperText, InputLabel, MenuItem, Select, Typography } from "@mui/material";
+import {
+    Box,
+    FormControl,
+    FormHelperText,
+    InputLabel,
+    MenuItem,
+    Select,
+    Typography,
+} from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 
 const TEXT = {
     month: { en: "Month", es: "Mes" },
     day: { en: "Day", es: "Día" },
     year: { en: "Year", es: "Año" },
-    validationError: { en: "Please select a date", es: "Por favor seleccione una fecha" }
-}
+    validationError: {
+        en: "Please select a date",
+        es: "Por favor seleccione una fecha",
+    },
+};
 
 const months = [
     { value: "01", text: { en: "January", es: "Enero" }, maxDays: 31 },
@@ -24,73 +35,92 @@ const months = [
     { value: "12", text: { en: "December", es: "Diciembre" }, maxDays: 31 },
 ];
 
-function returnDefaultDate(defaultValue) {
+function returnDefaultDate(defaultValue: string | null) {
     let newDefaultValues = {
         month: "",
         day: "",
-        year: ""
-    }
+        year: "",
+    };
     try {
         if (defaultValue) {
-            const date = new Date(defaultValue)
-            let monthInt = date.getMonth() + 1
-            let month = String(monthInt)
+            const date = new Date(defaultValue);
+            let monthInt = date.getMonth() + 1;
+            let month = String(monthInt);
             if (monthInt < 10) {
-                month = "0" + month
+                month = "0" + month;
             }
-            let dayInt = date.getDate()
-            let day = String(dayInt)
+            let dayInt = date.getDate();
+            let day = String(dayInt);
             if (dayInt < 10) {
-                day = "0" + day
+                day = "0" + day;
             }
-            let year = String(date.getFullYear())
-            month = month === "NaN" ? "" : month
-            day = day === "NaN" ? "" : day
-            year = year === "NaN" ? "" : year
-            newDefaultValues.month = month
-            newDefaultValues.day = day
-            newDefaultValues.year = year
+            let year = String(date.getFullYear());
+            month = month === "NaN" ? "" : month;
+            day = day === "NaN" ? "" : day;
+            year = year === "NaN" ? "" : year;
+            newDefaultValues.month = month;
+            newDefaultValues.day = day;
+            newDefaultValues.year = year;
         }
     } catch (e) {
-        console.error("Error setting default values")
-        console.error(e)
+        console.error("Error setting default values");
+        console.error(e);
     } finally {
-        return newDefaultValues
+        return newDefaultValues;
     }
 }
 
-export default function (props) {
-    const ref = useRef(null)
-    const [hidden, setHidden] = useState(true)
-    const [monthValue, setMonthValue] = useState(returnDefaultDate(props.defaultValue).month);
-    const [dayValue, setDayValue] = useState(returnDefaultDate(props.defaultValue).day);
-    const [yearValue, setYearValue] = useState(returnDefaultDate(props.defaultValue).year);
+export default function (props: {
+    id: string;
+    questionId: string;
+    question?: { [lang: string]: string };
+    defaultValue: string | null;
+    passedError: boolean;
+    nextQuestionId?: string | string[];
+    addIdToList: any;
+    updateFormValues: any;
+    clearError: any;
+    shownIdList: string[];
+    fullWidth?: boolean;
+}) {
+    const ref = useRef(null);
+    const [hidden, setHidden] = useState(true);
+    const [monthValue, setMonthValue] = useState(
+        returnDefaultDate(props.defaultValue).month,
+    );
+    const [dayValue, setDayValue] = useState(
+        returnDefaultDate(props.defaultValue).day,
+    );
+    const [yearValue, setYearValue] = useState(
+        returnDefaultDate(props.defaultValue).year,
+    );
     const [completeValue, setCompleteValue] = useState("");
 
-    const showDays = monthValue !== ""
+    const showDays = monthValue !== "";
     const showYears = dayValue !== "";
 
     const isValid = dayValue !== "" && monthValue !== "" && yearValue !== "";
 
-    function handleMonthChange(value) {
+    function handleMonthChange(value: string) {
         setMonthValue(value);
         //check if the day value is valid for the month if not then set it to ""
         try {
-            const selectedMonth = months.find(month => month?.value === value);
+            const selectedMonth = months.find(
+                (month) => month?.value === value,
+            );
             if (selectedMonth && Number(dayValue) > selectedMonth.maxDays) {
                 setDayValue("");
             }
         } catch (e) {
-            console.log(e)
-            console.error("error setting day value")
+            console.log(e);
+            console.error("error setting day value");
             setDayValue("");
         }
-
     }
-    function handleDayChange(value) {
+    function handleDayChange(value: string) {
         setDayValue(value);
     }
-    function handleYearChange(value) {
+    function handleYearChange(value: string) {
         setYearValue(value);
         props.addIdToList(props.nextQuestionId);
     }
@@ -102,117 +132,156 @@ export default function (props) {
         return `${yearValue}-${monthValue}-${dayValue}T05:00:00Z`;
     }
 
-
     useEffect(() => {
         const newValue = handleValueChange();
-        props.updateFormValues(props.id, [{ questionId: props.questionId, value: newValue, valid: isValid }])
+        props.updateFormValues(props.id, [
+            { questionId: props.questionId, value: newValue, valid: isValid },
+        ]);
         if (isValid) {
             props.clearError();
         }
-    }, [monthValue, dayValue, yearValue])
+    }, [monthValue, dayValue, yearValue]);
 
     useEffect(() => {
         setHidden(false);
-    }, [])
+    }, []);
 
-    useEffect(() => {
-
-    }, [])
+    useEffect(() => {}, []);
 
     useEffect(() => {
         if (yearValue !== "" && monthValue !== "" && dayValue !== "") {
             props.addIdToList(props.nextQuestionId);
         }
-    }, [props.shownIdList])
-    return <>
-
-        <Box
-            sx={{
-                opacity: hidden ? 0 : 1,
-                transition: "opacity 1s",
-                display: "flex", flexDirection: "column", gap: "1rem"
-            }}
-        >
+    }, [props.shownIdList]);
+    return (
+        <>
             <Box
                 sx={{
-                    display: "flex", alignItems: "center", gap: "1rem", width: "100%",
-                    flexDirection: {
-                        xs: "column", md: "row"
-                    }
+                    opacity: hidden ? 0 : 1,
+                    transition: "opacity 1s",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
                 }}
             >
-                <Typography sx={{ whiteSpace: "nowrap" }} variant="h6" >{returnLocaleText(props.question)}:</Typography>
                 <Box
                     sx={{
-                        display: "flex", gap: "1rem", justifyContent: "space-around",
-                        width: props.fullWidth ? { xs: "100%", md: '49%' } : "100%"
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "1rem",
+                        width: "100%",
+                        flexDirection: {
+                            xs: "column",
+                            md: "row",
+                        },
                     }}
                 >
-                    <FormControl fullWidth
+                    <Typography sx={{ whiteSpace: "nowrap" }} variant="h6">
+                        {returnLocaleText(props.question)}:
+                    </Typography>
+                    <Box
+                        sx={{
+                            display: "flex",
+                            gap: "1rem",
+                            justifyContent: "space-around",
+                            width: props.fullWidth
+                                ? { xs: "100%", md: "49%" }
+                                : "100%",
+                        }}
                     >
-                        <InputLabel id={`month-label-${props.questionId}`}>{returnLocaleText(TEXT.month)}</InputLabel>
-                        <Select
-                            value={monthValue}
-                            onChange={(e) => {
-                                handleMonthChange(e.target.value)
-                            }}
-                            ref={ref}
-                            onBlur={() => {
-
-                            }}
-                            label={"month"}
-                        >
-                            {months.map((option, index) => {
-                                return <MenuItem key={index} value={option.value}>{returnLocaleText(option.text)}</MenuItem>
-                            })}
-                        </Select>
-                    </FormControl>
-                    <FormControl fullWidth
-                    >
-                        <InputLabel id={`day-label-${props.questionId}`}>{returnLocaleText(TEXT.day)}</InputLabel>
-                        <Select
-                            disabled={!showDays}
-                            value={dayValue}
-                            onChange={(e) => {
-                                handleDayChange(e.target.value)
-                            }}
-                            label={"day"}
-                        >
-                            {//format so numbers are 01, 02, 03, etc
-                            }
-                            {[...Array(months.find(month => month.value === monthValue)?.maxDays)].map((x, i) => {
-                                let value = String(i + 1)
-                                if (value.length === 1) {
-                                    value = "0" + value
+                        <FormControl fullWidth>
+                            <InputLabel id={`month-label-${props.questionId}`}>
+                                {returnLocaleText(TEXT.month)}
+                            </InputLabel>
+                            <Select
+                                value={monthValue}
+                                onChange={(e) => {
+                                    handleMonthChange(e.target.value);
+                                }}
+                                ref={ref}
+                                onBlur={() => {}}
+                                label={"month"}
+                            >
+                                {months.map((option, index) => {
+                                    return (
+                                        <MenuItem
+                                            key={index}
+                                            value={option.value}
+                                        >
+                                            {returnLocaleText(option.text)}
+                                        </MenuItem>
+                                    );
+                                })}
+                            </Select>
+                        </FormControl>
+                        <FormControl fullWidth>
+                            <InputLabel id={`day-label-${props.questionId}`}>
+                                {returnLocaleText(TEXT.day)}
+                            </InputLabel>
+                            <Select
+                                disabled={!showDays}
+                                value={dayValue}
+                                onChange={(e) => {
+                                    handleDayChange(e.target.value);
+                                }}
+                                label={"day"}
+                            >
+                                {
+                                    //format so numbers are 01, 02, 03, etc
                                 }
-                                return <MenuItem key={i} value={value}>{value}</MenuItem>
-                            })}
-                        </Select>
-                    </FormControl>
-                    <FormControl fullWidth
-                    >
-                        <InputLabel id={`year-label-${props.questionId}`}>{returnLocaleText(TEXT.year)}</InputLabel>
-                        <Select
-                            disabled={!showYears}
-                            value={yearValue}
-                            onChange={(e) => {
-                                handleYearChange(e.target.value)
-                            }}
-                            label={"year"}
-                        >
-                            {[...Array(120)].map((x, i) => {
-                                return <MenuItem key={i} //value={2024 - i}
-                                    //VALUE is current year - i
-                                    value={new Date().getFullYear() - i}
-                                >{new Date().getFullYear() - i}</MenuItem>
-                            })}
-                        </Select>
-                    </FormControl>
+                                {[
+                                    ...Array(
+                                        months.find(
+                                            (month) =>
+                                                month.value === monthValue,
+                                        )?.maxDays,
+                                    ),
+                                ].map((x, i) => {
+                                    let value = String(i + 1);
+                                    if (value.length === 1) {
+                                        value = "0" + value;
+                                    }
+                                    return (
+                                        <MenuItem key={i} value={value}>
+                                            {value}
+                                        </MenuItem>
+                                    );
+                                })}
+                            </Select>
+                        </FormControl>
+                        <FormControl fullWidth>
+                            <InputLabel id={`year-label-${props.questionId}`}>
+                                {returnLocaleText(TEXT.year)}
+                            </InputLabel>
+                            <Select
+                                disabled={!showYears}
+                                value={yearValue}
+                                onChange={(e) => {
+                                    handleYearChange(e.target.value);
+                                }}
+                                label={"year"}
+                            >
+                                {[...Array(120)].map((x, i) => {
+                                    return (
+                                        <MenuItem
+                                            key={i} //value={2024 - i}
+                                            //VALUE is current year - i
+                                            value={new Date().getFullYear() - i}
+                                        >
+                                            {new Date().getFullYear() - i}
+                                        </MenuItem>
+                                    );
+                                })}
+                            </Select>
+                        </FormControl>
+                    </Box>
                 </Box>
+                {props.passedError && (
+                    <FormHelperText error={true}>
+                        {returnLocaleText(TEXT.validationError)}
+                    </FormHelperText>
+                )}
             </Box>
-            {props.passedError && <FormHelperText
-                error={true}
-            >{returnLocaleText(TEXT.validationError)}</FormHelperText>}
-        </Box>
-    </>
+        </>
+    );
 }

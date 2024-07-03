@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import Image, { StaticImageData } from "next/image";
 import { useRouter } from "next/router";
-import { Lang } from "../locale/LocaleSwitcher";
+import { Lang, returnLocaleText } from "../locale/LocaleSwitcher";
 import { useState } from "react";
 import { CustomFonts } from "../../providers/theme";
 
@@ -16,15 +16,15 @@ interface ParentProps {
     img?: {
         src: StaticImageData;
         alt: string;
-    },
+    };
     content?: {
         title: {
             [lang: string]: string;
-        },
+        };
         body: {
             [lang: string]: string;
-        },
-    }[]
+        };
+    }[];
 }
 const parentClasses = {
     root: {
@@ -36,7 +36,7 @@ const parentClasses = {
     titles: {
         textAlign: "center",
         margin: "auto",
-        width: "80%"
+        width: "80%",
     },
     mainContainer: {
         margin: "auto",
@@ -60,62 +60,109 @@ const parentClasses = {
         flexDirection: "column",
         justifyContent: "space-around",
         gap: { xs: "1rem", md: ".5rem" },
-        padding: "1rem"
+        padding: "1rem",
     },
-}
+};
 const itemClasses = {
     root: {
         textAlign: { xs: "center", md: "left" },
     },
     title: {},
     body: {},
-}
-function ContentItem(props) {
-    const [isHovered, setIsHovered] = useState(false)
-    return <>
-        <Box
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            sx={{
-                ...itemClasses.root,
-                transition: 'transform 0.5s',
-                transform: isHovered ? 'scale(1.1)' : "",
-            }}
-        >
-            {props.title && <Typography sx={{ ...itemClasses.title }} fontWeight={"600"} variant="h5">{props.title[props.lang]}</Typography>}
-            {props.body && <Typography sx={{ ...itemClasses.body }} variant="body1">{props.body[props.lang]}</Typography>}
-        </Box>
-    </>
+};
+function ContentItem(props: {
+    title: { [lang: string]: string };
+    body: { [lang: string]: string };
+}) {
+    const [isHovered, setIsHovered] = useState(false);
+    return (
+        <>
+            <Box
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                sx={{
+                    ...itemClasses.root,
+                    transition: "transform 0.5s",
+                    transform: isHovered ? "scale(1.1)" : "",
+                }}
+            >
+                {props.title && (
+                    <Typography
+                        sx={{ ...itemClasses.title }}
+                        fontWeight={"600"}
+                        variant="h5"
+                    >
+                        {returnLocaleText(props.title)}
+                    </Typography>
+                )}
+                {props.body && (
+                    <Typography sx={{ ...itemClasses.body }} variant="body1">
+                        {returnLocaleText(props.body)}
+                    </Typography>
+                )}
+            </Box>
+        </>
+    );
 }
 
-export default function (props) {
-    const router = useRouter()
-    const { locale } = router
-    const currentLang = Lang[locale ?? 'en']
-    return <>
-        <Box sx={parentClasses.root} >
-            <Box sx={parentClasses.titles}>
-                {props.title && <Typography
-                    fontFamily={CustomFonts.Gustavo}
-                    fontWeight={"bold"} variant="h4">{props.title[currentLang]}</Typography>}
-                {props.subtitle && <Typography variant="h6">{props.subtitle[currentLang]}</Typography>}
-            </Box>
-            <Box sx={parentClasses.mainContainer}>
-                <Box
-                    sx={{ ...parentClasses.imageContainer, display: props.hideMobileImg ? { xs: "none", md: "block" } : "block" }}
-                >
-                    {props.img &&
-                        <Box sx={parentClasses.image}>
-                            <Image fill style={{ objectFit: "contain" }} {...props.img} />
-                        </Box>
-                    }
+export default function (props: {
+    title?: { [lang: string]: string };
+    subtitle?: { [lang: string]: string };
+    hideMobileImg?: boolean;
+    img?: {
+        src: StaticImageData;
+        alt: string;
+    };
+    content?: {
+        title: { [lang: string]: string };
+        body: { [lang: string]: string };
+    }[];
+}) {
+    return (
+        <>
+            <Box sx={parentClasses.root}>
+                <Box sx={parentClasses.titles}>
+                    {props.title && (
+                        <Typography
+                            fontFamily={CustomFonts.Gustavo}
+                            fontWeight={"bold"}
+                            variant="h4"
+                        >
+                            {returnLocaleText(props.title)}
+                        </Typography>
+                    )}
+                    {props.subtitle && (
+                        <Typography variant="h6">
+                            {returnLocaleText(props.subtitle)}
+                        </Typography>
+                    )}
                 </Box>
-                <Box sx={parentClasses.contentContainer}>
-                    {props.content?.map((item: any, index: number) => {
-                        return <ContentItem lang={currentLang} key={index} {...item} />
-                    })}
+                <Box sx={parentClasses.mainContainer}>
+                    <Box
+                        sx={{
+                            ...parentClasses.imageContainer,
+                            display: props.hideMobileImg
+                                ? { xs: "none", md: "block" }
+                                : "block",
+                        }}
+                    >
+                        {props.img && (
+                            <Box sx={parentClasses.image}>
+                                <Image
+                                    fill
+                                    style={{ objectFit: "contain" }}
+                                    {...props.img}
+                                />
+                            </Box>
+                        )}
+                    </Box>
+                    <Box sx={parentClasses.contentContainer}>
+                        {props.content?.map((item: any, index: number) => {
+                            return <ContentItem key={index} {...item} />;
+                        })}
+                    </Box>
                 </Box>
             </Box>
-        </Box>
-    </>
+        </>
+    );
 }

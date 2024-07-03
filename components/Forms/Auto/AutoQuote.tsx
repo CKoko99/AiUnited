@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Question from "./Question";
 import AutoResults from "./Results/AutoResults";
-import { v4 as uuid } from 'uuid';
+import { v4 as uuid } from "uuid";
 import PATHCONSTANTS from "constants/sitemap";
 import Image, { StaticImageData } from "next/image";
 import { GTMEVENTS, GTMEventHandler } from "../../Scripts/Google/GoogleTag";
@@ -20,8 +20,7 @@ const TEXT = {
     submit: { en: "Submit", es: "Enviar" },
     next: { en: "Next", es: "Siguiente" },
     back: { en: "Back", es: "Atrás" },
-
-}
+};
 
 export const QUESTION_IDS = {
     FIRST_NAME: "FIRST_NAME",
@@ -106,288 +105,559 @@ export const QUESTION_IDS = {
     SELECTED_COVERAGES: {
         LIABILITY_MINIMUM: "LIABILITY_MINIMUM",
         FULL_COVERAGE: "FULL_COVERAGE",
-    }
-}
+    },
+};
 
-function returnFormObject(formValues, idList) {
-    const formObject = {}
+function returnFormObject(
+    formValues: {
+        [key: string]: {
+            questionId: string;
+            value: string | boolean | number;
+        }[];
+    },
+    idList: string[],
+) {
+    const formObject: {
+        [key: string]: string | boolean | number;
+    } = {};
     for (let i = 0; i < idList.length; i++) {
-        const questionId = idList[i]
+        const questionId = idList[i];
         if (!formValues[questionId]) continue;
         for (let j = 0; j < formValues[questionId].length; j++) {
-            const key = formValues[questionId][j].questionId
-            let value = formValues[questionId][j].value
-            if (value === "true") value = true
-            if (value === "false") value = false
-            formObject[key] = value
+            const key = formValues[questionId][j].questionId;
+            let value = formValues[questionId][j].value;
+            if (value === "true") value = true;
+            if (value === "false") value = false;
+            formObject[key] = value;
         }
-
     }
-    return formObject
+    return formObject;
 }
-
 
 const DEFAULTS = {
-    shownIdList: process.env.NODE_ENV === "development" ? [
-        QUESTION_IDS.FIRST_NAME,
-        //       QUESTION_IDS.VEHICLE_1,
-        //    QUESTION_IDS.PRIOR_INSURANCE,
-        QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
-        // QUESTION_IDS.DRIVER_2_ADD,
-        // QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS,
-
-    ] : [QUESTION_IDS.FIRST_NAME,],
-    quotePageIndex: process.env.NODE_ENV === "development" ? 0 : 0,
-    subPageIndex: process.env.NODE_ENV === "development" ? 0 : 0,
+    shownIdList:
+        process.env.NODE_ENV === "development"
+            ? [
+                  QUESTION_IDS.FIRST_NAME,
+                  //       QUESTION_IDS.VEHICLE_1,
+                  //    QUESTION_IDS.PRIOR_INSURANCE,
+                  QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
+                  // QUESTION_IDS.DRIVER_2_ADD,
+                  QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS,
+              ]
+            : [QUESTION_IDS.FIRST_NAME],
+    quotePageIndex: process.env.NODE_ENV === "development" ? 2 : 0,
+    subPageIndex: process.env.NODE_ENV === "development" ? 1 : 0,
     showDefaultValues: process.env.NODE_ENV === "development" ? true : false,
     showDefaultsButton: process.env.NODE_ENV === "development" ? true : false,
-}
+};
 
 const PAGE_FORM_VALUES: {
-    sheettitle: string,
-    quotePageIndex: number,
-    subPageIndex: number,
-    useQuestionID?: boolean,
+    sheettitle: string;
+    quotePageIndex: number;
+    subPageIndex: number;
+    useQuestionID?: boolean;
     formValues: {
-        question: string,
-        value: string,
-        backupIds?: string[] // necessary for optional questions to prevent sheets from merging into wrong cells
-        json?: boolean
-        skipIfNull?: boolean
-    }[]
+        question: string;
+        value: string;
+        backupIds?: string[]; // necessary for optional questions to prevent sheets from merging into wrong cells
+        json?: boolean;
+        skipIfNull?: boolean;
+    }[];
 }[] = [
-        {
-            sheettitle: "Contact Information",
-            quotePageIndex: 0,
-            subPageIndex: 0,
-            formValues: [
-                { question: "First Name:", value: QUESTION_IDS.FIRST_NAME },
-                { question: "Last Name:", value: QUESTION_IDS.LAST_NAME },
-                { question: "Phone Number:", value: QUESTION_IDS.PHONE_NUMBER },
-                { question: "Email:", value: QUESTION_IDS.EMAIL },
-            ]
-        },
-        {
-            sheettitle: "Address Information",
-            quotePageIndex: 0,
-            subPageIndex: 1,
-            formValues: [
-                { question: "Address Line 1:", value: QUESTION_IDS.ADDRESS_LINE_1 },
-                { question: "City:", value: QUESTION_IDS.CITY },
-                { question: "Zip Code:", value: QUESTION_IDS.ZIP_CODE },
-                { question: "State:", value: QUESTION_IDS.STATE },
-            ]
-        },
-        {
-            sheettitle: "Vehicle Information",
-            quotePageIndex: 1,
-            subPageIndex: 0,
-            useQuestionID: true,
-            formValues: [
-                { question: "Vehicle 1:", value: QUESTION_IDS.VEHICLE_1 },
-                { question: "Vehicle 1:", value: QUESTION_IDS.VEHICLE_1_OWNERSHIP },
-                { question: "Vehicle 1:", value: QUESTION_IDS.VEHICLE_1_PURCHASE_DATE },
-                { question: "Vehicle 1:", value: QUESTION_IDS.VEHICLE_1_USAGE },
-                { question: "Vehicle 1:", value: QUESTION_IDS.VEHICLE_1_ANNUAL_MILES },
+    {
+        sheettitle: "Contact Information",
+        quotePageIndex: 0,
+        subPageIndex: 0,
+        formValues: [
+            { question: "First Name:", value: QUESTION_IDS.FIRST_NAME },
+            { question: "Last Name:", value: QUESTION_IDS.LAST_NAME },
+            { question: "Phone Number:", value: QUESTION_IDS.PHONE_NUMBER },
+            { question: "Email:", value: QUESTION_IDS.EMAIL },
+        ],
+    },
+    {
+        sheettitle: "Address Information",
+        quotePageIndex: 0,
+        subPageIndex: 1,
+        formValues: [
+            { question: "Address Line 1:", value: QUESTION_IDS.ADDRESS_LINE_1 },
+            { question: "City:", value: QUESTION_IDS.CITY },
+            { question: "Zip Code:", value: QUESTION_IDS.ZIP_CODE },
+            { question: "State:", value: QUESTION_IDS.STATE },
+        ],
+    },
+    {
+        sheettitle: "Vehicle Information",
+        quotePageIndex: 1,
+        subPageIndex: 0,
+        useQuestionID: true,
+        formValues: [
+            { question: "Vehicle 1:", value: QUESTION_IDS.VEHICLE_1 },
+            { question: "Vehicle 1:", value: QUESTION_IDS.VEHICLE_1_OWNERSHIP },
+            {
+                question: "Vehicle 1:",
+                value: QUESTION_IDS.VEHICLE_1_PURCHASE_DATE,
+            },
+            { question: "Vehicle 1:", value: QUESTION_IDS.VEHICLE_1_USAGE },
+            {
+                question: "Vehicle 1:",
+                value: QUESTION_IDS.VEHICLE_1_ANNUAL_MILES,
+            },
 
-                { question: "Vehicle 2:", value: QUESTION_IDS.VEHICLE_2, backupIds: ["Year", "Make", "Model", "Vin"] },
-                { question: "Vehicle 2:", value: QUESTION_IDS.VEHICLE_2_OWNERSHIP, backupIds: ["Ownership"] },
-                { question: "Vehicle 2:", value: QUESTION_IDS.VEHICLE_2_PURCHASE_DATE, backupIds: ["PurchaseDate"] },
-                { question: "Vehicle 2:", value: QUESTION_IDS.VEHICLE_2_USAGE, backupIds: ["Usage"], },
-                { question: "Vehicle 2:", value: QUESTION_IDS.VEHICLE_2_ANNUAL_MILES, backupIds: ["AnnualMiles"], },
+            {
+                question: "Vehicle 2:",
+                value: QUESTION_IDS.VEHICLE_2,
+                backupIds: ["Year", "Make", "Model", "Vin"],
+            },
+            {
+                question: "Vehicle 2:",
+                value: QUESTION_IDS.VEHICLE_2_OWNERSHIP,
+                backupIds: ["Ownership"],
+            },
+            {
+                question: "Vehicle 2:",
+                value: QUESTION_IDS.VEHICLE_2_PURCHASE_DATE,
+                backupIds: ["PurchaseDate"],
+            },
+            {
+                question: "Vehicle 2:",
+                value: QUESTION_IDS.VEHICLE_2_USAGE,
+                backupIds: ["Usage"],
+            },
+            {
+                question: "Vehicle 2:",
+                value: QUESTION_IDS.VEHICLE_2_ANNUAL_MILES,
+                backupIds: ["AnnualMiles"],
+            },
 
-                { question: "Vehicle 3:", value: QUESTION_IDS.VEHICLE_3, backupIds: ["Year", "Make", "Model", "Vin"] },
-                { question: "Vehicle 3:", value: QUESTION_IDS.VEHICLE_3_OWNERSHIP, backupIds: ["Ownership"] },
-                { question: "Vehicle 3:", value: QUESTION_IDS.VEHICLE_3_PURCHASE_DATE, backupIds: ["PurchaseDate"] },
-                { question: "Vehicle 3:", value: QUESTION_IDS.VEHICLE_3_USAGE, backupIds: ["Usage"], },
-                { question: "Vehicle 3:", value: QUESTION_IDS.VEHICLE_3_ANNUAL_MILES, backupIds: ["AnnualMiles"], },
+            {
+                question: "Vehicle 3:",
+                value: QUESTION_IDS.VEHICLE_3,
+                backupIds: ["Year", "Make", "Model", "Vin"],
+            },
+            {
+                question: "Vehicle 3:",
+                value: QUESTION_IDS.VEHICLE_3_OWNERSHIP,
+                backupIds: ["Ownership"],
+            },
+            {
+                question: "Vehicle 3:",
+                value: QUESTION_IDS.VEHICLE_3_PURCHASE_DATE,
+                backupIds: ["PurchaseDate"],
+            },
+            {
+                question: "Vehicle 3:",
+                value: QUESTION_IDS.VEHICLE_3_USAGE,
+                backupIds: ["Usage"],
+            },
+            {
+                question: "Vehicle 3:",
+                value: QUESTION_IDS.VEHICLE_3_ANNUAL_MILES,
+                backupIds: ["AnnualMiles"],
+            },
 
-                { question: "Vehicle 4:", value: QUESTION_IDS.VEHICLE_4, backupIds: ["Year", "Make", "Model", "Vin"] },
-                { question: "Vehicle 4:", value: QUESTION_IDS.VEHICLE_4_OWNERSHIP, backupIds: ["Ownership"] },
-                { question: "Vehicle 4:", value: QUESTION_IDS.VEHICLE_4_PURCHASE_DATE, backupIds: ["PurchaseDate"] },
-                { question: "Vehicle 4:", value: QUESTION_IDS.VEHICLE_4_USAGE, backupIds: ["Usage"], },
-                { question: "Vehicle 4:", value: QUESTION_IDS.VEHICLE_4_ANNUAL_MILES, backupIds: ["AnnualMiles"], },
-            ]
-        },
-        {
-            sheettitle: "Driver Information",
-            quotePageIndex: 2,
-            subPageIndex: 0,
-            useQuestionID: true,
-            formValues: [
-                { question: "Driver 1:", value: QUESTION_IDS.DATE_OF_BIRTH },
-                { question: "Driver 1:", value: QUESTION_IDS.GENDER },
-                { question: "Driver 1:", value: QUESTION_IDS.MARITAL_STATUS },
-                { question: "Driver 1:", value: QUESTION_IDS.WORK },
-                { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_LICENSE_NUMBER },
-                { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_LICENSE_STATUS },
-                { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_MONTHS_LICENSED },
-                { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_MONTHS_STATE_LICENSED },
-                { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_MONTHS_SUSPENDED, backupIds: ["MonthsSuspended"] },
-                { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_STATE_LICENSED },
-                { question: "Driver 1:", value: QUESTION_IDS.EDUCATION_LEVEL },
-                { question: "Driver 1:", value: QUESTION_IDS.RESIDENCY_TYPE },
-                { question: "Driver 1:", value: QUESTION_IDS.RESIDENCY_STATUS },
-                //    { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS },
-                //    { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_VIOLATIONS },
+            {
+                question: "Vehicle 4:",
+                value: QUESTION_IDS.VEHICLE_4,
+                backupIds: ["Year", "Make", "Model", "Vin"],
+            },
+            {
+                question: "Vehicle 4:",
+                value: QUESTION_IDS.VEHICLE_4_OWNERSHIP,
+                backupIds: ["Ownership"],
+            },
+            {
+                question: "Vehicle 4:",
+                value: QUESTION_IDS.VEHICLE_4_PURCHASE_DATE,
+                backupIds: ["PurchaseDate"],
+            },
+            {
+                question: "Vehicle 4:",
+                value: QUESTION_IDS.VEHICLE_4_USAGE,
+                backupIds: ["Usage"],
+            },
+            {
+                question: "Vehicle 4:",
+                value: QUESTION_IDS.VEHICLE_4_ANNUAL_MILES,
+                backupIds: ["AnnualMiles"],
+            },
+        ],
+    },
+    {
+        sheettitle: "Driver Information",
+        quotePageIndex: 2,
+        subPageIndex: 0,
+        useQuestionID: true,
+        formValues: [
+            { question: "Driver 1:", value: QUESTION_IDS.DATE_OF_BIRTH },
+            { question: "Driver 1:", value: QUESTION_IDS.GENDER },
+            { question: "Driver 1:", value: QUESTION_IDS.MARITAL_STATUS },
+            { question: "Driver 1:", value: QUESTION_IDS.WORK },
+            {
+                question: "Driver 1:",
+                value: QUESTION_IDS.DRIVER_1_LICENSE_NUMBER,
+            },
+            {
+                question: "Driver 1:",
+                value: QUESTION_IDS.DRIVER_1_LICENSE_STATUS,
+            },
+            {
+                question: "Driver 1:",
+                value: QUESTION_IDS.DRIVER_1_MONTHS_LICENSED,
+            },
+            {
+                question: "Driver 1:",
+                value: QUESTION_IDS.DRIVER_1_MONTHS_STATE_LICENSED,
+            },
+            {
+                question: "Driver 1:",
+                value: QUESTION_IDS.DRIVER_1_MONTHS_SUSPENDED,
+                backupIds: ["MonthsSuspended"],
+            },
+            {
+                question: "Driver 1:",
+                value: QUESTION_IDS.DRIVER_1_STATE_LICENSED,
+            },
+            { question: "Driver 1:", value: QUESTION_IDS.EDUCATION_LEVEL },
+            { question: "Driver 1:", value: QUESTION_IDS.RESIDENCY_TYPE },
+            { question: "Driver 1:", value: QUESTION_IDS.RESIDENCY_STATUS },
+            //    { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS },
+            //    { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_VIOLATIONS },
 
-                { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_FIRST_NAME, backupIds: ["First Name"] },
-                { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_LAST_NAME, backupIds: ["Last Name"] },
-                { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_DATE_OF_BIRTH, backupIds: ["DateOfBirth"] },
-                { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_GENDER, backupIds: ["Gender"] },
-                { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_MARITAL_STATUS, backupIds: ["MaritalStatus"] },
-                { question: "Driver 2:", value: QUESTION_IDS.DRIVER_2_RELATION, backupIds: ["Relation"] },
+            {
+                question: "Driver 2:",
+                value: QUESTION_IDS.DRIVER_2_FIRST_NAME,
+                backupIds: ["First Name"],
+            },
+            {
+                question: "Driver 2:",
+                value: QUESTION_IDS.DRIVER_2_LAST_NAME,
+                backupIds: ["Last Name"],
+            },
+            {
+                question: "Driver 2:",
+                value: QUESTION_IDS.DRIVER_2_DATE_OF_BIRTH,
+                backupIds: ["DateOfBirth"],
+            },
+            {
+                question: "Driver 2:",
+                value: QUESTION_IDS.DRIVER_2_GENDER,
+                backupIds: ["Gender"],
+            },
+            {
+                question: "Driver 2:",
+                value: QUESTION_IDS.DRIVER_2_MARITAL_STATUS,
+                backupIds: ["MaritalStatus"],
+            },
+            {
+                question: "Driver 2:",
+                value: QUESTION_IDS.DRIVER_2_RELATION,
+                backupIds: ["Relation"],
+            },
 
-                { question: "Driver 3:", value: QUESTION_IDS.DRIVER_3_FIRST_NAME, backupIds: ["First Name"] },
-                { question: "Driver 3:", value: QUESTION_IDS.DRIVER_3_LAST_NAME, backupIds: ["Last Name"] },
-                { question: "Driver 3:", value: QUESTION_IDS.DRIVER_3_DATE_OF_BIRTH, backupIds: ["DateOfBirth"] },
-                { question: "Driver 3:", value: QUESTION_IDS.DRIVER_3_GENDER, backupIds: ["Gender"] },
-                { question: "Driver 3:", value: QUESTION_IDS.DRIVER_3_MARITAL_STATUS, backupIds: ["MaritalStatus"] },
-                { question: "Driver 3:", value: QUESTION_IDS.DRIVER_3_RELATION, backupIds: ["Relation"] },
+            {
+                question: "Driver 3:",
+                value: QUESTION_IDS.DRIVER_3_FIRST_NAME,
+                backupIds: ["First Name"],
+            },
+            {
+                question: "Driver 3:",
+                value: QUESTION_IDS.DRIVER_3_LAST_NAME,
+                backupIds: ["Last Name"],
+            },
+            {
+                question: "Driver 3:",
+                value: QUESTION_IDS.DRIVER_3_DATE_OF_BIRTH,
+                backupIds: ["DateOfBirth"],
+            },
+            {
+                question: "Driver 3:",
+                value: QUESTION_IDS.DRIVER_3_GENDER,
+                backupIds: ["Gender"],
+            },
+            {
+                question: "Driver 3:",
+                value: QUESTION_IDS.DRIVER_3_MARITAL_STATUS,
+                backupIds: ["MaritalStatus"],
+            },
+            {
+                question: "Driver 3:",
+                value: QUESTION_IDS.DRIVER_3_RELATION,
+                backupIds: ["Relation"],
+            },
 
-                { question: "Driver 4:", value: QUESTION_IDS.DRIVER_4_FIRST_NAME, backupIds: ["First Name"] },
-                { question: "Driver 4:", value: QUESTION_IDS.DRIVER_4_LAST_NAME, backupIds: ["Last Name"] },
-                { question: "Driver 4:", value: QUESTION_IDS.DRIVER_4_DATE_OF_BIRTH, backupIds: ["DateOfBirth"] },
-                { question: "Driver 4:", value: QUESTION_IDS.DRIVER_4_GENDER, backupIds: ["Gender"] },
-                { question: "Driver 4:", value: QUESTION_IDS.DRIVER_4_MARITAL_STATUS, backupIds: ["MaritalStatus"] },
-                { question: "Driver 4:", value: QUESTION_IDS.DRIVER_4_RELATION, backupIds: ["Relation"] },
+            {
+                question: "Driver 4:",
+                value: QUESTION_IDS.DRIVER_4_FIRST_NAME,
+                backupIds: ["First Name"],
+            },
+            {
+                question: "Driver 4:",
+                value: QUESTION_IDS.DRIVER_4_LAST_NAME,
+                backupIds: ["Last Name"],
+            },
+            {
+                question: "Driver 4:",
+                value: QUESTION_IDS.DRIVER_4_DATE_OF_BIRTH,
+                backupIds: ["DateOfBirth"],
+            },
+            {
+                question: "Driver 4:",
+                value: QUESTION_IDS.DRIVER_4_GENDER,
+                backupIds: ["Gender"],
+            },
+            {
+                question: "Driver 4:",
+                value: QUESTION_IDS.DRIVER_4_MARITAL_STATUS,
+                backupIds: ["MaritalStatus"],
+            },
+            {
+                question: "Driver 4:",
+                value: QUESTION_IDS.DRIVER_4_RELATION,
+                backupIds: ["Relation"],
+            },
+        ],
+    },
+    {
+        sheettitle: "Violations Information",
+        quotePageIndex: 2,
+        subPageIndex: 1,
+        useQuestionID: true,
+        formValues: [
+            {
+                question: "Driver 1:",
+                value: QUESTION_IDS.DRIVER_1_VIOLATIONS,
+                backupIds: ["Violations"],
+                json: true,
+            },
+        ],
+    },
+    {
+        sheettitle: "Prior Insurance Information",
+        quotePageIndex: 3,
+        subPageIndex: 0,
+        useQuestionID: true,
+        formValues: [
+            {
+                question: "Prior Insurance:",
+                value: QUESTION_IDS.PRIOR_INSURANCE,
+            },
+            {
+                question: "Prior Insurance Company:",
+                value: QUESTION_IDS.PRIOR_INSURANCE_COMPANY,
+                backupIds: ["PriorCarrierId", "PriorCarrierName"],
+            },
+            {
+                question: "Prior Liability Limit:",
+                value: QUESTION_IDS.PRIOR_LIABILITY_LIMIT,
+                backupIds: ["PriorLiabilityLimit"],
+            },
+            {
+                question: "Prior Insurance Expiration:",
+                value: QUESTION_IDS.PRIOR_INSURANCE_EXPIRATION,
+                backupIds: ["PriorExpirationDate"],
+            },
+            {
+                question: "Prior Months Coverage:",
+                value: QUESTION_IDS.PRIOR_MONTHS_COVERAGE,
+                backupIds: ["PriorMonthsCoverage"],
+            },
+            {
+                question: "Reason for No Insurance:",
+                value: QUESTION_IDS.REASON_FOR_NO_INSURANCE,
+                backupIds: ["Reason for No Insurance"],
+            },
+        ],
+    },
+    {
+        sheettitle: "Coverage Information",
+        quotePageIndex: 3,
+        subPageIndex: 1,
+        useQuestionID: true,
+        formValues: [
+            {
+                question: "Coverage:",
+                skipIfNull: true,
+                value: QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
+            },
+            {
+                question: "Coverage:",
+                skipIfNull: true,
+                value: QUESTION_IDS.SELECTED_COVERAGES.FULL_COVERAGE,
+            },
+        ],
+    },
+];
 
-            ]
-        },
-        {
-            sheettitle: "Violations Information",
-            quotePageIndex: 2,
-            subPageIndex: 1,
-            useQuestionID: true,
-            formValues: [
-                { question: "Driver 1:", value: QUESTION_IDS.DRIVER_1_VIOLATIONS, backupIds: ["Violations"], json: true },
-            ]
-        },
-        {
-            sheettitle: "Prior Insurance Information",
-            quotePageIndex: 3,
-            subPageIndex: 0,
-            useQuestionID: true,
-            formValues: [
-                { question: "Prior Insurance:", value: QUESTION_IDS.PRIOR_INSURANCE },
-                { question: "Prior Insurance Company:", value: QUESTION_IDS.PRIOR_INSURANCE_COMPANY, backupIds: ["PriorCarrierId", "PriorCarrierName"], },
-                { question: "Prior Liability Limit:", value: QUESTION_IDS.PRIOR_LIABILITY_LIMIT, backupIds: ["PriorLiabilityLimit"], },
-                { question: "Prior Insurance Expiration:", value: QUESTION_IDS.PRIOR_INSURANCE_EXPIRATION, backupIds: ["PriorExpirationDate"], },
-                { question: "Prior Months Coverage:", value: QUESTION_IDS.PRIOR_MONTHS_COVERAGE, backupIds: ["PriorMonthsCoverage"], },
-                { question: "Reason for No Insurance:", value: QUESTION_IDS.REASON_FOR_NO_INSURANCE, backupIds: ["Reason for No Insurance"], },
-            ]
-        },
-        {
-            sheettitle: "Coverage Information",
-            quotePageIndex: 3,
-            subPageIndex: 1,
-            useQuestionID: true,
-            formValues: [
-                { question: "Coverage:", skipIfNull: true, value: QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM },
-                { question: "Coverage:", skipIfNull: true, value: QUESTION_IDS.SELECTED_COVERAGES.FULL_COVERAGE },
-            ]
-        }
-    ]
-
-export default function (props) {
-
+export default function (props: {
+    Form: {
+        QuotePages: {
+            title: { [lang: string]: string };
+            grayIcon: StaticImageData;
+            colorIcon: StaticImageData;
+            SubPages: {
+                Questions: {
+                    id: string;
+                    nextQuestionId?: string | string[];
+                    type: string;
+                    questionId: string;
+                    defaultValue?: any;
+                    question?: { [lang: string]: string };
+                }[];
+            }[];
+        }[];
+    };
+}) {
     // Use UUID to generate QuoteId
     const [QuoteId, setQuoteId] = useState(uuid());
     const [shownIdList, setShownIdList] = useState(DEFAULTS.shownIdList);
-    const [formValues, setFormValues] = useState({});
-    const [showDefaultValues, setShowDefaultValues] = useState(DEFAULTS.showDefaultValues);
+    const [formValues, setFormValues] = useState<{
+        [key: string]: Array<{
+            value: any;
+            questionId: string;
+            valid: boolean;
+        }>;
+    }>({});
+    const [showDefaultValues, setShowDefaultValues] = useState(
+        DEFAULTS.showDefaultValues,
+    );
     const [showResults, setShowResults] = useState(false);
     const [navigationIcons, setNavigationIcons] = useState([]);
-    const [quotePageIndex, setQuotePageIndex] = useState(DEFAULTS.quotePageIndex);
+    const [quotePageIndex, setQuotePageIndex] = useState(
+        DEFAULTS.quotePageIndex,
+    );
     const [subPageIndex, setSubPageIndex] = useState(DEFAULTS.subPageIndex);
-    const [activeQuestionsArray, setActiveQuestionsArray] = useState<string[]>([]);
+    const [activeQuestionsArray, setActiveQuestionsArray] = useState<string[]>(
+        [],
+    );
     const [errorQuestions, setErrorQuestions] = useState<string[]>([]);
-    const [farthestPage, setFarthestPage] = useState([DEFAULTS.quotePageIndex, DEFAULTS.subPageIndex]);
+    const [farthestPage, setFarthestPage] = useState([
+        DEFAULTS.quotePageIndex,
+        DEFAULTS.subPageIndex,
+    ]);
     const [timeStarted] = useState(new Date().getTime());
     const [emailedOnce, setEmailedOnce] = useState(false);
-    const [timeSpentOnPageTracker, setTimeSpentOnPageTracker] = useState<number>(new Date().getTime());
+    const [timeSpentOnPageTracker, setTimeSpentOnPageTracker] =
+        useState<number>(new Date().getTime());
     useEffect(() => {
         async function wakeServer() {
             await fetch(`${PATHCONSTANTS.BACKEND2}/`)
-                .then(
-                    () => { //console.log("success")
-                    })
-                .catch((err) => { console.log(err) })
+                .then(() => {
+                    //console.log("success")
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         }
-        wakeServer()
-    }, [])
+        wakeServer();
+    }, []);
 
     useEffect(() => {
         const icons = props.Form.QuotePages.map((page) => {
             return {
                 title: page.title,
-                gray: page.grayIcon, color: page.colorIcon
-            }
-        })
+                gray: page.grayIcon,
+                color: page.colorIcon,
+            };
+        });
         icons.push({
             title: { en: "Finish", es: "Terminar" },
-            gray: GrayFinishImg, color: ColorFinishImg
-        })
-        setNavigationIcons(icons)
-    }, [props.Form.QuotePages])
+            gray: GrayFinishImg,
+            color: ColorFinishImg,
+        });
+        setNavigationIcons(icons);
+    }, [props.Form.QuotePages]);
 
-    function addIdToList(id) {
+    function addIdToList(id: string) {
         setShownIdList((prev) => {
-            if (prev.includes(id)) return prev
-            return [...prev, id]
-        })
+            if (prev.includes(id)) return prev;
+            return [...prev, id];
+        });
     }
 
-    function buttonAddIdToList(questionId, nextQuestionIds: String[]) {
+    function buttonAddIdToList(questionId: string, nextQuestionIds: string[]) {
         setShownIdList((prev) => {
             //find where the questionId is in the array
             //remove everything after that index
             //add the nextQuestionId
 
             const index = prev.indexOf(questionId);
-            if (index === -1) return prev
-            const newIdList = prev.slice(0, index + 1)
+            if (index === -1) return prev;
+            const newIdList = prev.slice(0, index + 1);
             nextQuestionIds.forEach((id: string) => {
                 if (!newIdList.includes(id)) {
-                    newIdList.push(id)
+                    newIdList.push(id);
                 }
-            })
+            });
             //if both liability minimum and full coverage are selected, remove liability minimum
-            if (newIdList.includes(QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM) && newIdList.includes(QUESTION_IDS.SELECTED_COVERAGES.FULL_COVERAGE)) {
-                newIdList.splice(newIdList.indexOf(QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM), 1)
+            if (
+                newIdList.includes(
+                    QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
+                ) &&
+                newIdList.includes(
+                    QUESTION_IDS.SELECTED_COVERAGES.FULL_COVERAGE,
+                )
+            ) {
+                newIdList.splice(
+                    newIdList.indexOf(
+                        QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
+                    ),
+                    1,
+                );
             }
-            return newIdList
-        })
+            return newIdList;
+        });
     }
 
     useEffect(() => {
         //when shownIdList changes if Liability Minimum and Full Coverage are both selected, remove Liability Minimum
-        if (shownIdList.includes(QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM) && shownIdList.includes(QUESTION_IDS.SELECTED_COVERAGES.FULL_COVERAGE)) {
-            setShownIdList((prev) => prev.filter((item) => item !== QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM))
+        if (
+            shownIdList.includes(
+                QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
+            ) &&
+            shownIdList.includes(QUESTION_IDS.SELECTED_COVERAGES.FULL_COVERAGE)
+        ) {
+            setShownIdList((prev) =>
+                prev.filter(
+                    (item) =>
+                        item !==
+                        QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
+                ),
+            );
         }
-    }, [shownIdList])
+    }, [shownIdList]);
 
-    function removeIdFromList(id: String) {
-        setShownIdList((prev) => prev.filter((item) => item !== id))
+    function removeIdFromList(id: string) {
+        setShownIdList((prev) => prev.filter((item) => item !== id));
     }
 
-    function updateFormValues(id, value) {
+    function updateFormValues(
+        id: string,
+        value: { questionId: string; value: any; valid: boolean }[],
+    ) {
         setFormValues((prevFormValues) => {
-            const newFormValues = { ...prevFormValues }
-            newFormValues[id] = value
-            return newFormValues
-        })
+            const newFormValues = { ...prevFormValues };
+            newFormValues[id] = value;
+            return newFormValues;
+        });
     }
 
     function prepareData() {
-        const strippedFormValues = {}
+        const strippedFormValues: {
+            [key: string]: Array<{
+                value: any;
+                questionId: string;
+            }>;
+        } = {};
         for (let i = 0; i < shownIdList.length; i++) {
-            const id = shownIdList[i]
+            const id = shownIdList[i];
             if (formValues[id]) {
-                strippedFormValues[id] = formValues[id]
+                strippedFormValues[id] = formValues[id];
             }
         }
-        const { LiabilityBiLimit,
+        const {
+            LiabilityBiLimit,
             LiabilityPdLimit,
             MedPayLimit,
             PipLimit,
@@ -399,21 +669,24 @@ export default function (props) {
             TowingLimit,
             RentalLimit,
             GapCoverage,
-            CustomEquipmentValue
-        } = returnFormObject(strippedFormValues, [QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM, QUESTION_IDS.SELECTED_COVERAGES.FULL_COVERAGE]) as {
-            LiabilityBiLimit: string
-            LiabilityPdLimit: string
-            MedPayLimit: string
-            PipLimit: string
-            UninsuredMotoristPdLimit: string
-            UninsuredMotoristBiLimit: string
-            AccidentalDeathLimit: string
-            ComprehensiveDeductible: string
-            CollisionDeductible: string
-            TowingLimit: string
-            RentalLimit: string
-            GapCoverage: boolean
-            CustomEquipmentValue: number
+            CustomEquipmentValue,
+        } = returnFormObject(strippedFormValues, [
+            QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
+            QUESTION_IDS.SELECTED_COVERAGES.FULL_COVERAGE,
+        ]) as {
+            LiabilityBiLimit: string;
+            LiabilityPdLimit: string;
+            MedPayLimit: string;
+            PipLimit: string;
+            UninsuredMotoristPdLimit: string;
+            UninsuredMotoristBiLimit: string;
+            AccidentalDeathLimit: string;
+            ComprehensiveDeductible: string;
+            CollisionDeductible: string;
+            TowingLimit: string;
+            RentalLimit: string;
+            GapCoverage: boolean;
+            CustomEquipmentValue: number;
         };
         const PolicyCoverages = {
             LiabilityBiLimit,
@@ -422,257 +695,461 @@ export default function (props) {
             PipLimit,
             UninsuredMotoristPdLimit,
             UninsuredMotoristBiLimit,
-            AccidentalDeathLimit
-        }
+            AccidentalDeathLimit,
+        };
         const CoverageInformation = {
             ComprehensiveDeductible,
             CollisionDeductible,
             TowingLimit,
             RentalLimit,
             GapCoverage,
-            CustomEquipmentValue
-        }
+            CustomEquipmentValue,
+        };
 
-        let hasViolations = false
-        let violationsData = []
+        let hasViolations = false;
+        let violationsData = [];
 
         if (formValues[QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS]) {
-            if (formValues[QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS][0].value === "true") {
-                hasViolations = true
+            if (
+                formValues[QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS][0].value ===
+                "true"
+            ) {
+                hasViolations = true;
             }
         }
 
         if (hasViolations && formValues[QUESTION_IDS.DRIVER_1_VIOLATIONS]) {
-            violationsData = hasViolations ? formValues[QUESTION_IDS.DRIVER_1_VIOLATIONS][0].value : []
+            violationsData = hasViolations
+                ? formValues[QUESTION_IDS.DRIVER_1_VIOLATIONS][0].value
+                : [];
         }
 
         if (process.env.NODE_ENV === "development") {
-            console.log("Has Violations: " + hasViolations)
-            console.log("Violations Data: " + violationsData)
+            console.log("Has Violations: " + hasViolations);
+            console.log("Violations Data: " + violationsData);
         }
-        const IsDriver2 = (strippedFormValues[QUESTION_IDS.DRIVER_2_ADD] && strippedFormValues[QUESTION_IDS.DRIVER_2_ADD][0] && strippedFormValues[QUESTION_IDS.DRIVER_2_ADD][0].value === "true")
-        const IsDriver3 = (strippedFormValues[QUESTION_IDS.DRIVER_3_ADD] && strippedFormValues[QUESTION_IDS.DRIVER_3_ADD][0] && strippedFormValues[QUESTION_IDS.DRIVER_3_ADD][0].value === "true")
-        const IsDriver4 = (strippedFormValues[QUESTION_IDS.DRIVER_4_ADD] && strippedFormValues[QUESTION_IDS.DRIVER_4_ADD][0] && strippedFormValues[QUESTION_IDS.DRIVER_4_ADD][0].value === "true")
+        const IsDriver2 =
+            strippedFormValues[QUESTION_IDS.DRIVER_2_ADD] &&
+            strippedFormValues[QUESTION_IDS.DRIVER_2_ADD][0] &&
+            strippedFormValues[QUESTION_IDS.DRIVER_2_ADD][0].value === "true";
+        const IsDriver3 =
+            strippedFormValues[QUESTION_IDS.DRIVER_3_ADD] &&
+            strippedFormValues[QUESTION_IDS.DRIVER_3_ADD][0] &&
+            strippedFormValues[QUESTION_IDS.DRIVER_3_ADD][0].value === "true";
+        const IsDriver4 =
+            strippedFormValues[QUESTION_IDS.DRIVER_4_ADD] &&
+            strippedFormValues[QUESTION_IDS.DRIVER_4_ADD][0] &&
+            strippedFormValues[QUESTION_IDS.DRIVER_4_ADD][0].value === "true";
 
-        const IsVehicle2 = (strippedFormValues[QUESTION_IDS.VEHICLE_2_ADD] && strippedFormValues[QUESTION_IDS.VEHICLE_2_ADD][0] && strippedFormValues[QUESTION_IDS.VEHICLE_2_ADD][0].value === "true")
-        const IsVehicle3 = (strippedFormValues[QUESTION_IDS.VEHICLE_3_ADD] && strippedFormValues[QUESTION_IDS.VEHICLE_3_ADD][0] && strippedFormValues[QUESTION_IDS.VEHICLE_3_ADD][0].value === "true")
-        const IsVehicle4 = (strippedFormValues[QUESTION_IDS.VEHICLE_4_ADD] && strippedFormValues[QUESTION_IDS.VEHICLE_4_ADD][0] && strippedFormValues[QUESTION_IDS.VEHICLE_4_ADD][0].value === "true")
+        const IsVehicle2 =
+            strippedFormValues[QUESTION_IDS.VEHICLE_2_ADD] &&
+            strippedFormValues[QUESTION_IDS.VEHICLE_2_ADD][0] &&
+            strippedFormValues[QUESTION_IDS.VEHICLE_2_ADD][0].value === "true";
+        const IsVehicle3 =
+            strippedFormValues[QUESTION_IDS.VEHICLE_3_ADD] &&
+            strippedFormValues[QUESTION_IDS.VEHICLE_3_ADD][0] &&
+            strippedFormValues[QUESTION_IDS.VEHICLE_3_ADD][0].value === "true";
+        const IsVehicle4 =
+            strippedFormValues[QUESTION_IDS.VEHICLE_4_ADD] &&
+            strippedFormValues[QUESTION_IDS.VEHICLE_4_ADD][0] &&
+            strippedFormValues[QUESTION_IDS.VEHICLE_4_ADD][0].value === "true";
 
-
-
-        const newQuoteId = uuid()
-        setQuoteId(newQuoteId)
+        const newQuoteId = uuid();
+        setQuoteId(newQuoteId);
         if (process.env.NODE_ENV === "development") {
-            console.log(strippedFormValues)
+            console.log(strippedFormValues);
         }
         const data = {
             Identifier: newQuoteId,
             Customer: {
-                ...returnFormObject(strippedFormValues, [QUESTION_IDS.FIRST_NAME, QUESTION_IDS.LAST_NAME, QUESTION_IDS.TIME_AT_ADDRESS]),
+                ...returnFormObject(strippedFormValues, [
+                    QUESTION_IDS.FIRST_NAME,
+                    QUESTION_IDS.LAST_NAME,
+                    QUESTION_IDS.TIME_AT_ADDRESS,
+                ]),
                 Identifier: String(Math.floor(Math.random() * 1000000000)),
                 Address: {
                     State: "Texas",
-                    ...returnFormObject(strippedFormValues, [QUESTION_IDS.ADDRESS_LINE_1, QUESTION_IDS.CITY, QUESTION_IDS.STATE, QUESTION_IDS.ZIP_CODE, QUESTION_IDS.STATE]),
+                    ...returnFormObject(strippedFormValues, [
+                        QUESTION_IDS.ADDRESS_LINE_1,
+                        QUESTION_IDS.CITY,
+                        QUESTION_IDS.STATE,
+                        QUESTION_IDS.ZIP_CODE,
+                        QUESTION_IDS.STATE,
+                    ]),
                 },
                 ContactInformation: {
-                    ...returnFormObject(strippedFormValues, [QUESTION_IDS.PHONE_NUMBER, QUESTION_IDS.EMAIL]),
+                    ...returnFormObject(strippedFormValues, [
+                        QUESTION_IDS.PHONE_NUMBER,
+                        QUESTION_IDS.EMAIL,
+                    ]),
                 },
-                PriorInsuranceInformation: returnFormObject(strippedFormValues, [QUESTION_IDS.PRIOR_INSURANCE, QUESTION_IDS.PRIOR_INSURANCE_EXPIRATION, QUESTION_IDS.PRIOR_LIABILITY_LIMIT, QUESTION_IDS.PRIOR_INSURANCE_COMPANY, QUESTION_IDS.PRIOR_MONTHS_COVERAGE, QUESTION_IDS.REASON_FOR_NO_INSURANCE]),
+                PriorInsuranceInformation: returnFormObject(
+                    strippedFormValues,
+                    [
+                        QUESTION_IDS.PRIOR_INSURANCE,
+                        QUESTION_IDS.PRIOR_INSURANCE_EXPIRATION,
+                        QUESTION_IDS.PRIOR_LIABILITY_LIMIT,
+                        QUESTION_IDS.PRIOR_INSURANCE_COMPANY,
+                        QUESTION_IDS.PRIOR_MONTHS_COVERAGE,
+                        QUESTION_IDS.REASON_FOR_NO_INSURANCE,
+                    ],
+                ),
             },
             PolicyCoverages,
             RatedDrivers: [
                 {
-                    "DriverId": 1,
+                    DriverId: 1,
                     Attributes: {
-                        "PropertyInsurance": false,
-                        "Relation": "Insured",
-                        ...returnFormObject(strippedFormValues, [QUESTION_IDS.EDUCATION_LEVEL, QUESTION_IDS.RESIDENCY_STATUS, QUESTION_IDS.RESIDENCY_TYPE,]),
+                        PropertyInsurance: false,
+                        Relation: "Insured",
+                        ...returnFormObject(strippedFormValues, [
+                            QUESTION_IDS.EDUCATION_LEVEL,
+                            QUESTION_IDS.RESIDENCY_STATUS,
+                            QUESTION_IDS.RESIDENCY_TYPE,
+                        ]),
                     },
                     //"{"status":"Request Parameter Validated Failed","errors":["Payload is not valid based on requested contract","Required properties are missing from object: Street1, City, ZipCode. : Customer.Address","Required properties are missing from object: LastName, MonthsAtResidence. : Customer","Required properties are missing from object: Street1, City, ZipCode. : Vehicles[0].GaragingAddress","Required properties are missing from object: Vin, Usage. : Vehicles[0]","Required properties are missing from object: ResidencyStatus, ResidencyType. : RatedDrivers[0].Attributes","Required properties are missing from object: LastName, DateOfBirth, Gender, MaritalStatus. : RatedDrivers[0]"],"accountId":"00000000-0000-0000-0000-000000000000","tT2Output":""}"
                     LicenseInformation: {
-                        ...returnFormObject(strippedFormValues,
-                            [QUESTION_IDS.DRIVER_1_LICENSE_NUMBER,
+                        ...returnFormObject(strippedFormValues, [
+                            QUESTION_IDS.DRIVER_1_LICENSE_NUMBER,
                             QUESTION_IDS.DRIVER_1_LICENSE_STATUS,
                             QUESTION_IDS.DRIVER_1_MONTHS_LICENSED,
                             QUESTION_IDS.DRIVER_1_MONTHS_STATE_LICENSED,
                             QUESTION_IDS.DRIVER_1_MONTHS_SUSPENDED,
-                            QUESTION_IDS.DRIVER_1_STATE_LICENSED]),
+                            QUESTION_IDS.DRIVER_1_STATE_LICENSED,
+                        ]),
                         //"LicenseNumber": "",// max 20 characters
                         //"LicenseStatus": "Valid",// Valid, Unlicensed, Permit, Suspended
                         //"MonthsLicensed": 310,//Use a select box for this max 1200 months
                         //"MonthsStateLicensed": 310,// Months licensed in state
                         //"MonthsSuspended": 0, //If licenseStatus is suspended open this question if not set to 0
                         //"StateLicensed": "Texas",//State selection
-                        "MonthsForeignLicense": 0,
-                        "MonthsMvrExperience": 60,
-                        "CountryOfOrigin": "None", //?
-                        "ForeignNational": false, //?
-                        "InternationalDriversLicense": false
+                        MonthsForeignLicense: 0,
+                        MonthsMvrExperience: 60,
+                        CountryOfOrigin: "None", //?
+                        ForeignNational: false, //?
+                        InternationalDriversLicense: false,
                     },
-                    ...returnFormObject(strippedFormValues, [QUESTION_IDS.FIRST_NAME, QUESTION_IDS.LAST_NAME, QUESTION_IDS.DATE_OF_BIRTH, QUESTION_IDS.GENDER, QUESTION_IDS.MARITAL_STATUS,]),
-                    IndustryOccupation: strippedFormValues[QUESTION_IDS.WORK] ? strippedFormValues[QUESTION_IDS.WORK][1].value : "Other",
-                    "Discounts": {
-
-                        "GoodStudent": false,
-                        "SingleParent": false,
-                        "DrugAwareness": false,
-                        "DriversTraining": false,
-                        "DistantStudent": "None",
-                        "DefensiveDriving": true,
-                        "MultiplePolicies": false,
-                        "SeniorDriverDiscount": false,
-                        "DefensiveDrivingCourseDate": "2022-10-31T05:00:00Z"
+                    ...returnFormObject(strippedFormValues, [
+                        QUESTION_IDS.FIRST_NAME,
+                        QUESTION_IDS.LAST_NAME,
+                        QUESTION_IDS.DATE_OF_BIRTH,
+                        QUESTION_IDS.GENDER,
+                        QUESTION_IDS.MARITAL_STATUS,
+                    ]),
+                    IndustryOccupation: strippedFormValues[QUESTION_IDS.WORK]
+                        ? strippedFormValues[QUESTION_IDS.WORK][1].value
+                        : "Other",
+                    Discounts: {
+                        GoodStudent: false,
+                        SingleParent: false,
+                        DrugAwareness: false,
+                        DriversTraining: false,
+                        DistantStudent: "None",
+                        DefensiveDriving: true,
+                        MultiplePolicies: false,
+                        SeniorDriverDiscount: false,
+                        DefensiveDrivingCourseDate: "2022-10-31T05:00:00Z",
 
                         //"{"status":"Request Parameter Validated Failed","errors":["Payload is not valid based on requested contract","Required properties are missing from object: SeniorDriverCourseDate. : RatedDrivers[0].Discounts","Required properties are missing from object: AccidentPreventionCourseDate. : RatedDrivers[0].Discounts"],"accountId":"00000000-0000-0000-0000-000000000000","tT2Output":""}"
                     },
-                    "FinancialResponsibilityInformation": {
-                        "Sr22": false,
-                        "Sr22A": false
+                    FinancialResponsibilityInformation: {
+                        Sr22: false,
+                        Sr22A: false,
                     },
-                    "Violations": violationsData
+                    Violations: violationsData,
                 },
-                IsDriver2 ? {
-                    "DriverId": 2,
-                    Attributes: {
-                        "PropertyInsurance": false,
-                        "Relation": "Insured",
-                        ...returnFormObject(strippedFormValues, [QUESTION_IDS.DRIVER_2_RELATION, QUESTION_IDS.RESIDENCY_STATUS, QUESTION_IDS.RESIDENCY_TYPE,]),
-                    },
-                    LicenseInformation: {
-                        "LicenseNumber": "",
-                        "LicenseStatus": "Valid",
-                        "MonthsForeignLicense": 0,
-                        "MonthsLicensed": 310,
-                        "MonthsStateLicensed": 310,
-                        "MonthsMvrExperience": 60,
-                        "MonthsSuspended": 0,
-                        "StateLicensed": "Texas",
-                        "CountryOfOrigin": "None",
-                        "ForeignNational": false,
-                        "InternationalDriversLicense": false
-                    },
-                    ...returnFormObject(strippedFormValues, [QUESTION_IDS.DRIVER_2_FIRST_NAME, QUESTION_IDS.DRIVER_2_LAST_NAME, QUESTION_IDS.DRIVER_2_DATE_OF_BIRTH, QUESTION_IDS.DRIVER_2_GENDER, QUESTION_IDS.DRIVER_2_MARITAL_STATUS]),
-                } : null,
-                IsDriver3 ? {
-                    "DriverId": 3,
-                    Attributes: {
-                        "PropertyInsurance": false,
-                        "Relation": "Insured",
-                        ...returnFormObject(strippedFormValues, [QUESTION_IDS.DRIVER_3_RELATION, QUESTION_IDS.RESIDENCY_STATUS, QUESTION_IDS.RESIDENCY_TYPE,]),
-                    },
-                    LicenseInformation: {
-                        "LicenseNumber": "",
-                        "LicenseStatus": "Valid",
-                        "MonthsForeignLicense": 0,
-                        "MonthsLicensed": 310,
-                        "MonthsStateLicensed": 310,
-                        "MonthsMvrExperience": 60,
-                        "MonthsSuspended": 0,
-                        "StateLicensed": "Texas",
-                        "CountryOfOrigin": "None",
-                        "ForeignNational": false,
-                        "InternationalDriversLicense": false
-                    },
-                    ...returnFormObject(strippedFormValues, [QUESTION_IDS.DRIVER_3_FIRST_NAME, QUESTION_IDS.DRIVER_3_LAST_NAME, QUESTION_IDS.DRIVER_3_DATE_OF_BIRTH, QUESTION_IDS.DRIVER_3_GENDER, QUESTION_IDS.DRIVER_3_MARITAL_STATUS]),
-                } : null,
-                IsDriver4 ? {
-                    "DriverId": 4,
-                    Attributes: {
-                        "PropertyInsurance": false,
-                        "Relation": "Insured",
-                        ...returnFormObject(strippedFormValues, [QUESTION_IDS.DRIVER_4_RELATION, QUESTION_IDS.RESIDENCY_STATUS, QUESTION_IDS.RESIDENCY_TYPE,]),
-                    },
-                    LicenseInformation: {
-                        "LicenseNumber": "",
-                        "LicenseStatus": "Valid",
-                        "MonthsForeignLicense": 0,
-                        "MonthsLicensed": 310,
-                        "MonthsStateLicensed": 310,
-                        "MonthsMvrExperience": 60,
-                        "MonthsSuspended": 0,
-                        "StateLicensed": "Texas",
-                        "CountryOfOrigin": "None",
-                        "ForeignNational": false,
-                        "InternationalDriversLicense": false
-                    },
-                    ...returnFormObject(strippedFormValues, [QUESTION_IDS.DRIVER_4_FIRST_NAME, QUESTION_IDS.DRIVER_4_LAST_NAME, QUESTION_IDS.DRIVER_4_DATE_OF_BIRTH, QUESTION_IDS.DRIVER_4_GENDER, QUESTION_IDS.DRIVER_4_MARITAL_STATUS]),
-                } : null,
-            ].filter(driver => driver !== null),
+                IsDriver2
+                    ? {
+                          DriverId: 2,
+                          Attributes: {
+                              PropertyInsurance: false,
+                              Relation: "Insured",
+                              ...returnFormObject(strippedFormValues, [
+                                  QUESTION_IDS.DRIVER_2_RELATION,
+                                  QUESTION_IDS.RESIDENCY_STATUS,
+                                  QUESTION_IDS.RESIDENCY_TYPE,
+                              ]),
+                          },
+                          LicenseInformation: {
+                              LicenseNumber: "",
+                              LicenseStatus: "Valid",
+                              MonthsForeignLicense: 0,
+                              MonthsLicensed: 310,
+                              MonthsStateLicensed: 310,
+                              MonthsMvrExperience: 60,
+                              MonthsSuspended: 0,
+                              StateLicensed: "Texas",
+                              CountryOfOrigin: "None",
+                              ForeignNational: false,
+                              InternationalDriversLicense: false,
+                          },
+                          ...returnFormObject(strippedFormValues, [
+                              QUESTION_IDS.DRIVER_2_FIRST_NAME,
+                              QUESTION_IDS.DRIVER_2_LAST_NAME,
+                              QUESTION_IDS.DRIVER_2_DATE_OF_BIRTH,
+                              QUESTION_IDS.DRIVER_2_GENDER,
+                              QUESTION_IDS.DRIVER_2_MARITAL_STATUS,
+                          ]),
+                      }
+                    : null,
+                IsDriver3
+                    ? {
+                          DriverId: 3,
+                          Attributes: {
+                              PropertyInsurance: false,
+                              Relation: "Insured",
+                              ...returnFormObject(strippedFormValues, [
+                                  QUESTION_IDS.DRIVER_3_RELATION,
+                                  QUESTION_IDS.RESIDENCY_STATUS,
+                                  QUESTION_IDS.RESIDENCY_TYPE,
+                              ]),
+                          },
+                          LicenseInformation: {
+                              LicenseNumber: "",
+                              LicenseStatus: "Valid",
+                              MonthsForeignLicense: 0,
+                              MonthsLicensed: 310,
+                              MonthsStateLicensed: 310,
+                              MonthsMvrExperience: 60,
+                              MonthsSuspended: 0,
+                              StateLicensed: "Texas",
+                              CountryOfOrigin: "None",
+                              ForeignNational: false,
+                              InternationalDriversLicense: false,
+                          },
+                          ...returnFormObject(strippedFormValues, [
+                              QUESTION_IDS.DRIVER_3_FIRST_NAME,
+                              QUESTION_IDS.DRIVER_3_LAST_NAME,
+                              QUESTION_IDS.DRIVER_3_DATE_OF_BIRTH,
+                              QUESTION_IDS.DRIVER_3_GENDER,
+                              QUESTION_IDS.DRIVER_3_MARITAL_STATUS,
+                          ]),
+                      }
+                    : null,
+                IsDriver4
+                    ? {
+                          DriverId: 4,
+                          Attributes: {
+                              PropertyInsurance: false,
+                              Relation: "Insured",
+                              ...returnFormObject(strippedFormValues, [
+                                  QUESTION_IDS.DRIVER_4_RELATION,
+                                  QUESTION_IDS.RESIDENCY_STATUS,
+                                  QUESTION_IDS.RESIDENCY_TYPE,
+                              ]),
+                          },
+                          LicenseInformation: {
+                              LicenseNumber: "",
+                              LicenseStatus: "Valid",
+                              MonthsForeignLicense: 0,
+                              MonthsLicensed: 310,
+                              MonthsStateLicensed: 310,
+                              MonthsMvrExperience: 60,
+                              MonthsSuspended: 0,
+                              StateLicensed: "Texas",
+                              CountryOfOrigin: "None",
+                              ForeignNational: false,
+                              InternationalDriversLicense: false,
+                          },
+                          ...returnFormObject(strippedFormValues, [
+                              QUESTION_IDS.DRIVER_4_FIRST_NAME,
+                              QUESTION_IDS.DRIVER_4_LAST_NAME,
+                              QUESTION_IDS.DRIVER_4_DATE_OF_BIRTH,
+                              QUESTION_IDS.DRIVER_4_GENDER,
+                              QUESTION_IDS.DRIVER_4_MARITAL_STATUS,
+                          ]),
+                      }
+                    : null,
+            ].filter((driver) => driver !== null),
             Vehicles: [
                 {
-                    ...returnFormObject(strippedFormValues, [QUESTION_IDS.VEHICLE_1, QUESTION_IDS.VEHICLE_1_PURCHASE_DATE, QUESTION_IDS.VEHICLE_1_USAGE, QUESTION_IDS.VEHICLE_1_ANNUAL_MILES,]),
-                    "HomingDevice": false,
+                    ...returnFormObject(strippedFormValues, [
+                        QUESTION_IDS.VEHICLE_1,
+                        QUESTION_IDS.VEHICLE_1_PURCHASE_DATE,
+                        QUESTION_IDS.VEHICLE_1_USAGE,
+                        QUESTION_IDS.VEHICLE_1_ANNUAL_MILES,
+                    ]),
+                    HomingDevice: false,
                     AssignedDriverId: 1,
-                    MilesToWork: strippedFormValues[QUESTION_IDS.VEHICLE_1_ANNUAL_MILES] ? (parseInt((Number(strippedFormValues[QUESTION_IDS.VEHICLE_1_ANNUAL_MILES][0].value) / 365 / 3).toString())) : "0",
+                    MilesToWork: strippedFormValues[
+                        QUESTION_IDS.VEHICLE_1_ANNUAL_MILES
+                    ]
+                        ? parseInt(
+                              (
+                                  Number(
+                                      strippedFormValues[
+                                          QUESTION_IDS.VEHICLE_1_ANNUAL_MILES
+                                      ][0].value,
+                                  ) /
+                                  365 /
+                                  3
+                              ).toString(),
+                          )
+                        : "0",
                     CoverageInformation,
                     GaragingAddress: {
-                        ...returnFormObject(strippedFormValues, [QUESTION_IDS.ADDRESS_LINE_1, QUESTION_IDS.CITY, QUESTION_IDS.STATE, QUESTION_IDS.ZIP_CODE, QUESTION_IDS.STATE]),
+                        ...returnFormObject(strippedFormValues, [
+                            QUESTION_IDS.ADDRESS_LINE_1,
+                            QUESTION_IDS.CITY,
+                            QUESTION_IDS.STATE,
+                            QUESTION_IDS.ZIP_CODE,
+                            QUESTION_IDS.STATE,
+                        ]),
                     },
                 },
-                IsVehicle2 ? {
-                    ...returnFormObject(strippedFormValues, [QUESTION_IDS.VEHICLE_2, QUESTION_IDS.VEHICLE_2_PURCHASE_DATE, QUESTION_IDS.VEHICLE_2_USAGE, QUESTION_IDS.VEHICLE_2_ANNUAL_MILES,]),
-                    "HomingDevice": false,
-                    AssignedDriverId: 1,
-                    MilesToWork: strippedFormValues[QUESTION_IDS.VEHICLE_2_ANNUAL_MILES] ? (parseInt((Number(strippedFormValues[QUESTION_IDS.VEHICLE_2_ANNUAL_MILES][0].value) / 365 / 3).toString())) : "0",
-                    CoverageInformation,
-                    GaragingAddress: {
-                        ...returnFormObject(strippedFormValues, [QUESTION_IDS.ADDRESS_LINE_1, QUESTION_IDS.CITY, QUESTION_IDS.STATE, QUESTION_IDS.ZIP_CODE, QUESTION_IDS.STATE]),
-                    },
-                } : null,
-                IsVehicle3 ? {
-                    ...returnFormObject(strippedFormValues, [QUESTION_IDS.VEHICLE_3, QUESTION_IDS.VEHICLE_3_PURCHASE_DATE, QUESTION_IDS.VEHICLE_3_USAGE, QUESTION_IDS.VEHICLE_3_ANNUAL_MILES,]),
-                    "HomingDevice": false,
-                    AssignedDriverId: 1,
-                    MilesToWork: strippedFormValues[QUESTION_IDS.VEHICLE_3_ANNUAL_MILES] ? (parseInt((Number(strippedFormValues[QUESTION_IDS.VEHICLE_3_ANNUAL_MILES][0].value) / 365 / 3).toString())) : "0",
-                    CoverageInformation,
-                    GaragingAddress: {
-                        ...returnFormObject(strippedFormValues, [QUESTION_IDS.ADDRESS_LINE_1, QUESTION_IDS.CITY, QUESTION_IDS.STATE, QUESTION_IDS.ZIP_CODE, QUESTION_IDS.STATE]),
-                    },
-                } : null,
-                IsVehicle4 ? {
-                    ...returnFormObject(strippedFormValues, [QUESTION_IDS.VEHICLE_4, QUESTION_IDS.VEHICLE_4_PURCHASE_DATE, QUESTION_IDS.VEHICLE_4_USAGE, QUESTION_IDS.VEHICLE_4_ANNUAL_MILES,]),
-                    "HomingDevice": false,
-                    AssignedDriverId: 1,
-                    MilesToWork: strippedFormValues[QUESTION_IDS.VEHICLE_4_ANNUAL_MILES] ? (parseInt((Number(strippedFormValues[QUESTION_IDS.VEHICLE_4_ANNUAL_MILES][0].value) / 365 / 3).toString())) : "0",
-                    CoverageInformation,
-                    GaragingAddress: {
-                        ...returnFormObject(strippedFormValues, [QUESTION_IDS.ADDRESS_LINE_1, QUESTION_IDS.CITY, QUESTION_IDS.STATE, QUESTION_IDS.ZIP_CODE, QUESTION_IDS.STATE]),
-                    },
-                } : null,
-            ].filter(vehicle => vehicle !== null),
-            "Term": "Semi Annual",
-            "PaymentMethod": "Standard",
-            "NumberOfPayments": 6,
-            "DownPaymentPercentage": 20,
-            "PolicyType": "Standard",
-            "PaperlessDiscount": false,
-            "EffectiveDate": new Date().toISOString(),
-            "CustomerDeclinedCredit": false,
-            "AllowCreditScore": false,
-            "BumpLimits": "Bump Up"
+                IsVehicle2
+                    ? {
+                          ...returnFormObject(strippedFormValues, [
+                              QUESTION_IDS.VEHICLE_2,
+                              QUESTION_IDS.VEHICLE_2_PURCHASE_DATE,
+                              QUESTION_IDS.VEHICLE_2_USAGE,
+                              QUESTION_IDS.VEHICLE_2_ANNUAL_MILES,
+                          ]),
+                          HomingDevice: false,
+                          AssignedDriverId: 1,
+                          MilesToWork: strippedFormValues[
+                              QUESTION_IDS.VEHICLE_2_ANNUAL_MILES
+                          ]
+                              ? parseInt(
+                                    (
+                                        Number(
+                                            strippedFormValues[
+                                                QUESTION_IDS
+                                                    .VEHICLE_2_ANNUAL_MILES
+                                            ][0].value,
+                                        ) /
+                                        365 /
+                                        3
+                                    ).toString(),
+                                )
+                              : "0",
+                          CoverageInformation,
+                          GaragingAddress: {
+                              ...returnFormObject(strippedFormValues, [
+                                  QUESTION_IDS.ADDRESS_LINE_1,
+                                  QUESTION_IDS.CITY,
+                                  QUESTION_IDS.STATE,
+                                  QUESTION_IDS.ZIP_CODE,
+                                  QUESTION_IDS.STATE,
+                              ]),
+                          },
+                      }
+                    : null,
+                IsVehicle3
+                    ? {
+                          ...returnFormObject(strippedFormValues, [
+                              QUESTION_IDS.VEHICLE_3,
+                              QUESTION_IDS.VEHICLE_3_PURCHASE_DATE,
+                              QUESTION_IDS.VEHICLE_3_USAGE,
+                              QUESTION_IDS.VEHICLE_3_ANNUAL_MILES,
+                          ]),
+                          HomingDevice: false,
+                          AssignedDriverId: 1,
+                          MilesToWork: strippedFormValues[
+                              QUESTION_IDS.VEHICLE_3_ANNUAL_MILES
+                          ]
+                              ? parseInt(
+                                    (
+                                        Number(
+                                            strippedFormValues[
+                                                QUESTION_IDS
+                                                    .VEHICLE_3_ANNUAL_MILES
+                                            ][0].value,
+                                        ) /
+                                        365 /
+                                        3
+                                    ).toString(),
+                                )
+                              : "0",
+                          CoverageInformation,
+                          GaragingAddress: {
+                              ...returnFormObject(strippedFormValues, [
+                                  QUESTION_IDS.ADDRESS_LINE_1,
+                                  QUESTION_IDS.CITY,
+                                  QUESTION_IDS.STATE,
+                                  QUESTION_IDS.ZIP_CODE,
+                                  QUESTION_IDS.STATE,
+                              ]),
+                          },
+                      }
+                    : null,
+                IsVehicle4
+                    ? {
+                          ...returnFormObject(strippedFormValues, [
+                              QUESTION_IDS.VEHICLE_4,
+                              QUESTION_IDS.VEHICLE_4_PURCHASE_DATE,
+                              QUESTION_IDS.VEHICLE_4_USAGE,
+                              QUESTION_IDS.VEHICLE_4_ANNUAL_MILES,
+                          ]),
+                          HomingDevice: false,
+                          AssignedDriverId: 1,
+                          MilesToWork: strippedFormValues[
+                              QUESTION_IDS.VEHICLE_4_ANNUAL_MILES
+                          ]
+                              ? parseInt(
+                                    (
+                                        Number(
+                                            strippedFormValues[
+                                                QUESTION_IDS
+                                                    .VEHICLE_4_ANNUAL_MILES
+                                            ][0].value,
+                                        ) /
+                                        365 /
+                                        3
+                                    ).toString(),
+                                )
+                              : "0",
+                          CoverageInformation,
+                          GaragingAddress: {
+                              ...returnFormObject(strippedFormValues, [
+                                  QUESTION_IDS.ADDRESS_LINE_1,
+                                  QUESTION_IDS.CITY,
+                                  QUESTION_IDS.STATE,
+                                  QUESTION_IDS.ZIP_CODE,
+                                  QUESTION_IDS.STATE,
+                              ]),
+                          },
+                      }
+                    : null,
+            ].filter((vehicle) => vehicle !== null),
+            Term: "Semi Annual",
+            PaymentMethod: "Standard",
+            NumberOfPayments: 6,
+            DownPaymentPercentage: 20,
+            PolicyType: "Standard",
+            PaperlessDiscount: false,
+            EffectiveDate: new Date().toISOString(),
+            CustomerDeclinedCredit: false,
+            AllowCreditScore: false,
+            BumpLimits: "Bump Up",
             //"BumpLimits": "No Bumping"
-        }
+        };
         //console log length of formValues
         if (process.env.NODE_ENV === "development") {
-            console.log(data)
+            console.log(data);
             //stringify data
-            console.log(JSON.stringify(data))
+            console.log(JSON.stringify(data));
         }
-        return data
+        return data;
     }
-    async function sendConfirmationEmail(quoteLink) {
+    async function sendConfirmationEmail(quoteLink: string) {
         if (!emailedOnce) {
             try {
                 const emailFormData = {
                     company: "Ai United",
-                    name: formValues[QUESTION_IDS.FIRST_NAME][0].value + " " + formValues[QUESTION_IDS.LAST_NAME][0].value,
+                    name:
+                        formValues[QUESTION_IDS.FIRST_NAME][0].value +
+                        " " +
+                        formValues[QUESTION_IDS.LAST_NAME][0].value,
                     questions: [
                         "First Name",
                         "Last Name",
                         "Phone Number",
                         "Email",
                         "Quote Link",
-                        "Time Spent on Form"
+                        "Time Spent on Form",
                     ],
                     answers: [
                         formValues[QUESTION_IDS.FIRST_NAME][0].value,
@@ -683,18 +1160,22 @@ export default function (props) {
                         msToTime(new Date().getTime() - timeStarted),
                     ],
                     formTitle: "TurboRater Auto Quote",
-                }
-                const emailResponse = await fetch(`${PATHCONSTANTS.BACKEND}/rates/email`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
+                };
+                const emailResponse = await fetch(
+                    `${PATHCONSTANTS.BACKEND}/rates/email`,
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(emailFormData),
                     },
-                    body: JSON.stringify(emailFormData)
-                })
-                await emailResponse.json()
-
-            } catch (e) { console.log(e) }
-            setEmailedOnce(true)
+                );
+                await emailResponse.json();
+            } catch (e) {
+                console.log(e);
+            }
+            setEmailedOnce(true);
         }
 
         async function uploadToSheet() {
@@ -703,21 +1184,29 @@ export default function (props) {
             //prepare data to be sent to google sheet
             //Numbering system to make sure the data is in the correct order
             const answersArray = [
-                ["Time Spent on Form", msToTime(new Date().getTime() - timeStarted)],
+                [
+                    "Time Spent on Form",
+                    msToTime(new Date().getTime() - timeStarted),
+                ],
                 ["First Name", formValues[QUESTION_IDS.FIRST_NAME][0].value],
                 ["Last Name", formValues[QUESTION_IDS.LAST_NAME][0].value],
                 ["Quote ID", QuoteId],
-                ["Phone Number", formValues[QUESTION_IDS.PHONE_NUMBER][0].value],
+                [
+                    "Phone Number",
+                    formValues[QUESTION_IDS.PHONE_NUMBER][0].value,
+                ],
                 ["Email", formValues[QUESTION_IDS.EMAIL][0].value],
                 ["Buy Online Code", ""],
                 ["Call Code", ""],
                 ["Quote Link", `=HYPERLINK("${quoteLink}")`],
-            ]
+            ];
             const formData = new FormData();
 
-
             for (let i = 0; i < answersArray.length; i++) {
-                formData.append(`${2 + i} ${i + 1} ${answersArray[i][0]}`, answersArray[i][1]);
+                formData.append(
+                    `${2 + i} ${i + 1} ${answersArray[i][0]}`,
+                    answersArray[i][1],
+                );
             }
             formData.append("SheetTitle", "TurboRater Auto Quote");
             formData.append("Spreadsheet", "Ai United");
@@ -728,9 +1217,7 @@ export default function (props) {
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify(
-                        [...formData.entries(),]
-                    ),
+                    body: JSON.stringify([...formData.entries()]),
                 })
                     .then((res) => res.json())
                     .then((data) => {
@@ -740,30 +1227,33 @@ export default function (props) {
                         console.log(error);
                     });
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
         }
-        uploadToSheet()
+        uploadToSheet();
     }
 
     async function handleSave() {
         //   console.log(data);
-        setShowResults(true)
+        setShowResults(true);
         if (process.env.NODE_ENV === "development") {
-            console.log(formValues)
+            console.log(formValues);
         }
         const completeFormData = prepareData();
         try {
-            const rateResponse = await fetch(`${PATHCONSTANTS.BACKEND2}/rates/`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
+            const rateResponse = await fetch(
+                `${PATHCONSTANTS.BACKEND2}/rates/`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(completeFormData),
                 },
-                body: JSON.stringify(completeFormData)
-            })
-            const rateData = await rateResponse.json()
+            );
+            const rateData = await rateResponse.json();
             if (process.env.NODE_ENV === "development") {
-                console.log(rateData)
+                console.log(rateData);
             }
             if (rateData.error) {
                 const emailFormData = {
@@ -771,69 +1261,81 @@ export default function (props) {
                     requestString: JSON.stringify(completeFormData),
                     company: "Ai United",
                     formTitle: "TurboRater Auto Quote",
-                    name: formValues[QUESTION_IDS.FIRST_NAME][0].value + " " + formValues[QUESTION_IDS.LAST_NAME][0].value,
-                }
+                    name:
+                        formValues[QUESTION_IDS.FIRST_NAME][0].value +
+                        " " +
+                        formValues[QUESTION_IDS.LAST_NAME][0].value,
+                };
 
                 await fetch(`${PATHCONSTANTS.BACKEND}/rates/email-error`, {
-                    method: 'POST',
+                    method: "POST",
                     headers: {
-                        'Content-Type': 'application/json'
+                        "Content-Type": "application/json",
                     },
-                    body: JSON.stringify(emailFormData)
-                })
+                    body: JSON.stringify(emailFormData),
+                });
             } else {
                 //send post to storage API
                 const storageData = {
                     requestId: rateData.requestId,
-                }
-                const storageResponse = await fetch(`${PATHCONSTANTS.BACKEND2}/storage/`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
+                };
+                const storageResponse = await fetch(
+                    `${PATHCONSTANTS.BACKEND2}/storage/`,
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(storageData),
                     },
-                    body: JSON.stringify(storageData)
-                })
-                const storageJson = await storageResponse.json()
+                );
+                const storageJson = await storageResponse.json();
                 if (storageJson.storageRequestId) {
-                    const storageGet = await fetch(`${PATHCONSTANTS.BACKEND2}/storage/?storageRequestId=${storageJson.storageRequestId}`)
-                    const storageGetJson = await storageGet.json()
+                    const storageGet = await fetch(
+                        `${PATHCONSTANTS.BACKEND2}/storage/?storageRequestId=${storageJson.storageRequestId}`,
+                    );
+                    const storageGetJson = await storageGet.json();
                     if (storageGetJson.quoteUrl) {
-                        sendConfirmationEmail(storageGetJson.quoteUrl)
+                        sendConfirmationEmail(storageGetJson.quoteUrl);
                     }
                 }
             }
         } catch (e) {
-            console.log(e)
+            console.log(e);
         }
     }
 
     function checkValidity() {
         //loop through the activeQuestionsArray
-        // check loop through formValues[i] and make sure each {valid: true} 
+        // check loop through formValues[i] and make sure each {valid: true}
         // if any are false, return false
         // if all are true, return true
-        let returnValue = true
-        let listOfErrors = [] as string[]
+        let returnValue = true;
+        let listOfErrors = [] as string[];
         for (let i = 0; i < activeQuestionsArray.length; i++) {
-            const id = activeQuestionsArray[i]
+            const id = activeQuestionsArray[i];
             if (!formValues[id]) {
-                listOfErrors.push(id)
-                returnValue = false
-                break
+                listOfErrors.push(id);
+                returnValue = false;
+                break;
             }
             //create a formValueQuestion as array
-            const formValueQuestion = formValues[id] as Array<{ questionId: string, value: string, valid: boolean }>
+            const formValueQuestion = formValues[id] as Array<{
+                questionId: string;
+                value: string;
+                valid: boolean;
+            }>;
             for (let j = 0; j < formValueQuestion.length; j++) {
                 if (!formValueQuestion[j].valid) {
-                    returnValue = false
-                    listOfErrors.push(id)
+                    returnValue = false;
+                    listOfErrors.push(id);
                 }
             }
         }
         //    console.log("Active Questions Validity: " + returnValue)
         //    console.log("Error Questions: " + listOfErrors)
-        setErrorQuestions(listOfErrors)
-        return returnValue
+        setErrorQuestions(listOfErrors);
+        return returnValue;
     }
 
     function backPageHandler() {
@@ -842,29 +1344,48 @@ export default function (props) {
         //and set the subPageIndex to 0
         //if decrementing the quotePageIndex then set the subPageIndex to the highest possible
 
-        let newSubPageIndex = subPageIndex
-        let newQuotePageIndex = quotePageIndex
-        let questionInNewPage = false
+        let newSubPageIndex = subPageIndex;
+        let newQuotePageIndex = quotePageIndex;
+        let questionInNewPage = false;
         while (!questionInNewPage) {
             if (newSubPageIndex === 0) {
-                newQuotePageIndex = newQuotePageIndex - 1
-                newSubPageIndex = props.Form.QuotePages[newQuotePageIndex].SubPages.length - 1
-                setQuotePageIndex((prev) => prev - 1)
-                setSubPageIndex((prev) => props.Form.QuotePages[newQuotePageIndex].SubPages.length - 1)
+                newQuotePageIndex = newQuotePageIndex - 1;
+                newSubPageIndex =
+                    props.Form.QuotePages[newQuotePageIndex].SubPages.length -
+                    1;
+                setQuotePageIndex((prev) => prev - 1);
+                setSubPageIndex(
+                    (prev) =>
+                        props.Form.QuotePages[newQuotePageIndex].SubPages
+                            .length - 1,
+                );
             } else {
-                newSubPageIndex = newSubPageIndex - 1
-                setSubPageIndex((prev) => prev - 1)
+                newSubPageIndex = newSubPageIndex - 1;
+                setSubPageIndex((prev) => prev - 1);
             }
             //check newest page and make sure there is atleast one question in the shownIdList if not call nextPageHandler again
-            for (let i = 0; i < props.Form.QuotePages[newQuotePageIndex]?.SubPages[newSubPageIndex]?.Questions.length; i++) {
-                if (shownIdList.includes(props.Form.QuotePages[newQuotePageIndex].SubPages[newSubPageIndex]?.Questions[i].id)) {
-                    questionInNewPage = true
+            for (
+                let i = 0;
+                i <
+                props.Form.QuotePages[newQuotePageIndex]?.SubPages[
+                    newSubPageIndex
+                ]?.Questions.length;
+                i++
+            ) {
+                if (
+                    shownIdList.includes(
+                        props.Form.QuotePages[newQuotePageIndex].SubPages[
+                            newSubPageIndex
+                        ]?.Questions[i].id,
+                    )
+                ) {
+                    questionInNewPage = true;
                 }
             }
-            if (newQuotePageIndex === 0 && newSubPageIndex === 0) questionInNewPage = true
+            if (newQuotePageIndex === 0 && newSubPageIndex === 0)
+                questionInNewPage = true;
 
-            setTimeout(() => {
-            }, 1000)
+            setTimeout(() => {}, 1000);
         }
     }
 
@@ -873,378 +1394,658 @@ export default function (props) {
         //if there isn't another subpage, go to the next quotePageIndex
         //and set the subPageIndex to 0
         setTimeout(() => {
-            window.scrollTo({ top: 0, behavior: "smooth" })
-        }, 100)
-        if (checkValidity() === false) return
-        let newSubPageIndex = subPageIndex
-        let newQuotePageIndex = quotePageIndex
-        let questionInNewPage = false
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 100);
+        if (checkValidity() === false) return;
+        let newSubPageIndex = subPageIndex;
+        let newQuotePageIndex = quotePageIndex;
+        let questionInNewPage = false;
         while (!questionInNewPage) {
-            if (props.Form.QuotePages[newQuotePageIndex]?.SubPages[newSubPageIndex]?.Questions.length - 1 > newSubPageIndex) {
-                newSubPageIndex = subPageIndex + 1
-                setSubPageIndex((prev) => prev + 1)
+            if (
+                props.Form.QuotePages[newQuotePageIndex]?.SubPages[
+                    newSubPageIndex
+                ]?.Questions.length -
+                    1 >
+                newSubPageIndex
+            ) {
+                newSubPageIndex = subPageIndex + 1;
+                setSubPageIndex((prev) => prev + 1);
             } else {
-                newQuotePageIndex = quotePageIndex + 1
-                newSubPageIndex = 0
-                setQuotePageIndex((prev) => prev + 1)
-                setSubPageIndex((prev) => 0)
+                newQuotePageIndex = quotePageIndex + 1;
+                newSubPageIndex = 0;
+                setQuotePageIndex((prev) => prev + 1);
+                setSubPageIndex((prev) => 0);
             }
             //check newest page and make sure there is atleast one question in the shownIdList if not call nextPageHandler again
-            for (let i = 0; i < props.Form.QuotePages[newQuotePageIndex]?.SubPages[newSubPageIndex]?.Questions.length; i++) {
-                if (shownIdList.includes(props.Form.QuotePages[newQuotePageIndex].SubPages[newSubPageIndex]?.Questions[i].id)) {
-                    questionInNewPage = true
-                    break
+            for (
+                let i = 0;
+                i <
+                props.Form.QuotePages[newQuotePageIndex]?.SubPages[
+                    newSubPageIndex
+                ]?.Questions.length;
+                i++
+            ) {
+                if (
+                    shownIdList.includes(
+                        props.Form.QuotePages[newQuotePageIndex].SubPages[
+                            newSubPageIndex
+                        ]?.Questions[i].id,
+                    )
+                ) {
+                    questionInNewPage = true;
+                    break;
                 }
             }
         }
-
     }
 
     useEffect(() => {
         //find quotePageIndex and subPageIndex that matches from the PAGE_FORM_VALUES
         // log the formValues
-        let maxLength = 0
+        let maxLength = 0;
 
-        function getPreviousPage(passedQuotePageIndex, passedSubPageIndex) {
+        function getPreviousPage(
+            passedQuotePageIndex: number,
+            passedSubPageIndex: number,
+        ) {
             //function to get the previous page
             //skips over pages that don't have any questions in the shownIdList just like the backPageHandler
-            if (passedQuotePageIndex === 0 && passedSubPageIndex === 0) return [-1, -1]
-            let newSubPageIndex = passedSubPageIndex
-            let newQuotePageIndex = passedQuotePageIndex
-            let questionInNewPage = false
+            if (passedQuotePageIndex === 0 && passedSubPageIndex === 0)
+                return [-1, -1];
+            let newSubPageIndex = passedSubPageIndex;
+            let newQuotePageIndex = passedQuotePageIndex;
+            let questionInNewPage = false;
             while (!questionInNewPage) {
                 if (newSubPageIndex === 0) {
-                    newQuotePageIndex = newQuotePageIndex - 1
-                    newSubPageIndex = props.Form.QuotePages[newQuotePageIndex].SubPages.length - 1
+                    newQuotePageIndex = newQuotePageIndex - 1;
+                    newSubPageIndex =
+                        props.Form.QuotePages[newQuotePageIndex].SubPages
+                            .length - 1;
                 } else {
-                    newSubPageIndex = newSubPageIndex - 1
+                    newSubPageIndex = newSubPageIndex - 1;
                 }
                 //check newest page and make sure there is atleast one question in the shownIdList if not call nextPageHandler again
-                for (let i = 0; i < props.Form.QuotePages[newQuotePageIndex]?.SubPages[newSubPageIndex]?.Questions.length; i++) {
-                    if (shownIdList.includes(props.Form.QuotePages[newQuotePageIndex].SubPages[newSubPageIndex]?.Questions[i].id)) {
-                        questionInNewPage = true
+                for (
+                    let i = 0;
+                    i <
+                    props.Form.QuotePages[newQuotePageIndex]?.SubPages[
+                        newSubPageIndex
+                    ]?.Questions.length;
+                    i++
+                ) {
+                    if (
+                        shownIdList.includes(
+                            props.Form.QuotePages[newQuotePageIndex].SubPages[
+                                newSubPageIndex
+                            ]?.Questions[i].id,
+                        )
+                    ) {
+                        questionInNewPage = true;
                     }
                 }
-                if (newQuotePageIndex === 0 && newSubPageIndex === 0) questionInNewPage = true
+                if (newQuotePageIndex === 0 && newSubPageIndex === 0)
+                    questionInNewPage = true;
             }
-            return [newQuotePageIndex, newSubPageIndex]
+            return [newQuotePageIndex, newSubPageIndex];
         }
-        function logTheValues(passedQuotePageIndex, passedSubPageIndex) {
+        function logTheValues(
+            passedQuotePageIndex: number,
+            passedSubPageIndex: number,
+        ) {
             //find if there is a quotePageIndex and subPageIndex that match the PAGE_FORM_VALUES
-            let returnValues: Array<[string, string]> = []
+            let returnValues: Array<[string, string]> = [];
             let found = false;
             for (let i = 0; i < PAGE_FORM_VALUES.length; i++) {
-                if (PAGE_FORM_VALUES[i].quotePageIndex === passedQuotePageIndex && PAGE_FORM_VALUES[i].subPageIndex === passedSubPageIndex) {
-                    maxLength = i + 1
+                if (
+                    PAGE_FORM_VALUES[i].quotePageIndex ===
+                        passedQuotePageIndex &&
+                    PAGE_FORM_VALUES[i].subPageIndex === passedSubPageIndex
+                ) {
+                    maxLength = i + 1;
                     //    console.log("Updating Max Length: " + maxLength)
-                    found = true
-                    break
+                    found = true;
+                    break;
                 }
             }
-            if (!found) return returnValues
+            if (!found) return returnValues;
             for (let i = 0; i < maxLength; i++) {
-                for (let j = 0; j < PAGE_FORM_VALUES[i].formValues.length; j++) {
-                    const id = PAGE_FORM_VALUES[i].formValues[j].value
+                for (
+                    let j = 0;
+                    j < PAGE_FORM_VALUES[i].formValues.length;
+                    j++
+                ) {
+                    const id = PAGE_FORM_VALUES[i].formValues[j].value;
                     if (formValues[id]) {
                         for (let k = 0; k < formValues[id].length; k++) {
-
-                            let value
+                            let value;
 
                             if (PAGE_FORM_VALUES[i].formValues[j].json) {
-                                value = JSON.stringify(formValues[id][k].value)
+                                value = JSON.stringify(formValues[id][k].value);
                             } else {
-                                value = formValues[id][k].value
+                                value = formValues[id][k].value;
                             }
 
                             if (PAGE_FORM_VALUES[i].useQuestionID) {
-                                returnValues.push([`${PAGE_FORM_VALUES[i].formValues[j].question} ${formValues[id][k].questionId}`, value])
+                                returnValues.push([
+                                    `${PAGE_FORM_VALUES[i].formValues[j].question} ${formValues[id][k].questionId}`,
+                                    value,
+                                ]);
                             } else {
-                                returnValues.push([`${PAGE_FORM_VALUES[i].formValues[j].question}`, value])
+                                returnValues.push([
+                                    `${PAGE_FORM_VALUES[i].formValues[j].question}`,
+                                    value,
+                                ]);
                             }
                         }
                     } else {
                         //console.log("Form Value Not Found: " + id)
                         // loop through Page_Form_Values backupIds and add the value to returnValues with empty string
-                        if (PAGE_FORM_VALUES[i].formValues[j].skipIfNull) continue
+                        if (PAGE_FORM_VALUES[i].formValues[j].skipIfNull)
+                            continue;
 
-                        if (PAGE_FORM_VALUES[i].formValues[j].backupIds === undefined) continue
+                        if (
+                            PAGE_FORM_VALUES[i].formValues[j].backupIds ===
+                            undefined
+                        )
+                            continue;
 
-                        const backupIds = PAGE_FORM_VALUES[i].formValues[j].backupIds as string[] ?? []
+                        const backupIds =
+                            (PAGE_FORM_VALUES[i].formValues[j]
+                                .backupIds as string[]) ?? [];
 
                         for (let k = 0; k < backupIds.length; k++) {
-                            returnValues.push([`${PAGE_FORM_VALUES[i].formValues[j].question} ${backupIds[k]}`, " "])
+                            returnValues.push([
+                                `${PAGE_FORM_VALUES[i].formValues[j].question} ${backupIds[k]}`,
+                                " ",
+                            ]);
                         }
                     }
                 }
             }
-            return returnValues
+            return returnValues;
         }
         try {
-            const previousPage = getPreviousPage(quotePageIndex, subPageIndex)
+            const previousPage = getPreviousPage(quotePageIndex, subPageIndex);
 
-            const returnedValues = logTheValues(previousPage[0], previousPage[1])
+            const returnedValues = logTheValues(
+                previousPage[0],
+                previousPage[1],
+            );
             //  console.log("Max Length: " + maxLength)
-            if (previousPage[0] === -1) return
-            if (formValues[QUESTION_IDS.FIRST_NAME][0]?.value === "test" && formValues[QUESTION_IDS.LAST_NAME][0]?.value === "test") return
+            if (previousPage[0] === -1) return;
+            if (
+                formValues[QUESTION_IDS.FIRST_NAME][0]?.value === "test" &&
+                formValues[QUESTION_IDS.LAST_NAME][0]?.value === "test"
+            )
+                return;
 
             //if there isn't anything at maxLength return
-            if (PAGE_FORM_VALUES[maxLength - 1] === undefined) return
-            const newFormData = new FormData()
+            if (PAGE_FORM_VALUES[maxLength - 1] === undefined) return;
+            const newFormData = new FormData();
 
             const sheetData: [string, string][] = [];
             const moreData = [
                 ["Time Stamp", new Date().toLocaleString()],
-                ["Time Spent on Form", msToTime(new Date().getTime() - timeStarted)],
-                ["Time Spent on Page", msToTime(new Date().getTime() - timeSpentOnPageTracker)]
+                [
+                    "Time Spent on Form",
+                    msToTime(new Date().getTime() - timeStarted),
+                ],
+                [
+                    "Time Spent on Page",
+                    msToTime(new Date().getTime() - timeSpentOnPageTracker),
+                ],
             ];
-            setTimeSpentOnPageTracker(new Date().getTime())
+            setTimeSpentOnPageTracker(new Date().getTime());
             console.log("Max Length: " + maxLength);
             console.log("Page Form Values Length: " + PAGE_FORM_VALUES.length);
             for (let i = 0; i < moreData.length; i++) {
                 sheetData.push([`${i} ${moreData[i][0]}`, moreData[i][1]]);
             }
             for (let i = 0; i < returnedValues.length; i++) {
-                sheetData.push([`${i + moreData.length} ${returnedValues[i][0]}`, returnedValues[i][1]])
+                sheetData.push([
+                    `${i + moreData.length} ${returnedValues[i][0]}`,
+                    returnedValues[i][1],
+                ]);
             }
 
             const quoteProgressData = {
-                "Company": "Ai United",
-                "SheetTitle": PAGE_FORM_VALUES[maxLength - 1].sheettitle,
-                "finishedQuote": maxLength === PAGE_FORM_VALUES.length ? "true" : "false",
-                sheetData
-            }
+                Company: "Ai United",
+                SheetTitle: PAGE_FORM_VALUES[maxLength - 1].sheettitle,
+                finishedQuote:
+                    maxLength === PAGE_FORM_VALUES.length ? "true" : "false",
+                sheetData,
+            };
 
             fetch(`${PATHCONSTANTS.BACKEND}/rates/unfinished-quote`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(
-                    quoteProgressData
-                ),
+                body: JSON.stringify(quoteProgressData),
             })
                 .then((res) => res.json())
-                .then((data) => {
-                })
+                .then((data) => {})
                 .catch((error) => {
                     console.log(error);
                 });
         } catch (e) {
-            console.log(e)
+            console.log(e);
         }
-    }, [farthestPage])
+    }, [farthestPage]);
 
     useEffect(() => {
         //check farthest page for GTM purposes
 
-        let isFarthestPage = false
+        let isFarthestPage = false;
         if (quotePageIndex > farthestPage[0]) {
-            isFarthestPage = true
+            isFarthestPage = true;
         }
         if (isFarthestPage) {
-            let newFarthestPage = [quotePageIndex, farthestPage[1]]
+            let newFarthestPage = [quotePageIndex, farthestPage[1]];
             //   setFarthestPage(newFarthestPage)
             if (newFarthestPage[0] === props.Form.QuotePages.length) {
-                const eventName = `AutoQuote`
-                GTMEventHandler(`${GTMEVENTS.conversion}-TR-Auto`, { 'name': eventName })
-                fbq.event(eventName)
-                ttq.event(eventName)
+                const eventName = `AutoQuote`;
+                GTMEventHandler(`${GTMEVENTS.conversion}-TR-Auto`, {
+                    name: eventName,
+                });
+                fbq.event(eventName);
+                ttq.event(eventName);
             } else {
-                GTMEventHandler(`${GTMEVENTS.audience}-TR-Auto-${(navigationIcons[newFarthestPage[0]] as { title: { en: string } }).title.en}-reached`, { 'name': `Auto-Quote` })
+                GTMEventHandler(
+                    `${GTMEVENTS.audience}-TR-Auto-${
+                        (
+                            navigationIcons[newFarthestPage[0]] as {
+                                title: { en: string };
+                            }
+                        ).title.en
+                    }-reached`,
+                    { name: `Auto-Quote` },
+                );
             }
         }
-        let newFarthestPage
+        let newFarthestPage;
         if (isFarthestPage) {
-            newFarthestPage = [quotePageIndex, 0]
-            setFarthestPage(newFarthestPage)
+            newFarthestPage = [quotePageIndex, 0];
+            setFarthestPage(newFarthestPage);
         } else {
-            if (subPageIndex > farthestPage[1] && quotePageIndex === farthestPage[0]) {
-                newFarthestPage = [quotePageIndex, subPageIndex]
-                setFarthestPage(newFarthestPage)
+            if (
+                subPageIndex > farthestPage[1] &&
+                quotePageIndex === farthestPage[0]
+            ) {
+                newFarthestPage = [quotePageIndex, subPageIndex];
+                setFarthestPage(newFarthestPage);
             }
         }
-    }, [quotePageIndex, subPageIndex])
+    }, [quotePageIndex, subPageIndex]);
     //when the shownIdList changes, or the subPageIndex changes, or the quotePageIndex changes, update the activeQuestionsArray to contain the question ids
     // only add the question ids that are in the shownIdList and the subPageIndex
     useEffect(() => {
-        const activeQuestionsArray = [] as string[]
+        const activeQuestionsArray = [] as string[];
         for (let i = 0; i < props.Form.QuotePages.length; i++) {
             if (i === quotePageIndex) {
-                for (let j = 0; j < props.Form.QuotePages[i].SubPages.length; j++) {
+                for (
+                    let j = 0;
+                    j < props.Form.QuotePages[i].SubPages.length;
+                    j++
+                ) {
                     if (j === subPageIndex) {
-                        const activePageQuestions = props.Form.QuotePages[i].SubPages[j].Questions as Array<{ id: string }>
+                        const activePageQuestions = props.Form.QuotePages[i]
+                            .SubPages[j].Questions as Array<{ id: string }>;
                         activePageQuestions.forEach((question) => {
-                            const questionId = question.id as string
+                            const questionId = question.id as string;
                             if (shownIdList.includes(questionId)) {
-                                activeQuestionsArray.push(questionId)
+                                activeQuestionsArray.push(questionId);
                             }
-                        })
+                        });
                     }
                 }
             }
         }
         // using the activeQuestionsArray log the values from formValues
-        setActiveQuestionsArray(activeQuestionsArray)
-    }, [shownIdList, subPageIndex, quotePageIndex])
+        setActiveQuestionsArray(activeQuestionsArray);
+    }, [shownIdList, subPageIndex, quotePageIndex]);
 
     useEffect(() => {
-        function calculateMoney(dollarsPerYear, years) {
+        function calculateMoney(dollarsPerYear: number, years: number) {
             let total = 0;
             for (let i = 0; i < years; i++) {
                 total += dollarsPerYear;
                 total += total * 0.1;
             }
-            const results = [total, total * .04 / 12]
+            const results = [total, (total * 0.04) / 12];
             return results;
         }
         if (process.env.NODE_ENV === "development") {
-            const salary = 75000
-            const investmentPerYear = salary * .2
-            console.log(investmentPerYear)
-            console.log(((salary / 1.1875) - 15000) / 12)
-            console.log(calculateMoney(investmentPerYear, 25))
+            const salary = 75000;
+            const investmentPerYear = salary * 0.2;
+            console.log(investmentPerYear);
+            console.log((salary / 1.1875 - 15000) / 12);
+            console.log(calculateMoney(investmentPerYear, 25));
         }
-    }, [])
+    }, []);
 
-    return <>
-        {quotePageIndex < props.Form.QuotePages.length
-            && <Box
-                sx={{
-                    minHeight: "80vh",
-                    display: "flex", flexDirection: "column", justifyContent: "space-between",
-                }}
-            >
-                <Box>
-                    {quotePageIndex <= props.Form.QuotePages.length - 1 &&
-                        <>
+    return (
+        <>
+            {quotePageIndex < props.Form.QuotePages.length && (
+                <Box
+                    sx={{
+                        minHeight: "80vh",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                    }}
+                >
+                    <Box>
+                        {quotePageIndex <= props.Form.QuotePages.length - 1 && (
+                            <>
+                                <Box
+                                    sx={{
+                                        display: "flex",
+                                        justifyContent: "space-around",
+                                        gap: "1rem",
+                                        width: "50%",
+                                        margin: "1rem auto",
+                                    }}
+                                >
+                                    {navigationIcons.map(
+                                        (
+                                            page: {
+                                                title: {
+                                                    [lang: string]: string;
+                                                };
+                                                gray: StaticImageData;
+                                                color: StaticImageData;
+                                            },
+                                            i,
+                                        ) => {
+                                            return (
+                                                <Box
+                                                    key={i}
+                                                    sx={{
+                                                        display: "flex",
+                                                        justifyContent:
+                                                            "center",
+                                                        alignItems: "center",
+                                                        flexDirection: "column",
+                                                        cursor:
+                                                            quotePageIndex >= i
+                                                                ? "pointer"
+                                                                : "not-allowed",
+                                                    }}
+                                                    onClick={() => {
+                                                        if (
+                                                            quotePageIndex >= i
+                                                        ) {
+                                                            setQuotePageIndex(
+                                                                i,
+                                                            );
+                                                            setSubPageIndex(0);
+                                                        }
+                                                    }}
+                                                >
+                                                    <Box
+                                                        sx={{
+                                                            height: "3rem",
+                                                            width: "3rem",
+                                                            position:
+                                                                "relative",
+                                                        }}
+                                                    >
+                                                        <Image
+                                                            fill
+                                                            style={{
+                                                                objectFit:
+                                                                    "contain",
+                                                            }}
+                                                            src={
+                                                                quotePageIndex <
+                                                                i
+                                                                    ? page.gray
+                                                                    : page.color
+                                                            }
+                                                            alt={page.title.en}
+                                                        />
+                                                    </Box>
+                                                    <Typography variant="subtitle1">
+                                                        {returnLocaleText(
+                                                            page.title,
+                                                        )}
+                                                    </Typography>
+                                                </Box>
+                                            );
+                                        },
+                                    )}
+                                </Box>
+                            </>
+                        )}
+
+                        {props.Form.QuotePages.map((page, pageIndex) => {
+                            if (pageIndex !== quotePageIndex) return null;
+                            return (
+                                <React.Fragment key={pageIndex}>
+                                    {page.SubPages?.map((subPage, subIndex) => {
+                                        if (subIndex !== subPageIndex)
+                                            return null;
+                                        return (
+                                            <Box key={subIndex}>
+                                                {subPage.Questions?.map(
+                                                    (question) => {
+                                                        if (
+                                                            !shownIdList.includes(
+                                                                question.id,
+                                                            )
+                                                        )
+                                                            return null;
+                                                        return (
+                                                            <Box
+                                                                key={
+                                                                    question.id
+                                                                }
+                                                            >
+                                                                <Question
+                                                                    addIdToList={
+                                                                        addIdToList
+                                                                    }
+                                                                    removeIdFromList={
+                                                                        removeIdFromList
+                                                                    }
+                                                                    {...question}
+                                                                    updateFormValues={
+                                                                        updateFormValues
+                                                                    }
+                                                                    defaultValue={
+                                                                        showDefaultValues
+                                                                            ? formValues[
+                                                                                  question
+                                                                                      .id
+                                                                              ] !==
+                                                                              undefined
+                                                                                ? formValues[
+                                                                                      question
+                                                                                          .id
+                                                                                  ][0]
+                                                                                      .value
+                                                                                : question.defaultValue
+                                                                            : formValues[
+                                                                                  question
+                                                                                      .id
+                                                                              ] !==
+                                                                              undefined
+                                                                            ? formValues[
+                                                                                  question
+                                                                                      .id
+                                                                              ][0]
+                                                                                  .value
+                                                                            : undefined
+                                                                    }
+                                                                    buttonAddIdToList={
+                                                                        buttonAddIdToList
+                                                                    }
+                                                                    shownIdList={
+                                                                        shownIdList
+                                                                    }
+                                                                    formValues={
+                                                                        formValues
+                                                                    }
+                                                                    passedError={errorQuestions.includes(
+                                                                        question.id,
+                                                                    )}
+                                                                    clearError={() => {
+                                                                        setErrorQuestions(
+                                                                            (
+                                                                                prev,
+                                                                            ) =>
+                                                                                prev.filter(
+                                                                                    (
+                                                                                        item,
+                                                                                    ) =>
+                                                                                        item !==
+                                                                                        question.id,
+                                                                                ),
+                                                                        );
+                                                                    }}
+                                                                />
+                                                            </Box>
+                                                        );
+                                                    },
+                                                )}
+                                            </Box>
+                                        );
+                                    })}
+                                </React.Fragment>
+                            );
+                        })}
+                    </Box>
+                    {quotePageIndex < props.Form.QuotePages.length && (
+                        <Box>
                             <Box
-                                sx={{ display: "flex", justifyContent: "space-around", gap: "1rem", width: "50%", margin: "1rem auto" }}
+                                sx={{
+                                    display: "flex",
+                                    justifyContent: "space-around",
+                                    gap: "1rem",
+                                    width: "100%",
+                                    margin: "2rem auto",
+                                }}
                             >
-                                {navigationIcons.map((page: {
-                                    title: { [lang: string]: string; };
-                                    gray: StaticImageData;
-                                    color: StaticImageData;
-                                }, i) => {
-                                    return <Box key={i}
-                                        sx={{
-                                            display: "flex",
-                                            justifyContent: "center",
-                                            alignItems: "center",
-                                            flexDirection: "column",
-                                            cursor: quotePageIndex >= i ? "pointer" : "not-allowed",
-                                        }}
+                                {quotePageIndex !==
+                                    props.Form.QuotePages.length && (
+                                    <Button
                                         onClick={() => {
-                                            if (quotePageIndex >= i) {
-                                                setQuotePageIndex(i)
-                                                setSubPageIndex(0)
-                                            }
+                                            backPageHandler();
                                         }}
+                                        disabled={
+                                            quotePageIndex === 0 &&
+                                            subPageIndex === 0
+                                        }
+                                        variant="outlined"
+                                        color="secondary"
                                     >
+                                        {returnLocaleText(TEXT.back)}
+                                    </Button>
+                                )}
+                                {quotePageIndex !==
+                                    props.Form.QuotePages.length &&
+                                    !(
+                                        quotePageIndex ===
+                                            props.Form.QuotePages.length - 1 &&
+                                        subPageIndex ===
+                                            props.Form.QuotePages[
+                                                quotePageIndex
+                                            ].SubPages.length -
+                                                1
+                                    ) && (
+                                        <Button
+                                            onClick={() => {
+                                                nextPageHandler();
+                                            }}
+                                            variant="contained"
+                                            disabled={
+                                                quotePageIndex ===
+                                                props.Form.QuotePages.length
+                                            }
+                                        >
+                                            {returnLocaleText(TEXT.next)}
+                                        </Button>
+                                    )}
+                                {quotePageIndex ===
+                                    props.Form.QuotePages.length - 1 &&
+                                    subPageIndex ===
+                                        props.Form.QuotePages[quotePageIndex]
+                                            .SubPages.length -
+                                            1 && (
+                                        <Button
+                                            sx={{}}
+                                            onClick={() => {
+                                                window.scrollTo(0, 0);
+                                                if (checkValidity() === false) {
+                                                    return;
+                                                }
+                                                //     console.log("SUBMITTING")
+                                                setQuotePageIndex(
+                                                    (prev) => prev + 1,
+                                                );
+                                                //      setFarthestPage([props.Form.QuotePages.length, 0])
+                                                handleSave();
+                                            }}
+                                            variant="contained"
+                                        >
+                                            {returnLocaleText(TEXT.submit)}
+                                        </Button>
+                                    )}
+                            </Box>
+                            <>
+                                {DEFAULTS.showDefaultsButton &&
+                                    !showDefaultValues &&
+                                    !showResults && (
                                         <Box
                                             sx={{
-                                                height: "3rem",
-                                                width: "3rem",
-                                                position: "relative",
+                                                display: "flex",
+                                                justifyContent: "center",
+                                                gap: "1rem",
+                                                margin: "1rem auto",
                                             }}
                                         >
-                                            <Image fill style={{ objectFit: "contain" }} src={quotePageIndex < i ? page.gray : page.color} alt={page.title.en} />
+                                            {!showResults && (
+                                                <Button
+                                                    onClick={() =>
+                                                        setShowDefaultValues(
+                                                            !showDefaultValues,
+                                                        )
+                                                    }
+                                                    disabled={showDefaultValues}
+                                                >
+                                                    Add Default Input Values
+                                                </Button>
+                                            )}
                                         </Box>
-                                        <Typography variant="subtitle1">{returnLocaleText(page.title)}</Typography>
-                                    </Box>
-                                })}
-                            </Box>
-                        </>}
-
-                    {props.Form.QuotePages.map((page, pageIndex) => {
-                        if (pageIndex !== quotePageIndex) return null;
-                        return <React.Fragment key={pageIndex}
-                        >
-                            {page.SubPages?.map((subPage, subIndex) => {
-                                if (subIndex !== subPageIndex) return null;
-                                return <Box key={subIndex}>
-                                    {subPage.Questions?.map((question) => {
-                                        if (!shownIdList.includes(question.id)) return null;
-                                        return <Box key={question.id}>
-                                            <Question addIdToList={addIdToList} removeIdFromList={removeIdFromList} {...question}
-                                                updateFormValues={updateFormValues}
-                                                defaultValue={showDefaultValues ? (formValues[question.id] !== undefined ? formValues[question.id][0].value : question.defaultValue) : (formValues[question.id] !== undefined ? formValues[question.id][0].value : undefined)}
-                                                buttonAddIdToList={buttonAddIdToList}
-                                                shownIdList={shownIdList}
-                                                formValues={formValues}
-                                                passedError={errorQuestions.includes(question.id)}
-                                                clearError={() => {
-                                                    setErrorQuestions((prev) => prev.filter((item) => item !== question.id))
-                                                }}
-                                            />
-                                        </Box>
-                                    })}
-                                </Box>
-                            })}
-                        </React.Fragment>
-                    })}
+                                    )}
+                            </>
+                        </Box>
+                    )}
                 </Box>
-                {quotePageIndex < props.Form.QuotePages.length && <Box>
-                    <Box
-                        sx={{ display: "flex", justifyContent: "space-around", gap: "1rem", width: "100%", margin: "2rem auto" }}
-                    >
-                        {quotePageIndex !== props.Form.QuotePages.length && <Button onClick={() => { backPageHandler() }}
-                            disabled={quotePageIndex === 0 && subPageIndex === 0}
-                            variant="outlined" color="secondary"
-                        >{returnLocaleText(TEXT.back)}
-                        </Button>}
-                        {quotePageIndex !== props.Form.QuotePages.length &&
-                            !(quotePageIndex === props.Form.QuotePages.length - 1 && subPageIndex === props.Form.QuotePages[quotePageIndex].SubPages.length - 1
-                            ) && <Button onClick={() => { nextPageHandler() }}
-                                variant="contained"
-                                disabled={quotePageIndex === props.Form.QuotePages.length}
-                            >
-                                {returnLocaleText(TEXT.next)}
-                            </Button>}
-                        {(quotePageIndex === props.Form.QuotePages.length - 1 && subPageIndex === props.Form.QuotePages[quotePageIndex].SubPages.length - 1
-                        ) && <Button
-                            sx={{
-                            }}
-                            onClick={() => {
-                                window.scrollTo(0, 0)
-                                if (checkValidity() === false) {
-                                    return
-                                }
-                                //     console.log("SUBMITTING")
-                                setQuotePageIndex((prev) => prev + 1)
-                                //      setFarthestPage([props.Form.QuotePages.length, 0])
-                                handleSave()
-                            }}
-                            variant="contained"
-                        >{returnLocaleText(TEXT.submit)}</Button>}
-                    </Box>
-                    <>
-                        {(DEFAULTS.showDefaultsButton && (!showDefaultValues && !showResults)) && <Box
-                            sx={{ display: "flex", justifyContent: "center", gap: "1rem", margin: "1rem auto" }}
-                        >
-                            {
-                                !showResults && <Button onClick={() => setShowDefaultValues(!showDefaultValues)}
-                                    disabled={showDefaultValues}
-                                >Add Default Input Values</Button>
-                            }
-                        </Box>}
-                    </>
-                </Box>}
-            </Box >}
+            )}
 
-
-        <AutoResults id={showResults ? QuoteId :
-            //"858433cb-fdb2-49cc-8237-64b095833e35"
-            //            "858433cb-fdb-49cc-8237-64b095833e35"
-            undefined
-        }
-            name={formValues[QUESTION_IDS.FIRST_NAME] ? formValues[QUESTION_IDS.FIRST_NAME][0].value : "John"}
-            // disableLoading
-            goBack={() => {
-                setShowResults(false)
-                setQuotePageIndex((prev) => prev - 1)
-            }}
-            sendConfirmationEmail={sendConfirmationEmail}
-        // "511a63bf-da44-4dca-8234-47929da63a67"} 
-        />
-    </>
+            <AutoResults
+                id={
+                    showResults
+                        ? QuoteId
+                        : //"858433cb-fdb2-49cc-8237-64b095833e35"
+                          //            "858433cb-fdb-49cc-8237-64b095833e35"
+                          undefined
+                }
+                name={
+                    formValues[QUESTION_IDS.FIRST_NAME]
+                        ? formValues[QUESTION_IDS.FIRST_NAME][0].value
+                        : "John"
+                }
+                // disableLoading
+                goBack={() => {
+                    setShowResults(false);
+                    setQuotePageIndex((prev) => prev - 1);
+                }}
+                sendConfirmationEmail={sendConfirmationEmail}
+                // "511a63bf-da44-4dca-8234-47929da63a67"}
+            />
+        </>
+    );
 }

@@ -1,15 +1,17 @@
-import { Box, Typography } from "@mui/material"
-import { returnLocaleText } from "../locale/LocaleSwitcher"
-import Image from "next/image"
-import { useState } from "react"
+import { Box, Typography } from "@mui/material";
+import { returnLocaleText } from "../locale/LocaleSwitcher";
+import Image, { StaticImageData } from "next/image";
+import { useState } from "react";
 
 const classes = {
     root: {
         width: { xs: "100%", sm: "90%", md: "80%", lg: "80%" },
         margin: "auto",
-        display: "flex", justifyContent: "space-between",
+        display: "flex",
+        justifyContent: "space-between",
         flexDirection: { xs: "column", md: "row" },
-        gap: "2rem", alignItems: "center",
+        gap: "2rem",
+        alignItems: "center",
     },
     contentItem: {
         border: "1px solid #cacaca",
@@ -21,67 +23,95 @@ const classes = {
         minWidth: "100%",
         minHeight: "100%",
         position: "absolute",
-        top: 0, left: 0,
+        top: 0,
+        left: 0,
         zIndex: 2,
         backgroundColor: "primary.main",
-        transition: 'opacity 0.5s', // Add opacity transition
+        transition: "opacity 0.5s", // Add opacity transition
     },
     imageHover: {
-        opacity: .15,
+        opacity: 0.15,
         //transform: 'opacity 0.3s',
     },
-}
-function BorderBoxContent(props) {
-    const [hover, setHover] = useState(false)
-    return <>
-        <Box
-            sx={{
-                ...classes.contentItem
-            }}
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
-        >
-            <Box sx={{ position: "relative" }}>
-                <Box
-                    sx={hover ? { ...classes.imageColor, ...classes.imageHover } : { ...classes.imageColor }}
-                ></Box>
-                <Box
-                    sx={{
-                        position: "relative",
-                        width: "100%", minHeight: "13rem",
-                    }}
-                >
-                    <Image fill style={{
-                        objectFit: "contain",
-                        padding: ".5rem"
-                    }} src={props.img.src} alt={props.img.alt} />
-                </Box>
-            </Box>
+};
+function BorderBoxContent(props: {
+    title: { [key: string]: string };
+    body: { [key: string]: string };
+    img: {
+        src: StaticImageData;
+        alt: string;
+    };
+}) {
+    const [hover, setHover] = useState(false);
+    return (
+        <>
             <Box
                 sx={{
-                    borderTop: "1px solid #cacaca",
-                    padding: "1rem"
+                    ...classes.contentItem,
                 }}
+                onMouseEnter={() => setHover(true)}
+                onMouseLeave={() => setHover(false)}
             >
-                <Typography variant="h6"
-                    fontWeight={600}
+                <Box sx={{ position: "relative" }}>
+                    <Box
+                        sx={
+                            hover
+                                ? {
+                                      ...classes.imageColor,
+                                      ...classes.imageHover,
+                                  }
+                                : { ...classes.imageColor }
+                        }
+                    ></Box>
+                    <Box
+                        sx={{
+                            position: "relative",
+                            width: "100%",
+                            minHeight: "13rem",
+                        }}
+                    >
+                        <Image
+                            fill
+                            style={{
+                                objectFit: "contain",
+                                padding: ".5rem",
+                            }}
+                            src={props.img.src}
+                            alt={props.img.alt}
+                        />
+                    </Box>
+                </Box>
+                <Box
+                    sx={{
+                        borderTop: "1px solid #cacaca",
+                        padding: "1rem",
+                    }}
                 >
-
-                    {returnLocaleText(props.title)}
-                </Typography>
-                <Typography variant="body1">
-                    {returnLocaleText(props.body)}
-                </Typography>
+                    <Typography variant="h6" fontWeight={600}>
+                        {returnLocaleText(props.title)}
+                    </Typography>
+                    <Typography variant="body1">
+                        {returnLocaleText(props.body)}
+                    </Typography>
+                </Box>
             </Box>
-        </Box>
-    </>
+        </>
+    );
 }
-export default function (props) {
-    return <>
-        <Box sx={{ ...classes.root }} >
-            {props.content.map((item, index) => {
-                return <BorderBoxContent key={index} {...item} />
-            })}
-        </Box>
-    </>
+export default function (props: {
+    content: {
+        title: { [key: string]: string };
+        body: { [key: string]: string };
+        img: { src: StaticImageData; alt: string };
+    }[];
+}) {
+    return (
+        <>
+            <Box sx={{ ...classes.root }}>
+                {props.content.map((item, index) => {
+                    return <BorderBoxContent key={index} {...item} />;
+                })}
+            </Box>
+        </>
+    );
 }
