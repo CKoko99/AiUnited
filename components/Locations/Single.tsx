@@ -20,7 +20,7 @@ interface Marker {
     city?: string;
     state?: string;
     zip?: string;
-    distance?: string;
+    distance?: number;
     phone?: string;
 }
 

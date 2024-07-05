@@ -1,91 +1,96 @@
-import Article from "@/components/Articles/Article"
-import ArticleTitle from "@/components/Articles/ArticleTitle"
-import HeadComponent from "@/components/Head"
-import { Box, Typography } from "@mui/material"
-import PATHCONSTANTS from "constants/sitemap"
-import Link from "next/link"
-import { GetAllArticles, GetArticle } from "pages/api/GetArticles"
+import Article from "@/components/Articles/Article";
+import HeadComponent from "@/components/Head";
+import PATHCONSTANTS from "constants/sitemap";
+import { GetServerSidePropsContext } from "next";
+import {
+    ArticleContentSectionInterface,
+    ArticleDetailsInterface,
+    ArticleInterface,
+    GetAllArticles,
+    GetArticle,
+} from "api/GetArticles";
 
-
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
     try {
-        const { id } = context.params
-        const articleResponse = await GetArticle(id, context.req.headers.referer)
-        const allArticlesResponse = await GetAllArticles()
-        const { articleData, articleContent } = articleResponse.props
+        const id = String(context.params.id);
+        const articleResponse = await GetArticle(
+            id,
+            context.req.headers.referer,
+        );
+        const { articleData, articleContent } = articleResponse.props;
+        const allArticlesResponse = await GetAllArticles();
         //filter out the current article from the list of all articles
-        allArticlesResponse.props.data = allArticlesResponse.props.data.filter((item) => {
-            return item.id !== articleData.id
-        })
+        allArticlesResponse.props.data = allArticlesResponse.props.data.filter(
+            (item) => {
+                return item.id !== articleData.id;
+            },
+        );
         //console.log(allArticlesResponse.props.data)
         //filter out all articles that are not in the same category
-        const relatedArticles = allArticlesResponse.props.data.filter((item) => {
-            return item.attributes.Category === articleData.attributes.Category
-        })
+        const relatedArticles = allArticlesResponse.props.data.filter(
+            (item) => {
+                return (
+                    item.attributes.Category === articleData.attributes.Category
+                );
+            },
+        );
         //console.log(relatedArticles)
         return {
             props: {
                 articleData: articleData,
                 articleContent: articleContent,
-                relatedArticles: relatedArticles
-            }
-        }
+                relatedArticles: relatedArticles,
+            },
+        };
     } catch (err) {
-        console.log(err)
+        console.log(err);
         return {
-            props: {
-                articleData: {},
-                articleContent: [],
-                relatedArticles: []
-            }
-        }
+            redirect: {
+                destination: PATHCONSTANTS.ARTICLES.INDEX,
+                permanent: false,
+            },
+        };
     }
 }
 
-
-export default function (props) {
-    const { articleData, articleContent, relatedArticles, updatedAt } = props
+export default function ({
+    articleData,
+    articleContent,
+    relatedArticles,
+}: {
+    articleData: ArticleDetailsInterface;
+    articleContent: ArticleContentSectionInterface[];
+    relatedArticles: ArticleInterface[];
+}) {
     // console.log(props.articleData.data.attributes.ArticleContent)
-    const ArticleNotFound = articleData.attributes === undefined || articleContent.length < 0
+
     //   console.log(articleData.attributes.updatedAt)
     //2024-01-03T18:55:54.569Z
-    const updatedDate = new Date(articleData.attributes.updatedAt)
+    const updatedDate = new Date(articleData.attributes.updatedAt);
     const date = {
         month: updatedDate.getMonth(),
         day: updatedDate.getDate(),
-        year: updatedDate.getFullYear()
-    }
+        year: updatedDate.getFullYear(),
+    };
     const articleTitle = {
-        title: ArticleNotFound ? {} : articleData.attributes.Title,
-        summary: ArticleNotFound ? {} : articleData.attributes.Summary,
-    }
+        title: articleData.attributes.Title,
+        summary: articleData.attributes.Summary,
+    };
 
-    return <>
-        {ArticleNotFound ?
-            <Box
-                sx={{ textAlign: "center" }}
-            >
-                <Typography variant="h4">
-                    Article Not Found
-                </Typography>
-                <Link href={PATHCONSTANTS.ARTICLES.INDEX}>
-                    <Typography variant="h6"
-                        sx={{ color: "blue", cursor: "pointer" }}
-                    >
-                        Return to Articles
-                    </Typography>
-                </Link>
-            </Box>
-            : <>
-                <HeadComponent
-                    title={articleData.attributes.Title.en} metaData={articleData.attributes.Summary.en}
-                />
-                <Article articleTitle={articleTitle} summary={articleData.attributes.Summary}
-                    date={date} category={articleData.attributes.Category}
-                    articleContent={articleContent} relatedArticles={relatedArticles}
-                    thumbnail={articleData.attributes.Thumbnail.data.attributes.url}
-                />
-            </>
-        }
-    </>
+    return (
+        <>
+            <HeadComponent
+                title={articleData.attributes.Title.en}
+                metaData={articleData.attributes.Summary.en}
+            />
+            <Article
+                articleTitle={articleTitle}
+                date={date}
+                category={articleData.attributes.Category}
+                articleContent={articleContent}
+                relatedArticles={relatedArticles}
+                thumbnail={articleData.attributes.Thumbnail.data.attributes.url}
+            />
+        </>
+    );
 }

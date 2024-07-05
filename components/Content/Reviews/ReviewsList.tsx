@@ -1,31 +1,32 @@
 import { Box, Button, Typography } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react"
-import { Lang } from "../../locale/LocaleSwitcher";
+import { useState } from "react";
+import { Lang, returnLocaleText } from "../../locale/LocaleSwitcher";
 import theme, { CustomFonts } from "../../../providers/theme";
 import TextSection from "../TextSection";
-import StarRateIcon from '@mui/icons-material/StarRate';
+import StarRateIcon from "@mui/icons-material/StarRate";
 
 const text = {
     title: {
         en: "Read Our Reviews",
-        es: "Lea Nuestras Reseñas"
+        es: "Lea Nuestras Reseñas",
     },
     readFull: {
         en: "Read Full Review",
-        es: "Leer Reseña Completa"
+        es: "Leer Reseña Completa",
     },
     showMore: {
         en: "Show More",
-        es: "Mostrar Más"
+        es: "Mostrar Más",
     },
-}
+};
 interface ReviewsListProps {
     reviews: {
-        body: { [lang: string]: string; };
+        body: { [lang: string]: string };
         author: string;
         reviewLink: string;
+        title: { [lang: string]: string };
     }[];
 }
 const classes = {
@@ -60,121 +61,148 @@ const classes = {
         justifyContent: "space-between",
         display: "flex",
         flexDirection: "column",
-        flex: "1"
+        flex: "1",
     },
     initials: {
-        marginTop: "-0.25rem", color: "white",
-        fontFamily: CustomFonts.Gustavo, fontWeight: "bold"
-    }
-}
+        marginTop: "-0.25rem",
+        color: "white",
+        fontFamily: CustomFonts.Gustavo,
+        fontWeight: "bold",
+    },
+};
 function Avatar(props: any) {
-    const initials = props.author.split(" ").map((name: string) => name[0]).join("")
-    return <Box
-        sx={{
-            position: "relative",
-            display: "flex",
-            justifyContent: "center",
-            top: "-3rem",
-        }}
-    >
+    const initials = props.author
+        .split(" ")
+        .map((name: string) => name[0])
+        .join("");
+    return (
         <Box
-            sx={{ backgroundColor: theme.palette.primary.main, padding: "1rem", borderRadius: "50%" }}
-        >
-            <Typography
-                variant="h5"
-                sx={{ ...classes.initials }}
-            >
-                {initials[0]}.{initials[1]}.
-            </Typography>
-        </Box>
-    </Box>
-}
-function ReviewItem(props: any) {
-    return <>
-        <Box
-            sx={{ ...classes.card }}
+            sx={{
+                position: "relative",
+                display: "flex",
+                justifyContent: "center",
+                top: "-3rem",
+            }}
         >
             <Box
                 sx={{
-                    display: "flex", flexDirection: "column",
-                    justifyContent: "space-between", flex: "1",
-                    gap: ".25rem"
-                    // marginTop: "-2.5rem",
+                    backgroundColor: theme.palette.primary.main,
+                    padding: "1rem",
+                    borderRadius: "50%",
                 }}
             >
+                <Typography variant="h5" sx={{ ...classes.initials }}>
+                    {initials[0]}.{initials[1]}.
+                </Typography>
+            </Box>
+        </Box>
+    );
+}
+function ReviewItem(props: {
+    title: { [lang: string]: string };
+    body: { [lang: string]: string };
+    author: string;
+    reviewLink: string;
+}) {
+    return (
+        <>
+            <Box sx={{ ...classes.card }}>
                 <Box
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        flex: "1",
+                        gap: ".25rem",
+                        // marginTop: "-2.5rem",
+                    }}
                 >
-                    {props.title &&
-                        <Typography textAlign={"center"} fontWeight={"bold"}
-                            gutterBottom
-                            variant="h6">
-                            {props.title[props.lang]}
-                        </Typography>
-                    }
-                    <Typography
-                        variant="body1"
-                    >
-                        "{props.body[props.lang].substring(0, 350)}{props.body[props.lang].length > 350 ? "..." : ""}"
-                    </Typography>
-                </Box>
-                <Box
-                >
-                    <Box
-                        sx={{
-                            display: "flex", justifyContent: "space-between",
-                            marginBottom: ".5rem", alignItems: "center"
-                        }}
-                    >
-                        <Box sx={{ textAlign: 'center', paddingBottom: ".1rem" }}>
-                            {[1, 2, 3, 4, 5].map((star) => {
-                                return <StarRateIcon sx={{ color: "#F2C94C", fontSize: "1.7rem" }} />
-                            })}
-                        </Box>
-                        <Typography
-                            textAlign={"right"}
-                            variant="body1"
-                        >
-                            - {props.author}
+                    <Box>
+                        {props.title && (
+                            <Typography
+                                textAlign={"center"}
+                                fontWeight={"bold"}
+                                gutterBottom
+                                variant="h6"
+                            >
+                                {returnLocaleText(props.title)}
+                            </Typography>
+                        )}
+                        <Typography variant="body1">
+                            "{returnLocaleText(props.body).substring(0, 350)}
+                            {returnLocaleText(props.body).length > 350
+                                ? "..."
+                                : ""}
+                            "
                         </Typography>
                     </Box>
-                    <Typography
-                        textAlign={"center"}
-                        variant="subtitle2"
-                        color="primary"
-                    >
-                        <Link href={props.reviewLink}
-                            target="_blank"
+                    <Box>
+                        <Box
+                            sx={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                marginBottom: ".5rem",
+                                alignItems: "center",
+                            }}
                         >
-                            {text.readFull[props.lang]}
-                        </Link>
-                    </Typography>
+                            <Box
+                                sx={{
+                                    textAlign: "center",
+                                    paddingBottom: ".1rem",
+                                }}
+                            >
+                                {[1, 2, 3, 4, 5].map((star) => {
+                                    return (
+                                        <StarRateIcon
+                                            sx={{
+                                                color: "#F2C94C",
+                                                fontSize: "1.7rem",
+                                            }}
+                                        />
+                                    );
+                                })}
+                            </Box>
+                            <Typography textAlign={"right"} variant="body1">
+                                - {props.author}
+                            </Typography>
+                        </Box>
+                        <Typography
+                            textAlign={"center"}
+                            variant="subtitle2"
+                            color="primary"
+                        >
+                            <Link href={props.reviewLink} target="_blank">
+                                {returnLocaleText(text.readFull)}
+                            </Link>
+                        </Typography>
+                    </Box>
                 </Box>
             </Box>
-        </Box >
-    </>
+        </>
+    );
 }
 export default function (props: ReviewsListProps) {
-    const router = useRouter()
-    const { locale } = router
-    const currentLang = Lang[locale ?? 'en']
-    const [showCount, setShowCount] = useState(3)
-    return <>
-        <Box
-            sx={classes.root}
-        >
-            <TextSection title={text.title} />
-            <Box
-                sx={{ ...classes.cardContainer }}>
-                {props.reviews?.map((review, index) => {
-                    if (index >= showCount) return null
-                    return <ReviewItem lang={currentLang} key={index} {...review} />
-                })}
+    const [showCount, setShowCount] = useState(3);
+    return (
+        <>
+            <Box sx={classes.root}>
+                <TextSection title={text.title} />
+                <Box sx={{ ...classes.cardContainer }}>
+                    {props.reviews?.map((review, index) => {
+                        if (index >= showCount) return null;
+                        return <ReviewItem key={index} {...review} />;
+                    })}
+                </Box>
+                {showCount < props.reviews?.length && (
+                    <Button
+                        color="secondary"
+                        variant="contained"
+                        onClick={() => setShowCount(showCount + 3)}
+                    >
+                        {returnLocaleText(text.showMore)}
+                    </Button>
+                )}
             </Box>
-            {showCount < props.reviews?.length && <Button
-                color="secondary" variant="contained" onClick={() => setShowCount(showCount + 3)}
-            >
-                {text.showMore[currentLang]}
-            </Button>}
-        </Box>
-    </>
+        </>
+    );
 }

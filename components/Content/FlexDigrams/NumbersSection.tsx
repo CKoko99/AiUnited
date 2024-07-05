@@ -3,7 +3,8 @@ import { forwardRef, useEffect, useState } from "react";
 import { CustomFonts } from "../../../providers/theme";
 import Image, { StaticImageData } from "next/image";
 import { useRouter } from "next/router";
-import { Lang } from "../../locale/LocaleSwitcher";
+import { returnLocaleText } from "@/components/locale/LocaleSwitcher";
+
 interface NumbersSectionProps {
     title: string;
     menuContent: {
@@ -16,20 +17,21 @@ interface NumbersSectionProps {
     }[];
 }
 interface SectionItemProps {
-    beforeNumber: string;
-    beforeNumberGap: boolean;
+    beforeNumber?: string;
+    beforeNumberGap?: boolean;
     number: number;
-    afterNumber: string;
-    afterNumberGap: boolean;
-    body: string;
+    afterNumber?: string;
+    afterNumberGap?: boolean;
+    body?: {
+        [lang: string]: string;
+    };
     img?: {
         src: StaticImageData;
         alt: string;
-    }
-    lang: any;
+    };
 }
 //forward ref
-function returnRandomTime(number) {
+function returnRandomTime(number: number) {
     if (number < 5) return Math.floor(Math.random() * 1000) + 500;
     return Math.floor(Math.random() * 2000) + 1000;
 }
@@ -46,18 +48,21 @@ const SectionItem = forwardRef((props: SectionItemProps, ref) => {
     }, []);
     useEffect(() => {
         if (endTime < 100) {
-            return
+            return;
         }
-        let startTime;
-        let animationFrame;
+        let startTime: number;
+        let animationFrame: number;
 
-        const updateNumber = (timestamp) => {
+        const updateNumber = (timestamp: number) => {
             if (!startTime) {
                 startTime = timestamp;
             }
 
             const progress = (timestamp - startTime) / endTime; // 5000ms (5 seconds)
-            const nextNumber = Math.min(props.number, Math.floor(props.number * progress));
+            const nextNumber = Math.min(
+                props.number,
+                Math.floor(props.number * progress),
+            );
             setDisplayedNumber(nextNumber);
 
             if (nextNumber < props.number) {
@@ -76,103 +81,156 @@ const SectionItem = forwardRef((props: SectionItemProps, ref) => {
         };
     }, [props.number, endTime]);
 
-    return <>
-        <Box
-            sx={{
-                backgroundColor: "white",
-                padding: { xs: "1.5rem", md: "1.4rem 1rem" }, borderRadius: "1rem",
-                display: "flex", alignItems: "center",
-                gap: "1rem", width: "fit-content", margin: "auto",
-                boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.25)",
-
-            }}
-        >
-            {props.img &&
-
-                <Box
-                    sx={{ position: "relative", minHeight: "6rem", minWidth: "5rem" }}
-                >
-                    <Image fill style={{ objectFit: "contain" }} src={props.img.src} alt={props.img.alt} />
-                </Box>
-            }
+    return (
+        <>
             <Box
                 sx={{
-                    display: "flex", flexDirection: "column", alignItems: "flex-start",
+                    backgroundColor: "white",
+                    padding: { xs: "1.5rem", md: "1.4rem 1rem" },
+                    borderRadius: "1rem",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "1rem",
+                    width: "fit-content",
+                    margin: "auto",
+                    boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.25)",
                 }}
-                ref={ref}
+            >
+                {props.img && (
+                    <Box
+                        sx={{
+                            position: "relative",
+                            minHeight: "6rem",
+                            minWidth: "5rem",
+                        }}
+                    >
+                        <Image
+                            fill
+                            style={{ objectFit: "contain" }}
+                            src={props.img.src}
+                            alt={props.img.alt}
+                        />
+                    </Box>
+                )}
+                <Box
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "flex-start",
+                    }}
+                    ref={ref}
+                >
+                    <Box
+                        sx={{
+                            display: "flex",
+                            flexDirection: "row",
+                            fontFamily: CustomFonts.Gustavo,
+                            color: "primary.main",
+                        }}
+                    >
+                        <Typography
+                            variant="h4"
+                            fontWeight={"500"}
+                            sx={{
+                                fontFamily: CustomFonts.Gustavo,
+                                marginRight: props.beforeNumberGap
+                                    ? ".3rem"
+                                    : "0",
+                            }}
+                        >
+                            {props.beforeNumber}
+                        </Typography>
+                        <Typography
+                            sx={{
+                                fontWeight: "500",
+                                fontFamily: CustomFonts.Gustavo,
+                            }}
+                            variant="h4"
+                        >
+                            {displayedNumber}
+                        </Typography>
+                        <Typography
+                            sx={{
+                                fontWeight: "500",
+                                fontFamily: CustomFonts.Gustavo,
+                                marginLeft: props.afterNumberGap
+                                    ? ".3rem"
+                                    : "0",
+                            }}
+                            fontWeight={"500"}
+                            variant="h4"
+                        >
+                            {props.afterNumber}
+                        </Typography>
+                    </Box>
+                    <Typography
+                        textAlign={"left"}
+                        sx={{ whiteSpace: "nowrap" }}
+                        variant="body1"
+                    >
+                        {returnLocaleText(props.body)}
+                    </Typography>
+                </Box>
+            </Box>
+        </>
+    );
+});
+export default function NumbersSection(props: {
+    title?: {
+        [lang: string]: string;
+    };
+    menuContent: SectionItemProps[];
+}) {
+    return (
+        <>
+            <Box
+                sx={{
+                    padding: "1rem 0",
+                    textAlign: "center",
+                    height: "fit-content",
+                    position: "relative",
+                }}
             >
                 <Box
                     sx={{
-                        display: "flex", flexDirection: "row",
-                        fontFamily: CustomFonts.Gustavo,
-                        color: "primary.main"
+                        position: "absolute",
+                        backgroundColor: "primary.main",
+                        minWidth: "100%",
+                        minHeight: "100%",
+                        top: 0,
+                        left: 0,
+                        zIndex: -1,
+                        opacity: 0.4,
+                    }}
+                ></Box>
+                <Typography
+                    variant="h2"
+                    gutterBottom
+                    fontWeight={800}
+                    fontFamily={CustomFonts.Gustavo}
+                >
+                    {returnLocaleText(props.title)}
+                </Typography>
+                <Box
+                    sx={{
+                        display: "flex",
+                        flexDirection: { xs: "column", md: "row" },
+                        alignItems: "center",
+                        justifyContent: "space-around",
+                        margin: "1rem auto",
+                        gap: { xs: "1.5rem", md: "" },
+                        width: {
+                            md: "95%",
+                            lg: "75%",
+                            xl: "75%",
+                        },
                     }}
                 >
-                    <Typography variant="h4"
-                        fontWeight={"500"} sx={{
-                            fontFamily: CustomFonts.Gustavo,
-                            marginRight: props.beforeNumberGap ? ".3rem" : "0"
-
-                        }}
-                    >{props.beforeNumber}</Typography>
-                    <Typography sx={{
-                        fontWeight: "500", fontFamily: CustomFonts.Gustavo
-
-                    }} variant="h4">{displayedNumber}</Typography>
-                    <Typography sx={{
-                        fontWeight: "500", fontFamily: CustomFonts.Gustavo,
-                        marginLeft: props.afterNumberGap ? ".3rem" : "0",
-
-                    }} fontWeight={"500"} variant="h4"
-                    >{props.afterNumber}</Typography>
+                    {props.menuContent.map((item, index) => {
+                        return <SectionItem key={index} {...item} />;
+                    })}
                 </Box>
-                <Typography textAlign={"left"} sx={{ whiteSpace: "nowrap", }} variant="body1">{props.body[props.lang]}</Typography>
-            </Box >
-        </Box >
-    </>
-}
-)
-export default function NumbersSection(props) {
-    const router = useRouter()
-    const { locale } = router
-    const currentLang = Lang[locale ?? 'en']
-    return (<>
-        <Box
-            sx={{
-                padding: "1rem 0", textAlign: "center",
-                height: "fit-content",
-                position: "relative",
-            }}
-        >
-            <Box
-                sx={{
-                    position: "absolute",
-                    backgroundColor: "primary.main",
-                    minWidth: "100%",
-                    minHeight: "100%",
-                    top: 0, left: 0,
-                    zIndex: -1,
-                    opacity: .4,
-                }}
-            >
             </Box>
-            <Typography variant="h2" gutterBottom fontWeight={800} fontFamily={CustomFonts.Gustavo}>{props.title}</Typography>
-            <Box
-                sx={{
-                    display: "flex", flexDirection: { xs: "column", md: "row" }, alignItems: "center",
-                    justifyContent: "space-around",
-                    margin: "1rem auto", gap: { xs: "1.5rem", md: "" },
-                    width: {
-                        md: "95%", lg: "75%", xl: "75%"
-                    },
-                }}
-            >
-                {props.menuContent.map((item, index) => {
-                    return <SectionItem lang={currentLang} key={index} {...item} />
-                }
-                )}
-            </Box>
-        </Box >
-
-    </>)
+        </>
+    );
 }

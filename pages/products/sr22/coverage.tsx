@@ -1,7 +1,7 @@
-import HorizontalBanner from "@/components/Content/Hero/HorizontalBanner"
-import TextSection from "@/components/Content/TextSection"
-import HeadComponent from "@/components/Head"
-import PATHCONSTANTS from "constants/sitemap"
+import HorizontalBanner from "@/components/Content/Hero/HorizontalBanner";
+import TextSection from "@/components/Content/TextSection";
+import HeadComponent from "@/components/Head";
+import PATHCONSTANTS from "constants/sitemap";
 import HomeSubNav from "@/components/SubNavBar/products/home";
 import AutoImg1 from "public/assets/images/products/auto/suv.png";
 import AutoImg2 from "public/assets/images/products/auto/street.png";
@@ -17,28 +17,32 @@ import SR22SubNav from "@/components/SubNavBar/products/sr22";
 import CTAText from "@/components/PrefilledCTA/CTAText";
 
 const headContent = {
-    title: 'Ai United SR-22 Insurance Coverage',
+    title: "Ai United SR-22 Insurance Coverage",
     metaData: `Learn more about SR-22 insurance coverage details and requirements. Find out why you need SR-22 insurance and how to get the right coverage for your needs.`,
-}
+};
 
 const pageLinks = {
     why: {
-        link: `${PATHCONSTANTS.PRODUCTS.HOME.COVERAGE}#Why-Do-I-Need-Home-Insurance`, id: "Why-Do-I-Need-Home-Insurance"
+        link: `${PATHCONSTANTS.PRODUCTS.HOME.COVERAGE}#Why-Do-I-Need-Home-Insurance`,
+        id: "Why-Do-I-Need-Home-Insurance",
     },
     liability: {
-        link: `${PATHCONSTANTS.PRODUCTS.HOME.COVERAGE}#Liability`, id: "Liability"
+        link: `${PATHCONSTANTS.PRODUCTS.HOME.COVERAGE}#Liability`,
+        id: "Liability",
     },
     nonOwner: {
-        link: `${PATHCONSTANTS.PRODUCTS.HOME.COVERAGE}#Non-Owner-Occupied-Home-Insurance`, id: "Non-Owner-Occupied-Home-Insurance"
+        link: `${PATHCONSTANTS.PRODUCTS.HOME.COVERAGE}#Non-Owner-Occupied-Home-Insurance`,
+        id: "Non-Owner-Occupied-Home-Insurance",
     },
     fullCoverage: {
-        link: `${PATHCONSTANTS.PRODUCTS.HOME.COVERAGE}#Full-Coverage-Home-Insurance`, id: "Full-Coverage-Home-Insurance"
+        link: `${PATHCONSTANTS.PRODUCTS.HOME.COVERAGE}#Full-Coverage-Home-Insurance`,
+        id: "Full-Coverage-Home-Insurance",
     },
     highRisk: {
-        link: `${PATHCONSTANTS.PRODUCTS.HOME.COVERAGE}#High-Risk-Home-Insurance`, id: "High-Risk-Home-Insurance"
+        link: `${PATHCONSTANTS.PRODUCTS.HOME.COVERAGE}#High-Risk-Home-Insurance`,
+        id: "High-Risk-Home-Insurance",
     },
-
-}
+};
 const verticalBannerContent = {
     title: {
         en: "Understanding SR-22 Auto Insurance Coverage",
@@ -46,9 +50,9 @@ const verticalBannerContent = {
     },
     img: {
         src: AutoImg1,
-        alt: "SUV"
-    }
-}
+        alt: "SUV",
+    },
+};
 
 const contentSection1 = {
     title: {
@@ -60,10 +64,13 @@ const contentSection1 = {
         es: `SR-22 no es realmente una póliza de seguro, sino más bien un certificado de responsabilidad financiera que demuestra que tiene la cantidad requerida de cobertura de responsabilidad exigida por su estado. A menudo se requiere para personas que han estado involucradas en violaciones graves de tráfico, como DUI / DWI, conducir sin seguro o múltiples accidentes con culpa.`,
     },
     alignSubtitle: "left",
-}
+};
 
 const contentSection2 = {
-    title: { en: "Different Types of Coverage", es: "Diferentes tipos de cobertura" },
+    title: {
+        en: "Different Types of Coverage",
+        es: "Diferentes tipos de cobertura",
+    },
     body: {
         en: [
             `1. LINK: [Why Do You Need SR-22 Insurance](${pageLinks.why.link})`,
@@ -78,14 +85,14 @@ const contentSection2 = {
             `3. LINK: [SR-22 para no propietarios](${pageLinks.nonOwner.link})`,
             `4. LINK: [Cobertura completa](${pageLinks.fullCoverage.link})`,
             `5. LINK: [SR-22 de alto riesgo](${pageLinks.highRisk.link})`,
-        ]
+        ],
     },
     img: {
         src: AutoImg2,
-        alt: "Home Furniture"
+        alt: "Home Furniture",
     },
-    alignBody: "left",
-}
+    alignBody: "left" as const,
+};
 
 const contentSection3 = {
     title: {
@@ -99,7 +106,7 @@ const contentSection3 = {
     },
     alignSubtitle: "left",
     alignTitle: "left",
-}
+};
 
 const contentSection4 = {
     title: {
@@ -113,7 +120,7 @@ const contentSection4 = {
     },
     alignSubtitle: "left",
     alignTitle: "left",
-}
+};
 
 const contentSection5 = {
     title: {
@@ -127,7 +134,7 @@ const contentSection5 = {
     },
     alignSubtitle: "left",
     alignTitle: "left",
-}
+};
 
 const contentSection6 = {
     title: {
@@ -141,7 +148,7 @@ const contentSection6 = {
     },
     alignSubtitle: "left",
     alignTitle: "left",
-}
+};
 
 const contentSection7 = {
     title: {
@@ -155,44 +162,44 @@ const contentSection7 = {
     },
     alignSubtitle: "left",
     alignTitle: "left",
-}
+};
 
 const endCardsContent = {
     content: [
         {
             img: {
                 src: CardImg1,
-                alt: "Computer"
+                alt: "Computer",
             },
             title: {
-                en: 'Get A Free SR-22 Insurance Quote',
-                es: 'Obtenga una cotización gratuita de seguro SR-22'
+                en: "Get A Free SR-22 Insurance Quote",
+                es: "Obtenga una cotización gratuita de seguro SR-22",
             },
             body: {
                 en: `Get a free quote today and see how much you can save.`,
-                es: `Obtenga una cotización gratuita hoy y vea cuánto puede ahorrar.`
+                es: `Obtenga una cotización gratuita hoy y vea cuánto puede ahorrar.`,
             },
-            link: PATHCONSTANTS.QUOTES.SR22.FORM
+            link: PATHCONSTANTS.QUOTES.SR22.FORM,
         },
         {
             img: {
                 src: ThinkingImg,
-                alt: "Discounts"
+                alt: "Discounts",
             },
             title: {
-                en: 'Explore Frequently Asked Questions',
-                es: 'Explore las preguntas frecuentes',
+                en: "Explore Frequently Asked Questions",
+                es: "Explore las preguntas frecuentes",
             },
             body: {
                 en: `Find answers to your questions about Motorcycle Insurance.`,
-                es: `Encuentre respuestas a sus preguntas sobre el seguro de motocicleta.`
+                es: `Encuentre respuestas a sus preguntas sobre el seguro de motocicleta.`,
             },
-            link: PATHCONSTANTS.PRODUCTS.SR22.FAQ
+            link: PATHCONSTANTS.PRODUCTS.SR22.FAQ,
         },
         {
             img: {
                 src: ArticlesImg,
-                alt: "Blog Articles"
+                alt: "Blog Articles",
             },
             title: {
                 en: "Explore Auto Insurance Articles",
@@ -200,25 +207,27 @@ const endCardsContent = {
             },
             body: {
                 en: `Learn more about auto insurance and how to protect yourself.`,
-                es: `Aprenda más sobre el seguro de auto y cómo protegerse.`
+                es: `Aprenda más sobre el seguro de auto y cómo protegerse.`,
             },
-            link: PATHCONSTANTS.ARTICLES.INDEX
+            link: PATHCONSTANTS.ARTICLES.INDEX,
         },
-    ]
-}
+    ],
+};
 export default function () {
-    return <>
-        <HeadComponent {...headContent} />
-        <HorizontalBanner {...verticalBannerContent} />
-        <SR22SubNav />
-        <TextSection {...contentSection1} />
-        <BorderBoxWithPicture {...contentSection2} />
-        <TextSection {...contentSection3} />
-        <CTAPicWText category="sr22" />
-        <TextSection {...contentSection4} />
-        <TextSection {...contentSection5} />
-        <TextSection {...contentSection6} />
-        <CTAText contained category="sr22" />
-        <Cards2 {...endCardsContent} />
-    </>
+    return (
+        <>
+            <HeadComponent {...headContent} />
+            <HorizontalBanner {...verticalBannerContent} />
+            <SR22SubNav />
+            <TextSection {...contentSection1} />
+            <BorderBoxWithPicture {...contentSection2} />
+            <TextSection {...contentSection3} />
+            <CTAPicWText category="sr22" />
+            <TextSection {...contentSection4} />
+            <TextSection {...contentSection5} />
+            <TextSection {...contentSection6} />
+            <CTAText contained category="sr22" />
+            <Cards2 {...endCardsContent} />
+        </>
+    );
 }

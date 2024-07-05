@@ -1,16 +1,34 @@
 import { returnLocaleText } from "@/components/locale/LocaleSwitcher";
-import { Box, Button, FormControl, FormHelperText, InputLabel, MenuItem, Select, Typography } from "@mui/material";
+import {
+    Box,
+    Button,
+    FormControl,
+    FormHelperText,
+    InputLabel,
+    MenuItem,
+    Select,
+    Typography,
+} from "@mui/material";
 import { use } from "marked";
 import { useState, useEffect } from "react";
 const TEXT = {
     month: { en: "Month", es: "Mes" },
     day: { en: "Day", es: "Día" },
     year: { en: "Year", es: "Año" },
-    selctionError: { en: "Please select a violation", es: "Por favor seleccione una violación" },
-    dateError: { en: "Please select a date", es: "Por favor seleccione una fecha" },
+    selctionError: {
+        en: "Please select a violation",
+        es: "Por favor seleccione una violación",
+    },
+    dateError: {
+        en: "Please select a date",
+        es: "Por favor seleccione una fecha",
+    },
     violation: { en: "Violation", es: "Violación" },
-    occuredAt: { en: "When did this violation occur?", es: "¿Cuándo ocurrió esta violación?" }
-}
+    occuredAt: {
+        en: "When did this violation occur?",
+        es: "¿Cuándo ocurrió esta violación?",
+    },
+};
 
 const months = [
     { value: "01", text: { en: "January", es: "Enero" }, maxDays: 31 },
@@ -174,9 +192,13 @@ const codes = [
     "PIP Claim",
     "Use of Wireless Device without Handsfree while Driving",
     "Use of Wireless Dev for Text-Based Comm. While Driving",
-    "Failure to Use Ignition Interlock Device"
-]
-function isDateValidHandler(dayValue, monthValue, yearValue) {
+    "Failure to Use Ignition Interlock Device",
+];
+function isDateValidHandler(
+    dayValue: string,
+    monthValue: string,
+    yearValue: string,
+) {
     if (dayValue === "NaN" || monthValue === "NaN" || yearValue === "NaN") {
         return false;
     }
@@ -185,411 +207,441 @@ function isDateValidHandler(dayValue, monthValue, yearValue) {
     }
     return false;
 }
-function returnDefaultViolationItem(defaultValues) {
+function returnDefaultViolationItem(defaultValues: {
+    value: { Code: string; OccurredAt: string };
+}) {
     let newDefaultValues = {
         codeValue: "",
         month: "",
         day: "",
-        year: ""
-    }
+        year: "",
+    };
     try {
         if (defaultValues) {
             newDefaultValues.codeValue = defaultValues.value.Code;
-            const date = new Date(defaultValues.value.OccurredAt)
-            let monthInt = date.getMonth() + 1
-            let month = String(monthInt)
+            const date = new Date(defaultValues.value.OccurredAt);
+            let monthInt = date.getMonth() + 1;
+            let month = String(monthInt);
             if (monthInt < 10) {
-                month = "0" + month
+                month = "0" + month;
             }
-            let dayInt = date.getDate()
-            let day = String(dayInt)
+            let dayInt = date.getDate();
+            let day = String(dayInt);
             if (dayInt < 10) {
-                day = "0" + day
+                day = "0" + day;
             }
-            let year = String(date.getFullYear())
-            month = month === "NaN" ? "" : month
-            day = day === "NaN" ? "" : day
-            year = year === "NaN" ? "" : year
-            newDefaultValues.month = month
-            newDefaultValues.day = day
-            newDefaultValues.year = year
+            let year = String(date.getFullYear());
+            month = month === "NaN" ? "" : month;
+            day = day === "NaN" ? "" : day;
+            year = year === "NaN" ? "" : year;
+            newDefaultValues.month = month;
+            newDefaultValues.day = day;
+            newDefaultValues.year = year;
         }
     } catch (e) {
-        console.error("Error setting default values")
-        console.error(e)
+        console.error("Error setting default values");
+        console.error(e);
     } finally {
-        return newDefaultValues
+        return newDefaultValues;
     }
 }
 
-function ViolationItem(props) {
-    const [codeValue, setCodeValue] = useState(returnDefaultViolationItem(props.initialValue).codeValue);
-    const [hidden, setHidden] = useState(true)
-    const [monthValue, setMonthValue] = useState(returnDefaultViolationItem(props.initialValue).month);
-    const [dayValue, setDayValue] = useState(returnDefaultViolationItem(props.initialValue).day);
-    const [yearValue, setYearValue] = useState(returnDefaultViolationItem(props.initialValue).year);
+function ViolationItem(props: {
+    index: number;
+    updateViolationData: Function;
+    questionId: string;
+    shownIdList: string[];
+    addIdToList: Function;
+    fullWidth: boolean;
+    removeViolationIndex: Function;
+    passedValue: {
+        value: { Code: string; OccurredAt: string };
+        isValid: boolean;
+    };
+    lastIndex: boolean;
+    passedError: boolean;
+    initialValue: {
+        value: { Code: string; OccurredAt: string };
+    };
+}) {
+    const [codeValue, setCodeValue] = useState(
+        returnDefaultViolationItem(props.initialValue).codeValue,
+    );
+
+    const [monthValue, setMonthValue] = useState(
+        returnDefaultViolationItem(props.initialValue).month,
+    );
+    const [dayValue, setDayValue] = useState(
+        returnDefaultViolationItem(props.initialValue).day,
+    );
+    const [yearValue, setYearValue] = useState(
+        returnDefaultViolationItem(props.initialValue).year,
+    );
 
     const [isValid, setIsValid] = useState(false);
     const [error, setError] = useState(false);
     const completeDateValue = `${yearValue}-${monthValue}-${dayValue}T05:00:00Z`;
-    const showDays = monthValue !== ""
+    const showDays = monthValue !== "";
     const showYears = dayValue !== "";
 
-    function handleMonthChange(value) {
+    function handleMonthChange(value: string) {
         setMonthValue(value);
         //check if the day value is valid for the month if not then set it to ""
         try {
-            const selectedMonth = months.find(month => month?.value === value);
+            const selectedMonth = months.find(
+                (month) => month?.value === value,
+            );
             if (selectedMonth && Number(dayValue) > selectedMonth.maxDays) {
                 setDayValue("");
             }
         } catch (e) {
-            console.log(e)
-            console.error("error setting day value")
+            console.log(e);
+            console.error("error setting day value");
             setDayValue("");
         }
-
     }
-    function handleDayChange(value) {
+    function handleDayChange(value: string) {
         setDayValue(value);
     }
-    function handleYearChange(value) {
+    function handleYearChange(value: string) {
         setYearValue(value);
         //  props.addIdToList(props.nextQuestionId);
     }
 
-
-
-
     useEffect(() => {
-
         props.updateViolationData(props.index, {
             value: {
                 OccurredAt: completeDateValue,
-                Code: codeValue
+                Code: codeValue,
             },
-            isValid: isDateValidHandler(dayValue, monthValue, yearValue) && codeValue !== ""
+            isValid:
+                isDateValidHandler(dayValue, monthValue, yearValue) &&
+                codeValue !== "",
         });
-
-        /*
-          props.updateFormValues(props.id, [{ questionId: props.questionId, value: newValue, valid: isValidHandler() }])
-          if (isValidHandler()) {
-              props.clearError();
-          }
-          */
-    }, [codeValue, monthValue, dayValue, yearValue])
-
-    useEffect(() => {
-        setHidden(false);
-    }, [])
+    }, [codeValue, monthValue, dayValue, yearValue]);
 
     useEffect(() => {
         if (props.passedError) {
-            setError(true)
+            setError(true);
         }
-    }, [props.passedError])
+    }, [props.passedError]);
 
     useEffect(() => {
         if (isValid) {
-            setError(false)
+            setError(false);
         }
-    }, [isValid])
+    }, [isValid]);
     useEffect(() => {
-        /* if (props.passedValue) {
-             setCodeValue(props.passedValue.value.code)
-             const date = new Date(props.passedValue.value.OccuredAt)
-             let monthInt = date.getMonth() + 1
-             let month = String(monthInt)
-             if (monthInt < 10) {
-                 month = "0" + month
-             }
-             let dayInt = date.getDate()
-             let day = String(dayInt)
-             if (dayInt < 10) {
-                 day = "0" + day
-             }
-             let year = date.getFullYear()
-             handleMonthChange(month)
-             handleDayChange(day)
-             handleYearChange(year)
-         }*/
-    }, [props.passedvalue])
-    useEffect(() => {
-        /* if (props.defaultValue) {
-             console.log("props.defaultValue")
-             console.log(props.defaultValue)
-             const defaultDate = new Date(props.defaultValue)
-             let monthInt = defaultDate.getMonth() + 1
-             let month = String(monthInt)
-             if (monthInt < 10) {
-                 month = "0" + month
-             }
-             let dayInt = defaultDate.getDate()
-             let day = String(dayInt)
-             if (dayInt < 10) {
-                 day = "0" + day
-             }
-             let year = defaultDate.getFullYear()
- 
-             handleMonthChange(month)
-             handleDayChange(day)
-             handleYearChange(year)
-         }*/
         props.updateViolationData(props.index, {
             value: {
                 OccurredAt: completeDateValue,
-                Code: codeValue
+                Code: codeValue,
             },
-            isValid: isDateValidHandler(dayValue, monthValue, yearValue) && codeValue !== ""
+            isValid:
+                isDateValidHandler(dayValue, monthValue, yearValue) &&
+                codeValue !== "",
         });
-        return
-        if (props.initialValue) {
-            console.log("props.initialValue")
-            console.log(props.initialValue)
-            setCodeValue(props.initialValue.code)
-            const date = new Date(props.initialValue.OccuredAt)
-            let monthInt = date.getMonth() + 1
-            let month = String(monthInt)
-            if (monthInt < 10) {
-                month = "0" + month
-            }
-            let dayInt = date.getDate()
-            let day = String(dayInt)
-            if (dayInt < 10) {
-                day = "0" + day
-            }
-            let year = date.getFullYear()
-            handleMonthChange(month)
-            handleDayChange(day)
-            handleYearChange(year)
-        }
-    }, [])
+    }, []);
 
-    useEffect(() => {
-        if (yearValue !== "" && monthValue !== "" && dayValue !== "") {
-            props.addIdToList(props.nextQuestionId);
-        }
-    }, [props.shownIdList])
-
-
-
-    return <>
-        <Box
-            sx={{
-                width: "100%",
-                display: "flex", flexDirection: "column", gap: "1rem",
-                alignItems: "center"
-            }}
-        >
-            <FormControl fullWidth >
-                <InputLabel id={`Violation`}>{returnLocaleText(TEXT.violation)}</InputLabel>
-                <Select
-                    value={codeValue}
-                    sx={{ minWidth: "15rem" }}
-                    onChange={(e) => setCodeValue(e.target.value)}
-                    label={returnLocaleText(TEXT.violation)}
-                    error={error && (codeValue === "")}
-                >
-                    {codes.map((code, index) => {
-                        return <MenuItem key={index} value={code}>{code}</MenuItem>
-                    }
-                    )}
-                </Select>
-                {error && (codeValue === "") && <FormHelperText
-                    error={true}
-                >{returnLocaleText(TEXT.selctionError)}</FormHelperText>}
-            </FormControl>
-            <Typography variant="h6" >{returnLocaleText(TEXT.occuredAt)}:</Typography>
+    return (
+        <>
             <Box
                 sx={{
-                    display: "flex", gap: "1rem", justifyContent: "space-around",
-                    width: props.fullWidth ? { xs: "100%", md: '49%' } : "100%",
-                    marginBottom: "3rem"
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                    alignItems: "center",
                 }}
             >
-                <FormControl fullWidth
-                >
-                    <InputLabel id={`month-label-${props.questionId}`}>{returnLocaleText(TEXT.month)}</InputLabel>
+                <FormControl fullWidth>
+                    <InputLabel id={`Violation`}>
+                        {returnLocaleText(TEXT.violation)}
+                    </InputLabel>
                     <Select
-                        value={monthValue}
-                        onChange={(e) => {
-                            handleMonthChange(e.target.value)
-                        }}
-                        onBlur={() => {
-
-                        }}
-                        label={"month"}
-                        error={error && (monthValue === "")}
+                        value={codeValue}
+                        sx={{ minWidth: "15rem" }}
+                        onChange={(e) => setCodeValue(e.target.value)}
+                        label={returnLocaleText(TEXT.violation)}
+                        error={error && codeValue === ""}
                     >
-                        {months.map((option, index) => {
-                            return <MenuItem key={index} value={option.value}>{returnLocaleText(option.text)}</MenuItem>
+                        {codes.map((code, index) => {
+                            return (
+                                <MenuItem key={index} value={code}>
+                                    {code}
+                                </MenuItem>
+                            );
                         })}
                     </Select>
+                    {error && codeValue === "" && (
+                        <FormHelperText error={true}>
+                            {returnLocaleText(TEXT.selctionError)}
+                        </FormHelperText>
+                    )}
                 </FormControl>
-                <FormControl fullWidth
+                <Typography variant="h6">
+                    {returnLocaleText(TEXT.occuredAt)}:
+                </Typography>
+                <Box
+                    sx={{
+                        display: "flex",
+                        gap: "1rem",
+                        justifyContent: "space-around",
+                        width: props.fullWidth
+                            ? { xs: "100%", md: "49%" }
+                            : "100%",
+                        marginBottom: "3rem",
+                    }}
                 >
-                    <InputLabel id={`day-label-${props.questionId}`}>{returnLocaleText(TEXT.day)}</InputLabel>
-                    <Select
-                        disabled={!showDays}
-                        value={dayValue}
-                        onChange={(e) => {
-                            handleDayChange(e.target.value)
-                        }}
-                        label={"day"}
-                        error={error && (dayValue === "")}
-                    >
-                        {//format so numbers are 01, 02, 03, etc
-                        }
-                        {[...Array(months.find(month => month.value === monthValue)?.maxDays)].map((x, i) => {
-                            let value = String(i + 1)
-                            if (value.length === 1) {
-                                value = "0" + value
+                    <FormControl fullWidth>
+                        <InputLabel id={`month-label-${props.questionId}`}>
+                            {returnLocaleText(TEXT.month)}
+                        </InputLabel>
+                        <Select
+                            value={monthValue}
+                            onChange={(e) => {
+                                handleMonthChange(e.target.value);
+                            }}
+                            onBlur={() => {}}
+                            label={"month"}
+                            error={error && monthValue === ""}
+                        >
+                            {months.map((option, index) => {
+                                return (
+                                    <MenuItem key={index} value={option.value}>
+                                        {returnLocaleText(option.text)}
+                                    </MenuItem>
+                                );
+                            })}
+                        </Select>
+                    </FormControl>
+                    <FormControl fullWidth>
+                        <InputLabel id={`day-label-${props.questionId}`}>
+                            {returnLocaleText(TEXT.day)}
+                        </InputLabel>
+                        <Select
+                            disabled={!showDays}
+                            value={dayValue}
+                            onChange={(e) => {
+                                handleDayChange(e.target.value);
+                            }}
+                            label={"day"}
+                            error={error && dayValue === ""}
+                        >
+                            {
+                                //format so numbers are 01, 02, 03, etc
                             }
-                            return <MenuItem key={i} value={value}>{value}</MenuItem>
-                        })}
-                    </Select>
-                </FormControl>
-                <FormControl fullWidth
-                >
-                    <InputLabel id={`year-label-${props.questionId}`}>{returnLocaleText(TEXT.year)}</InputLabel>
-                    <Select
-                        disabled={!showYears}
-                        value={yearValue}
-                        onChange={(e) => {
-                            handleYearChange(e.target.value)
+                            {[
+                                ...Array(
+                                    months.find(
+                                        (month) => month.value === monthValue,
+                                    )?.maxDays,
+                                ),
+                            ].map((x, i) => {
+                                let value = String(i + 1);
+                                if (value.length === 1) {
+                                    value = "0" + value;
+                                }
+                                return (
+                                    <MenuItem key={i} value={value}>
+                                        {value}
+                                    </MenuItem>
+                                );
+                            })}
+                        </Select>
+                    </FormControl>
+                    <FormControl fullWidth>
+                        <InputLabel id={`year-label-${props.questionId}`}>
+                            {returnLocaleText(TEXT.year)}
+                        </InputLabel>
+                        <Select
+                            disabled={!showYears}
+                            value={yearValue}
+                            onChange={(e) => {
+                                handleYearChange(e.target.value);
+                            }}
+                            label={"year"}
+                            error={error && yearValue === ""}
+                        >
+                            {[...Array(120)].map((x, i) => {
+                                return (
+                                    <MenuItem
+                                        key={i} //value={2024 - i}
+                                        //VALUE is current year - i
+                                        value={new Date().getFullYear() - i}
+                                    >
+                                        {new Date().getFullYear() - i}
+                                    </MenuItem>
+                                );
+                            })}
+                        </Select>
+                    </FormControl>
+                </Box>
+                {error &&
+                    (monthValue === "" ||
+                        dayValue === "" ||
+                        yearValue === "") && (
+                        <FormHelperText error={true}>
+                            {returnLocaleText(TEXT.dateError)}
+                        </FormHelperText>
+                    )}
+                {props.index !== 0 && props.lastIndex && (
+                    <Button
+                        onClick={() => {
+                            props.removeViolationIndex(props.index);
                         }}
-                        label={"year"}
-                        error={error && (yearValue === "")}
                     >
-                        {[...Array(120)].map((x, i) => {
-                            return <MenuItem key={i} //value={2024 - i}
-                                //VALUE is current year - i
-                                value={new Date().getFullYear() - i}
-                            >{new Date().getFullYear() - i}</MenuItem>
-                        })}
-                    </Select>
-                </FormControl>
-
+                        {" "}
+                        Remove Violation
+                    </Button>
+                )}
             </Box>
-            {error && (monthValue === "" || dayValue === "" || yearValue === "") && <FormHelperText
-                error={true}
-            >{returnLocaleText(TEXT.dateError)}</FormHelperText>}
-            {(props.index !== 0 && props.lastIndex) && <Button
-                onClick={() => {
-                    props.removeViolationIndex(props.index)
-                }}
-            > Remove Violation</Button>}
-        </Box>
-    </>
+        </>
+    );
 }
-function returnDefaultViolation(defaultValues) {
+function returnDefaultViolation(
+    defaultValues: {
+        Code: string;
+        OccurredAt: string;
+    }[],
+) {
     const newDefaultValues: {
-        value: { Code: string, OccurredAt: string },
-        isValid: boolean
-    }[] = []
+        value: { Code: string; OccurredAt: string };
+        isValid: boolean;
+    }[] = [];
     try {
         if (defaultValues) {
             defaultValues.forEach((violation, index) => {
-                let defaultCodeValue = violation.Code
-                const date = new Date(violation.OccurredAt)
-                let defaultMonthValue = String(date.getMonth() + 1)
+                let defaultCodeValue = violation.Code;
+                const date = new Date(violation.OccurredAt);
+                let defaultMonthValue = String(date.getMonth() + 1);
 
-                let defaultDayValue = String(date.getDate())
+                let defaultDayValue = String(date.getDate());
 
-                let defaultYearValue = String(date.getFullYear())
+                let defaultYearValue = String(date.getFullYear());
                 //if any equal "NaN" then set to ""
 
-                let isValid = isDateValidHandler(defaultDayValue, defaultMonthValue, defaultYearValue) && defaultCodeValue !== ""
-                if (defaultDayValue === "NaN" || defaultMonthValue === "NaN" || defaultYearValue === "NaN") {
-                    defaultDayValue = ""
-                    defaultMonthValue = ""
-                    defaultYearValue = ""
+                let isValid =
+                    isDateValidHandler(
+                        defaultDayValue,
+                        defaultMonthValue,
+                        defaultYearValue,
+                    ) && defaultCodeValue !== "";
+                if (
+                    defaultDayValue === "NaN" ||
+                    defaultMonthValue === "NaN" ||
+                    defaultYearValue === "NaN"
+                ) {
+                    defaultDayValue = "";
+                    defaultMonthValue = "";
+                    defaultYearValue = "";
                 }
                 const newViolation = {
                     value: {
                         Code: violation.Code,
-                        OccurredAt: violation.OccurredAt
+                        OccurredAt: violation.OccurredAt,
                     },
-                    isValid
-                }
+                    isValid,
+                };
                 newDefaultValues.push(newViolation);
-
-            })
+            });
         }
     } catch (e) {
-        console.error("Error setting default values")
-        console.error(e)
+        console.error("Error setting default values");
+        console.error(e);
     } finally {
-        return newDefaultValues
+        return newDefaultValues;
     }
 }
-export default function Violations(props) {
-    const [violationsCount, setViolationsCount] = useState(returnDefaultViolation(props.defaultValue).length || 1)
-    const [violationsData, setViolationsData] = useState<any[]>(returnDefaultViolation(props.defaultValue))
-    const [defaultViolations] = useState<any[]>(returnDefaultViolation(props.defaultValue))
-    function handleViolationsUpdate(id, data) {
-        setViolationsData((prevState: any[]) => {
-            const newState: any[] = [...prevState]
-            newState[id] = data
+export default function Violations(props: {
+    id: string;
+    questionId: string;
+    title?: { [lang: string]: string };
+    subtitle?: { [lang: string]: string };
+    defaultValue: {
+        Code: string;
+        OccurredAt: string;
+    }[];
+    passedError?: boolean;
+    fullWidth?: boolean;
+    nextQuestionId?: string | string[];
+    addIdToList: Function;
+    updateFormValues: any;
+    shownIdList: string[];
+}) {
+    const [violationsCount, setViolationsCount] = useState(
+        returnDefaultViolation(props.defaultValue).length || 1,
+    );
+    const [violationsData, setViolationsData] = useState<
+        {
+            value: {
+                Code: string;
+                OccurredAt: string;
+            };
+            isValid: boolean;
+        }[]
+    >(returnDefaultViolation(props.defaultValue));
+    const [defaultViolations] = useState<any[]>(
+        returnDefaultViolation(props.defaultValue),
+    );
+    function handleViolationsUpdate(
+        id: number,
+        data: {
+            value: {
+                Code: string;
+                OccurredAt: string;
+            };
+            isValid: boolean;
+        },
+    ) {
+        setViolationsData((prevState) => {
+            const newState = [...prevState];
+            newState[id] = data;
             //   console.log("new state", newState)
-            return newState
-        })
+            return newState;
+        });
     }
-    function removeViolationIndex(index) {
-        setViolationsData(prevState => {
-            const firstHalf = prevState.slice(0, index)
-            const secondHalf = prevState.slice(index + 1)
-            const newState = [...firstHalf, ...secondHalf]
-            return newState
-        })
-        setViolationsCount(violationsCount - 1)
+    function removeViolationIndex(index: number) {
+        setViolationsData((prevState) => {
+            const firstHalf = prevState.slice(0, index);
+            const secondHalf = prevState.slice(index + 1);
+            const newState = [...firstHalf, ...secondHalf];
+            return newState;
+        });
+        setViolationsCount(violationsCount - 1);
     }
 
     useEffect(() => {
         if (violationsData.length < 1) {
-            return
+            return;
         }
-        const allValid = violationsData.every(violation => violation.isValid)
-        const allValues = violationsData.map(violation => violation.value)
+        const allValid = violationsData.every((violation) => violation.isValid);
+        const allValues = violationsData.map((violation) => violation.value);
 
-
-
-        props.updateFormValues(props.id, //[{ questionId: props.questionId, value: value }])
-            [{ valid: allValid, value: allValues, questionId: props.questionId }]
+        props.updateFormValues(
+            props.id, //[{ questionId: props.questionId, value: value }])
+            [
+                {
+                    valid: allValid,
+                    value: allValues,
+                    questionId: props.questionId,
+                },
+            ],
             //   { questionId: coverage.key, value: coverage.value, valid: true }
-        )
-        props.addIdToList(props.nextQuestionId)
-    }, [violationsData])
-
-    useEffect(() => {
-        return
-        if (props.defaultValue) {
-            const defaultViolations = props.defaultValue
-            console.log("props.defaultValue")
-            console.log(props.defaultValue)
-            const newViolations = defaultViolations.map((violation, index) => {
-                return {
-                    value: {
-                        OccuredAt: violation.OccuredAt,
-                        code: violation.code
-                    },
-                    isValid: true
-                }
-            })
-            console.log("newViolations")
-            console.log(newViolations)
-            setViolationsData(newViolations)
-            setViolationsCount(defaultViolations.length)
-        } else {
-            setViolationsCount(1)
-        }
-    }, [])
+        );
+        props.addIdToList(props.nextQuestionId);
+    }, [violationsData]);
 
     return (
         <Box
             sx={{
-                display: "flex", flexDirection: "column", gap: ".5rem", alignItems: "center",
-                width: "100%", margin: "auto", marginTop: "-.5rem"
+                display: "flex",
+                flexDirection: "column",
+                gap: ".5rem",
+                alignItems: "center",
+                width: "100%",
+                margin: "auto",
+                marginTop: "-.5rem",
             }}
         >
             <Typography fontWeight={"bold"} variant="h4" align="center">
@@ -599,30 +651,34 @@ export default function Violations(props) {
                 {returnLocaleText(props.subtitle)}
             </Typography>
             {[...Array(violationsCount)].map((x, i) => {
-                return <ViolationItem
-                    key={i}
-                    index={i}
-                    updateViolationData={handleViolationsUpdate}
-                    questionId={props.questionId + i}
-                    nextQuestionId={props.nextQuestionId + i}
-                    shownIdList={props.shownIdList}
-                    addIdToList={props.addIdToList}
-                    fullWidth={props.fullWidth}
-                    removeViolationIndex={removeViolationIndex}
-                    passedValue={violationsData[i]}
-                    lastIndex={i === violationsCount - 1}
-                    passedError={props.passedError}
-                    initialValue={defaultViolations[i] ? defaultViolations[i] : null}
-                />
+                return (
+                    <ViolationItem
+                        key={i}
+                        index={i}
+                        updateViolationData={handleViolationsUpdate}
+                        questionId={props.questionId + i}
+                        shownIdList={props.shownIdList}
+                        addIdToList={props.addIdToList}
+                        fullWidth={props.fullWidth}
+                        removeViolationIndex={removeViolationIndex}
+                        passedValue={violationsData[i]}
+                        lastIndex={i === violationsCount - 1}
+                        passedError={props.passedError}
+                        initialValue={
+                            defaultViolations[i] ? defaultViolations[i] : null
+                        }
+                    />
+                );
             })}
-            {(violationsData[violationsCount - 1] as any)?.isValid && <Button
-                onClick={() => {
-                    setViolationsCount(violationsCount + 1)
-                }}
-            >
-                Add New Violation
-            </Button>}
-
+            {(violationsData[violationsCount - 1] as any)?.isValid && (
+                <Button
+                    onClick={() => {
+                        setViolationsCount(violationsCount + 1);
+                    }}
+                >
+                    Add New Violation
+                </Button>
+            )}
         </Box>
-    )
+    );
 }

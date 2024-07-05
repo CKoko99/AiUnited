@@ -1,6 +1,6 @@
-import { returnLocaleText } from "@/components/locale/LocaleSwitcher"
-import { Box, Typography } from "@mui/material"
-import Image from "next/image"
+import { returnLocaleText } from "@/components/locale/LocaleSwitcher";
+import { Box, Typography } from "@mui/material";
+import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -12,86 +12,145 @@ const styles = {
     },
     underline: {
         width: "0%",
-        transition: 'width 0.5s', // Add opacity transition
+        transition: "width 0.5s", // Add opacity transition
     },
     underlineHover: {
         width: "100%",
-        transition: 'width 0.5s', // Add opacity transition
+        transition: "width 0.5s", // Add opacity transition
     },
     imageColor: {
         opacity: 0,
         minWidth: "100%",
         minHeight: "100%",
         position: "absolute",
-        top: 0, left: 0,
+        top: 0,
+        left: 0,
         zIndex: 2,
         backgroundColor: "primary.main",
-        transition: 'opacity 0.5s', // Add opacity transition
+        transition: "opacity 0.5s", // Add opacity transition
     },
     imageHover: {
-        opacity: .2,
+        opacity: 0.2,
         //transform: 'opacity 0.3s',
     },
-}
+};
 
-function ContentItem(props) {
+function ContentItem(props: {
+    img: {
+        src: StaticImageData;
+        alt: string;
+    };
+    title: {
+        [lang: string]: string;
+    };
+    body: {
+        [lang: string]: string;
+    };
+    link: string;
+}) {
     const [hovered, setHovered] = useState(false);
 
-    return <Link
-        style={{ flex: "1", display: "flex", flexDirection: "column", gap: "1rem" }}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        href={`${props.link}`}
-    >
-        <Box
-            sx={{
-                border: "1px solid #a8a8a8",
-                padding: "1rem",
-                position: "relative",
+    return (
+        <Link
+            style={{
+                flex: "1",
+                display: "flex",
+                flexDirection: "column",
+                gap: "1rem",
             }}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+            href={`${props.link}`}
         >
-            <Box
-                sx={hovered ? { ...styles.imageColor, ...styles.imageHover } : { ...styles.imageColor }}
-            ></Box>
             <Box
                 sx={{
-                    position: "relative", width: { xs: "11rem", md: "13rem" }, height: { xs: "11rem", md: "13rem" }, margin: "auto",
+                    border: "1px solid #a8a8a8",
+                    padding: "1rem",
+                    position: "relative",
                 }}
             >
-                <Image fill style={{ objectFit: "contain" }} {...props.img} />
+                <Box
+                    sx={
+                        hovered
+                            ? { ...styles.imageColor, ...styles.imageHover }
+                            : { ...styles.imageColor }
+                    }
+                ></Box>
+                <Box
+                    sx={{
+                        position: "relative",
+                        width: { xs: "11rem", md: "13rem" },
+                        height: { xs: "11rem", md: "13rem" },
+                        margin: "auto",
+                    }}
+                >
+                    <Image
+                        fill
+                        style={{ objectFit: "contain" }}
+                        {...props.img}
+                    />
+                </Box>
             </Box>
-        </Box>
-        <Box
-            sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", flex: "1" }}
-        >
-
-            <Typography fontWeight={600} variant="h6">
-                {returnLocaleText(props.title)}
-            </Typography>
-            <Box>
-                <Box sx={{
-                    width: hovered ? styles.underlineHover : styles.underline, height: "3px",
-                    opacity: 0.5,
-                    backgroundColor: "primary.light",
-                }} />
-                <Typography variant="body1">
-                    {returnLocaleText(props.body)}
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    flex: "1",
+                }}
+            >
+                <Typography fontWeight={600} variant="h6">
+                    {returnLocaleText(props.title)}
                 </Typography>
+                <Box>
+                    <Box
+                        sx={{
+                            width: hovered
+                                ? styles.underlineHover
+                                : styles.underline,
+                            height: "3px",
+                            opacity: 0.5,
+                            backgroundColor: "primary.light",
+                        }}
+                    />
+                    <Typography variant="body1">
+                        {returnLocaleText(props.body)}
+                    </Typography>
+                </Box>
             </Box>
-        </Box>
-    </Link>
+        </Link>
+    );
 }
 
-export default function (props) {
-    return <Box sx={{ ...styles.root }}
-    >
-        <Box
-            sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, justifyContent: "space-around", gap: "2rem" }}
-        >
-
-            {props.content.map((item, index) => {
-                return <ContentItem key={index} {...item} />
-            })}
+export default function (props: {
+    content: {
+        img: {
+            src: StaticImageData;
+            alt: string;
+        };
+        title: {
+            [lang: string]: string;
+        };
+        body: {
+            [lang: string]: string;
+        };
+        link: string;
+    }[];
+}) {
+    return (
+        <Box sx={{ ...styles.root }}>
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: { xs: "column", md: "row" },
+                    justifyContent: "space-around",
+                    gap: "2rem",
+                }}
+            >
+                {props.content.map((item, index) => {
+                    return <ContentItem key={index} {...item} />;
+                })}
+            </Box>
         </Box>
-    </Box>
+    );
 }
