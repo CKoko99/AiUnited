@@ -1,3 +1,5 @@
+import PATHCONSTANTS from "constants/sitemap";
+
 export interface ArticleDetailsInterface {
     id: number;
     attributes: {
@@ -57,7 +59,7 @@ export interface ArticleContentSectionInterface {
 
 export async function GetArticle(id: string, referer: string) {
     try {
-        const res = await fetch(`${process.env.BACKEND}/articles/${id}`, {
+        const res = await fetch(`${PATHCONSTANTS.BACKEND}/articles/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -125,7 +127,7 @@ export interface ArticleInterface {
 }
 
 export async function GetAllArticles() {
-    const res = await fetch(`${process.env.BACKEND}/articles/`);
+    const res = await fetch(`${PATHCONSTANTS.BACKEND}/articles/`);
     const data = (await res.json()) as {
         data: ArticleInterface[];
         total: number;
@@ -147,7 +149,7 @@ export async function GetAllArticlesByCategoryAndPage({
 }) {
     try {
         const res = await fetch(
-            `${process.env.BACKEND}/articles?category=${category}&page=${page}`,
+            `${PATHCONSTANTS.BACKEND}/articles?category=${category}&page=${page}`,
         );
         const data = (await res.json()) as {
             data: ArticleInterface[];
@@ -160,7 +162,7 @@ export async function GetAllArticlesByCategoryAndPage({
 }
 export async function GetPopularArticles() {
     try {
-        const res = await fetch(`${process.env.BACKEND}/articles/popular`);
+        const res = await fetch(`${PATHCONSTANTS.BACKEND}/articles/popular`);
         const data = (await res.json()) as {
             data: ArticleInterface[];
         };

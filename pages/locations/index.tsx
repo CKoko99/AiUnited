@@ -2,6 +2,7 @@ import HeadComponent from "@/components/Head";
 import dynamic from "next/dynamic";
 import { Location as LocationInterface } from "@/api/GetCityLocations";
 import { GetServerSidePropsContext } from "next";
+import PATHCONSTANTS from "constants/sitemap";
 
 const Locations = dynamic(
     () => import("../../components/Locations/Locations"),
@@ -13,7 +14,7 @@ const Locations = dynamic(
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
     try {
-        const res = await fetch(`${process.env.BACKEND}/locations/aiunited`, {
+        const res = await fetch(`${PATHCONSTANTS.BACKEND}/locations/aiunited`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

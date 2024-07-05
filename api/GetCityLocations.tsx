@@ -1,3 +1,5 @@
+import PATHCONSTANTS from "constants/sitemap";
+
 export interface Location {
     id: number;
     name: string;
@@ -26,7 +28,7 @@ export default async function (
     referer: string,
 ) {
     try {
-        const res = await fetch(`${process.env.BACKEND}/locations/aiunited`, {
+        const res = await fetch(`${PATHCONSTANTS.BACKEND}/locations/aiunited`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

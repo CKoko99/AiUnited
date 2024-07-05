@@ -21,7 +21,7 @@ export async function getServerSideProps({
     try {
         const locationId = String(params.id);
         const res = await fetch(
-            `${process.env.BACKEND}/locations/aiunited/${locationId}`,
+            `${PATHCONSTANTS.BACKEND}/locations/aiunited/${locationId}`,
             {
                 method: "GET",
                 headers: {
