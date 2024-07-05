@@ -40,11 +40,17 @@ export { Lang };
 
 function returnLocaleText<T>(text: { [key: string]: T }) {
     if (!text) return;
-    const router = useRouter();
-    const { locale } = router;
-    const currentLang = locale ? Lang[locale] : Lang["en"];
-    if (text[currentLang]) return text[currentLang];
-    else return text["en"];
+    try {
+        const router = useRouter();
+        const { locale } = router;
+        const currentLang = locale ? Lang[locale] : Lang["en"];
+        if (text[currentLang]) return text[currentLang];
+        else return text["en"];
+    } catch (e) {
+        console.log(text);
+        console.log(e);
+        return text["en"];
+    }
 }
 export { returnLocaleText };
 export default function LocaleSwitcher() {
