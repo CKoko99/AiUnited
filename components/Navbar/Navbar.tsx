@@ -207,8 +207,6 @@ function DrawerAppBar(props: any) {
     const [mobileOpen, setMobileOpen] = React.useState(false);
     //const history = useHistory();
     const router = useRouter();
-    const { locale } = router;
-    const currentLang = Lang[locale ?? "en"];
 
     const [openItem, setOpenItem] = useState(null);
 

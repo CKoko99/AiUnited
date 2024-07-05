@@ -47,8 +47,6 @@ function returnLocaleText<T>(text: { [key: string]: T }) {
         if (text[currentLang]) return text[currentLang];
         else return text["en"];
     } catch (e) {
-        console.log(text);
-        console.log(e);
         return text["en"];
     }
 }

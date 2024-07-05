@@ -36,7 +36,9 @@ function SimpleMenu(props: {
 }) {
     let currentlyHovering = false;
     //const history = useHistory();
-
+    const router = useRouter();
+    const { locale } = router;
+    const currentLang = Lang[locale ?? "en"];
     const menuRef = useRef(null);
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -149,27 +151,33 @@ function SimpleMenu(props: {
                                     pointerEvents: "none",
                                 }}
                             >
-                                {props.item.menuItems.map((item, index) => (
-                                    <Link
-                                        href={item.link || ""}
-                                        style={{
-                                            color: "inherit",
-                                            textDecoration: "none",
-                                        }}
-                                        key={index}
-                                    >
-                                        <MenuItem
-                                            onClick={() => {
-                                                handleMenuClick(item.link);
-                                            }}
-                                            style={{
-                                                color: "black",
-                                            }}
-                                        >
-                                            {returnLocaleText(item.title)}
-                                        </MenuItem>
-                                    </Link>
-                                ))}
+                                {props.item.menuItems.map((item, index) => {
+                                    return (
+                                        <>
+                                            <Link
+                                                href={item.link || ""}
+                                                style={{
+                                                    color: "inherit",
+                                                    textDecoration: "none",
+                                                }}
+                                                key={index}
+                                            >
+                                                <MenuItem
+                                                    onClick={() => {
+                                                        handleMenuClick(
+                                                            item.link,
+                                                        );
+                                                    }}
+                                                    style={{
+                                                        color: "black",
+                                                    }}
+                                                >
+                                                    {item.title[currentLang]}
+                                                </MenuItem>
+                                            </Link>
+                                        </>
+                                    );
+                                })}
                             </Menu>
                         ) : null}
                     </div>
