@@ -212,162 +212,162 @@ const formContent = {
             type: "input",
             required: true,
         },
-        /*  {
-      title: {
-        en: "Phone Number",
-        es: "Número de teléfono",
-      },
-      validation: "phone",
-      type: "input",
-      required: true,
-    },
-    {
-      title: {
-        en: "Email",
-        es: "Correo electrónico",
-      },
-      validation: "email",
-      type: "input",
-      required: true,
-    },
-    {
-      subGroup: { en: "Address", es: "Dirección" },
-      title: { en: "Street Address", es: "Dirección" },
-      type: "input",
-      required: true,
-      fullWidth: true,
-    },
-    {
-      title: { en: "Street Address 2", es: "Dirección 2" },
-      type: "input",
-    },
-    {
-      title: { en: "City", es: "Ciudad" },
-      type: "input",
-      required: true,
-    },
-    {
-      title: { en: "State / Province", es: "Estado / Provincia" },
-      type: "input",
-      required: true,
-    },
-    {
-      title: { en: "Zip Code", es: "Código postal" },
-      type: "input",
-      required: true,
-      validation: "zip",
-    },
-    {
-      title: {
-        en: "Are you at least 18 years of age?",
-        es: "¿Tiene al menos 18 años de edad?",
-      },
-      type: "radio",
-      required: true,
-      answers: [
-        { en: "Yes", es: "Sí" },
-        { en: "No", es: "No" },
-      ],
-      fullWidth: true,
-    },
-    {
-      title: { en: "Date Available", es: "Fecha disponible" },
-      type: "date",
-      required: true,
-      fullWidth: true,
-      future: true,
-    },
-    {
-      title: {
-        en: "Are you willing to travel up to 15 miles to work?",
-        es: "¿Está dispuesto a viajar hasta 15 millas para trabajar?",
-      },
-      type: "radio",
-      required: true,
-      answers: [
-        { en: "Yes", es: "Sí" },
-        { en: "No", es: "No" },
-      ],
-      fullWidth: true,
-    },
-    {
-      title: {
-        en: "Do you speak fluent English and Spanish?",
-        es: "¿Hablas inglés y español con fluidez?",
-      },
-      type: "radio",
-      required: true,
-      answers: [
-        { en: "Yes", es: "Sí" },
-        { en: "No", es: "No" },
-      ],
-      fullWidth: true,
-    },
-    {
-      title: {
-        en: "Can you work Monday through Friday from 9:00 AM to 7:00 PM? and Saturday from 10:00 AM to 5:00 PM?",
-        es: "¿Puede trabajar de lunes a viernes de 9:00 a.m. a 7:00 p.m. y los sábados de 10:00 a.m. a 5:00 p.m.?",
-      },
-      type: "radio",
-      required: true,
-      answers: [
-        { en: "Yes", es: "Sí" },
-        { en: "No", es: "No" },
-      ],
-      fullWidth: true,
-    },
-    {
-      title: {
-        en: "Are you computer literate?",
-        es: "¿Tienes habilidades informáticas?",
-      },
-      type: "radio",
-      required: true,
-      answers: [
-        { en: "Yes", es: "Sí" },
-        { en: "No", es: "No" },
-      ],
-      fullWidth: true,
-    },
-    {
-      title: {
-        en: "What is your typing speed?",
-        es: "¿Cuál es tu velocidad de escritura?",
-      },
-      type: "input",
-      label: { en: "WPM", es: "Palabras Por Minuto" },
-      validation: "number",
-      outsideLabel: true,
-      required: true,
-    },
-    {
-      title: {
-        en: "How did you hear about us?",
-        es: "¿Cómo se enteró de nosotros?",
-      },
-      type: "select",
-      fullWidth: true,
-      required: true,
-      answers: [
-        { en: "Referral", es: "Referencia" },
-        { en: "Street Sign", es: "Señal de la calle" },
-        { en: "Indeed", es: "Indeed" },
-        { en: "Facebook Ad", es: "Facebook Ad" },
-        { en: "Instagram Ad", es: "Instagram Ad" },
-        { en: "Walk-in", es: "Walk-in" },
-        { en: "Mail", es: "Correo" },
-        { en: "QR Code", es: "Código QR" },
-      ],
-    },
-    {
-      title: {
-        en: "Referred By?",
-        es: "¿Referido por?",
-      },
-      type: "input",
-      label: { en: "Name", es: "Nombre" },
-      outsideLabel: true,
-    },*/
+        {
+            title: {
+                en: "Phone Number",
+                es: "Número de teléfono",
+            },
+            validation: "phone",
+            type: "input",
+            required: true,
+        },
+        {
+            title: {
+                en: "Email",
+                es: "Correo electrónico",
+            },
+            validation: "email",
+            type: "input",
+            required: true,
+        },
+        {
+            subGroup: { en: "Address", es: "Dirección" },
+            title: { en: "Street Address", es: "Dirección" },
+            type: "input",
+            required: true,
+            fullWidth: true,
+        },
+        {
+            title: { en: "Street Address 2", es: "Dirección 2" },
+            type: "input",
+        },
+        {
+            title: { en: "City", es: "Ciudad" },
+            type: "input",
+            required: true,
+        },
+        {
+            title: { en: "State / Province", es: "Estado / Provincia" },
+            type: "input",
+            required: true,
+        },
+        {
+            title: { en: "Zip Code", es: "Código postal" },
+            type: "input",
+            required: true,
+            validation: "zip",
+        },
+        {
+            title: {
+                en: "Are you at least 18 years of age?",
+                es: "¿Tiene al menos 18 años de edad?",
+            },
+            type: "radio",
+            required: true,
+            answers: [
+                { en: "Yes", es: "Sí" },
+                { en: "No", es: "No" },
+            ],
+            fullWidth: true,
+        },
+        {
+            title: { en: "Date Available", es: "Fecha disponible" },
+            type: "date",
+            required: true,
+            fullWidth: true,
+            future: true,
+        },
+        {
+            title: {
+                en: "Are you willing to travel up to 15 miles to work?",
+                es: "¿Está dispuesto a viajar hasta 15 millas para trabajar?",
+            },
+            type: "radio",
+            required: true,
+            answers: [
+                { en: "Yes", es: "Sí" },
+                { en: "No", es: "No" },
+            ],
+            fullWidth: true,
+        },
+        {
+            title: {
+                en: "Do you speak fluent English and Spanish?",
+                es: "¿Hablas inglés y español con fluidez?",
+            },
+            type: "radio",
+            required: true,
+            answers: [
+                { en: "Yes", es: "Sí" },
+                { en: "No", es: "No" },
+            ],
+            fullWidth: true,
+        },
+        {
+            title: {
+                en: "Can you work Monday through Friday from 9:00 AM to 7:00 PM? and Saturday from 10:00 AM to 5:00 PM?",
+                es: "¿Puede trabajar de lunes a viernes de 9:00 a.m. a 7:00 p.m. y los sábados de 10:00 a.m. a 5:00 p.m.?",
+            },
+            type: "radio",
+            required: true,
+            answers: [
+                { en: "Yes", es: "Sí" },
+                { en: "No", es: "No" },
+            ],
+            fullWidth: true,
+        },
+        {
+            title: {
+                en: "Are you computer literate?",
+                es: "¿Tienes habilidades informáticas?",
+            },
+            type: "radio",
+            required: true,
+            answers: [
+                { en: "Yes", es: "Sí" },
+                { en: "No", es: "No" },
+            ],
+            fullWidth: true,
+        },
+        {
+            title: {
+                en: "What is your typing speed?",
+                es: "¿Cuál es tu velocidad de escritura?",
+            },
+            type: "input",
+            label: { en: "WPM", es: "Palabras Por Minuto" },
+            validation: "number",
+            outsideLabel: true,
+            required: true,
+        },
+        {
+            title: {
+                en: "How did you hear about us?",
+                es: "¿Cómo se enteró de nosotros?",
+            },
+            type: "select",
+            fullWidth: true,
+            required: true,
+            answers: [
+                { en: "Referral", es: "Referencia" },
+                { en: "Street Sign", es: "Señal de la calle" },
+                { en: "Indeed", es: "Indeed" },
+                { en: "Facebook Ad", es: "Facebook Ad" },
+                { en: "Instagram Ad", es: "Instagram Ad" },
+                { en: "Walk-in", es: "Walk-in" },
+                { en: "Mail", es: "Correo" },
+                { en: "QR Code", es: "Código QR" },
+            ],
+        },
+        {
+            title: {
+                en: "Referred By?",
+                es: "¿Referido por?",
+            },
+            type: "input",
+            label: { en: "Name", es: "Nombre" },
+            outsideLabel: true,
+        },
         {
             type: "file",
             title: {

@@ -423,7 +423,7 @@ function SelectQuestion(props: {
                                 return (
                                     <MenuItem
                                         key={index}
-                                        //value={returnLocaleText(option)}
+                                        //    value={returnLocaleText(option)}
                                     >
                                         {returnLocaleText(option)}
                                     </MenuItem>
@@ -455,13 +455,6 @@ function FileQuestion(props: {
     const [currentChunkIndex, setCurrentChunkIndex] = useState(-1);
     const [progress, setProgress] = useState(0);
     const [showModal, setShowModal] = useState(false);
-
-    useEffect(() => {
-        if (!props.required) {
-            props.setValid(props.index, true);
-            props.setAnswer(props.index, "No File");
-        }
-    }, []);
 
     function handleDrop(e: any) {
         e.preventDefault();
