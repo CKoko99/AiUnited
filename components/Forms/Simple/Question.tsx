@@ -342,10 +342,11 @@ function SelectQuestion(props: {
     setValid: Function;
     setAnswer: Function;
 }) {
-    const [value, setValue] = useState("");
+    const [value, setValue] = useState<string>("");
     const [valid, setValid] = useState(false);
     const [validOnce, setValidOnce] = useState(false);
     useEffect(() => {
+        console.log(value);
         if (value.length > 0) {
             setValid(true);
             setValidOnce(true);
@@ -404,7 +405,9 @@ function SelectQuestion(props: {
                         <Select
                             sx={{ minWidth: "15rem" }}
                             value={value}
-                            onChange={(e) => setValue(e.target.value)}
+                            onChange={(e) => {
+                                setValue(e.target.value);
+                            }}
                             onBlur={() => {
                                 if (value.length > 0) {
                                     setValid(true);
@@ -423,7 +426,7 @@ function SelectQuestion(props: {
                                 return (
                                     <MenuItem
                                         key={index}
-                                        //    value={returnLocaleText(option)}
+                                        value={returnLocaleText(option)}
                                     >
                                         {returnLocaleText(option)}
                                     </MenuItem>
