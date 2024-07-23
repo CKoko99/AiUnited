@@ -350,7 +350,6 @@ const formContent = {
                 en: "Upload Resume",
                 es: "Subir currículum",
             },
-            required: true,
             fullWidth: true,
         },
     ],

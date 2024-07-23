@@ -54,6 +54,7 @@ export { returnLocaleText };
 export default function LocaleSwitcher() {
     const router = useRouter();
     const { locales, locale: activeLocale } = router;
+    const { pathname, query, asPath } = router;
 
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLButtonElement>(null);
@@ -117,7 +118,6 @@ export default function LocaleSwitcher() {
                         }}
                     >
                         {locales?.map((locale, index) => {
-                            const { pathname, query, asPath } = router;
                             return (
                                 <MenuItem onClick={handleClose} key={index}>
                                     <Link
