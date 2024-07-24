@@ -7,7 +7,7 @@ const url =
 export default async function sitemap() {
     let Pages = [];
     //let sitemap = PathConstants minus pathconstants.backend
-    let Sitemap = PATHCONSTANTS;
+    let Sitemap = { ...PATHCONSTANTS };
     delete Sitemap.BACKEND;
     delete Sitemap.BACKEND2;
     delete Sitemap.STRAPI;
