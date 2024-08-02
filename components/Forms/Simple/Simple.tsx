@@ -170,6 +170,7 @@ export default function (props: SimpleFormInterface) {
                 body: JSON.stringify({
                     to: emailProps.email,
                     company: "Ai United",
+                    spreadsheet: props.spreadsheet,
                     name: emailProps.name,
                     questions: questionsArray,
                     answers: answersArray,
