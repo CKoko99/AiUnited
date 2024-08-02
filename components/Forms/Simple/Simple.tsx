@@ -125,7 +125,7 @@ export default function (props: SimpleFormInterface) {
             company: "AiUnited",
             spreadsheet: props.spreadsheet,
             device: window.navigator.userAgent,
-            data: props.questions.map((question, index) => {
+            sheetData: props.questions.map((question, index) => {
                 return {
                     question: question.title.en,
                     response: answersArray[index],
