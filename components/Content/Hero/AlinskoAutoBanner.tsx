@@ -71,7 +71,6 @@ export default function (props: {
 
     async function redirect() {
         if (isValid) {
-            uploadToSheet();
             GTMEventHandler(`${GTMEVENTS.conversion}-Auto`, {
                 name: "Auto-Quote",
             });

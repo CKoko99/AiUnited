@@ -145,7 +145,6 @@ export default function (props: {
                                 variant="contained"
                                 color="secondary"
                                 onClick={() => {
-                                    uploadToSheet();
                                     GTMEventHandler(
                                         `${GTMEVENTS.audience}-TR-Auto-Start`,
                                         { name: "Auto-Quote" },
