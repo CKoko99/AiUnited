@@ -166,6 +166,7 @@ const textContent = {
 const formContent = {
     job: true,
     sheetTitle: "DM Application",
+    spreadsheet: "HR Dept",
     title: {
         en: "District Manager",
         es: "Gerente de Distrito",

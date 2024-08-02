@@ -1,15 +1,25 @@
-import SimpleForm from '../../components/Forms/Simple/Simple';
+import SimpleForm from "../../components/Forms/Simple/Simple";
 
 const formContent = {
     id: "GeneralLiability-quote",
-    title: { en: "General Liability Quote", es: "Cotización de responsabilidad general" },
-    subtitle: { en: "Start a free liability insurance quote to see the savings", es: `Comience una cotización gratuita de seguro de responsabilidad para ver los ahorros` },
+    spreadsheet: "Store 2",
+    title: {
+        en: "General Liability Quote",
+        es: "Cotización de responsabilidad general",
+    },
+    subtitle: {
+        en: "Start a free liability insurance quote to see the savings",
+        es: `Comience una cotización gratuita de seguro de responsabilidad para ver los ahorros`,
+    },
     questions: [
         {
-            subGroup: { en: "Personal Information", es: "Información personal" },
+            subGroup: {
+                en: "Personal Information",
+                es: "Información personal",
+            },
             title: { en: "First Name", es: "Nombre" },
             type: "input",
-            required: true
+            required: true,
         },
         {
             title: { en: "Last Name", es: "Apellido" },
@@ -101,7 +111,7 @@ const formContent = {
             label: {
                 en: "Input VIN",
                 es: "Ingrese VIN",
-            }
+            },
         },
         {
             title: {
@@ -114,7 +124,7 @@ const formContent = {
             answers: [
                 { en: "Male", es: "Masculino" },
                 { en: "Female", es: "Femenino" },
-            ]
+            ],
         },
         {
             title: {
@@ -130,7 +140,7 @@ const formContent = {
                 { en: "Divorced", es: "Divorciado" },
                 { en: "Widowed", es: "Viudo" },
                 { en: "Separated", es: "Separado" },
-            ]
+            ],
         },
         {
             title: {
@@ -152,12 +162,14 @@ const formContent = {
             answers: [
                 { en: "Yes", es: "Sí" },
                 { en: "No", es: "No" },
-            ]
-        }
-    ]
-}
+            ],
+        },
+    ],
+};
 export default function () {
-    return <>
-        <SimpleForm {...formContent} />
-    </>
+    return (
+        <>
+            <SimpleForm {...formContent} />
+        </>
+    );
 }

@@ -2,7 +2,7 @@ import TextSection from "@/components/Content/TextSection";
 import Hero from "../../../components/Content/Hero/Hero";
 import TextContent from "../../../components/Content/TextContent";
 import BannerImg from "../../../public/assets/images/about/careers/banner.png";
-import Simple from "components/Forms/Simple/Simple";
+import Simple, { SimpleFormInterface } from "components/Forms/Simple/Simple";
 import HeadComponent from "@/components/Head";
 import { Variant } from "@mui/material/styles/createTypography";
 
@@ -186,9 +186,10 @@ const textContent = {
         },
     ],
 };
-const formContent = {
+const formContent: SimpleFormInterface = {
     job: true,
     sheetTitle: "CSR Application",
+    spreadsheet: "HR Dept",
     conversion: "CSR",
     title: {
         en: "Customer Service Representative / Insurance Agent",

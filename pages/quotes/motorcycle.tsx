@@ -1,22 +1,22 @@
-import PATHCONSTANTS from '../../constants/sitemap';
-import MainGrid from '../../components/Content/Grids/MainGrid';
-import TwoColumn from '../../components/Content/Grids/TwoColumn';
-import VerticalBanner from '../../components/Content/Hero/VerticalBanner';
-import MotoImg1 from '../../public/assets/images/quotes/motorcycle/motorcycle1.png';
-import MotoImg2 from '../../public/assets/images/quotes/motorcycle/helmet2.png';
-import MotoImg3 from '../../public/assets/images/quotes/motorcycle/motorcycle3.png';
-import ContactAndShop from '../../components/Content/FlexDigrams/Combo/ContactAndShop';
-import HeadComponent from '../../components/Head';
-import SimpleForm from 'components/Forms/Simple/Simple';
+import PATHCONSTANTS from "../../constants/sitemap";
+import MainGrid from "../../components/Content/Grids/MainGrid";
+import TwoColumn from "../../components/Content/Grids/TwoColumn";
+import VerticalBanner from "../../components/Content/Hero/VerticalBanner";
+import MotoImg1 from "../../public/assets/images/quotes/motorcycle/motorcycle1.png";
+import MotoImg2 from "../../public/assets/images/quotes/motorcycle/helmet2.png";
+import MotoImg3 from "../../public/assets/images/quotes/motorcycle/motorcycle3.png";
+import ContactAndShop from "../../components/Content/FlexDigrams/Combo/ContactAndShop";
+import HeadComponent from "../../components/Head";
+import SimpleForm from "components/Forms/Simple/Simple";
 
 const bannerContent = {
     title: {
         en: "Get Motorcycle Insurance Today",
-        es: "Obtenga Seguro De Motocicleta Hoy"
+        es: "Obtenga Seguro De Motocicleta Hoy",
     },
     subtitle: {
         en: `Secure both yourself and your valuables with affordable motorcycle insurance, providing coverage in case of an accident.`,
-        es: `Protéjase a sí mismo y a sus objetos de valor obteniendo un seguro de motocicleta de bajo costo que lo cubrirá en caso de un accidente.`
+        es: `Protéjase a sí mismo y a sus objetos de valor obteniendo un seguro de motocicleta de bajo costo que lo cubrirá en caso de un accidente.`,
     },
     img: {
         src: MotoImg1,
@@ -25,99 +25,123 @@ const bannerContent = {
     CTA: {
         text: {
             en: "Get a Quote",
-            es: "Obtenga una Cotización"
+            es: "Obtenga una Cotización",
         },
         link: `${PATHCONSTANTS.QUOTES.MOTORCYCLE.FORM}`,
     },
-    audience: "Motorcycle"
-}
+    audience: "Motorcycle",
+};
 const contentSection2 = {
     largeHorizontalCard: {
         title: {
             en: "Protecting Your Passion and Your Pocket",
-            es: "Protegiendo su Pasión y Su Bolsillo"
+            es: "Protegiendo su Pasión y Su Bolsillo",
         },
         body: {
-            en: [`Whether you're a seasoned rider or a beginner, having the right insurance coverage is not just a 
+            en: [
+                `Whether you're a seasoned rider or a beginner, having the right insurance coverage is not just a 
             legal requirement in many places. It's also a great decision to protect your investment 
             and your well-being.
-            `,],
-            es: [`Ya sea que sea un motociclista experimentado o un principiante, tener la cobertura de seguro adecuada no es solo un requisito legal en muchos lugares,
-                sino que también es una decisión inteligente para proteger su inversión y su bienestar.`,]
-        }
+            `,
+            ],
+            es: [
+                `Ya sea que sea un motociclista experimentado o un principiante, tener la cobertura de seguro adecuada no es solo un requisito legal en muchos lugares,
+                sino que también es una decisión inteligente para proteger su inversión y su bienestar.`,
+            ],
+        },
     },
     largeVerticalCard: {
         body: {
-            en: ['Join the thousands of people who have saved money by getting a free motorcycle insurance quote from us.'],
-            es: ['Únase a las miles de personas que han ahorrado dinero obteniendo una cotización gratuita de seguro de motocicleta con nosotros.']
+            en: [
+                "Join the thousands of people who have saved money by getting a free motorcycle insurance quote from us.",
+            ],
+            es: [
+                "Únase a las miles de personas que han ahorrado dinero obteniendo una cotización gratuita de seguro de motocicleta con nosotros.",
+            ],
         },
         img: {
             src: MotoImg2,
-            alt: "helmet"
-        }
+            alt: "helmet",
+        },
     },
     smallCard1: {
         body: {
             en: ["Visit one of our offices located all across the country."],
-            es: ["Visite una de nuestras oficinas ubicadas en todo el país."]
+            es: ["Visite una de nuestras oficinas ubicadas en todo el país."],
         },
         CTA: {
             text: {
                 en: "Find a Store",
-                es: "Encuentra una ubicación"
+                es: "Encuentra una ubicación",
             },
             link: PATHCONSTANTS.LOCATIONS.INDEX,
-            type: "secondary"
-        }
+            type: "secondary",
+        },
     },
     smallCard2: {
         body: {
             en: ["Get a free quote today from the comfort of your home."],
-            es: ["Obtenga una cotización gratuita hoy desde la comodidad de su hogar."]
+            es: [
+                "Obtenga una cotización gratuita hoy desde la comodidad de su hogar.",
+            ],
         },
         CTA: {
             text: {
                 en: "Get a Quote",
-                es: "Obtenga una cotización"
+                es: "Obtenga una cotización",
             },
             link: `${PATHCONSTANTS.QUOTES.MOTORCYCLE.FORM}`,
-            type: "primary"
-        }
-    }
-}
+            type: "primary",
+        },
+    },
+};
 const contentSection3 = {
     title: {
         en: "Covering Every Curve: Motorcycle Insurance Options",
-        es: "Cubriendo Cada Curva: Opciones de Seguro de Motocicleta"
+        es: "Cubriendo Cada Curva: Opciones de Seguro de Motocicleta",
     },
     body: {
         en: [
             `At Ai United, we understand that every driver is unique. That's why we offer a variety of motorcycle insurance coverages to match your needs.`,
             `• Liability Insurance`,
-            `• Collision Coverage`, `• Comprehensive Coverage`, `• And More`
+            `• Collision Coverage`,
+            `• Comprehensive Coverage`,
+            `• And More`,
         ],
         es: [
             `En Ai United, entendemos que cada conductor es único. Es por eso que ofrecemos una variedad de coberturas de seguro de motocicleta para satisfacer sus necesidades.`,
-            `• Seguro de Responsabilidad`, `• Cobertura de Colisión`, `• Seguro a Todo Riesgo`,
-            `• Y Más`
-        ]
+            `• Seguro de Responsabilidad`,
+            `• Cobertura de Colisión`,
+            `• Seguro a Todo Riesgo`,
+            `• Y Más`,
+        ],
     },
     img: {
         src: MotoImg3,
         alt: "Motorcycle",
-    }
-}
+    },
+};
 const formContent = {
     id: "Motorcycle-quote",
     conversion: "Motorcycle",
-    title: { en: "Motorcycle Insurance Quote", es: "Cotización de Seguro de Motocicleta" },
-    subtitle: { en: "Start a free motorcycle insurance quote to see the savings.", es: `Comience una cotización gratuita de seguro de motocicleta para ver los ahorros` },
+    spreadsheet: "Store 2",
+    title: {
+        en: "Motorcycle Insurance Quote",
+        es: "Cotización de Seguro de Motocicleta",
+    },
+    subtitle: {
+        en: "Start a free motorcycle insurance quote to see the savings.",
+        es: `Comience una cotización gratuita de seguro de motocicleta para ver los ahorros`,
+    },
     questions: [
         {
-            subGroup: { en: "Personal Information", es: "Información personal" },
+            subGroup: {
+                en: "Personal Information",
+                es: "Información personal",
+            },
             title: { en: "First Name", es: "Nombre" },
             type: "input",
-            required: true
+            required: true,
         },
         {
             title: { en: "Last Name", es: "Apellido" },
@@ -209,7 +233,7 @@ const formContent = {
             label: {
                 en: "Input VIN",
                 es: "Ingrese VIN",
-            }
+            },
         },
         {
             title: {
@@ -222,7 +246,7 @@ const formContent = {
             answers: [
                 { en: "Male", es: "Masculino" },
                 { en: "Female", es: "Femenino" },
-            ]
+            ],
         },
         {
             title: {
@@ -238,7 +262,7 @@ const formContent = {
                 { en: "Divorced", es: "Divorciado" },
                 { en: "Widowed", es: "Viudo" },
                 { en: "Separated", es: "Separado" },
-            ]
+            ],
         },
         {
             title: {
@@ -260,19 +284,26 @@ const formContent = {
             answers: [
                 { en: "Yes", es: "Sí" },
                 { en: "No", es: "No" },
-            ]
-        }
-    ]
-}
+            ],
+        },
+    ],
+};
 export default function () {
-    return <>
-        <HeadComponent title={'Motorcycle Insurance | Get a Free Motorcycle Insurance Quote'}
-            metaData={"Rev up your savings! Get a free Motorcycle Insurance quote from Ai United Insurance today and hit the road with confidence."}
-        />
-        <VerticalBanner {...bannerContent} />
-        <MainGrid {...contentSection2} />
-        <TwoColumn {...contentSection3} />
-        <ContactAndShop quoteLink={PATHCONSTANTS.QUOTES.MOTORCYCLE.FORM} />
-        <SimpleForm {...formContent} />
-    </>
+    return (
+        <>
+            <HeadComponent
+                title={
+                    "Motorcycle Insurance | Get a Free Motorcycle Insurance Quote"
+                }
+                metaData={
+                    "Rev up your savings! Get a free Motorcycle Insurance quote from Ai United Insurance today and hit the road with confidence."
+                }
+            />
+            <VerticalBanner {...bannerContent} />
+            <MainGrid {...contentSection2} />
+            <TwoColumn {...contentSection3} />
+            <ContactAndShop quoteLink={PATHCONSTANTS.QUOTES.MOTORCYCLE.FORM} />
+            <SimpleForm {...formContent} />
+        </>
+    );
 }

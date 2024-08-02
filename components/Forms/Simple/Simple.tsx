@@ -60,22 +60,30 @@ function getEmailProps(
     }
     return { name: name.join(" "), email };
 }
-
-export default function (props: {
+export interface SimpleFormInterface {
     id?: string;
-    title: { [key: string]: string };
-    subtitle: { [key: string]: string };
+    title: { [lang: string]: string };
+    subtitle: { [lang: string]: string };
     questions: {
-        title: { [key: string]: string };
+        title: { [lang: string]: string };
         type: string;
-        options?: { [key: string]: string }[];
+        options?: { [lang: string]: string }[];
         required?: boolean;
         file?: boolean;
+        validation?: string;
+        subGroup?: { [lang: string]: string };
+        answers?: { [lang: string]: string }[];
+        fullWidth?: boolean;
+        future?: boolean;
+        label?: { [lang: string]: string };
+        outsideLabel?: boolean;
     }[];
     sheetTitle?: string;
+    spreadsheet: string;
     conversion?: string;
     job?: boolean;
-}) {
+}
+export default function (props: SimpleFormInterface) {
     //fill array with false values for each question
     const [validArray, setValidArray] = useState(
         Array(props.questions.length).fill(false),
@@ -109,32 +117,31 @@ export default function (props: {
     }, [validArray]);
 
     async function uploadToSheet() {
-        const timestamp = new Date().toLocaleString();
-
         //prepare data to be sent to google sheet
         //Numbering system to make sure the data is in the correct order
-        const formData = new FormData();
-        formData.append("1 Timestamp", timestamp);
 
-        for (let i = 0; i < answersArray.length; i++) {
-            formData.append(
-                `${2 + i} ${i + 1} ${props.questions[i].title.en}`,
-                answersArray[i],
-            );
-        }
-        formData.append("SheetTitle", props.sheetTitle || props.title.en);
-        formData.append("Spreadsheet", "AiUnited");
-        formData.append("Device Info", window.navigator.userAgent);
+        const jsonData = {
+            sheetTitle: props.sheetTitle || props.title.en,
+            company: "AiUnited",
+            spreadsheet: props.spreadsheet,
+            device: window.navigator.userAgent,
+            data: props.questions.map((question, index) => {
+                return {
+                    question: question.title.en,
+                    response: answersArray[index],
+                };
+            }),
+        };
         try {
             await fetch(`${PATHCONSTANTS.BACKEND}/forms`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify([...formData.entries()]),
+                body: JSON.stringify(jsonData),
             })
                 .then((res) => res.json())
-                .then((data) => {
+                .then(() => {
                     setFormSubmitted(true);
                 })
                 .catch((error) => {

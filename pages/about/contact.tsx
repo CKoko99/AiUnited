@@ -37,6 +37,7 @@ const heroContent = {
 };
 const formContent = {
     conversion: "Home",
+    spreadsheet: "HR Dept",
     title: {
         en: "Contact Us",
         es: "Contáctenos",
