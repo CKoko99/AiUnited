@@ -357,41 +357,57 @@ export default function (props: {
     function handleErrorContactClick(text: string) {
         const conversionType = text;
         if (!clickedErrorContactArray.length) {
-            if (conversionType === "buyOnline") {
-                const eventText = `${GTMEVENTS.audience}-TR-BuyOnline-ClickedFirst`;
-                console.log(eventText);
-                GTMEventHandler(eventText, {
-                    name: `Auto-Quote`,
-                });
-            } else {
-                const eventText = `${GTMEVENTS.audience}-TR-CallToBuy-ClickedFirst`;
-                console.log(eventText);
-                GTMEventHandler(eventText, {
-                    name: `Auto-Quote`,
-                });
-            }
-        }
-        if (
-            conversionType === "buyOnline" &&
-            !clickedErrorContactArray.includes(conversionType)
-        ) {
-            const eventText = `${GTMEVENTS.audience}-TR-BuyOnline`;
+            const eventText =
+                conversionType === "buyOnline"
+                    ? `${GTMEVENTS.audience}-TR-BuyOnline-ClickedFirst`
+                    : `${GTMEVENTS.audience}-TR-CallToBuy-ClickedFirst`;
             console.log(eventText);
             GTMEventHandler(eventText, {
                 name: `Auto-Quote`,
             });
         }
-        if (
-            conversionType === "callToBuy" &&
-            !clickedErrorContactArray.includes(conversionType)
-        ) {
-            const eventText = `${GTMEVENTS.audience}-TR-CallToBuy`;
+        if (!clickedErrorContactArray.includes(conversionType)) {
+            const eventText =
+                conversionType === "buyOnline"
+                    ? `${GTMEVENTS.audience}-TR-BuyOnline`
+                    : `${GTMEVENTS.audience}-TR-CallToBuy`;
             console.log(eventText);
             GTMEventHandler(eventText, {
                 name: `Auto-Quote`,
             });
         }
         setClickedErrorContactArray((prev) => {
+            if (prev.includes(conversionType)) {
+                return prev;
+            }
+            return [...prev, conversionType];
+        });
+    }
+
+    function handleClickedResultItem(conversionType: string) {
+        if (!clickedIndexArray.length) {
+            const eventText =
+                conversionType === "buyOnline"
+                    ? `${GTMEVENTS.audience}-TR-BuyOnline-ClickedFirst`
+                    : `${GTMEVENTS.audience}-TR-CallToBuy-ClickedFirst`;
+
+            console.log(eventText);
+            GTMEventHandler(eventText, {
+                name: `Auto-Quote`,
+            });
+        }
+        if (!clickedIndexArray.includes(conversionType)) {
+            const eventText =
+                conversionType === "buyOnline"
+                    ? `${GTMEVENTS.audience}-TR-BuyOnline`
+                    : `${GTMEVENTS.audience}-TR-CallToBuy`;
+            console.log(eventText);
+            GTMEventHandler(eventText, {
+                name: `Auto-Quote`,
+            });
+        }
+
+        setClickedIndexArray((prev) => {
             if (prev.includes(conversionType)) {
                 return prev;
             }
@@ -777,88 +793,8 @@ export default function (props: {
                                                                 onClick={(
                                                                     conversionType: string,
                                                                 ) => {
-                                                                    if (
-                                                                        !clickedIndexArray.length
-                                                                    ) {
-                                                                        if (
-                                                                            conversionType ===
-                                                                            "buyOnline"
-                                                                        ) {
-                                                                            const eventText = `${GTMEVENTS.audience}-TR-BuyOnline-ClickedFirst`;
-                                                                            console.log(
-                                                                                eventText,
-                                                                            );
-                                                                            GTMEventHandler(
-                                                                                eventText,
-                                                                                {
-                                                                                    name: `Auto-Quote`,
-                                                                                },
-                                                                            );
-                                                                        } else {
-                                                                            const eventText = `${GTMEVENTS.audience}-TR-CallToBuy-ClickedFirst`;
-                                                                            console.log(
-                                                                                eventText,
-                                                                            );
-                                                                            GTMEventHandler(
-                                                                                eventText,
-                                                                                {
-                                                                                    name: `Auto-Quote`,
-                                                                                },
-                                                                            );
-                                                                        }
-                                                                    }
-                                                                    if (
-                                                                        conversionType ===
-                                                                            "buyOnline" &&
-                                                                        !clickedIndexArray.includes(
-                                                                            conversionType,
-                                                                        )
-                                                                    ) {
-                                                                        const eventText = `${GTMEVENTS.audience}-TR-BuyOnline`;
-                                                                        console.log(
-                                                                            eventText,
-                                                                        );
-                                                                        GTMEventHandler(
-                                                                            eventText,
-                                                                            {
-                                                                                name: `Auto-Quote`,
-                                                                            },
-                                                                        );
-                                                                    }
-                                                                    if (
-                                                                        conversionType ===
-                                                                            "callToBuy" &&
-                                                                        !clickedIndexArray.includes(
-                                                                            conversionType,
-                                                                        )
-                                                                    ) {
-                                                                        const eventText = `${GTMEVENTS.audience}-TR-CallToBuy`;
-                                                                        console.log(
-                                                                            eventText,
-                                                                        );
-                                                                        GTMEventHandler(
-                                                                            eventText,
-                                                                            {
-                                                                                name: `Auto-Quote`,
-                                                                            },
-                                                                        );
-                                                                    }
-                                                                    setClickedIndexArray(
-                                                                        (
-                                                                            prev,
-                                                                        ) => {
-                                                                            if (
-                                                                                prev.includes(
-                                                                                    conversionType,
-                                                                                )
-                                                                            ) {
-                                                                                return prev;
-                                                                            }
-                                                                            return [
-                                                                                ...prev,
-                                                                                conversionType,
-                                                                            ];
-                                                                        },
+                                                                    handleClickedResultItem(
+                                                                        conversionType,
                                                                     );
                                                                 }}
                                                             />

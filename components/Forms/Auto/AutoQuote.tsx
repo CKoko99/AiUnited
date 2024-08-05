@@ -141,13 +141,13 @@ const DEFAULTS = {
                   QUESTION_IDS.FIRST_NAME,
                   //       QUESTION_IDS.VEHICLE_1,
                   //    QUESTION_IDS.PRIOR_INSURANCE,
-                  QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
+                  //   QUESTION_IDS.SELECTED_COVERAGES.LIABILITY_MINIMUM,
                   // QUESTION_IDS.DRIVER_2_ADD,
-                  QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS,
+                  //   QUESTION_IDS.DRIVER_1_HAS_VIOLATIONS,
               ]
             : [QUESTION_IDS.FIRST_NAME],
-    quotePageIndex: process.env.NODE_ENV === "development" ? 2 : 0,
-    subPageIndex: process.env.NODE_ENV === "development" ? 1 : 0,
+    quotePageIndex: process.env.NODE_ENV === "development" ? 0 : 0,
+    subPageIndex: process.env.NODE_ENV === "development" ? 0 : 0,
     showDefaultValues: process.env.NODE_ENV === "development" ? true : false,
     showDefaultsButton: process.env.NODE_ENV === "development" ? true : false,
 };

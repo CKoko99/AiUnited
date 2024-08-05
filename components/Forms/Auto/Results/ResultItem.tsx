@@ -474,7 +474,8 @@ export default function ContentItem(props: {
         return returnLink;
     }
     const buyNowURL = returnBuyNowUrl(props.results);
-    let serviceFee = buyNowURL !== "" ? 0 : 25;
+    const hasBuyNow = buyNowURL !== "";
+    let serviceFee = hasBuyNow ? 0 : 25;
     let dueToday = result.paymentOptions[0].downPaymentAmount + serviceFee;
     let totalPremium = Number(result.totalPremium) + serviceFee;
     const numberOfPayments = result.paymentOptions[0].numberOfPayments;
@@ -579,21 +580,17 @@ export default function ContentItem(props: {
                             fontSize: 13,
                             whiteSpace: "nowrap",
                         }}
-                        color={buyNowURL !== "" ? "secondary" : "primary"}
+                        color={hasBuyNow ? "secondary" : "primary"}
                         variant="contained"
-                        href={
-                            buyNowURL !== ""
-                                ? buyNowURL
-                                : PATHCONSTANTS.SALESPHONE
-                        }
-                        target={buyNowURL !== "" ? "_blank" : "_self"}
+                        href={hasBuyNow ? buyNowURL : PATHCONSTANTS.SALESPHONE}
+                        target={hasBuyNow ? "_blank" : "_self"}
                         onClick={() => {
                             props.onClick(
-                                buyNowURL !== "" ? "callToBuy" : "buyOnline",
+                                hasBuyNow ? "buyOnline" : "callToBuy",
                             );
                         }}
                     >
-                        {buyNowURL !== ""
+                        {hasBuyNow
                             ? returnLocaleText(TEXT.buyOnline)
                             : returnLocaleText(TEXT.callToGetPrice)}
                     </Button>

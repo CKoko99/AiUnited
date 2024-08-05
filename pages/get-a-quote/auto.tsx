@@ -171,7 +171,7 @@ const DevAutoForm = {
                         {
                             id: QUESTION_IDS.STATE,
                             nextQuestionId: QUESTION_IDS.TIME_AT_ADDRESS,
-                            // defaultValue: "Texas",
+                            defaultValue: "Texas",
                             type: "select",
                             question: {
                                 en: "State",
