@@ -2033,11 +2033,17 @@ export default function (props: {
                           //            "858433cb-fdb-49cc-8237-64b095833e35"
                           undefined
                 }
-                name={
-                    formValues[QUESTION_IDS.FIRST_NAME]
+                quoterInfo={{
+                    name: formValues[QUESTION_IDS.FIRST_NAME]
                         ? formValues[QUESTION_IDS.FIRST_NAME][0].value
-                        : "John"
-                }
+                        : "John",
+                    phone: formValues[QUESTION_IDS.PHONE_NUMBER]
+                        ? String(formValues[QUESTION_IDS.PHONE_NUMBER][0].value)
+                        : "5555555555",
+                    email: formValues[QUESTION_IDS.EMAIL]
+                        ? formValues[QUESTION_IDS.EMAIL][0].value
+                        : "",
+                }}
                 // disableLoading
                 goBack={() => {
                     setShowResults(false);

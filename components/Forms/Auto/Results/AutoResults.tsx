@@ -332,7 +332,11 @@ const totalWaitTime = 12000;
 export default function (props: {
     id: string;
     disableLoading?: boolean;
-    name: string;
+    quoterInfo: {
+        name: string;
+        email: string;
+        phone: string;
+    };
     goBack: Function;
     sendConfirmationEmail: Function;
 }) {
@@ -395,7 +399,52 @@ export default function (props: {
             GTMEventHandler(eventText, {
                 name: `Auto-Quote`,
             });
+            const jsonData: {
+                sheetTitle: string;
+                company: string;
+                spreadsheet: string;
+                device: string;
+                sheetData: {
+                    question: String;
+                    response: any;
+                }[];
+            } = {
+                sheetTitle: "Interested Customers",
+                company: "AiUnited",
+                spreadsheet: "Quote Codes",
+                device: window.navigator.userAgent,
+                sheetData: [
+                    {
+                        question: "Name",
+                        response: props.quoterInfo.name,
+                    },
+                    {
+                        question: "Phone Number",
+                        response: props.quoterInfo.phone,
+                    },
+                    {
+                        question: "Email",
+                        response: props.quoterInfo.email,
+                    },
+                    {
+                        question: "Conversion Type",
+                        response:
+                            conversionType === "buyOnline"
+                                ? "Buy Online"
+                                : "Call to Buy",
+                    },
+                ],
+            };
+
+            fetch(`${PATHCONSTANTS.BACKEND}/forms`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(jsonData),
+            });
         }
+
         if (!clickedIndexArray.includes(conversionType)) {
             const eventText =
                 conversionType === "buyOnline"
@@ -753,7 +802,7 @@ export default function (props: {
                                                     {returnLocaleText(
                                                         TEXT.hello,
                                                     )}{" "}
-                                                    {props.name},
+                                                    {props.quoterInfo.name},
                                                 </Typography>
                                                 <Typography
                                                     variant="h3"
