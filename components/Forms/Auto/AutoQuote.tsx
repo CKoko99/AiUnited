@@ -2034,9 +2034,12 @@ export default function (props: {
                           undefined
                 }
                 quoterInfo={{
-                    name: formValues[QUESTION_IDS.FIRST_NAME]
+                    firstName: formValues[QUESTION_IDS.FIRST_NAME]
                         ? formValues[QUESTION_IDS.FIRST_NAME][0].value
                         : "John",
+                    lastName: formValues[QUESTION_IDS.LAST_NAME]
+                        ? formValues[QUESTION_IDS.LAST_NAME][0].value
+                        : "Doe",
                     phone: formValues[QUESTION_IDS.PHONE_NUMBER]
                         ? String(formValues[QUESTION_IDS.PHONE_NUMBER][0].value)
                         : "5555555555",

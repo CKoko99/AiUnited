@@ -333,7 +333,8 @@ export default function (props: {
     id: string;
     disableLoading?: boolean;
     quoterInfo: {
-        name: string;
+        firstName: string;
+        lastName: string;
         email: string;
         phone: string;
     };
@@ -415,8 +416,12 @@ export default function (props: {
                 device: window.navigator.userAgent,
                 sheetData: [
                     {
-                        question: "Name",
-                        response: props.quoterInfo.name,
+                        question: "First Name",
+                        response: props.quoterInfo.firstName,
+                    },
+                    {
+                        question: "Last Name",
+                        response: props.quoterInfo.lastName,
                     },
                     {
                         question: "Phone Number",
@@ -802,7 +807,8 @@ export default function (props: {
                                                     {returnLocaleText(
                                                         TEXT.hello,
                                                     )}{" "}
-                                                    {props.quoterInfo.name},
+                                                    {props.quoterInfo.firstName}
+                                                    ,
                                                 </Typography>
                                                 <Typography
                                                     variant="h3"
