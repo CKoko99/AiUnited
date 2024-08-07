@@ -129,7 +129,7 @@ function isStoreOpen(dateTimeString: string) {
 function reduceCompanysList(
     BaseList: {
         carrierTransactionID: string;
-        totalPremium: number;
+        totalPremium: string;
         paymentOptions: { numberOfPayments: number }[];
         term: number;
         buyNowURL: string;
@@ -171,7 +171,7 @@ async function getResults(id: string) {
         const data = (await res.json()) as {
             carrierResults: {
                 carrierTransactionID: string;
-                totalPremium: number;
+                totalPremium: string;
                 paymentOptions: { numberOfPayments: number }[];
                 term: number;
                 buyNowURL: string;
@@ -186,7 +186,7 @@ async function getResults(id: string) {
             //      console.log(resultsData.carrierResults[0].carrierTransactionID.length !== 0)
             //we only want results where total premium is greater than 0
             let filteredResults = data?.carrierResults?.filter(
-                (result) => result.totalPremium > 0,
+                (result) => Number(result.totalPremium) > 0,
             );
 
             //we only want results where number of payments is greater than 1 or the term is 1
@@ -197,7 +197,9 @@ async function getResults(id: string) {
             );
 
             //sort by totalPremium
-            filteredResults.sort((a, b) => a.totalPremium - b.totalPremium);
+            filteredResults.sort(
+                (a, b) => Number(a.totalPremium) - Number(b.totalPremium),
+            );
 
             // console.log("filteredResults:")
             // console.log(filteredResults)
@@ -208,7 +210,7 @@ async function getResults(id: string) {
                     accumulator: {
                         [key: string]: {
                             carrierTransactionID: string;
-                            totalPremium: number;
+                            totalPremium: string;
                             paymentOptions: { numberOfPayments: number }[];
                             term: number;
                             buyNowURL: string;
@@ -232,17 +234,20 @@ async function getResults(id: string) {
             //console.log("groupedResults:")
             //console.log(groupedResults)
 
-            let finalList: {
-                carrierTransactionID: string;
-                totalPremium: number;
-                paymentOptions: {
-                    numberOfPayments: number;
-                }[];
-                term: number;
-                buyNowURL: string;
-                phoneCode: string;
-                productName: string;
-            }[][] = [];
+            let finalList: Array<
+                | {
+                      carrierTransactionID: string;
+                      totalPremium: string;
+                      paymentOptions: {
+                          numberOfPayments: number;
+                      }[];
+                      term: number;
+                      buyNowURL: string;
+                      phoneCode: string;
+                      productName: string;
+                  }[]
+                | undefined
+            > = [];
             for (const [key, value] of Object.entries(groupedResults)) {
                 finalList.push(value);
             }
@@ -262,9 +267,7 @@ async function getResults(id: string) {
 
             //sort finalList by totalPremium
             listReducedByCompanyList.sort(
-                (a, b) =>
-                    (a[0] as { totalPremium: number }).totalPremium -
-                    (b[0] as { totalPremium: number }).totalPremium,
+                (a, b) => Number(a[0].totalPremium) - Number(b[0].totalPremium),
             );
 
             //sort finalList by if buyNowUrl is not '' then set it to the front
@@ -298,7 +301,7 @@ async function getResults(id: string) {
             const returnedResults: Array<
                 {
                     carrierTransactionID: string;
-                    totalPremium: number;
+                    totalPremium: string;
                     paymentOptions: {
                         numberOfPayments: number;
                     }[];
@@ -329,6 +332,28 @@ async function getResults(id: string) {
 }
 const totalWaitTime = 12000;
 
+function returnResultPremium(
+    resultItem?: {
+        carrierTransactionID: string;
+        totalPremium: string;
+        paymentOptions: {
+            numberOfPayments: number;
+        }[];
+        term: number;
+        buyNowURL: string;
+        phoneCode: string;
+        productName: string;
+    }[],
+): string {
+    if (resultItem) {
+        const sorted = resultItem.sort(
+            (a, b) => Number(a.totalPremium) - Number(b.totalPremium),
+        );
+        return sorted[0].totalPremium;
+    }
+    return "";
+}
+
 export default function (props: {
     id: string;
     disableLoading?: boolean;
@@ -339,9 +364,29 @@ export default function (props: {
         phone: string;
     };
     goBack: Function;
-    sendConfirmationEmail: Function;
+    sendConfirmationEmail: (
+        quoteLink: string,
+        buyOnlinePrice?: string,
+        callToBuyPrice?: string,
+    ) => void;
+    quoteURL: string;
 }) {
-    const [results, setResults] = useState<Array<any>>([]);
+    const [results, setResults] = useState<
+        Array<
+            | {
+                  carrierTransactionID: string;
+                  totalPremium: string;
+                  paymentOptions: {
+                      numberOfPayments: number;
+                  }[];
+                  term: number;
+                  buyNowURL: string;
+                  phoneCode: string;
+                  productName: string;
+              }[]
+            | undefined
+        >
+    >([]);
     const [fetchedOnce, setFetchedOnce] = useState(false);
     const [loadingText, setLoadingText] = useState({});
     const [loadingPercent, setLoadingPercent] = useState(0);
@@ -354,6 +399,25 @@ export default function (props: {
     const [clickedErrorContactArray, setClickedErrorContactArray] = useState<
         string[]
     >([]);
+    const [currentQuoteURL, setCurrentQuoteURL] = useState("");
+    useEffect(() => {
+        if (
+            currentQuoteURL !== props.quoteURL &&
+            props.quoteURL !== "" &&
+            results.filter((result) => result !== undefined).length > 0
+        ) {
+            const buyNowPrice =
+                results.length > 0 ? returnResultPremium(results[0]) : "";
+            const callToBuyPrice =
+                results.length > 1 ? returnResultPremium(results[1]) : "";
+            props.sendConfirmationEmail(
+                props.quoteURL,
+                buyNowPrice,
+                callToBuyPrice,
+            );
+        }
+    }, [props.quoteURL, results]);
+
     async function fetchResultsHandler(id: string) {
         let resultsData = await getResults(id);
         setResults(resultsData);
@@ -437,6 +501,20 @@ export default function (props: {
                             conversionType === "buyOnline"
                                 ? "Buy Online"
                                 : "Call to Buy",
+                    },
+                    {
+                        question: "Buy Online Price",
+                        response:
+                            results.length > 0
+                                ? returnResultPremium(results[0])
+                                : "",
+                    },
+                    {
+                        question: "Call to Buy Price",
+                        response:
+                            results.length > 1
+                                ? returnResultPremium(results[1])
+                                : "",
                     },
                 ],
             };

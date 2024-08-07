@@ -424,7 +424,7 @@ function CoverageDetails(props: {
 export default function ContentItem(props: {
     results: {
         carrierTransactionID: string;
-        totalPremium: number;
+        totalPremium: string;
         paymentOptions: {
             numberOfPayments: number;
             downPaymentAmount: number;
@@ -454,17 +454,9 @@ export default function ContentItem(props: {
 
     function returnBuyNowUrl(
         results: {
-            carrierTransactionID: string;
-            totalPremium: number;
-            paymentOptions: {
-                numberOfPayments: number;
-            }[];
-            term: number;
             buyNowURL: string;
-            phoneCode: string;
-            productName: string;
         }[],
-    ) {
+    ): string {
         let returnLink = "";
         for (let i = 0; i < results.length; i++) {
             if (results[i].buyNowURL !== "") {

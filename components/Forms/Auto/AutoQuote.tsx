@@ -540,6 +540,7 @@ export default function (props: {
     const [emailedOnce, setEmailedOnce] = useState(false);
     const [timeSpentOnPageTracker, setTimeSpentOnPageTracker] =
         useState<number>(new Date().getTime());
+    const [currentQuoteURL, setCurrentQuoteURL] = useState("");
     useEffect(() => {
         async function wakeServer() {
             await fetch(`${PATHCONSTANTS.BACKEND2}/`)
@@ -1134,7 +1135,11 @@ export default function (props: {
         }
         return data;
     }
-    async function sendConfirmationEmail(quoteLink: string) {
+    async function sendConfirmationEmail(
+        quoteLink: string,
+        buyOnlinePrice?: string,
+        callToBuyPrice?: string,
+    ) {
         if (!emailedOnce) {
             try {
                 const emailFormData = {
@@ -1196,8 +1201,8 @@ export default function (props: {
                     formValues[QUESTION_IDS.PHONE_NUMBER][0].value,
                 ],
                 ["Email", formValues[QUESTION_IDS.EMAIL][0].value],
-                ["Buy Online Code", ""],
-                ["Call Code", ""],
+                ["Buy Online Price", buyOnlinePrice],
+                ["Call to Buy Price", callToBuyPrice],
                 ["Quote Link", `=HYPERLINK("${quoteLink}")`],
             ];
             const formData = new FormData();
@@ -1289,14 +1294,37 @@ export default function (props: {
                         body: JSON.stringify(storageData),
                     },
                 );
-                const storageJson = await storageResponse.json();
+                const storageJson = (await storageResponse.json()) as {
+                    storageRequestId: string;
+                    status: string;
+                    transactionId: string;
+                    validationErrors: {
+                        errorCode: number;
+                        expectedValue: string;
+                        fieldValue: string;
+                        key: string;
+                        message: string;
+                        messageType: string;
+                        scope: string;
+                        scopeNum: string;
+                        tagName: string;
+                    }[];
+                };
+
                 if (storageJson.storageRequestId) {
                     const storageGet = await fetch(
                         `${PATHCONSTANTS.BACKEND2}/storage/?storageRequestId=${storageJson.storageRequestId}`,
                     );
-                    const storageGetJson = await storageGet.json();
+                    const storageGetJson = (await storageGet.json()) as {
+                        agencyId: string;
+                        breakdownUrl: string;
+                        compareUrl: string;
+                        quoteId: number;
+                        quoteUrl: string;
+                    };
+
                     if (storageGetJson.quoteUrl) {
-                        sendConfirmationEmail(storageGetJson.quoteUrl);
+                        setCurrentQuoteURL(storageGetJson.quoteUrl);
                     }
                 }
             }
@@ -2053,6 +2081,7 @@ export default function (props: {
                     setQuotePageIndex((prev) => prev - 1);
                 }}
                 sendConfirmationEmail={sendConfirmationEmail}
+                quoteURL={currentQuoteURL}
                 // "511a63bf-da44-4dca-8234-47929da63a67"}
             />
         </>
